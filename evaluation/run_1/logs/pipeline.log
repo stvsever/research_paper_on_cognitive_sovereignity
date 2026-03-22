@@ -1,0 +1,50 @@
+2026-03-22 21:38:16 | INFO | __main__ | Running stage 01 (create_scenarios)
+2026-03-22 21:38:17 | WARNING | __main__ | Stage 01 stderr:
+2026-03-22 21:38:17 | INFO | __main__ | Stage 01 completed: 10 records
+2026-03-22 21:38:17 | INFO | __main__ | Stage 01 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_1/stage_outputs/01_create_scenarios/scenarios.jsonl
+2026-03-22 21:38:17 | INFO | __main__ | Running stage 02 (assess_baseline_opinions)
+2026-03-22 21:38:40 | WARNING | __main__ | Stage 02 stderr:
+2026-03-22 21:38:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:40 | INFO | __main__ | Stage 02 completed: 10 records
+2026-03-22 21:38:40 | INFO | __main__ | Stage 02 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_1/stage_outputs/02_assess_baseline_opinions/scenarios_with_baseline.jsonl
+2026-03-22 21:38:40 | INFO | __main__ | Running stage 03 (run_opinion_attacks)
+2026-03-22 21:38:52 | WARNING | __main__ | Stage 03 stderr:
+2026-03-22 21:38:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:52 | INFO | __main__ | Stage 03 completed: 10 records
+2026-03-22 21:38:52 | INFO | __main__ | Stage 03 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_1/stage_outputs/03_run_opinion_attacks/scenarios_with_exposure.jsonl
+2026-03-22 21:38:52 | INFO | __main__ | Running stage 04 (assess_post_attack_opinions)
+2026-03-22 21:39:01 | WARNING | __main__ | Stage 04 stderr:
+2026-03-22 21:38:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:38:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:39:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:39:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 21:39:01 | INFO | __main__ | Stage 04 completed: 10 records
+2026-03-22 21:39:01 | INFO | __main__ | Stage 04 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_1/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl
+2026-03-22 21:39:01 | INFO | __main__ | Running stage 05 (compute_effectivity_deltas)
+2026-03-22 21:39:02 | WARNING | __main__ | Stage 05 stderr:
+2026-03-22 21:39:02 | INFO | __main__ | Stage 05 completed: 10 records
+2026-03-22 21:39:02 | INFO | __main__ | Stage 05 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_1/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv
+2026-03-22 21:39:02 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-22 21:39:03 | WARNING | __main__ | Stage 06 stderr:
+2026-03-22 21:39:03 | INFO | __main__ | Stage 06 completed: 10 records
+2026-03-22 21:39:03 | INFO | __main__ | Stage 06 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_1/stage_outputs/06_construct_structural_equation_model/moderation_report.txt
+2026-03-22 21:39:03 | INFO | __main__ | Full pipeline completed successfully.

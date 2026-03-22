@@ -1,0 +1,61 @@
+Moderation Report - Run 1
+=========================
+
+Rows analyzed: 2
+Primary moderator: moderator_z
+Attack-present mean delta: -7.000
+Control mean delta: -12.000
+
+SEM Status
+----------
+Converged: True
+Warnings: none
+
+Top SEM Coefficients (first 15)
+-------------------------------
+delta_score ~ attack_present: est=1.2468, p=0.7157422368809052
+delta_score ~ baseline_score: est=0.0012, p=0.7157210490252417
+delta_score ~ moderator_z: est=-0.6235, p=0.7157014235856269
+delta_score ~ attack_x_moderator: est=-1.2468, p=0.7157422368808208
+post_score ~ baseline_score: est=0.9947, p=0.8199572627544716
+post_score ~ attack_present: est=0.0066, p=0.9999988711504595
+post_score ~ moderator_z: est=-0.0132, p=0.9999954846230461
+post_score ~ attack_x_moderator: est=-0.0066, p=0.9999988711504595
+delta_score ~~ delta_score: est=0.0774, p=0.3173105078691787
+post_score ~~ post_score: est=144721.9990, p=0.3173105078629137
+
+OLS Supplement
+--------------
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            delta_score   R-squared:                       1.000
+Model:                            OLS   Adj. R-squared:                    nan
+Method:                 Least Squares   F-statistic:                     1.581
+Date:                Sun, 22 Mar 2026   Prob (F-statistic):                nan
+Time:                        21:20:59   Log-Likelihood:                 55.719
+No. Observations:                   2   AIC:                            -107.4
+Df Residuals:                       0   BIC:                            -110.1
+Df Model:                           1                                         
+Covariance Type:                  HC3                                         
+======================================================================================
+                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept             -7.1003      4.898     -1.450      0.147     -16.700       2.500
+attack_present        -0.8552      0.590     -1.450      0.147      -2.012       0.301
+baseline_score        -0.0038      0.044     -0.087      0.931      -0.089       0.082
+moderator_z           -5.3898      3.718     -1.450      0.147     -12.677       1.897
+attack_x_moderator     0.8552      0.590      1.450      0.147      -0.301       2.012
+==============================================================================
+Omnibus:                          nan   Durbin-Watson:                   1.457
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.333
+Skew:                           0.000   Prob(JB):                        0.846
+Kurtosis:                       1.000   Cond. No.                         666.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The input rank is higher than the number of observations.
+
+Caveat
+------
+This is a pilot simulation (10 scenarios). Coefficients are exploratory and should not be interpreted as causal real-world estimates.

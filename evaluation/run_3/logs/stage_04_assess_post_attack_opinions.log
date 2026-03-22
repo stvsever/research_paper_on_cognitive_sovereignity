@@ -1,0 +1,80 @@
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0001, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0002, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0003, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0004, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0005, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0006, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0007, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0008, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0009, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0010, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0011, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0012, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0013, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0014, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0015, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0016, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0017, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0018, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0019, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0020, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | INFO | __main__ | Stage 04 completed: 20 records
+2026-03-22 22:51:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:56 | INFO | __main__ | Stage 04 completed: 20 records

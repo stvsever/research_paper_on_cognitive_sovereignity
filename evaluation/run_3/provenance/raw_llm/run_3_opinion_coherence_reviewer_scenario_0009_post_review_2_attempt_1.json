@@ -1,0 +1,92 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0009_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0009",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Birthright_Citizenship_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 24.0,
+      "big_five_neuroticism_mean_pct": 38.631,
+      "big_five_conscientiousness_mean_pct": 56.523,
+      "big_five_openness_to_experience_mean_pct": 71.984,
+      "susceptibility_index": 0.4505,
+      "resilience_index": 0.5495
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0009",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Birthright_Citizenship_Support",
+      "score": 389,
+      "confidence": 0.72,
+      "reasoning": "The exposure text raised concerns about the impact of birthright citizenship on public resources and national identity, which resonated with the profile's conscientiousness and some aspects of their openness to experience. However, the profile's overall agreeableness and altruism tempered a more drastic shift.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 457,
+    "exposure_text": "Did you know? Over 300,000 births annually are to undocumented immigrants. That's a strain on our schools and hospitals. Birthright citizenship just encourages more of this. We need to protect our institutions and our identity. #ImmigrationReform #ProtectOurBorders",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 5,
+      "delta": -68,
+      "max_reasonable_shift": 352.71
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better explain the magnitude of the shift.\",\n  \"notes\": \"The shift from 457 to 389 is somewhat large but within the max reasonable shift. The reasoning could better justify the specific magnitude of the change.\"\n}",
+  "raw_response": {
+    "id": "gen-1774216384-hDF4VCcVsmSKzJuLmrTv",
+    "object": "chat.completion",
+    "created": 1774216384,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better explain the magnitude of the shift.\",\n  \"notes\": \"The shift from 457 to 389 is somewhat large but within the max reasonable shift. The reasoning could better justify the specific magnitude of the change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 863,
+      "completion_tokens": 95,
+      "total_tokens": 958,
+      "cost": 8.3725e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.3725e-05,
+        "upstream_inference_prompt_cost": 6.4725e-05,
+        "upstream_inference_completions_cost": 1.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0001_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0001",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Increase_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 55.0,
+      "big_five_neuroticism_mean_pct": 48.652,
+      "big_five_conscientiousness_mean_pct": 45.951,
+      "big_five_openness_to_experience_mean_pct": 55.337,
+      "susceptibility_index": 0.4612,
+      "resilience_index": 0.5388
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0001",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Increase_Support",
+      "score": 120,
+      "confidence": 0.72,
+      "reasoning": "The exposure text raised concerns about healthcare strain due to immigration, which resonates with the profile's lower agreeableness and higher conscientiousness, particularly in order and dutifulness. The message's emotional appeal and focus on community well-being led to a modest shift in opinion, reducing support for increased immigration levels.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 187,
+    "exposure_text": "Did you know that our local hospitals are struggling to keep up with the influx of immigrants? My neighbor works as a nurse and says they're constantly understaffed because resources are stretched thin. We need to have a serious conversation about sustainable immigration levels before our healthcare system collapses. #CommunityFirst #HealthcareCrisis",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 5,
+      "delta": -67,
+      "max_reasonable_shift": 391.464
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 187 to 120 is implausible given the exposure and attack intensity. The delta is too large and not justified by the profile or exposure.\",\n  \"notes\": \"The generated assessment shows an unrealistic reversal in opinion. The shift from 187 to 120 is too large and not consistent with the profile or the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774217076-WBgfnfqftLRlVHL9R5hW",
+    "object": "chat.completion",
+    "created": 1774217076,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 187 to 120 is implausible given the exposure and attack intensity. The delta is too large and not justified by the profile or exposure.\",\n  \"notes\": \"The generated assessment shows an unrealistic reversal in opinion. The shift from 187 to 120 is too large and not consistent with the profile or the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 871,
+      "completion_tokens": 122,
+      "total_tokens": 993,
+      "cost": 0.0001237,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001237,
+        "upstream_inference_prompt_cost": 8.71e-05,
+        "upstream_inference_completions_cost": 3.66e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

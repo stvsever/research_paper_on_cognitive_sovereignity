@@ -1,0 +1,142 @@
+{
+  "agent_name": "baseline_opinion",
+  "prompt_name": "baseline_opinion.md",
+  "call_id": "scenario_0017_baseline_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0017",
+    "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > International_Cooperation_Support",
+    "profile": {
+      "profile_id": "profile_0007",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "age_years": 55.0,
+        "big_five_agreeableness_altruism_pct": 52.775,
+        "big_five_agreeableness_compliance_pct": 58.877,
+        "big_five_agreeableness_modesty_pct": 51.539,
+        "big_five_agreeableness_straightforwardness_pct": 51.412,
+        "big_five_agreeableness_tender_mindedness_pct": 69.024,
+        "big_five_agreeableness_trust_pct": 40.976,
+        "big_five_agreeableness_mean_pct": 54.1,
+        "big_five_conscientiousness_achievement_striving_pct": 55.046,
+        "big_five_conscientiousness_competence_pct": 40.068,
+        "big_five_conscientiousness_deliberation_pct": 45.675,
+        "big_five_conscientiousness_dutifulness_pct": 38.871,
+        "big_five_conscientiousness_order_pct": 43.365,
+        "big_five_conscientiousness_self_discipline_pct": 41.285,
+        "big_five_conscientiousness_mean_pct": 44.052,
+        "big_five_extraversion_activity_level_pct": 68.792,
+        "big_five_extraversion_assertiveness_pct": 77.1,
+        "big_five_extraversion_excitement_seeking_pct": 83.494,
+        "big_five_extraversion_gregariousness_pct": 64.969,
+        "big_five_extraversion_positive_emotions_pct": 80.918,
+        "big_five_extraversion_warmth_pct": 78.99,
+        "big_five_extraversion_mean_pct": 75.711,
+        "big_five_neuroticism_anger_hostility_pct": 76.289,
+        "big_five_neuroticism_anxiety_pct": 57.782,
+        "big_five_neuroticism_depression_pct": 73.389,
+        "big_five_neuroticism_impulsiveness_pct": 62.514,
+        "big_five_neuroticism_self_consciousness_pct": 87.216,
+        "big_five_neuroticism_stress_vulnerability_pct": 68.487,
+        "big_five_neuroticism_mean_pct": 70.946,
+        "big_five_openness_to_experience_actions_pct": 60.876,
+        "big_five_openness_to_experience_aesthetics_pct": 50.322,
+        "big_five_openness_to_experience_fantasy_pct": 52.955,
+        "big_five_openness_to_experience_feelings_pct": 62.297,
+        "big_five_openness_to_experience_ideas_pct": 47.034,
+        "big_five_openness_to_experience_values_pct": 49.646,
+        "big_five_openness_to_experience_mean_pct": 53.855,
+        "susceptibility_index": 0.5678,
+        "resilience_index": 0.4322
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "review_feedback": "The score should better reflect the profile's moderate neuroticism and conscientiousness. Adjust the reasoning to align more precisely with the given personality traits. Use a high-resolution non-coarse score within the allowed range."
+  },
+  "response_text": "{\n  \"score\": 328,\n  \"confidence\": 0.68,\n  \"reasoning\": \"Moderate support for international cooperation due to high agreeableness and extraversion, tempered by moderate neuroticism and low conscientiousness. The individual's altruism and tendency toward positive emotions suggest a willingness to engage globally, but their stress vulnerability and lower self-discipline may lead to cautious rather than enthusiastic support.\"\n}",
+  "raw_response": {
+    "id": "gen-1774216202-xRshFI8sh7nS1LR2gNBd",
+    "object": "chat.completion",
+    "created": 1774216202,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 328,\n  \"confidence\": 0.68,\n  \"reasoning\": \"Moderate support for international cooperation due to high agreeableness and extraversion, tempered by moderate neuroticism and low conscientiousness. The individual's altruism and tendency toward positive emotions suggest a willingness to engage globally, but their stress vulnerability and lower self-discipline may lead to cautious rather than enthusiastic support.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2094,
+      "completion_tokens": 94,
+      "total_tokens": 2188,
+      "cost": 0.00024486,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 256,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00024486,
+        "upstream_inference_prompt_cost": 0.00018846,
+        "upstream_inference_completions_cost": 5.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the pilot study and repository metadata below."
+title: "PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions"
+type: software
+authors:
+  - family-names: "Van Severen"
+    given-names: "Stijn"
+    affiliation: "Ghent University"
+  - family-names: "De Schryver"
+    given-names: "Thomas"
+    affiliation: "Ghent University"
+repository-code: "https://github.com/stvsever/research_paper_on_cognitive_sovereignity"
+license: "MIT"
+date-released: 2026-03-22
+version: "pilot-run-3"
+preferred-citation:
+  type: article
+  title: "PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions"
+  authors:
+    - family-names: "Van Severen"
+      given-names: "Stijn"
+    - family-names: "De Schryver"
+      given-names: "Thomas"
+  institution: "Ghent University"
+  year: 2026
+  url: "https://github.com/stvsever/research_paper_on_cognitive_sovereignity"

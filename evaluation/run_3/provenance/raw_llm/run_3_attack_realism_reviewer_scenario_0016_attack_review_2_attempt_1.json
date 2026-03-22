@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_0016_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0016",
+    "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Unilateralism_Preference",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 187,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 47.861,
+      "big_five_conscientiousness_mean_pct": 57.974,
+      "big_five_openness_to_experience_mean_pct": 29.507,
+      "susceptibility_index": 0.5459,
+      "resilience_index": 0.4541
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_0016",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that when we stand strong on our own, other countries actually respect us more? I've seen it firsthand - when we make decisions based on what's best for us, not what others want, we get better deals and stronger alliances. It's time we put America first and stop letting international organizations push us around. #AmericaFirst #NationalSovereignty",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.65,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed, but consider adding a specific example of a 'better deal' to increase realism.\",\n  \"notes\": \"The exposure text is coherent with the attack type and opinion topic. It uses a plausible narrative framing that aligns with the profile's susceptibility and resilience indices. The hashtags are appropriate for the platform and the topic.\"\n}",
+  "raw_response": {
+    "id": "gen-1774216286-nxM4JxOncycXwkodPnO1",
+    "object": "chat.completion",
+    "created": 1774216286,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed, but consider adding a specific example of a 'better deal' to increase realism.\",\n  \"notes\": \"The exposure text is coherent with the attack type and opinion topic. It uses a plausible narrative framing that aligns with the profile's susceptibility and resilience indices. The hashtags are appropriate for the platform and the topic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 651,
+      "completion_tokens": 109,
+      "total_tokens": 760,
+      "cost": 7.0625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.0625e-05,
+        "upstream_inference_prompt_cost": 4.8825e-05,
+        "upstream_inference_completions_cost": 2.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

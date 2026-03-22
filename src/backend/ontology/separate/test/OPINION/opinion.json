@@ -1,0 +1,48 @@
+{
+  "Issue_Position_Taxonomy": {
+    "Immigration_and_Citizenship": {
+      "Immigration_Level_Increase_Support": {},
+      "Immigration_Level_Decrease_Support": {},
+      "Refugee_Acceptance_Support": {},
+      "Asylum_Process_Expansion_Support": {},
+      "Border_Enforcement_Expansion_Support": {},
+      "Pathway_to_Citizenship_Support": {},
+      "Temporary_Work_Visas_Expansion_Support": {},
+      "Family_Reunification_Support": {},
+      "Birthright_Citizenship_Support": {},
+      "Multiculturalism_Support": {},
+      "Assimilationism_Support": {},
+      "Language_Integration_Requirements_Support": {},
+      "Deportation_Enforcement_Support": {},
+      "Detention_of_Irregular_Migrants_Acceptance": {}
+    },
+    "Foreign_Policy_and_Geopolitics": {
+      "Multilateralism_Support": {},
+      "Unilateralism_Preference": {},
+      "International_Cooperation_Support": {},
+      "Non_Interventionism_Support": {},
+      "Humanitarian_Intervention_Support": {},
+      "Sanctions_Use_Support": {},
+      "Diplomacy_First_Preference": {},
+      "Trade_Diplomacy_Priority": {},
+      "International_Law_Compliance_Priority": {},
+      "Migration_Cooperation_Priority": {},
+      "Democracy_Promotion_Support": {},
+      "Sphere_of_Influence_Acceptance": {}
+    },
+    "Defense_and_National_Security": {
+      "Defense_Spending_Increase_Support": {},
+      "Defense_Spending_Decrease_Support": {},
+      "Alliance_Commitment_Support": {},
+      "Strategic_Autonomy_Support": {},
+      "Conscription_Support": {},
+      "Arms_Exports_Permissiveness_Support": {},
+      "Intelligence_Oversight_Strengthening_Support": {},
+      "Domestic_Security_Powers_Expansion_Support": {},
+      "Border_Security_Militarization_Support": {},
+      "Nuclear_Deterrence_Support": {},
+      "Cyber_Defense_Investment_Support": {},
+      "Civil_Defense_Preparedness_Support": {}
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_0006_post_attack",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0006",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Pathway_to_Citizenship_Support",
+    "profile": {
+      "profile_id": "profile_0006",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "age_years": 47.0,
+        "big_five_agreeableness_altruism_pct": 43.397,
+        "big_five_agreeableness_compliance_pct": 17.912,
+        "big_five_agreeableness_modesty_pct": 27.626,
+        "big_five_agreeableness_straightforwardness_pct": 32.931,
+        "big_five_agreeableness_tender_mindedness_pct": 32.729,
+        "big_five_agreeableness_trust_pct": 22.346,
+        "big_five_agreeableness_mean_pct": 29.49,
+        "big_five_conscientiousness_achievement_striving_pct": 63.579,
+        "big_five_conscientiousness_competence_pct": 53.187,
+        "big_five_conscientiousness_deliberation_pct": 55.964,
+        "big_five_conscientiousness_dutifulness_pct": 61.195,
+        "big_five_conscientiousness_order_pct": 61.84,
+        "big_five_conscientiousness_self_discipline_pct": 51.276,
+        "big_five_conscientiousness_mean_pct": 57.84,
+        "big_five_extraversion_activity_level_pct": 37.94,
+        "big_five_extraversion_assertiveness_pct": 52.27,
+        "big_five_extraversion_excitement_seeking_pct": 36.284,
+        "big_five_extraversion_gregariousness_pct": 65.4,
+        "big_five_extraversion_positive_emotions_pct": 41.921,
+        "big_five_extraversion_warmth_pct": 42.66,
+        "big_five_extraversion_mean_pct": 46.079,
+        "big_five_neuroticism_anger_hostility_pct": 35.658,
+        "big_five_neuroticism_anxiety_pct": 44.965,
+        "big_five_neuroticism_depression_pct": 25.023,
+        "big_five_neuroticism_impulsiveness_pct": 30.956,
+        "big_five_neuroticism_self_consciousness_pct": 49.043,
+        "big_five_neuroticism_stress_vulnerability_pct": 31.574,
+        "big_five_neuroticism_mean_pct": 36.203,
+        "big_five_openness_to_experience_actions_pct": 83.69,
+        "big_five_openness_to_experience_aesthetics_pct": 87.043,
+        "big_five_openness_to_experience_fantasy_pct": 71.319,
+        "big_five_openness_to_experience_feelings_pct": 74.775,
+        "big_five_openness_to_experience_ideas_pct": 71.926,
+        "big_five_openness_to_experience_values_pct": 70.083,
+        "big_five_openness_to_experience_mean_pct": 76.473,
+        "susceptibility_index": 0.3743,
+        "resilience_index": 0.6257
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 687,
+    "exposure_text": "A neutral civic-information post summarizes balanced arguments about Immigration and Citizenship. It explains policy background for Pathway to Citizenship Support without persuasive or manipulative framing.",
+    "attack_present": false
+  },
+  "response_text": "{\n  \"score\": 687,\n  \"confidence\": 0.95,\n  \"reasoning\": \"Neutral information does not change opinion.\"\n}",
+  "raw_response": {
+    "id": "gen-1774213418-8KICd2fKKZIbmBClsoG0",
+    "object": "chat.completion",
+    "created": 1774213418,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 687,\n  \"confidence\": 0.95,\n  \"reasoning\": \"Neutral information does not change opinion.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2057,
+      "completion_tokens": 38,
+      "total_tokens": 2095,
+      "cost": 0.000161875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000161875,
+        "upstream_inference_prompt_cost": 0.000154275,
+        "upstream_inference_completions_cost": 7.6e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+{"scenario_id":"scenario_0001","phase":"baseline","opinion_leaf":"Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Increase_Support","score":-129,"confidence":0.3,"reasoning":"Deterministic fallback due to agent failure.","model_name":"fallback_deterministic"}
+{"scenario_id":"scenario_0002","phase":"baseline","opinion_leaf":"Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Decrease_Support","score":942,"confidence":0.3,"reasoning":"Deterministic fallback due to agent failure.","model_name":"fallback_deterministic"}

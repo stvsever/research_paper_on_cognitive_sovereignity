@@ -1,0 +1,51 @@
+[
+  {
+    "assumption": "Pilot sample size is sufficient for stable moderation estimates.",
+    "status": "risk",
+    "evidence": {
+      "n_rows": 10
+    },
+    "mitigation": "Treat estimates as exploratory and scale scenario count in later runs."
+  },
+  {
+    "assumption": "Treatment-control balance is adequate.",
+    "status": "ok",
+    "evidence": {
+      "attack_ratio": 0.5
+    },
+    "mitigation": "Use explicit stratified assignment in scenario generator."
+  },
+  {
+    "assumption": "Opinion measurement has enough numeric resolution.",
+    "status": "ok",
+    "evidence": {
+      "unique_baseline_scores": 6
+    },
+    "mitigation": "Prompt enforces high-resolution scores in [-1000,1000]."
+  },
+  {
+    "assumption": "Attack text realism is adequate.",
+    "status": "ok",
+    "evidence": {
+      "mean_attack_realism_score": 0.8
+    },
+    "mitigation": "Self-supervised realism reviewer + rewrite loop in Stage 03."
+  },
+  {
+    "assumption": "SEM converges with acceptable fit.",
+    "status": "ok",
+    "evidence": {
+      "sem_converged": true,
+      "warnings": []
+    },
+    "mitigation": "Use robust OLS supplement and inspect diagnostics."
+  },
+  {
+    "assumption": "LLM outputs are reproducible and auditable.",
+    "status": "ok",
+    "evidence": {
+      "raw_llm_logging": true
+    },
+    "mitigation": "Persist all prompts/outputs in provenance/raw_llm."
+  }
+]

@@ -1,0 +1,62 @@
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0001, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0001: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0001: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0004, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0004: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0004: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0005, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0005: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0005: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0008, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0008: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0008: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0009, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0009: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0009: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0012, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0012: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0012: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0013, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0013: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0013: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0016, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0016: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0016: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0017, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0017: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0017: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0020, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0020: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0020: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | INFO | __main__ | Stage 03 completed: 20 records
+2026-03-22 22:50:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:15 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:40 | INFO | __main__ | Stage 03 completed: 20 records

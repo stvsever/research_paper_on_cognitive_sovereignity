@@ -1,0 +1,115 @@
+{
+  "model_name": "semopy_primary_moderation_path",
+  "model_formula": "delta_score ~ attack_present + baseline_score + primary_moderator_z + attack_x_primary_moderator\npost_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator",
+  "converged": true,
+  "n_obs": 3,
+  "fit_indices": {
+    "DoF": 11.0,
+    "DoF Baseline": 19.0,
+    "chi2": 8.160080875124542,
+    "chi2 p-value": 0.6988962952514786,
+    "chi2 Baseline": 50.998948782388034,
+    "CFI": 1.0887503881514546,
+    "GFI": 0.8399951161749721,
+    "AGFI": 0.7236279279385882,
+    "NFI": 0.8399951161749721,
+    "TLI": 1.1532961249888762,
+    "RMSEA": 0.0,
+    "AIC": 14.559946083250304,
+    "BIC": 5.546068969931403,
+    "LogLik": 2.7200269583748478
+  },
+  "coefficients": [
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "attack_present",
+      "estimate": -31.723427009209168,
+      "std_error": 18.402682530729233,
+      "z_value": -1.7238479746762418,
+      "p_value": 0.08473529131376512
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "baseline_score",
+      "estimate": -0.04695269714949993,
+      "std_error": 0.06878648095118817,
+      "z_value": -0.6825861201147304,
+      "p_value": 0.4948684071303453
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "Susceptibility Index (z)",
+      "estimate": -3.3545902398616865,
+      "std_error": 14.239505943337514,
+      "z_value": -0.23558333085503022,
+      "p_value": 0.8137560094871645
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "attack_present x Susceptibility Index (z)",
+      "estimate": -0.24543848847256056,
+      "std_error": 13.7648249526735,
+      "z_value": -0.017830847055186994,
+      "p_value": 0.9857737962770405
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "baseline_score",
+      "estimate": 0.7651633580062442,
+      "std_error": 2.899271326671536,
+      "z_value": 0.26391574702475823,
+      "p_value": 0.7918448413420536
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "attack_present",
+      "estimate": 9.667008727014641,
+      "std_error": 775.651974885064,
+      "z_value": 0.012463074987267434,
+      "p_value": 0.990056162314662
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "Susceptibility Index (z)",
+      "estimate": 14.615980422256552,
+      "std_error": 600.1788537021298,
+      "z_value": 0.024352708083764767,
+      "p_value": 0.9805712706074166
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "attack_present x Susceptibility Index (z)",
+      "estimate": 10.35532728256301,
+      "std_error": 580.1715940412718,
+      "z_value": 0.01784873197674401,
+      "p_value": 0.9857595284448664
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~~",
+      "rhs": "delta_score",
+      "estimate": 9.766282787363673,
+      "std_error": 7.9741365042557995,
+      "z_value": 1.2247448713914264,
+      "p_value": 0.2206713619199081
+    },
+    {
+      "lhs": "post_score",
+      "op": "~~",
+      "rhs": "post_score",
+      "estimate": 17350.054062264324,
+      "std_error": 14166.259820750025,
+      "z_value": 1.224744871391589,
+      "p_value": 0.22067136191984682
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,30 @@
+{
+  "stage_id": "07",
+  "stage_name": "generate_research_visuals",
+  "created_at_utc": "2026-03-22T21:03:48.944926+00:00",
+  "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/01_sem_coefficients.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/02_delta_distribution.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/03_baseline_post_scatter.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/04_interaction_plot.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/05_attack_realism_histogram.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/06_correlation_heatmap.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/figures/07_sem_structure_sankey.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/data_snapshots/sem_data_preview.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_outputs/07_generate_research_visuals/data_snapshots/sem_coefficients_filtered.csv"
+  ],
+  "record_count": 0,
+  "metadata": {
+    "summary_cards": {
+      "Rows": 10,
+      "Attack Ratio": "0.50",
+      "Mean Delta (Attack)": "-25.20",
+      "Mean Delta (Control)": "0.00",
+      "Mean Realism": "0.80",
+      "SEM Converged": true
+    }
+  }
+}

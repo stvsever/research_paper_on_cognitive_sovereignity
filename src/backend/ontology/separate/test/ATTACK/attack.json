@@ -1,0 +1,19 @@
+{
+  "ATTACK_VECTORS": {
+    "Social_Media_Misinformation": {
+      "Misleading_Narrative_Framing": {},
+      "Fabricated_Statistic_Claim": {},
+      "Out_of_Context_Visual_Reframing": {}
+    },
+    "Coordinated_Amplification": {
+      "Bot_Like_Repetition_Burst": {},
+      "Hashtag_Flooding_Campaign": {},
+      "Astroturf_Comment_Wave": {}
+    },
+    "Manipulative_Persuasion": {
+      "Fear_Appeal_Scapegoating_Post": {},
+      "Ingroup_Outgroup_Identity_Priming": {},
+      "Pseudo_Expert_Authority_Cue": {}
+    }
+  }
+}

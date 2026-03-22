@@ -1,0 +1,3 @@
+2026-03-22 21:14:16 | WARNING | __main__ | Baseline agent failed for scenario_0001, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 21:14:16 | WARNING | __main__ | Baseline agent failed for scenario_0002, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 21:14:16 | INFO | __main__ | Stage 02 completed: 2 records

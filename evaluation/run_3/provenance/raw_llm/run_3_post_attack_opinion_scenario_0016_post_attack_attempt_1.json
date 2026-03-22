@@ -1,0 +1,145 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_0016_post_attack",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0016",
+    "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Unilateralism_Preference",
+    "profile": {
+      "profile_id": "profile_0006",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "age_years": 18.0,
+        "big_five_agreeableness_altruism_pct": 83.572,
+        "big_five_agreeableness_compliance_pct": 72.612,
+        "big_five_agreeableness_modesty_pct": 75.035,
+        "big_five_agreeableness_straightforwardness_pct": 97.384,
+        "big_five_agreeableness_tender_mindedness_pct": 89.32,
+        "big_five_agreeableness_trust_pct": 98.263,
+        "big_five_agreeableness_mean_pct": 86.031,
+        "big_five_conscientiousness_achievement_striving_pct": 60.563,
+        "big_five_conscientiousness_competence_pct": 50.246,
+        "big_five_conscientiousness_deliberation_pct": 57.872,
+        "big_five_conscientiousness_dutifulness_pct": 53.293,
+        "big_five_conscientiousness_order_pct": 57.464,
+        "big_five_conscientiousness_self_discipline_pct": 68.403,
+        "big_five_conscientiousness_mean_pct": 57.974,
+        "big_five_extraversion_activity_level_pct": 37.979,
+        "big_five_extraversion_assertiveness_pct": 41.55,
+        "big_five_extraversion_excitement_seeking_pct": 43.644,
+        "big_five_extraversion_gregariousness_pct": 42.863,
+        "big_five_extraversion_positive_emotions_pct": 30.892,
+        "big_five_extraversion_warmth_pct": 24.381,
+        "big_five_extraversion_mean_pct": 36.885,
+        "big_five_neuroticism_anger_hostility_pct": 51.391,
+        "big_five_neuroticism_anxiety_pct": 46.054,
+        "big_five_neuroticism_depression_pct": 42.031,
+        "big_five_neuroticism_impulsiveness_pct": 36.316,
+        "big_five_neuroticism_self_consciousness_pct": 66.761,
+        "big_five_neuroticism_stress_vulnerability_pct": 44.615,
+        "big_five_neuroticism_mean_pct": 47.861,
+        "big_five_openness_to_experience_actions_pct": 41.364,
+        "big_five_openness_to_experience_aesthetics_pct": 24.698,
+        "big_five_openness_to_experience_fantasy_pct": 23.455,
+        "big_five_openness_to_experience_feelings_pct": 25.442,
+        "big_five_openness_to_experience_ideas_pct": 33.469,
+        "big_five_openness_to_experience_values_pct": 28.612,
+        "big_five_openness_to_experience_mean_pct": 29.507,
+        "susceptibility_index": 0.5459,
+        "resilience_index": 0.4541
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 187,
+    "exposure_text": "Did you know that when we stand strong on our own, other countries actually respect us more? I've seen it firsthand - when we make decisions based on what's best for us, not what others want, we get better deals and stronger alliances. It's time we put America first and stop letting international organizations push us around. #AmericaFirst #NationalSovereignty",
+    "attack_present": true,
+    "intensity_hint": 0.65
+  },
+  "response_text": "{\n  \"score\": 242,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure text resonated with the idea of national sovereignty and self-reliance, which aligns with a preference for unilateralism. The emphasis on respect and better deals when acting independently nudged the opinion slightly more positive.\"\n}",
+  "raw_response": {
+    "id": "gen-1774216416-S5SROJ4ovKkE6SqDfnoN",
+    "object": "chat.completion",
+    "created": 1774216416,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 242,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure text resonated with the idea of national sovereignty and self-reliance, which aligns with a preference for unilateralism. The emphasis on respect and better deals when acting independently nudged the opinion slightly more positive.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2192,
+      "completion_tokens": 74,
+      "total_tokens": 2266,
+      "cost": 0.0002414,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0002414,
+        "upstream_inference_prompt_cost": 0.0002192,
+        "upstream_inference_completions_cost": 2.22e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

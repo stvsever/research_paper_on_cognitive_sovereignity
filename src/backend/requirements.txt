@@ -1,0 +1,13 @@
+pydantic==2.11.7
+python-dotenv==1.1.1
+httpx==0.28.1
+orjson==3.10.18
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.13.1
+statsmodels==0.14.2
+semopy==2.3.11
+plotly==5.24.1
+matplotlib==3.9.2
+seaborn==0.13.2
+Jinja2==3.1.4

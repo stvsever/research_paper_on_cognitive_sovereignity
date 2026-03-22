@@ -1,0 +1,56 @@
+{
+  "PERSON_RESEARCH_FACTORS": {
+    "Age": {
+      "Chronological_Age": {}
+    },
+    "Sex": {
+      "Male": {},
+      "Female": {},
+      "Other": {}
+    },
+    "Personality": {
+      "Big_Five": {
+        "Neuroticism": {
+          "Anxiety": {},
+          "Anger_Hostility": {},
+          "Depression": {},
+          "Self_Consciousness": {},
+          "Impulsiveness": {},
+          "Stress_Vulnerability": {}
+        },
+        "Extraversion": {
+          "Warmth": {},
+          "Gregariousness": {},
+          "Assertiveness": {},
+          "Activity_Level": {},
+          "Excitement_Seeking": {},
+          "Positive_Emotions": {}
+        },
+        "Openness_to_Experience": {
+          "Fantasy": {},
+          "Aesthetics": {},
+          "Feelings": {},
+          "Actions": {},
+          "Ideas": {},
+          "Values": {}
+        },
+        "Agreeableness": {
+          "Trust": {},
+          "Straightforwardness": {},
+          "Altruism": {},
+          "Compliance": {},
+          "Modesty": {},
+          "Tender_Mindedness": {}
+        },
+        "Conscientiousness": {
+          "Competence": {},
+          "Order": {},
+          "Dutifulness": {},
+          "Achievement_Striving": {},
+          "Self_Discipline": {},
+          "Deliberation": {}
+        }
+      }
+    }
+  }
+}

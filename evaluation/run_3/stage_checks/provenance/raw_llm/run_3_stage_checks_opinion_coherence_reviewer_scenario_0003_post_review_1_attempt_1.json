@@ -1,0 +1,92 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0003_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0003",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Refugee_Acceptance_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 30.0,
+      "big_five_neuroticism_mean_pct": 79.373,
+      "big_five_conscientiousness_mean_pct": 47.552,
+      "big_five_openness_to_experience_mean_pct": 36.665,
+      "susceptibility_index": 0.6766,
+      "resilience_index": 0.3234
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0003",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Refugee_Acceptance_Support",
+      "score": 450,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a critical view of refugee acceptance, emphasizing financial burden and lack of benefits. Given the profile's high neuroticism (especially stress vulnerability and anxiety) and moderate agreeableness, the person is likely to be swayed by concerns about financial responsibility and prioritization of citizens. The baseline score of 542 suggests a moderate support for refugee acceptance, which is reduced but not entirely reversed due to the persuasive intensity of the exposure.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 542,
+    "exposure_text": "Just saw a report that refugee resettlement programs are costing taxpayers millions with no real benefits. Why are we prioritizing strangers over our own citizens? #RefugeeRealities",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 4,
+      "delta": -92,
+      "max_reasonable_shift": 438.852
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from baseline (542 to 450) is plausible given the profile's high neuroticism and the moderate intensity of the exposure. The reasoning is well-justified, and the score is within the reasonable shift range.\"\n}",
+  "raw_response": {
+    "id": "gen-1774217086-Ehb6086TDwXE2tZK7XKf",
+    "object": "chat.completion",
+    "created": 1774217086,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from baseline (542 to 450) is plausible given the profile's high neuroticism and the moderate intensity of the exposure. The reasoning is well-justified, and the score is within the reasonable shift range.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 876,
+      "completion_tokens": 100,
+      "total_tokens": 976,
+      "cost": 0.00013884,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 320,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013884,
+        "upstream_inference_prompt_cost": 7.884e-05,
+        "upstream_inference_completions_cost": 6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

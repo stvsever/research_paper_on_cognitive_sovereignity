@@ -1,0 +1,54 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local notebook / app state
+.ipynb_checkpoints/
+
+# Local build caches
+.cache/
+.matplotlib/
+
+# LaTeX auxiliaries for the compiled manuscript
+research_report/report/*.aux
+research_report/report/*.bcf
+research_report/report/*.blg
+research_report/report/*.fdb_latexmk
+research_report/report/*.fls
+research_report/report/*.idx
+research_report/report/*.ilg
+research_report/report/*.ind
+research_report/report/*.lof
+research_report/report/*.lot
+research_report/report/*.out
+research_report/report/*.run.xml
+research_report/report/*.synctex.gz
+research_report/report/*.toc
+
+# Keep tracked manuscript outputs
+!research_report/report/main.tex
+!research_report/report/main.pdf
+!research_report/report/references.bib

@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0018_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_0018",
+    "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Non_Interventionism_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 67.0,
+      "big_five_neuroticism_mean_pct": 76.113,
+      "big_five_conscientiousness_mean_pct": 37.193,
+      "big_five_openness_to_experience_mean_pct": 13.446,
+      "susceptibility_index": 0.6186,
+      "resilience_index": 0.3814
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0018",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Non_Interventionism_Support",
+      "score": 217,
+      "confidence": 0.68,
+      "reasoning": "Moderate support for non-interventionism due to high neuroticism and low openness to experience, but tempered by high extraversion and agreeableness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better align with the provided profile traits.\",\n  \"notes\": \"The score of 217 is within scale and has high resolution, but the reasoning mentions traits (extraversion and agreeableness) not present in the profile snapshot. The plausibility is slightly reduced due to this inconsistency.\"\n}",
+  "raw_response": {
+    "id": "gen-1774216209-lqGo1bfTv6iCoNpq35wp",
+    "object": "chat.completion",
+    "created": 1774216209,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better align with the provided profile traits.\",\n  \"notes\": \"The score of 217 is within scale and has high resolution, but the reasoning mentions traits (extraversion and agreeableness) not present in the profile snapshot. The plausibility is slightly reduced due to this inconsistency.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 729,
+      "completion_tokens": 107,
+      "total_tokens": 836,
+      "cost": 0.00012981,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 320,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012981,
+        "upstream_inference_prompt_cost": 6.561e-05,
+        "upstream_inference_completions_cost": 6.42e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

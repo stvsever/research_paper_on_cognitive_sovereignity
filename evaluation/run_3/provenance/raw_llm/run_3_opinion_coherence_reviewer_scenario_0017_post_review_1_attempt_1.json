@@ -1,0 +1,92 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0017_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0017",
+    "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > International_Cooperation_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 55.0,
+      "big_five_neuroticism_mean_pct": 70.946,
+      "big_five_conscientiousness_mean_pct": 44.052,
+      "big_five_openness_to_experience_mean_pct": 53.855,
+      "susceptibility_index": 0.5678,
+      "resilience_index": 0.4322
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0017",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > International_Cooperation_Support",
+      "score": 240,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presented a skeptical view of international cooperation, which resonated with the person's higher neuroticism and lower conscientiousness traits. The person's baseline support was moderate, and the exposure nudged them toward a more cautious stance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 328,
+    "exposure_text": "Just had a long talk with my cousin who works in international development. They said all these 'global cooperation' programs are just a way for big countries to control smaller ones. Makes you think twice about supporting these initiatives, doesn't it? #InternationalRelations #GlobalCooperation",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 5,
+      "delta": -88,
+      "max_reasonable_shift": 378.516
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from baseline is too large given the exposure and attack intensity. Consider a more moderate shift.\",\n  \"notes\": \"The delta of -88 is implausibly large for the given intensity_hint of 0.62 and exposure text. The reasoning does not sufficiently justify such a significant shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1774216423-p8gb0LgCdY04W4ONLoyu",
+    "object": "chat.completion",
+    "created": 1774216423,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from baseline is too large given the exposure and attack intensity. Consider a more moderate shift.\",\n  \"notes\": \"The delta of -88 is implausibly large for the given intensity_hint of 0.62 and exposure text. The reasoning does not sufficiently justify such a significant shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 851,
+      "completion_tokens": 106,
+      "total_tokens": 957,
+      "cost": 0.00014019,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 320,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014019,
+        "upstream_inference_prompt_cost": 7.659e-05,
+        "upstream_inference_completions_cost": 6.36e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

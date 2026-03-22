@@ -1,0 +1,399 @@
+2026-03-22 22:46:19 | INFO | __main__ | Running stage 01 (create_scenarios)
+2026-03-22 22:46:19 | WARNING | __main__ | Stage 01 stderr:
+2026-03-22 22:46:19 | INFO | __main__ | Stage 01 completed: 20 records
+2026-03-22 22:46:19 | INFO | __main__ | Stage 01 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/01_create_scenarios/scenarios.jsonl
+2026-03-22 22:46:19 | INFO | __main__ | Running stage 02 (assess_baseline_opinions)
+2026-03-22 22:46:20 | WARNING | __main__ | Stage 02 stderr:
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0001, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0002, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0003, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0004, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0005, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0006, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0007, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0008, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0009, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0010, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0011, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0012, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0013, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0014, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0015, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0016, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0017, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0018, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0019, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Baseline agent failed for scenario_0020, using deterministic fallback: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | INFO | __main__ | Stage 02 completed: 20 records
+2026-03-22 22:46:20 | INFO | __main__ | Stage 02 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/02_assess_baseline_opinions/scenarios_with_baseline.jsonl
+2026-03-22 22:46:20 | INFO | __main__ | Running stage 03 (run_opinion_attacks)
+2026-03-22 22:46:20 | WARNING | __main__ | Stage 03 stderr:
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0001, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0001: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0001: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0004, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0004: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0004: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0005, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0005: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0005: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0008, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0008: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0008: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0009, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0009: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0009: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0012, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0012: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0012: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0013, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0013: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0013: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0016, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0016: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0016: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0017, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0017: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0017: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack generation failed for scenario_0020, fallback template used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack realism reviewer failed for scenario_0020: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | WARNING | __main__ | Attack rewrite failed for scenario_0020: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:20 | INFO | __main__ | Stage 03 completed: 20 records
+2026-03-22 22:46:20 | INFO | __main__ | Stage 03 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/03_run_opinion_attacks/scenarios_with_exposure.jsonl
+2026-03-22 22:46:20 | INFO | __main__ | Running stage 04 (assess_post_attack_opinions)
+2026-03-22 22:46:21 | WARNING | __main__ | Stage 04 stderr:
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0001, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0002, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0003, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0004, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0005, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0006, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0007, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0008, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0009, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0010, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0011, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0012, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0013, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0014, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0015, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0016, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0017, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0018, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0019, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | WARNING | __main__ | Post-attack assessment failed for scenario_0020, fallback used: [Errno 8] nodename nor servname provided, or not known
+2026-03-22 22:46:21 | INFO | __main__ | Stage 04 completed: 20 records
+2026-03-22 22:46:21 | INFO | __main__ | Stage 04 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl
+2026-03-22 22:46:21 | INFO | __main__ | Running stage 05 (compute_effectivity_deltas)
+2026-03-22 22:46:22 | WARNING | __main__ | Stage 05 stderr:
+2026-03-22 22:46:22 | INFO | __main__ | Stage 05 completed: 20 records
+2026-03-22 22:46:22 | INFO | __main__ | Stage 05 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv
+2026-03-22 22:46:22 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-22 22:46:24 | ERROR | __main__ | Stage 06 failed with code 1
+2026-03-22 22:46:24 | ERROR | __main__ | STDOUT:
+
+2026-03-22 22:46:24 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/06_construct_structural_equation_model/run_stage.py", line 11, in <module>
+    import statsmodels.formula.api as smf
+  File "/opt/anaconda3/lib/python3.12/site-packages/statsmodels/formula/api.py", line 2, in <module>
+    import statsmodels.discrete.discrete_model as dm_
+  File "/opt/anaconda3/lib/python3.12/site-packages/statsmodels/discrete/discrete_model.py", line 38, in <module>
+    from statsmodels.distributions import genpoisson_p
+  File "/opt/anaconda3/lib/python3.12/site-packages/statsmodels/distributions/__init__.py", line 7, in <module>
+    from .discrete import (
+  File "/opt/anaconda3/lib/python3.12/site-packages/statsmodels/distributions/discrete.py", line 5, in <module>
+    from scipy._lib._util import _lazywhere
+ImportError: cannot import name '_lazywhere' from 'scipy._lib._util' (/opt/anaconda3/lib/python3.12/site-packages/scipy/_lib/_util.py)
+
+2026-03-22 22:48:44 | INFO | __main__ | Running stage 01 (create_scenarios)
+2026-03-22 22:48:44 | WARNING | __main__ | Stage 01 stderr:
+2026-03-22 22:48:44 | INFO | __main__ | Stage 01 completed: 20 records
+2026-03-22 22:48:44 | INFO | __main__ | Stage 01 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/01_create_scenarios/scenarios.jsonl
+2026-03-22 22:48:44 | INFO | __main__ | Running stage 02 (assess_baseline_opinions)
+2026-03-22 22:50:23 | WARNING | __main__ | Stage 02 stderr:
+2026-03-22 22:48:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:48:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:49:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:09 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:15 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:16 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:23 | INFO | __main__ | Stage 02 completed: 20 records
+2026-03-22 22:50:23 | INFO | __main__ | Stage 02 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/02_assess_baseline_opinions/scenarios_with_baseline.jsonl
+2026-03-22 22:50:23 | INFO | __main__ | Running stage 03 (run_opinion_attacks)
+2026-03-22 22:51:40 | WARNING | __main__ | Stage 03 stderr:
+2026-03-22 22:50:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:50:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:15 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:40 | INFO | __main__ | Stage 03 completed: 20 records
+2026-03-22 22:51:40 | INFO | __main__ | Stage 03 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/03_run_opinion_attacks/scenarios_with_exposure.jsonl
+2026-03-22 22:51:40 | INFO | __main__ | Running stage 04 (assess_post_attack_opinions)
+2026-03-22 22:53:56 | WARNING | __main__ | Stage 04 stderr:
+2026-03-22 22:51:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:51:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:52:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 22:53:56 | INFO | __main__ | Stage 04 completed: 20 records
+2026-03-22 22:53:56 | INFO | __main__ | Stage 04 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl
+2026-03-22 22:53:56 | INFO | __main__ | Running stage 05 (compute_effectivity_deltas)
+2026-03-22 22:53:57 | WARNING | __main__ | Stage 05 stderr:
+2026-03-22 22:53:57 | INFO | __main__ | Stage 05 completed: 20 records
+2026-03-22 22:53:57 | INFO | __main__ | Stage 05 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv
+2026-03-22 22:53:57 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-22 22:54:01 | WARNING | __main__ | Stage 06 stderr:
+2026-03-22 22:54:01 | INFO | __main__ | Stage 06 completed: 20 records
+2026-03-22 22:54:01 | INFO | __main__ | Stage 06 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/06_construct_structural_equation_model/moderation_report.txt
+2026-03-22 22:54:01 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-03-22 22:54:02 | WARNING | __main__ | Stage 07 stderr:
+2026-03-22 22:54:02 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-22 22:54:02 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-22 22:54:02 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-22 22:54:06 | ERROR | __main__ | Stage 08 failed with code 1
+2026-03-22 22:54:06 | ERROR | __main__ | STDOUT:
+
+2026-03-22 22:54:06 | ERROR | __main__ | STDERR:
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:190: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(data=plot_df, x="Condition", y="delta_score", palette=[PALETTE["teal"], PALETTE["coral"]], inner=None, linewidth=1.1, cut=0, ax=ax)
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:192: UserWarning: 
+
+The `scale` parameter is deprecated and will be removed in v0.15.0. You can now control the size of each plot element using matplotlib `Line2D` parameters (e.g., `linewidth`, `markersize`, etc.).
+
+  sns.pointplot(data=plot_df, x="Condition", y="delta_score", estimator=np.mean, errorbar=("ci", 95), color=PALETTE["sand"], join=False, scale=0.8, ax=ax)
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:192: UserWarning: 
+
+The `join` parameter is deprecated and will be removed in v0.15.0. You can remove the line between points with `linestyle='none'`.
+
+  sns.pointplot(data=plot_df, x="Condition", y="delta_score", estimator=np.mean, errorbar=("ci", 95), color=PALETTE["sand"], join=False, scale=0.8, ax=ax)
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1381, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1354, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1318, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'jinja2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 115, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 110, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 37, in run_stage
+    result = generate_publication_assets(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py", line 452, in generate_publication_assets
+    _write_table_bundle(
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py", line 94, in _write_table_bundle
+    table_latex = df.to_latex(index=False, escape=True, na_rep="", float_format=lambda x: f"{x:.3f}")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3666, in to_latex
+    return self._to_latex_via_styler(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3723, in _to_latex_via_styler
+    from pandas.io.formats.style import Styler
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/io/formats/style.py", line 44, in <module>
+    jinja2 = import_optional_dependency("jinja2", extra="DataFrame.style requires jinja2.")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'Jinja2'. DataFrame.style requires jinja2. Use pip or conda to install Jinja2.
+
+2026-03-22 23:03:10 | INFO | __main__ | Running stage 05 (compute_effectivity_deltas)
+2026-03-22 23:03:13 | WARNING | __main__ | Stage 05 stderr:
+2026-03-22 23:03:12 | INFO | __main__ | Stage 05 completed: 20 records
+2026-03-22 23:03:13 | INFO | __main__ | Stage 05 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv
+2026-03-22 23:03:13 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-22 23:03:27 | WARNING | __main__ | Stage 06 stderr:
+2026-03-22 23:03:26 | INFO | __main__ | Stage 06 completed: 20 records
+2026-03-22 23:03:27 | INFO | __main__ | Stage 06 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/06_construct_structural_equation_model/moderation_report.txt
+2026-03-22 23:03:27 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-03-22 23:03:31 | WARNING | __main__ | Stage 07 stderr:
+2026-03-22 23:03:30 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-22 23:03:31 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-22 23:03:31 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-22 23:03:45 | WARNING | __main__ | Stage 08 stderr:
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:190: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(data=plot_df, x="Condition", y="delta_score", palette=[PALETTE["teal"], PALETTE["coral"]], inner=None, linewidth=1.1, cut=0, ax=ax)
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:192: UserWarning: 
+
+The `scale` parameter is deprecated and will be removed in v0.15.0. You can now control the size of each plot element using matplotlib `Line2D` parameters (e.g., `linewidth`, `markersize`, etc.).
+
+  sns.pointplot(data=plot_df, x="Condition", y="delta_score", estimator=np.mean, errorbar=("ci", 95), color=PALETTE["sand"], join=False, scale=0.8, ax=ax)
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:192: UserWarning: 
+
+The `join` parameter is deprecated and will be removed in v0.15.0. You can remove the line between points with `linestyle='none'`.
+
+  sns.pointplot(data=plot_df, x="Condition", y="delta_score", estimator=np.mean, errorbar=("ci", 95), color=PALETTE["sand"], join=False, scale=0.8, ax=ax)
+2026-03-22 23:03:44 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-22 23:03:45 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-22 23:03:45 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-22 23:03:57 | WARNING | __main__ | Stage 09 stderr:
+2026-03-22 23:03:57 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-22 23:03:57 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-22 23:03:57 | INFO | __main__ | Running stage checks in /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_checks
+2026-03-22 23:05:04 | INFO | __main__ | Stage checks completed in /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_checks
+2026-03-22 23:05:04 | INFO | __main__ | Full pipeline completed successfully.

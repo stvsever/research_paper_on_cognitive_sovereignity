@@ -1,0 +1,83 @@
+Moderation Report - run_3
+=========================
+
+Rows analyzed: 20
+Primary moderator: profile_cont_susceptibility_index (Susceptibility Index)
+Attack-present mean delta: 6.500
+Control mean delta: 0.000
+Mean attack realism score: 0.780
+
+SEM Status
+----------
+Converged: True
+Fit indices: CFI=0.080, RMSEA=1.817
+Warnings: none
+
+Primary Robust Model
+--------------------
+Intercept: est=13.2332, p=0.295520, boot95=[-1.5822, 44.8907]
+attack_present: est=11.5579, p=0.534751, boot95=[-26.7841, 51.0877]
+baseline_score: est=-0.0556, p=0.140478, boot95=[-0.1425, -0.0043]
+primary_moderator_z: est=-1.3377, p=0.848972, boot95=[-34.9100, 11.5832]
+attack_x_primary_moderator: est=-21.7074, p=0.045380, boot95=[-55.9909, 21.8165]
+
+Exploratory Moderators
+---------------------
+Big Five Neuroticism Stress Vulnerability %: interaction est=-28.6916, p=0.030658
+Resilience Index: interaction est=21.7074, p=0.045380
+Big Five Neuroticism Anxiety %: interaction est=-24.3593, p=0.078409
+Big Five Neuroticism Depression %: interaction est=-26.7937, p=0.091372
+Big Five Neuroticism Mean %: interaction est=-26.7335, p=0.103013
+Big Five Neuroticism Anger Hostility %: interaction est=-30.9933, p=0.113003
+Big Five Neuroticism Self Consciousness %: interaction est=-17.6531, p=0.342657
+Big Five Conscientiousness Deliberation %: interaction est=18.0117, p=0.451718
+
+SEM Coefficients (first 12)
+---------------------------
+delta_score ~ attack_present: est=11.5629, p=0.4338241198869137
+delta_score ~ baseline_score: est=-0.0556, p=0.06595045459047322
+delta_score ~ Susceptibility Index (z): est=-1.3365, p=0.9111562444282235
+delta_score ~ attack_present x Susceptibility Index (z): est=-21.7099, p=0.1478256899363457
+post_score ~ baseline_score: est=0.9255, p=2.4331318515535827e-08
+post_score ~ attack_present: est=46.4533, p=0.566815103282182
+post_score ~ Susceptibility Index (z): est=18.4976, p=0.7784795679274428
+post_score ~ attack_present x Susceptibility Index (z): est=-47.3853, p=0.5650227371467424
+delta_score ~~ delta_score: est=1015.5509, p=0.0015654022580025018
+post_score ~~ post_score: est=30607.5950, p=0.0015654022580025018
+
+OLS Supplement
+--------------
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            delta_score   R-squared:                       0.254
+Model:                            OLS   Adj. R-squared:                  0.055
+Method:                 Least Squares   F-statistic:                     2.688
+Date:                Sun, 22 Mar 2026   Prob (F-statistic):             0.0717
+Time:                        23:03:26   Log-Likelihood:                -99.293
+No. Observations:                  20   AIC:                             208.6
+Df Residuals:                      15   BIC:                             213.6
+Df Model:                           4                                         
+Covariance Type:                  HC3                                         
+==============================================================================================
+                                 coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------------------
+Intercept                     13.2332     12.650      1.046      0.296     -11.561      38.027
+attack_present                11.5579     18.619      0.621      0.535     -24.934      48.050
+baseline_score                -0.0556      0.038     -1.474      0.140      -0.129       0.018
+primary_moderator_z           -1.3377      7.024     -0.190      0.849     -15.105      12.430
+attack_x_primary_moderator   -21.7074     10.848     -2.001      0.045     -42.968      -0.446
+==============================================================================
+Omnibus:                        0.121   Durbin-Watson:                   2.252
+Prob(Omnibus):                  0.941   Jarque-Bera (JB):                0.049
+Skew:                          -0.052   Prob(JB):                        0.976
+Kurtosis:                       2.782   Cond. No.                     1.01e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 1.01e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+Caveat
+------
+This is a pilot simulation. Estimates are directional and exploratory; they should not be interpreted as causal real-world effects.

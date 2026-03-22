@@ -1,0 +1,24 @@
+{
+  "stage_id": "06",
+  "stage_name": "construct_structural_equation_model",
+  "created_at_utc": "2026-03-22T21:04:11.049058+00:00",
+  "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/moderation_report.txt",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/sem_model_spec.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/sem_result.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/sem_coefficients.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/sem_fit_indices.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/ols_robust_summary.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/ols_robust_params.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/moderation_report.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/assumption_register.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/peer_review_critiques.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_2/stage_checks/stage_outputs/06_construct_structural_equation_model/methodology_audit.txt"
+  ],
+  "record_count": 3,
+  "metadata": {
+    "sem_converged": true,
+    "n_coefficients": 10
+  }
+}

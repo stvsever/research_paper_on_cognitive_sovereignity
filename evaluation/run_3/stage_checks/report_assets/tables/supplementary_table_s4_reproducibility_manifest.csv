@@ -1,0 +1,9 @@
+Field,Value
+run_id,run_3_stage_checks
+output_root,/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_checks
+ontology_root,/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/ontology/separate/test
+attack_leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+openrouter_model,mistralai/mistral-small-3.2-24b-instruct
+primary_moderator,profile_cont_susceptibility_index
+opinion_leaf_count,38
+attack_leaf_count,9

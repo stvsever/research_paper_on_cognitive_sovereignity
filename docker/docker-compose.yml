@@ -1,0 +1,26 @@
+services:
+  cognitive-sovereignty-pilot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    env_file:
+      - ../.env
+    environment:
+      OPENROUTER_MODEL: "${OPENROUTER_MODEL:-mistralai/mistral-small-3.2-24b-instruct}"
+      OUTPUT_ROOT: "${OUTPUT_ROOT:-evaluation/run_3}"
+      RUN_ID: "${RUN_ID:-run_3}"
+      N_SCENARIOS: "${N_SCENARIOS:-20}"
+      PIPELINE_SEED: "${PIPELINE_SEED:-126}"
+      ATTACK_RATIO: "${ATTACK_RATIO:-0.5}"
+      ATTACK_LEAF: "${ATTACK_LEAF:-ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing}"
+      TEMPERATURE: "${TEMPERATURE:-0.2}"
+      MAX_REPAIR_ITER: "${MAX_REPAIR_ITER:-2}"
+      PRIMARY_MODERATOR: "${PRIMARY_MODERATOR:-profile_cont_susceptibility_index}"
+      BOOTSTRAP_SAMPLES: "${BOOTSTRAP_SAMPLES:-500}"
+      REPORT_ROOT: "${REPORT_ROOT:-research_report/report}"
+      REPORT_ASSETS_ROOT: "${REPORT_ASSETS_ROOT:-research_report/assets}"
+      PAPER_TITLE: "${PAPER_TITLE:-PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions}"
+      RUN_STAGE_CHECKS: "${RUN_STAGE_CHECKS:-true}"
+    volumes:
+      - ../evaluation:/app/evaluation
+      - ../research_report:/app/research_report

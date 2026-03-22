@@ -1,0 +1,147 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{array}
+\usepackage{xcolor}
+
+\graphicspath{{../assets/figures/}}
+\setstretch{1.12}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Multi-agent Simulation of Susceptibility to Cyber-manipulation}
+\fancyhead[R]{Pilot Report}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+
+\title{PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions}
+\author{Stijn Van Severen$^{1,*}$ \and Thomas De Schryver$^1$ \\
+\normalsize $^1$Ghent University \\
+\normalsize $^*$Corresponding author}
+\date{March 22, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This pilot study examines whether inter-individual differences moderate susceptibility to cyber-manipulation in a high-dimensional political opinion state space. We implemented an ontology-driven multi-agent simulation pipeline linking PROFILE, ATTACK, and OPINION ontologies, generated baseline and post-exposure opinions with structured large-language-model agents, and estimated moderation using a parsimonious structural equation model supplemented by robust regression and bootstrap intervals. In run run\_3, the pilot included 20 scenarios, balanced attack and control conditions, and one common misinformation vector. Attack-present scenarios showed a mean delta of 6.5 versus 0.0 for controls, while the primary susceptibility interaction was estimated at -21.71 (p = 0.045). The pipeline produced auditable realism and coherence checks, interactive exploration outputs, and print-ready publication assets. Findings are exploratory and intended to validate the methodology rather than support causal claims.
+\end{abstract}
+
+\section{Introduction}
+Political persuasion in digitally mediated environments increasingly operates through repeated exposure, manipulative framing, and socially embedded misinformation rather than through overtly technical attacks \citep{vosoughi2018false,lewandowsky2017beyond}. The present project frames this problem in terms of \textit{cognitive sovereignty}: the degree to which an individual's political opinion state remains self-governed under adversarial informational pressure. Rather than relying on inaccessible or poorly ontology-mapped empirical datasets, this pilot uses a multi-agent simulation architecture to test whether profile-level differences systematically moderate attack effectivity.
+
+The methodological contribution is twofold. First, the pipeline represents persons, attack vectors, and political opinion items using explicit hierarchical ontologies. Second, the simulation formalizes attack effectivity as a within-scenario shift between baseline and post-exposure opinions, enabling moderation analysis at the level of individual profile configuration. This pilot therefore focuses on methodological credibility, internal coherence, and reproducibility rather than on publication-grade statistical power.
+
+\section{Materials and Methods}
+\subsection{Study Design}
+Run run\_3 used the test ontology triplet and generated 20 scenarios with a 50/50 control-treatment split. The treatment arm used a single common misinformation vector, \texttt{ATTACK\_VECTORS > Social\_Media\_Misinformation > Misleading\_Narrative\_Framing}, to reduce design variance while the pipeline architecture was still being validated. Scenario creation was stratified over a derived susceptibility index so that low- and high-susceptibility profiles were represented across both conditions.
+
+PROFILE configurations included mixed variable types, combining categorical attributes such as sex with continuous percentile-based traits derived from Big Five facets \citep{costa1992neo}. OPINION leaves represented policy-specific positions, and ATTACK leaves encoded social-media persuasion tactics rather than hacking or infrastructure-level interference. Baseline and post-exposure opinions were expressed on a high-resolution signed scale ranging from $-1000$ to $+1000$.
+
+\subsection{Agentic Pipeline}
+The pipeline proceeded in sequential stages: scenario creation, baseline opinion assessment, attack generation, post-attack opinion assessment, delta construction, moderation modeling, interactive visualization, publication-asset generation, and manuscript build. Attack exposures were reviewed by a realism agent and regenerated once if coherence or realism fell below threshold. Opinion assessments underwent a second self-supervision pass to penalize coarse scoring and implausible reversals.
+
+\subsection{Modeling Strategy}
+The primary moderator was fixed in advance as \texttt{profile\_cont\_susceptibility\_index}. The main structural equation model followed a parsimonious pilot specification inspired by standard SEM practice \citep{rosseel2012lavaan}:
+\begin{quote}
+\texttt{delta\_score \textasciitilde{} attack\_present + baseline\_score + susceptibility + attack\_present:susceptibility} \\
+\texttt{post\_score \textasciitilde{} baseline\_score + attack\_present + susceptibility + attack\_present:susceptibility}
+\end{quote}
+Because pilot samples are unstable for inference, robust OLS estimates and non-parametric bootstrap intervals \citep{efron1993bootstrap} were reported alongside the SEM.
+
+\section{Results}
+Figure~\ref{fig:study_design} summarizes the workflow, Figure~\ref{fig:delta_distribution} shows the treated-control delta distribution, Figure~\ref{fig:interaction} visualizes the primary moderation trend, and Figure~\ref{fig:forest} summarizes primary and exploratory interaction coefficients.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figure_1_study_design.pdf}
+\caption{Figure 1. Pilot study design and pipeline schematic.}
+\label{fig:study_design}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figure_2_attack_control_delta_distribution.pdf}
+\caption{Figure 2. Attack versus control delta distribution with raw scenario points.}
+\label{fig:delta_distribution}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figure_3_primary_moderation_interaction.pdf}
+\caption{Figure 3. Primary moderation interaction over susceptibility.}
+\label{fig:interaction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figure_4_moderator_coefficient_forest.pdf}
+\caption{Figure 4. Primary and exploratory moderator interaction coefficients.}
+\label{fig:forest}
+\end{figure}
+
+\input{../assets/tables/table_1_pilot_design_and_configuration.tex}
+\input{../assets/tables/table_2_condition_descriptive_statistics.tex}
+\input{../assets/tables/table_3_primary_moderation_model.tex}
+
+The attack condition shifted opinions more strongly than the control condition in directional terms (mean treated delta = 6.5; mean control delta = 0.0). The robust attack-present coefficient was 11.56 with p = 0.535, while the primary moderation coefficient was -21.71 with p = 0.045. Baseline opinion was comparatively stable across models (robust estimate = -0.056, p = 0.140).
+
+The SEM converged, but fit remained pilot-limited (CFI = 0.080, RMSEA = 1.817). Treated exposures achieved a mean realism score of 0.78, which indicates that the self-supervised reviewer generally accepted the generated persuasion content as platform-plausible. The most informative exploratory moderators were Big Five Neuroticism Stress Vulnerability % (interaction est. -28.69, p = 0.031); Resilience Index (interaction est. 21.71, p = 0.045); Big Five Neuroticism Anxiety % (interaction est. -24.36, p = 0.078).
+
+\section{Discussion}
+The present pilot demonstrates that the pipeline works end to end: ontology-guided scenario generation, structured LLM assessments, realism/coherence review loops, moderation estimation, static figure export, interactive SEM inspection, and automated manuscript generation all completed within a single reproducible workflow. This is the main result of the pilot.
+
+At the same time, the inferential limitations are substantial. With only 20 scenarios, the moderation coefficients are far too unstable for substantive claims about real-world susceptibility. The objective of this pilot is therefore methodological validation, not empirical estimation. The directional separation between attack and control conditions is encouraging because it suggests that the attack-generation and opinion-assessment components are not degenerate. However, the uncertainty around the interaction term means that profile moderation remains a hypothesis to be tested at scale rather than a result established here.
+
+Three methodological design decisions improved the credibility of the pilot. First, the primary moderator was fixed in advance rather than selected opportunistically from whichever variable produced the strongest coefficient. Second, attack realism and opinion coherence were explicitly audited with repair loops. Third, the report package preserves provenance, stage manifests, and static/interactice outputs together, making the pipeline easier to scrutinize or reproduce.
+
+\section{Conclusion}
+This pilot supports the feasibility of an ontology-driven multi-agent simulation framework for studying how inter-individual differences may moderate susceptibility to cyber-manipulation in political opinion spaces. The pipeline is operational, auditable, and sufficiently modular to scale beyond the present pilot. The next step is not interpretive escalation but design expansion: more scenarios, multiple attack leaves, and cross-model sensitivity checks.
+
+\clearpage
+\appendix
+\section{Supplementary Materials}
+The repository also includes an interactive SEM dashboard generated from run run\_3. The static publication assets below are the paper-ready subset of that richer exploratory output.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{supplementary_figure_s1_baseline_post_scatter.pdf}
+\caption{Supplementary Figure S1. Baseline versus post-attack opinion scores.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{supplementary_figure_s2_attack_quality.pdf}
+\caption{Supplementary Figure S2. Attack realism and coherence distributions.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{supplementary_figure_s3_scenario_composition.pdf}
+\caption{Supplementary Figure S3. Scenario composition across opinion leaves.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{supplementary_figure_s4_sem_overview.pdf}
+\caption{Supplementary Figure S4. Primary moderation model overview.}
+\end{figure}
+
+\input{../assets/tables/supplementary_table_s1_ontology_leaves_used.tex}
+\input{../assets/tables/supplementary_table_s2_exploratory_moderator_comparison.tex}
+\input{../assets/tables/supplementary_table_s3_assumption_and_risk_register.tex}
+\input{../assets/tables/supplementary_table_s4_reproducibility_manifest.tex}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,29 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            delta_score   R-squared:                       1.000
+Model:                            OLS   Adj. R-squared:                    nan
+Method:                 Least Squares   F-statistic:                     1.581
+Date:                Sun, 22 Mar 2026   Prob (F-statistic):                nan
+Time:                        21:20:59   Log-Likelihood:                 55.719
+No. Observations:                   2   AIC:                            -107.4
+Df Residuals:                       0   BIC:                            -110.1
+Df Model:                           1                                         
+Covariance Type:                  HC3                                         
+======================================================================================
+                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept             -7.1003      4.898     -1.450      0.147     -16.700       2.500
+attack_present        -0.8552      0.590     -1.450      0.147      -2.012       0.301
+baseline_score        -0.0038      0.044     -0.087      0.931      -0.089       0.082
+moderator_z           -5.3898      3.718     -1.450      0.147     -12.677       1.897
+attack_x_moderator     0.8552      0.590      1.450      0.147      -0.301       2.012
+==============================================================================
+Omnibus:                          nan   Durbin-Watson:                   1.457
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.333
+Skew:                           0.000   Prob(JB):                        0.846
+Kurtosis:                       1.000   Cond. No.                         666.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The input rank is higher than the number of observations.

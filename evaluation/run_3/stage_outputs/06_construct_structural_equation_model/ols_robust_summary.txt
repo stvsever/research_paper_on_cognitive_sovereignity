@@ -1,0 +1,30 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            delta_score   R-squared:                       0.254
+Model:                            OLS   Adj. R-squared:                  0.055
+Method:                 Least Squares   F-statistic:                     2.688
+Date:                Sun, 22 Mar 2026   Prob (F-statistic):             0.0717
+Time:                        23:03:26   Log-Likelihood:                -99.293
+No. Observations:                  20   AIC:                             208.6
+Df Residuals:                      15   BIC:                             213.6
+Df Model:                           4                                         
+Covariance Type:                  HC3                                         
+==============================================================================================
+                                 coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------------------
+Intercept                     13.2332     12.650      1.046      0.296     -11.561      38.027
+attack_present                11.5579     18.619      0.621      0.535     -24.934      48.050
+baseline_score                -0.0556      0.038     -1.474      0.140      -0.129       0.018
+primary_moderator_z           -1.3377      7.024     -0.190      0.849     -15.105      12.430
+attack_x_primary_moderator   -21.7074     10.848     -2.001      0.045     -42.968      -0.446
+==============================================================================
+Omnibus:                        0.121   Durbin-Watson:                   2.252
+Prob(Omnibus):                  0.941   Jarque-Bera (JB):                0.049
+Skew:                          -0.052   Prob(JB):                        0.976
+Kurtosis:                       2.782   Cond. No.                     1.01e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 1.01e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

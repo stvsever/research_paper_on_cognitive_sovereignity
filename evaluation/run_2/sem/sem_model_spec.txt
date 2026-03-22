@@ -1,0 +1,2 @@
+delta_score ~ attack_present + baseline_score + moderator_z + attack_x_moderator
+post_score ~ baseline_score + attack_present + moderator_z + attack_x_moderator

@@ -1,0 +1,19 @@
+{
+  "stage_id": "05",
+  "stage_name": "compute_effectivity_deltas",
+  "created_at_utc": "2026-03-22T22:03:12.633489+00:00",
+  "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl",
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/effectivity_deltas.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_rows.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_raw.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/delta_summary.json"
+  ],
+  "record_count": 20,
+  "metadata": {
+    "primary_moderator_column": "profile_cont_susceptibility_index"
+  }
+}

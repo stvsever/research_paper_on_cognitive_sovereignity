@@ -1,0 +1,8 @@
+{
+  "n_records": 10,
+  "n_attack": 5,
+  "n_control": 5,
+  "attack_leaf_counts": {
+    "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing": 5
+  }
+}

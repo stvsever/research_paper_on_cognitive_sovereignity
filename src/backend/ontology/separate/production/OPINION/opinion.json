@@ -1,0 +1,769 @@
+{
+  "Latent_Constructs": {
+    "Ideological_Dimensions_Two_Axis_Model": {
+      "Economic_Left_Right": {
+        "Redistribution_and_Inequality": {},
+        "Welfare_State_Support": {},
+        "Market_Deregulation": {},
+        "Public_Sector_Role": {},
+        "Labor_and_Union_Support": {},
+        "Taxation_Progressivity": {},
+        "Public_Ownership_vs_Privatization": {},
+        "Equality_of_Outcome_vs_Equality_of_Opportunity": {},
+        "Meritocracy_Belief": {},
+        "Industrial_Policy_Support": {}
+      },
+      "Socio_Cultural_Liberal_Conservative": {
+        "Tradition_vs_Progress": {},
+        "Religious_and_Moral_Traditionalism": {},
+        "Gender_and_Sexuality_Liberalism": {},
+        "Cultural_Openness": {},
+        "Lifestyle_Permissiveness": {},
+        "Secularism_vs_Religious_Public_Morality": {},
+        "Pluralism_vs_Monoculturalism": {},
+        "Postmaterialism": {}
+      }
+    },
+    "Libertarian_Authoritarian_Dimension_Model": {
+      "Libertarianism": {
+        "Civil_Liberties_Support": {},
+        "Anti_Censorship_Orientation": {},
+        "Privacy_and_Anti_Surveillance": {},
+        "Skepticism_of_State_Control": {},
+        "Procedural_Due_Process_Orientation": {},
+        "Decentralized_Authority_Preference": {}
+      },
+      "Authoritarianism": {
+        "Law_and_Order_Preference": {},
+        "Support_for_Obedience_and_Conformity": {},
+        "Acceptance_of_Coercive_Social_Control": {},
+        "Punitive_Attitudes": {},
+        "Moral_Uniformity_Preference": {},
+        "Tolerance_for_Emergency_Powers": {}
+      }
+    },
+    "GAL_TAN_Model": {
+      "Green_Alternative_Libertarian": {
+        "Environmental_Protection_Orientation": {},
+        "Pluralism_and_Diversity_Support": {},
+        "Participatory_Democracy_Preference": {},
+        "Civil_Liberties_Orientation": {},
+        "Transnationalism": {},
+        "Minority_Rights_Support": {}
+      },
+      "Traditional_Authoritarian_Nationalist": {
+        "Cultural_Traditionalism": {},
+        "National_Order_and_Unity_Preference": {},
+        "Restrictionist_Outgroup_Policy_Preference": {},
+        "Strong_Leader_Preference": {},
+        "National_Sovereignty_Priority": {},
+        "Assimilationist_Cultural_Preference": {}
+      }
+    },
+    "Moral_Foundations_Theory": {
+      "Care_Harm": {
+        "Compassion": {},
+        "Harm_Avoidance": {},
+        "Protection_of_Vulnerable_Groups": {}
+      },
+      "Fairness_Cheating": {
+        "Equality": {},
+        "Reciprocity": {},
+        "Proportionality": {}
+      },
+      "Loyalty_Betrayal": {
+        "Ingroup_Loyalty": {},
+        "Patriotism": {},
+        "Collective_Solidarity": {}
+      },
+      "Authority_Subversion": {
+        "Respect_for_Tradition_and_Rank": {},
+        "Deference_to_Legitimate_Authority": {},
+        "Order_Maintenance": {}
+      },
+      "Sanctity_Degradation": {
+        "Purity_Concerns": {},
+        "Disgust_Sensitivity_in_Moral_Judgment": {},
+        "Bodily_and_Symbolic_Purity": {}
+      },
+      "Liberty_Oppression": {
+        "Anti_Domination": {},
+        "Resistance_to_Bullying_and_Tyranny": {},
+        "Autonomy_Valuation": {}
+      }
+    },
+    "Schwartz_Political_Value_Orientation_Model": {
+      "Universalism": {},
+      "Benevolence": {},
+      "Self_Direction": {},
+      "Stimulation": {},
+      "Hedonism": {},
+      "Achievement": {},
+      "Power": {},
+      "Security": {},
+      "Conformity": {},
+      "Tradition": {}
+    },
+    "Equality_Liberty_Order_Framework": {
+      "Equality_Priority": {},
+      "Liberty_Priority": {},
+      "Order_Priority": {},
+      "Tradeoff_Equality_vs_Liberty": {},
+      "Tradeoff_Liberty_vs_Order": {},
+      "Tradeoff_Equality_vs_Order": {}
+    },
+    "Right_Wing_Authoritarianism_Model": {
+      "Authoritarian_Submission": {},
+      "Authoritarian_Aggression": {},
+      "Conventionalism": {}
+    },
+    "Left_Wing_Authoritarianism_Model": {
+      "Anti_Hierarchical_Aggression": {},
+      "Top_Down_Censorship_for_Moral_Goals": {},
+      "Anti_Conventional_Conventionalism": {}
+    },
+    "Social_Dominance_Orientation_Model": {
+      "Group_Based_Dominance": {},
+      "Anti_Egalitarianism": {},
+      "Dominance_Subdimension": {},
+      "Anti_Egalitarianism_Subdimension": {}
+    },
+    "System_Justification_Theory": {
+      "General_System_Justification": {},
+      "Economic_System_Justification": {},
+      "Political_System_Justification": {},
+      "Gender_System_Justification": {},
+      "Resistance_to_System_Change": {}
+    },
+    "Dual_Process_Motivational_Model": {
+      "Dangerous_Worldview": {},
+      "Competitive_Jungle_Worldview": {},
+      "Threat_Sensitivity": {},
+      "Hierarchy_Preference": {},
+      "Normative_Threat_Perception": {},
+      "Existential_Insecurity": {}
+    },
+    "Populist_Attitudes_Model": {
+      "Anti_Elitism": {},
+      "People_Centrism": {},
+      "Popular_Sovereignty": {},
+      "Manichean_Worldview": {},
+      "Anti_Pluralism": {}
+    },
+    "Nationalism_and_Cosmopolitanism_Model": {
+      "Civic_Nationalism": {},
+      "Ethnic_Nationalism": {},
+      "National_Superiority_Beliefs": {},
+      "National_Identification": {},
+      "Cosmopolitan_Orientation": {},
+      "Global_Identity": {},
+      "Sovereigntism": {},
+      "Supranational_Identity": {}
+    },
+    "Political_Efficacy_Model": {
+      "Internal_Political_Efficacy": {},
+      "External_Political_Efficacy": {},
+      "Collective_Efficacy_for_Political_Change": {}
+    },
+    "Political_Trust_and_Legitimacy_Model": {
+      "Trust_in_Government": {},
+      "Trust_in_Parliament_or_Legislature": {},
+      "Trust_in_Judiciary": {},
+      "Trust_in_Police": {},
+      "Trust_in_Civil_Service": {},
+      "Trust_in_Political_Parties": {},
+      "Trust_in_Local_Government": {},
+      "Trust_in_Science_and_Experts": {},
+      "Trust_in_Media": {},
+      "Perceived_Institutional_Legitimacy": {},
+      "Perceived_Procedural_Fairness": {},
+      "Perceived_Responsiveness_of_Institutions": {}
+    },
+    "Collective_Narcissism_Model": {
+      "Collective_Narcissism": {},
+      "Ingroup_Entitlement": {},
+      "Need_for_External_Recognition": {},
+      "Perceived_Ingroup_Underappreciation": {}
+    },
+    "Affective_Polarization_Model": {
+      "Outparty_Dislike": {},
+      "Inparty_Affective_Attachment": {},
+      "Social_Distance_from_Opponents": {},
+      "Moralized_Political_Identity": {},
+      "Support_for_Discriminatory_Behavior_Toward_Opponents": {}
+    },
+    "Partisan_Identity_Model": {
+      "Party_Identification_Strength": {},
+      "Negative_Partisanship": {},
+      "Partisan_Social_Identity": {},
+      "Partisan_Loyalty": {},
+      "Cross_Pressured_Partisan_Identity": {}
+    },
+    "Democratic_Commitment_Model": {
+      "Support_for_Democracy_as_Best_System": {},
+      "Commitment_to_Loser_Consent": {},
+      "Tolerance_of_Opposition_Rights": {},
+      "Commitment_to_Peaceful_Transfer_of_Power": {},
+      "Rejection_of_Political_Violence": {},
+      "Support_for_Constitutional_Constraints": {}
+    },
+    "Political_Violence_and_Extremism_Risk_Model": {
+      "Justification_of_Political_Violence": {},
+      "Willingness_for_Illegal_Action_for_Political_Ends": {},
+      "Support_for_Militant_Activism": {},
+      "Apocalyptic_or_Catastrophist_Political_Beliefs": {},
+      "Dehumanization_of_Opponents": {}
+    },
+    "Nativism_and_Outgroup_Attitudes_Model": {
+      "Nativism": {},
+      "Xenophobia": {},
+      "Ethnocentrism": {},
+      "Anti_Immigrant_Resentment": {},
+      "Perceived_Cultural_Threat": {},
+      "Perceived_Economic_Threat_from_Outgroups": {},
+      "Intergroup_Contact_Openness": {}
+    },
+    "Prejudice_and_Equality_Orientation_Model": {
+      "Racial_Resentment": {},
+      "Modern_Racism": {},
+      "Hostile_Sexism": {},
+      "Benevolent_Sexism": {},
+      "Homonegativity": {},
+      "Transnegativity": {},
+      "Ableism": {},
+      "Universal_Human_Equality_Orientation": {}
+    },
+    "Conspiracy_and_Misinformation_Orientation_Model": {
+      "Conspiracy_Mentality": {},
+      "Epistemic_Cynicism": {},
+      "Distrust_of_Official_Accounts": {},
+      "Misinformation_Susceptibility": {},
+      "Motivated_Reasoning_Tendency": {},
+      "Truth_Relativism": {}
+    },
+    "Epistemic_and_Cognitive_Style_Model": {
+      "Need_for_Closure": {},
+      "Need_for_Cognition": {},
+      "Cognitive_Reflection": {},
+      "Integrative_Complexity": {},
+      "Tolerance_of_Ambiguity": {},
+      "Dogmatism": {},
+      "Open_Mindedness": {},
+      "Intellectual_Humility": {},
+      "Analytic_vs_Intuitive_Reasoning": {}
+    },
+    "Emotions_and_Threat_Appraisal_Model": {
+      "Fear_Response": {},
+      "Anger_Response": {},
+      "Disgust_Response": {},
+      "Hopefulness_about_Political_Change": {},
+      "Status_Threat_Perception": {},
+      "Economic_Anxiety": {},
+      "Cultural_Anxiety": {}
+    },
+    "Temporal_Orientation_and_Change_Model": {
+      "Status_Quo_Bias": {},
+      "Preference_for_Gradual_Change": {},
+      "Preference_for_Radical_Change": {},
+      "Nostalgia_Orientation": {},
+      "Future_Orientation": {},
+      "Reactionary_Restoration_Orientation": {}
+    },
+    "Distributional_Justice_Model": {
+      "Egalitarian_Justice": {},
+      "Meritocratic_Justice": {},
+      "Need_Based_Justice": {},
+      "Desert_Based_Justice": {},
+      "Reciprocity_Based_Justice": {},
+      "Intergenerational_Justice": {}
+    },
+    "Environmental_Value_Orientation_Model": {
+      "Anthropocentrism": {},
+      "Ecocentrism": {},
+      "Climate_Justice_Orientation": {},
+      "Technological_Optimism_on_Environment": {},
+      "Degrowth_Orientation": {},
+      "Sustainable_Development_Orientation": {}
+    },
+    "Religiosity_and_Secularism_Model": {
+      "Religious_Commitment": {},
+      "Religious_Fundamentalism": {},
+      "Secular_Identity": {},
+      "Religion_as_Source_of_Public_Morality": {},
+      "Church_State_Separation_Support": {}
+    }
+  },
+  "Political_Identity_and_Group_Attachment": {
+    "Ideological_Self_Placement": {
+      "Left_Right_Self_Placement": {},
+      "Liberal_Conservative_Self_Placement": {},
+      "Moderate_vs_Extreme_Self_Placement": {},
+      "Libertarian_Authoritarian_Self_Placement": {},
+      "Globalist_Nationalist_Self_Placement": {},
+      "Green_Growth_vs_Degrowth_Self_Placement": {}
+    },
+    "Partisan_Identity": {
+      "Party_Identification": {},
+      "Strength_of_Party_Identification": {},
+      "Partisan_Consistency": {},
+      "Split_Ticket_Orientation": {}
+    },
+    "Movement_and_Cause_Identity": {
+      "Environmentalist_Identity": {},
+      "Feminist_Identity": {},
+      "Socialist_Identity": {},
+      "Conservative_Movement_Identity": {},
+      "Libertarian_Movement_Identity": {},
+      "Nationalist_Identity": {},
+      "Religious_Political_Identity": {},
+      "Human_Rights_Advocacy_Identity": {}
+    },
+    "National_and_Community_Identity": {
+      "National_Identity_Strength": {},
+      "Regional_Identity_Strength": {},
+      "Local_Community_Identity": {},
+      "Ethnic_Identity_Political_Salience": {},
+      "Religious_Identity_Political_Salience": {},
+      "Class_Identity_Political_Salience": {},
+      "Occupational_Identity_Political_Salience": {}
+    }
+  },
+  "Issue_Position_Taxonomy": {
+    "Macroeconomic_and_Fiscal_Policy": {
+      "Taxation_Progressivity_Support": {},
+      "Flat_Tax_Support": {},
+      "Wealth_Tax_Support": {},
+      "Inheritance_Tax_Support": {},
+      "Capital_Gains_Taxation_Support": {},
+      "Corporate_Taxation_Support": {},
+      "Consumption_Tax_VAT_Support": {},
+      "Public_Spending_Expansion_Support": {},
+      "Public_Spending_Reduction_Support": {},
+      "Deficit_Spending_Acceptance": {},
+      "Debt_Reduction_Priority": {},
+      "Inflation_Control_Priority": {},
+      "Unemployment_Reduction_Priority": {},
+      "Balanced_Budget_Norm_Support": {},
+      "Austerity_Support": {},
+      "Countercyclical_Fiscal_Stimulus_Support": {},
+      "Central_Bank_Independence_Support": {},
+      "Price_Controls_Support": {},
+      "Sovereign_Wealth_Fund_Support": {}
+    },
+    "Welfare_and_Social_Protection": {
+      "Universalism_in_Benefits_Support": {},
+      "Means_Testing_Support": {},
+      "Unemployment_Benefit_Generosity_Support": {},
+      "Disability_Benefit_Support": {},
+      "Old_Age_Pension_Generosity_Support": {},
+      "Child_Benefits_Support": {},
+      "Caregiver_Support_Benefits": {},
+      "Social_Housing_Support": {},
+      "Minimum_Income_Guarantee_Support": {},
+      "Universal_Basic_Income_Support": {},
+      "Universal_Basic_Services_Support": {},
+      "Work_Requirements_for_Benefits_Support": {},
+      "Social_Insurance_Expansion_Support": {},
+      "Food_Assistance_Expansion_Support": {},
+      "Long_Term_Care_Public_Support": {}
+    },
+    "Labor_and_Employment": {
+      "Minimum_Wage_Increase_Support": {},
+      "Collective_Bargaining_Support": {},
+      "Union_Power_Support": {},
+      "Worker_Protections_Support": {},
+      "At_Will_Employment_Support": {},
+      "Gig_Economy_Regulation_Support": {},
+      "Platform_Worker_Employee_Classification_Support": {},
+      "Working_Time_Reduction_Support": {},
+      "Paid_Leave_Mandates_Support": {},
+      "Workplace_Safety_Regulation_Support": {},
+      "Right_to_Disconnect_Support": {},
+      "Public_Employment_Programs_Support": {},
+      "Job_Guarantee_Support": {},
+      "Immigration_for_Labor_Shortages_Support": {},
+      "Automation_Transition_Protection_Support": {}
+    },
+    "Healthcare_and_Public_Health": {
+      "Universal_Healthcare_Coverage_Support": {},
+      "Single_Payer_Healthcare_Support": {},
+      "Multi_Payer_Public_Private_Mix_Support": {},
+      "Private_Insurance_Expansion_Support": {},
+      "Price_Regulation_for_Medicines_Support": {},
+      "Public_Healthcare_Spending_Increase_Support": {},
+      "Preventive_Health_Investment_Support": {},
+      "Mental_Health_Parity_Support": {},
+      "Reproductive_Healthcare_Access_Support": {},
+      "Vaccination_Requirement_Acceptance": {},
+      "Public_Health_Mandates_Acceptance": {},
+      "Harm_Reduction_Policy_Support": {},
+      "Health_Data_Sharing_for_Research_Support": {},
+      "End_of_Life_Care_Autonomy_Support": {}
+    },
+    "Education_and_Human_Capital": {
+      "Public_Education_Investment_Support": {},
+      "Teacher_Pay_Increase_Support": {},
+      "School_Choice_Voucher_Support": {},
+      "Higher_Education_Tuition_Free_Support": {},
+      "Student_Loan_Forgiveness_Support": {},
+      "Vocational_Training_Expansion_Support": {},
+      "Early_Childhood_Education_Support": {},
+      "Standardized_Testing_Emphasis_Support": {},
+      "Civics_Education_Expansion_Support": {},
+      "Academic_Freedom_Protection_Support": {},
+      "Curriculum_Parental_Control_Support": {},
+      "Affirmative_Action_in_Education_Support": {},
+      "Digital_Education_Infrastructure_Support": {}
+    },
+    "Housing_and_Urban_Policy": {
+      "Rent_Control_Support": {},
+      "Tenant_Protections_Support": {},
+      "Eviction_Moratorium_Support": {},
+      "Zoning_Liberalization_Support": {},
+      "Green_Belt_Expansion_Support": {},
+      "Public_Housing_Construction_Support": {},
+      "Housing_Subsidies_Support": {},
+      "Homelessness_Housing_First_Support": {},
+      "Short_Term_Rental_Regulation_Support": {},
+      "Property_Tax_Increase_Support": {},
+      "Mortgage_Interest_Deduction_Support": {},
+      "Vacancy_Tax_Support": {},
+      "Inclusionary_Zoning_Support": {},
+      "Transit_Oriented_Development_Support": {}
+    },
+    "Business_Industry_and_Regulation": {
+      "Deregulation_Support": {},
+      "Consumer_Protection_Regulation_Support": {},
+      "Occupational_Licensing_Expansion_Support": {},
+      "Antitrust_Enforcement_Support": {},
+      "Corporate_Governance_Reform_Support": {},
+      "Industrial_Policy_and_Subsidies_Support": {},
+      "Small_Business_Support": {},
+      "Financial_Sector_Regulation_Support": {},
+      "Privatization_Support": {},
+      "Public_Ownership_Nationalization_Support": {},
+      "State_Aid_for_Strategic_Sectors_Support": {},
+      "Shareholder_vs_Stakeholder_Governance_Preference": {},
+      "ESG_Disclosure_Requirements_Support": {}
+    },
+    "Trade_and_Globalization": {
+      "Free_Trade_Support": {},
+      "Tariffs_and_Protectionism_Support": {},
+      "Trade_Agreements_Support": {},
+      "Fair_Trade_Labor_Standards_Support": {},
+      "Offshoring_Restrictions_Support": {},
+      "Supply_Chain_Resilience_Priority": {},
+      "Foreign_Investment_Screening_Support": {},
+      "Economic_Sanctions_Support": {},
+      "Globalization_Benefits_Belief": {},
+      "Globalization_Harms_Belief": {},
+      "Strategic_Decoupling_Support": {},
+      "Food_and_Energy_Sovereignty_Priority": {}
+    },
+    "Immigration_and_Citizenship": {
+      "Immigration_Level_Increase_Support": {},
+      "Immigration_Level_Decrease_Support": {},
+      "Refugee_Acceptance_Support": {},
+      "Asylum_Process_Expansion_Support": {},
+      "Border_Enforcement_Expansion_Support": {},
+      "Pathway_to_Citizenship_Support": {},
+      "Temporary_Work_Visas_Expansion_Support": {},
+      "Family_Reunification_Support": {},
+      "Birthright_Citizenship_Support": {},
+      "Multiculturalism_Support": {},
+      "Assimilationism_Support": {},
+      "Language_Integration_Requirements_Support": {},
+      "Deportation_Enforcement_Support": {},
+      "Detention_of_Irregular_Migrants_Acceptance": {}
+    },
+    "Social_and_Cultural_Policy": {
+      "Gender_Equality_Policy_Support": {},
+      "LGBTQ_Rights_Support": {},
+      "Anti_Discrimination_Protections_Support": {},
+      "Affirmative_Action_Support": {},
+      "Reproductive_Rights_Support": {},
+      "Abortion_Restrictions_Support": {},
+      "Euthanasia_or_Assisted_Dying_Support": {},
+      "Drug_Decriminalization_Support": {},
+      "Drug_Legalization_Support": {},
+      "Drug_Punitive_Enforcement_Support": {},
+      "Sex_Work_Decriminalization_Support": {},
+      "Surrogacy_Acceptance": {},
+      "Religion_in_Public_Life_Support": {},
+      "Secularism_in_Public_Institutions_Support": {},
+      "Cultural_Heritage_Protection_Priority": {},
+      "Family_Values_Policy_Priority": {}
+    },
+    "Civil_Rights_and_Civil_Liberties": {
+      "Freedom_of_Speech_Absolutism": {},
+      "Hate_Speech_Regulation_Support": {},
+      "Freedom_of_Assembly_Protection_Support": {},
+      "Religious_Freedom_Protection_Support": {},
+      "Privacy_Rights_Protection_Support": {},
+      "Surveillance_Limits_Support": {},
+      "Encryption_Protection_Support": {},
+      "Censorship_Acceptance_for_Security": {},
+      "Whistleblower_Protections_Support": {},
+      "Due_Process_Protections_Support": {},
+      "Anonymity_Rights_Support": {},
+      "Press_Freedom_Protection_Support": {}
+    },
+    "Law_Safety_and_Justice": {
+      "Punitive_Justice_Support": {},
+      "Rehabilitative_Justice_Support": {},
+      "Restorative_Justice_Support": {},
+      "Sentencing_Harsening_Support": {},
+      "Prison_Reform_Support": {},
+      "Death_Penalty_Support": {},
+      "Abolition_or_Reduction_of_Cash_Bail_Support": {},
+      "Police_Funding_Increase_Support": {},
+      "Police_Accountability_Reforms_Support": {},
+      "Stop_and_Search_Powers_Support": {},
+      "Gun_Control_Support": {},
+      "Gun_Rights_Expansion_Support": {},
+      "Counterterrorism_Powers_Expansion_Support": {},
+      "Anti_Corruption_Enforcement_Strengthening_Support": {}
+    },
+    "Environment_Climate_and_Energy": {
+      "Climate_Action_Support": {},
+      "Net_Zero_Targets_Support": {},
+      "Carbon_Tax_Support": {},
+      "Cap_and_Trade_Support": {},
+      "Renewable_Energy_Transition_Support": {},
+      "Nuclear_Energy_Support": {},
+      "Fossil_Fuel_Expansion_Support": {},
+      "Fossil_Fuel_Phaseout_Support": {},
+      "Environmental_Regulation_Support": {},
+      "Biodiversity_Protection_Support": {},
+      "Climate_Adaptation_Investment_Support": {},
+      "Environmental_Justice_Priority": {},
+      "Degrowth_Policy_Support": {},
+      "Geoengineering_Research_Support": {},
+      "Circular_Economy_Policy_Support": {}
+    },
+    "Technology_and_Digital_Governance": {
+      "Data_Privacy_Regulation_Support": {},
+      "Platform_Regulation_Support": {},
+      "Net_Neutrality_Support": {},
+      "Online_Anonymity_Protection_Support": {},
+      "Digital_ID_Systems_Support": {},
+      "AI_Regulation_Support": {},
+      "AI_Acceleration_and_Investment_Priority": {},
+      "Algorithmic_Transparency_Requirements_Support": {},
+      "Cybersecurity_Regulation_Support": {},
+      "Digital_Surveillance_Acceptance": {},
+      "Biometric_Surveillance_Acceptance": {},
+      "Content_Moderation_Strictness_Support": {},
+      "Digital_Self_Determination_Support": {},
+      "Open_Source_and_Open_Standards_Support": {},
+      "Right_to_Repair_Support": {},
+      "Cross_Border_Data_Flow_Restriction_Support": {}
+    },
+    "Media_and_Information_Governance": {
+      "Public_Service_Media_Funding_Support": {},
+      "Media_Ownership_Concentration_Limits_Support": {},
+      "Misinformation_Regulation_Support": {},
+      "Fact_Checking_Institutions_Support": {},
+      "Journalistic_Shield_Law_Support": {},
+      "Political_Advertising_Transparency_Support": {},
+      "Microtargeting_Restrictions_Support": {},
+      "Foreign_Information_Influence_Countermeasures_Support": {}
+    },
+    "Transportation_and_Infrastructure": {
+      "Public_Transport_Investment_Support": {},
+      "Road_Building_Expansion_Support": {},
+      "High_Speed_Rail_Investment_Support": {},
+      "Urban_Cycling_Infrastructure_Support": {},
+      "EV_Transition_Incentives_Support": {},
+      "Fuel_Tax_Increase_Support": {},
+      "Congestion_Pricing_Support": {},
+      "Aviation_Taxation_Support": {},
+      "Airport_Expansion_Support": {},
+      "Infrastructure_Privatization_Support": {},
+      "Universal_Broadband_Investment_Support": {},
+      "Rural_Infrastructure_Investment_Support": {}
+    },
+    "Agriculture_Food_and_Animal_Welfare": {
+      "Farm_Subsidies_Support": {},
+      "Organic_Agriculture_Support": {},
+      "GM_Crop_Acceptance": {},
+      "Pesticide_Regulation_Strengthening_Support": {},
+      "Animal_Welfare_Regulation_Support": {},
+      "Meat_Consumption_Reduction_Policies_Support": {},
+      "Food_Security_Investment_Support": {},
+      "Local_Food_Systems_Support": {},
+      "Rural_Development_Investment_Support": {},
+      "Water_Use_Regulation_in_Agriculture_Support": {},
+      "Factory_Farming_Restrictions_Support": {}
+    },
+    "Science_Bioethics_and_Public_Research": {
+      "Public_Funding_for_Basic_Research_Support": {},
+      "Stem_Cell_Research_Support": {},
+      "Gene_Editing_for_Therapy_Support": {},
+      "Gene_Editing_for_Enhancement_Acceptance": {},
+      "Animal_Research_Acceptance": {},
+      "Open_Science_Mandates_Support": {},
+      "Research_Data_Sharing_Support": {},
+      "Pandemic_Preparedness_Investment_Support": {}
+    },
+    "Governance_and_Democratic_Reform": {
+      "Electoral_Reform_Proportionality_Support": {},
+      "Majoritarian_Electoral_System_Support": {},
+      "Compulsory_Voting_Support": {},
+      "Automatic_Voter_Registration_Support": {},
+      "Voting_Age_Lowering_Support": {},
+      "Prisoner_Voting_Rights_Support": {},
+      "Decentralization_Federalism_Support": {},
+      "Centralization_Support": {},
+      "Anti_Corruption_Enforcement_Support": {},
+      "Government_Transparency_FOI_Support": {},
+      "Judicial_Independence_Protection_Support": {},
+      "Term_Limits_Support": {},
+      "Citizen_Assemblies_and_Deliberative_Democracy_Support": {},
+      "Direct_Democracy_Referendums_Support": {},
+      "Campaign_Finance_Restrictions_Support": {},
+      "Lobbying_Regulation_Support": {}
+    },
+    "Foreign_Policy_and_Geopolitics": {
+      "Multilateralism_Support": {},
+      "Unilateralism_Preference": {},
+      "International_Cooperation_Support": {},
+      "Non_Interventionism_Support": {},
+      "Humanitarian_Intervention_Support": {},
+      "Sanctions_Use_Support": {},
+      "Diplomacy_First_Preference": {},
+      "Trade_Diplomacy_Priority": {},
+      "International_Law_Compliance_Priority": {},
+      "Migration_Cooperation_Priority": {},
+      "Democracy_Promotion_Support": {},
+      "Sphere_of_Influence_Acceptance": {}
+    },
+    "Defense_and_National_Security": {
+      "Defense_Spending_Increase_Support": {},
+      "Defense_Spending_Decrease_Support": {},
+      "Alliance_Commitment_Support": {},
+      "Strategic_Autonomy_Support": {},
+      "Conscription_Support": {},
+      "Arms_Exports_Permissiveness_Support": {},
+      "Intelligence_Oversight_Strengthening_Support": {},
+      "Domestic_Security_Powers_Expansion_Support": {},
+      "Border_Security_Militarization_Support": {},
+      "Nuclear_Deterrence_Support": {},
+      "Cyber_Defense_Investment_Support": {},
+      "Civil_Defense_Preparedness_Support": {}
+    },
+    "International_Development_and_Human_Rights": {
+      "Foreign_Aid_Spending_Increase_Support": {},
+      "Foreign_Aid_Spending_Decrease_Support": {},
+      "Human_Rights_Conditionality_on_Aid_Support": {},
+      "Climate_Finance_Contributions_Support": {},
+      "Debt_Relief_for_Low_Income_Countries_Support": {},
+      "Refugee_Aid_Funding_Support": {},
+      "International_Criminal_Justice_Support": {},
+      "Democracy_Promotion_Support": {},
+      "Non_Interference_Principle_Support": {},
+      "Global_Public_Health_Funding_Support": {}
+    },
+    "Supranational_and_Regional_Integration": {
+      "Supranational_Integration_Support": {},
+      "National_Sovereignty_Priority": {},
+      "Shared_Regulatory_Standards_Support": {},
+      "Shared_Fiscal_Capacity_Support": {},
+      "Cross_Border_Freedom_of_Movement_Support": {},
+      "Border_Controls_within_Region_Support": {},
+      "Common_Defense_Capacity_Support": {},
+      "Regional_Court_Authority_Support": {}
+    }
+  },
+  "Political_Participation_Taxonomy": {
+    "Electoral_Participation": {
+      "Voting_Participation": {},
+      "Voter_Registration_Engagement": {},
+      "Party_Membership": {},
+      "Campaign_Volunteering": {},
+      "Candidate_Support_Activities": {},
+      "Running_for_Office": {},
+      "Election_Monitoring_or_Poll_Work": {}
+    },
+    "Institutional_Participation": {
+      "Contacting_Representatives": {},
+      "Petition_Signing": {},
+      "Town_Hall_or_Public_Meeting_Attendance": {},
+      "Consultation_Submission_Participation": {},
+      "Jury_or_Civic_Duty_Participation": {},
+      "Participatory_Budgeting_Engagement": {},
+      "Public_Comment_Submission": {}
+    },
+    "Collective_Action": {
+      "Protest_Participation": {},
+      "Strike_Participation": {},
+      "Boycott_Participation": {},
+      "Buycott_Ethical_Consumption": {},
+      "Grassroots_Organizing": {},
+      "Civil_Disobedience_Participation": {},
+      "Occupation_or_Blockade_Participation": {}
+    },
+    "Civic_and_Information_Behavior": {
+      "Political_Discussion_Engagement": {},
+      "News_Seeking": {},
+      "Fact_Checking_Behavior": {},
+      "Cross_Cutting_Exposure_Seeking": {},
+      "Political_Content_Creation": {},
+      "Online_Activism": {},
+      "Political_Donations": {},
+      "Campaign_Sign_Display_or_Symbolic_Expression": {}
+    },
+    "Community_and_Civil_Society": {
+      "Community_Organizing": {},
+      "NGO_or_Association_Membership": {},
+      "Mutual_Aid_Participation": {},
+      "Civic_Volunteering": {},
+      "Union_Membership_and_Activity": {},
+      "Faith_Based_Civic_Engagement": {}
+    }
+  },
+  "Information_and_Communication_Behavior": {
+    "Media_Diet": {
+      "Public_Service_Media_Use": {},
+      "Legacy_News_Use": {},
+      "Partisan_Media_Use": {},
+      "Alternative_Media_Use": {},
+      "Social_Media_News_Use": {},
+      "Podcast_and_Long_Form_Political_Content_Use": {}
+    },
+    "Information_Evaluation": {
+      "Source_Verification_Behavior": {},
+      "Reliance_on_Experts": {},
+      "Reliance_on_Peer_Networks": {},
+      "Trust_in_Fact_Checkers": {},
+      "Sensitivity_to_Misinformation_Corrections": {},
+      "Selective_Exposure": {},
+      "Confirmation_Bias_in_News_Selection": {}
+    },
+    "Political_Expression": {
+      "Opinion_Sharing_Frequency": {},
+      "Self_Censorship": {},
+      "Spiral_of_Silence_Susceptibility": {},
+      "Meme_and_Symbolic_Political_Communication": {},
+      "Interpersonal_Persuasion_Attempts": {},
+      "Anonymized_Political_Expression": {}
+    }
+  },
+  "Regime_and_Democratic_Order_Orientation": {
+    "Democratic_Norms": {
+      "Minority_Rights_Protection_Support": {},
+      "Pluralism_Support": {},
+      "Independent_Media_Support": {},
+      "Opposition_Legitimacy_Recognition": {},
+      "Rule_of_Law_Commitment": {},
+      "Civilian_Control_of_Military_Support": {}
+    },
+    "Authoritarian_Alternatives": {
+      "Technocratic_Government_Preference": {},
+      "Strong_Leader_Without_Parliament_Preference": {},
+      "Military_Rule_Acceptance": {},
+      "Rule_by_Experts_over_Elected_Officials_Preference": {},
+      "Emergency_Government_Powers_Acceptance": {}
+    }
+  }
+}

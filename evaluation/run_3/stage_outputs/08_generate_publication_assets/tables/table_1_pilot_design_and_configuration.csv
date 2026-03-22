@@ -1,0 +1,11 @@
+Parameter,Value
+Run identifier,run_3
+Paper title,PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions
+Scenarios,20
+Attack ratio,0.5
+Attack leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+OpenRouter model,mistralai/mistral-small-3.2-24b-instruct
+Primary moderator,profile_cont_susceptibility_index
+Bootstrap samples,500
+Self-supervised attack realism,True
+Test ontology,True

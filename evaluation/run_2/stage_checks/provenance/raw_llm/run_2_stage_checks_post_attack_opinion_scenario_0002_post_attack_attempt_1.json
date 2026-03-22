@@ -1,0 +1,144 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_0002_post_attack",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0002",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Decrease_Support",
+    "profile": {
+      "profile_id": "profile_0002",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "age_years": 53.0,
+        "big_five_agreeableness_altruism_pct": 24.765,
+        "big_five_agreeableness_compliance_pct": 42.819,
+        "big_five_agreeableness_modesty_pct": 36.718,
+        "big_five_agreeableness_straightforwardness_pct": 27.949,
+        "big_five_agreeableness_tender_mindedness_pct": 28.939,
+        "big_five_agreeableness_trust_pct": 35.525,
+        "big_five_agreeableness_mean_pct": 32.786,
+        "big_five_conscientiousness_achievement_striving_pct": 55.726,
+        "big_five_conscientiousness_competence_pct": 75.094,
+        "big_five_conscientiousness_deliberation_pct": 76.854,
+        "big_five_conscientiousness_dutifulness_pct": 82.078,
+        "big_five_conscientiousness_order_pct": 74.029,
+        "big_five_conscientiousness_self_discipline_pct": 72.502,
+        "big_five_conscientiousness_mean_pct": 72.714,
+        "big_five_extraversion_activity_level_pct": 45.332,
+        "big_five_extraversion_assertiveness_pct": 22.778,
+        "big_five_extraversion_excitement_seeking_pct": 31.564,
+        "big_five_extraversion_gregariousness_pct": 46.647,
+        "big_five_extraversion_positive_emotions_pct": 41.037,
+        "big_five_extraversion_warmth_pct": 59.548,
+        "big_five_extraversion_mean_pct": 41.151,
+        "big_five_neuroticism_anger_hostility_pct": 37.659,
+        "big_five_neuroticism_anxiety_pct": 28.549,
+        "big_five_neuroticism_depression_pct": 12.835,
+        "big_five_neuroticism_impulsiveness_pct": 34.266,
+        "big_five_neuroticism_self_consciousness_pct": 39.229,
+        "big_five_neuroticism_stress_vulnerability_pct": 19.819,
+        "big_five_neuroticism_mean_pct": 28.726,
+        "big_five_openness_to_experience_actions_pct": 8.494,
+        "big_five_openness_to_experience_aesthetics_pct": 37.088,
+        "big_five_openness_to_experience_fantasy_pct": 28.869,
+        "big_five_openness_to_experience_feelings_pct": 21.372,
+        "big_five_openness_to_experience_ideas_pct": 19.109,
+        "big_five_openness_to_experience_values_pct": 26.974,
+        "big_five_openness_to_experience_mean_pct": 23.651,
+        "susceptibility_index": 0.3413,
+        "resilience_index": 0.6587
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 123,
+    "exposure_text": "Did you know? Countries with strict immigration controls have seen a 30% increase in job opportunities for locals. It's time we put our own people first. #SecureBorders #JobsForLocals",
+    "attack_present": true
+  },
+  "response_text": "{\n  \"score\": 156,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure text aligns with the individual's existing views on decreasing immigration, reinforcing their belief with a specific statistic about job opportunities. The attack on the opposing view (implied prioritization of immigrants over locals) further solidifies their stance.\"\n}",
+  "raw_response": {
+    "id": "gen-1774213445-Lzas7y4cf8YX4tVt7auw",
+    "object": "chat.completion",
+    "created": 1774213445,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 156,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure text aligns with the individual's existing views on decreasing immigration, reinforcing their belief with a specific statistic about job opportunities. The attack on the opposing view (implied prioritization of immigrants over locals) further solidifies their stance.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2073,
+      "completion_tokens": 77,
+      "total_tokens": 2150,
+      "cost": 0.000170875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000170875,
+        "upstream_inference_prompt_cost": 0.000155475,
+        "upstream_inference_completions_cost": 1.54e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

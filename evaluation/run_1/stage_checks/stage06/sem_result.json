@@ -1,0 +1,143 @@
+{
+  "model_name": "semopy_moderation_path",
+  "model_formula": "delta_score ~ attack_present + baseline_score + moderator_z + attack_x_moderator\npost_score ~ baseline_score + attack_present + moderator_z + attack_x_moderator",
+  "converged": true,
+  "n_obs": 2,
+  "fit_indices": {
+    "DoF": {
+      "Value": 11
+    },
+    "DoF Baseline": {
+      "Value": 19
+    },
+    "chi2": {
+      "Value": 5.555609573124876
+    },
+    "chi2 p-value": {
+      "Value": 0.9013114204030274
+    },
+    "chi2 Baseline": {
+      "Value": 43.18147433534789
+    },
+    "CFI": {
+      "Value": 1.2251471664371036
+    },
+    "GFI": {
+      "Value": 0.8713427538397615
+    },
+    "AGFI": {
+      "Value": 0.7777738475414061
+    },
+    "NFI": {
+      "Value": 0.8713427538397615
+    },
+    "TLI": {
+      "Value": 1.3888905602095427
+    },
+    "RMSEA": {
+      "Value": 0
+    },
+    "AIC": {
+      "Value": 14.444390426875124
+    },
+    "BIC": {
+      "Value": 1.375862232474577
+    },
+    "LogLik": {
+      "Value": 2.777804786562438
+    }
+  },
+  "coefficients": [
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "attack_present",
+      "estimate": 1.246807372839827,
+      "std_error": 3.423836634921808,
+      "z_value": 0.3641550417804723,
+      "p_value": 0.7157422368809052
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "baseline_score",
+      "estimate": 0.0011642432554634765,
+      "std_error": 0.0031968596031015394,
+      "z_value": 0.3641834173667695,
+      "p_value": 0.7157210490252417
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "moderator_z",
+      "estimate": -0.6234972581409501,
+      "std_error": 1.7119183174608719,
+      "z_value": -0.36420970076735965,
+      "p_value": 0.7157014235856269
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "attack_x_moderator",
+      "estimate": -1.2468073728399662,
+      "std_error": 3.4238366349211264,
+      "z_value": -0.3641550417805855,
+      "p_value": 0.7157422368808208
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "baseline_score",
+      "estimate": 0.9946685351952834,
+      "std_error": 4.3702494542593895,
+      "z_value": 0.2275999449472201,
+      "p_value": 0.8199572627544716
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "attack_present",
+      "estimate": 0.0066220384352149225,
+      "std_error": 4680.537165511897,
+      "z_value": 1.4148030879893009e-06,
+      "p_value": 0.9999988711504595
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "moderator_z",
+      "estimate": -0.013244014665067309,
+      "std_error": 2340.26858275592,
+      "z_value": -5.659185771519883e-06,
+      "p_value": 0.9999954846230461
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "attack_x_moderator",
+      "estimate": -0.006622038435215142,
+      "std_error": 4680.537165511873,
+      "z_value": -1.4148030879893549e-06,
+      "p_value": 0.9999988711504595
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~~",
+      "rhs": "delta_score",
+      "estimate": 0.07744069207221738,
+      "std_error": 0.07744069207221983,
+      "z_value": 0.9999999999870551,
+      "p_value": 0.3173105078691787
+    },
+    {
+      "lhs": "post_score",
+      "op": "~~",
+      "rhs": "post_score",
+      "estimate": 144721.9989683494,
+      "std_error": 144721.99896834927,
+      "z_value": 1.0000000000000009,
+      "p_value": 0.3173105078629137
+    }
+  ],
+  "warnings": []
+}
