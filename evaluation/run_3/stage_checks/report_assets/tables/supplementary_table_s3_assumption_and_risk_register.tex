@@ -11,7 +11,7 @@ section & item & status & detail \\
 Assumption register & Pilot sample size is sufficient for stable moderation estimates. & risk & Treat estimates as exploratory and scale scenario count in later runs. \\
 Assumption register & Treatment-control balance is adequate. & risk & Use explicit stratified assignment in scenario generator. \\
 Assumption register & Opinion measurement has enough numeric resolution. & risk & Prompt enforces high-resolution scores in [-1000,1000]. \\
-Assumption register & Attack text realism is adequate. & ok & Self-supervised realism reviewer + rewrite loop in Stage 03. \\
+Assumption register & Attack text realism is adequate. & risk & Self-supervised realism reviewer + rewrite loop in Stage 03. \\
 Assumption register & SEM converges with acceptable fit. & ok & Use robust OLS supplement and inspect diagnostics. \\
 Assumption register & LLM outputs are reproducible and auditable. & ok & Persist all prompts/outputs in provenance/raw\_llm. \\
 Peer-review critique & Synthetic LLM agents may not represent human cognition or causal response behavior. & addressed & Added transparent assumption register and explicit exploratory caveat in reports. \\

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0015_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0015",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 45.0,
+      "big_five_neuroticism_mean_pct": 40.567,
+      "big_five_conscientiousness_mean_pct": 24.333,
+      "big_five_openness_to_experience_mean_pct": 15.788,
+      "susceptibility_index": 0.5434,
+      "resilience_index": 0.4566
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0015",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+      "score": 68,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my belief in increasing defense spending by highlighting allies' lack of commitment. As someone who values security and has moderate agreeableness, I'm more convinced that we need to prioritize our own preparedness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "As a mom and a taxpayer, I've always believed in supporting our military. But did you know that our allies in NATO are still not meeting their spending commitments? While we're securing the world, others aren't pulling their weight. It's time we prioritize our own security and preparedness. #SupportOurTroops #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 26,
+      "max_reasonable_shift": 373.148
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 26 points is quite large for a single exposure, but within the max reasonable shift. The reasoning aligns with the profile's values and the exposure text, but the shift could be more moderate.\"\n}",
+  "raw_response": {
+    "id": "gen-1774224111-1Je9y1JVuXLFmz8s1CSj",
+    "object": "chat.completion",
+    "created": 1774224111,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 26 points is quite large for a single exposure, but within the max reasonable shift. The reasoning aligns with the profile's values and the exposure text, but the shift could be more moderate.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 888,
+      "completion_tokens": 94,
+      "total_tokens": 982,
+      "cost": 0.00013632,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 352,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013632,
+        "upstream_inference_prompt_cost": 7.992e-05,
+        "upstream_inference_completions_cost": 5.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

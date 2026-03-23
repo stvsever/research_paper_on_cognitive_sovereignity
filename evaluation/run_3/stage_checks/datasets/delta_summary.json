@@ -1,8 +1,11 @@
 {
   "n_records": 3,
-  "delta_mean": -33.0,
-  "delta_std": 25.468935326524086,
+  "delta_mean": -22.333333333333332,
+  "delta_std": 19.601587237318874,
   "primary_moderator_column": "profile_cont_susceptibility_index",
+  "reference_opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+  "reference_opinion_domain": "Defense_and_National_Security",
+  "n_unique_opinion_leaves": 3,
   "attack_present_count": 2,
   "control_count": 1
 }

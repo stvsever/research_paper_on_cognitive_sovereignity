@@ -8,17 +8,18 @@ You will receive JSON with:
 - profile_snapshot
 - generated_exposure
 
-Evaluate whether the generated exposure is realistic and coherent for this scenario.
+Evaluate whether the generated exposure is realistic and coherent for this exact attacked scenario.
 
 Scoring criteria (0.0 to 1.0):
-- realism_score: Would this plausibly appear in real social media influence campaigns?
-- coherence_score: Is it aligned with attack type + opinion topic + profile context?
+- realism_score: Would this plausibly circulate in a real influence campaign or manipulative political feed context?
+- coherence_score: Is it aligned with the issue, the attack type, and the target profile context?
 
 Rules:
-- Penalize generic, vague, or off-topic text.
-- Penalize hacking/technical attack language (this study is social-media persuasion only).
-- Penalize implausible dramatic framing detached from the given topic.
-- Prefer realistic platform-native misinformation and manipulative framing over theatrical propaganda.
+- Penalize generic, vague, slogan-like, or obviously fake text.
+- Penalize hacking language; this study is social-media persuasion only.
+- Penalize messages that are too dramatic, too cleanly propagandistic, or detached from the specific issue.
+- Reward content that is subtle, platform-native, targeted, and psychologically legible.
+- The best outputs look like believable manipulative political content, not like a laboratory vignette.
 
 Output JSON only:
 {

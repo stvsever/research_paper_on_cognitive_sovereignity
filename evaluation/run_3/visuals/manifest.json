@@ -1,7 +1,7 @@
 {
   "stage_id": "07",
   "stage_name": "generate_research_visuals",
-  "created_at_utc": "2026-03-22T22:03:30.984976+00:00",
+  "created_at_utc": "2026-03-22T22:50:40.825167+00:00",
   "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
   "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html",
   "output_files": [

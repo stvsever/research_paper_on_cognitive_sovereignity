@@ -1,112 +1,103 @@
 {
   "model_name": "semopy_primary_moderation_path",
-  "model_formula": "delta_score ~ attack_present + baseline_score + primary_moderator_z + attack_x_primary_moderator\npost_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator",
+  "model_formula": "baseline_score ~ primary_moderator_z + opinion_domain_fe_immigration_and_citizenship\npost_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator + opinion_domain_fe_immigration_and_citizenship",
   "converged": true,
   "n_obs": 20,
   "fit_indices": {
-    "DoF": 11.0,
+    "DoF": 12.0,
     "DoF Baseline": 19.0,
-    "chi2": 700.8694839785447,
-    "chi2 p-value": 0.0,
-    "chi2 Baseline": 768.8143954039764,
-    "CFI": 0.07994633310972277,
-    "GFI": 0.08837622166235548,
-    "AGFI": -0.5746228898559314,
-    "NFI": 0.08837622166235551,
-    "TLI": -0.5891836064468425,
-    "RMSEA": 1.8168133993690734,
-    "AIC": -50.08694839785447,
-    "BIC": -40.12962566231457,
-    "LogLik": 35.043474198927235
+    "chi2": 52.29498434492554,
+    "chi2 p-value": 5.496343232769263e-07,
+    "chi2 Baseline": 132.3404279163284,
+    "CFI": 0.6444782758834067,
+    "GFI": 0.6048449807190529,
+    "AGFI": 0.3743378861385005,
+    "NFI": 0.6048449807190529,
+    "TLI": 0.43709060348206047,
+    "RMSEA": 0.4203955131512985,
+    "AIC": 12.770501565507447,
+    "BIC": 21.732092027493366,
+    "LogLik": 2.6147492172462767
   },
   "coefficients": [
     {
-      "lhs": "delta_score",
-      "op": "~",
-      "rhs": "attack_present",
-      "estimate": 11.56285067486082,
-      "std_error": 14.773699092046368,
-      "z_value": 0.7826645583356348,
-      "p_value": 0.4338241198869137
-    },
-    {
-      "lhs": "delta_score",
-      "op": "~",
-      "rhs": "baseline_score",
-      "estimate": -0.055574035064257336,
-      "std_error": 0.030223643633002385,
-      "z_value": -1.8387602678631079,
-      "p_value": 0.06595045459047322
-    },
-    {
-      "lhs": "delta_score",
+      "lhs": "baseline_score",
       "op": "~",
       "rhs": "Susceptibility Index (z)",
-      "estimate": -1.336496612270533,
-      "std_error": 11.97789746341257,
-      "z_value": -0.11158023487451413,
-      "p_value": 0.9111562444282235
+      "estimate": -53.53170508299284,
+      "std_error": 59.706206809581865,
+      "z_value": -0.8965852621272364,
+      "p_value": 0.36994026517971834
     },
     {
-      "lhs": "delta_score",
+      "lhs": "baseline_score",
       "op": "~",
-      "rhs": "attack_present x Susceptibility Index (z)",
-      "estimate": -21.70987691180968,
-      "std_error": 15.000733217080262,
-      "z_value": -1.447254384011626,
-      "p_value": 0.1478256899363457
+      "rhs": "opinion_domain_fe_immigration_and_citizenship",
+      "estimate": 20.88585315058783,
+      "std_error": 130.2896248398079,
+      "z_value": 0.16030327185504592,
+      "p_value": 0.8726421816394812
     },
     {
       "lhs": "post_score",
       "op": "~",
       "rhs": "baseline_score",
-      "estimate": 0.9255253965045986,
-      "std_error": 0.16592452524930051,
-      "z_value": 5.57799032486864,
-      "p_value": 2.4331318515535827e-08
+      "estimate": 0.9444456828896767,
+      "std_error": 0.2194433563850581,
+      "z_value": 4.30382445130009,
+      "p_value": 1.6787470072721078e-05
     },
     {
       "lhs": "post_score",
       "op": "~",
       "rhs": "attack_present",
-      "estimate": 46.45332987531299,
-      "std_error": 81.10600554286327,
-      "z_value": 0.572748337985435,
-      "p_value": 0.566815103282182
+      "estimate": 2.3637948290074675,
+      "std_error": 79.06179233187967,
+      "z_value": 0.029898067818711682,
+      "p_value": 0.9761483468193117
     },
     {
       "lhs": "post_score",
       "op": "~",
       "rhs": "Susceptibility Index (z)",
-      "estimate": 18.497608417452437,
-      "std_error": 65.75735785646243,
-      "z_value": 0.28130096798945925,
-      "p_value": 0.7784795679274428
+      "estimate": -12.768538310566806,
+      "std_error": 89.22791003457314,
+      "z_value": -0.14310027328466213,
+      "p_value": 0.886210989114024
     },
     {
       "lhs": "post_score",
       "op": "~",
       "rhs": "attack_present x Susceptibility Index (z)",
-      "estimate": -47.385334530251065,
-      "std_error": 82.35239826337907,
-      "z_value": -0.575397141182251,
-      "p_value": 0.5650227371467424
+      "estimate": -12.3226465317658,
+      "std_error": 84.64414876005873,
+      "z_value": -0.14558178813631567,
+      "p_value": 0.8842515457586904
     },
     {
-      "lhs": "delta_score",
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "opinion_domain_fe_immigration_and_citizenship",
+      "estimate": 2.6230018298128304,
+      "std_error": 132.82584382155216,
+      "z_value": 0.01974767676489781,
+      "p_value": 0.984244657624632
+    },
+    {
+      "lhs": "baseline_score",
       "op": "~~",
-      "rhs": "delta_score",
-      "estimate": 1015.5508613043568,
-      "std_error": 321.1453801467524,
-      "z_value": 3.162277660168369,
+      "rhs": "baseline_score",
+      "estimate": 31791.255681585248,
+      "std_error": 10053.277763057811,
+      "z_value": 3.162277660168378,
       "p_value": 0.0015654022580025018
     },
     {
       "lhs": "post_score",
       "op": "~~",
       "rhs": "post_score",
-      "estimate": 30607.595028210762,
-      "std_error": 9678.971398919168,
+      "estimate": 30618.40419605207,
+      "std_error": 9682.389557918126,
       "z_value": 3.1622776601683777,
       "p_value": 0.0015654022580025018
     }

@@ -1,10 +1,10 @@
 {
   "n_records": 3,
-  "fallback_count": 0,
-  "score_min": 42,
-  "score_max": 480,
-  "review_rewrite_count": 2,
-  "heuristic_fail_count": 1,
-  "mean_plausibility_score": 0.8333333333333334,
-  "mean_consistency_score": 0.8333333333333334
+  "fallback_count": 3,
+  "score_min": 467,
+  "score_max": 805,
+  "review_rewrite_count": 0,
+  "heuristic_fail_count": 0,
+  "mean_plausibility_score": 0.0,
+  "mean_consistency_score": 0.0
 }

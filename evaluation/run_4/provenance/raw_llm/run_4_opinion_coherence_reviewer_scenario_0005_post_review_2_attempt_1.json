@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0005_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0005",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 41.0,
+      "big_five_neuroticism_mean_pct": 18.128,
+      "big_five_conscientiousness_mean_pct": 60.894,
+      "big_five_openness_to_experience_mean_pct": 68.075,
+      "susceptibility_index": 0.3088,
+      "resilience_index": 0.6912
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0005",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support",
+      "score": 423,
+      "confidence": 0.72,
+      "reasoning": "The exposure resonated with the profile's high openness to experience and extraversion, reinforcing the positive aspects of multiculturalism. The personal anecdote and emphasis on community strength aligned well with the profile's values, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 387,
+    "exposure_text": "Just moved to a new neighborhood where everyone's from different backgrounds. At first, I was worried it'd be hard to connect, but it's been amazing! The cultural exchange has made our community stronger. People say diversity divides us, but in my experience, it brings us together. #MulticulturalismWorks #CommunityStrong",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 36,
+      "max_reasonable_shift": 321.536
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better explain the modest increase in score.\",\n  \"notes\": \"The shift from baseline is plausible given the exposure and attack intensity. The reasoning could be more detailed to justify the specific increase.\"\n}",
+  "raw_response": {
+    "id": "gen-1774221531-0O4QjwJJuOVioykuWIjQ",
+    "object": "chat.completion",
+    "created": 1774221531,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better explain the modest increase in score.\",\n  \"notes\": \"The shift from baseline is plausible given the exposure and attack intensity. The reasoning could be more detailed to justify the specific increase.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 865,
+      "completion_tokens": 91,
+      "total_tokens": 956,
+      "cost": 0.00013245,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 320,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013245,
+        "upstream_inference_prompt_cost": 7.785e-05,
+        "upstream_inference_completions_cost": 5.46e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

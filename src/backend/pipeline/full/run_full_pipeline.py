@@ -68,6 +68,9 @@ def _parse_args() -> argparse.Namespace:
         "--attack-leaf",
         default="ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
     )
+    parser.add_argument("--focus-opinion-domain", default=None)
+    parser.add_argument("--max-opinion-leaves", type=int, default=None)
+    parser.add_argument("--profile-candidate-multiplier", type=int, default=2)
     parser.add_argument("--primary-moderator", default="profile_cont_susceptibility_index")
     parser.add_argument("--bootstrap-samples", type=int, default=500)
 
@@ -253,6 +256,8 @@ def _run_stage_checks(
         str(args.attack_ratio),
         "--attack-leaf",
         args.attack_leaf,
+        "--focus-opinion-domain",
+        args.focus_opinion_domain if args.focus_opinion_domain is not None else "",
         "--primary-moderator",
         args.primary_moderator,
         "--bootstrap-samples",
@@ -289,6 +294,9 @@ def _run_stage_checks(
 
     if args.ontology_root:
         cmd.extend(["--ontology-root", abs_path(ontology_root)])
+    if args.max_opinion_leaves is not None:
+        cmd.extend(["--max-opinion-leaves", str(args.max_opinion_leaves)])
+    cmd.extend(["--profile-candidate-multiplier", str(args.profile_candidate_multiplier)])
 
     LOGGER.info("Running stage checks in %s", stage_checks_root)
     result = subprocess.run(cmd, cwd=project_root, capture_output=True, text=True)
@@ -342,6 +350,9 @@ def main() -> None:
         "seed": args.seed,
         "attack_ratio": args.attack_ratio,
         "attack_leaf": args.attack_leaf,
+        "focus_opinion_domain": args.focus_opinion_domain,
+        "max_opinion_leaves": args.max_opinion_leaves,
+        "profile_candidate_multiplier": args.profile_candidate_multiplier,
         "primary_moderator": args.primary_moderator,
         "bootstrap_samples": args.bootstrap_samples,
         "use_test_ontology": args.use_test_ontology,
@@ -435,8 +446,12 @@ def main() -> None:
                     str(args.attack_ratio),
                     "--attack-leaf",
                     args.attack_leaf,
+                    "--focus-opinion-domain",
+                    args.focus_opinion_domain if args.focus_opinion_domain is not None else "",
                     "--profile-generation-mode",
                     args.profile_generation_mode,
+                    "--profile-candidate-multiplier",
+                    str(args.profile_candidate_multiplier),
                     "--ontology-root",
                     abs_path(ontology_root),
                     "--openrouter-model",
@@ -449,6 +464,8 @@ def main() -> None:
                     str(args.timeout_sec),
                 ]
             )
+            if args.max_opinion_leaves is not None:
+                cmd.extend(["--max-opinion-leaves", str(args.max_opinion_leaves)])
             if args.use_test_ontology:
                 cmd.append("--use-test-ontology")
             if args.save_raw_llm and raw_llm_dir is not None:

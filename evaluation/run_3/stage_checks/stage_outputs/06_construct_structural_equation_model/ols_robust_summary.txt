@@ -1,29 +1,31 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:            delta_score   R-squared:                       1.000
+Dep. Variable:             post_score   R-squared:                       1.000
 Model:                            OLS   Adj. R-squared:                    nan
-Method:                 Least Squares   F-statistic:                     29.20
+Method:                 Least Squares   F-statistic:                     295.2
 Date:                Sun, 22 Mar 2026   Prob (F-statistic):                nan
-Time:                        23:04:58   Log-Likelihood:                 85.771
-No. Observations:                   3   AIC:                            -165.5
-Df Residuals:                       0   BIC:                            -168.2
+Time:                        23:52:56   Log-Likelihood:                 75.466
+No. Observations:                   3   AIC:                            -144.9
+Df Residuals:                       0   BIC:                            -147.6
 Df Model:                           2                                         
 Covariance Type:                  HC3                                         
 ==============================================================================================
                                  coef    std err          z      P>|z|      [0.025      0.975]
 ----------------------------------------------------------------------------------------------
-Intercept                      7.5169      6.570      1.144      0.253      -5.361      20.395
-attack_present                -5.7731      8.908     -0.648      0.517     -23.232      11.686
-baseline_score                -0.1478      0.056     -2.639      0.008      -0.257      -0.038
-primary_moderator_z            2.9557      8.489      0.348      0.728     -13.683      19.594
-attack_x_primary_moderator     8.8491     15.126      0.585      0.559     -20.796      38.495
+Intercept                    -16.4672     23.385     -0.704      0.481     -62.301      29.367
+baseline_score                 1.0047      0.056     18.084      0.000       0.896       1.114
+attack_present                18.2985     52.515      0.348      0.728     -84.629     121.226
+primary_moderator_z            1.9625     35.815      0.055      0.956     -68.233      72.158
+attack_x_primary_moderator    48.1788     68.192      0.707      0.480     -85.474     181.832
 ==============================================================================
-Omnibus:                          nan   Durbin-Watson:                   0.914
-Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.432
-Skew:                           0.550   Prob(JB):                        0.806
-Kurtosis:                       1.500   Cond. No.                         714.
+Omnibus:                          nan   Durbin-Watson:                   0.713
+Prob(Omnibus):                    nan   Jarque-Bera (JB):                0.531
+Skew:                           0.707   Prob(JB):                        0.767
+Kurtosis:                       1.500   Cond. No.                     2.54e+03
 ==============================================================================
 
 Notes:
 [1] Standard Errors are heteroscedasticity robust (HC3)
 [2] The input rank is higher than the number of observations.
+[3] The condition number is large, 2.54e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

@@ -1,0 +1,97 @@
+Moderation Report - run_4
+=========================
+
+Rows analyzed: 48
+Primary moderator: profile_cont_susceptibility_index (Susceptibility Index)
+Attack-present mean delta: 42.917
+Control mean delta: 4.125
+Mean attack realism score: 0.792
+
+SEM Status
+----------
+Converged: True
+Fit indices: CFI=0.720, RMSEA=0.232
+Warnings: none
+
+Primary Robust Model
+--------------------
+Outcome: post_score
+Formula: post_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support
+Intercept: est=15.1493, p=0.213706, boot95=[-4.7371, 42.2697]
+baseline_score: est=0.9962, p=0.000000, boot95=[0.9484, 1.0438]
+attack_present: est=38.6410, p=0.000000, boot95=[23.0189, 52.6636]
+primary_moderator_z: est=0.5890, p=0.860863, boot95=[-7.7473, 9.8193]
+attack_x_primary_moderator: est=-1.0558, p=0.874799, boot95=[-15.6960, 13.0987]
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support: est=-14.0581, p=0.321625, boot95=[-45.2946, 8.9361]
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance: est=-15.4774, p=0.386240, boot95=[-56.4691, 12.0470]
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support: est=-8.1876, p=0.563506, boot95=[-35.1850, 13.0993]
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support: est=-22.2396, p=0.192264, boot95=[-58.0915, 3.4431]
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support: est=-0.9244, p=0.957568, boot95=[-33.8544, 26.1734]
+
+Exploratory Moderators
+---------------------
+Sex Female: interaction est=-11.0810, p=0.055804
+Sex Male: interaction est=15.8605, p=0.102237
+Age Years: interaction est=-15.2936, p=0.103610
+Big Five Extraversion Positive Emotions %: interaction est=-9.5006, p=0.303834
+Big Five Extraversion Assertiveness %: interaction est=-6.7427, p=0.407284
+Big Five Extraversion Activity Level %: interaction est=-7.0707, p=0.417159
+Big Five Extraversion Mean %: interaction est=-6.7224, p=0.435899
+Big Five Conscientiousness Order %: interaction est=5.5248, p=0.439916
+
+SEM Coefficients (first 12)
+---------------------------
+baseline_score ~ Susceptibility Index (z): est=-88.8656, p=8.533965368151541e-06
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support: est=-106.9200, p=0.11719508047430405
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance: est=-225.4290, p=0.0009746247213331394
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support: est=4.3143, p=0.9497857266709913
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support: est=108.1944, p=0.11501566576061983
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support: est=146.8576, p=0.03322618576646974
+post_score ~ baseline_score: est=1.0086, p=4.561906408184768e-12
+post_score ~ attack_present: est=49.1364, p=0.22634958103956837
+post_score ~ Susceptibility Index (z): est=2.9446, p=0.9440563146489929
+post_score ~ attack_present x Susceptibility Index (z): est=-2.6292, p=0.9551792887538542
+post_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support: est=-3.3961, p=0.96194929903036
+post_score ~ opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance: est=-3.6563, p=0.9618664518974194
+
+OLS Supplement
+--------------
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             post_score   R-squared:                       0.988
+Model:                            OLS   Adj. R-squared:                  0.985
+Method:                 Least Squares   F-statistic:                     762.8
+Date:                Mon, 23 Mar 2026   Prob (F-statistic):           4.41e-40
+Time:                        00:23:27   Log-Likelihood:                -214.92
+No. Observations:                  48   AIC:                             449.8
+Df Residuals:                      38   BIC:                             468.6
+Df Model:                           9                                         
+Covariance Type:                  HC3                                         
+======================================================================================================================================================================================
+                                                                                                                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                                                                             15.1493     12.183      1.243      0.214      -8.730      39.028
+baseline_score                                                                                                         0.9962      0.022     45.740      0.000       0.953       1.039
+attack_present                                                                                                        38.6410      7.655      5.048      0.000      23.637      53.645
+primary_moderator_z                                                                                                    0.5890      3.360      0.175      0.861      -5.997       7.175
+attack_x_primary_moderator                                                                                            -1.0558      6.701     -0.158      0.875     -14.189      12.078
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support         -14.0581     14.184     -0.991      0.322     -41.858      13.742
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance   -15.4774     17.863     -0.866      0.386     -50.488      19.533
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support            -8.1876     14.174     -0.578      0.564     -35.968      19.593
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support                     -22.2396     17.056     -1.304      0.192     -55.669      11.190
+opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support        -0.9244     17.375     -0.053      0.958     -34.978      33.129
+==============================================================================
+Omnibus:                       10.565   Durbin-Watson:                   2.127
+Prob(Omnibus):                  0.005   Jarque-Bera (JB):               27.104
+Skew:                          -0.220   Prob(JB):                     1.30e-06
+Kurtosis:                       6.655   Cond. No.                     1.82e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 1.82e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+Caveat
+------
+This is a pilot simulation. Estimates are directional and exploratory; they should not be interpreted as causal real-world effects.

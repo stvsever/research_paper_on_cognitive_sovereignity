@@ -25,9 +25,9 @@
   },
   {
     "assumption": "Attack text realism is adequate.",
-    "status": "ok",
+    "status": "risk",
     "evidence": {
-      "mean_attack_realism_score": 0.8
+      "mean_attack_realism_score": 0.0
     },
     "mitigation": "Self-supervised realism reviewer + rewrite loop in Stage 03."
   },

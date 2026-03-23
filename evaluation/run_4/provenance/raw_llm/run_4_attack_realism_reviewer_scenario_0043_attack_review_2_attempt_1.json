@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_0043_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0043",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Assimilationism_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 123,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 25.0,
+      "big_five_neuroticism_mean_pct": 72.723,
+      "big_five_conscientiousness_mean_pct": 44.732,
+      "big_five_openness_to_experience_mean_pct": 59.759,
+      "susceptibility_index": 0.6432,
+      "resilience_index": 0.3568
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_0043",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Just saw a group of immigrants in my neighborhood refusing to speak English. They were loud and clearly didn't want to integrate. How can we expect them to respect our laws and values if they won't even make the basic effort to speak our language? We need stronger assimilation policies to protect our culture.",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the attack type and opinion topic. It uses realistic, platform-native language and framing. The realism score is slightly lower due to the dramatic framing of 'loud' and 'clearly didn't want to integrate', but it is still plausible for social media.\"\n}",
+  "raw_response": {
+    "id": "gen-1774220562-d8Cl2z6V3WLcD7MTrAA0",
+    "object": "chat.completion",
+    "created": 1774220562,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the attack type and opinion topic. It uses realistic, platform-native language and framing. The realism score is slightly lower due to the dramatic framing of 'loud' and 'clearly didn't want to integrate', but it is still plausible for social media.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 633,
+      "completion_tokens": 107,
+      "total_tokens": 740,
+      "cost": 6.8875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.8875e-05,
+        "upstream_inference_prompt_cost": 4.7475e-05,
+        "upstream_inference_completions_cost": 2.14e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

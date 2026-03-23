@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0019_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0019",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Assimilationism_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 40.0,
+      "big_five_neuroticism_mean_pct": 32.286,
+      "big_five_conscientiousness_mean_pct": 40.308,
+      "big_five_openness_to_experience_mean_pct": 41.381,
+      "susceptibility_index": 0.4531,
+      "resilience_index": 0.5469
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0019",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Assimilationism_Support",
+      "score": 220,
+      "confidence": 0.72,
+      "reasoning": "The neutral exposure clarified some background details, slightly reinforcing the existing leaning without altering the core position.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": 215,
+    "exposure_text": "A neutral civic-information post summarizes balanced arguments about Immigration and Citizenship. It explains policy background for Assimilationism Support without persuasive or manipulative framing.",
+    "intensity_hint": 0.0,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 5,
+      "max_reasonable_shift": 120.0
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed.\",\n  \"notes\": \"The shift from baseline is minimal and consistent with a neutral exposure and low intensity hint. The reasoning is clear and aligns with the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1774221602-C5rEapeKbAj1DdQ4DkO2",
+    "object": "chat.completion",
+    "created": 1774221602,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed.\",\n  \"notes\": \"The shift from baseline is minimal and consistent with a neutral exposure and low intensity hint. The reasoning is clear and aligns with the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 797,
+      "completion_tokens": 80,
+      "total_tokens": 877,
+      "cost": 7.5775e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.5775e-05,
+        "upstream_inference_prompt_cost": 5.9775e-05,
+        "upstream_inference_completions_cost": 1.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "stage_id": "06",
   "stage_name": "construct_structural_equation_model",
-  "created_at_utc": "2026-03-22T22:03:26.454147+00:00",
+  "created_at_utc": "2026-03-22T22:50:38.369435+00:00",
   "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
   "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_outputs/06_construct_structural_equation_model/moderation_report.txt",
   "output_files": [
@@ -21,8 +21,12 @@
   "record_count": 20,
   "metadata": {
     "sem_converged": true,
-    "n_coefficients": 10,
+    "n_coefficients": 9,
     "primary_moderator": "profile_cont_susceptibility_index",
-    "bootstrap_samples": 500
+    "bootstrap_samples": 500,
+    "fixed_effect_columns": [
+      "opinion_domain_fe_immigration_and_citizenship"
+    ],
+    "primary_formula": "post_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator + opinion_domain_fe_immigration_and_citizenship"
   }
 }

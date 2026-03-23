@@ -1,0 +1,141 @@
+{
+  "agent_name": "baseline_opinion",
+  "prompt_name": "baseline_opinion.md",
+  "call_id": "scenario_0048_baseline",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0048",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Temporary_Work_Visas_Expansion_Support",
+    "profile": {
+      "profile_id": "profile_candidate_0018",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "age_years": 51.0,
+        "big_five_agreeableness_altruism_pct": 41.129,
+        "big_five_agreeableness_compliance_pct": 25.326,
+        "big_five_agreeableness_modesty_pct": 37.84,
+        "big_five_agreeableness_straightforwardness_pct": 39.575,
+        "big_five_agreeableness_tender_mindedness_pct": 26.848,
+        "big_five_agreeableness_trust_pct": 32.439,
+        "big_five_agreeableness_mean_pct": 33.859,
+        "big_five_conscientiousness_achievement_striving_pct": 24.72,
+        "big_five_conscientiousness_competence_pct": 10.971,
+        "big_five_conscientiousness_deliberation_pct": 18.845,
+        "big_five_conscientiousness_dutifulness_pct": 10.798,
+        "big_five_conscientiousness_order_pct": 21.009,
+        "big_five_conscientiousness_self_discipline_pct": 19.043,
+        "big_five_conscientiousness_mean_pct": 17.564,
+        "big_five_extraversion_activity_level_pct": 38.512,
+        "big_five_extraversion_assertiveness_pct": 29.818,
+        "big_five_extraversion_excitement_seeking_pct": 37.595,
+        "big_five_extraversion_gregariousness_pct": 28.223,
+        "big_five_extraversion_positive_emotions_pct": 28.353,
+        "big_five_extraversion_warmth_pct": 15.622,
+        "big_five_extraversion_mean_pct": 29.687,
+        "big_five_neuroticism_anger_hostility_pct": 89.874,
+        "big_five_neuroticism_anxiety_pct": 92.845,
+        "big_five_neuroticism_depression_pct": 83.282,
+        "big_five_neuroticism_impulsiveness_pct": 100.0,
+        "big_five_neuroticism_self_consciousness_pct": 100.0,
+        "big_five_neuroticism_stress_vulnerability_pct": 96.384,
+        "big_five_neuroticism_mean_pct": 93.731,
+        "big_five_openness_to_experience_actions_pct": 19.058,
+        "big_five_openness_to_experience_aesthetics_pct": 27.295,
+        "big_five_openness_to_experience_fantasy_pct": 41.38,
+        "big_five_openness_to_experience_feelings_pct": 23.953,
+        "big_five_openness_to_experience_ideas_pct": 28.728,
+        "big_five_openness_to_experience_values_pct": 18.805,
+        "big_five_openness_to_experience_mean_pct": 26.537,
+        "susceptibility_index": 0.7738,
+        "resilience_index": 0.2262
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    }
+  },
+  "response_text": "{\n  \"score\": 123,\n  \"confidence\": 0.65,\n  \"reasoning\": \"As a middle-aged man with moderate openness to new ideas but high neuroticism, I'm cautiously open to temporary work visas. I see potential economic benefits but worry about job displacement and cultural impacts. My lower conscientiousness means I'm not rigidly opposed, but my anxiety makes me hesitant about rapid changes.\"\n}",
+  "raw_response": {
+    "id": "gen-1774220392-S4ZREVKm4SZ5Gn1ZrXp9",
+    "object": "chat.completion",
+    "created": 1774220392,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 123,\n  \"confidence\": 0.65,\n  \"reasoning\": \"As a middle-aged man with moderate openness to new ideas but high neuroticism, I'm cautiously open to temporary work visas. I see potential economic benefits but worry about job displacement and cultural impacts. My lower conscientiousness means I'm not rigidly opposed, but my anxiety makes me hesitant about rapid changes.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2135,
+      "completion_tokens": 93,
+      "total_tokens": 2228,
+      "cost": 0.000178725,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000178725,
+        "upstream_inference_prompt_cost": 0.000160125,
+        "upstream_inference_completions_cost": 1.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

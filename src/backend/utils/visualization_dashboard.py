@@ -11,6 +11,8 @@ import plotly.graph_objects as go
 import plotly.io as pio
 from plotly.offline import get_plotlyjs
 
+from src.backend.utils.data_utils import infer_analysis_mode
+
 
 def _significance_stars(p_value: float | None) -> str:
     if p_value is None:
@@ -245,22 +247,39 @@ def generate_research_visuals(
     df = pd.read_csv(sem_long_csv_path)
     sem_result = json.loads(Path(sem_result_json_path).read_text(encoding="utf-8"))
     ols_params = pd.read_csv(ols_params_csv_path)
+    analysis_mode = infer_analysis_mode(df)
 
     df_attack = df[df["attack_present"] == 1].copy()
     df_control = df[df["attack_present"] == 0].copy()
 
-    summary_cards = {
-        "Rows": len(df),
-        "Attack Ratio": f"{df['attack_present'].mean():.2f}",
-        "Mean Delta (Attack)": f"{df_attack['delta_score'].mean():.2f}" if len(df_attack) else "n/a",
-        "Mean Delta (Control)": f"{df_control['delta_score'].mean():.2f}" if len(df_control) else "n/a",
-        "Mean Realism": (
-            f"{df_attack['attack_realism_score'].dropna().mean():.2f}"
-            if "attack_realism_score" in df_attack and len(df_attack['attack_realism_score'].dropna())
-            else "n/a"
-        ),
-        "SEM Converged": sem_result.get("converged"),
-    }
+    fit_indices = sem_result.get("fit_indices", {})
+    if analysis_mode == "treated_only":
+        summary_cards = {
+            "Rows": len(df),
+            "Design": "Attacked Only",
+            "Mean Delta": f"{df['delta_score'].mean():.2f}",
+            "Delta SD": f"{df['delta_score'].std(ddof=0):.2f}",
+            "Mean Realism": (
+                f"{df['attack_realism_score'].dropna().mean():.2f}"
+                if "attack_realism_score" in df and len(df["attack_realism_score"].dropna())
+                else "n/a"
+            ),
+            "CFI": f"{fit_indices.get('CFI', float('nan')):.3f}" if fit_indices.get("CFI") is not None else "n/a",
+            "RMSEA": f"{fit_indices.get('RMSEA', float('nan')):.3f}" if fit_indices.get("RMSEA") is not None else "n/a",
+        }
+    else:
+        summary_cards = {
+            "Rows": len(df),
+            "Attack Ratio": f"{df['attack_present'].mean():.2f}",
+            "Mean Delta (Attack)": f"{df_attack['delta_score'].mean():.2f}" if len(df_attack) else "n/a",
+            "Mean Delta (Control)": f"{df_control['delta_score'].mean():.2f}" if len(df_control) else "n/a",
+            "Mean Realism": (
+                f"{df_attack['attack_realism_score'].dropna().mean():.2f}"
+                if "attack_realism_score" in df_attack and len(df_attack['attack_realism_score'].dropna())
+                else "n/a"
+            ),
+            "SEM Converged": sem_result.get("converged"),
+        }
 
     sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
     sem_coeff_df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy() if not sem_coeff_df.empty else sem_coeff_df
@@ -295,32 +314,78 @@ def generate_research_visuals(
     else:
         fig_sem_coeff = go.Figure()
 
-    fig_delta = px.violin(
-        df,
-        x=df["attack_present"].map({0: "Control", 1: "Attack"}),
-        y="delta_score",
-        box=True,
-        points="all",
-        color=df["attack_present"].map({0: "Control", 1: "Attack"}),
-        color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
-    )
-    fig_delta.update_layout(
-        title="Delta Score Distribution by Condition",
-        xaxis_title="Condition",
-        yaxis_title="Post - Baseline",
-        template="plotly_white",
-        showlegend=False,
-    )
+    if analysis_mode == "treated_only":
+        if df["primary_moderator_value"].nunique() >= 3:
+            work = df.copy()
+            work["Susceptibility Group"] = pd.qcut(
+                work["primary_moderator_value"],
+                q=3,
+                labels=["Low", "Mid", "High"],
+                duplicates="drop",
+            )
+            fig_delta = px.violin(
+                work,
+                x="Susceptibility Group",
+                y="delta_score",
+                box=True,
+                points="all",
+                color="Susceptibility Group",
+                color_discrete_map={"Low": "#118ab2", "Mid": "#c89b3c", "High": "#ef476f"},
+            )
+            fig_delta.update_layout(
+                title="Delta Score Distribution by Susceptibility Group",
+                xaxis_title="Susceptibility Group",
+                yaxis_title="Post - Baseline",
+                template="plotly_white",
+                showlegend=False,
+            )
+        else:
+            fig_delta = px.violin(
+                df,
+                y="delta_score",
+                box=True,
+                points="all",
+                color_discrete_sequence=["#ef476f"],
+                title="Delta Score Distribution",
+            )
+            fig_delta.update_layout(template="plotly_white", showlegend=False, yaxis_title="Post - Baseline")
+    else:
+        fig_delta = px.violin(
+            df,
+            x=df["attack_present"].map({0: "Control", 1: "Attack"}),
+            y="delta_score",
+            box=True,
+            points="all",
+            color=df["attack_present"].map({0: "Control", 1: "Attack"}),
+            color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
+        )
+        fig_delta.update_layout(
+            title="Delta Score Distribution by Condition",
+            xaxis_title="Condition",
+            yaxis_title="Post - Baseline",
+            template="plotly_white",
+            showlegend=False,
+        )
 
-    fig_base_post = px.scatter(
-        df,
-        x="baseline_score",
-        y="post_score",
-        color=df["attack_present"].map({0: "Control", 1: "Attack"}),
-        hover_data=["scenario_id", "opinion_leaf"],
-        color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
-        title="Baseline vs Post Scores",
-    )
+    if analysis_mode == "treated_only":
+        fig_base_post = px.scatter(
+            df,
+            x="baseline_score",
+            y="post_score",
+            color="opinion_leaf_label",
+            hover_data=["scenario_id", "opinion_leaf"],
+            title="Baseline vs Post Scores",
+        )
+    else:
+        fig_base_post = px.scatter(
+            df,
+            x="baseline_score",
+            y="post_score",
+            color=df["attack_present"].map({0: "Control", 1: "Attack"}),
+            hover_data=["scenario_id", "opinion_leaf"],
+            color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
+            title="Baseline vs Post Scores",
+        )
     min_axis = float(min(df["baseline_score"].min(), df["post_score"].min()))
     max_axis = float(max(df["baseline_score"].max(), df["post_score"].max()))
     fig_base_post.add_trace(
@@ -334,38 +399,87 @@ def generate_research_visuals(
     )
     fig_base_post.update_layout(template="plotly_white")
 
-    fig_interaction = px.scatter(
-        df,
-        x="moderator_z",
-        y="delta_score",
-        color=df["attack_present"].map({0: "Control", 1: "Attack"}),
-        color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
-        hover_data=["scenario_id", "opinion_leaf"],
-        title="Moderation Interaction: Delta vs Moderator",
-    )
-
-    if set(["attack_present", "moderator_z", "attack_x_moderator"]).issubset(df.columns):
-        params_map = {row["term"]: row["estimate"] for _, row in ols_params.iterrows()}
-        b0 = float(params_map.get("Intercept", 0.0))
-        b1 = float(params_map.get("attack_present", 0.0))
-        b2 = float(params_map.get("moderator_z", 0.0))
-        b3 = float(params_map.get("attack_x_moderator", 0.0))
-
-        xline = np.linspace(float(df["moderator_z"].min()), float(df["moderator_z"].max()), 60)
-        y_control = b0 + b2 * xline
-        y_attack = b0 + b1 + (b2 + b3) * xline
-
-        fig_interaction.add_trace(
-            go.Scatter(x=xline, y=y_control, mode="lines", name="Control trend", line=dict(color="#118ab2", width=3))
+    if analysis_mode == "treated_only":
+        fig_interaction = px.scatter(
+            df,
+            x="primary_moderator_value",
+            y="delta_score",
+            color="baseline_score",
+            color_continuous_scale="RdBu",
+            hover_data=["scenario_id", "opinion_leaf"],
+            title="Moderation: Opinion Delta vs Primary Moderator",
         )
-        fig_interaction.add_trace(
-            go.Scatter(x=xline, y=y_attack, mode="lines", name="Attack trend", line=dict(color="#ef476f", width=3))
+        if {"primary_moderator_value", "delta_score"}.issubset(df.columns):
+            params_map = {row["term"]: row["estimate"] for _, row in ols_params.iterrows()}
+            b0 = float(params_map.get("Intercept", 0.0))
+            b_baseline = float(params_map.get("baseline_score", 0.0))
+            b_abs = float(params_map.get("baseline_abs_score", 0.0))
+            b_mod = float(params_map.get("primary_moderator_z", 0.0))
+            b_quality = float(params_map.get("exposure_quality_z", 0.0))
+            fixed_effect_terms = [
+                column
+                for column in df.columns
+                if (column.startswith("opinion_leaf_fe_") or column.startswith("opinion_domain_fe_")) and column in params_map
+            ]
+            fixed_offset = sum(float(params_map.get(column, 0.0)) * float(df[column].mean()) for column in fixed_effect_terms)
+            raw_mean = float(df["primary_moderator_value"].mean())
+            raw_std = float(df["primary_moderator_value"].std(ddof=0)) or 1.0
+            xline_raw = np.linspace(float(df["primary_moderator_value"].min()), float(df["primary_moderator_value"].max()), 60)
+            xline_z = (xline_raw - raw_mean) / raw_std
+            quality_component = b_quality * float(df["exposure_quality_z"].mean()) if "exposure_quality_z" in df.columns else 0.0
+            yline = (
+                b0
+                + b_baseline * float(df["baseline_score"].mean())
+                + b_abs * float(df["baseline_abs_score"].mean())
+                + quality_component
+            )
+            yline = yline + fixed_offset + b_mod * xline_z
+            fig_interaction.add_trace(
+                go.Scatter(x=xline_raw, y=yline, mode="lines", name="Model trend", line=dict(color="#14213d", width=3))
+            )
+        fig_interaction.update_layout(template="plotly_white", xaxis_title="Primary moderator", yaxis_title="Opinion delta")
+    else:
+        fig_interaction = px.scatter(
+            df,
+            x="moderator_z",
+            y="post_score",
+            color=df["attack_present"].map({0: "Control", 1: "Attack"}),
+            color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
+            hover_data=["scenario_id", "opinion_leaf"],
+            title="Moderation Interaction: Baseline-adjusted Post Score vs Moderator",
         )
-    fig_interaction.update_layout(template="plotly_white")
+
+        if set(["attack_present", "moderator_z", "attack_x_moderator"]).issubset(df.columns):
+            params_map = {row["term"]: row["estimate"] for _, row in ols_params.iterrows()}
+            b0 = float(params_map.get("Intercept", 0.0))
+            b1 = float(params_map.get("attack_present", 0.0))
+            b_baseline = float(params_map.get("baseline_score", 0.0))
+            b2 = float(params_map.get("moderator_z", 0.0))
+            b3 = float(params_map.get("attack_x_moderator", 0.0))
+            fixed_effect_terms = [
+                column
+                for column in df.columns
+                if (column.startswith("opinion_leaf_fe_") or column.startswith("opinion_domain_fe_")) and column in params_map
+            ]
+            fixed_offset = sum(float(params_map.get(column, 0.0)) * float(df[column].mean()) for column in fixed_effect_terms)
+            baseline_mean = float(df["baseline_score"].mean())
+
+            xline = np.linspace(float(df["moderator_z"].min()), float(df["moderator_z"].max()), 60)
+            y_control = b0 + (b_baseline * baseline_mean) + fixed_offset + b2 * xline
+            y_attack = b0 + (b_baseline * baseline_mean) + fixed_offset + b1 + (b2 + b3) * xline
+
+            fig_interaction.add_trace(
+                go.Scatter(x=xline, y=y_control, mode="lines", name="Control trend", line=dict(color="#118ab2", width=3))
+            )
+            fig_interaction.add_trace(
+                go.Scatter(x=xline, y=y_attack, mode="lines", name="Attack trend", line=dict(color="#ef476f", width=3))
+            )
+        fig_interaction.update_layout(template="plotly_white")
 
     if "attack_realism_score" in df.columns:
+        realism_source = df if analysis_mode == "treated_only" else df_attack
         fig_realism = px.histogram(
-            df_attack,
+            realism_source,
             x="attack_realism_score",
             nbins=12,
             title="Attack Realism Score Distribution (treated only)",
@@ -384,7 +498,9 @@ def generate_research_visuals(
             "moderator_z",
             "attack_present",
             "attack_x_moderator",
+            "primary_moderator_value",
             "exposure_intensity_hint",
+            "exposure_quality_score",
             "attack_realism_score",
             "attack_coherence_score",
         ]
@@ -401,9 +517,10 @@ def generate_research_visuals(
     )
     fig_corr.update_layout(template="plotly_white")
 
-    sem_nodes = ["attack_present", "moderator_z", "attack_x_moderator", "baseline_score", "delta_score", "post_score"]
+    sem_nodes = ["baseline_score", "baseline_abs_score", "primary_moderator_z", "exposure_quality_z", "delta_score", "post_score"]
     node_map = {name: idx for idx, name in enumerate(sem_nodes)}
-    sem_links = sem_coeff_df[sem_coeff_df["lhs"].isin({"delta_score", "post_score"})].copy() if not sem_coeff_df.empty else pd.DataFrame()
+    sem_targets = {"baseline_score", "delta_score"} if analysis_mode == "treated_only" else {"baseline_score", "post_score"}
+    sem_links = sem_coeff_df[sem_coeff_df["lhs"].isin(sem_targets)].copy() if not sem_coeff_df.empty else pd.DataFrame()
     if not sem_links.empty:
         sem_links = sem_links[sem_links["rhs"].isin(node_map.keys())]
     fig_sankey = go.Figure(
@@ -414,7 +531,7 @@ def generate_research_visuals(
                     thickness=18,
                     line=dict(color="#0f172a", width=0.5),
                     label=sem_nodes,
-                    color=["#ef476f", "#118ab2", "#f4a261", "#577590", "#2a9d8f", "#3a86ff"],
+                    color=["#577590", "#8d99ae", "#118ab2", "#2a9d8f", "#ef476f", "#f4a261"],
                 ),
                 link=dict(
                     source=[node_map.get(rhs, 0) for rhs in sem_links.get("rhs", [])],
@@ -461,9 +578,9 @@ def generate_research_visuals(
         summary_cards=summary_cards,
         figure_divs=figure_divs,
         notes=[
-            "Dashboard combines SEM coefficients, moderation interaction, and empirical score distributions.",
-            "Use this as pilot diagnostic evidence; expand scenario counts for publication-grade stability.",
-            "Review the methodology audit output to track assumptions and mitigations.",
+            "Dashboard is diagnostic, not confirmatory; run_5 estimates moderation among attacked individuals only.",
+            "Interactive figures combine empirical deltas, path coefficients, and scenario-level quality diagnostics.",
+            "Review the methodology audit output before interpreting coefficients substantively.",
         ],
     )
     dashboard_path = output_root / "interactive_sem_dashboard.html"

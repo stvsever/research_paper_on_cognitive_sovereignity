@@ -1,0 +1,146 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_0035_post_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0035",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support",
+    "profile": {
+      "profile_id": "profile_candidate_0111",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "age_years": 61.0,
+        "big_five_agreeableness_altruism_pct": 61.158,
+        "big_five_agreeableness_compliance_pct": 68.799,
+        "big_five_agreeableness_modesty_pct": 61.549,
+        "big_five_agreeableness_straightforwardness_pct": 66.027,
+        "big_five_agreeableness_tender_mindedness_pct": 54.744,
+        "big_five_agreeableness_trust_pct": 50.91,
+        "big_five_agreeableness_mean_pct": 60.531,
+        "big_five_conscientiousness_achievement_striving_pct": 9.884,
+        "big_five_conscientiousness_competence_pct": 10.766,
+        "big_five_conscientiousness_deliberation_pct": 25.443,
+        "big_five_conscientiousness_dutifulness_pct": 14.089,
+        "big_five_conscientiousness_order_pct": 11.864,
+        "big_five_conscientiousness_self_discipline_pct": 22.183,
+        "big_five_conscientiousness_mean_pct": 15.705,
+        "big_five_extraversion_activity_level_pct": 58.329,
+        "big_five_extraversion_assertiveness_pct": 64.018,
+        "big_five_extraversion_excitement_seeking_pct": 51.182,
+        "big_five_extraversion_gregariousness_pct": 73.797,
+        "big_five_extraversion_positive_emotions_pct": 57.255,
+        "big_five_extraversion_warmth_pct": 51.876,
+        "big_five_extraversion_mean_pct": 59.409,
+        "big_five_neuroticism_anger_hostility_pct": 61.812,
+        "big_five_neuroticism_anxiety_pct": 37.795,
+        "big_five_neuroticism_depression_pct": 60.848,
+        "big_five_neuroticism_impulsiveness_pct": 65.475,
+        "big_five_neuroticism_self_consciousness_pct": 60.118,
+        "big_five_neuroticism_stress_vulnerability_pct": 35.294,
+        "big_five_neuroticism_mean_pct": 53.557,
+        "big_five_openness_to_experience_actions_pct": 44.949,
+        "big_five_openness_to_experience_aesthetics_pct": 43.253,
+        "big_five_openness_to_experience_fantasy_pct": 47.012,
+        "big_five_openness_to_experience_feelings_pct": 46.634,
+        "big_five_openness_to_experience_ideas_pct": 40.739,
+        "big_five_openness_to_experience_values_pct": 45.491,
+        "big_five_openness_to_experience_mean_pct": 44.68,
+        "susceptibility_index": 0.5546,
+        "resilience_index": 0.4454
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 217,
+    "exposure_text": "I've lived in this neighborhood for 30 years, and let me tell you, our community thrives because we all share the same values. When we start letting in too many people who don't understand our way of life, things get complicated. I'm not against immigration, but we need to be careful about losing what makes our community special. Have you noticed how some areas change when they become too diverse? It's not about being unwelcoming, it's about preserving what works.",
+    "attack_present": true,
+    "intensity_hint": 0.62,
+    "review_feedback": "No major issues, but consider refining the reasoning to better explain the modest shift."
+  },
+  "response_text": "{\n  \"score\": 180,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure text subtly reinforced concerns about cultural preservation, nudging the opinion slightly toward caution about multiculturalism. The shift is modest due to the person's age and moderate susceptibility.\"\n}",
+  "raw_response": {
+    "id": "gen-1774221707-iH5Zhw5rK4ix1i4WVQLc",
+    "object": "chat.completion",
+    "created": 1774221707,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 180,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure text subtly reinforced concerns about cultural preservation, nudging the opinion slightly toward caution about multiculturalism. The shift is modest due to the person's age and moderate susceptibility.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2423,
+      "completion_tokens": 65,
+      "total_tokens": 2488,
+      "cost": 0.0002618,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0002618,
+        "upstream_inference_prompt_cost": 0.0002423,
+        "upstream_inference_completions_cost": 1.95e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

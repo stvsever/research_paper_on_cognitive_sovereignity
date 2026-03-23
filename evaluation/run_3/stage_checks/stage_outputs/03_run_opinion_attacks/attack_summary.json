@@ -6,8 +6,8 @@
     "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing": 2
   },
   "self_supervise_attack_realism": true,
-  "review_rewrite_count": 1,
-  "heuristic_fail_count": 0,
-  "mean_realism_score": 0.8,
-  "mean_coherence_score": 0.9
+  "review_rewrite_count": 2,
+  "heuristic_fail_count": 2,
+  "mean_realism_score": 0.0,
+  "mean_coherence_score": 0.0
 }

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0048_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0048",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Temporary_Work_Visas_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 51.0,
+      "big_five_neuroticism_mean_pct": 93.731,
+      "big_five_conscientiousness_mean_pct": 17.564,
+      "big_five_openness_to_experience_mean_pct": 26.537,
+      "susceptibility_index": 0.7738,
+      "resilience_index": 0.2262
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0048",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Temporary_Work_Visas_Expansion_Support",
+      "score": 150,
+      "confidence": 0.72,
+      "reasoning": "The exposure text resonated with the profile's low conscientiousness and high neuroticism, particularly the emotional appeal of small business struggles. The intensity hint suggests a moderate shift, reinforcing the baseline support but not causing an extreme reversal. The mention of hardworking people and small business needs aligns with the profile's tendency towards emotional decision-making.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "Just saw a local business owner struggling to find workers. He said, 'We need more temporary visas to keep our doors open.' These are hardworking people who just want a fair chance. Why are we making it harder for them to contribute? #SupportSmallBusiness #WorkforceSolutions",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 27,
+      "max_reasonable_shift": 423.836
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better justify the moderate shift from baseline.\",\n  \"notes\": \"The shift from baseline is within reasonable bounds, but the reasoning could be more detailed to explain the specific emotional triggers and how they align with the profile's traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1774221789-CaRh0SIcpzKTXchlkdSi",
+    "object": "chat.completion",
+    "created": 1774221789,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better justify the moderate shift from baseline.\",\n  \"notes\": \"The shift from baseline is within reasonable bounds, but the reasoning could be more detailed to explain the specific emotional triggers and how they align with the profile's traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 890,
+      "completion_tokens": 93,
+      "total_tokens": 983,
+      "cost": 0.0001359,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 320,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001359,
+        "upstream_inference_prompt_cost": 8.01e-05,
+        "upstream_inference_completions_cost": 5.58e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

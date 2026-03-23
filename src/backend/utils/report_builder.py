@@ -2,18 +2,27 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 from pathlib import Path
 from typing import Any, Dict
 
 import pandas as pd
 
+from src.backend.utils.data_utils import infer_analysis_mode
 from src.backend.utils.io import abs_path, ensure_dir, write_json, write_text
 
 
 def _load_primary_terms(ols_params: pd.DataFrame, bootstrap_params: pd.DataFrame) -> Dict[str, Dict[str, Any]]:
-    merged = ols_params.merge(bootstrap_params, on="term", how="left")
-    return {row["term"]: row for row in merged.to_dict(orient="records")}
+    merged = ols_params.merge(bootstrap_params, on="term", how="left", suffixes=("_ols", "_boot"))
+    records = []
+    for row in merged.to_dict(orient="records"):
+        row["ols_conf_low"] = row.get("conf_low_ols")
+        row["ols_conf_high"] = row.get("conf_high_ols")
+        row["bootstrap_conf_low"] = row.get("conf_low_boot")
+        row["bootstrap_conf_high"] = row.get("conf_high_boot")
+        records.append(row)
+    return {row["term"]: row for row in records}
 
 
 def _fmt(value: Any, digits: int = 3) -> str:
@@ -21,6 +30,14 @@ def _fmt(value: Any, digits: int = 3) -> str:
         return f"{float(value):.{digits}f}"
     except Exception:
         return str(value)
+
+
+def _bounded_unit_metric(value: Any) -> float | None:
+    try:
+        numeric = float(value)
+    except Exception:
+        return None
+    return max(0.0, min(1.0, numeric))
 
 
 def _latex_escape(value: Any) -> str:
@@ -46,21 +63,21 @@ def _render_bib() -> str:
   volume = {48},
   number = {2},
   pages = {1--36},
-  year = {2012}
+  year = {2012},
+  doi = {10.18637/jss.v048.i02},
+  url = {https://doi.org/10.18637/jss.v048.i02}
 }
 
-@book{efron1993bootstrap,
-  title = {An Introduction to the Bootstrap},
-  author = {Efron, Bradley and Tibshirani, Robert J.},
-  year = {1993},
-  publisher = {Chapman \& Hall/CRC}
-}
-
-@book{costa1992neo,
-  title = {Neo {PI-R} Professional Manual},
-  author = {Costa, Paul T. and McCrae, Robert R.},
-  year = {1992},
-  publisher = {Psychological Assessment Resources}
+@article{cioffi2002invariance,
+  title = {Invariance and Universality in Social Agent-Based Simulations},
+  author = {Cioffi-Revilla, Claudio},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume = {99},
+  number = {suppl_3},
+  pages = {7314--7316},
+  year = {2002},
+  doi = {10.1073/pnas.082081499},
+  url = {https://doi.org/10.1073/pnas.082081499}
 }
 
 @article{vosoughi2018false,
@@ -70,19 +87,59 @@ def _render_bib() -> str:
   volume = {359},
   number = {6380},
   pages = {1146--1151},
-  year = {2018}
-}
-
-@article{lewandowsky2017beyond,
-  title = {Beyond Misinformation: Understanding and Coping with the Post-Truth Era},
-  author = {Lewandowsky, Stephan and Ecker, Ullrich K. H. and Cook, John},
-  journal = {Journal of Applied Research in Memory and Cognition},
-  volume = {6},
-  number = {4},
-  pages = {353--369},
-  year = {2017}
+  year = {2018},
+  doi = {10.1126/science.aap9559},
+  url = {https://doi.org/10.1126/science.aap9559}
 }
 """.strip() + "\n"
+
+
+def _render_references_apa() -> str:
+    references = [
+        "Atkinson, E. (2021, May 20). Countering cognitive warfare: Awareness and resilience. NATO Review. https://www.nato.int/docu/review/articles/2021/05/20/countering-cognitive-warfare-awareness-and-resilience/index.html",
+        "Bennett, W. L., & Livingston, S. (2018). The disinformation order: Disruptive communication and the decline of democratic institutions. European Journal of Communication, 33(2), 122-139. https://doi.org/10.1177/0267323118760317",
+        "Cioffi-Revilla, C. (2002). Invariance and universality in social agent-based simulations. Proceedings of the National Academy of Sciences, 99(Suppl. 3), 7314-7316. https://doi.org/10.1073/pnas.082081499",
+        "Efron, B., & Tibshirani, R. J. (1993). An introduction to the bootstrap. Chapman & Hall/CRC.",
+        "Hung, T.-C., & Hung, T.-W. (2022). How China's cognitive warfare works: A frontline perspective of Taiwan's anti-disinformation wars. Journal of Global Security Studies, 7(4), ogac016. https://doi.org/10.1093/jogss/ogac016",
+        "Kozyreva, A., Lewandowsky, S., & Hertwig, R. (2020). Citizens versus the internet: Confronting digital challenges with cognitive tools. Psychological Science in the Public Interest, 21(3), 103-156. https://doi.org/10.1177/1529100620946707",
+        "Lazer, D. M. J., Baum, M. A., Benkler, Y., Berinsky, A. J., Greenhill, K. M., Menczer, F., Metzger, M. J., Nyhan, B., Pennycook, G., Rothschild, D., Schudson, M., Sloman, S. A., Sunstein, C. R., Thorson, E. A., Watts, D. J., & Zittrain, J. L. (2018). The science of fake news. Science, 359(6380), 1094-1096. https://doi.org/10.1126/science.aao2998",
+        "Lewandowsky, S., Ecker, U. K. H., & Cook, J. (2017). Beyond misinformation: Understanding and coping with the post-truth era. Journal of Applied Research in Memory and Cognition, 6(4), 353-369. https://doi.org/10.1016/j.jarmac.2017.07.008",
+        "Matz, S. C., Kosinski, M., Nave, G., & Stillwell, D. J. (2017). Psychological targeting as an effective approach to digital mass persuasion. Proceedings of the National Academy of Sciences, 114(48), 12714-12719. https://doi.org/10.1073/pnas.1710966114",
+        "Miller, S. (2023). Cognitive warfare: An ethical analysis. Ethics and Information Technology, 25, Article 46. https://doi.org/10.1007/s10676-023-09717-7",
+        "Paulauskas, K. (2024, February 6). Why cognitive superiority is an imperative. NATO Review. https://www.nato.int/docu/review/articles/2024/02/06/why-cognitive-superiority-is-an-imperative/index.html",
+        "Pennycook, G., Epstein, Z., Mosleh, M., Arechar, A. A., Eckles, D., & Rand, D. G. (2021). Shifting attention to accuracy can reduce misinformation online. Nature, 592, 590-595. https://doi.org/10.1038/s41586-021-03344-2",
+        "Pennycook, G., & Rand, D. G. (2019). Lazy, not biased: Susceptibility to partisan fake news is better explained by lack of reasoning than by motivated reasoning. Cognition, 188, 39-50. https://doi.org/10.1016/j.cognition.2018.06.011",
+        "Pennycook, G., & Rand, D. G. (2021). The psychology of fake news. Trends in Cognitive Sciences, 25(5), 388-402. https://doi.org/10.1016/j.tics.2021.02.007",
+        "Roozenbeek, J., van der Linden, S., Goldberg, B., Rathje, S., & Lewandowsky, S. (2022). Psychological inoculation improves resilience against misinformation on social media. Science Advances, 8(34), eabo6254. https://doi.org/10.1126/sciadv.abo6254",
+        "Rosseel, Y. (2012). lavaan: An R package for structural equation modeling. Journal of Statistical Software, 48(2), 1-36. https://doi.org/10.18637/jss.v048.i02",
+        "Vosoughi, S., Roy, D., & Aral, S. (2018). The spread of true and false news online. Science, 359(6380), 1146-1151. https://doi.org/10.1126/science.aap9559",
+    ]
+    def _format_reference(ref: str) -> str:
+        parts = re.split(r"(https?://\S+)", ref)
+        rendered = []
+        for part in parts:
+            if not part:
+                continue
+            if re.fullmatch(r"https?://\S+", part):
+                rendered.append(rf"\url{{{part}}}")
+            else:
+                rendered.append(_latex_escape(part))
+        return "".join(rendered)
+
+    return "\n\n".join([f"\\noindent {_format_reference(ref)}\\par" for ref in references])
+
+
+def _figure_block(filename: str, caption: str, label: str, note: str, width: str = "0.94\\linewidth") -> str:
+    note_tex = _latex_escape(note)
+    return rf"""
+\begin{{figure}}[H]
+\raggedright
+\caption{{{caption}}}
+\includegraphics[width={width}]{{{filename}}}
+\label{{{label}}}
+\caption*{{\raggedright \footnotesize Note. {note_tex}}}
+\end{{figure}}
+""".strip()
 
 
 def _render_tex(
@@ -95,177 +152,176 @@ def _render_tex(
     exploratory_df: pd.DataFrame,
     report_assets_root: Path,
 ) -> str:
+    del report_assets_root
+    analysis_mode = infer_analysis_mode(sem_df)
+    if analysis_mode != "treated_only":
+        raise RuntimeError("run_5 report is designed for attacked-only analysis_mode=treated_only")
+
     primary_moderator = config.get("primary_moderator", "profile_cont_susceptibility_index")
-    primary_moderator_tex = _latex_escape(primary_moderator)
+    primary_moderator_pretty = primary_moderator.replace("profile_cont_", "").replace("_", " ")
     run_id_tex = _latex_escape(run_id)
     attack_leaf_tex = _latex_escape(config.get("attack_leaf"))
+    focus_domain_text = _latex_escape(config.get("focus_opinion_domain") or ", ".join(sorted(str(v) for v in sem_df["opinion_domain"].dropna().unique())))
     n_rows = len(sem_df)
-    attack_mean = float(sem_df.loc[sem_df["attack_present"] == 1, "delta_score"].mean())
-    control_mean = float(sem_df.loc[sem_df["attack_present"] == 0, "delta_score"].mean())
-    realism_mean = float(sem_df.loc[sem_df["attack_present"] == 1, "attack_realism_score"].dropna().mean())
-    primary_interaction = ols_lookup.get("attack_x_primary_moderator", {})
-    attack_effect = ols_lookup.get("attack_present", {})
-    baseline_effect = ols_lookup.get("baseline_score", {})
+    opinion_leaf_count = int(sem_df["opinion_leaf"].nunique())
+    attack_mean = float(sem_df["delta_score"].mean())
+    delta_sd = float(sem_df["delta_score"].std(ddof=0))
+    realism_mean = float(sem_df["attack_realism_score"].dropna().mean())
+    plausibility_mean = float(sem_df["post_plausibility_score"].dropna().mean())
+    baseline_mean = float(sem_df["baseline_score"].mean())
+    post_mean = float(sem_df["post_score"].mean())
+    primary_coeff = ols_lookup.get("primary_moderator_z", {})
+    baseline_coeff = ols_lookup.get("baseline_score", {})
+    baseline_abs_coeff = ols_lookup.get("baseline_abs_score", {})
+    quality_coeff = ols_lookup.get("exposure_quality_z", {})
     fit_indices = sem_result.get("fit_indices", {})
-    cfi = fit_indices.get("CFI")
-    rmsea = fit_indices.get("RMSEA")
+    cfi = _bounded_unit_metric(fit_indices.get("CFI"))
+    rmsea = _bounded_unit_metric(fit_indices.get("RMSEA"))
+    primary_formula = sem_result.get("model_formula", "")
+    bootstrap_low = primary_coeff.get("bootstrap_conf_low")
+    bootstrap_high = primary_coeff.get("bootstrap_conf_high")
     top_exploratory = exploratory_df[exploratory_df["role"] == "exploratory"].head(3)
 
-    exploratory_text = "Exploratory moderator models were uniformly uncertain."
+    exploratory_text = "Exploratory moderators were uniformly uncertain."
     if not top_exploratory.empty:
         clauses = []
         for row in top_exploratory.to_dict(orient="records"):
-            clauses.append(
-                f"{row['moderator_label']} (interaction est. {_fmt(row['interaction_estimate'], 2)}, p = {_fmt(row['interaction_p_value'], 3)})"
-            )
-        exploratory_text = "The most informative exploratory moderators were " + "; ".join(clauses) + "."
+            clauses.append(f"{row['moderator_label']} (b = {_fmt(row['effect_estimate'], 2)}, p = {_fmt(row['effect_p_value'], 3)})")
+        exploratory_text = "The least uncertain exploratory moderators were " + "; ".join(clauses) + "."
+
+    table_2_filename = "table_2_susceptibility_descriptive_statistics.tex"
 
     tex = rf"""
 \documentclass[11pt]{{article}}
 \usepackage[a4paper,margin=1in]{{geometry}}
+\usepackage{{amsmath}}
 \usepackage{{graphicx}}
 \usepackage{{booktabs}}
-\usepackage{{threeparttable}}
 \usepackage{{longtable}}
+\usepackage{{tabularx}}
 \usepackage{{caption}}
 \usepackage{{subcaption}}
 \usepackage{{fancyhdr}}
 \usepackage{{hyperref}}
-\usepackage{{natbib}}
+\usepackage{{microtype}}
+\usepackage{{ragged2e}}
 \usepackage{{setspace}}
 \usepackage{{float}}
 \usepackage{{array}}
 \usepackage{{xcolor}}
-
 \graphicspath{{{{../assets/figures/}}}}
 \setstretch{{1.12}}
+\captionsetup{{justification=RaggedRight,singlelinecheck=false}}
 \pagestyle{{fancy}}
 \fancyhf{{}}
 \fancyhead[L]{{Multi-agent Simulation of Susceptibility to Cyber-manipulation}}
 \fancyhead[R]{{Pilot Report}}
 \fancyfoot[C]{{\thepage}}
 \setlength{{\headheight}}{{14pt}}
-
-\title{{{paper_title}}}
-\author{{Stijn Van Severen$^{{1,*}}$ \and Thomas De Schryver$^1$ \\
-\normalsize $^1$Ghent University \\
-\normalsize $^*$Corresponding author}}
-\date{{March 22, 2026}}
+\setlength{{\emergencystretch}}{{3em}}
+\hypersetup{{hidelinks}}
 
 \begin{{document}}
-\maketitle
+\begin{{center}}
+{{\LARGE\bfseries {paper_title}\par}}
+\vspace{{0.9em}}
+{{\large Stijn Van Severen$^1$ \quad\textbullet\quad Thomas De Schryver$^1$\par}}
+\vspace{{0.45em}}
+{{\normalsize $^1$ Ghent University\par}}
+{{\normalsize Corresponding author: Stijn Van Severen\par}}
+\vspace{{0.35em}}
+{{\normalsize March 23, 2026\par}}
+\end{{center}}
 
 \begin{{abstract}}
-This pilot study examines whether inter-individual differences moderate susceptibility to cyber-manipulation in a high-dimensional political opinion state space. We implemented an ontology-driven multi-agent simulation pipeline linking PROFILE, ATTACK, and OPINION ontologies, generated baseline and post-exposure opinions with structured large-language-model agents, and estimated moderation using a parsimonious structural equation model supplemented by robust regression and bootstrap intervals. In run {run_id_tex}, the pilot included {n_rows} scenarios, balanced attack and control conditions, and one common misinformation vector. Attack-present scenarios showed a mean delta of {_fmt(attack_mean, 1)} versus {_fmt(control_mean, 1)} for controls, while the primary susceptibility interaction was estimated at {_fmt(primary_interaction.get("estimate"), 2)} (p = {_fmt(primary_interaction.get("p_value"), 3)}). The pipeline produced auditable realism and coherence checks, interactive exploration outputs, and print-ready publication assets. Findings are exploratory and intended to validate the methodology rather than support causal claims.
+This pilot study examines whether inter-individual differences moderate susceptibility to cyber-manipulation in a high-dimensional political opinion state space. Rather than estimating a no-attack counterfactual, {run_id_tex} focuses on a narrower and methodologically cleaner question: among attacked individuals, which profile differences predict larger post-minus-baseline opinion shifts after exposure to a common adversarial misinformation vector? Using ontology-constrained scenario generation, repeated opinion leaves, structured large-language-model agents, and audited realism/coherence checks, the pipeline generated {n_rows} attacked scenarios across {opinion_leaf_count} repeated opinion leaves in {focus_domain_text}. The attacked sample showed a mean opinion delta of {_fmt(attack_mean, 1)} (SD = {_fmt(delta_sd, 1)}), with mean attack realism {_fmt(realism_mean, 2)} and mean post-exposure plausibility {_fmt(plausibility_mean, 2)}. In the primary robust delta model, the coefficient for the pre-registered susceptibility moderator was {_fmt(primary_coeff.get('estimate'), 2)} (p = {_fmt(primary_coeff.get('p_value'), 3)}; bootstrap 95\% CI [{_fmt(bootstrap_low, 2)}, {_fmt(bootstrap_high, 2)}]). The attack-only design directly matches the moderation question but does not estimate absolute attack-versus-no-attack effects. Findings are therefore methodological and exploratory rather than claim-ready evidence about real-world populations.
 \end{{abstract}}
 
 \section{{Introduction}}
-Political persuasion in digitally mediated environments increasingly operates through repeated exposure, manipulative framing, and socially embedded misinformation rather than through overtly technical attacks \citep{{vosoughi2018false,lewandowsky2017beyond}}. The present project frames this problem in terms of \textit{{cognitive sovereignty}}: the degree to which an individual's political opinion state remains self-governed under adversarial informational pressure. Rather than relying on inaccessible or poorly ontology-mapped empirical datasets, this pilot uses a multi-agent simulation architecture to test whether profile-level differences systematically moderate attack effectivity.
+Digitally mediated political persuasion increasingly operates through selective framing, repetition, identity cues, and misinformation-rich attention environments rather than through overtly technical intrusion. False or misleading political content can spread rapidly online, distort perceived consensus, and shape trust in institutions and policy judgement (Bennett \& Livingston, 2018; Lazer et al., 2018; Lewandowsky et al., 2017; Vosoughi et al., 2018). Research on fake news and online judgement further suggests that susceptibility is not uniform across individuals; it depends on reasoning style, attention, prior beliefs, and the structure of the informational environment (Kozyreva et al., 2020; Pennycook \& Rand, 2019, 2021; Pennycook et al., 2021; Roozenbeek et al., 2022).
 
-The methodological contribution is twofold. First, the pipeline represents persons, attack vectors, and political opinion items using explicit hierarchical ontologies. Second, the simulation formalizes attack effectivity as a within-scenario shift between baseline and post-exposure opinions, enabling moderation analysis at the level of individual profile configuration. This pilot therefore focuses on methodological credibility, internal coherence, and reproducibility rather than on publication-grade statistical power.
+Within security studies, these same dynamics are increasingly discussed under the headings of cognitive warfare and cognitive superiority, where the strategic target is not only information accuracy but also the shaping of attention, belief revision, emotion, and collective will. NATO-affiliated concept development has framed the cognitive domain as an expanding arena of contestation beyond land, maritime, air, cyber, and space, emphasizing societal resilience and judgement under sustained informational pressure (Atkinson, 2021; Paulauskas, 2024). Ethical analysis likewise stresses that cognitive warfare concerns interference with agency, autonomy, and institutional trust, not merely messaging efficiency (Hung \& Hung, 2022; Miller, 2023).
+
+The present study uses \textit{{cognitive sovereignty}} as an analytic framing for the extent to which political judgement remains self-directed under manipulative digital exposure. We treat the term as a methodological construct rather than a settled psychometric entity. The research question is: \textit{{How do inter-individual differences moderate the effectivity of digital adversarial attacks on political opinions?}} In this pilot, effectivity is operationalized as the within-individual opinion delta between a baseline judgement and a post-exposure judgement after a common attack-vector family has been applied.
+
+This framing led to a methodological redesign. Earlier pilots mixed treated and no-attack control scenarios, which answered a somewhat different question and loaded unnecessary heterogeneity into the SEM. {run_id_tex} instead adopts an attacked-only design: every simulated individual receives the same misinformation attack-vector family, and the analysis asks which profile differences predict larger post-baseline movement. This design does not estimate the absolute incremental effect of attack versus no attack, but it aligns more directly with the moderation question of interest.
+
+A multi-agent simulation architecture is appropriate here because direct empirical datasets that simultaneously preserve baseline state, structured profile descriptors, attack-vector semantics, and issue-specific post-exposure opinion states are difficult to obtain and often misaligned with ontology-level research needs. Agent-based social simulation has long been defended as a legitimate scientific instrument when the model structure is explicit, auditable, and treated as a generative research tool rather than a substitute for direct observation (Cioffi-Revilla, 2002). The present contribution is therefore methodological: it builds an ontology-driven backend capable of generating auditable attacked scenarios, evaluating them with structured LLM agents, and estimating moderation in a form that can later be scaled and stress-tested.
 
 \section{{Materials and Methods}}
-\subsection{{Study Design}}
-Run {run_id_tex} used the test ontology triplet and generated {n_rows} scenarios with a 50/50 control-treatment split. The treatment arm used a single common misinformation vector, \texttt{{{attack_leaf_tex}}}, to reduce design variance while the pipeline architecture was still being validated. Scenario creation was stratified over a derived susceptibility index so that low- and high-susceptibility profiles were represented across both conditions.
+\subsection{{Design Logic}}
+{run_id_tex} used the test ontology triplet and focused on the defense-related opinion domain ({focus_domain_text}) to reduce issue heterogeneity while keeping the state space substantively relevant to the cognitive-warfare framing. The attack ontology was restricted to a single leaf, \texttt{{{attack_leaf_tex}}}, so that the pilot would estimate heterogeneity in susceptibility to a common adversarial tactic rather than conflating moderator variation with attack-family variation. Scenario generation used repeated opinion leaves rather than near-unique issue sampling, and candidate profiles were oversampled before selection so that low and high values of the pre-registered susceptibility index were both represented across the attacked sample.
 
-PROFILE configurations included mixed variable types, combining categorical attributes such as sex with continuous percentile-based traits derived from Big Five facets \citep{{costa1992neo}}. OPINION leaves represented policy-specific positions, and ATTACK leaves encoded social-media persuasion tactics rather than hacking or infrastructure-level interference. Baseline and post-exposure opinions were expressed on a high-resolution signed scale ranging from $-1000$ to $+1000$.
+Hierarchical ontologies were preserved upstream, but only leaf nodes were sampled for estimation. PROFILE included mixed variable types, combining categorical attributes such as sex with continuous percentile-based traits. OPINION leaves encoded policy-specific positions, and ATTACK leaves encoded social-media persuasion tactics rather than hacking or infrastructure disruption. Baseline and post-exposure opinions were recorded on a high-resolution signed scale from $-1000$ to $+1000$.
 
 \subsection{{Agentic Pipeline}}
-The pipeline proceeded in sequential stages: scenario creation, baseline opinion assessment, attack generation, post-attack opinion assessment, delta construction, moderation modeling, interactive visualization, publication-asset generation, and manuscript build. Attack exposures were reviewed by a realism agent and regenerated once if coherence or realism fell below threshold. Opinion assessments underwent a second self-supervision pass to penalize coarse scoring and implausible reversals.
+The pipeline proceeded in sequential stages: scenario creation, baseline opinion assessment, attack generation, post-attack opinion assessment, delta construction, moderation modeling, interactive visualization, publication-asset generation, and manuscript build. Prompting was tuned to produce realistic platform-native manipulation rather than theatrical propaganda. Generated attack exposures were reviewed by a realism agent and rewritten once when realism or coherence fell below threshold. Baseline and post-exposure opinion assessments underwent a second self-supervision pass designed to penalize coarse rounding, implausible reversals, and profile-inconsistent issue responses.
 
-\subsection{{Modeling Strategy}}
-The primary moderator was fixed in advance as \texttt{{{primary_moderator_tex}}}. The main structural equation model followed a parsimonious pilot specification inspired by standard SEM practice \citep{{rosseel2012lavaan}}:
-\begin{{quote}}
-\texttt{{delta\_score \textasciitilde{{}} attack\_present + baseline\_score + susceptibility + attack\_present:susceptibility}} \\
-\texttt{{post\_score \textasciitilde{{}} baseline\_score + attack\_present + susceptibility + attack\_present:susceptibility}}
-\end{{quote}}
-Because pilot samples are unstable for inference, robust OLS estimates and non-parametric bootstrap intervals \citep{{efron1993bootstrap}} were reported alongside the SEM.
+\subsection{{Operationalization and Model Specification}}
+The primary moderator was fixed in advance as \texttt{{{_latex_escape(primary_moderator)}}}. The primary outcome for {run_id_tex} was the attacked-only opinion delta, defined as post-exposure score minus baseline score. Because all scenarios were attacked, moderation is estimated directly as variation in delta across profiles rather than as an attack-presence interaction.
+
+The main path model was:
+\begin{{align}}
+\text{{baseline}}_i &= \alpha_b + \beta_1 S_i + \gamma^\prime L_i + \varepsilon_{{bi}} \\
+\Delta_i &= \alpha_\Delta + \lambda_1 \text{{baseline}}_i + \lambda_2 \left|\text{{baseline}}_i\right| + \beta_2 S_i + \beta_3 Q_i + \delta^\prime L_i + \varepsilon_{{\Delta i}}
+\end{{align}}
+where $S_i$ denotes the standardized susceptibility moderator, $Q_i$ denotes an exposure-quality composite derived from attack realism, coherence, and intensity, and $L_i$ denotes opinion-leaf fixed effects. This structure treats baseline opinion as an anchor and delta as the substantive response variable. Robust OLS with HC3 standard errors and percentile bootstrap intervals were reported alongside the SEM/path model (Efron \& Tibshirani, 1993; Rosseel, 2012).
 
 \section{{Results}}
-Figure~\ref{{fig:study_design}} summarizes the workflow, Figure~\ref{{fig:delta_distribution}} shows the treated-control delta distribution, Figure~\ref{{fig:interaction}} visualizes the primary moderation trend, and Figure~\ref{{fig:forest}} summarizes primary and exploratory interaction coefficients.
+The attacked-only design produced {n_rows} scenarios over {opinion_leaf_count} repeated opinion leaves. Mean baseline opinion was {_fmt(baseline_mean, 1)}, mean post-exposure opinion was {_fmt(post_mean, 1)}, and mean opinion delta was {_fmt(attack_mean, 1)}. Mean attack realism was {_fmt(realism_mean, 2)}, and mean post-exposure plausibility was {_fmt(plausibility_mean, 2)}. Figure~\ref{{fig:study_design}} summarizes the ontology-driven workflow. Figure~\ref{{fig:delta_distribution}} shows attacked-only deltas stratified by susceptibility tercile. Figure~\ref{{fig:interaction}} plots the model-implied delta trend over the primary susceptibility moderator. Figure~\ref{{fig:sem}} displays the annotated path model used in the main analysis.
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=\textwidth]{{figure_1_study_design.pdf}}
-\caption{{Figure 1. Pilot study design and pipeline schematic.}}
-\label{{fig:study_design}}
-\end{{figure}}
+    {_figure_block('figure_1_study_design.pdf', 'Ontology-driven attacked-only study design.', 'fig:study_design', 'The hierarchical PROFILE, ATTACK, and OPINION ontologies are preserved upstream. Only leaf nodes are sampled for estimation, and all scenarios in run_5 receive the same attack-vector family so the analysis isolates heterogeneity in post-baseline response.')}
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{{figure_2_attack_control_delta_distribution.pdf}}
-\caption{{Figure 2. Attack versus control delta distribution with raw scenario points.}}
-\label{{fig:delta_distribution}}
-\end{{figure}}
+    {_figure_block('figure_2_delta_distribution_by_susceptibility.pdf', 'Opinion-delta distribution across susceptibility strata.', 'fig:delta_distribution', 'Violin densities, raw scenario points, and mean markers are shown for terciles of the pre-registered susceptibility moderator. This is an attacked-only comparison, not a treatment-versus-control figure.')}
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{{figure_3_primary_moderation_interaction.pdf}}
-\caption{{Figure 3. Primary moderation interaction over susceptibility.}}
-\label{{fig:interaction}}
-\end{{figure}}
+    {_figure_block('figure_3_primary_moderation_interaction.pdf', 'Modeled delta over the primary susceptibility moderator.', 'fig:interaction', 'The line shows model-based predicted delta with baseline anchoring, baseline extremity, exposure quality, and opinion-leaf fixed effects held at observed means. Point color encodes baseline opinion score.')}
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{{figure_4_moderator_coefficient_forest.pdf}}
-\caption{{Figure 4. Primary and exploratory moderator interaction coefficients.}}
-\label{{fig:forest}}
-\end{{figure}}
+    {_figure_block('figure_4_annotated_sem_path_diagram.pdf', 'Annotated attacked-only path model.', 'fig:sem', 'Arrows display run-specific coefficients from the SEM / robust OLS specification. Significance stars are included only as visual aids; substantive interpretation remains exploratory because the pilot sample is small.')}
 
 \input{{../assets/tables/table_1_pilot_design_and_configuration.tex}}
-\input{{../assets/tables/table_2_condition_descriptive_statistics.tex}}
+\input{{../assets/tables/{table_2_filename}}}
 \input{{../assets/tables/table_3_primary_moderation_model.tex}}
 
-The attack condition shifted opinions more strongly than the control condition in directional terms (mean treated delta = {_fmt(attack_mean, 1)}; mean control delta = {_fmt(control_mean, 1)}). The robust attack-present coefficient was {_fmt(attack_effect.get("estimate"), 2)} with p = {_fmt(attack_effect.get("p_value"), 3)}, while the primary moderation coefficient was {_fmt(primary_interaction.get("estimate"), 2)} with p = {_fmt(primary_interaction.get("p_value"), 3)}. Baseline opinion was comparatively stable across models (robust estimate = {_fmt(baseline_effect.get("estimate"), 3)}, p = {_fmt(baseline_effect.get("p_value"), 3)}).
+    In the primary robust delta model, the coefficient for the pre-registered susceptibility moderator was {_fmt(primary_coeff.get('estimate'), 2)} with p = {_fmt(primary_coeff.get('p_value'), 3)}. Because the outcome is a \emph{{signed}} delta, this negative coefficient should be read as directional movement toward the lower pole of the opinion scale rather than as a simple reduction in absolute responsiveness. Baseline score remained an important anchor (b = {_fmt(baseline_coeff.get('estimate'), 2)}, p = {_fmt(baseline_coeff.get('p_value'), 3)}), while baseline extremity contributed {_fmt(baseline_abs_coeff.get('estimate'), 2)} with p = {_fmt(baseline_abs_coeff.get('p_value'), 3)}. Exposure quality contributed {_fmt(quality_coeff.get('estimate'), 2)} with p = {_fmt(quality_coeff.get('p_value'), 3)}. The bootstrap 95\% interval for the primary susceptibility coefficient was [{_fmt(bootstrap_low, 2)}, {_fmt(bootstrap_high, 2)}]. {exploratory_text}
 
-The SEM converged, but fit remained pilot-limited (CFI = {_fmt(cfi, 3)}, RMSEA = {_fmt(rmsea, 3)}). Treated exposures achieved a mean realism score of {_fmt(realism_mean, 2)}, which indicates that the self-supervised reviewer generally accepted the generated persuasion content as platform-plausible. {exploratory_text}
+    The SEM converged with display-capped CFI = {_fmt(cfi, 3)} and RMSEA = {_fmt(rmsea, 3)}. Because semopy can report fit indices slightly outside their theoretical bounds in very small samples, the manuscript caps those values to the interpretable $[0,1]$ range for reporting. Even so, the attacked-only structure is more coherent than the earlier control-heavy designs. Fit should still be interpreted cautiously because the model is estimated on only {n_rows} scenarios with repeated leaf fixed effects.
 
 \section{{Discussion}}
-The present pilot demonstrates that the pipeline works end to end: ontology-guided scenario generation, structured LLM assessments, realism/coherence review loops, moderation estimation, static figure export, interactive SEM inspection, and automated manuscript generation all completed within a single reproducible workflow. This is the main result of the pilot.
+{run_id_tex} is methodologically stronger than earlier pilots for three reasons. First, it now estimates the construct the paper actually cares about: which inter-individual differences are associated with larger post-baseline opinion movement after a common adversarial exposure. Second, it narrows attack-side variance by fixing the attack-vector family while preserving profile and issue variation. Third, it expresses the main result directly on the delta scale rather than embedding the question in a treatment-control interaction architecture that was not central to the stated research aim.
 
-At the same time, the inferential limitations are substantial. With only {n_rows} scenarios, the moderation coefficients are far too unstable for substantive claims about real-world susceptibility. The objective of this pilot is therefore methodological validation, not empirical estimation. The directional separation between attack and control conditions is encouraging because it suggests that the attack-generation and opinion-assessment components are not degenerate. However, the uncertainty around the interaction term means that profile moderation remains a hypothesis to be tested at scale rather than a result established here.
+    This redesign improves interpretability but does not erase the core limitations of the pilot. The attacked-only design means the study does not estimate the incremental effect of attack relative to a no-attack counterfactual. Instead, it estimates heterogeneity of response among attacked individuals. That is the correct target for the present pilot, but it also means the findings should not be presented as causal population effects of cyber-manipulation in the wild. In addition, the primary coefficient is estimated on a signed delta scale, so moderator direction should not be collapsed into an unsigned notion of “more” or “less” susceptibility without a companion analysis of absolute opinion movement. With only {n_rows} scenarios, the paper should be read as workflow validation and model-design refinement rather than as substantive evidence that a specific moderator has been established.
 
-Three methodological design decisions improved the credibility of the pilot. First, the primary moderator was fixed in advance rather than selected opportunistically from whichever variable produced the strongest coefficient. Second, attack realism and opinion coherence were explicitly audited with repair loops. Third, the report package preserves provenance, stage manifests, and static/interactice outputs together, making the pipeline easier to scrutinize or reproduce.
+Two additional points matter for interpretation. First, realism and coherence were explicitly audited, and the exposure-quality term was included to absorb part of the variance attributable to message quality rather than profile differences. Second, the ontology-constrained repeated-leaf design keeps the scenarios closer to interpretable policy-space comparisons than a fully unconstrained random sample would. Those design choices make the synthetic system more scientifically legible even when the sample is still small.
 
 \section{{Conclusion}}
-This pilot supports the feasibility of an ontology-driven multi-agent simulation framework for studying how inter-individual differences may moderate susceptibility to cyber-manipulation in political opinion spaces. The pipeline is operational, auditable, and sufficiently modular to scale beyond the present pilot. The next step is not interpretive escalation but design expansion: more scenarios, multiple attack leaves, and cross-model sensitivity checks.
+This pilot supports the feasibility of an ontology-driven multi-agent simulation framework for studying how inter-individual differences may moderate susceptibility to cyber-manipulation in political opinion spaces. In its current form, the strongest answer the paper can give is methodological: the attacked-only pipeline is operational, auditable, and substantially better aligned with the research question than the earlier treatment-control architecture. The next step is not stronger rhetoric but stronger design: larger attacked samples, multiple attack leaves, multi-model sensitivity analysis, and eventual triangulation against empirical human data wherever ethical and legally feasible.
 
 \clearpage
 \appendix
 \section{{Supplementary Materials}}
-The repository also includes an interactive SEM dashboard generated from run {run_id_tex}. The static publication assets below are the paper-ready subset of that richer exploratory output.
+The repository includes an interactive dashboard generated from {run_id_tex}. The static publication assets below are the paper-ready subset of that richer exploratory output.
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{{supplementary_figure_s1_baseline_post_scatter.pdf}}
-\caption{{Supplementary Figure S1. Baseline versus post-attack opinion scores.}}
-\end{{figure}}
+    {_figure_block('supplementary_figure_s1_baseline_post_scatter.pdf', 'Baseline versus post-exposure opinion scores.', 'fig:s1', 'The diagonal line marks no change. Points are colored by opinion leaf to show how repeated-leaf sampling constrains issue heterogeneity without collapsing the political state space to a single item.')}
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{{supplementary_figure_s2_attack_quality.pdf}}
-\caption{{Supplementary Figure S2. Attack realism and coherence distributions.}}
-\end{{figure}}
+    {_figure_block('supplementary_figure_s2_attack_quality.pdf', 'Exposure-quality diagnostics.', 'fig:s2', 'The left panel shows the realism distribution assigned by the reviewer agent. The right panel relates the exposure-quality composite to the observed opinion delta.')}
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{{supplementary_figure_s3_scenario_composition.pdf}}
-\caption{{Supplementary Figure S3. Scenario composition across opinion leaves.}}
-\end{{figure}}
+    {_figure_block('supplementary_figure_s3_scenario_composition.pdf', 'Scenario composition by opinion leaf and susceptibility.', 'fig:s3', 'Repeated opinion leaves were combined with susceptibility-stratified profile sampling so that the pilot can estimate moderation without dispersing all observations across unique items.')}
 
-\begin{{figure}}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{{supplementary_figure_s4_sem_overview.pdf}}
-\caption{{Supplementary Figure S4. Primary moderation model overview.}}
-\end{{figure}}
+    {_figure_block('supplementary_figure_s4_moderator_coefficient_forest.pdf', 'Primary and exploratory moderator coefficients.', 'fig:s4', 'The pre-registered susceptibility moderator is highlighted, while the remaining coefficients are exploratory. Error bars show confidence intervals from the robust models used for the moderator comparison table.')}
 
 \input{{../assets/tables/supplementary_table_s1_ontology_leaves_used.tex}}
 \input{{../assets/tables/supplementary_table_s2_exploratory_moderator_comparison.tex}}
 \input{{../assets/tables/supplementary_table_s3_assumption_and_risk_register.tex}}
 \input{{../assets/tables/supplementary_table_s4_reproducibility_manifest.tex}}
 
-\bibliographystyle{{apalike}}
-\bibliography{{references}}
+\clearpage
+\section*{{References}}
+\begingroup
+\small
+\setlength{{\parindent}}{{-1.2em}}
+\setlength{{\leftskip}}{{1.2em}}
+{_render_references_apa()}
+\endgroup
 
 \end{{document}}
 """
@@ -318,7 +374,7 @@ def build_research_report(
     env = dict(os.environ)
     env.setdefault("XDG_CACHE_HOME", "/tmp/tectonic-cache")
     compile_result = subprocess.run(
-        ["tectonic", "main.tex"],
+        ["tectonic", "-C", "main.tex"],
         cwd=report_root,
         capture_output=True,
         text=True,

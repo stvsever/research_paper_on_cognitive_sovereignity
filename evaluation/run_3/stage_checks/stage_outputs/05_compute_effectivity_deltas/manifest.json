@@ -1,7 +1,7 @@
 {
   "stage_id": "05",
   "stage_name": "compute_effectivity_deltas",
-  "created_at_utc": "2026-03-22T22:04:55.869623+00:00",
+  "created_at_utc": "2026-03-22T22:52:51.505586+00:00",
   "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_checks/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl",
   "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_3/stage_checks/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
   "output_files": [
@@ -14,6 +14,9 @@
   ],
   "record_count": 3,
   "metadata": {
-    "primary_moderator_column": "profile_cont_susceptibility_index"
+    "primary_moderator_column": "profile_cont_susceptibility_index",
+    "reference_opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "reference_opinion_domain": "Defense_and_National_Security",
+    "n_unique_opinion_leaves": 3
   }
 }

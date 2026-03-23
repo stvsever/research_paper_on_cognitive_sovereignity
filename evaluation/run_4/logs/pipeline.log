@@ -1,0 +1,829 @@
+2026-03-22 23:53:30 | INFO | __main__ | Running stage 01 (create_scenarios)
+2026-03-22 23:53:30 | WARNING | __main__ | Stage 01 stderr:
+2026-03-22 23:53:30 | INFO | __main__ | Stage 01 completed: 48 records
+2026-03-22 23:53:30 | INFO | __main__ | Stage 01 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/01_create_scenarios/scenarios.jsonl
+2026-03-22 23:53:30 | INFO | __main__ | Running stage 02 (assess_baseline_opinions)
+2026-03-23 00:00:05 | WARNING | __main__ | Stage 02 stderr:
+2026-03-22 23:53:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:53:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:54:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:16 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:55:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:09 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:56:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:57:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:09 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:16 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:58:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-22 23:59:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:05 | INFO | __main__ | Stage 02 completed: 48 records
+2026-03-23 00:00:05 | INFO | __main__ | Stage 02 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/02_assess_baseline_opinions/scenarios_with_baseline.jsonl
+2026-03-23 00:00:05 | INFO | __main__ | Running stage 03 (run_opinion_attacks)
+2026-03-23 00:03:34 | WARNING | __main__ | Stage 03 stderr:
+2026-03-23 00:00:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:00:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:09 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:16 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:01:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:02:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:14 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:16 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:34 | INFO | __main__ | Stage 03 completed: 48 records
+2026-03-23 00:03:34 | INFO | __main__ | Stage 03 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/03_run_opinion_attacks/scenarios_with_exposure.jsonl
+2026-03-23 00:03:34 | INFO | __main__ | Running stage 04 (assess_post_attack_opinions)
+2026-03-23 00:10:04 | WARNING | __main__ | Stage 04 stderr:
+2026-03-23 00:03:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:03:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:22 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:04:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:15 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:05:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:06:46 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:21 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:07:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:08:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:15 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:09:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:10:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:10:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:10:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:10:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:10:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:10:04 | INFO | __main__ | Stage 04 completed: 48 records
+2026-03-23 00:10:04 | INFO | __main__ | Stage 04 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl
+2026-03-23 00:10:04 | INFO | __main__ | Running stage 05 (compute_effectivity_deltas)
+2026-03-23 00:10:05 | WARNING | __main__ | Stage 05 stderr:
+2026-03-23 00:10:05 | INFO | __main__ | Stage 05 completed: 48 records
+2026-03-23 00:10:05 | INFO | __main__ | Stage 05 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv
+2026-03-23 00:10:05 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-23 00:10:41 | WARNING | __main__ | Stage 06 stderr:
+2026-03-23 00:10:41 | INFO | __main__ | Stage 06 completed: 48 records
+2026-03-23 00:10:41 | INFO | __main__ | Stage 06 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/06_construct_structural_equation_model/moderation_report.txt
+2026-03-23 00:10:41 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-03-23 00:10:45 | WARNING | __main__ | Stage 07 stderr:
+2026-03-23 00:10:45 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-23 00:10:45 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-23 00:10:45 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-23 00:11:01 | WARNING | __main__ | Stage 08 stderr:
+2026-03-23 00:11:00 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:11:01 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:11:01 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:11:10 | WARNING | __main__ | Stage 09 stderr:
+2026-03-23 00:11:10 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-23 00:11:10 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-23 00:11:10 | INFO | __main__ | Full pipeline completed successfully.
+2026-03-23 00:14:59 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-23 00:15:11 | WARNING | __main__ | Stage 06 stderr:
+2026-03-23 00:15:11 | INFO | __main__ | Stage 06 completed: 48 records
+2026-03-23 00:15:11 | INFO | __main__ | Stage 06 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/06_construct_structural_equation_model/moderation_report.txt
+2026-03-23 00:15:11 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-03-23 00:15:13 | WARNING | __main__ | Stage 07 stderr:
+2026-03-23 00:15:13 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-23 00:15:13 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-23 00:15:13 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-23 00:15:18 | WARNING | __main__ | Stage 08 stderr:
+2026-03-23 00:15:17 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:15:18 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:15:18 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:15:21 | WARNING | __main__ | Stage 09 stderr:
+2026-03-23 00:15:21 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-23 00:15:21 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-23 00:15:21 | INFO | __main__ | Full pipeline completed successfully.
+2026-03-23 00:17:54 | INFO | __main__ | Running stage 04 (assess_post_attack_opinions)
+2026-03-23 00:23:14 | WARNING | __main__ | Stage 04 stderr:
+2026-03-23 00:17:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:17:57 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:52 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:18:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:09 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:13 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:17 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:18 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:42 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:45 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:50 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:19:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:04 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:43 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:51 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:56 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:20:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:11 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:15 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:19 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:20 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:26 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:35 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:39 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:40 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:41 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:47 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:48 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:53 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:54 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:21:55 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:02 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:12 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:23 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:24 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:25 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:27 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:28 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:29 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:30 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:31 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:32 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:33 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:34 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:36 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:37 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:38 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:44 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:49 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:58 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:22:59 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:00 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:01 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:03 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:05 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:06 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:07 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:08 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:10 | INFO | httpx | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 00:23:13 | INFO | __main__ | Stage 04 completed: 48 records
+2026-03-23 00:23:14 | INFO | __main__ | Stage 04 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl
+2026-03-23 00:23:14 | INFO | __main__ | Running stage 05 (compute_effectivity_deltas)
+2026-03-23 00:23:15 | WARNING | __main__ | Stage 05 stderr:
+2026-03-23 00:23:15 | INFO | __main__ | Stage 05 completed: 48 records
+2026-03-23 00:23:15 | INFO | __main__ | Stage 05 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv
+2026-03-23 00:23:15 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-03-23 00:23:27 | WARNING | __main__ | Stage 06 stderr:
+2026-03-23 00:23:27 | INFO | __main__ | Stage 06 completed: 48 records
+2026-03-23 00:23:27 | INFO | __main__ | Stage 06 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/06_construct_structural_equation_model/moderation_report.txt
+2026-03-23 00:23:27 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-03-23 00:23:33 | WARNING | __main__ | Stage 07 stderr:
+2026-03-23 00:23:33 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-23 00:23:33 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-03-23 00:23:33 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-23 00:23:39 | WARNING | __main__ | Stage 08 stderr:
+2026-03-23 00:23:39 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:23:39 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:23:39 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:23:42 | ERROR | __main__ | Stage 09 failed with code 1
+2026-03-23 00:23:42 | ERROR | __main__ | STDOUT:
+
+2026-03-23 00:23:42 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 105, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 100, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 34, in run_stage
+    result = build_research_report(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/report_builder.py", line 513, in build_research_report
+    raise RuntimeError(f"Tectonic compile failed:\nSTDOUT:\n{compile_result.stdout}\nSTDERR:\n{compile_result.stderr}")
+RuntimeError: Tectonic compile failed:
+STDOUT:
+note: Running TeX ...
+note: downloading SHA256SUM
+note: downloading authblk.sty
+note: downloading ragged2e.sty
+note: downloading mt-LatinModernRoman.cfg
+note: downloading cmex8.tfm
+note: downloading cmex7.tfm
+note: downloading lmroman8-regular.otf
+note: downloading cmex9.tfm
+note: downloading cmbx10.tfm
+note: downloading cmbx8.tfm
+note: downloading cmbx6.tfm
+note: downloading cmmib10.tfm
+note: downloading cmmib8.tfm
+note: downloading cmmib6.tfm
+note: downloading cmbsy10.tfm
+note: downloading cmbsy8.tfm
+note: downloading cmbsy6.tfm
+note: downloading cmbx7.tfm
+note: downloading cmbx5.tfm
+
+STDERR:
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:20: Underfull \hbox (badness 2932) in paragraph at lines 20--20
+error: ../assets/tables/table_1_pilot_design_and_configuration.tex:23: Missing \endgroup inserted
+error: halted on potentially-recoverable error as specified
+
+
+2026-03-23 00:24:42 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-23 00:24:48 | WARNING | __main__ | Stage 08 stderr:
+2026-03-23 00:24:48 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:24:48 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:24:48 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:24:50 | ERROR | __main__ | Stage 09 failed with code 1
+2026-03-23 00:24:50 | ERROR | __main__ | STDOUT:
+
+2026-03-23 00:24:50 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 105, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 100, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 34, in run_stage
+    result = build_research_report(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/report_builder.py", line 513, in build_research_report
+    raise RuntimeError(f"Tectonic compile failed:\nSTDOUT:\n{compile_result.stdout}\nSTDERR:\n{compile_result.stderr}")
+RuntimeError: Tectonic compile failed:
+STDOUT:
+note: Running TeX ...
+
+STDERR:
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:13: Underfull \hbox (badness 10000) in paragraph at lines 12--13
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:16: Underfull \hbox (badness 7362) in paragraph at lines 15--16
+
+thread 'reqwest-internal-sync-runtime' (27465335) panicked at /Users/brew/Library/Caches/Homebrew/cargo_cache/registry/src/index.crates.io-1949cf8c6b5b557f/system-configuration-0.5.1/src/dynamic_store.rs:154:1:
+Attempted to create a NULL object.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'main' (27465294) panicked at /Users/brew/Library/Caches/Homebrew/cargo_cache/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.11.24/src/blocking/client.rs:1191:5:
+event loop thread panicked
+fatal runtime error: failed to initiate panic, error 3, aborting
+
+
+2026-03-23 00:26:10 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-23 00:26:17 | WARNING | __main__ | Stage 08 stderr:
+2026-03-23 00:26:17 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:26:17 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:26:17 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:26:19 | ERROR | __main__ | Stage 09 failed with code 1
+2026-03-23 00:26:19 | ERROR | __main__ | STDOUT:
+
+2026-03-23 00:26:19 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 105, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 100, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 34, in run_stage
+    result = build_research_report(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/report_builder.py", line 513, in build_research_report
+    raise RuntimeError(f"Tectonic compile failed:\nSTDOUT:\n{compile_result.stdout}\nSTDERR:\n{compile_result.stderr}")
+RuntimeError: Tectonic compile failed:
+STDOUT:
+note: using only cached resource files
+note: Running TeX ...
+
+STDERR:
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:12: Underfull \hbox (badness 1270) in paragraph at lines 11--12
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:12: Underfull \hbox (badness 1158) in paragraph at lines 11--12
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:18: Underfull \hbox (badness 1515) in paragraph at lines 18--18
+error: ../assets/tables/table_1_pilot_design_and_configuration.tex:22: Font OT1/cmr/bx/n/9=cmbx9 at 9.0pt not loadable: Metric (TFM) file or installed font not found
+error: halted on potentially-recoverable error as specified
+
+
+2026-03-23 00:26:56 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-03-23 00:27:01 | WARNING | __main__ | Stage 08 stderr:
+2026-03-23 00:27:01 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:27:01 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_4/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-03-23 00:27:01 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:27:07 | ERROR | __main__ | Stage 09 failed with code 1
+2026-03-23 00:27:07 | ERROR | __main__ | STDOUT:
+
+2026-03-23 00:27:07 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 105, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 100, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/09_build_research_report/run_stage.py", line 34, in run_stage
+    result = build_research_report(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/report_builder.py", line 513, in build_research_report
+    raise RuntimeError(f"Tectonic compile failed:\nSTDOUT:\n{compile_result.stdout}\nSTDERR:\n{compile_result.stderr}")
+RuntimeError: Tectonic compile failed:
+STDOUT:
+note: using only cached resource files
+note: Running TeX ...
+note: Running BibTeX on main.aux ...
+note: Rerunning TeX because bibtex was run ...
+note: Rerunning TeX because "main.aux" changed ...
+note: Rerunning TeX because "main.bbl" changed ...
+note: Rerunning TeX because "main.bbl" changed ...
+note: Rerunning TeX because "main.bbl" changed ...
+note: Rerunning TeX because "main.bbl" changed ...
+note: Running xdvipdfmx ...
+
+STDERR:
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:71: Underfull \hbox (badness 10000) in paragraph at lines 66--71
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:71: Underfull \hbox (badness 10000) in paragraph at lines 66--71
+warning: internal consistency problem when checking if main.bbl changed
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:71: Underfull \hbox (badness 10000) in paragraph at lines 66--71
+warning: internal consistency problem when checking if main.bbl changed
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:71: Underfull \hbox (badness 10000) in paragraph at lines 66--71
+warning: internal consistency problem when checking if main.bbl changed
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:71: Underfull \hbox (badness 10000) in paragraph at lines 66--71
+warning: internal consistency problem when checking if main.bbl changed
+warning: main.tex:65: Underfull \hbox (badness 1552) in paragraph at lines 64--65
+warning: main.tex:110: Overfull \vbox (91.42313pt too high) has occurred while \output is active
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1270) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:11: Underfull \hbox (badness 1158) in paragraph at lines 10--11
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:17: Underfull \hbox (badness 1515) in paragraph at lines 17--17
+warning: ../assets/tables/table_1_pilot_design_and_configuration.tex:21: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--21
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:11: Overfull \hbox (180.32182pt too wide) in paragraph at lines 10--11
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:12: Overfull \hbox (267.80135pt too wide) in paragraph at lines 11--12
+warning: ../assets/tables/supplementary_table_s4_reproducibility_manifest.tex:19: Overfull \hbox (5.88432pt too wide) in paragraph at lines 5--19
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:9: Underfull \hbox (badness 10000) in paragraph at lines 4--9
+warning: main.bbl:71: Underfull \hbox (badness 10000) in paragraph at lines 66--71
+warning: internal consistency problem when checking if main.bbl changed
+warning: TeX rerun seems needed, but stopping at 6 passes
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+warning: Tectonic unable to generate PK font "cmmib10.pfb" (dpi 600) on-the-fly
+warning: Could not locate a virtual/physical font for TFM "cmmib10".
+warning: >> This font is mapped to a physical font "cmmib10.pfb".
+warning: >> Please check if kpathsea library can find this font: cmmib10.pfb
+error: Cannot proceed without .vf or "physical" font for PDF output...
+
+
+2026-03-23 00:27:37 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-03-23 00:27:42 | WARNING | __main__ | Stage 09 stderr:
+2026-03-23 00:27:42 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-23 00:27:42 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-03-23 00:27:42 | INFO | __main__ | Full pipeline completed successfully.

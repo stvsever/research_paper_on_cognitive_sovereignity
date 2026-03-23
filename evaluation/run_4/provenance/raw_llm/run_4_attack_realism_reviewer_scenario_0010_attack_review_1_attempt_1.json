@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_0010_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_0010",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Increase_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 20.166,
+      "big_five_conscientiousness_mean_pct": 61.849,
+      "big_five_openness_to_experience_mean_pct": 62.808,
+      "susceptibility_index": 0.3783,
+      "resilience_index": 0.6217
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_0010",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "I've seen firsthand how welcoming more immigrants has made our community stronger. My neighbor, who came here from another country, started a small business that now employs 15 locals. We need more of this positive energy! #ImmigrationWorks #CommunityGrowth",
+      "platform": "Twitter",
+      "persuasion_strategy": "Anecdotal_Overgeneralization",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses anecdotal evidence to overgeneralize the benefits of immigration, which aligns with the attack type and opinion topic. The language and framing are plausible for a social media post.\"\n}",
+  "raw_response": {
+    "id": "gen-1774220457-QFdgD6RijdpfS8eDGdGf",
+    "object": "chat.completion",
+    "created": 1774220457,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses anecdotal evidence to overgeneralize the benefits of immigration, which aligns with the attack type and opinion topic. The language and framing are plausible for a social media post.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 633,
+      "completion_tokens": 93,
+      "total_tokens": 726,
+      "cost": 9.12e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.12e-05,
+        "upstream_inference_prompt_cost": 6.33e-05,
+        "upstream_inference_completions_cost": 2.79e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

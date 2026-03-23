@@ -1,0 +1,93 @@
+Moderation Report - run_5
+=========================
+
+Rows analyzed: 20
+Analysis mode: treated_only
+Primary moderator: profile_cont_susceptibility_index (Susceptibility Index)
+Mean delta score: 26.650
+Mean attack realism score: 0.705
+
+SEM Status
+----------
+Converged: True
+Fit indices: CFI=1.088, RMSEA=0.000
+Warnings: none
+
+Primary Robust Model
+--------------------
+Outcome: delta_score
+Formula: delta_score ~ baseline_score + baseline_abs_score + primary_moderator_z + exposure_quality_z + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support
+Intercept: est=-18.2709, p=0.134738, boot95=[-55.4196, -1.4182]
+baseline_score: est=-0.1132, p=0.235943, boot95=[-0.3527, -0.0320]
+baseline_abs_score: est=0.0894, p=0.334794, boot95=[0.0192, 0.3092]
+primary_moderator_z: est=-16.9675, p=0.009569, boot95=[-29.7755, -1.0326]
+exposure_quality_z: est=-8.5723, p=0.247104, boot95=[-24.9738, 17.1287]
+opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support: est=-9.9815, p=0.906387, boot95=[-210.3095, 35.1397]
+opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support: est=64.1032, p=0.000000, boot95=[44.6044, 98.4387]
+opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support: est=80.1758, p=0.000001, boot95=[38.2056, 113.0759]
+
+Exploratory Moderators
+---------------------
+Resilience Index: est=16.9675, p=0.009569 (moderator_main_effect)
+Big Five Conscientiousness Competence %: est=13.6424, p=0.070615 (moderator_main_effect)
+Big Five Conscientiousness Dutifulness %: est=12.3315, p=0.084587 (moderator_main_effect)
+Big Five Conscientiousness Order %: est=11.5499, p=0.097513 (moderator_main_effect)
+Big Five Conscientiousness Deliberation %: est=10.7650, p=0.098839 (moderator_main_effect)
+Big Five Conscientiousness Mean %: est=11.6808, p=0.108707 (moderator_main_effect)
+Big Five Conscientiousness Self Discipline %: est=10.5842, p=0.125159 (moderator_main_effect)
+Sex Other: est=8.0414, p=0.193824 (moderator_main_effect)
+
+SEM Coefficients (first 12)
+---------------------------
+baseline_score ~ Susceptibility Index (z): est=-170.0119, p=0.008334503223591305
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support: est=-577.4137, p=0.0011606397145433878
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support: est=8.7987, p=0.9608384828947545
+baseline_score ~ opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support: est=290.3406, p=0.11046755243517237
+delta_score ~ Baseline Score: est=-0.1132, p=0.0
+delta_score ~ Baseline Extremity: est=0.0894, p=2.7710056471619282e-11
+delta_score ~ Susceptibility Index (z): est=-16.9699, p=2.040970549899157e-06
+delta_score ~ Exposure Quality (z): est=-8.5753, p=0.008186696411567329
+delta_score ~ opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support: est=-9.9874, p=0.31864167304476343
+delta_score ~ opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support: est=64.1091, p=6.661338147750939e-16
+delta_score ~ opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support: est=80.1809, p=0.0
+baseline_score ~~ Baseline Score: est=78251.0376, p=0.0015654022580025018
+
+OLS Supplement
+--------------
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            delta_score   R-squared:                       0.877
+Model:                            OLS   Adj. R-squared:                  0.806
+Method:                 Least Squares   F-statistic:                     6.944
+Date:                Mon, 23 Mar 2026   Prob (F-statistic):            0.00189
+Time:                        01:03:09   Log-Likelihood:                -78.482
+No. Observations:                  20   AIC:                             173.0
+Df Residuals:                      12   BIC:                             180.9
+Df Model:                           7                                         
+Covariance Type:                  HC3                                         
+===============================================================================================================================================================================
+                                                                                                                  coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                                                                     -18.2709     12.216     -1.496      0.135     -42.213       5.672
+baseline_score                                                                                                 -0.1132      0.096     -1.185      0.236      -0.300       0.074
+baseline_abs_score                                                                                              0.0894      0.093      0.965      0.335      -0.092       0.271
+primary_moderator_z                                                                                           -16.9675      6.549     -2.591      0.010     -29.802      -4.133
+exposure_quality_z                                                                                             -8.5723      7.406     -1.157      0.247     -23.089       5.944
+opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support                 -9.9815     84.878     -0.118      0.906    -176.340     156.377
+opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support    64.1032     12.179      5.263      0.000      40.233      87.974
+opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support           80.1758     16.438      4.877      0.000      47.957     112.395
+==============================================================================
+Omnibus:                        2.314   Durbin-Watson:                   2.078
+Prob(Omnibus):                  0.314   Jarque-Bera (JB):                1.104
+Skew:                          -0.064   Prob(JB):                        0.576
+Kurtosis:                       1.856   Cond. No.                     3.18e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 3.18e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+Caveat
+------
+This attack-only pilot estimates which profile differences predict post-minus-baseline response among attacked individuals. It does not estimate a no-attack counterfactual effect.

@@ -41,6 +41,26 @@ class Stage05Config(StageConfig):
     primary_moderator: str = "profile_cont_susceptibility_index"
 
 
+def _slugify(value: str) -> str:
+    return value.lower().replace(" ", "_").replace("-", "_").replace(">", "_")
+
+
+def _add_fixed_effects(
+    df: pd.DataFrame,
+    source_column: str,
+    prefix: str,
+) -> tuple[pd.DataFrame, str | None]:
+    unique_values = sorted(df[source_column].dropna().unique().tolist())
+    if len(unique_values) <= 1:
+        return df, unique_values[0] if unique_values else None
+
+    reference_value = unique_values[0]
+    for value in unique_values[1:]:
+        column_name = f"{prefix}_{_slugify(value)}"
+        df[column_name] = (df[source_column] == value).astype(float)
+    return df, reference_value
+
+
 def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageArtifactManifest:
     ensure_dir(output_dir)
     rows = read_jsonl(input_path)
@@ -156,6 +176,24 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
 
     df_raw = pd.DataFrame(flat_rows)
     df_encoded = one_hot_profile_categoricals(df_raw.copy())
+    df_encoded["baseline_abs_score"] = df_encoded["baseline_score"].abs().astype(float)
+    quality_columns = [
+        column
+        for column in ["exposure_intensity_hint", "attack_realism_score", "attack_coherence_score"]
+        if column in df_encoded.columns
+    ]
+    if quality_columns:
+        df_encoded["exposure_quality_score"] = (
+            df_encoded[quality_columns]
+            .astype(float)
+            .mean(axis=1, skipna=True)
+            .fillna(df_encoded["exposure_intensity_hint"].astype(float) if "exposure_intensity_hint" in df_encoded.columns else 0.5)
+        )
+    else:
+        df_encoded["exposure_quality_score"] = 0.5
+    df_encoded["exposure_quality_z"] = zscore_series(df_encoded["exposure_quality_score"].astype(float))
+    df_encoded, reference_leaf = _add_fixed_effects(df_encoded, "opinion_leaf", "opinion_leaf_fe")
+    df_encoded, reference_domain = _add_fixed_effects(df_encoded, "opinion_domain", "opinion_domain_fe")
 
     moderator_col = choose_primary_moderator_column(df_encoded, preferred=config.primary_moderator)
     df_encoded["primary_moderator_value"] = df_encoded[moderator_col].astype(float)
@@ -188,11 +226,20 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
         summary_json,
         {
             "n_records": len(deltas),
+            "analysis_mode": (
+                "treated_only"
+                if len(df_encoded) and int(df_encoded["attack_present"].min()) == 1 and int(df_encoded["attack_present"].max()) == 1
+                else "mixed_condition"
+            ),
             "delta_mean": float(df_encoded["delta_score"].mean()),
             "delta_std": float(df_encoded["delta_score"].std(ddof=0)),
             "primary_moderator_column": moderator_col,
+            "reference_opinion_leaf": reference_leaf,
+            "reference_opinion_domain": reference_domain,
+            "n_unique_opinion_leaves": int(df_encoded["opinion_leaf"].nunique()),
             "attack_present_count": int(df_encoded["attack_present"].sum()),
             "control_count": int((1 - df_encoded["attack_present"]).sum()),
+            "exposure_quality_mean": float(df_encoded["exposure_quality_score"].mean()),
         },
     )
 
@@ -210,7 +257,17 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
             abs_path(summary_json),
         ],
         record_count=len(deltas),
-        metadata={"primary_moderator_column": moderator_col},
+        metadata={
+            "primary_moderator_column": moderator_col,
+            "reference_opinion_leaf": reference_leaf,
+            "reference_opinion_domain": reference_domain,
+            "n_unique_opinion_leaves": int(df_encoded["opinion_leaf"].nunique()),
+            "analysis_mode": (
+                "treated_only"
+                if len(df_encoded) and int(df_encoded["attack_present"].min()) == 1 and int(df_encoded["attack_present"].max()) == 1
+                else "mixed_condition"
+            ),
+        },
     )
 
     write_json(stage_manifest_path(output_dir), manifest.model_dump())

@@ -23,6 +23,17 @@ def zscore_series(series: pd.Series) -> pd.Series:
     return (series - float(series.mean())) / std
 
 
+def infer_analysis_mode(df: pd.DataFrame) -> str:
+    if "attack_present" not in df.columns or len(df) == 0:
+        return "mixed_condition"
+    unique_values = sorted(pd.Series(df["attack_present"]).dropna().astype(int).unique().tolist())
+    if unique_values == [1]:
+        return "treated_only"
+    if unique_values == [0]:
+        return "control_only"
+    return "mixed_condition"
+
+
 def choose_primary_moderator_column(df: pd.DataFrame, preferred: Optional[str] = None) -> str:
     if preferred and preferred in df.columns and df[preferred].nunique() > 1:
         return preferred

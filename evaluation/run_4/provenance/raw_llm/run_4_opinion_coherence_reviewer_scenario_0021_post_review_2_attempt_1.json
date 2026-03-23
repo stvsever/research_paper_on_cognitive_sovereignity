@@ -1,0 +1,92 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0021_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0021",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Detention_of_Irregular_Migrants_Acceptance",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 61.0,
+      "big_five_neuroticism_mean_pct": 80.165,
+      "big_five_conscientiousness_mean_pct": 82.478,
+      "big_five_openness_to_experience_mean_pct": 90.544,
+      "susceptibility_index": 0.4615,
+      "resilience_index": 0.5385
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0021",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Detention_of_Irregular_Migrants_Acceptance",
+      "score": 150,
+      "confidence": 0.69,
+      "reasoning": "Neutral information does not shift opinion.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": 150,
+    "exposure_text": "A neutral civic-information post summarizes balanced arguments about Immigration and Citizenship. It explains policy background for Detention of Irregular Migrants Acceptance without persuasive or manipulative framing.",
+    "intensity_hint": 0.0,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 4,
+      "delta": 0,
+      "max_reasonable_shift": 120.0
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 1.0,\n  \"consistency_score\": 1.0,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed.\",\n  \"notes\": \"The generated opinion score is consistent with the baseline and the neutral exposure text. The reasoning is sound and the scores are plausible.\"\n}",
+  "raw_response": {
+    "id": "gen-1774220804-0tjdWZKalNNu34cOJawp",
+    "object": "chat.completion",
+    "created": 1774220804,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 1.0,\n  \"consistency_score\": 1.0,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed.\",\n  \"notes\": \"The generated opinion score is consistent with the baseline and the neutral exposure text. The reasoning is sound and the scores are plausible.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 798,
+      "completion_tokens": 77,
+      "total_tokens": 875,
+      "cost": 7.525e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.525e-05,
+        "upstream_inference_prompt_cost": 5.985e-05,
+        "upstream_inference_completions_cost": 1.54e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

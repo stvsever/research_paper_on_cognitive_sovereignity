@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0020_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_0020",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 19.0,
+      "big_five_neuroticism_mean_pct": 67.758,
+      "big_five_conscientiousness_mean_pct": 11.571,
+      "big_five_openness_to_experience_mean_pct": 71.175,
+      "susceptibility_index": 0.7073,
+      "resilience_index": 0.2927
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0020",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 123,
+      "confidence": 0.65,
+      "reasoning": "As a young male with high openness to experience and low conscientiousness, I'm somewhat supportive of strategic autonomy but not strongly committed. My high neuroticism makes me cautious about change, while my extraversion makes me open to new ideas. The moderate score reflects this balance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausible and inconsistent with the opinion scale. Regenerate with a score within a realistic range (e.g., 0-100).\",\n  \"notes\": \"The generated score of 123 is outside any reasonable opinion scale and does not align with the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1774223815-h9M1pzUJvIcM9wW299YM",
+    "object": "chat.completion",
+    "created": 1774223815,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausible and inconsistent with the opinion scale. Regenerate with a score within a realistic range (e.g., 0-100).\",\n  \"notes\": \"The generated score of 123 is outside any reasonable opinion scale and does not align with the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 767,
+      "completion_tokens": 111,
+      "total_tokens": 878,
+      "cost": 0.00013563,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 352,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013563,
+        "upstream_inference_prompt_cost": 6.903e-05,
+        "upstream_inference_completions_cost": 6.66e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

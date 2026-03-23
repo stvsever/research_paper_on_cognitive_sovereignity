@@ -1,0 +1,178 @@
+{
+  "model_name": "semopy_primary_moderation_path",
+  "model_formula": "baseline_score ~ primary_moderator_z + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support\npost_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support + opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support",
+  "converged": true,
+  "n_obs": 48,
+  "fit_indices": {
+    "DoF": 38.0,
+    "DoF Baseline": 53.0,
+    "chi2": 134.45218368900092,
+    "chi2 p-value": 1.0610401446342621e-12,
+    "chi2 Baseline": 397.64897311052226,
+    "CFI": 0.7201437079051718,
+    "GFI": 0.6618822308598509,
+    "AGFI": 0.528414690409792,
+    "NFI": 0.6618822308598509,
+    "TLI": 0.6096741189203712,
+    "RMSEA": 0.23238885974310233,
+    "AIC": 28.39782567962496,
+    "BIC": 60.208242865059105,
+    "LogLik": 2.801087160187519
+  },
+  "coefficients": [
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "Susceptibility Index (z)",
+      "estimate": -88.86562359219424,
+      "std_error": 19.963831543185265,
+      "z_value": -4.4513310683852385,
+      "p_value": 8.533965368151541e-06
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support",
+      "estimate": -106.91998021798314,
+      "std_error": 68.24725306141701,
+      "z_value": -1.5666561718134242,
+      "p_value": 0.11719508047430405
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance",
+      "estimate": -225.42896537629932,
+      "std_error": 68.35839201353409,
+      "z_value": -3.297751142707745,
+      "p_value": 0.0009746247213331394
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support",
+      "estimate": 4.314272485677608,
+      "std_error": 68.50676513266107,
+      "z_value": 0.06297586052009754,
+      "p_value": 0.9497857266709913
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support",
+      "estimate": 108.1943795185997,
+      "std_error": 68.64933989172233,
+      "z_value": 1.5760439894869855,
+      "p_value": 0.11501566576061983
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support",
+      "estimate": 146.85755420645935,
+      "std_error": 68.96859676396473,
+      "z_value": 2.1293394544339717,
+      "p_value": 0.03322618576646974
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "baseline_score",
+      "estimate": 1.0085830619639222,
+      "std_error": 0.1457788688893343,
+      "z_value": 6.918582025236136,
+      "p_value": 4.561906408184768e-12
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "attack_present",
+      "estimate": 49.13641465037671,
+      "std_error": 40.61478990758858,
+      "z_value": 1.209815802622057,
+      "p_value": 0.22634958103956837
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "Susceptibility Index (z)",
+      "estimate": 2.9445866891270818,
+      "std_error": 41.96208177691212,
+      "z_value": 0.07017255971192418,
+      "p_value": 0.9440563146489929
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "attack_present x Susceptibility Index (z)",
+      "estimate": -2.6292314169296147,
+      "std_error": 46.78014144798809,
+      "z_value": -0.056204007417396035,
+      "p_value": 0.9551792887538542
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___border_enforcement_expansion_support",
+      "estimate": -3.396146520833309,
+      "std_error": 71.18673925492348,
+      "z_value": -0.047707572454913,
+      "p_value": 0.96194929903036
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___detention_of_irregular_migrants_acceptance",
+      "estimate": -3.6562813437345225,
+      "std_error": 76.47280415365435,
+      "z_value": -0.04781152442622643,
+      "p_value": 0.9618664518974194
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___immigration_level_increase_support",
+      "estimate": 1.173899242027274,
+      "std_error": 69.57174819274447,
+      "z_value": 0.01687321754191138,
+      "p_value": 0.9865377590308793
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___multiculturalism_support",
+      "estimate": -13.610007229001317,
+      "std_error": 71.13421844215817,
+      "z_value": -0.1913285550479186,
+      "p_value": 0.8482681906204057
+    },
+    {
+      "lhs": "post_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___immigration_and_citizenship___temporary_work_visas_expansion_support",
+      "estimate": 6.79497130971002,
+      "std_error": 73.21827721529125,
+      "z_value": 0.09280430471929806,
+      "p_value": 0.9260590311012693
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~~",
+      "rhs": "baseline_score",
+      "estimate": 18579.748926818153,
+      "std_error": 3792.575368310652,
+      "z_value": 4.898979485566356,
+      "p_value": 9.63357008609833e-07
+    },
+    {
+      "lhs": "post_score",
+      "op": "~~",
+      "rhs": "post_score",
+      "estimate": 18952.662575227707,
+      "std_error": 3868.6960480375774,
+      "z_value": 4.89897948556635,
+      "p_value": 9.63357008609833e-07
+    }
+  ],
+  "warnings": []
+}

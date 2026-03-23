@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_0044_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_0044",
+    "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Border_Enforcement_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 49.0,
+      "big_five_neuroticism_mean_pct": 59.92,
+      "big_five_conscientiousness_mean_pct": 13.462,
+      "big_five_openness_to_experience_mean_pct": 9.486,
+      "susceptibility_index": 0.654,
+      "resilience_index": 0.346
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_0044",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Border_Enforcement_Expansion_Support",
+      "score": 68,
+      "confidence": 0.72,
+      "reasoning": "The exposure text resonated with the profile's maternal concerns and personal immigration background, reinforcing support for border enforcement while framing it as responsible rather than heartless. The intensity hint suggests a moderate shift from the baseline.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "As a mother, I can't ignore what's happening at our borders. My daughter's school has had to add ESL classes because of the overwhelming number of unaccompanied minors being placed in local schools. It's not that I'm against immigration - I'm first-generation myself! - but we can't keep having our communities strained like this. Stronger border enforcement isn't about being heartless, it's about being responsible. How many more schools and hospitals will be overwhelmed before we take action?",
+    "intensity_hint": 0.68,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 26,
+      "max_reasonable_shift": 414.28
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed, assessment is plausible and consistent.\",\n  \"notes\": \"The shift from baseline (42 to 68) is reasonable given the exposure text and intensity hint. The reasoning aligns well with the profile's maternal concerns and personal background.\"\n}",
+  "raw_response": {
+    "id": "gen-1774221753-449wFHdCe40aKm8InMwd",
+    "object": "chat.completion",
+    "created": 1774221753,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed, assessment is plausible and consistent.\",\n  \"notes\": \"The shift from baseline (42 to 68) is reasonable given the exposure text and intensity hint. The reasoning aligns well with the profile's maternal concerns and personal background.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 897,
+      "completion_tokens": 95,
+      "total_tokens": 992,
+      "cost": 8.6275e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.6275e-05,
+        "upstream_inference_prompt_cost": 6.7275e-05,
+        "upstream_inference_completions_cost": 1.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

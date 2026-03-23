@@ -3,6 +3,9 @@
   "delta_mean": 3.25,
   "delta_std": 40.137108764832576,
   "primary_moderator_column": "profile_cont_susceptibility_index",
+  "reference_opinion_leaf": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support",
+  "reference_opinion_domain": "Foreign_Policy_and_Geopolitics",
+  "n_unique_opinion_leaves": 20,
   "attack_present_count": 10,
   "control_count": 10
 }

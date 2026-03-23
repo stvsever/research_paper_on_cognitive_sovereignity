@@ -1,0 +1,142 @@
+{
+  "model_name": "semopy_treated_only_delta_path",
+  "model_formula": "baseline_score ~ primary_moderator_z + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support\ndelta_score ~ baseline_score + baseline_abs_score + primary_moderator_z + exposure_quality_z + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support + opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support",
+  "converged": true,
+  "n_obs": 20,
+  "fit_indices": {
+    "DoF": 23.0,
+    "DoF Baseline": 34.0,
+    "chi2": 15.956845313268992,
+    "chi2 p-value": 0.8571098847543357,
+    "chi2 Baseline": 113.94916916134977,
+    "CFI": 1.0880954081275922,
+    "GFI": 0.8599652333517727,
+    "AGFI": 0.7929920840852291,
+    "NFI": 0.8599652333517728,
+    "TLI": 1.130227994623397,
+    "RMSEA": 0.0,
+    "AIC": 24.4043154686731,
+    "BIC": 37.34883502487499,
+    "LogLik": 0.7978422656634496
+  },
+  "coefficients": [
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "Susceptibility Index (z)",
+      "estimate": -170.0118895621538,
+      "std_error": 64.4421447207962,
+      "z_value": -2.638209673168846,
+      "p_value": 0.008334503223591305
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support",
+      "estimate": -577.4136752467592,
+      "std_error": 177.754325526047,
+      "z_value": -3.2483804460901595,
+      "p_value": 0.0011606397145433878
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support",
+      "estimate": 8.798660973874323,
+      "std_error": 179.19366636605506,
+      "z_value": 0.04910140605025881,
+      "p_value": 0.9608384828947545
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support",
+      "estimate": 290.34064496301005,
+      "std_error": 181.90685300788388,
+      "z_value": 1.5960951451918364,
+      "p_value": 0.11046755243517237
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "Baseline Score",
+      "estimate": -0.11324561665441955,
+      "std_error": 0.009749513804132155,
+      "z_value": -11.615514262342696,
+      "p_value": 0.0
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "Baseline Extremity",
+      "estimate": 0.08940015527808517,
+      "std_error": 0.01342696789510001,
+      "z_value": 6.658253447083336,
+      "p_value": 2.7710056471619282e-11
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "Susceptibility Index (z)",
+      "estimate": -16.969945561408487,
+      "std_error": 3.5731281270150927,
+      "z_value": -4.749324669636191,
+      "p_value": 2.040970549899157e-06
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "Exposure Quality (z)",
+      "estimate": -8.575321066521534,
+      "std_error": 3.24298057577093,
+      "z_value": -2.6442714861097625,
+      "p_value": 0.008186696411567329
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___conscription_support",
+      "estimate": -9.987376720042162,
+      "std_error": 10.01488662526773,
+      "z_value": -0.9972530986863938,
+      "p_value": 0.31864167304476343
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___defense_spending_increase_support",
+      "estimate": 64.10912629834873,
+      "std_error": 7.954990067528671,
+      "z_value": 8.058982569950217,
+      "p_value": 6.661338147750939e-16
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~",
+      "rhs": "opinion_leaf_fe_issue_position_taxonomy___defense_and_national_security___strategic_autonomy_support",
+      "estimate": 80.1809110553982,
+      "std_error": 9.413911067305381,
+      "z_value": 8.51727942638622,
+      "p_value": 0.0
+    },
+    {
+      "lhs": "baseline_score",
+      "op": "~~",
+      "rhs": "Baseline Score",
+      "estimate": 78251.0376125839,
+      "std_error": 24745.15081272698,
+      "z_value": 3.1622776601683773,
+      "p_value": 0.0015654022580025018
+    },
+    {
+      "lhs": "delta_score",
+      "op": "~~",
+      "rhs": "Delta Score",
+      "estimate": 148.75994795173006,
+      "std_error": 47.04202601355663,
+      "z_value": 3.1622776601683156,
+      "p_value": 0.0015654022580029459
+    }
+  ],
+  "warnings": []
+}

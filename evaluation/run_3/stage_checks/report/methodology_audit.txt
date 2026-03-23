@@ -19,8 +19,8 @@ Assumption Register
    Mitigation: Prompt enforces high-resolution scores in [-1000,1000].
 
 4. Assumption: Attack text realism is adequate.
-   Status: ok
-   Evidence: {'mean_attack_realism_score': 0.8}
+   Status: risk
+   Evidence: {'mean_attack_realism_score': 0.0}
    Mitigation: Self-supervised realism reviewer + rewrite loop in Stage 03.
 
 5. Assumption: SEM converges with acceptable fit.

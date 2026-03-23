@@ -174,6 +174,10 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                     feedback_parts.append(
                         "Keep the post-exposure shift bounded and avoid implausible reversals."
                     )
+                if not scenario.attack_present and abs(post.score - baseline.score) < 3:
+                    feedback_parts.append(
+                        "For neutral control exposures, preserve the same broad stance but allow slight test-retest variation or clarification instead of repeating the exact baseline integer."
+                    )
                 try:
                     post = agent.assess(
                         run_id=config.run_id,

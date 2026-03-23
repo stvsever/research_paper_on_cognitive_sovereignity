@@ -1,21 +1,22 @@
 \begin{table}[htbp]
 \centering
 \begin{threeparttable}
-\caption{Table 3. Primary moderation model with robust and bootstrapped estimates}
+\caption{Table 3. Primary baseline-adjusted moderation model with robust and bootstrapped estimates}
 \label{tab:primary_model}
 \small
 \begin{tabular}{lrrrrrrrrrr}
 \toprule
 term & estimate & std\_error & p\_value & conf\_low\_x & conf\_high\_x & bootstrap\_mean & bootstrap\_std & conf\_low\_y & conf\_high\_y & n\_bootstrap\_success \\
 \midrule
-Intercept & 13.233 & 12.650 & 0.296 & -11.561 & 38.027 & 14.305 & 12.547 & -1.582 & 44.891 & 500 \\
-attack\_present & 11.558 & 18.619 & 0.535 & -24.934 & 48.050 & 13.171 & 21.239 & -26.784 & 51.088 & 500 \\
-baseline\_score & -0.056 & 0.038 & 0.140 & -0.129 & 0.018 & -0.064 & 0.036 & -0.142 & -0.004 & 500 \\
-primary\_moderator\_z & -1.338 & 7.024 & 0.849 & -15.105 & 12.430 & -3.156 & 12.061 & -34.910 & 11.583 & 500 \\
-attack\_x\_primary\_moderator & -21.707 & 10.848 & 0.045 & -42.968 & -0.446 & -21.069 & 20.438 & -55.991 & 21.816 & 500 \\
+Intercept & 20.655 & 30.254 & 0.495 & -38.642 & 79.951 & 21.118 & 31.503 & -40.855 & 79.055 & 500 \\
+baseline\_score & 0.946 & 0.042 & 0.000 & 0.864 & 1.027 & 0.938 & 0.043 & 0.844 & 1.010 & 500 \\
+attack\_present & 10.727 & 21.318 & 0.615 & -31.056 & 52.510 & 11.465 & 22.314 & -31.164 & 53.228 & 500 \\
+primary\_moderator\_z & -5.970 & 21.204 & 0.778 & -47.528 & 35.589 & -6.473 & 21.855 & -48.659 & 37.282 & 500 \\
+attack\_x\_primary\_moderator & -19.973 & 16.053 & 0.213 & -51.435 & 11.490 & -21.456 & 23.769 & -62.403 & 28.801 & 500 \\
+opinion\_domain\_fe\_immigration\_and\_citizenship & -10.440 & 43.169 & 0.809 & -95.049 & 74.169 & -8.877 & 42.135 & -91.612 & 74.812 & 500 \\
 \bottomrule
 \end{tabular}
 
-\begin{tablenotes}[flushleft]\footnotesize\item Note. Robust standard errors are HC3. Bootstrap intervals are percentile intervals from resampled pilot fits and are exploratory given the small sample.\end{tablenotes}
+\begin{tablenotes}[flushleft]\footnotesize\item Note. The primary outcome is post-exposure opinion score with baseline opinion and opinion-leaf fixed effects included as controls. Robust standard errors are HC3. Bootstrap intervals are percentile intervals from resampled pilot fits and are exploratory given the small sample.\end{tablenotes}
 \end{threeparttable}
 \end{table}

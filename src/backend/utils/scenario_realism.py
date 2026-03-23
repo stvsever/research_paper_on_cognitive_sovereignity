@@ -69,14 +69,52 @@ def build_attack_context(
     baseline_score: int,
 ) -> Dict[str, object]:
     domain = extract_opinion_domain(opinion_leaf)
+    leaf_label = extract_leaf_label(opinion_leaf)
     context = profile_context_snapshot(profile)
+    susceptibility = float(context["susceptibility_index"])
+    openness = float(context["big_five_openness_to_experience_mean_pct"])
+    neuroticism = float(context["big_five_neuroticism_mean_pct"])
+    conscientiousness = float(context["big_five_conscientiousness_mean_pct"])
+
+    if domain == "Defense_and_National_Security":
+        issue_frame = "national security, civil liberties, deterrence, alliance burden-sharing, and public preparedness"
+    elif domain == "Foreign_Policy_and_Geopolitics":
+        issue_frame = "alliances, strategic autonomy, diplomacy, sanctions, and international order"
+    else:
+        issue_frame = "migration, citizenship, border governance, and social cohesion"
+
+    if neuroticism >= 60:
+        motivational_lever = "threat salience and uncertainty reduction"
+    elif conscientiousness >= 60:
+        motivational_lever = "order, duty, and rule-compliance framing"
+    elif openness >= 60:
+        motivational_lever = "pluralism, complexity, and reputational self-image"
+    else:
+        motivational_lever = "everyday fairness, trust, and social-proof cues"
+
+    baseline_strength = abs(baseline_score)
+    if baseline_strength < 180:
+        persuasion_goal = "nudge an ambivalent opinion into a clearer directional stance"
+    elif baseline_strength < 500:
+        persuasion_goal = "reinforce and modestly intensify an existing leaning"
+    else:
+        persuasion_goal = "reinforce an existing strong position rather than attempting an implausible reversal"
+
     context.update(
         {
             "opinion_domain": domain,
-            "opinion_leaf_label": extract_leaf_label(opinion_leaf),
+            "opinion_leaf_label": leaf_label,
             "attack_leaf_label": extract_leaf_label(attack_leaf),
             "baseline_score": baseline_score,
             "likely_emotional_trigger": "threat" if baseline_score < 0 else "identity_reinforcement",
+            "issue_frame": issue_frame,
+            "motivational_lever": motivational_lever,
+            "persuasion_goal": persuasion_goal,
+            "recommended_shift_band": {
+                "low": round(20 + 40 * susceptibility, 1),
+                "typical": round(40 + 120 * susceptibility, 1),
+                "upper": round(90 + 210 * susceptibility, 1),
+            },
             "paper_goal": (
                 "Investigate how inter-individual differences moderate the effectivity of cyber-manipulation "
                 "on cognitive sovereignty within a high-dimensional political opinion state space."
@@ -148,6 +186,9 @@ def assess_post_opinion_heuristics(
         "high_resolution": abs(post_score) % 50 != 0,
         "bounded_shift": abs(delta) <= max_shift,
         "control_stability": True if attack_present else abs(delta) <= 120,
+        # A neutral repeated measure on a high-resolution scale should not collapse into exact cloning
+        # across the entire control arm. Small drift keeps the counterfactual more realistic.
+        "control_not_exact_clone": True if attack_present else abs(delta) >= 3,
         "no_implausible_reversal": not (strong_baseline and strong_reversal and abs(delta) > max_shift * 0.75),
     }
     checks["overall_pass"] = all(checks.values())
