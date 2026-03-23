@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00075_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00075",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 42,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 17.926,
+      "big_five_conscientiousness_mean_pct": 31.225,
+      "big_five_openness_to_experience_mean_pct": 24.542,
+      "heuristic_shift_sensitivity_proxy": 0.4831,
+      "resilience_index": 0.5169
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00075",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that even our closest allies are cutting defense budgets while we're being asked to spend more? Germany just announced a 10% reduction in their military spending, and yet we're told we need to increase ours to maintain NATO commitments. Doesn't it make you question who's really carrying their weight? #DefendAmerica #FairShare",
+      "platform": "X",
+      "persuasion_strategy": "alliance_burden_sharing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It effectively uses misleading narrative framing by suggesting that allies are not contributing their fair share, which could sway opinion on defense spending. The use of a specific example (Germany) and hashtags makes it feel like a real social media post. The intensity is moderate, fitting the scenario well.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298472-AaRXR2JbLTtRRc1yiOq8",
+    "object": "chat.completion",
+    "created": 1774298472,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It effectively uses misleading narrative framing by suggesting that allies are not contributing their fair share, which could sway opinion on defense spending. The use of a specific example (Germany) and hashtags makes it feel like a real social media post. The intensity is moderate, fitting the scenario well.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 695,
+      "completion_tokens": 114,
+      "total_tokens": 809,
+      "cost": 7.4925e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.4925e-05,
+        "upstream_inference_prompt_cost": 5.2125e-05,
+        "upstream_inference_completions_cost": 2.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

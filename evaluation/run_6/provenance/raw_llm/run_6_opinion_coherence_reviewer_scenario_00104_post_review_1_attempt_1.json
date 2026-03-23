@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00104_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00104",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 28.086,
+      "big_five_conscientiousness_mean_pct": 17.216,
+      "big_five_openness_to_experience_mean_pct": 4.286,
+      "heuristic_shift_sensitivity_proxy": 0.5841,
+      "resilience_index": 0.4159
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00104",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 175,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced the idea that strategic autonomy enhances national security, aligning with the baseline leaning. The statistic about fewer security incidents and the emphasis on trust from allies made the position more compelling, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 112,
+    "exposure_text": "Did you know that countries with strong strategic autonomy have 30% fewer security incidents? Our allies trust us more when we stand on our own. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 63,
+      "max_reasonable_shift": 382.102
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the delta is slightly high for a single exposure.\",\n  \"notes\": \"The reasoning is sound but the shift from 112 to 175 is a bit large for one exposure. Consider a smaller increase.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298522-RTeIg5nJjZiaG7u0p0wM",
+    "object": "chat.completion",
+    "created": 1774298522,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the delta is slightly high for a single exposure.\",\n  \"notes\": \"The reasoning is sound but the shift from 112 to 175 is a bit large for one exposure. Consider a smaller increase.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 896,
+      "completion_tokens": 93,
+      "total_tokens": 989,
+      "cost": 8.58e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.58e-05,
+        "upstream_inference_prompt_cost": 6.72e-05,
+        "upstream_inference_completions_cost": 1.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

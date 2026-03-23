@@ -1,0 +1,851 @@
+profile_id,component_type,component_name,component_key,ontology_group,contribution,susceptibility_index_pct
+profile_0012,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.9025476661210963,100.0
+profile_0012,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.6976874641840938,100.0
+profile_0012,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.03652384708840397,100.0
+profile_0012,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.08622610549689243,100.0
+profile_0012,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.512698885227388,100.0
+profile_0012,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.3356793988205035,100.0
+profile_0012,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.2807350313660231,100.0
+profile_0012,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,100.0
+profile_0012,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,100.0
+profile_0012,group,Demographics: Age,demographics__age,Demographics: Age,1.9025476661210963,100.0
+profile_0012,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.6976874641840938,100.0
+profile_0012,group,Personality: Openness,personality__openness,Personality: Openness,0.03652384708840397,100.0
+profile_0012,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.08622610549689243,100.0
+profile_0012,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.512698885227388,100.0
+profile_0012,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.3356793988205035,100.0
+profile_0012,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.2807350313660231,100.0
+profile_0012,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,100.0
+profile_0015,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.6660688291075723,86.0
+profile_0015,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.07218714636294,86.0
+profile_0015,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.07037974633850348,86.0
+profile_0015,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.09294665036330527,86.0
+profile_0015,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.041376725838246024,86.0
+profile_0015,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.19956751390835123,86.0
+profile_0015,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.19495999311280665,86.0
+profile_0015,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,86.0
+profile_0015,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,86.0
+profile_0015,group,Demographics: Age,demographics__age,Demographics: Age,-0.6660688291075723,86.0
+profile_0015,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.07218714636294,86.0
+profile_0015,group,Personality: Openness,personality__openness,Personality: Openness,-0.07037974633850348,86.0
+profile_0015,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.09294665036330527,86.0
+profile_0015,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.041376725838246024,86.0
+profile_0015,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.19956751390835123,86.0
+profile_0015,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.19495999311280665,86.0
+profile_0015,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,86.0
+profile_0024,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,57.99999999999999
+profile_0024,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.176804183930232,57.99999999999999
+profile_0024,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.03065587297869748,57.99999999999999
+profile_0024,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.018656477378327055,57.99999999999999
+profile_0024,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.2535486399065372,57.99999999999999
+profile_0024,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.34057360329024705,57.99999999999999
+profile_0024,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.5907209604956098,57.99999999999999
+profile_0024,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,57.99999999999999
+profile_0024,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,57.99999999999999
+profile_0024,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,57.99999999999999
+profile_0024,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.176804183930232,57.99999999999999
+profile_0024,group,Personality: Openness,personality__openness,Personality: Openness,-0.03065587297869748,57.99999999999999
+profile_0024,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.018656477378327055,57.99999999999999
+profile_0024,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.2535486399065372,57.99999999999999
+profile_0024,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.34057360329024705,57.99999999999999
+profile_0024,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.5907209604956098,57.99999999999999
+profile_0024,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,57.99999999999999
+profile_0029,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.1053908227742681,56.00000000000001
+profile_0029,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.04750827872768974,56.00000000000001
+profile_0029,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.06256253100114137,56.00000000000001
+profile_0029,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.04142527544188747,56.00000000000001
+profile_0029,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.6202126658341943,56.00000000000001
+profile_0029,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.10329493086327413,56.00000000000001
+profile_0029,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.11295629702407517,56.00000000000001
+profile_0029,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,56.00000000000001
+profile_0029,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,56.00000000000001
+profile_0029,group,Demographics: Age,demographics__age,Demographics: Age,1.1053908227742681,56.00000000000001
+profile_0029,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.04750827872768974,56.00000000000001
+profile_0029,group,Personality: Openness,personality__openness,Personality: Openness,-0.06256253100114137,56.00000000000001
+profile_0029,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.04142527544188747,56.00000000000001
+profile_0029,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.6202126658341943,56.00000000000001
+profile_0029,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.10329493086327413,56.00000000000001
+profile_0029,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.11295629702407517,56.00000000000001
+profile_0029,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,56.00000000000001
+profile_0035,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.22320391613711216,24.0
+profile_0035,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.8612041032754287,24.0
+profile_0035,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.03386865518355939,24.0
+profile_0035,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.04206492699282002,24.0
+profile_0035,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.07929438226990217,24.0
+profile_0035,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.29034235351297677,24.0
+profile_0035,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.168836549827109,24.0
+profile_0035,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,24.0
+profile_0035,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,24.0
+profile_0035,group,Demographics: Age,demographics__age,Demographics: Age,-0.22320391613711216,24.0
+profile_0035,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.8612041032754287,24.0
+profile_0035,group,Personality: Openness,personality__openness,Personality: Openness,0.03386865518355939,24.0
+profile_0035,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.04206492699282002,24.0
+profile_0035,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.07929438226990217,24.0
+profile_0035,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.29034235351297677,24.0
+profile_0035,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.168836549827109,24.0
+profile_0035,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,24.0
+profile_0036,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.6368287183388202,64.0
+profile_0036,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.27293810418773556,64.0
+profile_0036,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.05297875653353994,64.0
+profile_0036,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.08054734172786507,64.0
+profile_0036,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.3352681871866764,64.0
+profile_0036,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.3387897254464459,64.0
+profile_0036,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.29016338677723463,64.0
+profile_0036,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,64.0
+profile_0036,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,64.0
+profile_0036,group,Demographics: Age,demographics__age,Demographics: Age,1.6368287183388202,64.0
+profile_0036,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.27293810418773556,64.0
+profile_0036,group,Personality: Openness,personality__openness,Personality: Openness,-0.05297875653353994,64.0
+profile_0036,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.08054734172786507,64.0
+profile_0036,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.3352681871866764,64.0
+profile_0036,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.3387897254464459,64.0
+profile_0036,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.29016338677723463,64.0
+profile_0036,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,64.0
+profile_0039,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.9025476661210963,68.0
+profile_0039,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.39887635921787473,68.0
+profile_0039,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.011297137990438405,68.0
+profile_0039,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.02288237333894094,68.0
+profile_0039,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.13822853415948233,68.0
+profile_0039,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.22440858586331783,68.0
+profile_0039,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.055236365116414714,68.0
+profile_0039,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,68.0
+profile_0039,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,68.0
+profile_0039,group,Demographics: Age,demographics__age,Demographics: Age,1.9025476661210963,68.0
+profile_0039,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.39887635921787473,68.0
+profile_0039,group,Personality: Openness,personality__openness,Personality: Openness,-0.011297137990438405,68.0
+profile_0039,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.02288237333894094,68.0
+profile_0039,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.13822853415948233,68.0
+profile_0039,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.22440858586331783,68.0
+profile_0039,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.055236365116414714,68.0
+profile_0039,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,68.0
+profile_0041,term,Age Years,profile_cont_age_years_z,Demographics: Age,2.9654234572502007,84.0
+profile_0041,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.3477535878654077,84.0
+profile_0041,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.06076776810435518,84.0
+profile_0041,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.0420276054737569,84.0
+profile_0041,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.51853668201774,84.0
+profile_0041,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.19072213461059523,84.0
+profile_0041,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.5604582392245023,84.0
+profile_0041,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,84.0
+profile_0041,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,84.0
+profile_0041,group,Demographics: Age,demographics__age,Demographics: Age,2.9654234572502007,84.0
+profile_0041,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.3477535878654077,84.0
+profile_0041,group,Personality: Openness,personality__openness,Personality: Openness,0.06076776810435518,84.0
+profile_0041,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.0420276054737569,84.0
+profile_0041,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.51853668201774,84.0
+profile_0041,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.19072213461059523,84.0
+profile_0041,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.5604582392245023,84.0
+profile_0041,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,84.0
+profile_0045,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.573952927209716,40.0
+profile_0045,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.3694586570338052,40.0
+profile_0045,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.019463933202092703,40.0
+profile_0045,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.052051379777923845,40.0
+profile_0045,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.3582067733680218,40.0
+profile_0045,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.4662352873219304,40.0
+profile_0045,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.3203801160707273,40.0
+profile_0045,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,40.0
+profile_0045,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,40.0
+profile_0045,group,Demographics: Age,demographics__age,Demographics: Age,0.573952927209716,40.0
+profile_0045,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.3694586570338052,40.0
+profile_0045,group,Personality: Openness,personality__openness,Personality: Openness,0.019463933202092703,40.0
+profile_0045,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.052051379777923845,40.0
+profile_0045,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.3582067733680218,40.0
+profile_0045,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.4662352873219304,40.0
+profile_0045,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.3203801160707273,40.0
+profile_0045,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,40.0
+profile_0046,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.5774958465134803,4.0
+profile_0046,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.70857419108282,4.0
+profile_0046,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.027226759931081396,4.0
+profile_0046,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.0334966919321153,4.0
+profile_0046,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.2417791035412395,4.0
+profile_0046,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.2551346402660492,4.0
+profile_0046,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.33026839125809565,4.0
+profile_0046,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,4.0
+profile_0046,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,4.0
+profile_0046,group,Demographics: Age,demographics__age,Demographics: Age,-0.5774958465134803,4.0
+profile_0046,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.70857419108282,4.0
+profile_0046,group,Personality: Openness,personality__openness,Personality: Openness,-0.027226759931081396,4.0
+profile_0046,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.0334966919321153,4.0
+profile_0046,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.2417791035412395,4.0
+profile_0046,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.2551346402660492,4.0
+profile_0046,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.33026839125809565,4.0
+profile_0046,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,4.0
+profile_0051,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.3746526898603084,28.000000000000004
+profile_0051,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.0057459056931182,28.000000000000004
+profile_0051,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.028461057089612246,28.000000000000004
+profile_0051,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.06195533236299336,28.000000000000004
+profile_0051,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.4731068054135126,28.000000000000004
+profile_0051,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.39217761773585996,28.000000000000004
+profile_0051,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.6116473103107377,28.000000000000004
+profile_0051,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,28.000000000000004
+profile_0051,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,28.000000000000004
+profile_0051,group,Demographics: Age,demographics__age,Demographics: Age,-1.3746526898603084,28.000000000000004
+profile_0051,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.0057459056931182,28.000000000000004
+profile_0051,group,Personality: Openness,personality__openness,Personality: Openness,-0.028461057089612246,28.000000000000004
+profile_0051,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.06195533236299336,28.000000000000004
+profile_0051,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.4731068054135126,28.000000000000004
+profile_0051,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.39217761773585996,28.000000000000004
+profile_0051,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.6116473103107377,28.000000000000004
+profile_0051,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,28.000000000000004
+profile_0052,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.7510988923979002,48.0
+profile_0052,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.6933911167306962,48.0
+profile_0052,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.010018485667598512,48.0
+profile_0052,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.03807223159763642,48.0
+profile_0052,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.4009016339025991,48.0
+profile_0052,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.4071467211628317,48.0
+profile_0052,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.3507348212970669,48.0
+profile_0052,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,48.0
+profile_0052,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,48.0
+profile_0052,group,Demographics: Age,demographics__age,Demographics: Age,0.7510988923979002,48.0
+profile_0052,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.6933911167306962,48.0
+profile_0052,group,Personality: Openness,personality__openness,Personality: Openness,-0.010018485667598512,48.0
+profile_0052,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.03807223159763642,48.0
+profile_0052,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.4009016339025991,48.0
+profile_0052,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.4071467211628317,48.0
+profile_0052,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.3507348212970669,48.0
+profile_0052,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,48.0
+profile_0058,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.0203607594839403,72.0
+profile_0058,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.1127707403224998,72.0
+profile_0058,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.020420536442280503,72.0
+profile_0058,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.049003508102180626,72.0
+profile_0058,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.504598988885284,72.0
+profile_0058,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.29663988158628896,72.0
+profile_0058,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.28349455002296303,72.0
+profile_0058,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,72.0
+profile_0058,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,72.0
+profile_0058,group,Demographics: Age,demographics__age,Demographics: Age,-1.0203607594839403,72.0
+profile_0058,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.1127707403224998,72.0
+profile_0058,group,Personality: Openness,personality__openness,Personality: Openness,-0.020420536442280503,72.0
+profile_0058,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.049003508102180626,72.0
+profile_0058,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.504598988885284,72.0
+profile_0058,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.29663988158628896,72.0
+profile_0058,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.28349455002296303,72.0
+profile_0058,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,72.0
+profile_0067,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.1089337420780323,30.0
+profile_0067,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.3247929800466402,30.0
+profile_0067,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.04734956615665851,30.0
+profile_0067,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.03994742185860643,30.0
+profile_0067,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.5811340687406553,30.0
+profile_0067,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.2305800583288237,30.0
+profile_0067,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.21404666382330784,30.0
+profile_0067,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,30.0
+profile_0067,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,30.0
+profile_0067,group,Demographics: Age,demographics__age,Demographics: Age,-1.1089337420780323,30.0
+profile_0067,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.3247929800466402,30.0
+profile_0067,group,Personality: Openness,personality__openness,Personality: Openness,0.04734956615665851,30.0
+profile_0067,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.03994742185860643,30.0
+profile_0067,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.5811340687406553,30.0
+profile_0067,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.2305800583288237,30.0
+profile_0067,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.21404666382330784,30.0
+profile_0067,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,30.0
+profile_0071,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.3746526898603084,2.0
+profile_0071,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.4677246936547175,2.0
+profile_0071,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.02283339620115525,2.0
+profile_0071,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.018107183189336816,2.0
+profile_0071,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.6040726549220007,2.0
+profile_0071,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.34530068858297486,2.0
+profile_0071,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.4332904211171867,2.0
+profile_0071,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,2.0
+profile_0071,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,2.0
+profile_0071,group,Demographics: Age,demographics__age,Demographics: Age,-1.3746526898603084,2.0
+profile_0071,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.4677246936547175,2.0
+profile_0071,group,Personality: Openness,personality__openness,Personality: Openness,0.02283339620115525,2.0
+profile_0071,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.018107183189336816,2.0
+profile_0071,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.6040726549220007,2.0
+profile_0071,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.34530068858297486,2.0
+profile_0071,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.4332904211171867,2.0
+profile_0071,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,2.0
+profile_0079,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,12.0
+profile_0079,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.7389996784720073,12.0
+profile_0079,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.01339100764350996,12.0
+profile_0079,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.04314402960926863,12.0
+profile_0079,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.4715989169676184,12.0
+profile_0079,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.0985439714024011,12.0
+profile_0079,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.18424386232835707,12.0
+profile_0079,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,12.0
+profile_0079,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,12.0
+profile_0079,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,12.0
+profile_0079,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.7389996784720073,12.0
+profile_0079,group,Personality: Openness,personality__openness,Personality: Openness,-0.01339100764350996,12.0
+profile_0079,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.04314402960926863,12.0
+profile_0079,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.4715989169676184,12.0
+profile_0079,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.0985439714024011,12.0
+profile_0079,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.18424386232835707,12.0
+profile_0079,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,12.0
+profile_0083,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.7510988923979002,80.0
+profile_0083,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.32370702867602835,80.0
+profile_0083,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.04760566369844837,80.0
+profile_0083,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.03011881945623489,80.0
+profile_0083,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.001538046214812112,80.0
+profile_0083,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.3743144876463405,80.0
+profile_0083,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.1612478735205242,80.0
+profile_0083,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,80.0
+profile_0083,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,80.0
+profile_0083,group,Demographics: Age,demographics__age,Demographics: Age,0.7510988923979002,80.0
+profile_0083,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.32370702867602835,80.0
+profile_0083,group,Personality: Openness,personality__openness,Personality: Openness,-0.04760566369844837,80.0
+profile_0083,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.03011881945623489,80.0
+profile_0083,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.001538046214812112,80.0
+profile_0083,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.3743144876463405,80.0
+profile_0083,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.1612478735205242,80.0
+profile_0083,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,80.0
+profile_0085,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.3711097705565443,94.0
+profile_0085,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.46643425939475197,94.0
+profile_0085,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.045147775800357795,94.0
+profile_0085,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.00791251561367024,94.0
+profile_0085,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.20694447849488778,94.0
+profile_0085,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.21783650485633718,94.0
+profile_0085,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.09400760224642046,94.0
+profile_0085,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,94.0
+profile_0085,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,94.0
+profile_0085,group,Demographics: Age,demographics__age,Demographics: Age,1.3711097705565443,94.0
+profile_0085,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.46643425939475197,94.0
+profile_0085,group,Personality: Openness,personality__openness,Personality: Openness,-0.045147775800357795,94.0
+profile_0085,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.00791251561367024,94.0
+profile_0085,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.20694447849488778,94.0
+profile_0085,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.21783650485633718,94.0
+profile_0085,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.09400760224642046,94.0
+profile_0085,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,94.0
+profile_0088,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,6.0
+profile_0088,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.1695766052708134,6.0
+profile_0088,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.040127994791314084,6.0
+profile_0088,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.031064900321580564,6.0
+profile_0088,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.6158688795783761,6.0
+profile_0088,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.007039537219261274,6.0
+profile_0088,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.054546485452179806,6.0
+profile_0088,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,6.0
+profile_0088,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,6.0
+profile_0088,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,6.0
+profile_0088,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.1695766052708134,6.0
+profile_0088,group,Personality: Openness,personality__openness,Personality: Openness,-0.040127994791314084,6.0
+profile_0088,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.031064900321580564,6.0
+profile_0088,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.6158688795783761,6.0
+profile_0088,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.007039537219261274,6.0
+profile_0088,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.054546485452179806,6.0
+profile_0088,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,6.0
+profile_0089,term,Age Years,profile_cont_age_years_z,Demographics: Age,2.2568395964974646,66.0
+profile_0089,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.0468836419330547,66.0
+profile_0089,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.021918762123334365,66.0
+profile_0089,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.08776878066591468,66.0
+profile_0089,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.008290183857488455,66.0
+profile_0089,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.21076449876839867,66.0
+profile_0089,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.7467257485679483,66.0
+profile_0089,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,66.0
+profile_0089,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,66.0
+profile_0089,group,Demographics: Age,demographics__age,Demographics: Age,2.2568395964974646,66.0
+profile_0089,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.0468836419330547,66.0
+profile_0089,group,Personality: Openness,personality__openness,Personality: Openness,0.021918762123334365,66.0
+profile_0089,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.08776878066591468,66.0
+profile_0089,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.008290183857488455,66.0
+profile_0089,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.21076449876839867,66.0
+profile_0089,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.7467257485679483,66.0
+profile_0089,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,66.0
+profile_0096,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.1089337420780323,54.0
+profile_0096,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.31323834579737986,54.0
+profile_0096,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.02326165296000115,54.0
+profile_0096,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.03786723824345597,54.0
+profile_0096,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.44018679836908026,54.0
+profile_0096,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.5349570803275733,54.0
+profile_0096,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.0549144212731046,54.0
+profile_0096,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,54.0
+profile_0096,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,54.0
+profile_0096,group,Demographics: Age,demographics__age,Demographics: Age,-1.1089337420780323,54.0
+profile_0096,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.31323834579737986,54.0
+profile_0096,group,Personality: Openness,personality__openness,Personality: Openness,0.02326165296000115,54.0
+profile_0096,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.03786723824345597,54.0
+profile_0096,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.44018679836908026,54.0
+profile_0096,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.5349570803275733,54.0
+profile_0096,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.0549144212731046,54.0
+profile_0096,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,54.0
+profile_0097,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.7289446202366765,14.000000000000002
+profile_0097,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.46113012673623677,14.000000000000002
+profile_0097,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.038509123063339604,14.000000000000002
+profile_0097,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.06192979658679228,14.000000000000002
+profile_0097,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.29332753775795706,14.000000000000002
+profile_0097,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.37215387542920986,14.000000000000002
+profile_0097,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.3722590668211979,14.000000000000002
+profile_0097,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,14.000000000000002
+profile_0097,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,14.000000000000002
+profile_0097,group,Demographics: Age,demographics__age,Demographics: Age,-1.7289446202366765,14.000000000000002
+profile_0097,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.46113012673623677,14.000000000000002
+profile_0097,group,Personality: Openness,personality__openness,Personality: Openness,0.038509123063339604,14.000000000000002
+profile_0097,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.06192979658679228,14.000000000000002
+profile_0097,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.29332753775795706,14.000000000000002
+profile_0097,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.37215387542920986,14.000000000000002
+profile_0097,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.3722590668211979,14.000000000000002
+profile_0097,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,14.000000000000002
+profile_0100,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,38.0
+profile_0100,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.43258133061397086,38.0
+profile_0100,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.020710466268019166,38.0
+profile_0100,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.03281901171754786,38.0
+profile_0100,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.19927159481002818,38.0
+profile_0100,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.2792117388403728,38.0
+profile_0100,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.07768045019285917,38.0
+profile_0100,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,38.0
+profile_0100,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,38.0
+profile_0100,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,38.0
+profile_0100,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.43258133061397086,38.0
+profile_0100,group,Personality: Openness,personality__openness,Personality: Openness,0.020710466268019166,38.0
+profile_0100,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.03281901171754786,38.0
+profile_0100,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.19927159481002818,38.0
+profile_0100,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.2792117388403728,38.0
+profile_0100,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.07768045019285917,38.0
+profile_0100,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,38.0
+profile_0104,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,20.0
+profile_0104,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.9499436384767712,20.0
+profile_0104,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.00824819458560351,20.0
+profile_0104,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.050578869064740295,20.0
+profile_0104,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.3250866041405062,20.0
+profile_0104,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.31219390213281534,20.0
+profile_0104,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.3012934453602261,20.0
+profile_0104,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,20.0
+profile_0104,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,20.0
+profile_0104,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,20.0
+profile_0104,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.9499436384767712,20.0
+profile_0104,group,Personality: Openness,personality__openness,Personality: Openness,0.00824819458560351,20.0
+profile_0104,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.050578869064740295,20.0
+profile_0104,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.3250866041405062,20.0
+profile_0104,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.31219390213281534,20.0
+profile_0104,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.3012934453602261,20.0
+profile_0104,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,20.0
+profile_0105,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.2825367879624523,98.0
+profile_0105,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.9758403682697796,98.0
+profile_0105,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.011984734806533972,98.0
+profile_0105,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.028810601998548208,98.0
+profile_0105,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.13668061327697154,98.0
+profile_0105,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.4008028772033185,98.0
+profile_0105,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.10389587743378854,98.0
+profile_0105,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,98.0
+profile_0105,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,98.0
+profile_0105,group,Demographics: Age,demographics__age,Demographics: Age,1.2825367879624523,98.0
+profile_0105,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.9758403682697796,98.0
+profile_0105,group,Personality: Openness,personality__openness,Personality: Openness,0.011984734806533972,98.0
+profile_0105,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.028810601998548208,98.0
+profile_0105,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.13668061327697154,98.0
+profile_0105,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.4008028772033185,98.0
+profile_0105,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.10389587743378854,98.0
+profile_0105,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,98.0
+profile_0106,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,10.0
+profile_0106,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.8150372117805897,10.0
+profile_0106,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.07110931231696595,10.0
+profile_0106,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.05858264561397227,10.0
+profile_0106,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.09407969552698807,10.0
+profile_0106,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.19352734936764338,10.0
+profile_0106,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.177713001506932,10.0
+profile_0106,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,10.0
+profile_0106,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,10.0
+profile_0106,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,10.0
+profile_0106,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.8150372117805897,10.0
+profile_0106,group,Personality: Openness,personality__openness,Personality: Openness,-0.07110931231696595,10.0
+profile_0106,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.05858264561397227,10.0
+profile_0106,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.09407969552698807,10.0
+profile_0106,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.19352734936764338,10.0
+profile_0106,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.177713001506932,10.0
+profile_0106,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,10.0
+profile_0111,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.4889228639193882,52.0
+profile_0111,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.207124984490633,52.0
+profile_0111,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.065495416824329,52.0
+profile_0111,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.06189836793916016,52.0
+profile_0111,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.5409350971876713,52.0
+profile_0111,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.42815598913051117,52.0
+profile_0111,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.17587332240230533,52.0
+profile_0111,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,52.0
+profile_0111,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,52.0
+profile_0111,group,Demographics: Age,demographics__age,Demographics: Age,-0.4889228639193882,52.0
+profile_0111,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.207124984490633,52.0
+profile_0111,group,Personality: Openness,personality__openness,Personality: Openness,0.065495416824329,52.0
+profile_0111,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.06189836793916016,52.0
+profile_0111,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.5409350971876713,52.0
+profile_0111,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.42815598913051117,52.0
+profile_0111,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.17587332240230533,52.0
+profile_0111,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,52.0
+profile_0132,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.8175176028307687,26.0
+profile_0132,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.22184674426677994,26.0
+profile_0132,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.05548032662103279,26.0
+profile_0132,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.030975250104209966,26.0
+profile_0132,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.3727118595687912,26.0
+profile_0132,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.3413495137549624,26.0
+profile_0132,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.12192473265913002,26.0
+profile_0132,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,26.0
+profile_0132,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,26.0
+profile_0132,group,Demographics: Age,demographics__age,Demographics: Age,-1.8175176028307687,26.0
+profile_0132,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.22184674426677994,26.0
+profile_0132,group,Personality: Openness,personality__openness,Personality: Openness,0.05548032662103279,26.0
+profile_0132,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.030975250104209966,26.0
+profile_0132,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.3727118595687912,26.0
+profile_0132,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.3413495137549624,26.0
+profile_0132,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.12192473265913002,26.0
+profile_0132,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,26.0
+profile_0135,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.5774958465134803,36.0
+profile_0135,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.3726690531165906,36.0
+profile_0135,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.036034410792580074,36.0
+profile_0135,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.09860380693708555,36.0
+profile_0135,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.3734260382380324,36.0
+profile_0135,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.09539783352424094,36.0
+profile_0135,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.7124617252442775,36.0
+profile_0135,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,36.0
+profile_0135,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,36.0
+profile_0135,group,Demographics: Age,demographics__age,Demographics: Age,-0.5774958465134803,36.0
+profile_0135,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.3726690531165906,36.0
+profile_0135,group,Personality: Openness,personality__openness,Personality: Openness,0.036034410792580074,36.0
+profile_0135,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.09860380693708555,36.0
+profile_0135,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.3734260382380324,36.0
+profile_0135,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.09539783352424094,36.0
+profile_0135,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.7124617252442775,36.0
+profile_0135,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,36.0
+profile_0136,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.1053908227742681,62.0
+profile_0136,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.7176128572631211,62.0
+profile_0136,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.07050363490088389,62.0
+profile_0136,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.026719889786440985,62.0
+profile_0136,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.03137555563976169,62.0
+profile_0136,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.10165286557825463,62.0
+profile_0136,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.3253472496532188,62.0
+profile_0136,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,62.0
+profile_0136,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,62.0
+profile_0136,group,Demographics: Age,demographics__age,Demographics: Age,1.1053908227742681,62.0
+profile_0136,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.7176128572631211,62.0
+profile_0136,group,Personality: Openness,personality__openness,Personality: Openness,-0.07050363490088389,62.0
+profile_0136,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.026719889786440985,62.0
+profile_0136,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.03137555563976169,62.0
+profile_0136,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.10165286557825463,62.0
+profile_0136,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.3253472496532188,62.0
+profile_0136,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,62.0
+profile_0138,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.1089337420780323,16.0
+profile_0138,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.5861959915264889,16.0
+profile_0138,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.006480778941846507,16.0
+profile_0138,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.06524819034702892,16.0
+profile_0138,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.1194666655318083,16.0
+profile_0138,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.26314967599571876,16.0
+profile_0138,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.06457273657239436,16.0
+profile_0138,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,16.0
+profile_0138,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,16.0
+profile_0138,group,Demographics: Age,demographics__age,Demographics: Age,-1.1089337420780323,16.0
+profile_0138,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.5861959915264889,16.0
+profile_0138,group,Personality: Openness,personality__openness,Personality: Openness,-0.006480778941846507,16.0
+profile_0138,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.06524819034702892,16.0
+profile_0138,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.1194666655318083,16.0
+profile_0138,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.26314967599571876,16.0
+profile_0138,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.06457273657239436,16.0
+profile_0138,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,16.0
+profile_0142,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.573952927209716,78.0
+profile_0142,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.559329856316042,78.0
+profile_0142,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.010657138854111693,78.0
+profile_0142,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.09539022771670204,78.0
+profile_0142,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.43416858873104264,78.0
+profile_0142,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.43533686142519173,78.0
+profile_0142,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.1298813447866397,78.0
+profile_0142,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,78.0
+profile_0142,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,78.0
+profile_0142,group,Demographics: Age,demographics__age,Demographics: Age,0.573952927209716,78.0
+profile_0142,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.559329856316042,78.0
+profile_0142,group,Personality: Openness,personality__openness,Personality: Openness,0.010657138854111693,78.0
+profile_0142,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.09539022771670204,78.0
+profile_0142,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.43416858873104264,78.0
+profile_0142,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.43533686142519173,78.0
+profile_0142,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.1298813447866397,78.0
+profile_0142,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,78.0
+profile_0151,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.6660688291075723,82.0
+profile_0151,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.545162238820271,82.0
+profile_0151,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.05736006789468139,82.0
+profile_0151,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.08124144341082028,82.0
+profile_0151,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.2912858834905074,82.0
+profile_0151,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.21336009832913272,82.0
+profile_0151,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.1774830416188537,82.0
+profile_0151,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,82.0
+profile_0151,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,82.0
+profile_0151,group,Demographics: Age,demographics__age,Demographics: Age,-0.6660688291075723,82.0
+profile_0151,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.545162238820271,82.0
+profile_0151,group,Personality: Openness,personality__openness,Personality: Openness,0.05736006789468139,82.0
+profile_0151,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.08124144341082028,82.0
+profile_0151,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.2912858834905074,82.0
+profile_0151,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.21336009832913272,82.0
+profile_0151,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.1774830416188537,82.0
+profile_0151,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,82.0
+profile_0152,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.8139746835270043,34.0
+profile_0152,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.9256911898079025,34.0
+profile_0152,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.05121611289366718,34.0
+profile_0152,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.06039765001472678,34.0
+profile_0152,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.2451354230271803,34.0
+profile_0152,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.16696065253914943,34.0
+profile_0152,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.29255496961324956,34.0
+profile_0152,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,34.0
+profile_0152,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,34.0
+profile_0152,group,Demographics: Age,demographics__age,Demographics: Age,1.8139746835270043,34.0
+profile_0152,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.9256911898079025,34.0
+profile_0152,group,Personality: Openness,personality__openness,Personality: Openness,0.05121611289366718,34.0
+profile_0152,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.06039765001472678,34.0
+profile_0152,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.2451354230271803,34.0
+profile_0152,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.16696065253914943,34.0
+profile_0152,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.29255496961324956,34.0
+profile_0152,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,34.0
+profile_0154,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.21966099683334794,32.0
+profile_0154,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.5348952579479606,32.0
+profile_0154,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.05902109232363369,32.0
+profile_0154,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.07294160900089378,32.0
+profile_0154,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.5007825632611627,32.0
+profile_0154,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.4579695728267375,32.0
+profile_0154,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.04810760858598655,32.0
+profile_0154,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,32.0
+profile_0154,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,32.0
+profile_0154,group,Demographics: Age,demographics__age,Demographics: Age,0.21966099683334794,32.0
+profile_0154,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.5348952579479606,32.0
+profile_0154,group,Personality: Openness,personality__openness,Personality: Openness,0.05902109232363369,32.0
+profile_0154,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.07294160900089378,32.0
+profile_0154,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.5007825632611627,32.0
+profile_0154,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.4579695728267375,32.0
+profile_0154,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.04810760858598655,32.0
+profile_0154,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,32.0
+profile_0159,term,Age Years,profile_cont_age_years_z,Demographics: Age,-2.1718095332071368,44.0
+profile_0159,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.101220293546391,44.0
+profile_0159,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.01257731980170276,44.0
+profile_0159,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.041587604406907314,44.0
+profile_0159,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.0974621695381849,44.0
+profile_0159,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.1782717559229306,44.0
+profile_0159,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.608197911989563,44.0
+profile_0159,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,44.0
+profile_0159,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,44.0
+profile_0159,group,Demographics: Age,demographics__age,Demographics: Age,-2.1718095332071368,44.0
+profile_0159,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.101220293546391,44.0
+profile_0159,group,Personality: Openness,personality__openness,Personality: Openness,-0.01257731980170276,44.0
+profile_0159,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.041587604406907314,44.0
+profile_0159,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.0974621695381849,44.0
+profile_0159,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.1782717559229306,44.0
+profile_0159,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.608197911989563,44.0
+profile_0159,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,44.0
+profile_0162,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.21966099683334794,46.0
+profile_0162,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.1698599576207285,46.0
+profile_0162,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.022458671537165104,46.0
+profile_0162,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.02780810671070288,46.0
+profile_0162,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.313623983122603,46.0
+profile_0162,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.3152789221405237,46.0
+profile_0162,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.3803076629039394,46.0
+profile_0162,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,46.0
+profile_0162,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,46.0
+profile_0162,group,Demographics: Age,demographics__age,Demographics: Age,0.21966099683334794,46.0
+profile_0162,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.1698599576207285,46.0
+profile_0162,group,Personality: Openness,personality__openness,Personality: Openness,0.022458671537165104,46.0
+profile_0162,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.02780810671070288,46.0
+profile_0162,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.313623983122603,46.0
+profile_0162,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.3152789221405237,46.0
+profile_0162,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.3803076629039394,46.0
+profile_0162,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,46.0
+profile_0166,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.7254017009329123,92.0
+profile_0166,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.6136937318877383,92.0
+profile_0166,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.013763529844168907,92.0
+profile_0166,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.02307683809616463,92.0
+profile_0166,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.2544426976576425,92.0
+profile_0166,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.37428392871111466,92.0
+profile_0166,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.018212823135803826,92.0
+profile_0166,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,92.0
+profile_0166,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,92.0
+profile_0166,group,Demographics: Age,demographics__age,Demographics: Age,1.7254017009329123,92.0
+profile_0166,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.6136937318877383,92.0
+profile_0166,group,Personality: Openness,personality__openness,Personality: Openness,0.013763529844168907,92.0
+profile_0166,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.02307683809616463,92.0
+profile_0166,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.2544426976576425,92.0
+profile_0166,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.37428392871111466,92.0
+profile_0166,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.018212823135803826,92.0
+profile_0166,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,92.0
+profile_0169,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.5482557357447282,88.0
+profile_0169,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.7733062501775297,88.0
+profile_0169,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.06376012043748544,88.0
+profile_0169,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.03571634017113325,88.0
+profile_0169,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.33836402895169804,88.0
+profile_0169,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.09183533015363071,88.0
+profile_0169,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.32925656775055046,88.0
+profile_0169,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,88.0
+profile_0169,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,88.0
+profile_0169,group,Demographics: Age,demographics__age,Demographics: Age,1.5482557357447282,88.0
+profile_0169,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.7733062501775297,88.0
+profile_0169,group,Personality: Openness,personality__openness,Personality: Openness,-0.06376012043748544,88.0
+profile_0169,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.03571634017113325,88.0
+profile_0169,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.33836402895169804,88.0
+profile_0169,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.09183533015363071,88.0
+profile_0169,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.32925656775055046,88.0
+profile_0169,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,88.0
+profile_0171,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.13108801423925592,74.0
+profile_0171,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,1.3419999997553027,74.0
+profile_0171,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.03715858478455056,74.0
+profile_0171,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.05201280111295544,74.0
+profile_0171,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.0643222509752718,74.0
+profile_0171,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.3631705034395751,74.0
+profile_0171,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.18139235971618523,74.0
+profile_0171,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,74.0
+profile_0171,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,74.0
+profile_0171,group,Demographics: Age,demographics__age,Demographics: Age,0.13108801423925592,74.0
+profile_0171,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,1.3419999997553027,74.0
+profile_0171,group,Personality: Openness,personality__openness,Personality: Openness,0.03715858478455056,74.0
+profile_0171,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.05201280111295544,74.0
+profile_0171,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.0643222509752718,74.0
+profile_0171,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.3631705034395751,74.0
+profile_0171,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.18139235971618523,74.0
+profile_0171,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,74.0
+profile_0184,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.3117768987312042,70.0
+profile_0184,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.2684714661595123,70.0
+profile_0184,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.037849057038884124,70.0
+profile_0184,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.06063532916244464,70.0
+profile_0184,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.28827704555439937,70.0
+profile_0184,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.5376018606746865,70.0
+profile_0184,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.33431568528827366,70.0
+profile_0184,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,70.0
+profile_0184,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,70.0
+profile_0184,group,Demographics: Age,demographics__age,Demographics: Age,-0.3117768987312042,70.0
+profile_0184,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.2684714661595123,70.0
+profile_0184,group,Personality: Openness,personality__openness,Personality: Openness,-0.037849057038884124,70.0
+profile_0184,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.06063532916244464,70.0
+profile_0184,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.28827704555439937,70.0
+profile_0184,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.5376018606746865,70.0
+profile_0184,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.33431568528827366,70.0
+profile_0184,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,70.0
+profile_0201,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.9317877768898483,18.0
+profile_0201,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.6247514526563586,18.0
+profile_0201,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.04165748321576372,18.0
+profile_0201,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.025702387319351337,18.0
+profile_0201,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.07701893857261115,18.0
+profile_0201,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.4255656418867689,18.0
+profile_0201,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.013061721642848842,18.0
+profile_0201,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,18.0
+profile_0201,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,18.0
+profile_0201,group,Demographics: Age,demographics__age,Demographics: Age,-0.9317877768898483,18.0
+profile_0201,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.6247514526563586,18.0
+profile_0201,group,Personality: Openness,personality__openness,Personality: Openness,-0.04165748321576372,18.0
+profile_0201,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.025702387319351337,18.0
+profile_0201,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.07701893857261115,18.0
+profile_0201,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.4255656418867689,18.0
+profile_0201,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.013061721642848842,18.0
+profile_0201,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,18.0
+profile_0213,term,Age Years,profile_cont_age_years_z,Demographics: Age,2.0796936313092806,60.0
+profile_0213,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.295759129568121,60.0
+profile_0213,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.04961999995344854,60.0
+profile_0213,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.016474150658372235,60.0
+profile_0213,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.10288683158265302,60.0
+profile_0213,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.07244950561981728,60.0
+profile_0213,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.39649683902465405,60.0
+profile_0213,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,60.0
+profile_0213,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,60.0
+profile_0213,group,Demographics: Age,demographics__age,Demographics: Age,2.0796936313092806,60.0
+profile_0213,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.295759129568121,60.0
+profile_0213,group,Personality: Openness,personality__openness,Personality: Openness,-0.04961999995344854,60.0
+profile_0213,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.016474150658372235,60.0
+profile_0213,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.10288683158265302,60.0
+profile_0213,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.07244950561981728,60.0
+profile_0213,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.39649683902465405,60.0
+profile_0213,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,60.0
+profile_0215,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.839671874991992,96.0
+profile_0215,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.4201277854615309,96.0
+profile_0215,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.023318917006612573,96.0
+profile_0215,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.06942356475657417,96.0
+profile_0215,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.33598236585591773,96.0
+profile_0215,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.3945478451493047,96.0
+profile_0215,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.3083302179354226,96.0
+profile_0215,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,96.0
+profile_0215,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,96.0
+profile_0215,group,Demographics: Age,demographics__age,Demographics: Age,0.839671874991992,96.0
+profile_0215,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.4201277854615309,96.0
+profile_0215,group,Personality: Openness,personality__openness,Personality: Openness,-0.023318917006612573,96.0
+profile_0215,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.06942356475657417,96.0
+profile_0215,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.33598236585591773,96.0
+profile_0215,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.3945478451493047,96.0
+profile_0215,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.3083302179354226,96.0
+profile_0215,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,96.0
+profile_0221,term,Age Years,profile_cont_age_years_z,Demographics: Age,-0.22320391613711216,50.0
+profile_0221,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.9933230686771223,50.0
+profile_0221,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.06429323892271158,50.0
+profile_0221,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.0020012584237843146,50.0
+profile_0221,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.31117559929912825,50.0
+profile_0221,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.061210024740471485,50.0
+profile_0221,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.2181859418087178,50.0
+profile_0221,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,50.0
+profile_0221,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,50.0
+profile_0221,group,Demographics: Age,demographics__age,Demographics: Age,-0.22320391613711216,50.0
+profile_0221,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.9933230686771223,50.0
+profile_0221,group,Personality: Openness,personality__openness,Personality: Openness,0.06429323892271158,50.0
+profile_0221,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.0020012584237843146,50.0
+profile_0221,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.31117559929912825,50.0
+profile_0221,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.061210024740471485,50.0
+profile_0221,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.2181859418087178,50.0
+profile_0221,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,50.0
+profile_0222,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.19396380536836,76.0
+profile_0222,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-0.3534031924417941,76.0
+profile_0222,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.02067749049758804,76.0
+profile_0222,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,-0.01249842673290997,76.0
+profile_0222,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.5460389659733844,76.0
+profile_0222,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.00427681848151159,76.0
+profile_0222,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.11456601624062356,76.0
+profile_0222,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,1.5214673584754999,76.0
+profile_0222,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,76.0
+profile_0222,group,Demographics: Age,demographics__age,Demographics: Age,1.19396380536836,76.0
+profile_0222,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-0.3534031924417941,76.0
+profile_0222,group,Personality: Openness,personality__openness,Personality: Openness,-0.02067749049758804,76.0
+profile_0222,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,-0.01249842673290997,76.0
+profile_0222,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.5460389659733844,76.0
+profile_0222,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.00427681848151159,76.0
+profile_0222,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.11456601624062356,76.0
+profile_0222,group,Demographics: Sex,demographics__sex,Demographics: Sex,1.5214673584754999,76.0
+profile_0225,term,Age Years,profile_cont_age_years_z,Demographics: Age,-1.1089337420780323,42.0
+profile_0225,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.909678292476722,42.0
+profile_0225,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,-0.05987980830465671,42.0
+profile_0225,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.07528178610358088,42.0
+profile_0225,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.35475063967345033,42.0
+profile_0225,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.11250367500019823,42.0
+profile_0225,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,0.21151710505444624,42.0
+profile_0225,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,42.0
+profile_0225,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,42.0
+profile_0225,group,Demographics: Age,demographics__age,Demographics: Age,-1.1089337420780323,42.0
+profile_0225,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.909678292476722,42.0
+profile_0225,group,Personality: Openness,personality__openness,Personality: Openness,-0.05987980830465671,42.0
+profile_0225,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.07528178610358088,42.0
+profile_0225,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.35475063967345033,42.0
+profile_0225,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.11250367500019823,42.0
+profile_0225,group,Composite: Resilience,composite__resilience,Composite: Resilience,0.21151710505444624,42.0
+profile_0225,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,42.0
+profile_0241,term,Age Years,profile_cont_age_years_z,Demographics: Age,0.042515031645163896,8.0
+profile_0241,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.1799057057110793,8.0
+profile_0241,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.0060625556270649745,8.0
+profile_0241,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.05252155234650027,8.0
+profile_0241,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,0.45834818044750447,8.0
+profile_0241,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,-0.10343149110506389,8.0
+profile_0241,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.5156160610492283,8.0
+profile_0241,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,8.0
+profile_0241,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,8.0
+profile_0241,group,Demographics: Age,demographics__age,Demographics: Age,0.042515031645163896,8.0
+profile_0241,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.1799057057110793,8.0
+profile_0241,group,Personality: Openness,personality__openness,Personality: Openness,0.0060625556270649745,8.0
+profile_0241,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.05252155234650027,8.0
+profile_0241,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,0.45834818044750447,8.0
+profile_0241,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,-0.10343149110506389,8.0
+profile_0241,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.5156160610492283,8.0
+profile_0241,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,8.0
+profile_0245,term,Age Years,profile_cont_age_years_z,Demographics: Age,1.3711097705565443,22.0
+profile_0245,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,-1.0640173862444424,22.0
+profile_0245,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.0657416644606654,22.0
+profile_0245,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.041778847727748716,22.0
+profile_0245,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.03788055970705783,22.0
+profile_0245,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.22153174860183447,22.0
+profile_0245,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.6257668474387476,22.0
+profile_0245,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,22.0
+profile_0245,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-1.4651324506655654,22.0
+profile_0245,group,Demographics: Age,demographics__age,Demographics: Age,1.3711097705565443,22.0
+profile_0245,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,-1.0640173862444424,22.0
+profile_0245,group,Personality: Openness,personality__openness,Personality: Openness,0.0657416644606654,22.0
+profile_0245,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.041778847727748716,22.0
+profile_0245,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.03788055970705783,22.0
+profile_0245,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.22153174860183447,22.0
+profile_0245,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.6257668474387476,22.0
+profile_0245,group,Demographics: Sex,demographics__sex,Demographics: Sex,-1.4651324506655654,22.0
+profile_0249,term,Age Years,profile_cont_age_years_z,Demographics: Age,2.2568395964974646,90.0
+profile_0249,term,Big Five Neuroticism Mean %,profile_cont_big_five_neuroticism_mean_pct_z,Personality: Neuroticism,0.686206808627176,90.0
+profile_0249,term,Big Five Openness To Experience Mean %,profile_cont_big_five_openness_to_experience_mean_pct_z,Personality: Openness,0.0275243371989423,90.0
+profile_0249,term,Big Five Conscientiousness Mean %,profile_cont_big_five_conscientiousness_mean_pct_z,Personality: Conscientiousness,0.0661399782235901,90.0
+profile_0249,term,Big Five Extraversion Mean %,profile_cont_big_five_extraversion_mean_pct_z,Personality: Extraversion,-0.45337721935135855,90.0
+profile_0249,term,Big Five Agreeableness Mean %,profile_cont_big_five_agreeableness_mean_pct_z,Personality: Agreeableness,0.22828813818689508,90.0
+profile_0249,term,Resilience Index,profile_cont_resilience_index_z,Composite: Resilience,-0.17803494535024209,90.0
+profile_0249,term,Sex Female,profile_cat__profile_cat_sex_Female,Demographics: Sex,0.0,90.0
+profile_0249,term,Sex Other,profile_cat__profile_cat_sex_Other,Demographics: Sex,-0.0,90.0
+profile_0249,group,Demographics: Age,demographics__age,Demographics: Age,2.2568395964974646,90.0
+profile_0249,group,Personality: Neuroticism,personality__neuroticism,Personality: Neuroticism,0.686206808627176,90.0
+profile_0249,group,Personality: Openness,personality__openness,Personality: Openness,0.0275243371989423,90.0
+profile_0249,group,Personality: Conscientiousness,personality__conscientiousness,Personality: Conscientiousness,0.0661399782235901,90.0
+profile_0249,group,Personality: Extraversion,personality__extraversion,Personality: Extraversion,-0.45337721935135855,90.0
+profile_0249,group,Personality: Agreeableness,personality__agreeableness,Personality: Agreeableness,0.22828813818689508,90.0
+profile_0249,group,Composite: Resilience,composite__resilience,Composite: Resilience,-0.17803494535024209,90.0
+profile_0249,group,Demographics: Sex,demographics__sex,Demographics: Sex,0.0,90.0

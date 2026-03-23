@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00117_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00117",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 55.0,
+      "big_five_neuroticism_mean_pct": 72.007,
+      "big_five_conscientiousness_mean_pct": 33.437,
+      "big_five_openness_to_experience_mean_pct": 4.682,
+      "heuristic_shift_sensitivity_proxy": 0.6483,
+      "resilience_index": 0.3517
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00117",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 217,
+      "confidence": 0.65,
+      "reasoning": "Moderate support for alliance commitment due to mid-range conscientiousness and extraversion, but tempered by high neuroticism and low openness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Regenerate with a score between 0 and 100, as the current score of 217 is out of bounds.\",\n  \"notes\": \"Score is implausible due to being out of the expected range of 0-100.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298404-T7j3VUvkfLZtMu0BxTW5",
+    "object": "chat.completion",
+    "created": 1774298404,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Regenerate with a score between 0 and 100, as the current score of 217 is out of bounds.\",\n  \"notes\": \"Score is implausible due to being out of the expected range of 0-100.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 778,
+      "completion_tokens": 97,
+      "total_tokens": 875,
+      "cost": 7.775e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.775e-05,
+        "upstream_inference_prompt_cost": 5.835e-05,
+        "upstream_inference_completions_cost": 1.94e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

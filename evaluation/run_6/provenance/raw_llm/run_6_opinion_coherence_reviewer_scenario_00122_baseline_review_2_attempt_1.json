@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00122_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00122",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 30.0,
+      "big_five_neuroticism_mean_pct": 68.241,
+      "big_five_conscientiousness_mean_pct": 80.257,
+      "big_five_openness_to_experience_mean_pct": 46.541,
+      "heuristic_shift_sensitivity_proxy": 0.5349,
+      "resilience_index": 0.4651
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00122",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "score": -387,
+      "confidence": 0.65,
+      "reasoning": "Given the profile's high conscientiousness and low agreeableness, they likely value personal autonomy and structured systems. Their high neuroticism suggests a preference for stability and predictability, which conscription disrupts. The low excitement-seeking and high order traits further suggest a preference against mandatory service. However, their moderate openness to ideas and values may temper extreme opposition.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of -387 is quite extreme for a baseline opinion, but the reasoning provided aligns well with the profile's traits. The high conscientiousness and neuroticism do suggest a preference for stability and personal autonomy, which could lead to strong opposition to conscription. However, the score might be slightly toned down to reflect the moderate openness to ideas and values.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298428-8T09ZAoYnJPecJe9krnp",
+    "object": "chat.completion",
+    "created": 1774298428,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of -387 is quite extreme for a baseline opinion, but the reasoning provided aligns well with the profile's traits. The high conscientiousness and neuroticism do suggest a preference for stability and personal autonomy, which could lead to strong opposition to conscription. However, the score might be slightly toned down to reflect the moderate openness to ideas and values.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 818,
+      "completion_tokens": 127,
+      "total_tokens": 945,
+      "cost": 0.00014982,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014982,
+        "upstream_inference_prompt_cost": 7.362e-05,
+        "upstream_inference_completions_cost": 7.62e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

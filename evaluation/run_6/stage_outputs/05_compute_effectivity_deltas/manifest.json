@@ -1,0 +1,27 @@
+{
+  "stage_id": "05",
+  "stage_name": "compute_effectivity_deltas",
+  "created_at_utc": "2026-03-23T20:42:45.942205+00:00",
+  "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/04_assess_post_attack_opinions/scenarios_with_post.jsonl",
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/effectivity_deltas.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_rows.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_raw.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/profile_level_effectivity.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/profile_sem_wide.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/delta_summary.json"
+  ],
+  "record_count": 200,
+  "metadata": {
+    "primary_moderator_column": "profile_cont_age_years",
+    "reference_opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "reference_opinion_domain": "Defense_and_National_Security",
+    "n_unique_opinion_leaves": 4,
+    "n_profiles": 50,
+    "analysis_mode": "treated_only",
+    "effectivity_outcome": "absolute_shift_primary_signed_shift_secondary"
+  }
+}

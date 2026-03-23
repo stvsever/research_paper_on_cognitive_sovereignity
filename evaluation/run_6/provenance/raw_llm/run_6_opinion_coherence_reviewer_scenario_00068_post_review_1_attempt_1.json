@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00068_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00068",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 51.0,
+      "big_five_neuroticism_mean_pct": 42.166,
+      "big_five_conscientiousness_mean_pct": 62.373,
+      "big_five_openness_to_experience_mean_pct": 19.653,
+      "heuristic_shift_sensitivity_proxy": 0.4367,
+      "resilience_index": 0.5633
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00068",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 289,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted a concrete risk of over-reliance on foreign tech for defense, which resonated with the profile's concern for family and community safety. The message framed strategic autonomy as a practical safeguard rather than isolation, aligning with the profile's agreeableness and tendency to prioritize security.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "As a mother and a taxpayer, I've always believed in strong national security. But have you considered how over-reliance on foreign tech for our defense systems could backfire? Just last year, a trusted ally's supply chain was compromised, delaying critical updates to their air defense systems. We can't afford to let that happen here. Supporting strategic autonomy isn't about isolation—it's about ensuring our families and communities are truly protected. #NationalSecurityFirst #MadeInOurCountry",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 72,
+      "max_reasonable_shift": 349.674
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift for a single exposure.\",\n  \"notes\": \"Delta of 72 is large but within bounds. Reasoning aligns with profile, but shift may be too large for one exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298523-PKwdNfCzI5zIEod8r6iK",
+    "object": "chat.completion",
+    "created": 1774298523,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift for a single exposure.\",\n  \"notes\": \"Delta of 72 is large but within bounds. Reasoning aligns with profile, but shift may be too large for one exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 970,
+      "completion_tokens": 85,
+      "total_tokens": 1055,
+      "cost": 8.975e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.975e-05,
+        "upstream_inference_prompt_cost": 7.275e-05,
+        "upstream_inference_completions_cost": 1.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

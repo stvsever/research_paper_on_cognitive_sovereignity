@@ -1,0 +1,142 @@
+{
+  "agent_name": "baseline_opinion",
+  "prompt_name": "baseline_opinion.md",
+  "call_id": "scenario_00124_baseline_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00124",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile": {
+      "profile_id": "profile_0151",
+      "categorical_attributes": {
+        "sex": "Female"
+      },
+      "continuous_attributes": {
+        "age_years": 53.0,
+        "big_five_agreeableness_altruism_pct": 21.81,
+        "big_five_agreeableness_compliance_pct": 20.025,
+        "big_five_agreeableness_modesty_pct": 23.896,
+        "big_five_agreeableness_straightforwardness_pct": 18.123,
+        "big_five_agreeableness_tender_mindedness_pct": 44.656,
+        "big_five_agreeableness_trust_pct": 16.193,
+        "big_five_agreeableness_mean_pct": 24.117,
+        "big_five_conscientiousness_achievement_striving_pct": 82.784,
+        "big_five_conscientiousness_competence_pct": 84.819,
+        "big_five_conscientiousness_deliberation_pct": 91.591,
+        "big_five_conscientiousness_dutifulness_pct": 86.972,
+        "big_five_conscientiousness_order_pct": 81.601,
+        "big_five_conscientiousness_self_discipline_pct": 94.636,
+        "big_five_conscientiousness_mean_pct": 87.067,
+        "big_five_extraversion_activity_level_pct": 17.667,
+        "big_five_extraversion_assertiveness_pct": 25.898,
+        "big_five_extraversion_excitement_seeking_pct": 18.452,
+        "big_five_extraversion_gregariousness_pct": 24.718,
+        "big_five_extraversion_positive_emotions_pct": 32.894,
+        "big_five_extraversion_warmth_pct": 18.487,
+        "big_five_extraversion_mean_pct": 23.019,
+        "big_five_neuroticism_anger_hostility_pct": 92.381,
+        "big_five_neuroticism_anxiety_pct": 82.521,
+        "big_five_neuroticism_depression_pct": 78.053,
+        "big_five_neuroticism_impulsiveness_pct": 91.827,
+        "big_five_neuroticism_self_consciousness_pct": 100.0,
+        "big_five_neuroticism_stress_vulnerability_pct": 100.0,
+        "big_five_neuroticism_mean_pct": 90.797,
+        "big_five_openness_to_experience_actions_pct": 19.078,
+        "big_five_openness_to_experience_aesthetics_pct": 24.484,
+        "big_five_openness_to_experience_fantasy_pct": 39.474,
+        "big_five_openness_to_experience_feelings_pct": 19.665,
+        "big_five_openness_to_experience_ideas_pct": 11.617,
+        "big_five_openness_to_experience_values_pct": 39.347,
+        "big_five_openness_to_experience_mean_pct": 25.611,
+        "heuristic_shift_sensitivity_proxy": 0.5828,
+        "resilience_index": 0.4172
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "review_feedback": "None"
+  },
+  "response_text": "{\n  \"score\": 450,\n  \"confidence\": 0.85,\n  \"reasoning\": \"As a conscientious and somewhat neurotic individual, she values stability and security. Her high conscientiousness suggests she supports strategic autonomy to ensure long-term safety, but her neuroticism and lower extraversion make her cautious about overcommitment.\"\n}",
+  "raw_response": {
+    "id": "gen-1774297715-B6YCgGBLFVutExGm8wG8",
+    "object": "chat.completion",
+    "created": 1774297715,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 450,\n  \"confidence\": 0.85,\n  \"reasoning\": \"As a conscientious and somewhat neurotic individual, she values stability and security. Her high conscientiousness suggests she supports strategic autonomy to ensure long-term safety, but her neuroticism and lower extraversion make her cautious about overcommitment.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2137,
+      "completion_tokens": 78,
+      "total_tokens": 2215,
+      "cost": 0.0002371,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0002371,
+        "upstream_inference_prompt_cost": 0.0002137,
+        "upstream_inference_completions_cost": 2.34e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

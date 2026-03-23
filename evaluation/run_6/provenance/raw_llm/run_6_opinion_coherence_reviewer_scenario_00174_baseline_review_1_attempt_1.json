@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00174_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00174",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 52.0,
+      "big_five_neuroticism_mean_pct": 63.482,
+      "big_five_conscientiousness_mean_pct": 11.697,
+      "big_five_openness_to_experience_mean_pct": 35.532,
+      "heuristic_shift_sensitivity_proxy": 0.6409,
+      "resilience_index": 0.3591
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00174",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "score": -487,
+      "confidence": 0.65,
+      "reasoning": "As a middle-aged woman with high agreeableness and moderate neuroticism, she likely values personal freedom and is wary of mandatory conscription. Her low conscientiousness suggests she may not prioritize structured obligations like conscription, and her high extraversion indicates a preference for personal choice over collective duty.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly moderating the score to reflect a more typical baseline opinion for this profile.\",\n  \"notes\": \"The score is plausible but slightly extreme for a baseline. The reasoning aligns well with the profile, but the score could be slightly moderated.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298417-n1BdWJwfc3wAidq1F9sf",
+    "object": "chat.completion",
+    "created": 1774298417,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly moderating the score to reflect a more typical baseline opinion for this profile.\",\n  \"notes\": \"The score is plausible but slightly extreme for a baseline. The reasoning aligns well with the profile, but the score could be slightly moderated.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 806,
+      "completion_tokens": 94,
+      "total_tokens": 900,
+      "cost": 7.925e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.925e-05,
+        "upstream_inference_prompt_cost": 6.045e-05,
+        "upstream_inference_completions_cost": 1.88e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

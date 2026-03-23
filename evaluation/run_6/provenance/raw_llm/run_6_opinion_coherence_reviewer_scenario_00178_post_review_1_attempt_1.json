@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00178_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00178",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 40.0,
+      "big_five_neuroticism_mean_pct": 79.908,
+      "big_five_conscientiousness_mean_pct": 46.021,
+      "big_five_openness_to_experience_mean_pct": 92.814,
+      "heuristic_shift_sensitivity_proxy": 0.6017,
+      "resilience_index": 0.3983
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00178",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "score": -180,
+      "confidence": 0.72,
+      "reasoning": "The exposure framed conscription as a commitment to national security, which slightly reduced opposition but did not fully convince.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": -217,
+    "exposure_text": "🚨 Did you know? Countries with mandatory service have 30% lower recruitment fraud. Our allies aren't asking for conscription - they're asking for commitment. #NationalSecurity #ServiceNotSacrifice",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 37,
+      "max_reasonable_shift": 385.974
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift from -217 to -180 is plausible given the exposure text and profile. The reasoning is consistent and the change is within bounds.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298540-FTG9phFRlEo16NZIlJ2G",
+    "object": "chat.completion",
+    "created": 1774298540,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift from -217 to -180 is plausible given the exposure text and profile. The reasoning is consistent and the change is within bounds.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 874,
+      "completion_tokens": 82,
+      "total_tokens": 956,
+      "cost": 8.195e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.195e-05,
+        "upstream_inference_prompt_cost": 6.555e-05,
+        "upstream_inference_completions_cost": 1.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

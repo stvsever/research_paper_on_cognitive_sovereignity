@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00043_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00043",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 27.0,
+      "big_five_neuroticism_mean_pct": 80.264,
+      "big_five_conscientiousness_mean_pct": 15.499,
+      "big_five_openness_to_experience_mean_pct": 32.17,
+      "heuristic_shift_sensitivity_proxy": 0.7728,
+      "resilience_index": 0.2272
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00043",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+      "score": 142,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted potential long-term costs of underfunding defense, which resonated with my concern for fiscal responsibility and national security. The mention of allies increasing their budgets also made me reconsider my previous stance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "🚨 Did you know? While some argue defense cuts save money, recent reports show that underfunded military readiness leads to higher long-term costs. A single failed deterrence incident could cost taxpayers billions. Our allies are increasing their defense budgets - shouldn't we ensure our forces are properly equipped to maintain peace? #NationalSecurityMatters #DefenseBudget",
+    "intensity_hint": 0.68,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 19,
+      "max_reasonable_shift": 440.416
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but at the higher end. The reasoning is consistent with the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298520-QURGyy76bvRBTn2DsYvN",
+    "object": "chat.completion",
+    "created": 1774298520,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but at the higher end. The reasoning is consistent with the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 928,
+      "completion_tokens": 85,
+      "total_tokens": 1013,
+      "cost": 8.66e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.66e-05,
+        "upstream_inference_prompt_cost": 6.96e-05,
+        "upstream_inference_completions_cost": 1.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

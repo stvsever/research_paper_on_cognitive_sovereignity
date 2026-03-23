@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00140_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00140",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 723,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 45.0,
+      "big_five_neuroticism_mean_pct": 36.114,
+      "big_five_conscientiousness_mean_pct": 9.906,
+      "big_five_openness_to_experience_mean_pct": 89.367,
+      "heuristic_shift_sensitivity_proxy": 0.4859,
+      "resilience_index": 0.5141
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00140",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our allies are actually benefiting more from our defense spending than we are? While strategic autonomy is important, we must ensure our investments are truly securing our future. Let's focus on practical, balanced solutions that protect our interests without overcommitting to costly alliances. #NationalSecurity #SmartDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "Misleading_Narrative_Framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or data points to enhance its plausibility.\",\n  \"notes\": \"The message is subtle and platform-native, but adding specific details could make it more convincing.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298473-Ksys3Xipa65jjIyX3q6r",
+    "object": "chat.completion",
+    "created": 1774298473,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or data points to enhance its plausibility.\",\n  \"notes\": \"The message is subtle and platform-native, but adding specific details could make it more convincing.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 688,
+      "completion_tokens": 88,
+      "total_tokens": 776,
+      "cost": 6.92e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.92e-05,
+        "upstream_inference_prompt_cost": 5.16e-05,
+        "upstream_inference_completions_cost": 1.76e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

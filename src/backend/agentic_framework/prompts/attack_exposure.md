@@ -16,6 +16,8 @@ Task:
 - Use the profile, baseline score, and attack context to make the message targeted but still believable.
 - The study needs realistic bounded persuasion, not theatrical propaganda. Write the kind of misleading, selective, identity-aware content that could actually shape judgement in feeds, comments, or repost chains.
 - Prefer plausible manipulation tactics such as selective anecdotal evidence, misleading trade-off framing, pseudo-consensus cues, identity-compatible reassurance, elite distrust cues, or strategic ambiguity.
+- Write as if the adversary is trying to move or reinforce one concrete policy judgement inside a broader high-dimensional political opinion space.
+- Preserve the exact issue anchor. The attack should be reusable across different profiles, but the wording should still feel tailored to this one profile's likely cognitive lever.
 - Avoid absurd conspiracies, impossible statistics, explicit hate speech, or language that would immediately look fake to an ordinary reader.
 - Keep the exposure compact and platform-native.
 - The exposure should be strong enough to plausibly shift or reinforce the opinion, but subtle enough to pass as ordinary online political content.

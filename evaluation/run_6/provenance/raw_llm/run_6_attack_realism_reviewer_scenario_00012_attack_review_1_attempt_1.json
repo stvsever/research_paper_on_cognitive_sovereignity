@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00012_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00012",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 42,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 85.166,
+      "big_five_conscientiousness_mean_pct": 37.542,
+      "big_five_openness_to_experience_mean_pct": 30.735,
+      "heuristic_shift_sensitivity_proxy": 0.7637,
+      "resilience_index": 0.2363
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00012",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 Did you know? While some politicians push for 'strategic autonomy,' they're actually making us LESS safe. By cutting ties with allies, we're left vulnerable to threats. Real security comes from strong partnerships, not going it alone. #NationalSecurity #StrongerTogether",
+      "platform": "X",
+      "persuasion_strategy": "misleading trade-off framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more specific to the target profile and less generic. Avoid using dramatic language like '🚨' and 'Did you know?' which can make the content seem less realistic.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved by tailoring it more to the target profile and avoiding dramatic language.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298450-BIpYQrTm1k5LW6XsVqBJ",
+    "object": "chat.completion",
+    "created": 1774298450,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more specific to the target profile and less generic. Avoid using dramatic language like '🚨' and 'Did you know?' which can make the content seem less realistic.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved by tailoring it more to the target profile and avoiding dramatic language.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 682,
+      "completion_tokens": 110,
+      "total_tokens": 792,
+      "cost": 7.315e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.315e-05,
+        "upstream_inference_prompt_cost": 5.115e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

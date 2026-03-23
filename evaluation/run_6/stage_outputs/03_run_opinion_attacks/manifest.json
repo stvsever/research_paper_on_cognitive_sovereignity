@@ -1,0 +1,19 @@
+{
+  "stage_id": "03",
+  "stage_name": "run_opinion_attacks",
+  "created_at_utc": "2026-03-23T20:41:42.735683+00:00",
+  "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/02_assess_baseline_opinions/scenarios_with_baseline.jsonl",
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/03_run_opinion_attacks/scenarios_with_exposure.jsonl",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/03_run_opinion_attacks/attack_exposures.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/03_run_opinion_attacks/scenarios_with_exposure.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/03_run_opinion_attacks/attack_summary.json"
+  ],
+  "record_count": 200,
+  "metadata": {
+    "n_attack": 200,
+    "openrouter_model": "mistralai/mistral-small-3.2-24b-instruct",
+    "review_rewrite_count": 186,
+    "heuristic_fail_count": 9
+  }
+}

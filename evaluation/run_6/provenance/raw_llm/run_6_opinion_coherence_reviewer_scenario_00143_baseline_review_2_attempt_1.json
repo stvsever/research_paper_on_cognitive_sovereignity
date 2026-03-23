@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00143_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00143",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 83.0,
+      "big_five_conscientiousness_mean_pct": 25.868,
+      "big_five_openness_to_experience_mean_pct": 42.555,
+      "heuristic_shift_sensitivity_proxy": 0.7713,
+      "resilience_index": 0.2287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00143",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+      "score": 123,
+      "confidence": 0.45,
+      "reasoning": "As a young male with high neuroticism and low conscientiousness, this individual is likely to be uncertain about defense spending increases. His agreeableness suggests some concern for national security, but his lack of self-discipline and high anxiety may make him hesitant to support significant spending increases without clear evidence of necessity.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Regenerate with a score within a realistic range (e.g., 0-100) and ensure consistency with the profile's traits.\",\n  \"notes\": \"Score of 123 is outside a realistic range for opinion scales. The reasoning does not justify such an extreme score.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298433-EjTUA94p8pFcp4ZNpYRo",
+    "object": "chat.completion",
+    "created": 1774298433,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Regenerate with a score within a realistic range (e.g., 0-100) and ensure consistency with the profile's traits.\",\n  \"notes\": \"Score of 123 is outside a realistic range for opinion scales. The reasoning does not justify such an extreme score.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 813,
+      "completion_tokens": 102,
+      "total_tokens": 915,
+      "cost": 0.00013437,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 608,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013437,
+        "upstream_inference_prompt_cost": 7.317e-05,
+        "upstream_inference_completions_cost": 6.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

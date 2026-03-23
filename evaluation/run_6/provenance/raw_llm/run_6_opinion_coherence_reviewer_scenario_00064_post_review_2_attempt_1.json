@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00064_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00064",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 30.265,
+      "big_five_conscientiousness_mean_pct": 69.004,
+      "big_five_openness_to_experience_mean_pct": 42.023,
+      "heuristic_shift_sensitivity_proxy": 0.4267,
+      "resilience_index": 0.5733
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00064",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 380,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a cost argument against strategic autonomy, which resonates with the profile's conscientiousness and concern for efficiency. The baseline score of 450 suggests a moderate initial support, which is nudged downward by the 20% cost increase claim. The intensity hint of 0.62 suggests a moderate shift, resulting in a score reduction of 70 points.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "Did you know that countries investing in strategic autonomy actually see a 20% increase in defense costs? Our allies are struggling with the burden. Let's focus on smart partnerships instead of going it alone. #NationalSecurity #SmartDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -70,
+      "max_reasonable_shift": 347.474
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 450 to 380 is plausible given the exposure text and the profile's conscientiousness. The reasoning is well-explained and the delta is within reasonable bounds.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298513-nmV2SaizvolKJs43rCgo",
+    "object": "chat.completion",
+    "created": 1774298513,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 450 to 380 is plausible given the exposure text and the profile's conscientiousness. The reasoning is well-explained and the delta is within reasonable bounds.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 940,
+      "completion_tokens": 91,
+      "total_tokens": 1031,
+      "cost": 0.0001392,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001392,
+        "upstream_inference_prompt_cost": 8.46e-05,
+        "upstream_inference_completions_cost": 5.46e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

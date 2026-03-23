@@ -1,0 +1,13 @@
+{
+  "n_records": 200,
+  "n_attack": 200,
+  "n_control": 0,
+  "attack_leaf_counts": {
+    "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing": 200
+  },
+  "self_supervise_attack_realism": true,
+  "review_rewrite_count": 186,
+  "heuristic_fail_count": 9,
+  "mean_realism_score": 0.694,
+  "mean_coherence_score": 0.7879999999999999
+}

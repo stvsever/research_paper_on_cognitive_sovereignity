@@ -1,0 +1,403 @@
+{
+  "model_name": "profile_panel_path_sem",
+  "model_formula": "abs_delta_indicator__alliance_commitment_support ~ profile_cont_age_years_z + profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nabs_delta_indicator__conscription_support ~ profile_cont_age_years_z + profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nabs_delta_indicator__defense_spending_increase_support ~ profile_cont_age_years_z + profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nabs_delta_indicator__strategic_autonomy_support ~ profile_cont_age_years_z + profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nabs_delta_indicator__alliance_commitment_support ~~ abs_delta_indicator__conscription_support\nabs_delta_indicator__alliance_commitment_support ~~ abs_delta_indicator__defense_spending_increase_support\nabs_delta_indicator__alliance_commitment_support ~~ abs_delta_indicator__strategic_autonomy_support\nabs_delta_indicator__conscription_support ~~ abs_delta_indicator__defense_spending_increase_support\nabs_delta_indicator__conscription_support ~~ abs_delta_indicator__strategic_autonomy_support\nabs_delta_indicator__defense_spending_increase_support ~~ abs_delta_indicator__strategic_autonomy_support",
+  "converged": true,
+  "n_obs": 50,
+  "fit_indices": {
+    "DoF": 36.0,
+    "DoF Baseline": 74.0,
+    "chi2": 0.051706217694302836,
+    "chi2 p-value": 1.0,
+    "chi2 Baseline": 131.64786016709726,
+    "CFI": 1.0,
+    "GFI": 0.9996072384493856,
+    "AGFI": 0.9991926568126259,
+    "NFI": 0.9996072384493855,
+    "TLI": 1.0,
+    "RMSEA": 0.0,
+    "AIC": 83.99793175129223,
+    "BIC": 164.30289797927435,
+    "LogLik": 0.0010341243538860567
+  },
+  "coefficients": [
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Age Years",
+      "estimate": 1.0197247782654244,
+      "std_error": 2.8189203080814096,
+      "z_value": 0.3617430316641691,
+      "p_value": 0.7175440670487454
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": -3.4476652608171743,
+      "std_error": 2.1292351394522853,
+      "z_value": -1.619203627130828,
+      "p_value": 0.10540345785741145
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 0.5415856097588574,
+      "std_error": 2.2715966281785716,
+      "z_value": 0.23841627648165561,
+      "p_value": 0.8115582445504932
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 3.669768814066195,
+      "std_error": 2.28610524102401,
+      "z_value": 1.6052492895824857,
+      "p_value": 0.10843895417242821
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -0.8817677063297994,
+      "std_error": 5.637925479849717,
+      "z_value": -0.15639931912564886,
+      "p_value": 0.8757182738299283
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -3.5869573662488827,
+      "std_error": 6.030468618783461,
+      "z_value": -0.5948057428034328,
+      "p_value": 0.5519733283904038
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -2.2907724024583924,
+      "std_error": 2.812978900720299,
+      "z_value": -0.8143581887055735,
+      "p_value": 0.4154397838574819
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": -1.702821744724371,
+      "std_error": 2.687401399878366,
+      "z_value": -0.6336313379909709,
+      "p_value": 0.5263214442370387
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Age Years",
+      "estimate": 2.6985142343436923,
+      "std_error": 3.5130976296408933,
+      "z_value": 0.7681295878528616,
+      "p_value": 0.44241020025337163
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 5.730107534532026,
+      "std_error": 2.6535730364257946,
+      "z_value": 2.1593931864215734,
+      "p_value": 0.03081967605612368
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 0.03047174789207539,
+      "std_error": 2.830991960672312,
+      "z_value": 0.010763629256237134,
+      "p_value": 0.9914120322260866
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -0.7185579515882078,
+      "std_error": 2.8490734130817903,
+      "z_value": -0.2522075943317672,
+      "p_value": 0.8008806083518711
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 13.585980882264119,
+      "std_error": 7.026301021199368,
+      "z_value": 1.933589358222956,
+      "p_value": 0.05316363671932467
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -9.852841742356844,
+      "std_error": 7.515510441900771,
+      "z_value": -1.311001004991435,
+      "p_value": 0.18985742407391903
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 3.5451837337878547,
+      "std_error": 3.505693112366243,
+      "z_value": 1.011264711472119,
+      "p_value": 0.31188975098866667
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": -5.744495959159146,
+      "std_error": 3.3491913413586474,
+      "z_value": -1.7151889437368166,
+      "p_value": 0.08631059128204499
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Age Years",
+      "estimate": 4.052217123005222,
+      "std_error": 2.69021606265412,
+      "z_value": 1.506279432071292,
+      "p_value": 0.1319954558330596
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 1.1897409225922384,
+      "std_error": 2.032020045724789,
+      "z_value": 0.5854966465979381,
+      "p_value": 0.5582138207719758
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 0.8592231648471278,
+      "std_error": 2.167881695512069,
+      "z_value": 0.3963422757918424,
+      "p_value": 0.6918525437682443
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -2.2745100805223517,
+      "std_error": 2.1817278844985872,
+      "z_value": -1.0425269332082838,
+      "p_value": 0.29716744516709337
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -12.728042378073253,
+      "std_error": 5.380513114349672,
+      "z_value": -2.3655815175183887,
+      "p_value": 0.018001779764315717
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -5.343276326469776,
+      "std_error": 5.755133799658426,
+      "z_value": -0.9284365077291473,
+      "p_value": 0.3531811884505762
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 3.2207465613999187,
+      "std_error": 2.6845459238169873,
+      "z_value": 1.1997360644214057,
+      "p_value": 0.23024186189435825
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": 1.219383755830607,
+      "std_error": 2.5647019506105013,
+      "z_value": 0.4754485235759538,
+      "p_value": 0.6344673155499301
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Age Years",
+      "estimate": 4.372707745550757,
+      "std_error": 2.9408068876087516,
+      "z_value": 1.4869074756230714,
+      "p_value": 0.13703924957707492
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": -0.17379472218455275,
+      "std_error": 2.2213005970720863,
+      "z_value": -0.07824007359182035,
+      "p_value": 0.9376370855842175
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -3.2650115439763305,
+      "std_error": 2.3698176180663553,
+      "z_value": -1.3777480254531267,
+      "p_value": 0.16828109801596325
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 1.6830494186735319,
+      "std_error": 2.3849535651391385,
+      "z_value": 0.7056948375322506,
+      "p_value": 0.4803779320966002
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 4.23278926082732,
+      "std_error": 5.88170230830382,
+      "z_value": 0.7196537735088573,
+      "p_value": 0.4717381946500141
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 4.984061719976682,
+      "std_error": 6.291218520362187,
+      "z_value": 0.7922251792469858,
+      "p_value": 0.4282293894377438
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 5.622252487296344,
+      "std_error": 2.9346085812431726,
+      "z_value": 1.915844083340308,
+      "p_value": 0.05538494465066357
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": -3.8462775476508053,
+      "std_error": 2.8036012667242325,
+      "z_value": -1.3719060528687372,
+      "p_value": 0.1700926858742473
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Conscription Support",
+      "estimate": -44.05807942217999,
+      "std_error": 38.80639806545692,
+      "z_value": -1.1353302965109937,
+      "p_value": 0.25623695277689906
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Defense Spending Increase Support",
+      "estimate": -10.334834452289437,
+      "std_error": 29.367529962298036,
+      "z_value": -0.3519136429095985,
+      "p_value": 0.7249030273083417
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Strategic Autonomy Support",
+      "estimate": 13.203366672817555,
+      "std_error": 32.11762686070127,
+      "z_value": 0.4110940926638829,
+      "p_value": 0.681003541436825
+    },
+    {
+      "lhs": "abs_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Alliance Commitment Support",
+      "estimate": 217.32492989760664,
+      "std_error": 43.46498597952132,
+      "z_value": 4.999999999999885,
+      "p_value": 5.733031438470704e-07
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Defense Spending Increase Support",
+      "estimate": -31.206085938811988,
+      "std_error": 36.819560888066526,
+      "z_value": -0.8475409588310774,
+      "p_value": 0.3966936672209451
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Strategic Autonomy Support",
+      "estimate": -26.707802866803434,
+      "std_error": 40.13721016398946,
+      "z_value": -0.6654125375850022,
+      "p_value": 0.5057866680050025
+    },
+    {
+      "lhs": "abs_delta_indicator__conscription_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Conscription Support",
+      "estimate": 337.5393343641044,
+      "std_error": 67.50786687282087,
+      "z_value": 4.999999999999927,
+      "p_value": 5.733031438470704e-07
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Strategic Autonomy Support",
+      "estimate": 15.405438702486896,
+      "std_error": 30.67684088584875,
+      "z_value": 0.5021846532311264,
+      "p_value": 0.6155376372142165
+    },
+    {
+      "lhs": "abs_delta_indicator__defense_spending_increase_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Defense Spending Increase Support",
+      "estimate": 197.93303060736957,
+      "std_error": 39.58660612147391,
+      "z_value": 4.999999999999874,
+      "p_value": 5.733031438470704e-07
+    },
+    {
+      "lhs": "abs_delta_indicator__strategic_autonomy_support",
+      "op": "~~",
+      "rhs": "Abs Delta Indicator Strategic Autonomy Support",
+      "estimate": 236.5249531698167,
+      "std_error": 47.304990633963335,
+      "z_value": 4.999999999999895,
+      "p_value": 5.733031438470704e-07
+    }
+  ],
+  "warnings": []
+}

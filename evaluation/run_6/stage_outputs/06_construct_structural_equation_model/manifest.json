@@ -1,0 +1,62 @@
+{
+  "stage_id": "06",
+  "stage_name": "construct_structural_equation_model",
+  "created_at_utc": "2026-03-23T20:49:10.321838+00:00",
+  "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/moderation_report.txt",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/sem_model_spec.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/profile_multivariate_model_spec.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/sem_result.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/sem_coefficients.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/sem_fit_indices.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/ols_robust_summary.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/ols_robust_params.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/bootstrap_primary_params.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/exploratory_moderator_comparison.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/moderator_weight_table.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/profile_susceptibility_index.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/profile_susceptibility_breakdown.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/profile_level_effectivity.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/profile_sem_wide.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/ridge_path_coefficients.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/ridge_path_summary.csv",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/moderation_report.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/assumption_register.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/peer_review_critiques.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/methodology_audit.txt",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_6/stage_outputs/06_construct_structural_equation_model/latent_attack_effectivity_scores.csv"
+  ],
+  "record_count": 50,
+  "metadata": {
+    "sem_converged": true,
+    "n_coefficients": 42,
+    "primary_moderator": "posthoc_profile_susceptibility_index",
+    "bootstrap_samples": 800,
+    "analysis_mode": "treated_only",
+    "indicator_columns": [
+      "abs_delta_indicator__alliance_commitment_support",
+      "abs_delta_indicator__conscription_support",
+      "abs_delta_indicator__defense_spending_increase_support",
+      "abs_delta_indicator__strategic_autonomy_support"
+    ],
+    "structural_terms": [
+      "profile_cont_age_years_z",
+      "profile_cont_big_five_neuroticism_mean_pct_z",
+      "profile_cont_big_five_openness_to_experience_mean_pct_z",
+      "profile_cont_big_five_conscientiousness_mean_pct_z",
+      "profile_cat__profile_cat_sex_Female",
+      "profile_cat__profile_cat_sex_Other",
+      "mean_baseline_abs_score_z",
+      "mean_exposure_quality_score_z"
+    ],
+    "multivariate_formula": "mean_abs_delta_score ~ profile_cont_age_years_z + profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cont_big_five_extraversion_mean_pct_z + profile_cont_big_five_agreeableness_mean_pct_z + profile_cont_resilience_index_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z",
+    "n_profile_moderators": 9,
+    "ridge_outcomes": [
+      "abs_delta_indicator__alliance_commitment_support",
+      "abs_delta_indicator__conscription_support",
+      "abs_delta_indicator__defense_spending_increase_support",
+      "abs_delta_indicator__strategic_autonomy_support"
+    ]
+  }
+}

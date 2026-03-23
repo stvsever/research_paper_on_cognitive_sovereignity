@@ -64,6 +64,7 @@ class DeltaRecord(BaseModel):
     baseline_score: int
     post_score: int
     delta_score: int
+    abs_delta_score: int
     attack_present: bool
     attack_leaf: Optional[str] = None
     profile_id: str
@@ -77,6 +78,7 @@ class SemRow(BaseModel):
     baseline_score: float
     post_score: float
     delta_score: float
+    abs_delta_score: float
     attack_present: int
     attack_leaf: str
     profile_id: str
@@ -101,6 +103,35 @@ class SemFitResult(BaseModel):
     fit_indices: Dict[str, Any] = Field(default_factory=dict)
     coefficients: List[SemCoefficient] = Field(default_factory=list)
     warnings: List[str] = Field(default_factory=list)
+
+
+class ConditionalSusceptibilityTaskModel(BaseModel):
+    task_key: str
+    attack_leaf: str
+    opinion_leaf: str
+    outcome_metric: str
+    n_obs: int
+    alpha: float
+    cv_mse: float
+    reliability_weight: float
+    intercept: float
+    coefficients: Dict[str, float] = Field(default_factory=dict)
+
+
+class ConditionalSusceptibilityArtifact(BaseModel):
+    model_name: str = "conditional_profile_susceptibility_index"
+    outcome_metric: str = "abs_delta_score"
+    attack_leaves: List[str] = Field(default_factory=list)
+    opinion_leaves: List[str] = Field(default_factory=list)
+    task_weighting_scheme: str = "n_obs_over_cv_mse"
+    feature_columns: List[str] = Field(default_factory=list)
+    continuous_feature_columns: List[str] = Field(default_factory=list)
+    categorical_feature_columns: List[str] = Field(default_factory=list)
+    excluded_feature_columns: List[str] = Field(default_factory=list)
+    feature_means: Dict[str, float] = Field(default_factory=dict)
+    feature_stds: Dict[str, float] = Field(default_factory=dict)
+    task_models: List[ConditionalSusceptibilityTaskModel] = Field(default_factory=list)
+    notes: List[str] = Field(default_factory=list)
 
 
 class StageArtifactManifest(BaseModel):

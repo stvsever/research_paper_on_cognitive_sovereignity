@@ -1,8 +1,8 @@
 <div align="center">
 
-# PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation
+# Inter-individual Differences in Susceptibility to Cyber-manipulation
 
-### Multi-agent Simulation Approach with High-dimension State Space of Political Opinions
+### Multi-agent Simulation Approach with High-dimensional State Space of Political Opinions
 
 [![Paper PDF](https://img.shields.io/badge/PDF-Pilot_Report-1d4e89.svg)](research_report/report/main.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2a9d8f.svg)](LICENSE)
@@ -12,8 +12,6 @@
 **Stijn Van Severen<sup>1,*</sup> · Thomas De Schryver<sup>1</sup>**
 
 <sup>1</sup> Ghent University · <sup>*</sup> Corresponding author
-
-**Paper License:** MIT · **Python:** 3.11+ · **Containerization:** Docker
 
 ---
 
@@ -28,6 +26,7 @@
 - [Setup & Installation](#-setup--installation)
 - [Usage](#-usage)
 - [Pipeline Overview](#-pipeline-overview)
+- [Conditional Susceptibility Index](#-conditional-susceptibility-index)
 - [Figures & Tables](#-figures--tables)
 - [Citation](#-citation)
 - [License](#-license)
@@ -36,70 +35,71 @@
 
 ## 📝 Abstract
 
-This repository contains the backend research pipeline, evaluation outputs, manuscript assets, and reproducible pilot report for a study on how **inter-individual differences may moderate susceptibility to cyber-manipulation** in political opinion spaces. The workflow represents `PROFILE`, `ATTACK`, and `OPINION` as explicit hierarchical ontologies, generates ontology-constrained attacked scenarios, elicits baseline and post-exposure opinions with structured LLM agents, audits exposure realism and response coherence, and estimates moderation through an attacked-only path model supplemented by robust regression and bootstrap intervals.
+This repository contains the backend research pipeline, evaluation outputs, manuscript assets, and reproducible pilot report for a study on how **inter-individual differences moderate the effectivity of cyber-manipulation** in political opinion spaces. The workflow represents `PROFILE`, `ATTACK`, and `OPINION` as explicit hierarchical ontologies, generates attacked-only profile-panel scenarios, elicits baseline and post-exposure opinions with structured LLM agents, audits exposure realism and response coherence, and estimates moderation through a **repeated-outcome path SEM** plus a **post hoc ridge-regularized susceptibility index**.
 
-The present codebase is a **methodological pilot**, not a claim-ready population study. Its purpose is to validate the research architecture end to end: leaf-only ontology sampling, mixed-type profile construction, realistic adversarial message generation, repeated-leaf opinion design, attacked-only moderation estimation, interactive SEM inspection, publication-asset export, and automated LaTeX manuscript compilation.
+The current codebase is a **methodological pilot**, not a claim-ready population study. Its purpose is to validate the architecture end to end: leaf-only ontology sampling, mixed-type profile construction, platform-native attack generation, repeated attacked opinion design, multivariate moderation estimation, target-conditional susceptibility scoring, interactive result inspection, publication-asset export, and automated LaTeX manuscript compilation.
 
-> **Interpretive constraint:** `run_5` answers a narrower and cleaner question than the earlier treatment-control pilots: **among attacked individuals, which profile differences predict larger post-minus-baseline opinion shifts?** It does **not** estimate a no-attack counterfactual effect.
+> **Interpretive constraint:** the current main run (`run_6`) addresses a narrower and cleaner question than the earlier pilots: **among attacked pseudoprofiles, which profile differences are associated with larger post-minus-baseline opinion shifts across repeated political opinion leaves?** It does **not** estimate a no-attack counterfactual effect.
 
 ---
 
 ## 🔬 Key Pilot Findings
 
-> **Main pilot result (`run_5`):** with an attacked-only design (`n = 20`) focused on `Defense_and_National_Security`, the pipeline produced a mean opinion delta of **+26.6**, mean attack realism **0.70**, and mean post-exposure plausibility **0.62**. The primary susceptibility moderator was **negative and statistically supported** in the robust delta model (`b = -16.97`, `p = .010`), with a bootstrap `95%` interval of **[-29.78, -1.03]**. The attacked-only SEM/path model converged, with display-capped fit indices of **CFI = 1.000** and **RMSEA = 0.000**.
+> **Main pilot result (`run_6`):** the attacked-only profile-panel run used **50 pseudoprofiles** crossed with **4 repeated opinion leaves** (`n = 200` attacked rows) under one fixed misinformation attack leaf. Mean absolute attacked shift was **41.65**, mean signed shift was **22.05**, mean attack realism was **0.69**, and mean post-exposure plausibility was **0.75**.
 
-### Why `run_5` Is Methodologically Stronger
+### Methodological Position of `run_6`
 
-- the design now matches the stated research question: moderation of **post-baseline change after attack**, not attack-versus-no-attack contrast
-- all `run_5` scenarios are attacked with the **same misinformation vector family**, reducing attack-side heterogeneity
-- repeated opinion leaves within one policy domain improve interpretability and reduce issue drift
-- realism and coherence are explicitly audited before downstream estimation
-- the main model controls for baseline score, baseline extremity, exposure quality, and opinion-leaf fixed effects
+- one fixed ATTACK leaf is linked to **multiple attacked OPINION deltas** for each pseudoprofile
+- the SEM is now a **profile-level repeated-outcome path model**, not a collapsed single-delta regression
+- the personal susceptibility index is computed **after** the run from fitted moderator weights, not injected beforehand
+- the final susceptibility ranking is stabilized with **target-conditional cross-validated ridge aggregation**, which is more defensible than using unstable small-sample multivariate OLS weights directly
+- the pipeline remains fully auditable: baseline scores, exposure texts, realism review, post-exposure scores, coherence review, SEM outputs, figures, tables, and provenance are all saved
 
-### Current Pilot Outputs
+### `run_6` Headline Outputs
 
-- `evaluation/run_1/`: initial backend pilot with mixed-condition moderation reporting
-- `evaluation/run_2/`: realism/coherence upgrades plus interactive HTML SEM dashboard
-- `evaluation/run_3/`: first publication-asset bundle and compiled manuscript
-- `evaluation/run_4/`: transitional redesign pilot
-- `evaluation/run_5/`: current attacked-only pilot aligned to the moderation question
-- `research_report/report/main.pdf`: compiled manuscript generated from the current pilot outputs
-- `research_report/assets/`: paper-ready figures and tables copied from the pipeline
+- **Profiles:** `50`
+- **Attacked rows:** `200`
+- **Repeated attacked outcomes per profile:** `4`
+- **Mean |delta|:** `41.65`
+- **Mean signed delta:** `22.05`
+- **Mean attack realism:** `0.69`
+- **Mean post-exposure plausibility:** `0.75`
+- **Top descriptive susceptibility weights:** `Age Years (20.6%)`, `Sex Female (18.0%)`, `Big Five Neuroticism Mean % (14.9%)`, `Sex Other (10.6%)`
+- **Most notable exploratory path-SEM signals:** `Sex Female -> Defense Spending Increase Support (b = -12.73, p = .018)`, `Big Five Neuroticism Mean % -> Conscription Support (b = 5.73, p = .031)`, `Sex Female -> Conscription Support (b = 13.59, p = .053)`
 
-### `run_5` Configuration Snapshot
+### Why `run_6` Is Stronger Than Earlier Pilots
 
-- `20` attacked scenarios
-- `1` fixed ATTACK leaf: `ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing`
-- `4` repeated OPINION leaves within `Defense_and_National_Security`
-- susceptibility-stratified profile selection from an oversampled candidate pool
-- live OpenRouter execution with structured outputs, repair loops, and stored provenance
-- attacked-only moderation model with robust OLS, bootstrap intervals, and SEM/path reporting
+- it directly matches the research question: moderation of **attacked opinion movement**, not treatment-versus-control contrast
+- it preserves the logic that a **single attack vector** can influence **multiple opinion leaves** for the same individual
+- it treats effectivity as an **absolute shift magnitude**, which avoids cancellation when attacked opinions move in different signed directions
+- it separates **profile moderation estimation** from the **post hoc susceptibility index**, which is derived only after the repeated-outcome moderation structure is fit
+- it pushes the repeated-leaf structure into the SEM itself rather than hiding it behind a single composite too early
 
 ### Main Figures
 
 <div align="center">
-<img src="research_report/assets/figures/figure_2_delta_distribution_by_susceptibility.png" width="760" alt="Opinion-delta distribution across susceptibility strata in the attacked-only pilot.">
+<img src="research_report/assets/figures/figure_3_profile_moderator_coefficient_forest.png" width="760" alt="Descriptive susceptibility weights across profile moderators in run 6.">
 
-*Figure 2. Attacked-only opinion-delta distribution across susceptibility strata in `run_5`. Raw points, violin densities, and mean markers show how post-minus-baseline movement varies over the pre-registered susceptibility moderator.*
+*Figure 3. Descriptive susceptibility weights across profile moderators in `run_6`, showing how the post hoc susceptibility index is decomposed over age, sex, and personality terms under the modeled attack/opinion target set.*
 </div>
 
 <div align="center">
-<img src="research_report/assets/figures/figure_4_annotated_sem_path_diagram.png" width="760" alt="Annotated attacked-only SEM/path diagram for the current pilot.">
+<img src="research_report/assets/figures/figure_4_annotated_sem_path_diagram.png" width="760" alt="Repeated-outcome path-SEM coefficient matrix for attacked opinion shifts in run 6.">
 
-*Figure 4. Annotated attacked-only path model from `run_5`, showing baseline anchoring, baseline extremity, exposure quality, the primary susceptibility moderator, and opinion-leaf fixed effects.*
+*Figure 4. Repeated-outcome path-SEM coefficients from profile moderators to attacked opinion shifts in `run_6`. The fixed ATTACK leaf is held constant by design; cells show how profile terms relate to each attacked opinion outcome.*
 </div>
 
 ---
 
 ## 📖 Full Paper
 
-The manuscript is built directly from the pipeline outputs:
+The manuscript is built directly from the current pilot outputs:
 
 - **PDF (typeset):** [research_report/report/main.pdf](research_report/report/main.pdf)
 - **LaTeX source:** [research_report/report/main.tex](research_report/report/main.tex)
 - **Report summary:** [research_report/report/report_summary.json](research_report/report/report_summary.json)
 - **Paper assets:** [research_report/assets](research_report/assets)
-- **Interactive dashboard (`run_5`):** [evaluation/run_5/visuals/interactive_sem_dashboard.html](evaluation/run_5/visuals/interactive_sem_dashboard.html)
+- **Interactive dashboard (`run_6`):** [evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html](evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html)
 
 ---
 
@@ -124,7 +124,8 @@ Paper_CaseStudiesAnalysisExperimentalData/
 │   ├── run_2/                        # Realism/coherence upgrades + dashboard
 │   ├── run_3/                        # First publication bundle
 │   ├── run_4/                        # Transitional redesign pilot
-│   └── run_5/                        # Current attacked-only pilot
+│   ├── run_5/                        # First attacked-only pilot
+│   └── run_6/                        # Current 50-profile repeated-outcome pilot
 │
 ├── research_report/
 │   ├── assets/
@@ -149,7 +150,7 @@ Paper_CaseStudiesAnalysisExperimentalData/
     └── frontend/                     # Reserved for later interactive UI work
 ```
 
-> **Note:** the current repository is intentionally backend-first. The paper and evaluation stack are the primary products at this stage; frontend work is deferred until the attacked-only methodology is stable at larger sample sizes.
+> **Note:** the repository is intentionally backend-first. The current primary deliverables are the attacked-only evaluation runs, the run 6 manuscript, and the reusable methodological pipeline.
 
 ---
 
@@ -191,7 +192,7 @@ cd docker
 OPENROUTER_MODEL=mistralai/mistral-small-3.2-24b-instruct docker compose up --build
 ```
 
-By default, the Docker entrypoint runs the current pilot configuration for `evaluation/run_5/` and writes the manuscript outputs to `research_report/report/`.
+By default, the Docker entrypoint runs the current pilot configuration for `evaluation/run_6/` and writes manuscript outputs to `research_report/report/`.
 
 ---
 
@@ -201,15 +202,16 @@ By default, the Docker entrypoint runs the current pilot configuration for `eval
 
 ```bash
 python src/backend/pipeline/full/run_full_pipeline.py \
-  --output-root evaluation/run_5 \
-  --run-id run_5 \
-  --n-scenarios 20 \
-  --seed 415 \
+  --output-root evaluation/run_6 \
+  --run-id run_6 \
+  --n-scenarios 200 \
+  --n-profiles 50 \
+  --seed 42 \
   --attack-ratio 1.0 \
   --attack-leaf "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing" \
   --focus-opinion-domain Defense_and_National_Security \
   --max-opinion-leaves 4 \
-  --profile-candidate-multiplier 4 \
+  --profile-candidate-multiplier 5 \
   --use-test-ontology \
   --openrouter-model mistralai/mistral-small-3.2-24b-instruct \
   --temperature 0.15 \
@@ -222,9 +224,9 @@ python src/backend/pipeline/full/run_full_pipeline.py \
   --generate-visuals \
   --export-static-figures \
   --build-report \
-  --primary-moderator profile_cont_susceptibility_index \
   --bootstrap-samples 800 \
-  --paper-title "PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions" \
+  --max-concurrency 50 \
+  --paper-title "PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimensional State Space of Political Opinions" \
   --report-root research_report/report \
   --report-assets-root research_report/assets
 ```
@@ -251,45 +253,143 @@ Each stage under `src/backend/pipeline/separate/` is independently runnable:
 flowchart TD
     P["PROFILE ontology\ncontinuous + categorical leaves"] --> S
     O["OPINION ontology\nrepeated sampled leaves"] --> S
-    A["ATTACK ontology\nfixed misinformation leaf"] --> E
+    A["ATTACK ontology\nfixed pilot leaf"] --> E
 
-    S["Scenario design\nattacked-only sample\nsusceptibility-stratified profiles"] --> B["Baseline opinion agent\nscore in [-1000, 1000]"]
-    B --> E["Attack exposure agent\nplatform-native persuasion text"]
-    E --> R["Realism reviewer\nthreshold + single repair loop"]
+    S["Scenario design\n50 profiles x repeated opinion leaves\nattacked-only profile panel"] --> B["Baseline opinion agent\nscore in [-1000, 1000]"]
+    B --> E["Attack exposure agent\nplatform-native manipulative message"]
+    E --> R["Realism reviewer\nthreshold + repair loop"]
     R --> P2["Post-exposure opinion agent\nsame leaf, same scale"]
-    P2 --> C["Coherence reviewer\nplausibility + reversal checks"]
-    C --> D["Delta construction\npost - baseline\nexposure-quality composite"]
-    D --> M["Attacked-only moderation model\nrobust OLS + bootstrap + SEM/path"]
-    M --> V["Interactive dashboard\npublication assets\nLaTeX manuscript"]
+    P2 --> C["Coherence reviewer\nplausibility + boundedness checks"]
+    C --> D["Delta construction\nΔ = post - baseline\n|Δ| as primary effectivity"]
+    D --> W["Profile-panel wide table\nfixed attack -> multiple attacked outcomes"]
+    W --> SEM["Repeated-outcome path SEM\nmoderator -> multiple attacked deltas"]
+    W --> RIDGE["Target-conditional ridge task models\npost hoc susceptibility index"]
+    SEM --> OUT["Paper figures, tables, dashboard, PDF report"]
+    RIDGE --> OUT
 ```
 
-The current workflow is intentionally **attacked-only**. Every scenario receives the same attack-vector family, so `run_5` isolates heterogeneity in **response to attack**, not the absolute effect of attack versus no attack.
+---
+
+## 🧮 Conditional Susceptibility Index
+
+For `run_7` and later, the profile-level susceptibility index is treated as **conditional on the attack vectors and opinion leaves that are actually being modeled**. It is therefore not a generic personality score and not a prompt-time heuristic.
+
+Let the configured target set be:
+
+```text
+T = {(attack_leaf, opinion_leaf)}
+```
+
+where each task is a specific `attack_leaf × opinion_leaf` combination included in the run.
+
+For each task `t in T`, the pipeline fits a regularized profile-only model on attacked effectivity:
+
+```text
+predicted_effectivity(profile_i, task_t)
+  = intercept_t
+  + sum over profile features j of [ ridge_weight_jt * feature_ij ]
+```
+
+where:
+
+- `predicted_effectivity(profile_i, task_t)` is attacked effectivity for profile `i` on task `t`
+- the current default attacked effectivity outcome is `abs_delta_score = abs(post - baseline)`
+- `feature_ij` is encoded PROFILE feature `j` for profile `i`
+- `ridge_weight_jt` is the task-specific ridge coefficient estimated after the run
+
+The conditional susceptibility score is then aggregated across the configured target set:
+
+```text
+conditional_score(profile_i, T)
+  = sum over tasks t in T of [ task_weight_t * predicted_effectivity(profile_i, task_t) ]
+
+task_weight_t is proportional to:
+  n_t / cv_mse_t
+```
+
+and converted to a percentile rank within the scored profile set:
+
+```text
+conditional_susceptibility_index(profile_i, T)
+  = percentile_rank( conditional_score(profile_i, T) )
+```
+
+This design matters because in practice susceptibility should be interpreted **relative to the modeled attack family and targeted opinion set**. A profile can be comparatively susceptible for one attack/opinion configuration and not for another.
+
+Implementation status:
+
+- the callable utility is implemented in [src/backend/utils/conditional_susceptibility.py](src/backend/utils/conditional_susceptibility.py)
+- Stage 06 is prepared to save a reusable fitted artifact:
+  - `conditional_susceptibility_artifact.json`
+  - `conditional_susceptibility_task_coefficients.csv`
+  - `conditional_susceptibility_task_summary.csv`
+- the saved artifact is intended to be reused later to score new pseudoprofiles **under the same attack/opinion target set**
+
+Minimal usage pattern:
+
+```python
+import pandas as pd
+
+from src.backend.utils.conditional_susceptibility import (
+    fit_conditional_susceptibility_index,
+    score_profiles_with_conditional_artifact,
+)
+
+long_df = pd.read_csv("evaluation/run_6/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv")
+
+fit = fit_conditional_susceptibility_index(
+    long_df,
+    outcome_metric="abs_delta_score",
+    seed=42,
+)
+
+artifact = fit.artifact
+profile_scores, breakdown = score_profiles_with_conditional_artifact(
+    long_df[["profile_id", *artifact.feature_columns]].drop_duplicates(),
+    artifact,
+)
+```
+
+Important constraint:
+
+- the current legacy `resilience_index` remains only as an internal realism helper in older code paths
+- it is **not** the analysis-facing susceptibility construct for future runs
+- the analysis-facing susceptibility construct is the post hoc **conditional susceptibility index**
 
 ---
 
 ## 📊 Figures & Tables
 
-Main manuscript figures are copied into `research_report/assets/figures/` and include:
+Main publication figures are copied into `research_report/assets/figures/`:
 
 - `figure_1_study_design`
-- `figure_2_delta_distribution_by_susceptibility`
-- `figure_3_primary_moderation_interaction`
+- `figure_2_absolute_delta_distribution`
+- `figure_3_profile_moderator_coefficient_forest`
 - `figure_4_annotated_sem_path_diagram`
 
-Supplementary manuscript figures include:
+Supplementary figures include:
 
 - `supplementary_figure_s1_baseline_post_scatter`
-- `supplementary_figure_s2_attack_quality`
-- `supplementary_figure_s3_scenario_composition`
-- `supplementary_figure_s4_moderator_coefficient_forest`
+- `supplementary_figure_s2_profile_effectivity_heatmap`
+- `supplementary_figure_s3_susceptibility_distribution`
 
-Main and supplementary tables are copied into `research_report/assets/tables/` as both source `CSV` and manuscript-ready `TeX` fragments, each with a title and a `Note.` block.
+Main tables are copied into `research_report/assets/tables/`:
 
-Interactive inspection outputs are written to:
+- `table_1_pilot_design_and_configuration`
+- `table_2_attacked_effectivity_descriptive_statistics`
+- `table_3_multivariate_profile_moderator_model`
 
-- `evaluation/run_2/visuals/interactive_sem_dashboard.html`
-- `evaluation/run_4/visuals/interactive_sem_dashboard.html`
-- `evaluation/run_5/visuals/interactive_sem_dashboard.html`
+Supplementary tables include:
+
+- `supplementary_table_s1_ontology_leaves_used`
+- `supplementary_table_s2_moderator_comparison`
+- `supplementary_table_s3_assumption_and_risk_register`
+- `supplementary_table_s4_reproducibility_manifest`
+- `supplementary_table_s5_sem_path_coefficients`
+
+Interactive inspection outputs for the main pilot are written to:
+
+- `evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html`
 
 ---
 
@@ -299,13 +399,13 @@ If you use this code, outputs, or manuscript material, cite:
 
 ### APA 7
 
-> Van Severen, S., & De Schryver, T. (2026). *PILOT: Inter-individual differences in susceptibility to cyber-manipulation: A multi-agent simulation approach with high-dimension state space of political opinions*. Ghent University. https://github.com/stvsever/research_paper_on_cognitive_sovereignity
+> Van Severen, S., & De Schryver, T. (2026). *PILOT: Inter-individual differences in susceptibility to cyber-manipulation: A multi-agent simulation approach with high-dimensional state space of political opinions*. Ghent University. https://github.com/stvsever/research_paper_on_cognitive_sovereignity
 
 ### BibTeX
 
 ```bibtex
 @article{vanseveren2026cognitivepilot,
-  title        = {PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions},
+  title        = {PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimensional State Space of Political Opinions},
   author       = {Van Severen, Stijn and De Schryver, Thomas},
   year         = {2026},
   institution  = {Ghent University},
@@ -319,14 +419,57 @@ A machine-readable citation is also available in [`CITATION.cff`](CITATION.cff).
 
 ## 📜 License
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE).
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
-You are free to use, modify, and distribute this code for academic or commercial purposes.
+You are free to use, modify, and distribute this code for academic and non-academic use.
+
+---
+
+## ⏭️ Next Steps
+
+### 1. Pilot Methodology
+
+- Run `run_7` with **multiple ATTACK leaves** while keeping the same **target-conditional susceptibility scoring logic**.
+- Add explicit **target-set versioning** to all paper/report outputs so each result bundle records the exact ATTACK and OPINION leaves used for susceptibility estimation.
+- Expand and refine the three high-resolution ontologies:
+  - improve PROFILE hierarchy coverage and mixed-type constraints
+  - improve ATTACK taxonomy granularity for platform-native manipulation strategies
+  - improve OPINION hierarchy breadth so repeated attacked outcomes span a richer political state space
+- Tighten ontology realism rules so implausible pseudoprofile combinations and semantically inconsistent attack-opinion pairings are rejected earlier.
+- Refine the multi-agent prompting stack with stronger topic anchoring, bounded-shift logic, and clearer issue-specific persuasion constraints.
+- Improve the SEM/path-model logic by testing more defensible repeated-outcome specifications, better residual structures, and clearer treatment of multiclass and hierarchical profile variables.
+- Stress-test robustness with larger pilots, more repeated opinion leaves per profile, and model-comparison runs across alternative LLM backends.
+
+### 2. Conditional Susceptibility Modeling
+
+- Improve the conditional susceptibility estimator beyond ridge aggregation while keeping the same artifact interface.
+- Add nonlinear profile-to-effectivity models behind the same scoring API, for example:
+  - gradient-boosted trees
+  - multilayer perceptrons
+  - graph neural networks over ontology-aware feature structures
+- Evaluate whether conditional susceptibility should be estimated at multiple levels:
+  - overall target-set score
+  - attack-family-specific score
+  - opinion-domain-specific score
+  - attack-opinion-task-specific predicted effectivity
+- Add calibration and out-of-sample ranking diagnostics so the susceptibility index is assessed as a predictive model, not only as a descriptive decomposition.
+
+### 3. Deployment and Scale-Up
+
+- For deployment-scale runs, use stronger instruction-following models and compare them systematically against the current low-cost Mistral setup. Good candidates include:
+  - `openai/gpt-5.4`
+  - `anthropic/claude-opus-4.6`
+  - `google/gemini-3.1-pro`
+  - open-source alternatives (e.g., deepseek, moonshot, qwen, etc.)
+  - etc.
+- Add multi-model sensitivity analysis so conclusions are not tied to one provider or one prompt style.
+- Increase concurrency, caching, artifact versioning, and resumability for larger runs with many attack leaves and high-dimensional opinion panels.
+- Stabilize the saved model-artifact contract so fitted conditional susceptibility models can be reused later in larger simulations and downstream deployment settings without changing the scoring API.
 
 ---
 
 <div align="center">
 
-Built at **Ghent University** for a backend-first pilot on cognitive sovereignty under digital adversarial pressure.
+Built at **Ghent University** 🏫 for course  '**Case Studies** in the **Analysis of Experimental Data**' 🎓
 
 </div>

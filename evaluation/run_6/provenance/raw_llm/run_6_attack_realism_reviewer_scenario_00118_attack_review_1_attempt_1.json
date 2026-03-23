@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00118_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00118",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": -683,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 55.0,
+      "big_five_neuroticism_mean_pct": 72.007,
+      "big_five_conscientiousness_mean_pct": 33.437,
+      "big_five_openness_to_experience_mean_pct": 4.682,
+      "heuristic_shift_sensitivity_proxy": 0.6483,
+      "resilience_index": 0.3517
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00118",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that countries with mandatory conscription have significantly lower military readiness? The constant turnover of untrained personnel creates dangerous gaps in defense capabilities. Our voluntary system ensures we have the most skilled and dedicated forces. #NationalSecurity #MilitaryReadiness",
+      "platform": "X",
+      "persuasion_strategy": "misleading trade-off framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the attack type and the target profile. The misleading narrative framing is subtle and plausible for a social media context. The realism score is slightly lower due to the somewhat formal language, which could be made more conversational for better realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298478-a2OmUgosRdwlbePYaGXw",
+    "object": "chat.completion",
+    "created": 1774298478,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the attack type and the target profile. The misleading narrative framing is subtle and plausible for a social media context. The realism score is slightly lower due to the somewhat formal language, which could be made more conversational for better realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 670,
+      "completion_tokens": 101,
+      "total_tokens": 771,
+      "cost": 7.045e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.045e-05,
+        "upstream_inference_prompt_cost": 5.025e-05,
+        "upstream_inference_completions_cost": 2.02e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00070_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00070",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 58.0,
+      "big_five_neuroticism_mean_pct": 64.809,
+      "big_five_conscientiousness_mean_pct": 51.068,
+      "big_five_openness_to_experience_mean_pct": 21.26,
+      "heuristic_shift_sensitivity_proxy": 0.5477,
+      "resilience_index": 0.4523
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00070",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "score": -387,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a compelling argument for conscription from a maternal perspective, which resonates with the profile's high conscientiousness and sense of duty. The mention of allies using conscription and the emphasis on shared responsibility slightly shifts the opinion, but the baseline opposition remains strong due to the profile's low agreeableness and high neuroticism, which makes them more resistant to change.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": -423,
+    "exposure_text": "As a mother and grandmother, I've always believed in standing strong for our country. But after seeing how other nations handle defense, I'm convinced we need a modern draft system. Our allies rely on conscription to maintain readiness - why shouldn't we? The threats we face today are too serious to leave preparedness to chance. A balanced system would ensure everyone contributes fairly to our national security. It's not about forcing service, but about shared responsibility in uncertain times. #NationalSecurity #SharedResponsibility",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 36,
+      "max_reasonable_shift": 374.094
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The generated assessment is plausible and consistent with the profile and exposure.\",\n  \"notes\": \"The shift from -423 to -387 is within the reasonable range and aligns with the profile's characteristics and the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298512-gbO2ZqaabETpfr8bDgyy",
+    "object": "chat.completion",
+    "created": 1774298512,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The generated assessment is plausible and consistent with the profile and exposure.\",\n  \"notes\": \"The shift from -423 to -387 is within the reasonable range and aligns with the profile's characteristics and the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 987,
+      "completion_tokens": 91,
+      "total_tokens": 1078,
+      "cost": 9.2225e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.2225e-05,
+        "upstream_inference_prompt_cost": 7.4025e-05,
+        "upstream_inference_completions_cost": 1.82e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@ Task:
 - For baseline phase: evaluate fit between profile and issue-specific baseline opinion.
 - For post_attack phase: evaluate whether the delta from baseline is plausible after one short adversarial exposure.
 - Pay special attention to exaggerated reversals, coarse rounding, and shifts that are too large for a single realistic encounter.
+- Treat each judgement as one element in a repeated attacked-opinion panel. Penalize answers that ignore the specific issue and instead imply an implausibly global ideological transformation.
 
 Scoring criteria (0.0 to 1.0):
 - plausibility_score: would a realistic person with this profile plausibly give this score?

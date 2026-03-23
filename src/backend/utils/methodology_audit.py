@@ -114,7 +114,7 @@ def build_peer_review_critique_notes(df: pd.DataFrame, sem_result: SemFitResult)
         notes.append(
             {
                 "critique": "Attack-only designs cannot estimate the incremental effect of exposure relative to a no-attack counterfactual.",
-                "implemented_change": "The report now states explicitly that run_5 estimates heterogeneity of post-minus-baseline response among attacked individuals only.",
+                "implemented_change": "The report states explicitly that the attacked-only design estimates heterogeneity of post-minus-baseline response among attacked individuals only.",
             }
         )
 

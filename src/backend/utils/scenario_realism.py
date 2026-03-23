@@ -1,5 +1,26 @@
 from __future__ import annotations
 
+"""
+Technical overview
+------------------
+This module contains the realism layer that sits between pure ontology sampling
+and the LLM-facing prompt payloads. Its job is to turn abstract leaf-node
+choices into scenario context that is realistic enough to constrain the
+simulation, without pretending to be the final analytical susceptibility model.
+
+The functions here do two main things:
+- derive lightweight heuristic context used to bound plausible opinion movement
+- build attack-side prompt context and heuristic checks for downstream review
+
+Important distinction:
+- `heuristic_shift_sensitivity_proxy` and `resilience_index` are legacy realism
+  helpers used for boundedness and prompt guidance
+- they are not the analysis-facing susceptibility construct used in Stage 06
+
+So this module is about keeping scenarios plausible and reviewable, not about
+estimating the final moderation answer to the research question.
+"""
+
 from typing import Dict, List
 
 from src.backend.utils.schemas import ProfileConfiguration
@@ -24,7 +45,7 @@ def bounded(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
 
 
-def compute_susceptibility_index(profile: ProfileConfiguration) -> float:
+def compute_shift_sensitivity_proxy(profile: ProfileConfiguration) -> float:
     values = profile.continuous_attributes
     neuro = values.get("big_five_neuroticism_mean_pct", 50.0) / 100.0
     consc = values.get("big_five_conscientiousness_mean_pct", 50.0) / 100.0
@@ -36,8 +57,12 @@ def compute_susceptibility_index(profile: ProfileConfiguration) -> float:
     return round(bounded(score, 0.0, 1.0), 4)
 
 
+def compute_susceptibility_index(profile: ProfileConfiguration) -> float:
+    return compute_shift_sensitivity_proxy(profile)
+
+
 def compute_resilience_index(profile: ProfileConfiguration) -> float:
-    return round(1.0 - compute_susceptibility_index(profile), 4)
+    return round(1.0 - compute_shift_sensitivity_proxy(profile), 4)
 
 
 def profile_context_snapshot(profile: ProfileConfiguration) -> Dict[str, float | str]:
@@ -48,7 +73,7 @@ def profile_context_snapshot(profile: ProfileConfiguration) -> Dict[str, float |
         "big_five_neuroticism_mean_pct": float(values.get("big_five_neuroticism_mean_pct", 50.0)),
         "big_five_conscientiousness_mean_pct": float(values.get("big_five_conscientiousness_mean_pct", 50.0)),
         "big_five_openness_to_experience_mean_pct": float(values.get("big_five_openness_to_experience_mean_pct", 50.0)),
-        "susceptibility_index": compute_susceptibility_index(profile),
+        "heuristic_shift_sensitivity_proxy": compute_shift_sensitivity_proxy(profile),
         "resilience_index": compute_resilience_index(profile),
     }
 
@@ -71,7 +96,7 @@ def build_attack_context(
     domain = extract_opinion_domain(opinion_leaf)
     leaf_label = extract_leaf_label(opinion_leaf)
     context = profile_context_snapshot(profile)
-    susceptibility = float(context["susceptibility_index"])
+    shift_sensitivity_proxy = float(context["heuristic_shift_sensitivity_proxy"])
     openness = float(context["big_five_openness_to_experience_mean_pct"])
     neuroticism = float(context["big_five_neuroticism_mean_pct"])
     conscientiousness = float(context["big_five_conscientiousness_mean_pct"])
@@ -111,9 +136,9 @@ def build_attack_context(
             "motivational_lever": motivational_lever,
             "persuasion_goal": persuasion_goal,
             "recommended_shift_band": {
-                "low": round(20 + 40 * susceptibility, 1),
-                "typical": round(40 + 120 * susceptibility, 1),
-                "upper": round(90 + 210 * susceptibility, 1),
+                "low": round(20 + 40 * shift_sensitivity_proxy, 1),
+                "typical": round(40 + 120 * shift_sensitivity_proxy, 1),
+                "upper": round(90 + 210 * shift_sensitivity_proxy, 1),
             },
             "paper_goal": (
                 "Investigate how inter-individual differences moderate the effectivity of cyber-manipulation "
@@ -169,10 +194,10 @@ def assess_post_opinion_heuristics(
     post_score: int,
     attack_present: bool,
     intensity_hint: float,
-    susceptibility_index: float,
+    shift_sensitivity_proxy: float,
 ) -> Dict[str, object]:
     delta = post_score - baseline_score
-    max_shift = 80.0 + (280.0 * intensity_hint) + (220.0 * susceptibility_index)
+    max_shift = 80.0 + (280.0 * intensity_hint) + (220.0 * shift_sensitivity_proxy)
     if not attack_present:
         max_shift = 120.0
 

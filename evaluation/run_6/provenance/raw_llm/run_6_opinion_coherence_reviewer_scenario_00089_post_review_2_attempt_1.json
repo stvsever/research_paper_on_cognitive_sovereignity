@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00089_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00089",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 39.046,
+      "big_five_conscientiousness_mean_pct": 30.332,
+      "big_five_openness_to_experience_mean_pct": 64.319,
+      "heuristic_shift_sensitivity_proxy": 0.5406,
+      "resilience_index": 0.4594
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00089",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 144,
+      "confidence": 0.69,
+      "reasoning": "The exposure text introduced doubt about the fairness of current alliance commitments, which resonated with the profile's moderate openness to new ideas and lower conscientiousness. However, given the profile's resilience and sensitivity, the shift is modest, reflecting a nuanced reconsideration rather than a strong conviction change.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "Did you know that our allies are actually taking advantage of us? While we're over here paying for their defense, they're cutting back on their own military budgets. It's time we put America first and make sure our allies contribute their fair share. #NationalSecurity #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -73,
+      "max_reasonable_shift": 372.532
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is implausibly large for a single short adversarial exposure. The shift should be more modest and consistent with the profile's characteristics.\",\n  \"notes\": \"The generated assessment shows an extreme shift in opinion score, which is not plausible given the profile's resilience and sensitivity. The delta of -73 is too large for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298535-54pUYA84CHrcwW6T0jBZ",
+    "object": "chat.completion",
+    "created": 1774298535,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is implausibly large for a single short adversarial exposure. The shift should be more modest and consistent with the profile's characteristics.\",\n  \"notes\": \"The generated assessment shows an extreme shift in opinion score, which is not plausible given the profile's resilience and sensitivity. The delta of -73 is too large for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 929,
+      "completion_tokens": 116,
+      "total_tokens": 1045,
+      "cost": 9.566e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.566e-05,
+        "upstream_inference_prompt_cost": 6.086e-05,
+        "upstream_inference_completions_cost": 3.48e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

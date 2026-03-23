@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00192_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00192",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 43.0,
+      "big_five_neuroticism_mean_pct": 17.63,
+      "big_five_conscientiousness_mean_pct": 73.778,
+      "big_five_openness_to_experience_mean_pct": 54.742,
+      "heuristic_shift_sensitivity_proxy": 0.2826,
+      "resilience_index": 0.7174
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00192",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 720,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the importance of strategic autonomy in defense tech, emphasizing national security and trust among allies.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 682,
+    "exposure_text": "Did you know that our reliance on foreign tech for critical infrastructure is making us less secure? While some argue for open markets, the reality is that strategic autonomy in defense tech isn't just about being self-sufficient—it's about ensuring our allies can trust us to uphold our end of the bargain. When we can't guarantee our own supply chains, how can we expect to lead? #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 38,
+      "max_reasonable_shift": 315.772
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is moderate and consistent with the exposure text. The reasoning is plausible and well-aligned with the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298542-8QRYqtRO5F2xOpkWxTWQ",
+    "object": "chat.completion",
+    "created": 1774298542,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is moderate and consistent with the exposure text. The reasoning is plausible and well-aligned with the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 918,
+      "completion_tokens": 73,
+      "total_tokens": 991,
+      "cost": 8.166e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.166e-05,
+        "upstream_inference_prompt_cost": 5.976e-05,
+        "upstream_inference_completions_cost": 2.19e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

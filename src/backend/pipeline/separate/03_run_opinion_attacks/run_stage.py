@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import logging
 import sys
+import threading
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -66,28 +68,30 @@ def run_stage(input_path: str, output_dir: str, config: Stage03Config) -> StageA
     project_root = Path(__file__).resolve().parents[5]
     prompts_dir = project_root / "src" / "backend" / "agentic_framework" / "prompts"
 
-    factory = AgentFactory(
-        prompts_dir=prompts_dir,
-        openrouter_api_key=env_get_required("OPENROUTER_API_KEY"),
-        openrouter_model=config.openrouter_model,
-        max_repair_iter=config.max_repair_iter,
-        temperature=config.temperature,
-        timeout_sec=config.timeout_sec,
-        save_raw_dir=raw_dir,
-    )
-    attack_agent = factory.attack_exposure_agent()
-    reviewer_agent = factory.attack_realism_reviewer_agent()
-
     rows = read_jsonl(input_path)
+    thread_local = threading.local()
 
-    exposures: List[AttackExposure] = []
-    enriched_rows: List[Dict[str, object]] = []
-    realism_scores: List[float] = []
-    coherence_scores: List[float] = []
-    review_rewrite_count = 0
-    heuristic_fail_count = 0
+    def _agents_for_thread() -> tuple:
+        if not hasattr(thread_local, "bundle"):
+            factory = AgentFactory(
+                prompts_dir=prompts_dir,
+                openrouter_api_key=env_get_required("OPENROUTER_API_KEY"),
+                openrouter_model=config.openrouter_model,
+                max_repair_iter=config.max_repair_iter,
+                temperature=config.temperature,
+                timeout_sec=config.timeout_sec,
+                save_raw_dir=raw_dir,
+            )
+            thread_local.bundle = (
+                factory.attack_exposure_agent(),
+                factory.attack_realism_reviewer_agent(),
+            )
+        return thread_local.bundle
 
-    for row in rows:
+    def _process_row(row: Dict[str, object]) -> Dict[str, object]:
+        attack_agent, reviewer_agent = _agents_for_thread()
+        local_review_rewrite_count = 0
+        local_heuristic_fail_count = 0
         scenario = ScenarioRecord.model_validate({k: v for k, v in row.items() if k != "baseline_assessment"})
         baseline = OpinionAssessment.model_validate(row["baseline_assessment"])
 
@@ -189,7 +193,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage03Config) -> StageA
                 )
 
                 if needs_rewrite:
-                    review_rewrite_count += 1
+                    local_review_rewrite_count += 1
                     feedback_parts = []
                     if review.rewrite_feedback:
                         feedback_parts.append(review.rewrite_feedback)
@@ -238,17 +242,31 @@ def run_stage(input_path: str, output_dir: str, config: Stage03Config) -> StageA
                         )
 
             if not bool(heuristics["checks"].get("overall_pass", False)):
-                heuristic_fail_count += 1
+                local_heuristic_fail_count += 1
 
-            realism_scores.append(float(review.realism_score))
-            coherence_scores.append(float(review.coherence_score))
-
-        exposures.append(exposure)
         enriched_row = dict(row)
         enriched_row["attack_exposure"] = exposure.model_dump()
         enriched_row["attack_realism_review"] = review.model_dump()
         enriched_row["attack_heuristic_checks"] = heuristics
-        enriched_rows.append(enriched_row)
+        return {
+            "exposure": exposure,
+            "enriched_row": enriched_row,
+            "realism_score": float(review.realism_score),
+            "coherence_score": float(review.coherence_score),
+            "review_rewrite_count": local_review_rewrite_count,
+            "heuristic_fail_count": local_heuristic_fail_count,
+        }
+
+    max_workers = max(1, int(config.max_concurrency or 1))
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        results = list(executor.map(_process_row, rows))
+
+    exposures = [result["exposure"] for result in results]
+    enriched_rows = [result["enriched_row"] for result in results]
+    realism_scores = [float(result["realism_score"]) for result in results if result["exposure"].attack_present]
+    coherence_scores = [float(result["coherence_score"]) for result in results if result["exposure"].attack_present]
+    review_rewrite_count = int(sum(int(result["review_rewrite_count"]) for result in results))
+    heuristic_fail_count = int(sum(int(result["heuristic_fail_count"]) for result in results))
 
     exposure_jsonl = Path(output_dir) / "attack_exposures.jsonl"
     enriched_jsonl = Path(output_dir) / "scenarios_with_exposure.jsonl"
@@ -313,6 +331,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--save-raw-llm", action="store_true", default=False)
     parser.add_argument("--raw-llm-dir", default=None)
     parser.add_argument("--timeout-sec", type=int, default=90)
+    parser.add_argument("--max-concurrency", type=int, default=1)
     parser.add_argument("--log-file", required=True)
     parser.add_argument("--log-level", default="INFO")
     return parser.parse_args()
@@ -333,6 +352,7 @@ def main() -> None:
         save_raw_llm=args.save_raw_llm,
         raw_llm_dir=args.raw_llm_dir,
         timeout_sec=args.timeout_sec,
+        max_concurrency=args.max_concurrency,
         self_supervise_attack_realism=args.self_supervise_attack_realism,
         realism_threshold=args.realism_threshold,
     )

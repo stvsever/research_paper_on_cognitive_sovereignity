@@ -39,11 +39,12 @@ def choose_primary_moderator_column(df: pd.DataFrame, preferred: Optional[str] =
         return preferred
 
     preferred = [
-        "profile_cont_susceptibility_index",
-        "profile_cont_resilience_index",
+        "profile_cont_age_years",
         "profile_cont_big_five_neuroticism_mean_pct",
         "profile_cont_big_five_openness_to_experience_mean_pct",
-        "profile_cont_age_years",
+        "profile_cont_big_five_conscientiousness_mean_pct",
+        "profile_cont_big_five_extraversion_mean_pct",
+        "profile_cont_big_five_agreeableness_mean_pct",
     ]
     for col in preferred:
         if col in df.columns and df[col].nunique() > 1:

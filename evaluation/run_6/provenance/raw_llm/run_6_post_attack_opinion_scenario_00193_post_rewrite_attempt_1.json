@@ -1,0 +1,146 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_00193_post_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00193",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile": {
+      "profile_id": "profile_0245",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "age_years": 58.0,
+        "big_five_agreeableness_altruism_pct": 71.359,
+        "big_five_agreeableness_compliance_pct": 52.963,
+        "big_five_agreeableness_modesty_pct": 61.003,
+        "big_five_agreeableness_straightforwardness_pct": 78.129,
+        "big_five_agreeableness_tender_mindedness_pct": 69.708,
+        "big_five_agreeableness_trust_pct": 71.717,
+        "big_five_agreeableness_mean_pct": 67.48,
+        "big_five_conscientiousness_achievement_striving_pct": 75.649,
+        "big_five_conscientiousness_competence_pct": 61.567,
+        "big_five_conscientiousness_deliberation_pct": 73.75,
+        "big_five_conscientiousness_dutifulness_pct": 73.708,
+        "big_five_conscientiousness_order_pct": 56.774,
+        "big_five_conscientiousness_self_discipline_pct": 68.407,
+        "big_five_conscientiousness_mean_pct": 68.309,
+        "big_five_extraversion_activity_level_pct": 42.496,
+        "big_five_extraversion_assertiveness_pct": 41.453,
+        "big_five_extraversion_excitement_seeking_pct": 53.201,
+        "big_five_extraversion_gregariousness_pct": 46.421,
+        "big_five_extraversion_positive_emotions_pct": 46.696,
+        "big_five_extraversion_warmth_pct": 60.414,
+        "big_five_extraversion_mean_pct": 48.447,
+        "big_five_neuroticism_anger_hostility_pct": 21.414,
+        "big_five_neuroticism_anxiety_pct": 19.725,
+        "big_five_neuroticism_depression_pct": 18.436,
+        "big_five_neuroticism_impulsiveness_pct": 9.431,
+        "big_five_neuroticism_self_consciousness_pct": 40.013,
+        "big_five_neuroticism_stress_vulnerability_pct": 16.687,
+        "big_five_neuroticism_mean_pct": 20.951,
+        "big_five_openness_to_experience_actions_pct": 97.77,
+        "big_five_openness_to_experience_aesthetics_pct": 100.0,
+        "big_five_openness_to_experience_fantasy_pct": 84.125,
+        "big_five_openness_to_experience_feelings_pct": 100.0,
+        "big_five_openness_to_experience_ideas_pct": 100.0,
+        "big_five_openness_to_experience_values_pct": 80.668,
+        "big_five_openness_to_experience_mean_pct": 93.761,
+        "heuristic_shift_sensitivity_proxy": 0.2347,
+        "resilience_index": 0.7653
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 623,
+    "exposure_text": "Did you know that our allies are increasingly relying on us for their defense, while some politicians want to cut back on our commitments? As someone who values duty and order, it's important to recognize that maintaining strong alliances isn't just about them—it's about our own security. A recent study showed that 78% of national security experts agree that reducing our commitments could leave us vulnerable. Let's ensure we stay strong and reliable, for our sake and theirs. #NationalSecurity #AllianceCommitment",
+    "attack_present": true,
+    "intensity_hint": 0.62,
+    "review_feedback": "The shift is slightly larger than expected but still within reasonable bounds."
+  },
+  "response_text": "{\n  \"score\": 680,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure text reinforced the importance of alliance commitment by appealing to duty and order, which resonates with the profile's high conscientiousness. The mention of national security experts and the statistic about vulnerability added credibility, nudging the opinion further in favor of strong alliance commitment.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298544-wkJIEPFu4YbC0pGUM1gX",
+    "object": "chat.completion",
+    "created": 1774298544,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 680,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure text reinforced the importance of alliance commitment by appealing to duty and order, which resonates with the profile's high conscientiousness. The mention of national security experts and the statistic about vulnerability added credibility, nudging the opinion further in favor of strong alliance commitment.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2305,
+      "completion_tokens": 83,
+      "total_tokens": 2388,
+      "cost": 0.000189475,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000189475,
+        "upstream_inference_prompt_cost": 0.000172875,
+        "upstream_inference_completions_cost": 1.66e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

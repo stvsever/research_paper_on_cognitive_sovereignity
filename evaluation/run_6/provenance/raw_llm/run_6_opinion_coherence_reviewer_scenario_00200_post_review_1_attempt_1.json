@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00200_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00200",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 68.0,
+      "big_five_neuroticism_mean_pct": 71.107,
+      "big_five_conscientiousness_mean_pct": 80.711,
+      "big_five_openness_to_experience_mean_pct": 68.774,
+      "heuristic_shift_sensitivity_proxy": 0.4294,
+      "resilience_index": 0.5706
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00200",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 687,
+      "confidence": 0.78,
+      "reasoning": "The exposure reinforced my existing support for strategic autonomy, especially the emphasis on national security and protecting communities. The veteran's perspective added credibility, making me more convinced of the urgency.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a veteran, I've seen firsthand how our reliance on foreign tech puts our national security at risk. The recent cyberattacks on our infrastructure prove we can't afford to wait. Strategic autonomy isn't just about being self-reliant—it's about protecting our families and communities. We've built this nation on independence; let's not compromise it now. #SecureOurFuture #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 64,
+      "max_reasonable_shift": 348.068
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 623 to 687 is plausible given the exposure and profile. The reasoning aligns well with the veteran's perspective and the issue of strategic autonomy.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298546-TcFBsolPJlOj5nzJTkD2",
+    "object": "chat.completion",
+    "created": 1774298546,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 623 to 687 is plausible given the exposure and profile. The reasoning aligns well with the veteran's perspective and the issue of strategic autonomy.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 931,
+      "completion_tokens": 87,
+      "total_tokens": 1018,
+      "cost": 8.7225e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.7225e-05,
+        "upstream_inference_prompt_cost": 6.9825e-05,
+        "upstream_inference_completions_cost": 1.74e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

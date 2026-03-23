@@ -1,0 +1,146 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_00042_post_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00042",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile": {
+      "profile_id": "profile_0051",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "age_years": 27.0,
+        "big_five_agreeableness_altruism_pct": 9.528,
+        "big_five_agreeableness_compliance_pct": 11.038,
+        "big_five_agreeableness_modesty_pct": 15.452,
+        "big_five_agreeableness_straightforwardness_pct": 27.117,
+        "big_five_agreeableness_tender_mindedness_pct": 18.998,
+        "big_five_agreeableness_trust_pct": 14.273,
+        "big_five_agreeableness_mean_pct": 16.068,
+        "big_five_conscientiousness_achievement_striving_pct": 16.7,
+        "big_five_conscientiousness_competence_pct": 8.3,
+        "big_five_conscientiousness_deliberation_pct": 23.678,
+        "big_five_conscientiousness_dutifulness_pct": 21.764,
+        "big_five_conscientiousness_order_pct": 22.192,
+        "big_five_conscientiousness_self_discipline_pct": 0.361,
+        "big_five_conscientiousness_mean_pct": 15.499,
+        "big_five_extraversion_activity_level_pct": 77.69,
+        "big_five_extraversion_assertiveness_pct": 70.828,
+        "big_five_extraversion_excitement_seeking_pct": 90.981,
+        "big_five_extraversion_gregariousness_pct": 87.331,
+        "big_five_extraversion_positive_emotions_pct": 96.894,
+        "big_five_extraversion_warmth_pct": 96.718,
+        "big_five_extraversion_mean_pct": 86.74,
+        "big_five_neuroticism_anger_hostility_pct": 74.565,
+        "big_five_neuroticism_anxiety_pct": 89.761,
+        "big_five_neuroticism_depression_pct": 91.653,
+        "big_five_neuroticism_impulsiveness_pct": 69.584,
+        "big_five_neuroticism_self_consciousness_pct": 73.785,
+        "big_five_neuroticism_stress_vulnerability_pct": 82.236,
+        "big_five_neuroticism_mean_pct": 80.264,
+        "big_five_openness_to_experience_actions_pct": 45.022,
+        "big_five_openness_to_experience_aesthetics_pct": 22.458,
+        "big_five_openness_to_experience_fantasy_pct": 33.772,
+        "big_five_openness_to_experience_feelings_pct": 29.931,
+        "big_five_openness_to_experience_ideas_pct": 40.116,
+        "big_five_openness_to_experience_values_pct": 21.721,
+        "big_five_openness_to_experience_mean_pct": 32.17,
+        "heuristic_shift_sensitivity_proxy": 0.7728,
+        "resilience_index": 0.2272
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 217,
+    "exposure_text": "Did you know? Countries with mandatory service actually have lower military readiness scores than volunteer forces. Why risk our national security with outdated conscription policies? #NationalSecurity #MilitaryReadiness",
+    "attack_present": true,
+    "intensity_hint": 0.62,
+    "review_feedback": "The shift from 217 to 150 is too large for a single exposure. Consider a smaller, more plausible shift. Keep the post-exposure shift bounded and avoid implausible reversals."
+  },
+  "response_text": "{\n  \"score\": 180,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure text presents a new argument against conscription, slightly weakening my previous support. However, my baseline score was already relatively high, indicating a strong pre-existing belief. The shift is modest due to the intensity hint and my resilience index.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298527-vgUN2JqymAuUVrjeWpcR",
+    "object": "chat.completion",
+    "created": 1774298527,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 180,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure text presents a new argument against conscription, slightly weakening my previous support. However, my baseline score was already relatively high, indicating a strong pre-existing belief. The shift is modest due to the intensity hint and my resilience index.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2265,
+      "completion_tokens": 77,
+      "total_tokens": 2342,
+      "cost": 0.000185275,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000185275,
+        "upstream_inference_prompt_cost": 0.000169875,
+        "upstream_inference_completions_cost": 1.54e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

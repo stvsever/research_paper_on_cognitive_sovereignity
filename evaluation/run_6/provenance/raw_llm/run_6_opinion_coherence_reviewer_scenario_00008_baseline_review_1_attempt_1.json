@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00008_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00008",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 35.0,
+      "big_five_neuroticism_mean_pct": 82.168,
+      "big_five_conscientiousness_mean_pct": 94.358,
+      "big_five_openness_to_experience_mean_pct": 4.763,
+      "heuristic_shift_sensitivity_proxy": 0.5916,
+      "resilience_index": 0.4084
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00008",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 682,
+      "confidence": 0.81,
+      "reasoning": "High conscientiousness and dutifulness suggest strong support for strategic autonomy as a means of ensuring national security and stability. Moderate neuroticism, particularly anxiety and stress vulnerability, may amplify concerns about vulnerability to external threats. Low openness to experience indicates a preference for established, proven strategies over novel or experimental approaches.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 682 is somewhat high but plausible given the profile's high conscientiousness and moderate neuroticism. The reasoning aligns well with the profile, but the score could be slightly lower to better reflect the profile's low openness to experience, which might temper extreme positions.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298396-AX0kcYOc7qDNPXcj5yuK",
+    "object": "chat.completion",
+    "created": 1774298396,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 682 is somewhat high but plausible given the profile's high conscientiousness and moderate neuroticism. The reasoning aligns well with the profile, but the score could be slightly lower to better reflect the profile's low openness to experience, which might temper extreme positions.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 811,
+      "completion_tokens": 109,
+      "total_tokens": 920,
+      "cost": 0.00013839,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013839,
+        "upstream_inference_prompt_cost": 7.299e-05,
+        "upstream_inference_completions_cost": 6.54e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

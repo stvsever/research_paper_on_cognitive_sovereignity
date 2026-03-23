@@ -1,5 +1,30 @@
 from __future__ import annotations
 
+"""
+Technical overview
+------------------
+This module builds pseudoprofiles from the hierarchical PROFILE ontology. It
+handles mixed variable types:
+- categorical selections, such as sex
+- continuous trait values, such as age or Big Five facet percentiles
+
+The deterministic generator creates a coherent baseline profile from ontology
+leaf structure alone. Optional LLM-based profile generation can then modify
+that baseline, but the deterministic seed remains the structural fallback and
+anchor.
+
+Why this module matters:
+- it is the entry point that converts ontology structure into profile vectors
+- it preserves the distinction between categorical and continuous profile data
+- it provides consistent profile IDs and selected leaf metadata for downstream
+  scenario generation and moderation analysis
+
+The legacy `heuristic_shift_sensitivity_proxy` and `resilience_index` are still
+attached here because other realism layers use them for boundedness checks.
+They are not intended to be the final susceptibility estimator used in the
+paper-facing analysis pipeline.
+"""
+
 import random
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
@@ -7,7 +32,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 from src.backend.utils.ontology_utils import flatten_leaf_paths
 from src.backend.utils.scenario_realism import (
     compute_resilience_index,
-    compute_susceptibility_index,
+    compute_shift_sensitivity_proxy,
 )
 from src.backend.utils.schemas import ProfileConfiguration
 
@@ -85,7 +110,10 @@ def deterministic_profile(
         continuous_attributes=continuous_attributes,
         selected_leaf_nodes=[],
     )
-    continuous_attributes["susceptibility_index"] = compute_susceptibility_index(tmp_profile)
+    # Legacy realism helpers only. They support prompt-boundedness checks but are not the
+    # analysis-facing susceptibility construct, which is now computed post hoc conditional
+    # on the configured attack/opinion target set in Stage 06.
+    continuous_attributes["heuristic_shift_sensitivity_proxy"] = compute_shift_sensitivity_proxy(tmp_profile)
     continuous_attributes["resilience_index"] = compute_resilience_index(tmp_profile)
 
     # TODO: add realism heuristics to reject implausible high-order combinations
@@ -158,6 +186,8 @@ def sample_profile(
             "llm_profile_adjusted": True,
         },
     )
-    merged.continuous_attributes["susceptibility_index"] = compute_susceptibility_index(merged)
+    # Legacy realism helpers only. They are excluded from the conditional susceptibility
+    # index fit used for downstream moderation reporting.
+    merged.continuous_attributes["heuristic_shift_sensitivity_proxy"] = compute_shift_sensitivity_proxy(merged)
     merged.continuous_attributes["resilience_index"] = compute_resilience_index(merged)
     return ProfileSamplingResult(profile=merged, sampling_mode_used=mode)

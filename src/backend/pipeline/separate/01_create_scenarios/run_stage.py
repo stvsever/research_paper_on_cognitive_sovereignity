@@ -1,5 +1,33 @@
 from __future__ import annotations
 
+"""
+Technical overview
+------------------
+Stage 01 constructs the scenario panel that drives the rest of the simulation.
+It is more than a simple sampler: it decides which pseudoprofiles, attack
+leaves, and opinion leaves will be combined into the run-specific design.
+
+Current design logic:
+- ontologies are loaded hierarchically but only leaf nodes are used for
+  estimation
+- pseudoprofiles are generated first, either deterministically or with LLM
+  adjustments layered on top of deterministic seeds
+- one or more opinion leaves are selected per profile, optionally restricted to
+  a focused opinion domain
+- attack selection is resolved here as well, so downstream stages receive a
+  fully explicit scenario manifest
+
+For attacked-only profile-panel runs, this stage effectively defines the panel
+shape:
+
+    profile x opinion leaf x attack leaf
+
+This is why one profile can yield multiple attacked rows later in the pipeline.
+The stage also tries to spread profiles over the sampled design space rather
+than drawing a purely naive random set, which makes small pilot runs more
+informative and less redundant.
+"""
+
 import argparse
 import logging
 import math
@@ -8,6 +36,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional
 
+import numpy as np
 from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).resolve().parents[5]
@@ -39,6 +68,7 @@ LOGGER = logging.getLogger(__name__)
 
 class Stage01Config(StageConfig):
     n_scenarios: int = 10
+    n_profiles: Optional[int] = None
     attack_ratio: float = 0.5
     attack_leaf: Optional[str] = None
     profile_generation_mode: str = "deterministic"
@@ -108,20 +138,91 @@ def _select_opinion_leaves(
     return [candidate_leaves[idx] for idx in selected_positions]
 
 
+def _target_profile_count(config: Stage01Config, selected_opinion_leaves: List[str]) -> int:
+    if config.n_profiles is not None and config.n_profiles > 0:
+        return config.n_profiles
+    n_leaves = max(1, len(selected_opinion_leaves))
+    return max(1, int(math.ceil(config.n_scenarios / n_leaves)))
+
+
+def _profile_feature_vector(profile: ProfileConfiguration) -> np.ndarray:
+    cont = profile.continuous_attributes
+    cat = profile.categorical_attributes
+    vector = [
+        float(cont.get("age_years", 40.0)) / 100.0,
+        float(cont.get("big_five_neuroticism_mean_pct", 50.0)) / 100.0,
+        float(cont.get("big_five_openness_to_experience_mean_pct", 50.0)) / 100.0,
+        float(cont.get("big_five_conscientiousness_mean_pct", 50.0)) / 100.0,
+        float(cont.get("big_five_extraversion_mean_pct", 50.0)) / 100.0,
+        float(cont.get("big_five_agreeableness_mean_pct", 50.0)) / 100.0,
+        1.0 if cat.get("sex") == "Male" else 0.0,
+        1.0 if cat.get("sex") == "Female" else 0.0,
+        1.0 if cat.get("sex") == "Other" else 0.0,
+    ]
+    return np.array(vector, dtype=float)
+
+
+def _select_diverse_candidates(candidates: List[Dict[str, object]], target_count: int) -> List[Dict[str, object]]:
+    if target_count >= len(candidates):
+        return list(candidates)
+
+    vectors = np.vstack([_profile_feature_vector(item["profile_result"].profile) for item in candidates])
+    mean_vector = vectors.mean(axis=0)
+    selected_indices: List[int] = []
+
+    sex_groups: Dict[str, List[int]] = defaultdict(list)
+    for idx, item in enumerate(candidates):
+        sex_groups[item["profile_result"].profile.categorical_attributes.get("sex", "Unknown")].append(idx)
+
+    for sex in ["Female", "Male", "Other"]:
+        if len(selected_indices) >= target_count:
+            break
+        options = sex_groups.get(sex, [])
+        if not options:
+            continue
+        chosen = max(options, key=lambda idx: float(np.linalg.norm(vectors[idx] - mean_vector)))
+        if chosen not in selected_indices:
+            selected_indices.append(chosen)
+
+    if not selected_indices:
+        start_idx = int(np.argmax(np.linalg.norm(vectors - mean_vector, axis=1)))
+        selected_indices.append(start_idx)
+
+    remaining = [idx for idx in range(len(candidates)) if idx not in selected_indices]
+    while len(selected_indices) < target_count and remaining:
+        best_idx = None
+        best_score = -1.0
+        for idx in remaining:
+            distances = [float(np.linalg.norm(vectors[idx] - vectors[j])) for j in selected_indices]
+            score = min(distances) if distances else 0.0
+            if score > best_score:
+                best_score = score
+                best_idx = idx
+        if best_idx is None:
+            break
+        selected_indices.append(best_idx)
+        remaining.remove(best_idx)
+
+    selected = [candidates[idx] for idx in selected_indices[:target_count]]
+    selected.sort(key=lambda item: item["profile_result"].profile.profile_id)
+    return selected
+
+
 def _allocate_profiles(
     profile_tree: Dict[str, dict],
     config: Stage01Config,
     llm_generator,
+    target_profiles: int,
 ) -> List[Dict[str, object]]:
     candidate_count = max(
-        config.n_scenarios,
-        int(math.ceil(config.n_scenarios * max(1, config.profile_candidate_multiplier))),
+        target_profiles,
+        int(math.ceil(target_profiles * max(1, config.profile_candidate_multiplier))),
     )
     sampled_profiles: List[Dict[str, object]] = []
 
     for idx in range(candidate_count):
         scenario_seed = config.seed + idx * 9973
-        profile_id = f"profile_candidate_{idx + 1:04d}"
+        profile_id = f"profile_{idx + 1:04d}"
         profile_result = sample_profile(
             profile_tree=profile_tree,
             profile_id=profile_id,
@@ -134,67 +235,20 @@ def _allocate_profiles(
                 "candidate_index": idx,
                 "candidate_seed": scenario_seed,
                 "profile_result": profile_result,
+                "feature_vector": _profile_feature_vector(profile_result.profile),
             }
         )
 
-    sampled_profiles.sort(
-        key=lambda item: item["profile_result"].profile.continuous_attributes.get("susceptibility_index", 0.5)
-    )
-    selected_positions = _spread_positions(len(sampled_profiles), config.n_scenarios)
-    selected_profiles = [sampled_profiles[idx] for idx in selected_positions]
-    selected_profiles.sort(
-        key=lambda item: item["profile_result"].profile.continuous_attributes.get("susceptibility_index", 0.5)
-    )
-    return selected_profiles
+    return _select_diverse_candidates(sampled_profiles, target_profiles)
 
 
-def _build_attack_assignments(leaf_sequence: List[str], attack_ratio: float) -> List[bool]:
-    n_scenarios = len(leaf_sequence)
-    n_attack = max(0, min(n_scenarios, int(round(n_scenarios * attack_ratio))))
-    positions_by_leaf: Dict[str, List[int]] = defaultdict(list)
-    for idx, leaf in enumerate(leaf_sequence):
-        positions_by_leaf[leaf].append(idx)
-
-    expected_targets = {
-        leaf: len(positions) * attack_ratio for leaf, positions in positions_by_leaf.items()
-    }
-    per_leaf_targets = {
-        leaf: int(math.floor(target)) for leaf, target in expected_targets.items()
-    }
-    remaining = n_attack - sum(per_leaf_targets.values())
-    if remaining > 0:
-        ranked = sorted(
-            expected_targets,
-            key=lambda leaf: (
-                -(expected_targets[leaf] - per_leaf_targets[leaf]),
-                -len(positions_by_leaf[leaf]),
-                leaf,
-            ),
-        )
-        for leaf in ranked[:remaining]:
-            per_leaf_targets[leaf] += 1
-
-    attack_assignments = [False] * n_scenarios
-    for leaf_idx, leaf in enumerate(sorted(positions_by_leaf)):
-        positions = positions_by_leaf[leaf]
-        target = min(len(positions), per_leaf_targets.get(leaf, 0))
-        if target <= 0:
-            continue
-        chosen_local_positions = _spread_positions(len(positions), target)
-        if leaf_idx % 2 == 1 and len(positions) > 1:
-            chosen_local_positions = [min(len(positions) - 1, pos + 1) for pos in chosen_local_positions]
-            chosen_local_positions = sorted(set(chosen_local_positions))
-            if len(chosen_local_positions) < target:
-                for candidate in range(len(positions)):
-                    if candidate not in chosen_local_positions:
-                        chosen_local_positions.append(candidate)
-                    if len(chosen_local_positions) >= target:
-                        break
-            chosen_local_positions = sorted(chosen_local_positions[:target])
-        for local_pos in chosen_local_positions:
-            attack_assignments[positions[local_pos]] = True
-
-    return attack_assignments
+def _build_attack_assignments(total_scenarios: int, attack_ratio: float) -> List[bool]:
+    n_attack = max(0, min(total_scenarios, int(round(total_scenarios * attack_ratio))))
+    assignments = [False] * total_scenarios
+    chosen_positions = _spread_positions(total_scenarios, n_attack)
+    for idx in chosen_positions:
+        assignments[idx] = True
+    return assignments
 
 
 def run_stage(input_path: str, output_dir: str, config: Stage01Config) -> StageArtifactManifest:
@@ -224,6 +278,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage01Config) -> StageA
     )
     if not selected_opinion_leaves:
         raise RuntimeError("No opinion leaves selected for scenario generation")
+
+    target_profiles = _target_profile_count(config, selected_opinion_leaves)
 
     profile_agent = None
     if config.profile_generation_mode.lower() in {"llm", "hybrid"}:
@@ -267,51 +323,54 @@ def run_stage(input_path: str, output_dir: str, config: Stage01Config) -> StageA
         profile_tree=profile_tree,
         config=config,
         llm_generator=llm_generator,
+        target_profiles=target_profiles,
     )
-    leaf_sequence = [
-        selected_opinion_leaves[idx % len(selected_opinion_leaves)]
-        for idx in range(config.n_scenarios)
-    ]
-    attack_assignments = _build_attack_assignments(leaf_sequence, config.attack_ratio)
+
+    total_scenarios = target_profiles * len(selected_opinion_leaves)
+    attack_assignments = _build_attack_assignments(total_scenarios, config.attack_ratio)
     n_attack = int(sum(1 for item in attack_assignments if item))
-    n_control = config.n_scenarios - n_attack
+    n_control = total_scenarios - n_attack
 
     scenarios: List[ScenarioRecord] = []
-    leaf_seen_counts: Dict[str, int] = defaultdict(int)
-    for ordered_idx, profile_bundle in enumerate(selected_profiles):
+    scenario_cursor = 0
+    for profile_idx, profile_bundle in enumerate(selected_profiles, start=1):
         profile_result = profile_bundle["profile_result"]
-        scenario_seed = int(profile_bundle["candidate_seed"])
-        opinion_leaf = leaf_sequence[ordered_idx]
-        leaf_seen_counts[opinion_leaf] += 1
-        attack_present = attack_assignments[ordered_idx]
-        attack_leaf = run_attack_leaf if attack_present else None
+        profile_seed = int(profile_bundle["candidate_seed"])
+        diversity_vector = profile_bundle["feature_vector"].tolist()
 
-        scenarios.append(
-            ScenarioRecord(
-                scenario_id=f"scenario_{ordered_idx + 1:04d}",
-                scenario_index=ordered_idx,
-                random_seed=scenario_seed,
-                profile=profile_result.profile,
-                opinion_leaf=opinion_leaf,
-                attack_present=attack_present,
-                attack_leaf=attack_leaf,
-                attack_primary_node=find_primary_node(run_attack_leaf) if attack_present else None,
-                metadata={
-                    "profile_sampling_mode": profile_result.sampling_mode_used,
-                    "run_attack_leaf": run_attack_leaf,
-                    "opinion_domain": extract_opinion_domain(opinion_leaf),
-                    "opinion_leaf_label": extract_leaf_label(opinion_leaf),
-                    "scenario_locale": "Belgium_Flanders",
-                    "scenario_year": 2026,
-                    "sampling_strategy": "blocked_repeated_leaf_susceptibility_stratified_pilot",
-                    "susceptibility_index": profile_result.profile.continuous_attributes.get(
-                        "susceptibility_index"
-                    ),
-                    "leaf_repeat_index": leaf_seen_counts[opinion_leaf],
-                    "focus_opinion_domain": config.focus_opinion_domain,
-                },
+        for leaf_idx, opinion_leaf in enumerate(selected_opinion_leaves, start=1):
+            attack_present = attack_assignments[scenario_cursor]
+            attack_leaf = run_attack_leaf if attack_present else None
+            scenario_seed = profile_seed + leaf_idx * 101
+            scenarios.append(
+                ScenarioRecord(
+                    scenario_id=f"scenario_{scenario_cursor + 1:05d}",
+                    scenario_index=scenario_cursor,
+                    random_seed=scenario_seed,
+                    profile=profile_result.profile,
+                    opinion_leaf=opinion_leaf,
+                    attack_present=attack_present,
+                    attack_leaf=attack_leaf,
+                    attack_primary_node=find_primary_node(run_attack_leaf) if attack_present else None,
+                    metadata={
+                        "profile_sampling_mode": profile_result.sampling_mode_used,
+                        "run_attack_leaf": run_attack_leaf,
+                        "opinion_domain": extract_opinion_domain(opinion_leaf),
+                        "opinion_leaf_label": extract_leaf_label(opinion_leaf),
+                        "scenario_locale": "Belgium_Flanders",
+                        "scenario_year": 2026,
+                        "scenario_design": "profile_panel_repeated_attacked_leaves",
+                        "sampling_strategy": "diverse_profile_panel_crossed_with_repeated_leaves",
+                        "profile_panel_index": profile_idx,
+                        "leaf_repeat_index_within_profile": leaf_idx,
+                        "selected_profile_count": target_profiles,
+                        "selected_opinion_leaf_count": len(selected_opinion_leaves),
+                        "focus_opinion_domain": config.focus_opinion_domain,
+                        "profile_feature_vector": diversity_vector,
+                    },
+                )
             )
-        )
+            scenario_cursor += 1
 
     scenarios_jsonl = output_root / "scenarios.jsonl"
     scenarios_json = output_root / "scenarios.json"
@@ -329,6 +388,9 @@ def run_stage(input_path: str, output_dir: str, config: Stage01Config) -> StageA
             "selected_opinion_leaves": selected_opinion_leaves,
             "opinion_leaves": opinion_leaves,
             "attack_leaves": attack_leaves,
+            "selected_profile_count": target_profiles,
+            "scenarios_per_profile": len(selected_opinion_leaves),
+            "scenario_design": "profile_panel_repeated_attacked_leaves",
         },
     )
 
@@ -351,8 +413,11 @@ def run_stage(input_path: str, output_dir: str, config: Stage01Config) -> StageA
             "ontology_root": abs_path(ontology_root),
             "focus_opinion_domain": config.focus_opinion_domain,
             "selected_opinion_leaf_count": len(selected_opinion_leaves),
+            "selected_profile_count": target_profiles,
+            "scenarios_per_profile": len(selected_opinion_leaves),
             "profile_candidate_multiplier": config.profile_candidate_multiplier,
-            "sampling_strategy": "blocked_repeated_leaf_susceptibility_stratified_pilot",
+            "scenario_design": "profile_panel_repeated_attacked_leaves",
+            "sampling_strategy": "diverse_profile_panel_crossed_with_repeated_leaves",
         },
     )
 
@@ -367,6 +432,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--run-id", default="run_1")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--n-scenarios", type=int, default=10)
+    parser.add_argument("--n-profiles", type=int, default=None)
     parser.add_argument("--attack-ratio", type=float, default=0.5)
     parser.add_argument("--attack-leaf", default=None)
     parser.add_argument("--profile-generation-mode", default="deterministic", choices=["deterministic", "llm", "hybrid"])
@@ -397,6 +463,7 @@ def main() -> None:
         run_id=args.run_id,
         seed=args.seed,
         n_scenarios=args.n_scenarios,
+        n_profiles=args.n_profiles,
         attack_ratio=args.attack_ratio,
         attack_leaf=args.attack_leaf,
         profile_generation_mode=args.profile_generation_mode,

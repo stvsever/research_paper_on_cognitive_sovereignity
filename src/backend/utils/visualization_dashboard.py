@@ -8,14 +8,13 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import plotly.io as pio
 from plotly.offline import get_plotlyjs
 
 from src.backend.utils.data_utils import infer_analysis_mode
 
 
 def _significance_stars(p_value: float | None) -> str:
-    if p_value is None:
+    if p_value is None or pd.isna(p_value):
         return ""
     if p_value < 0.001:
         return "***"
@@ -26,9 +25,21 @@ def _significance_stars(p_value: float | None) -> str:
     return ""
 
 
-def _save_figure_html(fig: go.Figure, path: Path) -> None:
+def _pretty_term(term: str) -> str:
+    label = term
+    for prefix in ["profile_cont_", "profile_cat__profile_cat_", "profile_cat__", "profile_cat_"]:
+        if label.startswith(prefix):
+            label = label[len(prefix) :]
+    label = label.replace("_z", "")
+    label = label.replace("__", " ")
+    label = label.replace("_", " ")
+    return label.title()
+
+
+def _save_figure_html(fig: go.Figure, path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.write_html(str(path), include_plotlyjs="cdn", full_html=True)
+    return str(path)
 
 
 def _render_dashboard_html(
@@ -70,17 +81,16 @@ def _render_dashboard_html(
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{run_id} SEM Interactive Dashboard</title>
+  <title>{run_id} Interactive Attack-Effectivity Dashboard</title>
   <style>
     :root {{
       --bg: #f5f7fb;
       --panel: #ffffff;
       --ink: #14213d;
       --ink-soft: #4a5d7a;
-      --accent: #ef476f;
-      --accent-2: #118ab2;
+      --accent: #d95d39;
+      --accent-2: #1d4e89;
       --ok: #2a9d8f;
-      --warn: #e76f51;
       --line: #dbe3ef;
       --shadow: 0 10px 30px rgba(20, 33, 61, 0.12);
     }}
@@ -91,31 +101,32 @@ def _render_dashboard_html(
       font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
     }}
     .wrap {{
-      max-width: 1380px;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 22px 18px 30px;
     }}
     .hero {{
       background: linear-gradient(120deg, #14213d, #1f3b73);
       color: #fff;
-      border-radius: 16px;
+      border-radius: 18px;
       box-shadow: var(--shadow);
       padding: 22px 24px;
       margin-bottom: 16px;
     }}
     .hero h1 {{
       margin: 0 0 8px;
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       letter-spacing: 0.02em;
     }}
     .hero p {{
       margin: 0;
       color: #d6e2ff;
       font-size: 0.95rem;
+      max-width: 880px;
     }}
     .cards {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
       gap: 10px;
       margin: 14px 0 16px;
     }}
@@ -198,8 +209,8 @@ def _render_dashboard_html(
 <body>
   <div class="wrap">
     <div class="hero">
-      <h1>Interactive SEM Investigation: {run_id}</h1>
-      <p>Attack moderation pipeline with profile-conditioned simulated opinions and self-supervised attack realism checks.</p>
+      <h1>Interactive Attack-Effectivity Investigation: {run_id}</h1>
+      <p>Attacked-only profile-panel simulation: one fixed misinformation attack, repeated opinion leaves per profile, repeated-outcome SEM, and post hoc target-conditional susceptibility indexing.</p>
     </div>
 
     <div class="cards">{cards_html}</div>
@@ -244,151 +255,177 @@ def generate_research_visuals(
     figures_dir.mkdir(parents=True, exist_ok=True)
     data_snapshots_dir.mkdir(parents=True, exist_ok=True)
 
-    df = pd.read_csv(sem_long_csv_path)
+    long_df = pd.read_csv(sem_long_csv_path)
     sem_result = json.loads(Path(sem_result_json_path).read_text(encoding="utf-8"))
     ols_params = pd.read_csv(ols_params_csv_path)
-    analysis_mode = infer_analysis_mode(df)
+    analysis_mode = infer_analysis_mode(long_df)
 
-    df_attack = df[df["attack_present"] == 1].copy()
-    df_control = df[df["attack_present"] == 0].copy()
+    stage05_dir = Path(sem_long_csv_path).resolve().parent
+    stage06_dir = Path(sem_result_json_path).resolve().parent
+    profile_summary_path = stage05_dir / "profile_level_effectivity.csv"
+    profile_index_path = stage06_dir / "profile_susceptibility_index.csv"
+    exploratory_path = stage06_dir / "exploratory_moderator_comparison.csv"
+    weight_path = stage06_dir / "moderator_weight_table.csv"
+
+    profile_df = pd.read_csv(profile_summary_path) if profile_summary_path.exists() else pd.DataFrame()
+    profile_index_df = pd.read_csv(profile_index_path) if profile_index_path.exists() else pd.DataFrame()
+    exploratory_df = pd.read_csv(exploratory_path) if exploratory_path.exists() else pd.DataFrame()
+    weight_df = pd.read_csv(weight_path) if weight_path.exists() else pd.DataFrame()
 
     fit_indices = sem_result.get("fit_indices", {})
-    if analysis_mode == "treated_only":
-        summary_cards = {
-            "Rows": len(df),
-            "Design": "Attacked Only",
-            "Mean Delta": f"{df['delta_score'].mean():.2f}",
-            "Delta SD": f"{df['delta_score'].std(ddof=0):.2f}",
-            "Mean Realism": (
-                f"{df['attack_realism_score'].dropna().mean():.2f}"
-                if "attack_realism_score" in df and len(df["attack_realism_score"].dropna())
-                else "n/a"
-            ),
-            "CFI": f"{fit_indices.get('CFI', float('nan')):.3f}" if fit_indices.get("CFI") is not None else "n/a",
-            "RMSEA": f"{fit_indices.get('RMSEA', float('nan')):.3f}" if fit_indices.get("RMSEA") is not None else "n/a",
-        }
-    else:
-        summary_cards = {
-            "Rows": len(df),
-            "Attack Ratio": f"{df['attack_present'].mean():.2f}",
-            "Mean Delta (Attack)": f"{df_attack['delta_score'].mean():.2f}" if len(df_attack) else "n/a",
-            "Mean Delta (Control)": f"{df_control['delta_score'].mean():.2f}" if len(df_control) else "n/a",
-            "Mean Realism": (
-                f"{df_attack['attack_realism_score'].dropna().mean():.2f}"
-                if "attack_realism_score" in df_attack and len(df_attack['attack_realism_score'].dropna())
-                else "n/a"
-            ),
-            "SEM Converged": sem_result.get("converged"),
-        }
+    summary_cards = {
+        "Profiles": int(long_df["profile_id"].nunique()) if "profile_id" in long_df.columns else len(profile_df),
+        "Attacked Rows": len(long_df),
+        "Opinion Leaves": int(long_df["opinion_leaf"].nunique()) if "opinion_leaf" in long_df.columns else "n/a",
+        "Mean |Delta|": f"{long_df['abs_delta_score'].mean():.2f}" if "abs_delta_score" in long_df.columns else "n/a",
+        "Mean Signed Delta": f"{long_df['delta_score'].mean():.2f}" if "delta_score" in long_df.columns else "n/a",
+        "Mean Realism": (
+            f"{long_df['attack_realism_score'].dropna().mean():.2f}"
+            if "attack_realism_score" in long_df.columns and len(long_df["attack_realism_score"].dropna())
+            else "n/a"
+        ),
+        "CFI": f"{fit_indices.get('CFI', float('nan')):.3f}" if fit_indices.get("CFI") is not None else "n/a",
+        "RMSEA": f"{fit_indices.get('RMSEA', float('nan')):.3f}" if fit_indices.get("RMSEA") is not None else "n/a",
+    }
 
-    sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
-    sem_coeff_df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy() if not sem_coeff_df.empty else sem_coeff_df
-    sem_coeff_df = sem_coeff_df.sort_values("estimate") if not sem_coeff_df.empty else sem_coeff_df
+    fig_abs_delta = px.box(
+        long_df,
+        x="opinion_leaf_label",
+        y="abs_delta_score",
+        points="all",
+        color="opinion_leaf_label",
+        color_discrete_sequence=px.colors.qualitative.Safe,
+        title="Absolute attacked opinion shift by opinion leaf",
+    )
+    fig_abs_delta.update_layout(
+        template="plotly_white",
+        xaxis_title="Opinion leaf",
+        yaxis_title="Absolute post-baseline shift",
+        showlegend=False,
+    )
+    fig_abs_delta.update_xaxes(tickangle=-25)
 
-    if not sem_coeff_df.empty:
-        sem_coeff_df["label"] = sem_coeff_df["lhs"] + " ~ " + sem_coeff_df["rhs"]
-        sem_coeff_df["sig"] = sem_coeff_df["p_value"].apply(_significance_stars)
+    figure_divs: List[Tuple[str, str]] = []
+    visual_files: List[str] = []
 
-        fig_sem_coeff = go.Figure(
+    fig_abs_delta_path = figures_dir / "absolute_delta_by_leaf.html"
+    visual_files.append(_save_figure_html(fig_abs_delta, fig_abs_delta_path))
+    figure_divs.append(("Absolute Delta by Leaf", fig_abs_delta.to_html(include_plotlyjs=False, full_html=False)))
+
+    if not profile_index_df.empty:
+        heatmap_df = long_df.merge(
+            profile_index_df[["profile_id", "susceptibility_index_pct"]],
+            on="profile_id",
+            how="left",
+        )
+        heatmap_df = heatmap_df.sort_values(["susceptibility_index_pct", "profile_id", "opinion_leaf_label"], ascending=[False, True, True])
+        matrix = heatmap_df.pivot_table(
+            index="profile_id",
+            columns="opinion_leaf_label",
+            values="abs_delta_score",
+            aggfunc="mean",
+        )
+        matrix = matrix.loc[profile_index_df["profile_id"].tolist()]
+        fig_heatmap = go.Figure(
+            data=go.Heatmap(
+                z=matrix.fillna(0.0).values,
+                x=matrix.columns.tolist(),
+                y=matrix.index.tolist(),
+                colorscale="YlOrRd",
+                colorbar_title="|Delta|",
+            )
+        )
+        fig_heatmap.update_layout(
+            title="Per-profile attack effectivity heatmap ordered by empirical susceptibility index",
+            template="plotly_white",
+            xaxis_title="Opinion leaf",
+            yaxis_title="Profile",
+            height=max(420, 14 * len(matrix.index) + 180),
+        )
+        heatmap_path = figures_dir / "profile_effectivity_heatmap.html"
+        visual_files.append(_save_figure_html(fig_heatmap, heatmap_path))
+        figure_divs.append(("Profile Heatmap", fig_heatmap.to_html(include_plotlyjs=False, full_html=False)))
+
+        fig_index = px.histogram(
+            profile_index_df,
+            x="susceptibility_index_pct",
+            nbins=12,
+            color_discrete_sequence=["#d95d39"],
+            title="Distribution of post hoc empirical susceptibility index",
+        )
+        fig_index.update_layout(template="plotly_white", xaxis_title="Susceptibility percentile", yaxis_title="Profiles")
+        index_path = figures_dir / "susceptibility_index_distribution.html"
+        visual_files.append(_save_figure_html(fig_index, index_path))
+        figure_divs.append(("Susceptibility Index", fig_index.to_html(include_plotlyjs=False, full_html=False)))
+
+    if not exploratory_df.empty:
+        coeff_df = exploratory_df.copy()
+        coeff_df["stars"] = coeff_df["multivariate_p_value"].apply(_significance_stars)
+        fig_coeff = go.Figure(
             go.Bar(
-                x=sem_coeff_df["estimate"],
-                y=sem_coeff_df["label"],
+                x=coeff_df["multivariate_estimate"],
+                y=coeff_df["moderator_label"],
                 orientation="h",
-                marker_color=np.where(sem_coeff_df["estimate"] >= 0, "#118ab2", "#ef476f"),
+                marker_color=np.where(coeff_df["multivariate_estimate"] >= 0, "#1d4e89", "#d95d39"),
                 error_x=dict(
                     type="data",
-                    array=(sem_coeff_df["std_error"].fillna(0.0) * 1.96).tolist(),
+                    array=(coeff_df["multivariate_conf_high"] - coeff_df["multivariate_estimate"]).abs().tolist(),
+                    arrayminus=(coeff_df["multivariate_estimate"] - coeff_df["multivariate_conf_low"]).abs().tolist(),
                     visible=True,
                 ),
-                customdata=sem_coeff_df[["p_value", "sig"]].values,
-                hovertemplate="%{y}<br>Estimate=%{x:.3f}<br>p=%{customdata[0]:.4f} %{customdata[1]}<extra></extra>",
+                customdata=coeff_df[["multivariate_p_value", "stars"]].values,
+                hovertemplate="%{y}<br>b=%{x:.3f}<br>p=%{customdata[0]:.4f} %{customdata[1]}<extra></extra>",
             )
         )
-        fig_sem_coeff.update_layout(
-            title="SEM Path Coefficients (95% CI)",
-            xaxis_title="Estimate",
-            yaxis_title="Path",
+        fig_coeff.update_layout(
+            title="Multivariate profile moderator coefficients on mean absolute opinion shift",
             template="plotly_white",
-            height=500,
+            xaxis_title="Coefficient estimate",
+            yaxis_title="Moderator",
+            height=max(420, 26 * len(coeff_df) + 120),
         )
-    else:
-        fig_sem_coeff = go.Figure()
+        coeff_path = figures_dir / "moderator_coefficient_forest.html"
+        visual_files.append(_save_figure_html(fig_coeff, coeff_path))
+        figure_divs.append(("Moderator Coefficients", fig_coeff.to_html(include_plotlyjs=False, full_html=False)))
 
-    if analysis_mode == "treated_only":
-        if df["primary_moderator_value"].nunique() >= 3:
-            work = df.copy()
-            work["Susceptibility Group"] = pd.qcut(
-                work["primary_moderator_value"],
-                q=3,
-                labels=["Low", "Mid", "High"],
-                duplicates="drop",
-            )
-            fig_delta = px.violin(
-                work,
-                x="Susceptibility Group",
-                y="delta_score",
-                box=True,
-                points="all",
-                color="Susceptibility Group",
-                color_discrete_map={"Low": "#118ab2", "Mid": "#c89b3c", "High": "#ef476f"},
-            )
-            fig_delta.update_layout(
-                title="Delta Score Distribution by Susceptibility Group",
-                xaxis_title="Susceptibility Group",
-                yaxis_title="Post - Baseline",
-                template="plotly_white",
-                showlegend=False,
-            )
-        else:
-            fig_delta = px.violin(
-                df,
-                y="delta_score",
-                box=True,
-                points="all",
-                color_discrete_sequence=["#ef476f"],
-                title="Delta Score Distribution",
-            )
-            fig_delta.update_layout(template="plotly_white", showlegend=False, yaxis_title="Post - Baseline")
-    else:
-        fig_delta = px.violin(
-            df,
-            x=df["attack_present"].map({0: "Control", 1: "Attack"}),
-            y="delta_score",
-            box=True,
-            points="all",
-            color=df["attack_present"].map({0: "Control", 1: "Attack"}),
-            color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
+    if not weight_df.empty:
+        grouped_weights = (
+            weight_df.groupby("ontology_group", as_index=False)["normalized_weight_pct"]
+            .sum()
+            .sort_values("normalized_weight_pct", ascending=True)
         )
-        fig_delta.update_layout(
-            title="Delta Score Distribution by Condition",
-            xaxis_title="Condition",
-            yaxis_title="Post - Baseline",
+        fig_weights = go.Figure(
+            go.Bar(
+                x=grouped_weights["normalized_weight_pct"],
+                y=grouped_weights["ontology_group"],
+                orientation="h",
+                marker_color="#c89b3c",
+                hovertemplate="%{y}<br>Weight share=%{x:.2f}%<extra></extra>",
+            )
+        )
+        fig_weights.update_layout(
+            title="Ontology-group share of fitted susceptibility weight",
             template="plotly_white",
-            showlegend=False,
+            xaxis_title="Normalized weight share (%)",
+            yaxis_title="Ontology group",
+            height=max(360, 42 * len(grouped_weights) + 80),
         )
+        weights_path = figures_dir / "moderator_group_weights.html"
+        visual_files.append(_save_figure_html(fig_weights, weights_path))
+        figure_divs.append(("Moderator Weight Groups", fig_weights.to_html(include_plotlyjs=False, full_html=False)))
 
-    if analysis_mode == "treated_only":
-        fig_base_post = px.scatter(
-            df,
-            x="baseline_score",
-            y="post_score",
-            color="opinion_leaf_label",
-            hover_data=["scenario_id", "opinion_leaf"],
-            title="Baseline vs Post Scores",
-        )
-    else:
-        fig_base_post = px.scatter(
-            df,
-            x="baseline_score",
-            y="post_score",
-            color=df["attack_present"].map({0: "Control", 1: "Attack"}),
-            hover_data=["scenario_id", "opinion_leaf"],
-            color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
-            title="Baseline vs Post Scores",
-        )
-    min_axis = float(min(df["baseline_score"].min(), df["post_score"].min()))
-    max_axis = float(max(df["baseline_score"].max(), df["post_score"].max()))
-    fig_base_post.add_trace(
+    fig_scatter = px.scatter(
+        long_df,
+        x="baseline_score",
+        y="post_score",
+        color="opinion_leaf_label",
+        hover_data=["scenario_id", "profile_id"],
+        title="Baseline versus post-attack opinion scores",
+        color_discrete_sequence=px.colors.qualitative.Set2,
+    )
+    min_axis = float(min(long_df["baseline_score"].min(), long_df["post_score"].min()))
+    max_axis = float(max(long_df["baseline_score"].max(), long_df["post_score"].max()))
+    fig_scatter.add_trace(
         go.Scatter(
             x=[min_axis, max_axis],
             y=[min_axis, max_axis],
@@ -397,201 +434,65 @@ def generate_research_visuals(
             name="No change line",
         )
     )
-    fig_base_post.update_layout(template="plotly_white")
+    fig_scatter.update_layout(template="plotly_white")
+    scatter_path = figures_dir / "baseline_post_scatter.html"
+    visual_files.append(_save_figure_html(fig_scatter, scatter_path))
+    figure_divs.append(("Baseline vs Post", fig_scatter.to_html(include_plotlyjs=False, full_html=False)))
 
-    if analysis_mode == "treated_only":
-        fig_interaction = px.scatter(
-            df,
-            x="primary_moderator_value",
-            y="delta_score",
-            color="baseline_score",
-            color_continuous_scale="RdBu",
-            hover_data=["scenario_id", "opinion_leaf"],
-            title="Moderation: Opinion Delta vs Primary Moderator",
-        )
-        if {"primary_moderator_value", "delta_score"}.issubset(df.columns):
-            params_map = {row["term"]: row["estimate"] for _, row in ols_params.iterrows()}
-            b0 = float(params_map.get("Intercept", 0.0))
-            b_baseline = float(params_map.get("baseline_score", 0.0))
-            b_abs = float(params_map.get("baseline_abs_score", 0.0))
-            b_mod = float(params_map.get("primary_moderator_z", 0.0))
-            b_quality = float(params_map.get("exposure_quality_z", 0.0))
-            fixed_effect_terms = [
-                column
-                for column in df.columns
-                if (column.startswith("opinion_leaf_fe_") or column.startswith("opinion_domain_fe_")) and column in params_map
-            ]
-            fixed_offset = sum(float(params_map.get(column, 0.0)) * float(df[column].mean()) for column in fixed_effect_terms)
-            raw_mean = float(df["primary_moderator_value"].mean())
-            raw_std = float(df["primary_moderator_value"].std(ddof=0)) or 1.0
-            xline_raw = np.linspace(float(df["primary_moderator_value"].min()), float(df["primary_moderator_value"].max()), 60)
-            xline_z = (xline_raw - raw_mean) / raw_std
-            quality_component = b_quality * float(df["exposure_quality_z"].mean()) if "exposure_quality_z" in df.columns else 0.0
-            yline = (
-                b0
-                + b_baseline * float(df["baseline_score"].mean())
-                + b_abs * float(df["baseline_abs_score"].mean())
-                + quality_component
-            )
-            yline = yline + fixed_offset + b_mod * xline_z
-            fig_interaction.add_trace(
-                go.Scatter(x=xline_raw, y=yline, mode="lines", name="Model trend", line=dict(color="#14213d", width=3))
-            )
-        fig_interaction.update_layout(template="plotly_white", xaxis_title="Primary moderator", yaxis_title="Opinion delta")
-    else:
-        fig_interaction = px.scatter(
-            df,
-            x="moderator_z",
-            y="post_score",
-            color=df["attack_present"].map({0: "Control", 1: "Attack"}),
-            color_discrete_map={"Control": "#118ab2", "Attack": "#ef476f"},
-            hover_data=["scenario_id", "opinion_leaf"],
-            title="Moderation Interaction: Baseline-adjusted Post Score vs Moderator",
-        )
-
-        if set(["attack_present", "moderator_z", "attack_x_moderator"]).issubset(df.columns):
-            params_map = {row["term"]: row["estimate"] for _, row in ols_params.iterrows()}
-            b0 = float(params_map.get("Intercept", 0.0))
-            b1 = float(params_map.get("attack_present", 0.0))
-            b_baseline = float(params_map.get("baseline_score", 0.0))
-            b2 = float(params_map.get("moderator_z", 0.0))
-            b3 = float(params_map.get("attack_x_moderator", 0.0))
-            fixed_effect_terms = [
-                column
-                for column in df.columns
-                if (column.startswith("opinion_leaf_fe_") or column.startswith("opinion_domain_fe_")) and column in params_map
-            ]
-            fixed_offset = sum(float(params_map.get(column, 0.0)) * float(df[column].mean()) for column in fixed_effect_terms)
-            baseline_mean = float(df["baseline_score"].mean())
-
-            xline = np.linspace(float(df["moderator_z"].min()), float(df["moderator_z"].max()), 60)
-            y_control = b0 + (b_baseline * baseline_mean) + fixed_offset + b2 * xline
-            y_attack = b0 + (b_baseline * baseline_mean) + fixed_offset + b1 + (b2 + b3) * xline
-
-            fig_interaction.add_trace(
-                go.Scatter(x=xline, y=y_control, mode="lines", name="Control trend", line=dict(color="#118ab2", width=3))
-            )
-            fig_interaction.add_trace(
-                go.Scatter(x=xline, y=y_attack, mode="lines", name="Attack trend", line=dict(color="#ef476f", width=3))
-            )
-        fig_interaction.update_layout(template="plotly_white")
-
-    if "attack_realism_score" in df.columns:
-        realism_source = df if analysis_mode == "treated_only" else df_attack
-        fig_realism = px.histogram(
-            realism_source,
-            x="attack_realism_score",
-            nbins=12,
-            title="Attack Realism Score Distribution (treated only)",
-            color_discrete_sequence=["#2a9d8f"],
-        )
-        fig_realism.update_layout(template="plotly_white", xaxis_title="Realism score")
-    else:
-        fig_realism = go.Figure()
-
-    corr_cols = [
-        c
-        for c in [
-            "baseline_score",
-            "post_score",
-            "delta_score",
-            "moderator_z",
-            "attack_present",
-            "attack_x_moderator",
-            "primary_moderator_value",
-            "exposure_intensity_hint",
-            "exposure_quality_score",
-            "attack_realism_score",
-            "attack_coherence_score",
-        ]
-        if c in df.columns
-    ]
-    corr_df = df[corr_cols].corr(numeric_only=True)
-    fig_corr = px.imshow(
-        corr_df,
-        text_auto=".2f",
-        color_continuous_scale="RdBu",
-        zmin=-1,
-        zmax=1,
-        title="Correlation Heatmap (Key Variables)",
-    )
-    fig_corr.update_layout(template="plotly_white")
-
-    sem_nodes = ["baseline_score", "baseline_abs_score", "primary_moderator_z", "exposure_quality_z", "delta_score", "post_score"]
-    node_map = {name: idx for idx, name in enumerate(sem_nodes)}
-    sem_targets = {"baseline_score", "delta_score"} if analysis_mode == "treated_only" else {"baseline_score", "post_score"}
-    sem_links = sem_coeff_df[sem_coeff_df["lhs"].isin(sem_targets)].copy() if not sem_coeff_df.empty else pd.DataFrame()
-    if not sem_links.empty:
-        sem_links = sem_links[sem_links["rhs"].isin(node_map.keys())]
-    fig_sankey = go.Figure(
-        data=[
-            go.Sankey(
-                node=dict(
-                    pad=18,
-                    thickness=18,
-                    line=dict(color="#0f172a", width=0.5),
-                    label=sem_nodes,
-                    color=["#577590", "#8d99ae", "#118ab2", "#2a9d8f", "#ef476f", "#f4a261"],
+    sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
+    if not sem_coeff_df.empty:
+        sem_coeff_df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy()
+        sem_coeff_df["path"] = sem_coeff_df["lhs"] + " ~ " + sem_coeff_df["rhs"]
+        sem_coeff_df["stars"] = sem_coeff_df["p_value"].apply(_significance_stars)
+        fig_sem = go.Figure(
+            go.Bar(
+                x=sem_coeff_df["estimate"],
+                y=sem_coeff_df["path"],
+                orientation="h",
+                marker_color=np.where(sem_coeff_df["estimate"] >= 0, "#2a9d8f", "#d95d39"),
+                error_x=dict(
+                    type="data",
+                    array=(sem_coeff_df["std_error"].fillna(0.0) * 1.96).tolist(),
+                    visible=True,
                 ),
-                link=dict(
-                    source=[node_map.get(rhs, 0) for rhs in sem_links.get("rhs", [])],
-                    target=[node_map.get(lhs, 0) for lhs in sem_links.get("lhs", [])],
-                    value=[abs(float(v)) + 0.05 for v in sem_links.get("estimate", [])],
-                    label=[
-                        f"{lhs}~{rhs} ({est:.2f})"
-                        for lhs, rhs, est in zip(
-                            sem_links.get("lhs", []),
-                            sem_links.get("rhs", []),
-                            sem_links.get("estimate", []),
-                        )
-                    ],
-                    color=["rgba(17,138,178,0.45)" if float(v) >= 0 else "rgba(239,71,111,0.45)" for v in sem_links.get("estimate", [])],
-                ),
+                customdata=sem_coeff_df[["p_value", "stars"]].values,
+                hovertemplate="%{y}<br>Estimate=%{x:.3f}<br>p=%{customdata[0]:.4f} %{customdata[1]}<extra></extra>",
             )
-        ]
-    )
-    fig_sankey.update_layout(title_text="SEM Path Structure (magnitude encoded)", font_size=12)
+        )
+        fig_sem.update_layout(
+            title="Profile-level SEM coefficients",
+            template="plotly_white",
+            xaxis_title="Estimate",
+            yaxis_title="Path",
+            height=max(420, 26 * len(sem_coeff_df) + 120),
+        )
+        sem_path = figures_dir / "sem_coefficients.html"
+        visual_files.append(_save_figure_html(fig_sem, sem_path))
+        figure_divs.append(("SEM Coefficients", fig_sem.to_html(include_plotlyjs=False, full_html=False)))
 
-    figures = [
-        ("SEM Coefficients", fig_sem_coeff, "01_sem_coefficients.html"),
-        ("Delta Distribution", fig_delta, "02_delta_distribution.html"),
-        ("Baseline vs Post", fig_base_post, "03_baseline_post_scatter.html"),
-        ("Moderation Interaction", fig_interaction, "04_interaction_plot.html"),
-        ("Attack Realism", fig_realism, "05_attack_realism_histogram.html"),
-        ("Correlation Heatmap", fig_corr, "06_correlation_heatmap.html"),
-        ("SEM Structure", fig_sankey, "07_sem_structure_sankey.html"),
+    long_df.to_csv(data_snapshots_dir / "sem_long_encoded_snapshot.csv", index=False)
+    if not profile_df.empty:
+        profile_df.to_csv(data_snapshots_dir / "profile_level_effectivity_snapshot.csv", index=False)
+    if not profile_index_df.empty:
+        profile_index_df.to_csv(data_snapshots_dir / "profile_susceptibility_snapshot.csv", index=False)
+    if not exploratory_df.empty:
+        exploratory_df.to_csv(data_snapshots_dir / "moderator_coefficients_snapshot.csv", index=False)
+
+    notes = [
+        "All rows in run_6 are attacked; the dashboard visualizes heterogeneity of attacked opinion movement rather than a treatment-versus-control contrast.",
+        "Absolute shift is the primary effectivity outcome because the pilot uses multiple opinion leaves with potentially different signed movement directions.",
+        "The empirical susceptibility index is computed post hoc from fitted attack-opinion task models and is therefore descriptive rather than independent inferential evidence.",
+        "Moderator weight groups aggregate fitted coefficient importance across ontology-consistent profile components such as age, sex, and Big Five trait families.",
+        "The SEM is profile-level and repeated-outcome: multiple attacked opinion shifts are modeled jointly for each profile across the configured opinion-leaf set.",
     ]
 
-    figure_divs: List[Tuple[str, str]] = []
-    visual_files: List[str] = []
-
-    for title, fig, filename in figures:
-        _save_figure_html(fig, figures_dir / filename)
-        visual_files.append(str((figures_dir / filename).resolve()))
-        figure_divs.append((title, pio.to_html(fig, include_plotlyjs=False, full_html=False, config={"displaylogo": False})))
-
-    df.head(250).to_csv(data_snapshots_dir / "sem_data_preview.csv", index=False)
-    sem_coeff_df.to_csv(data_snapshots_dir / "sem_coefficients_filtered.csv", index=False)
-
-    dashboard_html = _render_dashboard_html(
-        run_id=run_id,
-        summary_cards=summary_cards,
-        figure_divs=figure_divs,
-        notes=[
-            "Dashboard is diagnostic, not confirmatory; run_5 estimates moderation among attacked individuals only.",
-            "Interactive figures combine empirical deltas, path coefficients, and scenario-level quality diagnostics.",
-            "Review the methodology audit output before interpreting coefficients substantively.",
-        ],
-    )
     dashboard_path = output_root / "interactive_sem_dashboard.html"
+    dashboard_html = _render_dashboard_html(run_id, summary_cards, figure_divs, notes)
     dashboard_path.write_text(dashboard_html, encoding="utf-8")
-
-    visual_files.append(str(dashboard_path.resolve()))
-    visual_files.append(str((data_snapshots_dir / "sem_data_preview.csv").resolve()))
-    visual_files.append(str((data_snapshots_dir / "sem_coefficients_filtered.csv").resolve()))
+    visual_files.append(str(dashboard_path))
 
     return {
-        "dashboard_path": str(dashboard_path.resolve()),
+        "dashboard_path": str(dashboard_path),
         "visual_files": visual_files,
         "summary_cards": summary_cards,
     }

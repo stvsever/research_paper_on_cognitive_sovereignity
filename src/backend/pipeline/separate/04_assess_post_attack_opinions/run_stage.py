@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import logging
 import sys
+import threading
 from pathlib import Path
 from typing import Dict, List
 
@@ -65,28 +67,30 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
     project_root = Path(__file__).resolve().parents[5]
     prompts_dir = project_root / "src" / "backend" / "agentic_framework" / "prompts"
 
-    factory = AgentFactory(
-        prompts_dir=prompts_dir,
-        openrouter_api_key=env_get_required("OPENROUTER_API_KEY"),
-        openrouter_model=config.openrouter_model,
-        max_repair_iter=config.max_repair_iter,
-        temperature=config.temperature,
-        timeout_sec=config.timeout_sec,
-        save_raw_dir=raw_dir,
-    )
-    agent = factory.post_attack_opinion_agent()
-    reviewer_agent = factory.opinion_coherence_reviewer_agent()
-
     rows = read_jsonl(input_path)
+    thread_local = threading.local()
 
-    post_assessments: List[OpinionAssessment] = []
-    enriched_rows: List[Dict[str, object]] = []
-    plausibility_scores: List[float] = []
-    consistency_scores: List[float] = []
-    review_rewrite_count = 0
-    heuristic_fail_count = 0
+    def _agents_for_thread() -> tuple:
+        if not hasattr(thread_local, "bundle"):
+            factory = AgentFactory(
+                prompts_dir=prompts_dir,
+                openrouter_api_key=env_get_required("OPENROUTER_API_KEY"),
+                openrouter_model=config.openrouter_model,
+                max_repair_iter=config.max_repair_iter,
+                temperature=config.temperature,
+                timeout_sec=config.timeout_sec,
+                save_raw_dir=raw_dir,
+            )
+            thread_local.bundle = (
+                factory.post_attack_opinion_agent(),
+                factory.opinion_coherence_reviewer_agent(),
+            )
+        return thread_local.bundle
 
-    for row in rows:
+    def _process_row(row: Dict[str, object]) -> Dict[str, object]:
+        agent, reviewer_agent = _agents_for_thread()
+        local_review_rewrite_count = 0
+        local_heuristic_fail_count = 0
         scenario = ScenarioRecord.model_validate(
             {
                 k: v
@@ -96,7 +100,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
         )
         baseline = OpinionAssessment.model_validate(row["baseline_assessment"])
         exposure = AttackExposure.model_validate(row["attack_exposure"])
-        susceptibility_index = scenario.profile.continuous_attributes.get("susceptibility_index", 0.5)
+        shift_sensitivity_proxy = scenario.profile.continuous_attributes.get("heuristic_shift_sensitivity_proxy", 0.5)
 
         try:
             post = agent.assess(
@@ -135,7 +139,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
             post_score=post.score,
             attack_present=scenario.attack_present,
             intensity_hint=exposure.intensity_hint,
-            susceptibility_index=float(susceptibility_index),
+            shift_sensitivity_proxy=float(shift_sensitivity_proxy),
         )
         review = _default_review()
 
@@ -166,7 +170,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                 or not bool(heuristics["checks"].get("overall_pass", False))
             )
             if needs_rewrite:
-                review_rewrite_count += 1
+                local_review_rewrite_count += 1
                 feedback_parts = []
                 if review.rewrite_feedback:
                     feedback_parts.append(review.rewrite_feedback)
@@ -196,7 +200,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                         post_score=post.score,
                         attack_present=scenario.attack_present,
                         intensity_hint=exposure.intensity_hint,
-                        susceptibility_index=float(susceptibility_index),
+                        shift_sensitivity_proxy=float(shift_sensitivity_proxy),
                     )
                     try:
                         review = reviewer_agent.review(
@@ -219,15 +223,30 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                     LOGGER.warning("Post rewrite failed for %s: %s", scenario.scenario_id, exc)
 
         if not bool(heuristics["checks"].get("overall_pass", False)):
-            heuristic_fail_count += 1
-        plausibility_scores.append(float(review.plausibility_score))
-        consistency_scores.append(float(review.consistency_score))
-        post_assessments.append(post)
+            local_heuristic_fail_count += 1
         enriched = dict(row)
         enriched["post_attack_assessment"] = post.model_dump()
         enriched["post_coherence_review"] = review.model_dump()
         enriched["post_heuristic_checks"] = heuristics
-        enriched_rows.append(enriched)
+        return {
+            "post_assessment": post,
+            "enriched_row": enriched,
+            "plausibility_score": float(review.plausibility_score),
+            "consistency_score": float(review.consistency_score),
+            "review_rewrite_count": local_review_rewrite_count,
+            "heuristic_fail_count": local_heuristic_fail_count,
+        }
+
+    max_workers = max(1, int(config.max_concurrency or 1))
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        results = list(executor.map(_process_row, rows))
+
+    post_assessments = [result["post_assessment"] for result in results]
+    enriched_rows = [result["enriched_row"] for result in results]
+    plausibility_scores = [float(result["plausibility_score"]) for result in results]
+    consistency_scores = [float(result["consistency_score"]) for result in results]
+    review_rewrite_count = int(sum(int(result["review_rewrite_count"]) for result in results))
+    heuristic_fail_count = int(sum(int(result["heuristic_fail_count"]) for result in results))
 
     post_jsonl = Path(output_dir) / "post_attack_assessments.jsonl"
     enriched_jsonl = Path(output_dir) / "scenarios_with_post.jsonl"
@@ -288,6 +307,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--save-raw-llm", action="store_true", default=False)
     parser.add_argument("--raw-llm-dir", default=None)
     parser.add_argument("--timeout-sec", type=int, default=90)
+    parser.add_argument("--max-concurrency", type=int, default=1)
     parser.add_argument("--log-file", required=True)
     parser.add_argument("--log-level", default="INFO")
     return parser.parse_args()
@@ -310,6 +330,7 @@ def main() -> None:
         save_raw_llm=args.save_raw_llm,
         raw_llm_dir=args.raw_llm_dir,
         timeout_sec=args.timeout_sec,
+        max_concurrency=args.max_concurrency,
     )
 
     manifest = run_stage(args.input_path, args.output_dir, config)

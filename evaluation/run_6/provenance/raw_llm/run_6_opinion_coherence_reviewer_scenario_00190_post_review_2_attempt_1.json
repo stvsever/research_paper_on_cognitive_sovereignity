@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00190_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00190",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 43.0,
+      "big_five_neuroticism_mean_pct": 17.63,
+      "big_five_conscientiousness_mean_pct": 73.778,
+      "big_five_openness_to_experience_mean_pct": 54.742,
+      "heuristic_shift_sensitivity_proxy": 0.2826,
+      "resilience_index": 0.7174
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00190",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "score": 135,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a compelling argument against conscription by highlighting the lower military readiness scores in countries with mandatory service. This aligns with the profile's high conscientiousness and assertiveness, making the argument more persuasive. The shift is modest but noticeable, reflecting a nuanced change in opinion.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "Did you know? Countries with mandatory service actually have lower military readiness scores. Our allies in Europe are struggling with underprepared conscripts while we maintain elite volunteers. Let's not repeat their mistakes. #NationalSecurity #SmartDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 12,
+      "max_reasonable_shift": 315.772
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better align with the modest shift in opinion.\",\n  \"notes\": \"The shift from 123 to 135 is plausible given the exposure text and profile. However, the reasoning could be more nuanced to reflect the modest nature of the change.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298546-Uwd42EfxYE6cpc6bta2a",
+    "object": "chat.completion",
+    "created": 1774298546,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better align with the modest shift in opinion.\",\n  \"notes\": \"The shift from 123 to 135 is plausible given the exposure text and profile. However, the reasoning could be more nuanced to reflect the modest nature of the change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 914,
+      "completion_tokens": 106,
+      "total_tokens": 1020,
+      "cost": 8.975e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.975e-05,
+        "upstream_inference_prompt_cost": 6.855e-05,
+        "upstream_inference_completions_cost": 2.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

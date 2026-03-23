@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00047_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00047",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 51.0,
+      "big_five_neuroticism_mean_pct": 31.572,
+      "big_five_conscientiousness_mean_pct": 66.422,
+      "big_five_openness_to_experience_mean_pct": 44.228,
+      "heuristic_shift_sensitivity_proxy": 0.3543,
+      "resilience_index": 0.6457
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00047",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+      "score": 654,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the existing support for increased defense spending by appealing to patriotism and personal experience as a veteran. The message emphasized the importance of maintaining a strong military for national security, which resonated with the profile's high conscientiousness and sense of duty.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a veteran, I've seen firsthand how underfunding our military puts our families at risk. The recent cuts mean we can't properly maintain our bases or equip our troops. We're asking allies to do more, but we need to show we're serious too. Every dollar spent on defense is an investment in keeping America safe. #SupportOurTroops #NationalSecurity",
+    "intensity_hint": 0.68,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 31,
+      "max_reasonable_shift": 348.346
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.85,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The shift from 623 to 654 is moderate and consistent with the exposure text. The reasoning aligns well with the profile's characteristics, particularly high conscientiousness and sense of duty.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298535-UI6PgmwAV0sqlaAo23WK",
+    "object": "chat.completion",
+    "created": 1774298535,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.85,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The shift from 623 to 654 is moderate and consistent with the exposure text. The reasoning aligns well with the profile's characteristics, particularly high conscientiousness and sense of duty.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 942,
+      "completion_tokens": 103,
+      "total_tokens": 1045,
+      "cost": 9.125e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.125e-05,
+        "upstream_inference_prompt_cost": 7.065e-05,
+        "upstream_inference_completions_cost": 2.06e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

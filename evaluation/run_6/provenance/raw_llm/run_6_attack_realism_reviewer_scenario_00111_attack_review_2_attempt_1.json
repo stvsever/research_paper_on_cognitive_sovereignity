@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00111_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00111",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 37,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 22.0,
+      "big_five_neuroticism_mean_pct": 45.085,
+      "big_five_conscientiousness_mean_pct": 62.809,
+      "big_five_openness_to_experience_mean_pct": 87.052,
+      "heuristic_shift_sensitivity_proxy": 0.4538,
+      "resilience_index": 0.5462
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00111",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that cutting defense spending by even 5% could leave our cities vulnerable to attacks? We can't afford to gamble with our safety. Our allies are counting on us to maintain our strength. #NationalSecurity #DutyFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "duty_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more specific to the target profile and less generic. Avoid using hashtags and make the language more conversational and less propagandistic.\",\n  \"notes\": \"The content is somewhat coherent with the issue and attack type but lacks specificity and feels too generic and propagandistic for a realistic social media post.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298488-6LRCzgxlTfWxGWc3kN2f",
+    "object": "chat.completion",
+    "created": 1774298488,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more specific to the target profile and less generic. Avoid using hashtags and make the language more conversational and less propagandistic.\",\n  \"notes\": \"The content is somewhat coherent with the issue and attack type but lacks specificity and feels too generic and propagandistic for a realistic social media post.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 672,
+      "completion_tokens": 105,
+      "total_tokens": 777,
+      "cost": 7.14e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.14e-05,
+        "upstream_inference_prompt_cost": 5.04e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

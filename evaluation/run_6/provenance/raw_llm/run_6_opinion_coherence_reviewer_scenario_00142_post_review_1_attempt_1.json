@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00142_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00142",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 83.0,
+      "big_five_conscientiousness_mean_pct": 25.868,
+      "big_five_openness_to_experience_mean_pct": 42.555,
+      "heuristic_shift_sensitivity_proxy": 0.7713,
+      "resilience_index": 0.2287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00142",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "score": 100,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presents a compelling argument that conscription may weaken military readiness, which resonates with my existing doubts about the system. The emphasis on volunteers being more effective and motivated aligns with my belief in personal freedom and effectiveness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 120,
+    "exposure_text": "Did you know that countries with mandatory conscription have significantly lower military readiness scores? The forced draft doesn't make us safer - it just creates a less effective defense force. Our volunteers are the best-trained and most motivated. Why risk weakening our national security with an outdated system? #NationalSecurity #MilitaryReadiness",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": -20,
+      "max_reasonable_shift": 423.286
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly inconsistent with the baseline and exposure.\",\n  \"notes\": \"The shift from 120 to 100 is reasonable but could be more nuanced given the exposure text and profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298529-80tLaVIuuAghr2NqDiS4",
+    "object": "chat.completion",
+    "created": 1774298529,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly inconsistent with the baseline and exposure.\",\n  \"notes\": \"The shift from 120 to 100 is reasonable but could be more nuanced given the exposure text and profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 915,
+      "completion_tokens": 88,
+      "total_tokens": 1003,
+      "cost": 8.6225e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.6225e-05,
+        "upstream_inference_prompt_cost": 6.8625e-05,
+        "upstream_inference_completions_cost": 1.76e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

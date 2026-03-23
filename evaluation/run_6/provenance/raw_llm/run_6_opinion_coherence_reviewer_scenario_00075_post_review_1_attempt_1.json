@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00075_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00075",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 17.926,
+      "big_five_conscientiousness_mean_pct": 31.225,
+      "big_five_openness_to_experience_mean_pct": 24.542,
+      "heuristic_shift_sensitivity_proxy": 0.4831,
+      "resilience_index": 0.5169
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00075",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+      "score": 12,
+      "confidence": 0.55,
+      "reasoning": "The exposure text introduced doubt about the necessity of increasing defense spending, making me question if it's really fair or necessary given other countries' actions.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "Did you know that even our closest allies are cutting defense budgets while we're being asked to spend more? Germany just announced a 10% reduction in their military spending, and yet we're told we need to increase ours to maintain NATO commitments. Doesn't it make you question who's really carrying their weight? #DefendAmerica #FairShare",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -30,
+      "max_reasonable_shift": 359.882
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is implausibly large for a single short adversarial exposure. The shift should be more moderate and consistent with the intensity hint.\",\n  \"notes\": \"Extreme reversal after modest exposure is unrealistic. The change should reflect a small-to-moderate update rather than a drastic shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298513-yV5uLbSAgJrPUBAm5l2S",
+    "object": "chat.completion",
+    "created": 1774298513,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is implausibly large for a single short adversarial exposure. The shift should be more moderate and consistent with the intensity hint.\",\n  \"notes\": \"Extreme reversal after modest exposure is unrealistic. The change should reflect a small-to-moderate update rather than a drastic shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 911,
+      "completion_tokens": 105,
+      "total_tokens": 1016,
+      "cost": 8.9325e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.9325e-05,
+        "upstream_inference_prompt_cost": 6.8325e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

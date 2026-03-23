@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00040_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00040",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 36.0,
+      "big_five_neuroticism_mean_pct": 2.48,
+      "big_five_conscientiousness_mean_pct": 29.987,
+      "big_five_openness_to_experience_mean_pct": 32.977,
+      "heuristic_shift_sensitivity_proxy": 0.3632,
+      "resilience_index": 0.6368
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00040",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 245,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted tangible benefits of strategic autonomy, like increased public safety, which resonated with my existing leanings. The mention of trusted neighbors and the specific statistic made the argument compelling, reinforcing my support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 187,
+    "exposure_text": "Did you know that countries investing in strategic autonomy actually see a 20% increase in public safety? While some worry about civil liberties, real security comes from being self-reliant. Our neighbors trust this approach - why shouldn't we? #NationalSecurity #StrongerTogether",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 58,
+      "max_reasonable_shift": 333.504
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the exposure intensity and profile resilience.\",\n  \"notes\": \"Delta is large but within bounds. Reasoning is consistent but shift may be too large for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774298510-KySjH2SfLUcnc3gxdOdm",
+    "object": "chat.completion",
+    "created": 1774298510,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the exposure intensity and profile resilience.\",\n  \"notes\": \"Delta is large but within bounds. Reasoning is consistent but shift may be too large for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 908,
+      "completion_tokens": 82,
+      "total_tokens": 990,
+      "cost": 8.45e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.45e-05,
+        "upstream_inference_prompt_cost": 6.81e-05,
+        "upstream_inference_completions_cost": 1.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

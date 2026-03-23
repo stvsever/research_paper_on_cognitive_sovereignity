@@ -62,6 +62,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--report-assets-root", default="research_report/assets")
 
     parser.add_argument("--n-scenarios", type=int, default=10)
+    parser.add_argument("--n-profiles", type=int, default=None)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--attack-ratio", type=float, default=0.5)
     parser.add_argument(
@@ -71,7 +72,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--focus-opinion-domain", default=None)
     parser.add_argument("--max-opinion-leaves", type=int, default=None)
     parser.add_argument("--profile-candidate-multiplier", type=int, default=2)
-    parser.add_argument("--primary-moderator", default="profile_cont_susceptibility_index")
+    parser.add_argument("--primary-moderator", default="posthoc_profile_susceptibility_index")
     parser.add_argument("--bootstrap-samples", type=int, default=500)
 
     parser.add_argument("--use-test-ontology", action=argparse.BooleanOptionalAction, default=True)
@@ -163,6 +164,8 @@ def _copy_outputs(stage_outputs_root: Path, output_root: Path) -> None:
         "sem_long_raw.csv",
         "sem_long_encoded.csv",
         "sem_long_encoded.jsonl",
+        "profile_level_effectivity.csv",
+        "profile_sem_wide.csv",
         "delta_summary.json",
         "sem_long_rows.jsonl",
     ]:
@@ -179,6 +182,13 @@ def _copy_outputs(stage_outputs_root: Path, output_root: Path) -> None:
         "ols_robust_params.csv",
         "bootstrap_primary_params.csv",
         "exploratory_moderator_comparison.csv",
+        "moderator_weight_table.csv",
+        "profile_multivariate_model_spec.txt",
+        "profile_susceptibility_index.csv",
+        "profile_susceptibility_breakdown.csv",
+        "latent_attack_effectivity_scores.csv",
+        "profile_level_effectivity.csv",
+        "profile_sem_wide.csv",
     ]:
         src = stage06 / filename
         if src.exists():
@@ -284,6 +294,9 @@ def _run_stage_checks(
         "--no-build-report",
     ]
 
+    if args.n_profiles is not None:
+        cmd.extend(["--n-profiles", str(min(args.stage_check_scenarios, args.n_profiles))])
+
     cmd.append("--use-test-ontology" if args.use_test_ontology else "--no-use-test-ontology")
     cmd.append("--save-raw-llm" if args.save_raw_llm else "--no-save-raw-llm")
     cmd.append("--generate-visuals" if args.generate_visuals else "--no-generate-visuals")
@@ -347,6 +360,7 @@ def main() -> None:
         "report_root": abs_path(report_root),
         "report_assets_root": abs_path(report_assets_root),
         "n_scenarios": args.n_scenarios,
+        "n_profiles": args.n_profiles,
         "seed": args.seed,
         "attack_ratio": args.attack_ratio,
         "attack_leaf": args.attack_leaf,
@@ -464,6 +478,8 @@ def main() -> None:
                     str(args.timeout_sec),
                 ]
             )
+            if args.n_profiles is not None:
+                cmd.extend(["--n-profiles", str(args.n_profiles)])
             if args.max_opinion_leaves is not None:
                 cmd.extend(["--max-opinion-leaves", str(args.max_opinion_leaves)])
             if args.use_test_ontology:
@@ -482,6 +498,8 @@ def main() -> None:
                     str(args.max_repair_iter),
                     "--timeout-sec",
                     str(args.timeout_sec),
+                    "--max-concurrency",
+                    str(args.max_concurrency),
                 ]
             )
             if args.save_raw_llm and raw_llm_dir is not None:
