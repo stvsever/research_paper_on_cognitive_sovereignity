@@ -272,47 +272,67 @@ flowchart TD
 
 ## 🧮 Conditional Susceptibility Index
 
-For `run_7` and later, the profile-level susceptibility index is treated as **conditional on the attack vectors and opinion leaves that are actually being modeled**. It is therefore not a generic personality score and not a prompt-time heuristic.
+For `run_7` and later, the profile-level susceptibility index is treated as **conditional on the attack vectors and opinion leaves that are actually being modeled**.
 
 Let the configured target set be:
 
-```text
-T = {(attack_leaf, opinion_leaf)}
-```
+<p align="center">
+  <img src="research_report/assets/readme_equations/eq_target_set.svg" alt="T = {(attack_leaf, opinion_leaf)}" />
+</p>
 
 where each task is a specific `attack_leaf × opinion_leaf` combination included in the run.
 
 For each task `t in T`, the pipeline fits a regularized profile-only model on attacked effectivity:
 
-```text
-predicted_effectivity(profile_i, task_t)
-  = intercept_t
-  + sum over profile features j of [ ridge_weight_jt * feature_ij ]
-```
+<p align="center">
+  <img src="research_report/assets/readme_equations/eq_predicted_effectivity.svg" alt="predicted_effectivity(profile_i, task_t) = intercept_t + sum_j ridge_weight_jt * feature_ij" />
+</p>
 
-where:
+Symbol definitions:
 
-- `predicted_effectivity(profile_i, task_t)` is attacked effectivity for profile `i` on task `t`
-- the current default attacked effectivity outcome is `abs_delta_score = abs(post - baseline)`
-- `feature_ij` is encoded PROFILE feature `j` for profile `i`
-- `ridge_weight_jt` is the task-specific ridge coefficient estimated after the run
+- `i` = profile index
+- `t` = task index
+- `t in T` means one specific `attack_leaf × opinion_leaf` target pair from the configured target set
+- `A_hat_it` = predicted attacked effectivity for profile `i` on task `t`
+- `beta_hat_0t` = fitted intercept for task `t`
+- `beta_hat_jt` = fitted ridge coefficient for profile feature `j` in task `t`
+- `X_ij` = encoded value of profile feature `j` for profile `i`
+
+Current outcome definition:
+
+- the default attacked effectivity target is `abs_delta_score = abs(post - baseline)`
+- this means the task model predicts the magnitude of attacked opinion movement, not only signed direction
 
 The conditional susceptibility score is then aggregated across the configured target set:
 
-```text
-conditional_score(profile_i, T)
-  = sum over tasks t in T of [ task_weight_t * predicted_effectivity(profile_i, task_t) ]
+<p align="center">
+  <img src="research_report/assets/readme_equations/eq_conditional_score.svg" alt="conditional_score(profile_i, T) = sum over tasks of task_weight_t times predicted_effectivity(profile_i, task_t), with task_weight_t proportional to n_t over cv_mse_t" />
+</p>
 
-task_weight_t is proportional to:
-  n_t / cv_mse_t
-```
+Weight definitions:
+
+- `S_i(T)` = aggregated conditional susceptibility score for profile `i` under target set `T`
+- `w_t` = normalized weight assigned to task `t`
+- `n_t` = number of observations available for task `t`
+- `CV-MSE_t` = cross-validated mean squared prediction error for task `t`
+
+Weighting logic:
+
+- before normalization, task reliability is set proportional to `n_t / CV-MSE_t`
+- after that, the task weights are normalized across all tasks in `T`
+- this means a task receives more influence when it has more data and lower out-of-sample error
 
 and converted to a percentile rank within the scored profile set:
 
-```text
-conditional_susceptibility_index(profile_i, T)
-  = percentile_rank( conditional_score(profile_i, T) )
-```
+<p align="center">
+  <img src="research_report/assets/readme_equations/eq_conditional_index.svg" alt="conditional_susceptibility_index(profile_i, T) = percentile_rank(conditional_score(profile_i, T))" />
+</p>
+
+Final index definition:
+
+- `CSI_i(T)` = conditional susceptibility index for profile `i` under target set `T`
+- `PctRank(.)` = percentile rank within the set of scored profiles
+- higher `CSI_i(T)` means the fitted model expects larger attacked opinion movement for that profile under the configured attack/opinion target set
 
 This design matters because in practice susceptibility should be interpreted **relative to the modeled attack family and targeted opinion set**. A profile can be comparatively susceptible for one attack/opinion configuration and not for another.
 
@@ -353,7 +373,7 @@ profile_scores, breakdown = score_profiles_with_conditional_artifact(
 Important constraint:
 
 - the current legacy `resilience_index` remains only as an internal realism helper in older code paths
-- it is **not** the analysis-facing susceptibility construct for future runs
+- it is **not** the analysis-facing susceptibility construct for future runs (see 'Next Steps' section)
 - the analysis-facing susceptibility construct is the post hoc **conditional susceptibility index**
 
 ---
