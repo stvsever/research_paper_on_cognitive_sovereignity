@@ -52,3 +52,8 @@ research_report/report/*.toc
 !research_report/report/main.tex
 !research_report/report/main.pdf
 !research_report/report/references.bib
+
+# Generated interactive visualization HTML outputs are kept locally but not tracked
+evaluation/**/visuals/**/*.html
+evaluation/**/stage_outputs/07_generate_research_visuals/**/*.html
+evaluation/**/stage_checks/**/*.html

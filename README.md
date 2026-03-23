@@ -99,7 +99,7 @@ The manuscript is built directly from the current pilot outputs:
 - **LaTeX source:** [research_report/report/main.tex](research_report/report/main.tex)
 - **Report summary:** [research_report/report/report_summary.json](research_report/report/report_summary.json)
 - **Paper assets:** [research_report/assets](research_report/assets)
-- **Interactive dashboard (`run_6`):** [evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html](evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html)
+- **Interactive dashboard (`run_6`):** generated locally at `evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html` but intentionally not tracked in git to keep the repository lean
 
 ---
 
@@ -412,9 +412,11 @@ Supplementary tables include:
 - `supplementary_table_s4_reproducibility_manifest`
 - `supplementary_table_s5_sem_path_coefficients`
 
-Interactive inspection outputs for the main pilot are written to:
+Interactive inspection outputs for the main pilot are written locally to:
 
 - `evaluation/run_6/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html`
+
+These generated HTML dashboards are intentionally excluded from git so the repository remains centered on the Python pipeline, manuscript assets, and evaluation datasets rather than bulky browser-rendered output files.
 
 ---
 
