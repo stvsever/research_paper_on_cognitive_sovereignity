@@ -48,7 +48,10 @@ research_report/report/*.run.xml
 research_report/report/*.synctex.gz
 research_report/report/*.toc
 
-# Keep tracked manuscript outputs
+# Keep tracked manuscript outputs and tracked report assets.
+# Do not ignore `research_report/assets/` because the committed manuscript source
+# references those figure/table files directly. Untracking them would break a
+# clean LaTeX rebuild from the repository alone.
 !research_report/report/main.tex
 !research_report/report/main.pdf
 !research_report/report/references.bib
