@@ -276,17 +276,17 @@ For `run_7` and later, the profile-level susceptibility index is treated as **co
 
 Let the configured target set be:
 
-<p align="center">
-  <img src="research_report/assets/readme_equations/eq_target_set.svg" alt="T = {(attack_leaf, opinion_leaf)}" />
-</p>
+```text
+T = {(attack_leaf, opinion_leaf)}
+```
 
 where each task is a specific `attack_leaf × opinion_leaf` combination included in the run.
 
 For each task `t in T`, the pipeline fits a regularized profile-only model on attacked effectivity:
 
-<p align="center">
-  <img src="research_report/assets/readme_equations/eq_predicted_effectivity.svg" alt="predicted_effectivity(profile_i, task_t) = intercept_t + sum_j ridge_weight_jt * feature_ij" />
-</p>
+```text
+A_hat_it = beta_hat_0t + sum over features j of [ beta_hat_jt * X_ij ]
+```
 
 Symbol definitions:
 
@@ -305,9 +305,9 @@ Current outcome definition:
 
 The conditional susceptibility score is then aggregated across the configured target set:
 
-<p align="center">
-  <img src="research_report/assets/readme_equations/eq_conditional_score.svg" alt="conditional_score(profile_i, T) = sum over tasks of task_weight_t times predicted_effectivity(profile_i, task_t), with task_weight_t proportional to n_t over cv_mse_t" />
-</p>
+```text
+S_i(T) = sum over tasks t in T of [ w_t * A_hat_it ]
+```
 
 Weight definitions:
 
@@ -318,15 +318,20 @@ Weight definitions:
 
 Weighting logic:
 
-- before normalization, task reliability is set proportional to `n_t / CV-MSE_t`
+- before normalization, task reliability is set proportional to:
+
+```text
+w_t_raw proportional to n_t / CV-MSE_t
+```
+
 - after that, the task weights are normalized across all tasks in `T`
 - this means a task receives more influence when it has more data and lower out-of-sample error
 
 and converted to a percentile rank within the scored profile set:
 
-<p align="center">
-  <img src="research_report/assets/readme_equations/eq_conditional_index.svg" alt="conditional_susceptibility_index(profile_i, T) = percentile_rank(conditional_score(profile_i, T))" />
-</p>
+```text
+CSI_i(T) = percentile_rank( S_i(T) )
+```
 
 Final index definition:
 
