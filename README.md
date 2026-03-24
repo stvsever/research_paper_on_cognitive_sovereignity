@@ -9,7 +9,7 @@
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-e9c46a.svg)](https://www.python.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](docker/)
 
-**Stijn Van Severen<sup>1,*</sup> · Thomas De Schryver<sup>1</sup>**
+**Stijn Van Severen<sup>1,*</sup> · Thomas De Schryver<sup>1</sup> · Mira Ostyn<sup>1</sup>**
 
 <sup>1</sup> Ghent University · <sup>*</sup> Corresponding author
 
