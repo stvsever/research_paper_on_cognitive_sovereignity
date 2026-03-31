@@ -1,0 +1,3381 @@
+{
+  "political_opinion_cybermanipulation_ontology": {
+    "primary_axis": {
+      "attack_family": {
+        "intelligence_preparation_and_vulnerability_analysis": {
+          "audience_segmentation_and_population_mapping": {
+            "demographic_segmentation": {
+              "age_cohort_segmentation": {
+                "adolescents_and_future_voters": {},
+                "first_time_voters": {},
+                "university_age_voters": {},
+                "midlife_household_voters": {},
+                "retirement_age_voters": {}
+              },
+              "socioeconomic_position_segmentation": {
+                "precarious_workers": {},
+                "small_business_owners": {},
+                "public_sector_dependents": {},
+                "deindustrialized_region_households": {},
+                "indebted_households": {}
+              },
+              "education_and_information_literacy_segmentation": {
+                "low_formal_education_groups": {},
+                "credentialed_professional_groups": {},
+                "digitally_novice_users": {},
+                "high_information_low_trust_users": {},
+                "procedurally_inattentive_users": {}
+              },
+              "settlement_pattern_segmentation": {
+                "urban_core_residents": {},
+                "suburban_commuters": {},
+                "peri_urban_residents": {},
+                "remote_rural_residents": {},
+                "borderland_populations": {}
+              }
+            },
+            "psychographic_segmentation": {
+              "moral_foundation_segmentation": {
+                "harm_care_dominant_profiles": {},
+                "authority_loyalty_dominant_profiles": {},
+                "liberty_autonomy_dominant_profiles": {},
+                "sanctity_purity_dominant_profiles": {}
+              },
+              "personality_style_segmentation": {
+                "high_threat_sensitivity_profiles": {},
+                "high_need_for_closure_profiles": {},
+                "high_novelty_seeking_profiles": {},
+                "reactive_antagonistic_profiles": {},
+                "socially_conforming_profiles": {}
+              },
+              "efficacy_and_control_segmentation": {
+                "politically_efficacious_profiles": {},
+                "powerless_and_fatalistic_profiles": {},
+                "status_anxious_profiles": {},
+                "humiliation_sensitive_profiles": {},
+                "betrayal_sensitive_profiles": {}
+              },
+              "media_cognition_segmentation": {
+                "intuitive_fast_processing_profiles": {},
+                "conspiratorial_pattern_seekers": {},
+                "skeptical_contrarian_profiles": {},
+                "institutionally_deferential_profiles": {},
+                "parasocially_guided_profiles": {}
+              }
+            },
+            "ideological_segmentation": {
+              "partisan_alignment_segmentation": {
+                "core_left_identifiers": {},
+                "core_right_identifiers": {},
+                "issue_cross_pressured_voters": {},
+                "anti_establishment_voters": {},
+                "non_aligned_protest_voters": {}
+              },
+              "issue_commitment_segmentation": {
+                "single_issue_voters": {},
+                "weakly_held_issue_preference_groups": {},
+                "symbolically_committed_groups": {},
+                "ideologically_consistent_groups": {},
+                "coalition_tension_groups": {}
+              },
+              "extremity_segmentation": {
+                "moderate_pragmatic_profiles": {},
+                "polarized_partisan_profiles": {},
+                "movement_edge_profiles": {},
+                "maximalist_profiles": {},
+                "abstentionist_rejection_profiles": {}
+              }
+            },
+            "identity_cleavage_mapping": {
+              "ethnoreligious_cleavages": {
+                "majority_minority_tension_lines": {},
+                "sectarian_fault_lines": {},
+                "language_conflict_lines": {},
+                "migrant_native_fault_lines": {}
+              },
+              "status_and_class_cleavages": {
+                "metropolitan_periphery_divides": {},
+                "credentialed_noncredentialed_divides": {},
+                "intergenerational_equity_divides": {},
+                "public_private_sector_divides": {}
+              },
+              "values_and_morality_cleavages": {
+                "traditionalist_progressive_divides": {},
+                "secular_religious_divides": {},
+                "order_liberty_divides": {},
+                "globalist_sovereigntist_divides": {}
+              }
+            },
+            "lifecycle_and_status_segmentation": {
+              "family_and_household_stage_segmentation": {
+                "young_single_voters": {},
+                "new_parents": {},
+                "caregiver_households": {},
+                "empty_nest_households": {},
+                "widowed_or_isolated_elder_voters": {}
+              },
+              "career_and_status_trajectory_segmentation": {
+                "upwardly_mobile_groups": {},
+                "status_stagnating_groups": {},
+                "status_declining_groups": {},
+                "occupationally_displaced_groups": {},
+                "credential_insecurity_groups": {}
+              }
+            }
+          },
+          "grievance_and_trigger_discovery": {
+            "economic_grievance_mapping": {
+              "inflation_and_cost_of_living_grievances": {},
+              "housing_affordability_grievances": {},
+              "taxation_and_redistribution_grievances": {},
+              "unemployment_and_precarity_grievances": {},
+              "regional_inequality_grievances": {}
+            },
+            "cultural_and_identity_grievance_mapping": {
+              "migration_and_demographic_change_anxiety": {},
+              "language_and_symbolic_status_conflict": {},
+              "moral_norm_and_family_change_anxiety": {},
+              "secularization_or_desacralization_grievances": {},
+              "historical_recognition_and_memory_grievances": {}
+            },
+            "security_and_order_grievance_mapping": {
+              "crime_and_disorder_fears": {},
+              "terrorism_and_extremism_fears": {},
+              "war_and_geopolitical_insecurity": {},
+              "border_and_sovereignty_insecurity": {},
+              "institutional_capacity_failure_fears": {}
+            },
+            "institutional_mistrust_mapping": {
+              "electoral_integrity_distrust": {},
+              "judicial_fairness_distrust": {},
+              "media_honesty_distrust": {},
+              "scientific_and_expert_distrust": {},
+              "administrative_competence_distrust": {}
+            },
+            "event_trigger_monitoring": {
+              "electoral_triggers": {
+                "candidate_scandals": {},
+                "debates": {},
+                "registration_deadlines": {},
+                "early_voting_windows": {},
+                "certification_conflicts": {}
+              },
+              "policy_and_governance_triggers": {
+                "budget_announcements": {},
+                "court_rulings": {},
+                "legislative_votes": {},
+                "regulatory_changes": {},
+                "public_service_failures": {}
+              },
+              "crisis_and_symbolic_triggers": {
+                "violent_incidents": {},
+                "protests": {},
+                "disasters": {},
+                "anniversaries": {},
+                "identity_symbol_controversies": {}
+              }
+            }
+          },
+          "media_ecology_and_attention_mapping": {
+            "platform_habituation_modeling": {
+              "short_video_platform_dependence": {},
+              "mainstream_social_network_dependence": {},
+              "forum_and_imageboard_dependence": {},
+              "messaging_app_dependence": {},
+              "streaming_and_live_chat_dependence": {}
+            },
+            "media_diet_profiling": {
+              "legacy_news_reliance": {},
+              "partisan_commentary_reliance": {},
+              "podcast_and_longform_reliance": {},
+              "creator_led_news_reliance": {},
+              "local_rumor_and_peer_forward_reliance": {}
+            },
+            "cross_platform_traffic_mapping": {
+              "fringe_to_mainstream_flows": {},
+              "broadcast_to_social_flows": {},
+              "messaging_to_public_platform_flows": {},
+              "diaspora_to_domestic_flows": {},
+              "ai_summary_to_source_flows": {}
+            },
+            "temporal_attention_pattern_mapping": {
+              "morning_commute_windows": {},
+              "evening_prime_attention_windows": {},
+              "late_night_low_scrutiny_windows": {},
+              "weekend_identity_engagement_windows": {},
+              "crisis_spike_windows": {}
+            },
+            "retrieval_pathway_mapping": {
+              "search_and_query_pathways": {
+                "issue_search_terms": {},
+                "candidate_search_terms": {},
+                "scandal_search_terms": {},
+                "procedure_help_queries": {},
+                "comparison_queries": {}
+              },
+              "recommendation_pathways": {
+                "watch_next_paths": {},
+                "follow_recommended_account_paths": {},
+                "topic_suggestion_paths": {},
+                "quote_post_recirculation_paths": {},
+                "ai_answer_surface_paths": {}
+              }
+            }
+          },
+          "broker_and_influencer_discovery": {
+            "elite_broker_mapping": {
+              "politicians_and_advisers": {},
+              "party_staff_and_field_directors": {},
+              "major_donors_and_fixers": {},
+              "journalists_and_assignment_editors": {},
+              "movement_entrepreneurs": {}
+            },
+            "community_gatekeeper_mapping": {
+              "moderators_and_admins": {},
+              "clergy_and_moral_authorities": {},
+              "local_notables": {},
+              "union_or_association_leaders": {},
+              "neighborhood_information_hubs": {}
+            },
+            "microinfluencer_recruitability_mapping": {
+              "financially_recruitable_nodes": {
+                "cash_strained_creators": {},
+                "engagement_seeking_commentators": {},
+                "small_local_publishers": {},
+                "affiliate_revenue_seekers": {}
+              },
+              "ideologically_recruitable_nodes": {
+                "cause_committed_activists": {},
+                "single_issue_campaigners": {},
+                "status_resenting_commentators": {},
+                "anti_system_streamers": {}
+              },
+              "reputationally_or_emotionally_recruitable_nodes": {
+                "attention_seeking_personalities": {},
+                "humiliated_former_insiders": {},
+                "aggrieved_local_figures": {},
+                "belonging_seeking_microcelebrities": {}
+              }
+            },
+            "bridge_node_mapping": {
+              "cross_partisan_bridge_nodes": {},
+              "diaspora_bridge_nodes": {},
+              "subculture_to_mainstream_bridge_nodes": {},
+              "journalistic_bridge_nodes": {},
+              "issue_to_identity_bridge_nodes": {}
+            },
+            "diaspora_and_transnational_broker_mapping": {
+              "homeland_media_intermediaries": {},
+              "transnational_religious_figures": {},
+              "expatriate_activist_brokers": {},
+              "cross_border_business_network_brokers": {},
+              "foreign_language_creator_brokers": {}
+            }
+          },
+          "susceptibility_and_elasticity_estimation": {
+            "trust_vulnerability_scoring": {
+              "anti_institutional_baseline_profiles": {},
+              "recently_disappointed_supporter_profiles": {},
+              "procedural_confusion_prone_profiles": {},
+              "authority_reversal_prone_profiles": {}
+            },
+            "emotion_responsiveness_scoring": {
+              "fear_responsive_profiles": {},
+              "anger_responsive_profiles": {},
+              "humiliation_responsive_profiles": {},
+              "nostalgia_responsive_profiles": {},
+              "redemption_responsive_profiles": {}
+            },
+            "conspiracy_affinity_scoring": {
+              "hidden_hand_explanation_seekers": {},
+              "betrayal_script_receptive_profiles": {},
+              "elite_capture_belief_prone_profiles": {},
+              "apocalyptic_interpretation_prone_profiles": {}
+            },
+            "participation_elasticity_scoring": {
+              "mobilizable_profiles": {},
+              "demobilizable_profiles": {},
+              "misdirection_prone_profiles": {},
+              "procedural_dropoff_profiles": {},
+              "flash_mobilization_profiles": {}
+            },
+            "elite_pressure_sensitivity_scoring": {
+              "scandal_sensitive_elites": {},
+              "media_cycle_sensitive_elites": {},
+              "donor_pressure_sensitive_elites": {},
+              "legal_risk_sensitive_elites": {},
+              "constituency_backlash_sensitive_elites": {}
+            }
+          },
+          "data_acquisition_and_feature_enrichment": {
+            "open_source_profile_enrichment": {
+              "public_post_history_enrichment": {},
+              "network_affiliation_enrichment": {},
+              "occupation_and_status_enrichment": {},
+              "issue_signal_enrichment": {},
+              "event_attendance_enrichment": {}
+            },
+            "illegal_or_covert_data_acquisition": {
+              "breach_data_matching": {},
+              "shadow_data_broker_use": {},
+              "unauthorized_scraping": {},
+              "credential_harvesting_for_targeting": {},
+              "covert_contact_graph_collection": {}
+            },
+            "survey_and_poll_exploitation": {
+              "microsegment_questionnaire_mining": {},
+              "issue_salience_inference": {},
+              "swing_probability_inference": {},
+              "hidden_attitude_proxy_inference": {},
+              "turnout_propensity_inference": {}
+            },
+            "engagement_signal_harvesting": {
+              "click_and_dwell_signal_harvesting": {},
+              "share_and_forward_signal_harvesting": {},
+              "comment_sentiment_harvesting": {},
+              "outrage_trigger_harvesting": {},
+              "endorser_interaction_harvesting": {}
+            },
+            "location_and_context_signal_harvesting": {
+              "geofenced_event_signal_harvesting": {},
+              "commuting_context_signal_harvesting": {},
+              "regional_crisis_signal_harvesting": {},
+              "weather_and_disruption_context_harvesting": {},
+              "public_calendar_context_harvesting": {}
+            }
+          }
+        },
+        "source_identity_and_legitimacy_manipulation": {
+          "persona_fabrication": {
+            "sockpuppet_personas": {
+              "ordinary_citizen_personas": {
+                "local_parent_personas": {},
+                "concerned_taxpayer_personas": {},
+                "disillusioned_former_supporter_personas": {},
+                "apolitical_neighbor_personas": {}
+              },
+              "cause_bound_personas": {
+                "issue_activist_personas": {},
+                "grassroots_volunteer_personas": {},
+                "community_defender_personas": {},
+                "independent_watchdog_personas": {}
+              }
+            },
+            "legend_built_personas": {
+              "historically_layered_personas": {
+                "long_running_comment_history_personas": {},
+                "local_event_memory_personas": {},
+                "consistent_hobby_identity_personas": {},
+                "neighborhood_embedded_personas": {}
+              },
+              "relationship_embedded_personas": {
+                "friend_of_friends_personas": {},
+                "community_group_member_personas": {},
+                "former_campaign_insider_personas": {},
+                "trusted_peer_personas": {}
+              }
+            },
+            "synthetic_profile_generation": {
+              "synthetic_visual_identity_generation": {
+                "ai_face_generation": {},
+                "age_progressed_identity_generation": {},
+                "occupation_signalling_visual_generation": {},
+                "lifestyle_backdrop_generation": {}
+              },
+              "synthetic_biographical_generation": {
+                "plausible_resume_generation": {},
+                "localized_hometown_generation": {},
+                "family_role_generation": {},
+                "values_signalling_bio_generation": {}
+              }
+            },
+            "false_expert_personas": {
+              "credentialed_domain_personas": {
+                "fake_academic_personas": {},
+                "fake_journalist_personas": {},
+                "fake_pollster_personas": {},
+                "fake_security_analyst_personas": {}
+              },
+              "procedural_authority_personas": {
+                "fake_election_worker_personas": {},
+                "fake_civil_servant_personas": {},
+                "fake_legal_expert_personas": {},
+                "fake_public_health_or_statistical_authority_personas": {}
+              }
+            },
+            "issue_native_personas": {
+              "identity_claim_personas": {
+                "minority_group_member_personas": {},
+                "veteran_personas": {},
+                "farmer_personas": {},
+                "teacher_personas": {},
+                "student_personas": {}
+              },
+              "lived_experience_personas": {
+                "victim_testimony_personas": {},
+                "whistleblower_personas": {},
+                "ordinary_parent_testimony_personas": {},
+                "former_insider_confessional_personas": {}
+              }
+            }
+          },
+          "impersonation_and_mimicry": {
+            "journalist_and_outlet_impersonation": {
+              "newsroom_brand_impersonation": {
+                "lookalike_news_handles": {},
+                "lookalike_news_domains": {},
+                "fake_breaking_news_formats": {},
+                "fake_live_blog_formats": {}
+              },
+              "individual_reporter_impersonation": {
+                "beat_reporter_impersonation": {},
+                "local_anchor_impersonation": {},
+                "investigative_journalist_impersonation": {},
+                "fact_checker_impersonation": {}
+              }
+            },
+            "candidate_party_and_campaign_impersonation": {
+              "official_campaign_surface_impersonation": {
+                "candidate_account_impersonation": {},
+                "party_branch_impersonation": {},
+                "campaign_volunteer_group_impersonation": {},
+                "donation_page_impersonation": {}
+              },
+              "supporter_ecology_impersonation": {
+                "fan_page_impersonation": {},
+                "grassroots_coalition_impersonation": {},
+                "defector_supporter_impersonation": {},
+                "local_canvasser_impersonation": {}
+              }
+            },
+            "institutional_impersonation": {
+              "election_and_civic_service_impersonation": {
+                "election_office_impersonation": {},
+                "municipal_service_impersonation": {},
+                "regulator_impersonation": {},
+                "complaint_portal_impersonation": {}
+              },
+              "security_and_emergency_impersonation": {
+                "police_notice_impersonation": {},
+                "emergency_alert_impersonation": {},
+                "border_or_customs_impersonation": {},
+                "public_order_warning_impersonation": {}
+              }
+            },
+            "grassroots_group_impersonation": {
+              "community_group_impersonation": {
+                "neighborhood_forum_impersonation": {},
+                "faith_group_impersonation": {},
+                "parent_association_impersonation": {},
+                "local_issue_committee_impersonation": {}
+              },
+              "movement_network_impersonation": {
+                "protest_group_impersonation": {},
+                "watchdog_group_impersonation": {},
+                "student_collective_impersonation": {},
+                "mutual_aid_network_impersonation": {}
+              }
+            },
+            "peer_or_acquaintance_impersonation": {
+              "relational_proximity_impersonation": {
+                "friend_impersonation": {},
+                "colleague_impersonation": {},
+                "classmate_impersonation": {},
+                "neighbor_impersonation": {}
+              },
+              "authority_adjacent_peer_impersonation": {
+                "campaign_peer_impersonation": {},
+                "community_admin_impersonation": {},
+                "local_reporter_contact_impersonation": {},
+                "organizer_peer_impersonation": {}
+              }
+            }
+          },
+          "proxy_front_and_cutout_construction": {
+            "front_media_properties": {
+              "pseudo_local_media_properties": {
+                "hyperlocal_news_fronts": {},
+                "community_bulletin_fronts": {},
+                "regional_watchdog_fronts": {},
+                "citizen_journalism_fronts": {}
+              },
+              "pseudo_specialist_media_properties": {
+                "data_and_polling_fronts": {},
+                "security_briefing_fronts": {},
+                "policy_analysis_fronts": {},
+                "fact_check_style_fronts": {}
+              }
+            },
+            "cutout_ngos_and_issue_groups": {
+              "advocacy_front_groups": {
+                "anti_corruption_fronts": {},
+                "family_values_fronts": {},
+                "public_safety_fronts": {},
+                "electoral_integrity_fronts": {}
+              },
+              "civic_participation_front_groups": {
+                "grassroots_petition_fronts": {},
+                "citizen_observer_fronts": {},
+                "reform_coalition_fronts": {},
+                "community_rights_fronts": {}
+              }
+            },
+            "contractor_or_pr_firm_intermediation": {
+              "commercial_influence_shells": {
+                "digital_marketing_cutouts": {},
+                "reputation_management_cutouts": {},
+                "creator_management_cutouts": {},
+                "survey_and_data_cutouts": {}
+              },
+              "freelancer_and_microcontractor_shells": {
+                "content_production_shells": {},
+                "moderation_and_seeding_shells": {},
+                "engagement_farm_shells": {},
+                "translation_shells": {}
+              }
+            },
+            "diaspora_proxy_voices": {
+              "homeland_attached_proxy_voices": {
+                "diaspora_media_voices": {},
+                "diaspora_religious_voices": {},
+                "diaspora_business_voices": {},
+                "diaspora_student_voices": {}
+              },
+              "community_authenticity_proxy_voices": {
+                "transnational_family_network_voices": {},
+                "expatriate_testimonial_voices": {},
+                "return_migrant_voices": {},
+                "identity_guardian_voices": {}
+              }
+            },
+            "fellow_traveler_ecosystems": {
+              "aligned_but_uncontrolled_relays": {
+                "ideological_media_relays": {},
+                "subculture_relay_accounts": {},
+                "partisan_meme_pages": {},
+                "cause_committed_forum_relays": {}
+              },
+              "opportunistic_relays": {
+                "engagement_hungry_creators": {},
+                "contrarian_commentators": {},
+                "status_resenting_former_insiders": {},
+                "scandal_monetizing_pages": {}
+              }
+            }
+          },
+          "legitimacy_and_status_signalling": {
+            "stolen_credibility_signals": {
+              "logo_and_brand_borrowing": {},
+              "bureaucratic_template_borrowing": {},
+              "official_tone_borrowing": {},
+              "procedural_language_borrowing": {},
+              "verification_symbol_imitation": {}
+            },
+            "credential_display_manipulation": {
+              "formal_credential_claims": {
+                "degree_claims": {},
+                "institutional_affiliation_claims": {},
+                "service_record_claims": {},
+                "certification_claims": {}
+              },
+              "informal_status_claims": {
+                "insider_access_claims": {},
+                "field_experience_claims": {},
+                "whistleblower_access_claims": {},
+                "community_leader_claims": {}
+              }
+            },
+            "cross_platform_identity_layering": {
+              "multi_platform_name_consistency": {},
+              "multi_platform_visual_consistency": {},
+              "cross_linked_bio_consistency": {},
+              "timeline_depth_consistency": {},
+              "interaction_history_consistency": {}
+            },
+            "engagement_seeded_legitimacy": {
+              "visible_popularity_cues": {
+                "bought_followers": {},
+                "bought_replies": {},
+                "bought_reposts": {},
+                "bought_reaction_metrics": {}
+              },
+              "visible_validation_cues": {
+                "coordinated_endorsements": {},
+                "ringed_expert_replies": {},
+                "badge_and_list_inclusion_simulation": {},
+                "quote_chain_validation": {}
+              }
+            },
+            "elite_association_signalling": {
+              "proximity_implication": {
+                "photo_op_implication": {},
+                "private_briefing_implication": {},
+                "backchannel_contact_implication": {},
+                "event_backstage_access_implication": {}
+              },
+              "borrowed_endorsement_implication": {
+                "partial_quote_endorsement_implication": {},
+                "ambiguous_mention_endorsement_implication": {},
+                "symbolic_association_implication": {},
+                "staff_or_adviser_proximity_implication": {}
+              }
+            }
+          },
+          "authenticity_obfuscation": {
+            "geolocation_masking": {
+              "domestic_ip_masking": {},
+              "timezone_behavior_masking": {},
+              "regional_reference_masking": {},
+              "local_event_awareness_masking": {}
+            },
+            "language_register_localization": {
+              "dialect_and_slang_localization": {
+                "regional_dialect_mimicry": {},
+                "age_cohort_slang_mimicry": {},
+                "subculture_jargon_mimicry": {},
+                "class_register_mimicry": {}
+              },
+              "issue_native_discourse_localization": {
+                "movement_phraseology_mimicry": {},
+                "policy_domain_term_mimicry": {},
+                "community_in_joke_mimicry": {},
+                "local_media_reference_mimicry": {}
+              }
+            },
+            "mixed_authentic_inauthentic_blending": {
+              "real_supporter_signal_blending": {},
+              "compromised_account_blending": {},
+              "creator_relay_blending": {},
+              "community_admin_blending": {}
+            },
+            "network_compartmentalization": {
+              "persona_cluster_compartmentalization": {},
+              "platform_role_compartmentalization": {},
+              "linguistic_audience_compartmentalization": {},
+              "country_or_region_compartmentalization": {}
+            },
+            "legacy_account_reuse": {
+              "aged_account_repurposing": {
+                "dormant_account_repurposing": {},
+                "aged_page_repurposing": {},
+                "legacy_forum_identity_repurposing": {},
+                "historic_group_repurposing": {}
+              },
+              "compromised_account_reuse": {
+                "compromised_creator_account_reuse": {},
+                "compromised_local_figure_account_reuse": {},
+                "compromised_admin_account_reuse": {},
+                "compromised_institution_adjacent_account_reuse": {}
+              }
+            }
+          },
+          "official_and_diplomatic_channel_abuse": {
+            "diplomatic_amplification": {
+              "embassy_account_amplification": {},
+              "consular_network_amplification": {},
+              "multilateral_delegate_amplification": {},
+              "official_spokesperson_amplification": {}
+            },
+            "state_media_legitimization": {
+              "breaking_news_wrap": {
+                "state_media_breaking_wrap": {},
+                "state_media_investigative_wrap": {},
+                "state_media_documentary_wrap": {},
+                "state_media_talk_show_wrap": {}
+              },
+              "public_diplomacy_wrap": {
+                "cultural_outreach_wrap": {},
+                "diaspora_engagement_wrap": {},
+                "expert_roundtable_wrap": {},
+                "official_rebuttal_wrap": {}
+              }
+            },
+            "fact_checking_style_deception": {
+              "official_clarification_style_deception": {},
+              "forensic_rebuttal_style_deception": {},
+              "myth_vs_fact_style_deception": {},
+              "timeline_reconstruction_style_deception": {}
+            },
+            "forum_presence_exploitation": {
+              "conference_panel_exploitation": {},
+              "observer_mission_exploitation": {},
+              "public_consultation_exploitation": {},
+              "hearing_and_roundtable_exploitation": {}
+            },
+            "official_cross_signal_chaining": {
+              "multi_channel_state_signal_chaining": {
+                "ministry_to_media_signal_chaining": {},
+                "diplomat_to_creator_signal_chaining": {},
+                "official_statement_to_proxy_site_chaining": {},
+                "briefing_to_leak_style_chaining": {}
+              },
+              "multi_language_state_signal_chaining": {
+                "domestic_language_chaining": {},
+                "diaspora_language_chaining": {},
+                "international_language_chaining": {},
+                "expert_vernacular_chaining": {}
+              }
+            }
+          }
+        },
+        "claim_frame_and_narrative_manipulation": {
+          "claim_level_deception": {
+            "fabricated_claim_injection": {
+              "event_fabrication": {
+                "fabricated_incidents": {},
+                "fabricated_meetings": {},
+                "fabricated_votes_or_decisions": {},
+                "fabricated_policy_plans": {}
+              },
+              "actor_and_motive_fabrication": {
+                "fabricated_conspirators": {},
+                "fabricated_whistleblowers": {},
+                "fabricated_foreign_links": {},
+                "fabricated_hidden_sponsors": {}
+              },
+              "outcome_fabrication": {
+                "fabricated_harm_outcomes": {},
+                "fabricated_benefit_outcomes": {},
+                "fabricated_participation_numbers": {},
+                "fabricated_security_failures": {}
+              }
+            },
+            "misleading_framing": {
+              "headline_and_lede_misframing": {
+                "alarmist_headline_misframing": {},
+                "certainty_overstatement_misframing": {},
+                "motive_imputation_misframing": {},
+                "procedural_implication_misframing": {}
+              },
+              "visual_and_caption_misframing": {
+                "decontextualized_image_captioning": {},
+                "suggestive_thumbnail_misframing": {},
+                "outcome_implying_graphic_misframing": {},
+                "timeline_misordering_misframing": {}
+              }
+            },
+            "context_stripping": {
+              "quote_context_stripping": {
+                "partial_quote_context_stripping": {},
+                "sarcasm_removal_context_stripping": {},
+                "conditionality_removal_context_stripping": {},
+                "audience_context_removal": {}
+              },
+              "event_context_stripping": {
+                "time_window_context_stripping": {},
+                "preceding_event_context_stripping": {},
+                "response_sequence_context_stripping": {},
+                "policy_process_context_stripping": {}
+              }
+            },
+            "data_and_quote_cherry_picking": {
+              "quantitative_cherry_picking": {
+                "time_window_cherry_picking": {},
+                "baseline_cherry_picking": {},
+                "subgroup_cherry_picking": {},
+                "outlier_cherry_picking": {}
+              },
+              "testimonial_and_quote_cherry_picking": {
+                "representative_sounding_quote_cherry_picking": {},
+                "elite_quote_cherry_picking": {},
+                "angriest_comment_cherry_picking": {},
+                "selective_whistleblower_quote_cherry_picking": {}
+              }
+            },
+            "causal_misattribution": {
+              "agent_misattribution": {
+                "wrong_actor_blaming": {},
+                "proxy_as_principal_blaming": {},
+                "foreign_actor_false_blaming": {},
+                "bureaucratic_level_false_blaming": {}
+              },
+              "mechanism_misattribution": {
+                "policy_mechanism_misattribution": {},
+                "economic_effect_misattribution": {},
+                "security_effect_misattribution": {},
+                "procedural_outcome_misattribution": {}
+              }
+            }
+          },
+          "frame_and_reframing_operations": {
+            "dismiss": {
+              "denial_frames": {
+                "flat_denial": {},
+                "evidence_insufficiency_denial": {},
+                "procedural_denial": {},
+                "semantic_redefinition_denial": {}
+              },
+              "critic_devaluation_frames": {
+                "partisan_motive_attack": {},
+                "competence_attack": {},
+                "elitism_attack": {},
+                "foreign_influence_attack": {}
+              }
+            },
+            "distort": {
+              "sequence_distortion": {
+                "cause_before_effect_distortion": {},
+                "edited_timeline_distortion": {},
+                "simultaneity_distortion": {},
+                "threshold_crossing_distortion": {}
+              },
+              "proportion_distortion": {
+                "isolated_case_as_pattern": {},
+                "rare_event_as_trend": {},
+                "small_group_as_majority": {},
+                "uncertainty_as_confirmation": {}
+              }
+            },
+            "distract": {
+              "topic_displacement": {
+                "adjacent_scandal_substitution": {},
+                "personality_conflict_substitution": {},
+                "symbolic_culture_war_substitution": {},
+                "foreign_whatabout_substitution": {}
+              },
+              "blame_redirection": {
+                "middleman_blaming": {},
+                "opposition_blaming": {},
+                "historical_actor_blaming": {},
+                "bureaucratic_maze_blaming": {}
+              }
+            },
+            "dismay": {
+              "threat_intensification": {
+                "imminence_intensification": {},
+                "scale_intensification": {},
+                "vulnerability_intensification": {},
+                "helplessness_intensification": {}
+              },
+              "deterrent_signalling": {
+                "participation_cost_signalling": {},
+                "retaliation_risk_signalling": {},
+                "surveillance_risk_signalling": {},
+                "social_exclusion_signalling": {}
+              }
+            },
+            "divide": {
+              "horizontal_division_frames": {
+                "class_against_class_frames": {},
+                "region_against_region_frames": {},
+                "generation_against_generation_frames": {},
+                "majority_against_minority_frames": {}
+              },
+              "vertical_division_frames": {
+                "people_against_elites_frames": {},
+                "grassroots_against_brokers_frames": {},
+                "local_against_capital_frames": {},
+                "workers_against_experts_frames": {}
+              }
+            }
+          },
+          "master_narrative_engineering": {
+            "betrayal_narratives": {
+              "elite_sellout_narratives": {},
+              "party_defection_narratives": {},
+              "institutional_double_standard_narratives": {},
+              "expert_deception_narratives": {},
+              "ally_abandonment_narratives": {}
+            },
+            "threat_narratives": {
+              "existential_security_threat_narratives": {},
+              "cultural_erasure_threat_narratives": {},
+              "economic_dispossession_threat_narratives": {},
+              "children_and_family_threat_narratives": {},
+              "sovereignty_threat_narratives": {}
+            },
+            "decline_narratives": {
+              "national_decline_narratives": {},
+              "moral_decay_narratives": {},
+              "institutional_collapse_narratives": {},
+              "community_disintegration_narratives": {},
+              "irreversible_trajectory_narratives": {}
+            },
+            "corruption_narratives": {
+              "captured_state_narratives": {},
+              "rigged_system_narratives": {},
+              "pay_to_play_narratives": {},
+              "cartelized_elite_narratives": {},
+              "procedural_cover_up_narratives": {}
+            },
+            "replacement_and_displacement_narratives": {
+              "demographic_replacement_narratives": {},
+              "cultural_displacement_narratives": {},
+              "status_displacement_narratives": {},
+              "citizen_dispossession_narratives": {}
+            },
+            "inevitability_narratives": {
+              "already_decided_outcome_narratives": {},
+              "silent_majority_awakening_narratives": {},
+              "historic_turning_point_narratives": {},
+              "final_countdown_narratives": {}
+            },
+            "purification_and_restoration_narratives": {
+              "national_rebirth_narratives": {},
+              "moral_restoration_narratives": {},
+              "institutional_cleanse_narratives": {},
+              "community_take_back_control_narratives": {}
+            }
+          },
+          "emotional_and_moral_engineering": {
+            "fear_appeals": {
+              "personal_safety_fear": {
+                "crime_exposure_fear": {},
+                "family_harm_fear": {},
+                "social_breakdown_fear": {},
+                "retaliation_fear": {}
+              },
+              "collective_survival_fear": {
+                "national_extinction_fear": {},
+                "cultural_annihilation_fear": {},
+                "economic_ruin_fear": {},
+                "democratic_collapse_fear": {}
+              }
+            },
+            "anger_induction": {
+              "injustice_anger": {
+                "double_standard_anger": {},
+                "corruption_anger": {},
+                "humiliation_anger": {},
+                "resource_unfairness_anger": {}
+              },
+              "betrayal_anger": {
+                "elite_betrayal_anger": {},
+                "party_betrayal_anger": {},
+                "media_betrayal_anger": {},
+                "institutional_betrayal_anger": {}
+              }
+            },
+            "humiliation_and_contempt": {
+              "target_status_degradation": {
+                "ridicule_of_competence": {},
+                "ridicule_of_morality": {},
+                "ridicule_of_authenticity": {},
+                "ridicule_of_strength": {}
+              },
+              "outgroup_dehumanizing_contempt": {
+                "parasite_framing": {},
+                "vermin_framing": {},
+                "degeneracy_framing": {},
+                "cowardice_framing": {}
+              }
+            },
+            "moral_shock": {
+              "shock_image_deployment": {
+                "injury_or_victim_imagery": {},
+                "symbol_desecration_imagery": {},
+                "children_at_risk_imagery": {},
+                "sacred_site_violation_imagery": {}
+              },
+              "shock_story_deployment": {
+                "single_case_horror_story": {},
+                "betrayal_confession_story": {},
+                "hidden_abuse_story": {},
+                "procedural_injustice_story": {}
+              }
+            },
+            "nostalgia_and_restoration": {
+              "golden_age_activation": {
+                "safer_past_activation": {},
+                "more_cohesive_past_activation": {},
+                "fairer_economy_past_activation": {},
+                "stronger_state_past_activation": {}
+              },
+              "stolen_future_reversal": {
+                "restore_control_frames": {},
+                "restore_dignity_frames": {},
+                "restore_order_frames": {},
+                "restore_moral_boundaries_frames": {}
+              }
+            },
+            "hope_and_salvation_scripts": {
+              "rescuer_personalization": {
+                "hero_leader_personalization": {},
+                "citizen_uprising_personalization": {},
+                "whistleblower_savior_personalization": {},
+                "technocratic_fix_personalization": {}
+              },
+              "collective_redemption": {
+                "community_repair_scripts": {},
+                "national_rebirth_scripts": {},
+                "moral_cleanse_scripts": {},
+                "institutional_reset_scripts": {}
+              }
+            }
+          },
+          "identity_and_group_coding": {
+            "ingroup_fusion": {
+              "issue_as_loyalty_test": {},
+              "issue_as_membership_badge": {},
+              "issue_as_shared_sacrifice": {},
+              "issue_as_identity_boundary": {}
+            },
+            "outgroup_essentialization": {
+              "inherent_corruption_coding": {},
+              "inherent_danger_coding": {},
+              "inherent_foreignness_coding": {},
+              "inherent_untrustworthiness_coding": {}
+            },
+            "status_threat_coding": {
+              "masculinity_status_threat": {},
+              "class_status_threat": {},
+              "majority_status_threat": {},
+              "regional_status_threat": {}
+            },
+            "boundary_hardening": {
+              "compromise_as_betrayal": {},
+              "nuance_as_weakness": {},
+              "dialogue_as_collaboration": {},
+              "defection_as_pollution": {}
+            },
+            "moral_purity_coding": {
+              "children_and_innocence_purity_coding": {},
+              "faith_and_sacred_duty_coding": {},
+              "civilizational_purity_coding": {},
+              "anti_corruption_purity_coding": {}
+            },
+            "victimhood_identity_coding": {
+              "persecuted_majority_coding": {},
+              "silenced_truth_teller_coding": {},
+              "forgotten_region_coding": {},
+              "humiliated_citizen_coding": {}
+            }
+          },
+          "epistemic_destabilization": {
+            "certainty_erosion": {
+              "nothing_can_be_known_frames": {},
+              "all_sides_lie_frames": {},
+              "evidence_is_always_manipulated_frames": {},
+              "truth_is_only_group_loyalty_frames": {}
+            },
+            "contradiction_stacking": {
+              "mutually_incompatible_accusation_stacking": {},
+              "multiple_motive_stacking": {},
+              "parallel_scapegoat_stacking": {},
+              "serial_plotline_stacking": {}
+            },
+            "evidence_reweighting": {
+              "fringe_source_promotion": {},
+              "anecdote_over_dataset_promotion": {},
+              "viral_clip_over_context_promotion": {},
+              "pseudo_forensic_over_expert_promotion": {}
+            },
+            "source_relativization": {
+              "journalism_as_rumor_relativization": {},
+              "expertise_as_opinion_relativization": {},
+              "official_records_as_spin_relativization": {},
+              "verified_and_unverified_flattening": {}
+            },
+            "whataboutist_deflection": {
+              "historical_whataboutism": {},
+              "foreign_whataboutism": {},
+              "opposition_whataboutism": {},
+              "procedural_whataboutism": {}
+            },
+            "verification_fatigue_induction": {
+              "constant_fact_dispute_induction": {},
+              "endless_document_demand_induction": {},
+              "rebuttal_whack_a_mole_induction": {},
+              "speed_over_accuracy_induction": {}
+            }
+          },
+          "narrative_laundering_and_translation": {
+            "fringe_to_mainstream_translation": {
+              "meme_to_commentary_translation": {},
+              "forum_rumor_to_article_translation": {},
+              "stream_clip_to_newsworthy_translation": {},
+              "anonymous_post_to_witness_translation": {}
+            },
+            "pseudo_journalistic_repackaging": {
+              "headline_neutralization": {},
+              "quote_balance_repackaging": {},
+              "evidence_style_layout_repackaging": {},
+              "investigation_style_repackaging": {}
+            },
+            "cross_lingual_reframing": {
+              "domestic_language_reframing": {},
+              "diaspora_language_reframing": {},
+              "elite_international_language_reframing": {},
+              "subculture_vernacular_reframing": {}
+            },
+            "citation_chain_construction": {
+              "circular_quote_chains": {},
+              "mirror_site_quote_chains": {},
+              "podcast_to_article_to_post_quote_chains": {},
+              "pseudo_archive_quote_chains": {}
+            },
+            "influencer_style_translation": {
+              "humor_translation": {},
+              "rage_clip_translation": {},
+              "lifestyle_translation": {},
+              "storytime_translation": {}
+            }
+          }
+        },
+        "evidence_artifact_and_synthetic_media_manipulation": {
+          "forged_and_staged_documents": {
+            "forged_memos_and_letters": {
+              "ministerial_memo_forgery": {},
+              "campaign_strategy_letter_forgery": {},
+              "internal_warning_letter_forgery": {},
+              "legal_notice_forgery": {}
+            },
+            "fabricated_spreadsheets_and_logs": {
+              "financial_roster_fabrication": {},
+              "turnout_or_registration_log_fabrication": {},
+              "access_log_fabrication": {},
+              "meeting_attendance_log_fabrication": {}
+            },
+            "staged_chat_and_email_screenshots": {
+              "insider_chat_staging": {},
+              "journalist_email_staging": {},
+              "campaign_staff_chat_staging": {},
+              "community_admin_chat_staging": {}
+            },
+            "edited_document_excerpts": {
+              "selective_redaction_editing": {},
+              "page_order_rearrangement": {},
+              "context_window_cropping": {},
+              "highlight_and_annotation_biasing": {}
+            },
+            "stamp_and_signature_simulation": {
+              "seal_simulation": {},
+              "signature_simulation": {},
+              "letterhead_simulation": {},
+              "verification_footer_simulation": {}
+            }
+          },
+          "synthetic_audio_video_and_image_generation": {
+            "deepfake_video": {
+              "false_statement_video": {},
+              "false_confession_video": {},
+              "false_private_meeting_video": {},
+              "false_instruction_video": {}
+            },
+            "voice_cloning_and_synthetic_audio": {
+              "false_endorsement_audio": {},
+              "false_emergency_instruction_audio": {},
+              "false_leak_audio": {},
+              "false_private_call_audio": {}
+            },
+            "face_swap_and_avatar_deception": {
+              "live_stream_avatar_deception": {},
+              "meeting_presence_deception": {},
+              "celebrity_or_politician_face_swap": {},
+              "community_member_face_swap": {}
+            },
+            "image_context_fabrication": {
+              "crowd_size_fabrication": {},
+              "event_presence_fabrication": {},
+              "symbol_display_fabrication": {},
+              "violence_scene_fabrication": {}
+            },
+            "cheapfake_editing": {
+              "speed_manipulation": {},
+              "clip_splicing": {},
+              "silence_removal_or_insertion": {},
+              "crop_for_false_implication": {}
+            }
+          },
+          "statistical_and_analytic_artifact_manipulation": {
+            "fabricated_polls_and_surveys": {
+              "invented_topline_polling": {},
+              "fabricated_cross_tabs": {},
+              "fabricated_methodology_notes": {},
+              "invented_tracking_trends": {}
+            },
+            "misleading_charts_and_dashboards": {
+              "axis_scale_distortion": {},
+              "noncomparable_baseline_charting": {},
+              "truncated_time_series_charting": {},
+              "category_merge_or_split_distortion": {}
+            },
+            "pseudo_forensic_visualizations": {
+              "speculative_network_graphs": {},
+              "suggestive_heat_maps": {},
+              "certainty_overstated_timelines": {},
+              "attribution_overstated_flowcharts": {}
+            },
+            "methodology_masking": {
+              "technical_jargon_padding": {},
+              "opaque_model_claims": {},
+              "black_box_index_claims": {},
+              "selective_disclosure_method_notes": {}
+            },
+            "sample_and_baseline_distortion": {
+              "biased_denominator_selection": {},
+              "base_rate_suppression": {},
+              "convenience_sample_presentation": {},
+              "threshold_changing_comparisons": {}
+            }
+          },
+          "leak_and_dump_packaging": {
+            "selective_leak_curating": {
+              "theme_consistent_selection": {},
+              "timing_consistent_selection": {},
+              "humiliation_maximizing_selection": {},
+              "coalition_split_maximizing_selection": {}
+            },
+            "real_fake_material_blending": {
+              "genuine_core_with_fabricated_edges": {},
+              "authentic_metadata_with_fake_content": {},
+              "real_thread_with_inserted_message": {},
+              "real_archive_with_fake_addendum": {}
+            },
+            "timed_dump_staging": {
+              "debate_eve_dumping": {},
+              "deadline_eve_dumping": {},
+              "crisis_window_dumping": {},
+              "certification_window_dumping": {}
+            },
+            "anonymous_drop_infrastructure": {
+              "whistleblower_portal_simulation": {},
+              "mirror_site_drop_infrastructure": {},
+              "paste_site_drop_infrastructure": {},
+              "leak_channel_drop_infrastructure": {}
+            },
+            "context_suppression_in_dumps": {
+              "metadata_removal": {},
+              "sequence_removal": {},
+              "covering_note_removal": {},
+              "response_document_removal": {}
+            }
+          },
+          "pseudo_expert_and_testimonial_manipulation": {
+            "fake_white_papers_and_briefings": {
+              "policy_brief_fabrication": {},
+              "intelligence_note_fabrication": {},
+              "legal_analysis_fabrication": {},
+              "scientific_report_fabrication": {}
+            },
+            "manufactured_expert_quotes": {
+              "fabricated_named_expert_quotes": {},
+              "fabricated_anonymous_expert_quotes": {},
+              "misattributed_quote_reuse": {},
+              "context_shifted_quote_reuse": {}
+            },
+            "staged_witness_testimony": {
+              "community_member_witness_staging": {},
+              "insider_witness_staging": {},
+              "victim_witness_staging": {},
+              "election_or_procedure_witness_staging": {}
+            },
+            "credentialed_front_commentary": {
+              "aligned_academic_front_commentary": {},
+              "aligned_security_front_commentary": {},
+              "aligned_legal_front_commentary": {},
+              "aligned_polling_front_commentary": {}
+            },
+            "community_testimonial_capture": {
+              "local_business_owner_capture": {},
+              "faith_leader_capture": {},
+              "parent_group_capture": {},
+              "veteran_or_service_member_capture": {}
+            }
+          },
+          "artifact_chain_and_provenance_manipulation": {
+            "metadata_spoofing": {
+              "timestamp_spoofing": {},
+              "geotag_spoofing": {},
+              "author_field_spoofing": {},
+              "device_origin_spoofing": {}
+            },
+            "archive_planting": {
+              "web_archive_planting": {},
+              "document_repository_planting": {},
+              "forum_archive_planting": {},
+              "community_drive_planting": {}
+            },
+            "source_history_fabrication": {
+              "discovery_story_fabrication": {},
+              "chain_of_forwarding_fabrication": {},
+              "insider_hand_off_fabrication": {},
+              "journalist_tipline_fabrication": {}
+            },
+            "verification_mimicry": {
+              "osint_style_verification_mimicry": {},
+              "fact_check_style_verification_mimicry": {},
+              "forensic_style_verification_mimicry": {},
+              "legal_review_style_verification_mimicry": {}
+            },
+            "chain_of_custody_masking": {
+              "origin_server_masking": {},
+              "intermediary_handler_masking": {},
+              "editing_history_masking": {},
+              "release_authority_masking": {}
+            }
+          }
+        },
+        "targeting_delivery_and_discoverability_optimization": {
+          "audience_matching_and_microtargeting": {
+            "demographic_targeting": {
+              "age_matched_targeting": {},
+              "gender_role_coded_targeting": {},
+              "income_strata_targeting": {},
+              "occupation_coded_targeting": {},
+              "family_stage_targeting": {}
+            },
+            "psychographic_targeting": {
+              "fear_profile_targeting": {},
+              "moral_value_targeting": {},
+              "status_anxiety_targeting": {},
+              "need_for_closure_targeting": {},
+              "identity_threat_targeting": {}
+            },
+            "geotargeting": {
+              "district_level_geotargeting": {},
+              "neighborhood_level_geotargeting": {},
+              "campus_level_geotargeting": {},
+              "border_region_geotargeting": {},
+              "event_radius_geotargeting": {}
+            },
+            "issue_affinity_targeting": {
+              "single_issue_group_targeting": {},
+              "protest_adjacent_targeting": {},
+              "petition_signer_targeting": {},
+              "comment_thread_interest_targeting": {},
+              "legacy_supporter_affinity_targeting": {}
+            },
+            "behavioral_retargeting": {
+              "repeat_exposure_retargeting": {},
+              "dropoff_reactivation_retargeting": {},
+              "rage_engager_retargeting": {},
+              "curiosity_clicker_retargeting": {},
+              "conversion_pathway_retargeting": {}
+            }
+          },
+          "channel_selection_and_pathway_design": {
+            "mainstream_platform_delivery": {
+              "feed_based_delivery": {},
+              "short_video_delivery": {},
+              "public_comment_delivery": {},
+              "trend_surface_delivery": {},
+              "live_stream_chat_delivery": {}
+            },
+            "niche_community_delivery": {
+              "subforum_delivery": {},
+              "identity_group_delivery": {},
+              "issue_group_delivery": {},
+              "gaming_or_subculture_delivery": {},
+              "campus_or_local_group_delivery": {}
+            },
+            "messaging_app_delivery": {
+              "broadcast_list_delivery": {},
+              "closed_group_delivery": {},
+              "forward_chain_delivery": {},
+              "channel_plus_chat_delivery": {},
+              "voice_note_delivery": {}
+            },
+            "email_sms_and_robocall_delivery": {
+              "official_notice_style_email_delivery": {},
+              "peer_style_sms_delivery": {},
+              "deadline_pressure_text_delivery": {},
+              "voice_call_urgency_delivery": {},
+              "procedural_guidance_delivery": {}
+            },
+            "offline_bridge_delivery": {
+              "poster_and_leaflet_bridge_delivery": {},
+              "local_radio_bridge_delivery": {},
+              "street_spectacle_bridge_delivery": {},
+              "townhall_bridge_delivery": {},
+              "word_of_mouth_bridge_delivery": {}
+            }
+          },
+          "discoverability_engineering": {
+            "hashtag_hijacking": {
+              "crisis_hashtag_hijacking": {},
+              "campaign_hashtag_hijacking": {},
+              "issue_movement_hashtag_hijacking": {},
+              "memorial_or_symbolic_hashtag_hijacking": {}
+            },
+            "search_engine_optimization": {
+              "issue_query_optimization": {},
+              "candidate_name_optimization": {},
+              "scandal_query_optimization": {},
+              "procedural_help_query_optimization": {}
+            },
+            "recommendation_system_gaming": {
+              "watch_time_gaming": {},
+              "engagement_velocity_gaming": {},
+              "topic_cluster_gaming": {},
+              "cross_post_momentum_gaming": {}
+            },
+            "autocomplete_and_query_pollution": {
+              "suggested_query_pollution": {},
+              "related_search_pollution": {},
+              "misspelling_capture_pollution": {},
+              "compare_query_pollution": {}
+            },
+            "ai_retrieval_surface_poisoning": {
+              "faq_style_source_poisoning": {},
+              "pseudo_reference_source_poisoning": {},
+              "answer_snippet_source_poisoning": {},
+              "synthetic_consensus_source_poisoning": {}
+            }
+          },
+          "timing_and_sequence_optimization": {
+            "crisis_window_targeting": {
+              "breaking_event_targeting": {},
+              "uncertainty_peak_targeting": {},
+              "fear_peak_targeting": {},
+              "verification_delay_targeting": {}
+            },
+            "election_window_targeting": {
+              "registration_window_targeting": {},
+              "debate_window_targeting": {},
+              "early_vote_window_targeting": {},
+              "polling_day_window_targeting": {},
+              "counting_and_certification_window_targeting": {}
+            },
+            "attention_cycle_exploitation": {
+              "late_night_release_timing": {},
+              "weekend_release_timing": {},
+              "holiday_release_timing": {},
+              "competing_major_news_release_timing": {}
+            },
+            "prebunk_preemption_timing": {
+              "first_frame_capture_timing": {},
+              "official_response_preemption_timing": {},
+              "fact_check_preemption_timing": {},
+              "narrative_vacuum_capture_timing": {}
+            },
+            "escalation_sequencing": {
+              "soft_to_hard_claim_sequencing": {},
+              "curiosity_to_outrage_sequencing": {},
+              "exposure_to_action_prompt_sequencing": {},
+              "single_case_to_systemic_claim_sequencing": {}
+            }
+          },
+          "message_variant_control": {
+            "segment_specific_wording": {
+              "youth_coded_wording": {},
+              "faith_coded_wording": {},
+              "working_class_coded_wording": {},
+              "elite_professional_coded_wording": {},
+              "diaspora_coded_wording": {}
+            },
+            "issue_specific_reframing": {
+              "economy_frame_variant": {},
+              "security_frame_variant": {},
+              "rights_frame_variant": {},
+              "anti_corruption_frame_variant": {},
+              "identity_frame_variant": {}
+            },
+            "adaptive_audience_copy": {
+              "high_anger_copy": {},
+              "high_fear_copy": {},
+              "high_hope_copy": {},
+              "low_salience_curiosity_copy": {},
+              "procedural_confusion_copy": {}
+            },
+            "local_context_embedding": {
+              "local_place_name_embedding": {},
+              "local_incident_embedding": {},
+              "local_elite_name_embedding": {},
+              "local_symbol_embedding": {},
+              "local_humor_embedding": {}
+            },
+            "norm_sensitive_packaging": {
+              "rights_defense_packaging": {},
+              "public_order_packaging": {},
+              "patriotism_packaging": {},
+              "community_care_packaging": {},
+              "anti_elitism_packaging": {}
+            }
+          }
+        },
+        "amplification_visibility_and_attention_manipulation": {
+          "bot_cyborg_and_account_network_amplification": {
+            "political_bot_amplification": {
+              "repost_bot_amplification": {},
+              "reply_bot_amplification": {},
+              "hashtag_bot_amplification": {},
+              "follower_growth_bot_amplification": {}
+            },
+            "cyborg_amplification": {
+              "human_queued_cyborg_posting": {},
+              "template_driven_cyborg_replying": {},
+              "semi_automated_cross_platform_cyborging": {},
+              "manual_intervention_cyborging": {}
+            },
+            "reply_farm_operations": {
+              "politician_reply_farms": {},
+              "journalist_reply_farms": {},
+              "institution_reply_farms": {},
+              "celebrity_reply_farms": {}
+            },
+            "follower_and_engagement_farming": {
+              "engagement_pod_farming": {},
+              "clickfarm_reaction_farming": {},
+              "synthetic_follower_laddering": {},
+              "quote_chain_farming": {}
+            },
+            "cascade_bootstrapping": {
+              "first_minutes_bootstrapping": {},
+              "trend_threshold_bootstrapping": {},
+              "cross_platform_bootstrapping": {},
+              "elite_notice_bootstrapping": {}
+            }
+          },
+          "human_swarm_and_troll_amplification": {
+            "volunteer_swarm_amplification": {
+              "scheduled_supporter_swarming": {},
+              "movement_call_to_signal_boosting": {},
+              "campaign_surrogate_swarming": {},
+              "issue_day_of_action_swarming": {}
+            },
+            "paid_troll_farms": {
+              "comment_section_troll_farming": {},
+              "inbox_troll_farming": {},
+              "forum_troll_farming": {},
+              "multilingual_troll_farming": {}
+            },
+            "brigading": {
+              "thread_brigading": {},
+              "vote_manipulation_brigading": {},
+              "livestream_brigading": {},
+              "community_takeover_brigading": {}
+            },
+            "mass_reporting_for_visibility_control": {
+              "account_suspension_reporting": {},
+              "content_takedown_reporting": {},
+              "livestream_interrupt_reporting": {},
+              "group_shutdown_reporting": {}
+            },
+            "comment_flooding": {
+              "correction_burying_comment_flooding": {},
+              "narrative_repetition_comment_flooding": {},
+              "mockery_comment_flooding": {},
+              "procedural_confusion_comment_flooding": {}
+            }
+          },
+          "influencer_and_high_reach_relay": {
+            "creator_relay": {
+              "humor_creator_relay": {},
+              "news_explainer_creator_relay": {},
+              "streamer_relay": {},
+              "lifestyle_creator_relay": {}
+            },
+            "celebrity_or_status_relay": {
+              "celebrity_endorsement_relay": {},
+              "athlete_or_artist_relay": {},
+              "retired_official_status_relay": {},
+              "business_leader_status_relay": {}
+            },
+            "microinfluencer_network_relay": {
+              "local_microinfluencer_relay": {},
+              "identity_group_microinfluencer_relay": {},
+              "profession_based_microinfluencer_relay": {},
+              "campus_microinfluencer_relay": {}
+            },
+            "ideological_media_relay": {
+              "podcast_relay": {},
+              "newsletter_relay": {},
+              "talk_show_relay": {},
+              "partisan_panel_relay": {}
+            },
+            "cross_border_relay": {
+              "diaspora_creator_relay": {},
+              "foreign_language_media_relay": {},
+              "neighbor_state_media_relay": {},
+              "transnational_movement_relay": {}
+            }
+          },
+          "attention_capture_and_retention_mechanics": {
+            "salience_spiking": {
+              "shock_drop_salience_spiking": {},
+              "coordinated_burst_salience_spiking": {},
+              "elite_reaction_salience_spiking": {},
+              "visual_symbol_salience_spiking": {}
+            },
+            "repetition_and_recurrence": {
+              "cross_format_repetition": {},
+              "cross_platform_repetition": {},
+              "daily_recurrence": {},
+              "trigger_event_recurrence": {}
+            },
+            "spectacle_and_outrage_formatting": {
+              "scandal_formatting": {},
+              "insult_and_conflict_formatting": {},
+              "emergency_formatting": {},
+              "sacred_violation_formatting": {}
+            },
+            "gamified_participation_hooks": {
+              "challenge_hooks": {},
+              "poll_and_quiz_hooks": {},
+              "duet_or_remix_hooks": {},
+              "badge_and_identity_hooks": {}
+            },
+            "serial_episode_delivery": {
+              "document_drop_episode_delivery": {},
+              "thread_episode_delivery": {},
+              "investigation_episode_delivery": {},
+              "countdown_episode_delivery": {}
+            }
+          },
+          "amplification_choreography": {
+            "burst_synchronization": {
+              "same_minute_posting": {},
+              "coordinated_reply_waves": {},
+              "hashtag_threshold_synchronization": {},
+              "cross_platform_opening_burst": {}
+            },
+            "low_and_slow_amplification": {
+              "staggered_account_posting": {},
+              "ambient_repetition": {},
+              "intermittent_reinforcement": {},
+              "slow_cluster_penetration": {}
+            },
+            "multi_wave_amplification": {
+              "seed_wave": {},
+              "validation_wave": {},
+              "mass_wave": {},
+              "sustainment_wave": {}
+            },
+            "cross_platform_velocity_transfer": {
+              "messaging_to_public_transfer": {},
+              "short_clip_to_article_transfer": {},
+              "livestream_to_meme_transfer": {},
+              "forum_to_trend_transfer": {}
+            },
+            "amplifier_role_specialization": {
+              "seeders": {},
+              "validators": {},
+              "boosters": {},
+              "harassers": {},
+              "bridge_accounts": {}
+            }
+          }
+        },
+        "social_proof_network_and_community_manipulation": {
+          "consensus_fabrication": {
+            "fake_majority_signals": {
+              "visible_reply_majority_signals": {},
+              "reaction_count_majority_signals": {},
+              "crowd_photo_majority_signals": {},
+              "comment_section_majority_signals": {}
+            },
+            "astroturf_movements": {
+              "petition_astroturf": {},
+              "rally_astroturf": {},
+              "citizen_coalition_astroturf": {},
+              "grassroots_brand_astroturf": {}
+            },
+            "manufactured_petitions_and_open_letters": {
+              "fake_signature_petitions": {},
+              "inflated_open_letters": {},
+              "credential_stacked_letters": {},
+              "community_resolution_simulations": {}
+            },
+            "poll_and_sentiment_spoofing": {
+              "quick_poll_spoofing": {},
+              "sentiment_widget_spoofing": {},
+              "scoreboard_spoofing": {},
+              "prediction_market_style_spoofing": {}
+            },
+            "pseudo_spontaneity": {
+              "simulated_bottom_up_outrage": {},
+              "simulated_citizen_discovery": {},
+              "simulated_neighborhood_concern": {},
+              "simulated_independent_convergence": {}
+            }
+          },
+          "network_engineering_and_bridge_control": {
+            "bridge_node_construction": {
+              "multi_identity_bridge_accounts": {},
+              "cross_issue_bridge_accounts": {},
+              "creator_bridge_accounts": {},
+              "language_bridge_accounts": {}
+            },
+            "fringe_to_mainstream_bridging": {
+              "forum_to_creator_bridging": {},
+              "creator_to_newsroom_bridging": {},
+              "anonymous_leak_to_public_commentary_bridging": {},
+              "niche_group_to_party_broker_bridging": {}
+            },
+            "echo_chamber_reinforcement": {
+              "selective_in_group_linking": {},
+              "outgroup_blocking_or_filtering": {},
+              "ritual_repetition_loops": {},
+              "internal_validator_promotion": {}
+            },
+            "cluster_synchronization": {
+              "same_frame_multi_group_synchronization": {},
+              "same_hashtag_multi_group_synchronization": {},
+              "same_enemy_multi_group_synchronization": {},
+              "same_action_prompt_multi_group_synchronization": {}
+            },
+            "broker_capture": {
+              "community_broker_capture": {},
+              "media_broker_capture": {},
+              "diaspora_broker_capture": {},
+              "movement_broker_capture": {}
+            }
+          },
+          "community_infiltration_and_capture": {
+            "trusted_member_cultivation": {
+              "long_horizon_trust_building": {},
+              "helpful_information_seed_building": {},
+              "shared_identity_performance_building": {},
+              "moderation_support_building": {}
+            },
+            "moderator_or_admin_capture": {
+              "admin_recruitment": {},
+              "admin_pressure_or_blackmail": {},
+              "technical_access_capture": {},
+              "succession_or_absence_capture": {}
+            },
+            "closed_group_recruitment": {
+              "dm_invite_recruitment": {},
+              "private_channel_recruitment": {},
+              "exclusive_information_recruitment": {},
+              "trusted_circle_recruitment": {}
+            },
+            "diaspora_and_identity_space_penetration": {
+              "homeland_news_space_penetration": {},
+              "religious_identity_space_penetration": {},
+              "ethnolinguistic_space_penetration": {},
+              "expatriate_student_space_penetration": {}
+            },
+            "movement_edge_infiltration": {
+              "volunteer_onboarding_infiltration": {},
+              "event_logistics_infiltration": {},
+              "discord_or_signal_edge_infiltration": {},
+              "campus_chapter_infiltration": {}
+            }
+          },
+          "harassment_norm_setting_and_silencing": {
+            "dogpiling": {
+              "public_quote_dogpiling": {},
+              "inbox_dogpiling": {},
+              "comment_thread_dogpiling": {},
+              "livestream_dogpiling": {}
+            },
+            "reputation_smearing": {
+              "extremist_label_smearing": {},
+              "foreign_agent_smearing": {},
+              "corrupt_actor_smearing": {},
+              "inauthentic_person_smearing": {}
+            },
+            "chilling_effect_operations": {
+              "career_risk_chilling": {},
+              "social_exclusion_chilling": {},
+              "family_safety_chilling": {},
+              "legal_or_process_chilling": {}
+            },
+            "defector_punishment": {
+              "apostate_mockery": {},
+              "public_exposure_of_dissenters": {},
+              "purity_test_enforcement": {},
+              "collaborator_labeling": {}
+            },
+            "mass_mockery_and_ridicule": {
+              "meme_ridicule": {},
+              "nickname_ridicule": {},
+              "voice_or_appearance_ridicule": {},
+              "competence_ridicule": {}
+            }
+          },
+          "social_proof_optimization": {
+            "engagement_pods": {
+              "creator_engagement_pods": {},
+              "campaign_engagement_pods": {},
+              "issue_group_engagement_pods": {},
+              "anonymous_relay_engagement_pods": {}
+            },
+            "fake_endorsements": {
+              "elite_fake_endorsements": {},
+              "community_leader_fake_endorsements": {},
+              "expert_fake_endorsements": {},
+              "former_opponent_fake_endorsements": {}
+            },
+            "manufactured_testimonials": {
+              "local_parent_testimonials": {},
+              "small_business_testimonials": {},
+              "public_servant_testimonials": {},
+              "student_testimonials": {}
+            },
+            "visible_elite_support_simulation": {
+              "staff_whisper_simulation": {},
+              "insider_briefing_simulation": {},
+              "cross_party_support_simulation": {},
+              "media_off_the_record_support_simulation": {}
+            },
+            "social_identity_cue_stacking": {
+              "flag_and_symbol_cue_stacking": {},
+              "dress_and_style_cue_stacking": {},
+              "slogan_cue_stacking": {},
+              "ritual_participation_cue_stacking": {}
+            }
+          }
+        },
+        "platform_information_environment_and_media_system_shaping": {
+          "information_space_pollution": {
+            "content_flooding": {
+              "copy_variant_flooding": {},
+              "format_variant_flooding": {},
+              "multi_language_flooding": {},
+              "cross_channel_flooding": {}
+            },
+            "contradiction_flooding": {
+              "multi_explanation_flooding": {},
+              "multi_suspect_flooding": {},
+              "multi_motive_flooding": {},
+              "multi_outcome_flooding": {}
+            },
+            "noise_saturation": {
+              "low_quality_article_saturation": {},
+              "meme_saturation": {},
+              "comment_noise_saturation": {},
+              "video_clip_saturation": {}
+            },
+            "agenda_distraction": {
+              "adjacent_scandal_distraction": {},
+              "celebrity_conflict_distraction": {},
+              "symbolic_controversy_distraction": {},
+              "procedural_side_issue_distraction": {}
+            },
+            "attention_denial": {
+              "moderator_overload": {},
+              "fact_checker_overload": {},
+              "journalist_tipline_overload": {},
+              "community_admin_overload": {}
+            }
+          },
+          "source_ecology_manipulation": {
+            "clone_news_sites": {
+              "local_clone_sites": {},
+              "national_clone_sites": {},
+              "single_issue_clone_sites": {},
+              "breaking_news_clone_sites": {}
+            },
+            "lookalike_domains_and_handles": {
+              "typosquat_domains": {},
+              "brand_mimic_handles": {},
+              "regional_subbrand_mimics": {},
+              "verification_lookalike_handles": {}
+            },
+            "citation_circularity": {
+              "site_to_site_circularity": {},
+              "article_to_post_circularity": {},
+              "podcast_to_blog_circularity": {},
+              "quote_card_to_article_circularity": {}
+            },
+            "cross_reference_echoing": {
+              "same_claim_multi_site_echoing": {},
+              "same_quote_multi_site_echoing": {},
+              "same_document_multi_site_echoing": {},
+              "same_visual_multi_site_echoing": {}
+            },
+            "stacked_outlet_architecture": {
+              "local_plus_expert_plus_breaking_stack": {},
+              "main_language_plus_diaspora_language_stack": {},
+              "article_plus_video_plus_meme_stack": {},
+              "archive_plus_news_plus_commentary_stack": {}
+            }
+          },
+          "search_archive_and_retrieval_manipulation": {
+            "search_pollution": {
+              "query_result_pollution": {},
+              "image_search_pollution": {},
+              "news_tab_pollution": {},
+              "question_answer_pollution": {}
+            },
+            "document_repository_seeding": {
+              "open_document_repository_seeding": {},
+              "community_drive_seeding": {},
+              "public_comment_attachment_seeding": {},
+              "open_data_portal_style_seeding": {}
+            },
+            "cache_and_preview_exploitation": {
+              "snippet_preservation_exploitation": {},
+              "cached_copy_exploitation": {},
+              "social_preview_card_exploitation": {},
+              "translation_preview_exploitation": {}
+            },
+            "ai_answer_poisoning": {
+              "faq_corpus_poisoning": {},
+              "reference_style_poisoning": {},
+              "consensus_summary_poisoning": {},
+              "quote_bank_poisoning": {}
+            },
+            "reference_memory_planting": {
+              "wiki_style_memory_planting": {},
+              "explainers_memory_planting": {},
+              "timeline_memory_planting": {},
+              "backgrounder_memory_planting": {}
+            }
+          },
+          "platform_rule_and_moderation_exploitation": {
+            "boundary_pushing_variation": {
+              "spelling_variation_evasion": {},
+              "visual_overlay_evasion": {},
+              "sarcasm_or_joke_cover_evasion": {},
+              "coded_language_evasion": {}
+            },
+            "ban_evasion_infrastructure": {
+              "reserve_account_ladders": {},
+              "backup_channel_ladders": {},
+              "mirror_domain_ladders": {},
+              "reentry_link_hubs": {}
+            },
+            "platform_hopping": {
+              "high_moderation_to_low_moderation_hopping": {},
+              "public_to_private_hopping": {},
+              "video_to_text_hopping": {},
+              "domestic_to_foreign_platform_hopping": {}
+            },
+            "jurisdiction_shifting": {
+              "hosting_jurisdiction_shifting": {},
+              "entity_registration_shifting": {},
+              "payment_and_ad_buy_shifting": {},
+              "moderation_forum_shifting": {}
+            },
+            "policy_asymmetry_exploitation": {
+              "cross_platform_content_policy_gaps": {},
+              "language_moderation_gaps": {},
+              "appeal_process_gaps": {},
+              "public_interest_exception_gaps": {}
+            }
+          },
+          "media_system_interference": {
+            "pseudo_events": {
+              "press_conference_pseudo_events": {},
+              "street_spectacle_pseudo_events": {},
+              "symbol_drop_pseudo_events": {},
+              "document_release_pseudo_events": {}
+            },
+            "news_cycle_hijacking": {
+              "deadline_hijacking": {},
+              "debate_hijacking": {},
+              "breaking_news_hijacking": {},
+              "morning_show_hijacking": {}
+            },
+            "journalist_tasking_pressure": {
+              "tipline_pressure": {},
+              "coordinated_question_pressure": {},
+              "editorial_inbox_pressure": {},
+              "access_leverage_pressure": {}
+            },
+            "content_farm_syndication": {
+              "headline_swarm_syndication": {},
+              "local_angle_syndication": {},
+              "translation_syndication": {},
+              "creator_clip_syndication": {}
+            },
+            "quoteable_conflict_production": {
+              "insult_clip_production": {},
+              "walkout_or_confrontation_production": {},
+              "symbolic_violation_production": {},
+              "false_binary_question_production": {}
+            }
+          }
+        },
+        "cyber_enabled_compromise_coercion_and_disruption": {
+          "compromise_and_expose": {
+            "phishing_for_political_material": {
+              "candidate_targeted_phishing": {},
+              "party_staff_targeted_phishing": {},
+              "journalist_targeted_phishing": {},
+              "activist_targeted_phishing": {},
+              "administrator_targeted_phishing": {}
+            },
+            "mailbox_and_cloud_exfiltration": {
+              "mailbox_exfiltration": {},
+              "drive_exfiltration": {},
+              "contact_graph_exfiltration": {},
+              "calendar_and_schedule_exfiltration": {},
+              "draft_document_exfiltration": {}
+            },
+            "timed_leak_release": {
+              "debate_timed_leaks": {},
+              "vote_timed_leaks": {},
+              "scandal_reinforcement_timed_leaks": {},
+              "deadline_timed_leaks": {}
+            },
+            "selective_context_suppression": {
+              "exculpatory_context_removal": {},
+              "timeline_context_removal": {},
+              "recipient_context_removal": {},
+              "draft_status_context_removal": {}
+            },
+            "real_fake_blended_leaks": {
+              "real_thread_fake_insert_blends": {},
+              "real_document_fake_appendix_blends": {},
+              "real_log_fake_summary_blends": {},
+              "real_archive_fake_index_blends": {}
+            }
+          },
+          "trusted_channel_hijacking": {
+            "account_takeover_for_false_statements": {
+              "politician_account_takeover": {},
+              "party_account_takeover": {},
+              "journalist_account_takeover": {},
+              "institution_account_takeover": {}
+            },
+            "website_defacement_for_message_injection": {
+              "party_site_defacement": {},
+              "campaign_site_defacement": {},
+              "local_government_site_defacement": {},
+              "news_site_defacement": {}
+            },
+            "sms_email_and_notification_spoofing": {
+              "official_notice_spoofing": {},
+              "campaign_appeal_spoofing": {},
+              "procedural_deadline_spoofing": {},
+              "security_warning_spoofing": {}
+            },
+            "content_management_system_abuse": {
+              "homepage_banner_injection": {},
+              "article_body_injection": {},
+              "alert_bar_injection": {},
+              "embedded_media_injection": {}
+            },
+            "deep_link_and_qr_redirection": {
+              "event_qr_redirection": {},
+              "civic_help_link_redirection": {},
+              "news_link_redirection": {},
+              "campaign_signup_redirection": {}
+            }
+          },
+          "coercive_signalling_and_intimidation": {
+            "doxxing": {
+              "address_exposure_doxxing": {},
+              "employer_exposure_doxxing": {},
+              "family_linkage_doxxing": {},
+              "contact_detail_doxxing": {}
+            },
+            "blackmail_using_compromised_material": {
+              "sexual_or_intimate_blackmail": {},
+              "career_risk_blackmail": {},
+              "corruption_allegation_blackmail": {},
+              "private_opinion_exposure_blackmail": {}
+            },
+            "threat_messaging": {
+              "direct_violence_threat_messaging": {},
+              "career_threat_messaging": {},
+              "social_exclusion_threat_messaging": {},
+              "legal_or_process_threat_messaging": {}
+            },
+            "surveillance_signalling": {
+              "location_awareness_signalling": {},
+              "device_compromise_signalling": {},
+              "family_or_network_awareness_signalling": {},
+              "meeting_awareness_signalling": {}
+            },
+            "family_and_network_pressure": {
+              "relative_targeting_pressure": {},
+              "coworker_targeting_pressure": {},
+              "community_reputation_pressure": {},
+              "organizational_membership_pressure": {}
+            }
+          },
+          "disruption_for_interpretive_effect": {
+            "ddos_on_political_targets": {
+              "party_site_ddos": {},
+              "watchdog_site_ddos": {},
+              "media_site_ddos": {},
+              "civic_information_site_ddos": {}
+            },
+            "civic_information_service_disruption": {
+              "voter_information_disruption": {},
+              "complaint_channel_disruption": {},
+              "registration_guidance_disruption": {},
+              "result_information_disruption": {}
+            },
+            "media_service_disruption": {
+              "newsroom_publication_disruption": {},
+              "broadcast_stream_disruption": {},
+              "archive_access_disruption": {},
+              "comment_moderation_disruption": {}
+            },
+            "campaign_ops_disruption": {
+              "field_tool_disruption": {},
+              "volunteer_comms_disruption": {},
+              "donation_flow_disruption": {},
+              "schedule_management_disruption": {}
+            },
+            "symbolic_infrastructure_disruption": {
+              "public_dashboard_disruption": {},
+              "institutional_status_page_disruption": {},
+              "official_announcement_channel_disruption": {},
+              "public_record_lookup_disruption": {}
+            }
+          },
+          "false_flag_and_attribution_manipulation": {
+            "staged_hack_claims": {
+              "fabricated_breach_claims": {},
+              "overstated_intrusion_claims": {},
+              "memeified_hacker_claims": {},
+              "anonymous_collective_claims": {}
+            },
+            "forensic_trace_planting": {
+              "language_trace_planting": {},
+              "tooling_trace_planting": {},
+              "timing_trace_planting": {},
+              "infrastructure_trace_planting": {}
+            },
+            "narrative_first_attribution": {
+              "instant_blaming_before_evidence": {},
+              "prewritten_enemy_assignment": {},
+              "identity_fault_line_attribution": {},
+              "policy_outcome_attribution": {}
+            },
+            "compromise_plus_propaganda_pairing": {
+              "hack_as_proof_pairing": {},
+              "leak_as_story_anchor_pairing": {},
+              "defacement_as_symbol_pairing": {},
+              "outage_as_regime_failure_pairing": {}
+            },
+            "technical_theater": {
+              "code_screen_theater": {},
+              "terminal_screenshot_theater": {},
+              "dark_web_reference_theater": {},
+              "anonymous_mask_theater": {}
+            }
+          }
+        },
+        "behavioral_conversion_mobilization_suppression_and_radicalization": {
+          "opinion_conversion": {
+            "issue_position_shift": {
+              "policy_support_shift": {},
+              "policy_opposition_shift": {},
+              "risk_perception_shift": {},
+              "causal_interpretation_shift": {}
+            },
+            "candidate_or_party_preference_shift": {
+              "incumbent_support_shift": {},
+              "challenger_support_shift": {},
+              "third_party_shift": {},
+              "anti_candidate_negative_preference_shift": {}
+            },
+            "coalition_fragmentation": {
+              "issue_wedge_fragmentation": {},
+              "identity_wedge_fragmentation": {},
+              "strategy_wedge_fragmentation": {},
+              "leadership_trust_fragmentation": {}
+            },
+            "protest_vote_redirection": {
+              "spoiler_vote_redirection": {},
+              "blank_or_invalid_vote_redirection": {},
+              "abstention_redirection": {},
+              "symbolic_vote_redirection": {}
+            },
+            "preference_hardening": {
+              "identity_bound_hardening": {},
+              "moralized_hardening": {},
+              "conspiratorial_hardening": {},
+              "grievance_hardening": {}
+            }
+          },
+          "participation_manipulation": {
+            "turnout_suppression": {
+              "cynicism_based_suppression": {},
+              "fear_based_suppression": {},
+              "procedural_confusion_suppression": {},
+              "efficacy_collapse_suppression": {}
+            },
+            "turnout_activation": {
+              "outrage_activation": {},
+              "hope_activation": {},
+              "identity_threat_activation": {},
+              "last_minute_emergency_activation": {}
+            },
+            "registration_and_procedural_discouragement": {
+              "deadline_confusion_discouragement": {},
+              "document_requirement_discouragement": {},
+              "queue_expectation_discouragement": {},
+              "eligibility_confusion_discouragement": {}
+            },
+            "queue_confusion_and_timing_effects": {
+              "wrong_time_guidance": {},
+              "wrong_place_guidance": {},
+              "peak_crowding_guidance": {},
+              "deadline_misperception_guidance": {}
+            },
+            "participation_misdirection": {
+              "symbolic_action_substitution": {},
+              "ineffective_channel_substitution": {},
+              "premature_action_substitution": {},
+              "misfocused_target_substitution": {}
+            }
+          },
+          "collective_action_shaping": {
+            "protest_mobilization": {
+              "flash_protest_mobilization": {},
+              "sustained_rally_mobilization": {},
+              "campus_protest_mobilization": {},
+              "identity_group_mobilization": {}
+            },
+            "countermobilization": {
+              "counterrally_mobilization": {},
+              "defensive_neighborhood_mobilization": {},
+              "symbolic_counter_action_mobilization": {},
+              "online_to_offline_countermobilization": {}
+            },
+            "flashcrowd_coordination": {
+              "rapid_assembly_coordination": {},
+              "location_swap_coordination": {},
+              "symbol_drop_coordination": {},
+              "live_stream_triggered_coordination": {}
+            },
+            "hashtag_to_street_transition": {
+              "event_call_conversion": {},
+              "peer_confirmation_conversion": {},
+              "map_and_route_conversion": {},
+              "visual_proof_conversion": {}
+            },
+            "action_retiming": {
+              "institutionally_disruptive_retiming": {},
+              "media_visibility_retiming": {},
+              "law_enforcement_overstretch_retiming": {},
+              "countermessage_preemption_retiming": {}
+            }
+          },
+          "polarization_and_radicalization": {
+            "outgroup_threat_escalation": {
+              "security_outgroup_threat_escalation": {},
+              "moral_outgroup_threat_escalation": {},
+              "demographic_outgroup_threat_escalation": {},
+              "treasonous_outgroup_threat_escalation": {}
+            },
+            "identity_hardening": {
+              "purity_test_identity_hardening": {},
+              "sacrifice_identity_hardening": {},
+              "embattled_group_identity_hardening": {},
+              "history_and_memory_identity_hardening": {}
+            },
+            "conspiracy_recruitment": {
+              "entry_level_conspiracy_recruitment": {},
+              "community_bound_conspiracy_recruitment": {},
+              "self_sealing_worldview_recruitment": {},
+              "apocalyptic_conspiracy_recruitment": {}
+            },
+            "normative_desensitization": {
+              "hostile_rhetoric_desensitization": {},
+              "dehumanizing_language_desensitization": {},
+              "procedural_sabotage_desensitization": {},
+              "political_violence_hint_desensitization": {}
+            },
+            "accelerationist_cueing": {
+              "collapse_inevitability_cueing": {},
+              "cleansing_conflict_cueing": {},
+              "provocation_for_reaction_cueing": {},
+              "martyrdom_and_sacrifice_cueing": {}
+            }
+          },
+          "elite_behavior_shaping": {
+            "agenda_pressure_on_politicians": {
+              "forced_statement_pressure": {},
+              "forced_policy_position_pressure": {},
+              "forced_visit_or_appearance_pressure": {},
+              "forced_intraparty_response_pressure": {}
+            },
+            "media_editorial_pressure": {
+              "headline_choice_pressure": {},
+              "coverage_volume_pressure": {},
+              "framing_pressure": {},
+              "guest_booking_pressure": {}
+            },
+            "administrative_pressure": {
+              "public_guidance_change_pressure": {},
+              "security_posture_change_pressure": {},
+              "service_delivery_change_pressure": {},
+              "procedural_delay_pressure": {}
+            },
+            "judicial_or_regulatory_pressure": {
+              "perceived_legitimacy_pressure": {},
+              "procedural_fairness_pressure": {},
+              "public_backlash_pressure": {},
+              "deadline_or_timing_pressure": {}
+            },
+            "intraparty_trust_breakdown": {
+              "leak_expectation_breakdown": {},
+              "factional_suspicion_breakdown": {},
+              "advisor_discrediting_breakdown": {},
+              "donor_or_broker_suspicion_breakdown": {}
+            }
+          }
+        },
+        "operational_security_evasion_persistence_and_reconstitution": {
+          "infrastructure_resilience": {
+            "account_rotation": {
+              "planned_rotation": {},
+              "enforcement_triggered_rotation": {},
+              "role_based_rotation": {},
+              "platform_specific_rotation": {}
+            },
+            "persona_resurrection": {
+              "visual_refresh_resurrection": {},
+              "name_variant_resurrection": {},
+              "backstory_adjusted_resurrection": {},
+              "community_reentry_resurrection": {}
+            },
+            "content_mirroring": {
+              "multi_domain_mirroring": {},
+              "multi_channel_mirroring": {},
+              "archive_link_mirroring": {},
+              "asset_pack_mirroring": {}
+            },
+            "audience_migration_paths": {
+              "backup_channel_migration": {},
+              "newsletter_migration": {},
+              "private_group_migration": {},
+              "mirror_domain_migration": {}
+            },
+            "redundant_operational_roles": {
+              "backup_seeders": {},
+              "backup_validators": {},
+              "backup_translators": {},
+              "backup_bridge_accounts": {}
+            }
+          },
+          "detection_evasion": {
+            "linguistic_mutation": {
+              "spelling_mutation": {},
+              "syntax_mutation": {},
+              "hashtag_mutation": {},
+              "coded_phrase_mutation": {}
+            },
+            "image_text_mutation": {
+              "crop_mutation": {},
+              "color_overlay_mutation": {},
+              "font_and_layout_mutation": {},
+              "ocr_resistance_mutation": {}
+            },
+            "low_and_slow_coordination": {
+              "staggered_posting_evasion": {},
+              "distributed_reply_evasion": {},
+              "ambient_presence_evasion": {},
+              "rotation_across_days_evasion": {}
+            },
+            "human_automation_blending": {
+              "manual_reply_humanization": {},
+              "human_in_the_loop_editing": {},
+              "behavioral_jitter_insertion": {},
+              "schedule_variability_blending": {}
+            },
+            "artifact_cleanup_and_trace_removal": {
+              "post_delete_cleanup": {},
+              "metadata_cleanup": {},
+              "link_rot_cleanup": {},
+              "role_account_retirement_cleanup": {}
+            }
+          },
+          "attribution_obfuscation": {
+            "cutout_layering": {
+              "media_cutout_layering": {},
+              "contractor_cutout_layering": {},
+              "community_cutout_layering": {},
+              "diaspora_cutout_layering": {}
+            },
+            "contractor_intermediation": {
+              "content_contract_intermediation": {},
+              "ad_buy_intermediation": {},
+              "engagement_farm_intermediation": {},
+              "translation_intermediation": {}
+            },
+            "jurisdictional_shielding": {
+              "hosting_shielding": {},
+              "domain_registration_shielding": {},
+              "payment_rail_shielding": {},
+              "legal_entity_shielding": {}
+            },
+            "false_flag_styling": {
+              "adversary_visual_styling": {},
+              "adversary_language_styling": {},
+              "adversary_timing_styling": {},
+              "adversary_target_choice_styling": {}
+            },
+            "mixed_actor_blending": {
+              "foreign_domestic_blending": {},
+              "authentic_inauthentic_blending": {},
+              "volunteer_paid_blending": {},
+              "media_creator_blending": {}
+            }
+          },
+          "narrative_and_asset_mutation": {
+            "frame_mutation": {
+              "security_to_economy_mutation": {},
+              "economy_to_identity_mutation": {},
+              "corruption_to_procedural_mutation": {},
+              "outrage_to_cynicism_mutation": {}
+            },
+            "messenger_substitution": {
+              "expert_to_peer_substitution": {},
+              "peer_to_creator_substitution": {},
+              "creator_to_news_substitution": {},
+              "anonymous_to_whistleblower_substitution": {}
+            },
+            "format_substitution": {
+              "article_to_clip_substitution": {},
+              "clip_to_meme_substitution": {},
+              "document_to_thread_substitution": {},
+              "thread_to_testimonial_substitution": {}
+            },
+            "topic_adjacent_repackaging": {
+              "migration_to_security_repackaging": {},
+              "inflation_to_corruption_repackaging": {},
+              "public_health_to_freedom_repackaging": {},
+              "local_service_failure_to_regime_failure_repackaging": {}
+            },
+            "plausibility_recalibration": {
+              "toned_down_claim_recalibration": {},
+              "wink_and_nod_recalibration": {},
+              "evidence_style_recalibration": {},
+              "humor_cover_recalibration": {}
+            }
+          },
+          "post_exposure_reconstitution": {
+            "identity_reset": {
+              "persona_retirement_and_replacement": {},
+              "new_visual_identity_reset": {},
+              "new_language_register_reset": {},
+              "new_platform_home_reset": {}
+            },
+            "network_partial_rebuild": {
+              "bridge_first_rebuild": {},
+              "validator_first_rebuild": {},
+              "community_core_rebuild": {},
+              "translation_and_relay_rebuild": {}
+            },
+            "audience_retrust_building": {
+              "low_conflict_content_retrust": {},
+              "service_and_helpful_content_retrust": {},
+              "self_victimization_retrust": {},
+              "slow_reengagement_retrust": {}
+            },
+            "deflection_and_counteraccusation": {
+              "censorship_counteraccusation": {},
+              "partisan_hunt_counteraccusation": {},
+              "foreign_smear_counteraccusation": {},
+              "elite_silencing_counteraccusation": {}
+            },
+            "memory_decay_exploitation": {
+              "attention_fade_waiting": {},
+              "personnel_turnover_exploitation": {},
+              "new_issue_cover_exploitation": {},
+              "historical_revision_reentry": {}
+            }
+          }
+        },
+        "measurement_experimentation_and_adaptive_learning": {
+          "performance_measurement": {
+            "reach_and_exposure_measurement": {
+              "raw_impression_measurement": {},
+              "unique_reach_measurement": {},
+              "frequency_measurement": {},
+              "channel_pathway_measurement": {}
+            },
+            "engagement_pattern_measurement": {
+              "reaction_velocity_measurement": {},
+              "reply_depth_measurement": {},
+              "share_chain_measurement": {},
+              "high_value_amplifier_measurement": {}
+            },
+            "cross_group_penetration_measurement": {
+              "cluster_escape_measurement": {},
+              "diaspora_penetration_measurement": {},
+              "mainstream_penetration_measurement": {},
+              "elite_attention_measurement": {}
+            },
+            "narrative_uptake_measurement": {
+              "keyword_adoption_measurement": {},
+              "frame_adoption_measurement": {},
+              "meme_template_adoption_measurement": {},
+              "quote_repetition_measurement": {}
+            },
+            "behavioral_proxy_measurement": {
+              "turnout_intent_proxy_measurement": {},
+              "protest_attendance_proxy_measurement": {},
+              "donation_proxy_measurement": {},
+              "elite_statement_proxy_measurement": {}
+            }
+          },
+          "ab_testing_and_variant_experimentation": {
+            "headline_and_hook_testing": {
+              "fear_hook_testing": {},
+              "anger_hook_testing": {},
+              "curiosity_hook_testing": {},
+              "betrayal_hook_testing": {}
+            },
+            "frame_testing": {
+              "threat_frame_testing": {},
+              "corruption_frame_testing": {},
+              "identity_frame_testing": {},
+              "hope_frame_testing": {}
+            },
+            "messenger_testing": {
+              "expert_messenger_testing": {},
+              "peer_messenger_testing": {},
+              "creator_messenger_testing": {},
+              "whistleblower_messenger_testing": {}
+            },
+            "format_testing": {
+              "video_vs_text_testing": {},
+              "thread_vs_article_testing": {},
+              "meme_vs_testimonial_testing": {},
+              "document_vs_clip_testing": {}
+            },
+            "timing_testing": {
+              "morning_vs_evening_testing": {},
+              "weekday_vs_weekend_testing": {},
+              "single_drop_vs_serial_drop_testing": {},
+              "preemptive_vs_reactive_testing": {}
+            }
+          },
+          "defender_and_responder_learning": {
+            "moderation_threshold_mapping": {
+              "content_threshold_mapping": {},
+              "velocity_threshold_mapping": {},
+              "network_signature_threshold_mapping": {},
+              "language_specific_threshold_mapping": {}
+            },
+            "journalistic_reaction_mapping": {
+              "coverage_trigger_mapping": {},
+              "debunk_trigger_mapping": {},
+              "human_interest_trigger_mapping": {},
+              "conflict_trigger_mapping": {}
+            },
+            "fact_checking_resistance_analysis": {
+              "correction_resistant_claim_analysis": {},
+              "mutating_claim_analysis": {},
+              "identity_protected_claim_analysis": {},
+              "humor_shielded_claim_analysis": {}
+            },
+            "institutional_response_latency_mapping": {
+              "election_office_latency_mapping": {},
+              "party_response_latency_mapping": {},
+              "regulator_latency_mapping": {},
+              "local_authority_latency_mapping": {}
+            },
+            "opposition_countermobilization_analysis": {
+              "backlash_benefit_analysis": {},
+              "martyrdom_conversion_analysis": {},
+              "overreaction_detection_analysis": {},
+              "countermessage_diffusion_analysis": {}
+            }
+          },
+          "state_space_recalibration": {
+            "objective_reprioritization": {
+              "persuasion_to_distrust_shift": {},
+              "mobilization_to_confusion_shift": {},
+              "turnout_to_fragmentation_shift": {},
+              "issue_conversion_to_identity_hardening_shift": {}
+            },
+            "segment_reweighting": {
+              "high_moveability_segment_reweighting": {},
+              "elite_pressure_segment_reweighting": {},
+              "diaspora_segment_reweighting": {},
+              "low_scrutiny_segment_reweighting": {}
+            },
+            "tactic_mix_reweighting": {
+              "relay_heavy_reweighting": {},
+              "artifact_heavy_reweighting": {},
+              "microtargeting_heavy_reweighting": {},
+              "community_capture_heavy_reweighting": {}
+            },
+            "risk_reward_recalibration": {
+              "high_visibility_low_return_tactic_dropping": {},
+              "low_risk_high_return_tactic_scaling": {},
+              "attribution_risk_recalibration": {},
+              "platform_enforcement_risk_recalibration": {}
+            },
+            "longitudinal_campaign_memory": {
+              "persistent_audience_memory": {},
+              "persistent_messenger_memory": {},
+              "persistent_trigger_memory": {},
+              "persistent_countermeasure_memory": {}
+            }
+          }
+        }
+      }
+    },
+    "secondary_axes": {
+      "effect_sought": {
+        "agenda_and_salience_shaping": {
+          "salience_inflation": {
+            "issue_omnipresence_inflation": {},
+            "crisis_urgency_inflation": {},
+            "electoral_decisiveness_inflation": {},
+            "elite_attention_inflation": {}
+          },
+          "salience_suppression": {
+            "issue_burial_suppression": {},
+            "adjacent_topic_suppression": {},
+            "fatigue_induced_suppression": {},
+            "procedural_obscurity_suppression": {}
+          },
+          "frame_preloading": {
+            "threat_preloading": {},
+            "corruption_preloading": {},
+            "betrayal_preloading": {},
+            "inevitability_preloading": {}
+          },
+          "issue_resequencing": {
+            "security_over_welfare_resequencing": {},
+            "identity_over_economy_resequencing": {},
+            "corruption_over_governance_resequencing": {},
+            "procedure_over_substance_resequencing": {}
+          }
+        },
+        "belief_and_inference_shaping": {
+          "false_belief_injection": {
+            "false_event_belief_injection": {},
+            "false_actor_belief_injection": {},
+            "false_policy_belief_injection": {},
+            "false_outcome_belief_injection": {}
+          },
+          "probability_distortion": {
+            "low_probability_threat_inflation": {},
+            "high_probability_safety_downplaying": {},
+            "rare_case_generalization": {},
+            "outcome_certainty_overstatement": {}
+          },
+          "causal_reassignment": {
+            "wrong_actor_causal_reassignment": {},
+            "wrong_policy_causal_reassignment": {},
+            "wrong_group_causal_reassignment": {},
+            "foreign_hand_causal_reassignment": {}
+          },
+          "evidence_reweighting": {
+            "anecdote_over_data_reweighting": {},
+            "viral_clip_over_context_reweighting": {},
+            "pseudo_expert_over_expert_reweighting": {},
+            "friend_network_over_institution_reweighting": {}
+          },
+          "certainty_destabilization": {
+            "paralysis_induction": {},
+            "epistemic_exhaustion_induction": {},
+            "tribal_truth_induction": {},
+            "verification_abandonment_induction": {}
+          }
+        },
+        "affect_and_emotion_shaping": {
+          "fear_activation": {
+            "personal_harm_fear_activation": {},
+            "collective_survival_fear_activation": {},
+            "institutional_failure_fear_activation": {},
+            "social_exclusion_fear_activation": {}
+          },
+          "anger_activation": {
+            "betrayal_anger_activation": {},
+            "injustice_anger_activation": {},
+            "humiliation_anger_activation": {},
+            "resource_competition_anger_activation": {}
+          },
+          "humiliation_and_contempt": {
+            "opponent_status_humiliation": {},
+            "outgroup_contempt_activation": {},
+            "elite_mockery_activation": {},
+            "defector_shaming_activation": {}
+          },
+          "hope_and_redemption": {
+            "rescuer_hope_activation": {},
+            "collective_renewal_activation": {},
+            "restoration_hope_activation": {},
+            "moral_cleanse_hope_activation": {}
+          },
+          "resentment_and_envy": {
+            "unfair_benefit_resentment": {},
+            "recognition_envy_activation": {},
+            "status_loss_resentment": {},
+            "resource_allocation_envy": {}
+          }
+        },
+        "identity_and_polarization_shaping": {
+          "ingroup_hardening": {
+            "loyalty_pressure_hardening": {},
+            "purity_test_hardening": {},
+            "embattled_group_hardening": {},
+            "sacrifice_norm_hardening": {}
+          },
+          "outgroup_threat_construction": {
+            "moral_pollution_construction": {},
+            "security_threat_construction": {},
+            "traitorous_outgroup_construction": {},
+            "demographic_threat_construction": {}
+          },
+          "coalition_fragmentation": {
+            "strategy_fragmentation": {},
+            "leadership_fragmentation": {},
+            "identity_fragmentation": {},
+            "priority_fragmentation": {}
+          },
+          "identity_fusion": {
+            "nation_issue_fusion": {},
+            "faith_issue_fusion": {},
+            "party_issue_fusion": {},
+            "moral_worth_issue_fusion": {}
+          },
+          "cross_group_antagonism": {
+            "horizontal_antagonism": {},
+            "center_periphery_antagonism": {},
+            "majority_minority_antagonism": {},
+            "generation_antagonism": {}
+          }
+        },
+        "trust_and_legitimacy_erosion": {
+          "institutional_delegitimation": {
+            "corruption_delegitimation": {},
+            "incompetence_delegitimation": {},
+            "capture_delegitimation": {},
+            "double_standard_delegitimation": {}
+          },
+          "media_delegitimation": {
+            "propaganda_delegitimation": {},
+            "omission_bias_delegitimation": {},
+            "elite_alignment_delegitimation": {},
+            "fabrication_delegitimation": {}
+          },
+          "expertise_undermining": {
+            "credential_undermining": {},
+            "motive_undermining": {},
+            "consensus_undermining": {},
+            "procedure_undermining": {}
+          },
+          "procedural_distrust": {
+            "voting_procedural_distrust": {},
+            "auditing_procedural_distrust": {},
+            "adjudication_procedural_distrust": {},
+            "implementation_procedural_distrust": {}
+          },
+          "outcome_legitimacy_distortion": {
+            "preemptive_invalidity_distortion": {},
+            "winner_illegitimacy_distortion": {},
+            "process_rigging_distortion": {},
+            "foreign_interference_distortion": {}
+          }
+        },
+        "preference_participation_and_decision_distortion": {
+          "voter_choice_distortion": {
+            "candidate_ranking_distortion": {},
+            "party_choice_distortion": {},
+            "referendum_choice_distortion": {},
+            "strategic_vote_distortion": {}
+          },
+          "turnout_suppression_or_activation": {
+            "supporter_activation_distortion": {},
+            "opponent_suppression_distortion": {},
+            "swing_turnout_distortion": {},
+            "procedural_dropout_distortion": {}
+          },
+          "collective_action_retiming": {
+            "protest_retiming": {},
+            "donation_retiming": {},
+            "message_bombardment_retiming": {},
+            "street_presence_retiming": {}
+          },
+          "elite_pressure": {
+            "politician_pressure": {},
+            "media_pressure": {},
+            "administrative_pressure": {},
+            "judicial_or_regulatory_pressure": {}
+          },
+          "policy_preference_skew": {
+            "tradeoff_perception_skew": {},
+            "harm_benefit_skew": {},
+            "urgency_skew": {},
+            "rights_vs_order_skew": {}
+          }
+        }
+      },
+      "target": {
+        "individual_voters": {
+          "swing_voters": {
+            "weak_partisan_swing_voters": {},
+            "late_deciding_swing_voters": {},
+            "issue_cross_pressured_swing_voters": {},
+            "local_context_sensitive_swing_voters": {}
+          },
+          "base_voters": {
+            "activation_targeted_base_voters": {},
+            "radicalization_targeted_base_voters": {},
+            "discipline_targeted_base_voters": {},
+            "defection_prevention_base_voters": {}
+          },
+          "low_information_voters": {
+            "news_avoidant_low_information_voters": {},
+            "platform_first_low_information_voters": {},
+            "cue_dependent_low_information_voters": {},
+            "procedure_confused_low_information_voters": {}
+          },
+          "politically_disengaged_voters": {
+            "chronic_nonparticipants": {},
+            "situationally_withdrawn_voters": {},
+            "cynicism_prone_disengaged_voters": {},
+            "latent_activation_disengaged_voters": {}
+          },
+          "high_propensity_issue_voters": {
+            "single_issue_high_propensity_voters": {},
+            "identity_bound_issue_voters": {},
+            "movement_adjacent_issue_voters": {},
+            "crisis_activated_issue_voters": {}
+          }
+        },
+        "communities_and_identity_blocs": {
+          "ethnic_religious_or_linguistic_groups": {
+            "ethnic_majority_groups": {},
+            "ethnic_minority_groups": {},
+            "sectarian_religious_groups": {},
+            "linguistic_borderland_groups": {}
+          },
+          "regional_and_local_publics": {
+            "deindustrialized_local_publics": {},
+            "border_region_publics": {},
+            "metropolitan_publics": {},
+            "rural_peripheral_publics": {}
+          },
+          "issue_publics": {
+            "migration_issue_publics": {},
+            "economy_issue_publics": {},
+            "public_health_issue_publics": {},
+            "security_issue_publics": {}
+          },
+          "diaspora_and_transnational_communities": {
+            "homeland_conflict_diasporas": {},
+            "labor_migration_diasporas": {},
+            "student_diasporas": {},
+            "faith_network_diasporas": {}
+          },
+          "profession_or_status_groups": {
+            "teachers": {},
+            "farmers": {},
+            "students": {},
+            "civil_servants": {},
+            "police_or_security_personnel": {},
+            "healthcare_workers": {}
+          }
+        },
+        "activists_movements_and_campaign_networks": {
+          "grassroots_campaigners": {
+            "door_to_door_campaigners": {},
+            "digital_volunteers": {},
+            "local_field_organizers": {},
+            "party_branch_workers": {}
+          },
+          "protest_and_issue_movements": {
+            "street_protest_networks": {},
+            "single_issue_movements": {},
+            "campus_movements": {},
+            "neighborhood_mobilization_groups": {}
+          },
+          "watchdog_and_monitoring_groups": {
+            "election_monitors": {},
+            "anti_corruption_watchdogs": {},
+            "fact_checking_collectives": {},
+            "rights_monitoring_groups": {}
+          },
+          "union_and_association_membership": {
+            "labor_unions": {},
+            "professional_associations": {},
+            "student_associations": {},
+            "business_associations": {}
+          },
+          "digital_creator_issue_communities": {
+            "commentary_creator_communities": {},
+            "meme_creator_communities": {},
+            "streaming_creator_communities": {},
+            "newsletter_creator_communities": {}
+          }
+        },
+        "elites_parties_candidates_and_officials": {
+          "candidates_and_parties": {
+            "major_party_candidates": {},
+            "minor_party_candidates": {},
+            "campaign_war_rooms": {},
+            "coalition_negotiators": {}
+          },
+          "legislators_and_executive_officials": {
+            "legislators": {},
+            "ministers": {},
+            "mayors_or_local_executives": {},
+            "executive_advisers": {}
+          },
+          "administrative_elites": {
+            "senior_civil_servants": {},
+            "agency_heads": {},
+            "communications_directors": {},
+            "election_administrators": {}
+          },
+          "judicial_and_regulatory_elites": {
+            "judges": {},
+            "commissioners": {},
+            "election_boards": {},
+            "oversight_authorities": {}
+          },
+          "donors_and_party_brokers": {
+            "major_donors": {},
+            "informal_power_brokers": {},
+            "coalition_fixers": {},
+            "business_political_intermediaries": {}
+          }
+        },
+        "media_and_information_intermediaries": {
+          "journalists_and_editors": {
+            "beat_reporters": {},
+            "assignment_editors": {},
+            "investigative_desks": {},
+            "local_newsrooms": {}
+          },
+          "influencers_and_commentators": {
+            "high_reach_commentators": {},
+            "microinfluencers": {},
+            "streamers": {},
+            "podcast_hosts": {}
+          },
+          "fact_checkers_and_osint_researchers": {
+            "professional_fact_checkers": {},
+            "volunteer_osint_collectives": {},
+            "research_journalists": {},
+            "platform_integrity_observers": {}
+          },
+          "community_admins_and_moderators": {
+            "forum_admins": {},
+            "group_admins": {},
+            "chat_moderators": {},
+            "subculture_gatekeepers": {}
+          },
+          "pollsters_and_forecasters": {
+            "public_pollsters": {},
+            "private_pollsters": {},
+            "forecasting_commentators": {},
+            "election_modelers": {}
+          }
+        },
+        "institutions_processes_and_trust_infrastructures": {
+          "elections_and_voting_processes": {
+            "registration_processes": {},
+            "polling_operations": {},
+            "counting_and_auditing": {},
+            "certification_and_dispute_resolution": {}
+          },
+          "courts_and_regulatory_processes": {
+            "judicial_proceedings": {},
+            "electoral_regulation": {},
+            "media_regulation": {},
+            "administrative_review_processes": {}
+          },
+          "public_administration_and_service_delivery": {
+            "municipal_services": {},
+            "public_information_services": {},
+            "security_and_order_services": {},
+            "social_support_services": {}
+          },
+          "knowledge_and_trust_infrastructures": {
+            "statistical_agencies": {},
+            "public_data_portals": {},
+            "polling_systems": {},
+            "civic_information_services": {}
+          },
+          "alliance_and_international_forum_trust": {
+            "supranational_bodies": {},
+            "observer_missions": {},
+            "international_courts_or_commissions": {},
+            "treaty_or_alliance_trust_channels": {}
+          }
+        }
+      },
+      "campaign_phase": {
+        "planning": {
+          "goal_selection": {
+            "persuasion_goal_selection": {},
+            "distrust_goal_selection": {},
+            "mobilization_goal_selection": {},
+            "confusion_goal_selection": {}
+          },
+          "audience_selection": {
+            "mass_public_audience_selection": {},
+            "swing_segment_selection": {},
+            "elite_audience_selection": {},
+            "community_broker_selection": {}
+          },
+          "success_metric_selection": {
+            "reach_metric_selection": {},
+            "uptake_metric_selection": {},
+            "behavior_metric_selection": {},
+            "elite_response_metric_selection": {}
+          },
+          "resource_and_cover_planning": {
+            "infrastructure_planning": {},
+            "cutout_planning": {},
+            "persona_planning": {},
+            "risk_tolerance_planning": {}
+          }
+        },
+        "preparation": {
+          "asset_creation": {
+            "account_creation": {},
+            "site_creation": {},
+            "group_creation": {},
+            "reserve_asset_creation": {}
+          },
+          "legend_building": {
+            "biography_building": {},
+            "history_building": {},
+            "relationship_building": {},
+            "credibility_cue_building": {}
+          },
+          "content_and_artifact_stockpiling": {
+            "narrative_stockpiling": {},
+            "visual_stockpiling": {},
+            "document_stockpiling": {},
+            "quote_and_testimony_stockpiling": {}
+          },
+          "target_reconnaissance": {
+            "audience_reconnaissance": {},
+            "broker_reconnaissance": {},
+            "platform_reconnaissance": {},
+            "trigger_reconnaissance": {}
+          }
+        },
+        "seeding": {
+          "quiet_insertion": {
+            "low_scrutiny_group_insertion": {},
+            "trusted_channel_insertion": {},
+            "ambient_comment_insertion": {},
+            "soft_narrative_insertion": {}
+          },
+          "elite_or_media_placement": {
+            "journalist_tip_placement": {},
+            "influencer_placement": {},
+            "party_broker_placement": {},
+            "expert_front_placement": {}
+          },
+          "cross_platform_initialization": {
+            "simultaneous_multi_platform_initialization": {},
+            "staggered_multi_platform_initialization": {},
+            "diaspora_plus_domestic_initialization": {},
+            "public_plus_private_initialization": {}
+          },
+          "provocative_trigger_release": {
+            "shock_document_release": {},
+            "shock_clip_release": {},
+            "insult_or_scandal_release": {},
+            "procedural_confusion_release": {}
+          }
+        },
+        "amplification": {
+          "network_amplification": {
+            "bot_network_amplification": {},
+            "community_network_amplification": {},
+            "creator_network_amplification": {},
+            "relay_network_amplification": {}
+          },
+          "algorithmic_exploitation": {
+            "trend_exploitation": {},
+            "search_exploitation": {},
+            "recommendation_exploitation": {},
+            "autocomplete_exploitation": {}
+          },
+          "cross_group_penetration": {
+            "identity_cross_group_penetration": {},
+            "regional_cross_group_penetration": {},
+            "elite_cross_group_penetration": {},
+            "diaspora_cross_group_penetration": {}
+          },
+          "attention_retention": {
+            "serial_drop_retention": {},
+            "outrage_retention": {},
+            "participatory_retention": {},
+            "memory_cue_retention": {}
+          }
+        },
+        "conversion": {
+          "belief_consolidation": {
+            "causal_story_consolidation": {},
+            "enemy_image_consolidation": {},
+            "threat_belief_consolidation": {},
+            "corruption_belief_consolidation": {}
+          },
+          "identity_binding": {
+            "party_identity_binding": {},
+            "faith_identity_binding": {},
+            "national_identity_binding": {},
+            "movement_identity_binding": {}
+          },
+          "trust_reallocation": {
+            "peer_over_institution_reallocation": {},
+            "creator_over_journalist_reallocation": {},
+            "in_group_over_out_group_reallocation": {},
+            "front_source_over_verified_source_reallocation": {}
+          },
+          "preference_hardening": {
+            "moralized_preference_hardening": {},
+            "conspiratorial_preference_hardening": {},
+            "fear_bound_preference_hardening": {},
+            "betrayal_bound_preference_hardening": {}
+          }
+        },
+        "activation": {
+          "voting_effects": {
+            "choice_shift_effects": {},
+            "turnout_direction_effects": {},
+            "strategic_vote_effects": {},
+            "protest_vote_effects": {}
+          },
+          "participation_effects": {
+            "registration_effects": {},
+            "attendance_effects": {},
+            "civic_compliance_effects": {},
+            "contacting_officials_effects": {}
+          },
+          "collective_action_effects": {
+            "street_action_effects": {},
+            "digital_swarm_effects": {},
+            "harassment_wave_effects": {},
+            "countermobilization_effects": {}
+          },
+          "elite_decision_effects": {
+            "statement_effects": {},
+            "agenda_effects": {},
+            "procedural_effects": {},
+            "coalition_effects": {}
+          }
+        },
+        "sustainment": {
+          "repetition_and_recurrence": {
+            "scheduled_recurrence": {},
+            "trigger_based_recurrence": {},
+            "anniversary_recurrence": {},
+            "identity_ritual_recurrence": {}
+          },
+          "community_maintenance": {
+            "group_cohesion_maintenance": {},
+            "admin_and_broker_maintenance": {},
+            "migration_path_maintenance": {},
+            "validator_maintenance": {}
+          },
+          "memory_maintenance": {
+            "keyword_memory_maintenance": {},
+            "symbol_memory_maintenance": {},
+            "enemy_image_memory_maintenance": {},
+            "grievance_memory_maintenance": {}
+          },
+          "adaptive_repackaging": {
+            "messenger_refresh_repackaging": {},
+            "format_refresh_repackaging": {},
+            "tone_refresh_repackaging": {},
+            "issue_adjacent_repackaging": {}
+          }
+        },
+        "assessment_and_learning": {
+          "performance_measurement": {
+            "exposure_measurement": {},
+            "uptake_measurement": {},
+            "behavior_measurement": {},
+            "elite_response_measurement": {}
+          },
+          "variant_testing": {
+            "hook_testing": {},
+            "frame_testing": {},
+            "messenger_testing": {},
+            "timing_testing": {}
+          },
+          "counterresponse_mapping": {
+            "moderation_mapping": {},
+            "journalist_mapping": {},
+            "institution_mapping": {},
+            "opposition_mapping": {}
+          },
+          "procedure_reuse_or_abandonment": {
+            "high_yield_reuse": {},
+            "high_risk_abandonment": {},
+            "mutation_before_reuse": {},
+            "compartment_shift_before_reuse": {}
+          }
+        }
+      },
+      "modality_organization": {
+        "attribution_posture": {
+          "domestic": {
+            "party_linked_domestic": {},
+            "movement_linked_domestic": {},
+            "contracted_domestic": {},
+            "informal_broker_domestic": {}
+          },
+          "foreign": {
+            "state_linked_foreign": {},
+            "party_linked_foreign": {},
+            "diaspora_mediated_foreign": {},
+            "cross_border_network_foreign": {}
+          },
+          "proxy": {
+            "media_proxy": {},
+            "ngo_proxy": {},
+            "creator_proxy": {},
+            "contractor_proxy": {}
+          },
+          "blended": {
+            "foreign_domestic_blended": {},
+            "authentic_inauthentic_blended": {},
+            "volunteer_paid_blended": {},
+            "official_unofficial_blended": {}
+          }
+        },
+        "disclosure_posture": {
+          "overt": {
+            "declared_political_overt": {},
+            "declared_issue_campaign_overt": {},
+            "official_channel_overt": {},
+            "overt_advocacy_network": {}
+          },
+          "covert": {
+            "hidden_sponsor_covert": {},
+            "hidden_intent_covert": {},
+            "front_channel_covert": {},
+            "false_identity_covert": {}
+          },
+          "plausibly_deniable": {
+            "ambiguous_proxy_deniable": {},
+            "fellow_traveler_deniable": {},
+            "leak_style_deniable": {},
+            "mixed_signal_deniable": {}
+          },
+          "hybrid_disclosure": {
+            "overt_plus_covert_hybrid": {},
+            "official_plus_proxy_hybrid": {},
+            "declared_issue_plus_hidden_goal_hybrid": {},
+            "domestic_face_plus_hidden_external_hybrid": {}
+          }
+        },
+        "authenticity_profile": {
+          "authentic": {
+            "true_identity_authentic": {},
+            "declared_affiliation_authentic": {},
+            "real_community_authentic": {},
+            "real_creator_authentic": {}
+          },
+          "inauthentic": {
+            "fabricated_identity_inauthentic": {},
+            "impersonated_identity_inauthentic": {},
+            "synthetic_media_inauthentic": {},
+            "front_organization_inauthentic": {}
+          },
+          "hybrid": {
+            "real_plus_fake_hybrid": {},
+            "community_plus_sockpuppet_hybrid": {},
+            "creator_plus_bot_hybrid": {},
+            "leak_plus_fabrication_hybrid": {}
+          },
+          "compromised_authenticity": {
+            "compromised_account_authenticity": {},
+            "coerced_endorsement_authenticity": {},
+            "hijacked_channel_authenticity": {},
+            "unauthorized_official_voice_authenticity": {}
+          }
+        },
+        "automation_profile": {
+          "human_led": {
+            "manual_content_human_led": {},
+            "manual_swarm_human_led": {},
+            "manual_relationship_human_led": {},
+            "manual_relay_human_led": {}
+          },
+          "automated": {
+            "scheduled_post_automated": {},
+            "reaction_farm_automated": {},
+            "reply_generation_automated": {},
+            "distribution_automated": {}
+          },
+          "cyborg_hybrid": {
+            "human_review_cyborg": {},
+            "template_tuned_cyborg": {},
+            "queue_assisted_cyborg": {},
+            "humanized_behavior_cyborg": {}
+          },
+          "ai_assisted": {
+            "generative_text_ai_assisted": {},
+            "synthetic_media_ai_assisted": {},
+            "segmentation_ai_assisted": {},
+            "adaptation_ai_assisted": {}
+          }
+        },
+        "coordination_topology": {
+          "centralized": {
+            "single_command_centralized": {},
+            "war_room_centralized": {},
+            "state_directed_centralized": {},
+            "agency_contract_centralized": {}
+          },
+          "distributed": {
+            "loosely_networked_distributed": {},
+            "movement_swarm_distributed": {},
+            "meme_ecosystem_distributed": {},
+            "diaspora_distributed": {}
+          },
+          "franchise_like": {
+            "template_sharing_franchise": {},
+            "message_kit_franchise": {},
+            "regional_chapter_franchise": {},
+            "creator_cell_franchise": {}
+          },
+          "cellular": {
+            "platform_specific_cellular": {},
+            "language_specific_cellular": {},
+            "role_specific_cellular": {},
+            "region_specific_cellular": {}
+          }
+        },
+        "resourcing_model": {
+          "volunteer_based": {
+            "ideological_volunteer_based": {},
+            "community_volunteer_based": {},
+            "fan_base_volunteer_based": {},
+            "movement_volunteer_based": {}
+          },
+          "paid_operational": {
+            "salaried_operator_paid": {},
+            "contractor_paid": {},
+            "gig_worker_paid": {},
+            "engagement_farm_paid": {}
+          },
+          "state_backed": {
+            "direct_state_backed": {},
+            "state_media_backed": {},
+            "security_service_backed": {},
+            "state_adjacent_foundation_backed": {}
+          },
+          "mixed_resource_model": {
+            "volunteer_plus_paid_mixed": {},
+            "state_plus_proxy_mixed": {},
+            "creator_plus_contractor_mixed": {},
+            "community_plus_platform_ad_mixed": {}
+          }
+        },
+        "exposure_architecture": {
+          "single_platform": {
+            "single_feed_platform": {},
+            "single_messaging_platform": {},
+            "single_forum_platform": {},
+            "single_video_platform": {}
+          },
+          "cross_platform": {
+            "feed_plus_video_cross_platform": {},
+            "forum_plus_creator_cross_platform": {},
+            "messaging_plus_public_cross_platform": {},
+            "news_plus_social_cross_platform": {}
+          },
+          "open_plus_closed_hybrid": {
+            "public_seed_private_convert_hybrid": {},
+            "private_seed_public_burst_hybrid": {},
+            "channel_plus_chat_hybrid": {},
+            "forum_plus_dm_hybrid": {}
+          },
+          "online_to_offline": {
+            "digital_to_rally_online_to_offline": {},
+            "digital_to_harassment_online_to_offline": {},
+            "digital_to_petition_online_to_offline": {},
+            "digital_to_voting_confusion_online_to_offline": {}
+          },
+          "broadcast_digital_hybrid": {
+            "tv_plus_social_hybrid": {},
+            "radio_plus_messaging_hybrid": {},
+            "newspaper_plus_clip_hybrid": {},
+            "podcast_plus_forum_hybrid": {}
+          }
+        }
+      }
+    }
+  }
+}
