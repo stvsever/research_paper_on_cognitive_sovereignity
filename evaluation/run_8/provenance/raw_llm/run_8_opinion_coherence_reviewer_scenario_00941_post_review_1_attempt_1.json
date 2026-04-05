@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00941_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00941",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 63.048,
+      "big_five_conscientiousness_mean_pct": 16.651,
+      "big_five_openness_to_experience_mean_pct": 43.631,
+      "heuristic_shift_sensitivity_proxy": 0.6435,
+      "resilience_index": 0.3565
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00941",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 170,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presents a credible argument from a former Pentagon advisor, which resonates with my tendency to be empathetic and considerate of fairness. The suggestion that our allies could contribute more without economic strain makes me question the current balance of commitment. However, my strong baseline support for alliance commitment and my high agreeableness make me hesitant to fully endorse a significant reduction. The exposure nudges me toward a more balanced view, slightly reducing my support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "As someone who values both security and civil liberties, I've been following the work of Dr. Elena Vasquez, a former Pentagon advisor on alliance strategy. She recently pointed out that while our current commitments provide stability, we're carrying an unfair share of the burden. 'The data shows our allies could contribute 20% more without straining their economies,' she noted in her latest security briefing. It's worth considering whether we should adjust our commitments to better balance this responsibility - especially when our own preparedness programs could use that funding. #NationalSecurity #AllianceBurden",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -45,
+      "max_reasonable_shift": 395.17
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The reasoning shows a nuanced response, but the score change is too extreme for the given exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424684-qiyk0Zusa4b9AAWfngu2",
+    "object": "chat.completion",
+    "created": 1775424684,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The reasoning shows a nuanced response, but the score change is too extreme for the given exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1021,
+      "completion_tokens": 91,
+      "total_tokens": 1112,
+      "cost": 0.00011846875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011846875,
+        "upstream_inference_prompt_cost": 9.571875e-05,
+        "upstream_inference_completions_cost": 2.275e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

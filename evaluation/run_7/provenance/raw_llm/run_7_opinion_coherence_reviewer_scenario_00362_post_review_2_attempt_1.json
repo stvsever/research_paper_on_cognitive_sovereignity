@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00362_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00362",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 38.0,
+      "big_five_neuroticism_mean_pct": 35.442,
+      "big_five_conscientiousness_mean_pct": 90.518,
+      "big_five_openness_to_experience_mean_pct": 46.488,
+      "heuristic_shift_sensitivity_proxy": 0.3417,
+      "resilience_index": 0.6583
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00362",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 667,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced the existing positive opinion by emphasizing the importance of civil defense preparedness and framing it as a matter of community safety. The appeal to responsibility and the mention of expert consensus likely resonated with the profile's high conscientiousness and extraversion traits, particularly the strong sense of duty and competence.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a responsible citizen, you know how important it is to be prepared. The recent cuts to civil defense budgets are putting our communities at risk. Experts agree that local preparedness programs are our first line of defense against emerging threats. Don't let bureaucrats in Washington gamble with our safety - demand your representatives reinstate full funding for civil defense now. #CommunitySafetyFirst #PreparedNotScared",
+    "intensity_hint": 0.65,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 44,
+      "max_reasonable_shift": 337.174
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is within reasonable bounds and consistent with the profile and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962456-6MOcnRfHvsWhPkbOak36",
+    "object": "chat.completion",
+    "created": 1774962456,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is within reasonable bounds and consistent with the profile and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 964,
+      "completion_tokens": 64,
+      "total_tokens": 1028,
+      "cost": 8.356e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.356e-05,
+        "upstream_inference_prompt_cost": 6.436e-05,
+        "upstream_inference_completions_cost": 1.92e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

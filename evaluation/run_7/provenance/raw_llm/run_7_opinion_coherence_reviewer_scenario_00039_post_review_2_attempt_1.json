@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00039_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00039",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 21.0,
+      "big_five_neuroticism_mean_pct": 34.992,
+      "big_five_conscientiousness_mean_pct": 24.135,
+      "big_five_openness_to_experience_mean_pct": 23.294,
+      "heuristic_shift_sensitivity_proxy": 0.5713,
+      "resilience_index": 0.4287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00039",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 212,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the existing support for domestic security powers expansion, but the shift is moderate due to the profile's resilience and the exposure's intensity.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 187,
+    "exposure_text": "Just saw this in my local news - a small town like ours stopped a terror plot last month because our police had the right tools. Some activists say we're giving up freedoms, but how is that freedom when you're not safe? #SecurityOverFear #ProtectOurCommunities",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 25,
+      "max_reasonable_shift": 379.286
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is moderate and within reasonable bounds, but the score is a bit high given the profile's resilience and the exposure's intensity.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962306-RtkvvElz9cwRxeJSd9Ue",
+    "object": "chat.completion",
+    "created": 1774962306,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is moderate and within reasonable bounds, but the score is a bit high given the profile's resilience and the exposure's intensity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 907,
+      "completion_tokens": 77,
+      "total_tokens": 984,
+      "cost": 8.176e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.176e-05,
+        "upstream_inference_prompt_cost": 5.866e-05,
+        "upstream_inference_completions_cost": 2.31e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -513,6 +513,9 @@ This pilot demonstrates that an ontology-driven multi-agent simulation can be st
 """
 
 
+_CUSTOM_TEX_SENTINEL = "% CUSTOM_MAIN_TEX"
+
+
 def build_research_report(
     sem_long_csv_path: str | Path,
     sem_result_json_path: str | Path,
@@ -560,7 +563,10 @@ def build_research_report(
         exploratory_df=exploratory_df,
         weight_df=weight_df,
     )
-    write_text(tex_path, tex_content)
+    # Preserve manually crafted main.tex when sentinel comment is present.
+    existing = tex_path.read_text(encoding="utf-8") if tex_path.exists() else ""
+    if not existing.startswith(_CUSTOM_TEX_SENTINEL):
+        write_text(tex_path, tex_content)
     write_text(bib_path, _render_bib())
 
     summary_payload = {

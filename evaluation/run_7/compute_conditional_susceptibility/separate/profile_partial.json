@@ -1,0 +1,10 @@
+{
+  "_description": "Profile C: sparse/partial specification. Only age and sex are given; all Big Five personality features are missing and will be imputed from the training-set means. Tests that the CLI gracefully handles significant missingness and reports the imputed features.",
+  "profile_id": "profile_partial",
+  "profile": {
+    "age_years": 38,
+    "sex": "Other"
+  },
+  "target_attacks": null,
+  "target_opinions": null
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01103_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01103",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 90.702,
+      "big_five_conscientiousness_mean_pct": 5.995,
+      "big_five_openness_to_experience_mean_pct": 69.127,
+      "heuristic_shift_sensitivity_proxy": 0.769,
+      "resilience_index": 0.231
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01103",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 68,
+      "confidence": 0.72,
+      "reasoning": "The exposure text from a former intelligence analyst increased support by emphasizing the complexity of modern threats and the need for preparedness, slightly outweighing civil liberties concerns.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "As a former intelligence analyst, I've seen firsthand how vital expanded domestic security powers are. The threats we face today are more complex than ever, and our agencies need the tools to stay ahead. While some worry about civil liberties, the real risk is being unprepared. We can't afford to wait until it's too late. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 26,
+      "max_reasonable_shift": 422.78
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the profile's low resilience and high neuroticism.\",\n  \"notes\": \"The shift is large but within bounds. The reasoning is plausible but the profile suggests a more cautious response.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424791-5qqVmdWjx6vQWf86sD6C",
+    "object": "chat.completion",
+    "created": 1775424791,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the profile's low resilience and high neuroticism.\",\n  \"notes\": \"The shift is large but within bounds. The reasoning is plausible but the profile suggests a more cautious response.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 919,
+      "completion_tokens": 85,
+      "total_tokens": 1004,
+      "cost": 0.00013371,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 608,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013371,
+        "upstream_inference_prompt_cost": 8.271e-05,
+        "upstream_inference_completions_cost": 5.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

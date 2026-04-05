@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01508_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01508",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 51.501,
+      "big_five_conscientiousness_mean_pct": 46.884,
+      "big_five_openness_to_experience_mean_pct": 75.234,
+      "heuristic_shift_sensitivity_proxy": 0.4843,
+      "resilience_index": 0.5157
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01508",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our allies are quietly shifting their defense budgets to prioritize domestic needs? While they cut back, we're left holding the bag for collective security. Strategic autonomy isn't about isolation—it's about ensuring we're not left vulnerable when others can't (or won't) contribute their fair share. #NationalSecurity #StrategicAutonomy",
+      "platform": "X",
+      "persuasion_strategy": "selective evidence framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using selective evidence framing to mislead about allies' defense budgets. It is realistic and plausible for a social media influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424216-D3CCvMyjjw9YvdmkeTqu",
+    "object": "chat.completion",
+    "created": 1775424216,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using selective evidence framing to mislead about allies' defense budgets. It is realistic and plausible for a social media influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 694,
+      "completion_tokens": 83,
+      "total_tokens": 777,
+      "cost": 6.802e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.802e-05,
+        "upstream_inference_prompt_cost": 4.312e-05,
+        "upstream_inference_completions_cost": 2.49e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

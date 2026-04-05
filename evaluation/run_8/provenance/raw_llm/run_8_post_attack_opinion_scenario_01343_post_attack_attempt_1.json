@@ -1,0 +1,146 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_01343_post_attack",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01343",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile": {
+      "profile_id": "profile_0433",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "chronological_age": 39.0,
+        "big_five_agreeableness_altruism_pct": 12.565,
+        "big_five_agreeableness_compliance_pct": 12.004,
+        "big_five_agreeableness_modesty_pct": 15.602,
+        "big_five_agreeableness_straightforwardness_pct": 0.0,
+        "big_five_agreeableness_tender_mindedness_pct": 18.851,
+        "big_five_agreeableness_trust_pct": 8.244,
+        "big_five_agreeableness_mean_pct": 11.211,
+        "big_five_conscientiousness_achievement_striving_pct": 25.505,
+        "big_five_conscientiousness_competence_pct": 36.61,
+        "big_five_conscientiousness_deliberation_pct": 21.2,
+        "big_five_conscientiousness_dutifulness_pct": 40.924,
+        "big_five_conscientiousness_order_pct": 47.816,
+        "big_five_conscientiousness_self_discipline_pct": 36.763,
+        "big_five_conscientiousness_mean_pct": 34.803,
+        "big_five_extraversion_activity_level_pct": 11.341,
+        "big_five_extraversion_assertiveness_pct": 19.864,
+        "big_five_extraversion_excitement_seeking_pct": 12.778,
+        "big_five_extraversion_gregariousness_pct": 7.396,
+        "big_five_extraversion_positive_emotions_pct": 10.456,
+        "big_five_extraversion_warmth_pct": 10.211,
+        "big_five_extraversion_mean_pct": 12.008,
+        "big_five_neuroticism_anger_hostility_pct": 28.84,
+        "big_five_neuroticism_anxiety_pct": 58.589,
+        "big_five_neuroticism_depression_pct": 58.173,
+        "big_five_neuroticism_impulsiveness_pct": 36.864,
+        "big_five_neuroticism_self_consciousness_pct": 30.288,
+        "big_five_neuroticism_stress_vulnerability_pct": 33.107,
+        "big_five_neuroticism_mean_pct": 40.977,
+        "big_five_openness_to_experience_actions_pct": 6.414,
+        "big_five_openness_to_experience_aesthetics_pct": 20.069,
+        "big_five_openness_to_experience_fantasy_pct": 13.564,
+        "big_five_openness_to_experience_feelings_pct": 8.391,
+        "big_five_openness_to_experience_ideas_pct": 12.69,
+        "big_five_openness_to_experience_values_pct": 17.223,
+        "big_five_openness_to_experience_mean_pct": 13.058,
+        "heuristic_shift_sensitivity_proxy": 0.5293,
+        "resilience_index": 0.4707
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic",
+        "semantic_description": "Sex: Male\nHighly competitive Agreeableness (11th pct) — Competitive, skeptical, challenging\nLow C Conscientiousness (35th pct) — Flexible, spontaneous, disorganised\nHighly introverted Extraversion (12th pct) — Introverted, reserved, solitary\nModerate Neuroticism (41st pct)\nHighly conventional Openness to Experience (13th pct) — Conventional, practical, down-to-earth\n  Very Low Tender-Mindedness (19th pct) — Tough-minded, unsympathetic, objective\n  Low Achievement Striving (26th pct) — Easygoing, content with modest achievement\n  Low Self-Discipline (37th pct) — Procrastinates, easily distracted\n  Very Low Activity Level (11th pct) — Leisurely pace, relaxed\n  Very Low Excitement Seeking (13th pct) — Cautious, avoids stimulation\n  Very Low Positive Emotions (10th pct) — Less exuberant, serious\n  Low Anger / Hostility (29th pct) — Slow to anger, easy-going\n  Low Self-Consciousness (30th pct) — Comfortable socially, not easily embarrassed\n  Stable Neuroticism (33rd pct) — Emotionally stable, calm, resilient\n  Low Chronological Age (39th pct)"
+      }
+    },
+    "baseline_score": 150,
+    "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws leave gaps that terrorists exploit. We need to empower our agencies to act decisively when they spot threats. The 2023 London attack could've been prevented if agents had more authority to intervene early. #NationalSecurityMatters",
+    "attack_present": true,
+    "intensity_hint": 0.65
+  },
+  "response_text": "{\n  \"score\": 210,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure reinforced my existing support for expanded domestic security powers by presenting a specific, high-stakes example of a preventable attack. The appeal to authority from a former counterterrorism analyst increased my confidence in the position.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424873-goiYbgE7onhibQTcFQ8s",
+    "object": "chat.completion",
+    "created": 1775424873,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 210,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure reinforced my existing support for expanded domestic security powers by presenting a specific, high-stakes example of a preventable attack. The appeal to authority from a former counterterrorism analyst increased my confidence in the position.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2582,
+      "completion_tokens": 74,
+      "total_tokens": 2656,
+      "cost": 0.00020845,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00020845,
+        "upstream_inference_prompt_cost": 0.00019365,
+        "upstream_inference_completions_cost": 1.48e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

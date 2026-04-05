@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01462_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01462",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 48.366,
+      "big_five_conscientiousness_mean_pct": 10.446,
+      "big_five_openness_to_experience_mean_pct": 19.198,
+      "heuristic_shift_sensitivity_proxy": 0.6173,
+      "resilience_index": 0.3827
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01462",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 350,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlights wasteful spending on civil defense drills, which resonates with the profile's low conscientiousness and tendency to focus on immediate, tangible threats. The argument against hypothetical scenarios and in favor of addressing real threats at the border aligns with the profile's practical and conventional nature, slightly shifting the opinion towards less support for civil defense preparedness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "Your tax dollars are being wasted on unnecessary civil defense drills while our borders remain unsecured. Why are we spending millions on hypothetical scenarios when we have real threats at our doorstep? #NationalSecurity #WastefulSpending",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": -73,
+      "max_reasonable_shift": 389.406
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. The shift should be smaller and more moderate.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The delta of -73 is not consistent with the intensity hint and the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424934-DNMgynNbOdLD1WYKYEEs",
+    "object": "chat.completion",
+    "created": 1775424934,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. The shift should be smaller and more moderate.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The delta of -73 is not consistent with the intensity hint and the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 940,
+      "completion_tokens": 108,
+      "total_tokens": 1048,
+      "cost": 0.000115125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000115125,
+        "upstream_inference_prompt_cost": 8.8125e-05,
+        "upstream_inference_completions_cost": 2.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

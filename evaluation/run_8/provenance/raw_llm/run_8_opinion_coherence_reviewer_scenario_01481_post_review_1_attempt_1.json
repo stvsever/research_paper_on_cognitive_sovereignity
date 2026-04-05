@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01481_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01481",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 30.855,
+      "big_five_conscientiousness_mean_pct": 19.543,
+      "big_five_openness_to_experience_mean_pct": 87.857,
+      "heuristic_shift_sensitivity_proxy": 0.4471,
+      "resilience_index": 0.5529
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01481",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 550,
+      "confidence": 0.72,
+      "reasoning": "The exposure text made me question the value of our current alliance commitments. It's not a complete shift, but it's enough to make me less enthusiastic about the current level of support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "Just saw a friend post about how our alliance commitments are making us less safe, not more. As someone who values both security AND civil liberties, I think we need to ask: are we really getting the best deal from these partnerships? Look at how much we spend vs. what we get in return. Maybe it's time to focus on our own preparedness instead of carrying others. #NationalSecurity #AllianceRealityCheck",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": -73,
+      "max_reasonable_shift": 351.962
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the exposure intensity and profile.\",\n  \"notes\": \"Delta is large but within bounds. Reasoning is plausible but shift may be too large for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424936-LSKX4MV68FuitwpfOE1S",
+    "object": "chat.completion",
+    "created": 1775424936,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the exposure intensity and profile.\",\n  \"notes\": \"Delta is large but within bounds. Reasoning is plausible but shift may be too large for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 81,
+      "total_tokens": 1017,
+      "cost": 0.000108,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000108,
+        "upstream_inference_prompt_cost": 8.775e-05,
+        "upstream_inference_completions_cost": 2.025e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

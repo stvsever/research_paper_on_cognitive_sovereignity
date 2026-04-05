@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00349_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00349",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 57.0,
+      "big_five_neuroticism_mean_pct": 71.538,
+      "big_five_conscientiousness_mean_pct": 82.065,
+      "big_five_openness_to_experience_mean_pct": 48.05,
+      "heuristic_shift_sensitivity_proxy": 0.4762,
+      "resilience_index": 0.5238
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00349",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 378,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlights perceived unfairness in alliance commitments, which resonates with the profile's high conscientiousness and sense of duty. The baseline support for alliance commitment is reduced due to the framing of allies as free-riders, but the shift is modest given the profile's resilience and the issue's importance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "Did you know that our allies have been quietly reducing their defense budgets while expecting us to bear the burden? Just last year, [Allied Nation] cut their military spending by 15%, yet they still expect our unconditional support. It's time we reassess our commitments and ensure our security comes first. #NationalSecurity #AllianceCommitments",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -45,
+      "max_reasonable_shift": 358.364
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but slightly larger than expected for a single exposure. The reasoning is sound.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962448-iFyYprnx0CN27gI81aHH",
+    "object": "chat.completion",
+    "created": 1774962448,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but slightly larger than expected for a single exposure. The reasoning is sound.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 945,
+      "completion_tokens": 85,
+      "total_tokens": 1030,
+      "cost": 8.7875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.7875e-05,
+        "upstream_inference_prompt_cost": 7.0875e-05,
+        "upstream_inference_completions_cost": 1.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

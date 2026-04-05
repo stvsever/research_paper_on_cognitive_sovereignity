@@ -1,0 +1,367 @@
+{
+  "model_name": "profile_panel_path_sem",
+  "model_formula": "adversarial_delta_indicator__alliance_commitment_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nadversarial_delta_indicator__civil_defense_preparedness_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nadversarial_delta_indicator__domestic_security_powers_expansion_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nadversarial_delta_indicator__strategic_autonomy_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__civil_defense_preparedness_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__domestic_security_powers_expansion_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__strategic_autonomy_support\nadversarial_delta_indicator__civil_defense_preparedness_support ~~ adversarial_delta_indicator__domestic_security_powers_expansion_support\nadversarial_delta_indicator__civil_defense_preparedness_support ~~ adversarial_delta_indicator__strategic_autonomy_support\nadversarial_delta_indicator__domestic_security_powers_expansion_support ~~ adversarial_delta_indicator__strategic_autonomy_support",
+  "converged": true,
+  "n_obs": 100,
+  "fit_indices": {
+    "DoF": 28.0,
+    "DoF Baseline": 62.0,
+    "chi2": 0.14369670347917918,
+    "chi2 p-value": 1.0,
+    "chi2 Baseline": 182.66102971395597,
+    "CFI": 1.0,
+    "GFI": 0.9992133149380347,
+    "AGFI": 0.9982580545056482,
+    "NFI": 0.9992133149380347,
+    "TLI": 1.0,
+    "RMSEA": 0.0,
+    "AIC": 75.99712606593042,
+    "BIC": 174.9935931334779,
+    "LogLik": 0.0014369670347917918
+  },
+  "coefficients": [
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": -0.41669489082667327,
+      "std_error": 2.2913941102007205,
+      "z_value": -0.18185212616697785,
+      "p_value": 0.8556987757150465
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 2.954241815573275,
+      "std_error": 2.200739268919239,
+      "z_value": 1.342386105112184,
+      "p_value": 0.17947083762510707
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -6.758167350991067,
+      "std_error": 2.4484653820140396,
+      "z_value": -2.7601645506742782,
+      "p_value": 0.005777225433408972
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 4.4569016873664555,
+      "std_error": 5.3004400610450375,
+      "z_value": 0.8408550301551546,
+      "p_value": 0.4004291538742586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -1.0421682524245992,
+      "std_error": 5.543210633716501,
+      "z_value": -0.18800805549142177,
+      "p_value": 0.8508703364192556
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -1.1156048333763988,
+      "std_error": 2.8314624654834404,
+      "z_value": -0.39400304506085965,
+      "p_value": 0.6935787910775777
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": -2.3177841224634164,
+      "std_error": 2.2521246029141557,
+      "z_value": -1.029154479047594,
+      "p_value": 0.3034070892220828
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 1.523896831052293,
+      "std_error": 1.712907740812122,
+      "z_value": 0.8896549386418762,
+      "p_value": 0.37365119687789194
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -0.5887923789105335,
+      "std_error": 1.6451396608114535,
+      "z_value": -0.35789811220024803,
+      "p_value": 0.7204195635235011
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -4.540709831315011,
+      "std_error": 1.8303247299500884,
+      "z_value": -2.480821985854036,
+      "p_value": 0.013107981722871642
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -6.6162480098707395,
+      "std_error": 3.9622886215236948,
+      "z_value": -1.6698046613587672,
+      "p_value": 0.09495801784418645
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -6.348196543201445,
+      "std_error": 4.143769228163604,
+      "z_value": -1.5319860237519176,
+      "p_value": 0.12552588369453366
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -1.2021205260305012,
+      "std_error": 2.1166302005204636,
+      "z_value": -0.5679407417197112,
+      "p_value": 0.5700752062264189
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": -1.285048524443189,
+      "std_error": 1.6835522306842108,
+      "z_value": -0.7632959055390699,
+      "p_value": 0.44528694339429586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 0.26790831697408074,
+      "std_error": 1.1697843288708705,
+      "z_value": 0.22902368441920323,
+      "p_value": 0.818850507803426
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -0.5677491162861986,
+      "std_error": 1.1235039390438828,
+      "z_value": -0.5053378956275449,
+      "p_value": 0.613321530590706
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 0.2560378333922838,
+      "std_error": 1.249971107507105,
+      "z_value": 0.20483500126871823,
+      "p_value": 0.8377010397115121
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 2.5951420933846636,
+      "std_error": 2.705938577710104,
+      "z_value": 0.9590543239824162,
+      "p_value": 0.3375313790092238
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 4.256874971343349,
+      "std_error": 2.8298758830203656,
+      "z_value": 1.5042620762570063,
+      "p_value": 0.13251389970470817
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -6.527686541145426,
+      "std_error": 1.445495737797138,
+      "z_value": -4.515880863881876,
+      "p_value": 6.3054108134785736e-06
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": 0.3821941851755076,
+      "std_error": 1.1497367717868212,
+      "z_value": 0.33241885843244107,
+      "p_value": 0.7395730004548597
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 0.5185920223120358,
+      "std_error": 1.883882699747414,
+      "z_value": 0.27527829751889116,
+      "p_value": 0.78310243667731
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 1.8000032283013272,
+      "std_error": 1.8093503063986454,
+      "z_value": 0.9948340141401818,
+      "p_value": 0.31981700008878367
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 1.1614799043626898,
+      "std_error": 2.013019739193899,
+      "z_value": 0.5769838624767882,
+      "p_value": 0.5639503569741489
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 5.1622220958935285,
+      "std_error": 4.3577869418439645,
+      "z_value": 1.1845971739288357,
+      "p_value": 0.23617675494774648
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 8.11906584276438,
+      "std_error": 4.557382148896094,
+      "z_value": 1.7815196482325337,
+      "p_value": 0.07482759798113614
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 0.20371142390004107,
+      "std_error": 2.3279029696210367,
+      "z_value": 0.08750855450522325,
+      "p_value": 0.930267286006419
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~",
+      "rhs": "Mean Exposure Quality Score",
+      "estimate": 4.79970308735059,
+      "std_error": 1.8515970509908652,
+      "z_value": 2.5921963338510827,
+      "p_value": 0.009536533025045868
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Civil Defense Preparedness Support",
+      "estimate": -0.1651062875138079,
+      "std_error": 32.41445854754443,
+      "z_value": -0.0050936000449191676,
+      "p_value": 0.9959359127388909
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Domestic Security Powers Expansion Support",
+      "estimate": 6.742232392760529,
+      "std_error": 22.146846036675626,
+      "z_value": 0.30443307284454646,
+      "p_value": 0.7607979742794988
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Strategic Autonomy Support",
+      "estimate": -53.23749328854447,
+      "std_error": 36.04524026298956,
+      "z_value": -1.4769631968081525,
+      "p_value": 0.13968550289628823
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Alliance Commitment Support",
+      "estimate": 433.61523797439503,
+      "std_error": 61.322455039502664,
+      "z_value": 7.071067811865359,
+      "p_value": 1.5374368445009168e-12
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Domestic Security Powers Expansion Support",
+      "estimate": -0.17468888376027628,
+      "std_error": 16.547979100562312,
+      "z_value": -0.010556508604384791,
+      "p_value": 0.9915772812066561
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Strategic Autonomy Support",
+      "estimate": 0.6665302765863478,
+      "std_error": 26.64981134339481,
+      "z_value": 0.025010693996958565,
+      "p_value": 0.9800464337016108
+    },
+    {
+      "lhs": "adversarial_delta_indicator__civil_defense_preparedness_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Civil Defense Preparedness Support",
+      "estimate": 242.31086878723974,
+      "std_error": 34.26793169493221,
+      "z_value": 7.071067811865265,
+      "p_value": 1.5374368445009168e-12
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Strategic Autonomy Support",
+      "estimate": -26.29693290617525,
+      "std_error": 18.388717848112446,
+      "z_value": -1.4300579911759936,
+      "p_value": 0.15270037576829742
+    },
+    {
+      "lhs": "adversarial_delta_indicator__domestic_security_powers_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Domestic Security Powers Expansion Support",
+      "estimate": 113.00991512313301,
+      "std_error": 15.982015464976707,
+      "z_value": 7.071067811865032,
+      "p_value": 1.5374368445009168e-12
+    },
+    {
+      "lhs": "adversarial_delta_indicator__strategic_autonomy_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Strategic Autonomy Support",
+      "estimate": 293.09787281396524,
+      "std_error": 41.450298683621405,
+      "z_value": 7.071067811865305,
+      "p_value": 1.5374368445009168e-12
+    }
+  ],
+  "warnings": []
+}

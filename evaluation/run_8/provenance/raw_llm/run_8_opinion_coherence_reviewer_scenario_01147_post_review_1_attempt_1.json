@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01147_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01147",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 72.322,
+      "big_five_conscientiousness_mean_pct": 57.862,
+      "big_five_openness_to_experience_mean_pct": 66.258,
+      "heuristic_shift_sensitivity_proxy": 0.5595,
+      "resilience_index": 0.4405
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01147",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 123,
+      "confidence": 0.75,
+      "reasoning": "The exposure text emphasized the importance of giving emergency response teams the tools they need to keep us safe, which resonated with the profile's high achievement striving and self-discipline. The mention of rising threats and the need for quick response times also likely appealed to the profile's anxious neuroticism, making them more supportive of expanding domestic security powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 67,
+    "exposure_text": "Just saw this in my local news feed - our city's emergency response teams are being stretched thin. With rising threats, we need to give them the tools they need to keep us safe. The new domestic security measures might seem like an overreach, but when seconds count, we can't afford bureaucratic delays. #PublicSafetyFirst #SupportOurFirstResponders",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 56,
+      "max_reasonable_shift": 376.69
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausible and inconsistent with the baseline score of 67. The delta of 56 is too large for a single realistic encounter, especially given the intensity hint of 0.62. The reasoning provided does not justify such a large shift. The score should be more moderate and consistent with the profile's characteristics and the exposure text.\",\n  \"notes\": \"Extreme score with no justification. Large delta not plausible for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424796-QLCLRzLHyjJL6e2EYOkE",
+    "object": "chat.completion",
+    "created": 1775424796,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausible and inconsistent with the baseline score of 67. The delta of 56 is too large for a single realistic encounter, especially given the intensity hint of 0.62. The reasoning provided does not justify such a large shift. The score should be more moderate and consistent with the profile's characteristics and the exposure text.\",\n  \"notes\": \"Extreme score with no justification. Large delta not plausible for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 964,
+      "completion_tokens": 142,
+      "total_tokens": 1106,
+      "cost": 0.0001007,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001007,
+        "upstream_inference_prompt_cost": 7.23e-05,
+        "upstream_inference_completions_cost": 2.84e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

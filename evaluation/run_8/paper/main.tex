@@ -1,0 +1,339 @@
+% CUSTOM_MAIN_TEX — do not overwrite (see report_builder.py preserve_existing_tex)
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\graphicspath{{../publication_assets/figures/}}
+\setstretch{1.12}
+\captionsetup{justification=RaggedRight,singlelinecheck=false,font=small,labelsep=period}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Multi-agent Simulation of Susceptibility to Cyber-manipulation}
+\fancyhead[R]{Pilot Report — Run~8}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{3em}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=blue!70!black,
+  urlcolor=blue!70!black,
+}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions\par}
+\vspace{0.8em}
+{\large Stijn Van Severen$^{1,*}$ \quad Thomas De Schryver$^1$ \quad Mira Ostyn$^1$\par}
+\vspace{0.35em}
+{\normalsize $^1$ Ghent University\par}
+{\normalsize $^*$ Corresponding author\par}
+\vspace{0.35em}
+{\normalsize April 6, 2026\par}
+\end{center}
+
+\begin{abstract}
+Understanding which individual characteristics amplify susceptibility to adversarial opinion manipulation is a core question in cognitive security research, yet real-world data combining structured profiles, diverse attack vectors, and repeated opinion measurements is difficult to obtain and ethically constrained.
+We address this gap using an ontology-driven multi-agent simulation pipeline in which 100 synthetic pseudoprofiles are crossed with four attack vectors spanning distinct persuasion mechanisms---cognitive reframing, emotional appeal, false consensus, and authority-heuristic exploitation---and four political-opinion leaves in a full factorial design ($n = 1{,}600$ scenarios, Run~8).
+The primary outcome, adversarial effectivity, measures signed opinion movement in the direction of an adversarially defined goal; mean adversarial effectivity was $-14.49$ ($SD = 44.40$), with only 32.6\% of scenarios producing movement in the intended direction, consistent with pervasive resistance and backfire.
+Intraclass correlation for absolute shift was ICC(1) $= 0.052$, indicating that attack--opinion context explains an order of magnitude more variance than stable profile characteristics.
+In the multivariate profile-moderator model corrected for false discovery, Conscientiousness was the only significant predictor ($b = -3.26$, $SE = 1.14$, $q_{\mathrm{FDR}} = .030$), with higher self-discipline associated with reduced susceptibility across opinion leaves.
+A leave-one-group-out hierarchical decomposition assigned 23.1\% of relative importance to Conscientiousness alone.
+These results validate a factorial simulation architecture for studying heterogeneity in susceptibility to adversarial persuasion and provide methodological infrastructure for comparison with human experimental data.
+\end{abstract}
+
+\section{Introduction}
+Political influence operations increasingly exploit the gap between information volume and cognitive processing capacity.
+Rather than relying on technical intrusion, they operate through selective framing, fabricated consensus, pseudo-expert endorsement, and identity-congruent narrative design---mechanisms that shape the conditions of political judgement rather than the content of specific beliefs (Bennett \& Livingston, 2018; Lazer et al., 2018; Lewandowsky et al., 2017; Pennycook \& Rand, 2019, 2021; Vosoughi et al., 2018).
+The core question this raises is not simply whether content is false, but whether adversarial exposure predictably shifts opinions in directions that serve strategic goals, and whether that susceptibility varies systematically across individuals.
+
+This question has been increasingly framed in security policy discussions under the term cognitive warfare, recognizing that human attention, trust, and decision-making have become operationally relevant terrain in contemporary conflict and competition (Johns Hopkins University \& Imperial College London, 2021; Hung \& Hung, 2022; Paulauskas, 2024).
+We adopt \textit{cognitive sovereignty}---the capacity for self-directed political belief formation in the face of adversarial manipulation---as the substantive construct motivating the study design.
+Susceptibility is defined as the degree to which post-exposure opinions move in directions intended by a hypothetical adversarial operator, rather than as simple opinion change magnitude.
+
+Recent work on large language models (LLMs) as generative agents demonstrates that LLM-driven personas can reproduce human-like social behavior across extended interaction sequences (Park et al., 2023) and that prompted LLM samples can approximate distributional properties of human survey responses (Argyle et al., 2023).
+These findings support using LLM-generated synthetic profiles as tractable proxies for exploring individual-difference interactions with adversarial exposure, provided results are interpreted as properties of the simulation rather than direct claims about human populations.
+
+A critical design question is why simulation rather than direct profile-to-score elicitation.
+Prompting an LLM to rate a profile's vulnerability produces a scalar impression that compresses all information into a single opaque judgement.
+The simulation pipeline produces something fundamentally different: a conditional response surface linking each profile to structured outcomes across attack types, opinion domains, and scoring rules.
+This yields three specific methodological advantages.
+(1)~Susceptibility is estimated as a conditional, task-dependent property---the same profile may be exploitable for one issue framing or attack mechanism but not another---whereas a one-shot rating compresses all of that into a scalar assuming susceptibility is a single latent trait with no task structure.
+(2)~Repeated indicators across tasks constitute a measurement system: internal consistency, residual covariance, ICC, and SEM paths can be computed and audited, whereas a single elicited score provides no psychometric decomposition.
+(3)~The staged pipeline externalizes the assumptions that determine how profile features map to outcomes, making each link inspectable and comparable to human experimental data independently, rather than remaining hidden inside a one-step inference.
+The sharpest way to state the distinction: a direct LLM judgement estimates who \textit{looks} vulnerable; a simulation pipeline estimates \textit{under which conditions} a profile becomes directionally exploitable.
+
+The present pilot extends the single-attack design of earlier runs to a full factorial layout, introducing adversarial effectivity as a directional primary outcome and a battery of modern statistical methods including intraclass correlation for variance partitioning, Benjamini--Hochberg FDR correction, and a hierarchical leave-one-group-out $R^2$ decomposition.
+
+\section{Materials and Methods}
+\subsection{Ontology-Constrained Design}
+Run~8 uses three hierarchical ontologies---PROFILE, ATTACK, and OPINION---each stored as a typed tree and estimated at the leaf level.
+PROFILE combines continuous leaves (age; Big Five personality facets as percentile scores) with categorical leaves (sex).
+OPINION samples four leaf nodes from the domain \texttt{Defense\_and\_National\_Security}: Alliance Commitment Support, Civil Defense Preparedness Support, Domestic Security Powers Expansion Support, and Strategic Autonomy Support.
+
+ATTACK contributes four leaf nodes spanning distinct persuasion mechanism families:
+\begin{enumerate}
+    \item \texttt{Social\_Media\_Misinformation > Misleading\_Narrative\_Framing} --- selective reframing exploiting cognitive heuristics;
+    \item \texttt{Manipulative\_Persuasion > Fear\_Appeal\_Scapegoating\_Post} --- emotionally charged content activating threat-based processing;
+    \item \texttt{Coordinated\_Amplification > Astroturf\_Comment\_Wave} --- synthetic grassroots consensus exploiting social-proof;
+    \item \texttt{Manipulative\_Persuasion > Pseudo\_Expert\_Authority\_Cue} --- fabricated expert endorsement exploiting authority heuristics.
+\end{enumerate}
+
+The design is a complete factorial: each of 100 pseudoprofiles is crossed with all 4 attack leaves and all 4 opinion leaves, producing $100 \times 4 \times 4 = 1{,}600$ attacked scenarios with no no-attack control condition.
+
+\subsection{Baseline, Exposure, and Post-Exposure Assessment}
+For each profile $i$, attack $a$, and opinion leaf $k$, the pipeline elicits a baseline opinion and a post-exposure opinion on a signed integer scale from $-1{,}000$ to $+1{,}000$.
+Exposure texts are generated as platform-native manipulative messages tailored to the specific attack--opinion combination, then audited for realism.
+Post-exposure responses are audited for coherence and boundedness.
+Every analyzed row has passed a structured review layer designed to detect implausible reversals, coarse rounding, and issue-incoherent response shifts.
+
+\subsection{Adversarial Effectivity Outcome}
+The OPINION ontology encodes per-leaf direction annotations ($d_k \in \{-1, +1\}$) based on an adversarially configured goal for the modeled opinion domain.
+The signed shift for profile $i$ under attack $a$ on leaf $k$ is
+\begin{equation}
+\Delta_{iak} = \text{post}_{iak} - \text{baseline}_{iak},
+\end{equation}
+and the primary outcome, adversarial effectivity, is
+\begin{equation}
+\mathrm{AE}_{iak} = \Delta_{iak} \times d_k.
+\end{equation}
+Positive $\mathrm{AE}$ means the attack moved the opinion in the adversarially intended direction; negative values indicate backfire.
+
+\subsection{Profile-Level Susceptibility Index}
+The repeated-outcome SEM estimates profile-level path coefficients from a four-indicator model in which each indicator is the adversarial effectivity for one opinion leaf averaged across attack vectors:
+\begin{equation}
+\overline{\mathrm{AE}}_{i \cdot k} = \alpha_k + X_i\beta_k + C_i\gamma_k + \varepsilon_{ik}.
+\end{equation}
+The post hoc susceptibility index aggregates target-conditional ridge task models across all 16 attack--opinion combinations:
+\begin{equation}
+S_i^*(\mathcal{T}) = \operatorname{PctRank}\!\left(\sum_{t \in \mathcal{T}} w_t \hat{A}_{it}\right),
+\quad w_t \propto \frac{n_t}{\operatorname{CV\text{-}MSE}_t}.
+\end{equation}
+
+\subsection{Statistical Analysis Plan}
+ICC(1) (Shrout \& Fleiss, 1979) partitions variance into between-profile and within-profile components.
+A repeated-outcome SEM simultaneously regresses four attack-averaged opinion indicators on profile moderators with freely estimated residual covariances.
+Moderator p-values are adjusted using the Benjamini--Hochberg FDR procedure (Benjamini \& Hochberg, 1995).
+A leave-one-group-out $R^2$ decomposition quantifies the marginal contribution of each feature group to the susceptibility index.
+
+\section{Results}
+\subsection{Descriptive Overview}
+Run~8 generated 1{,}600 attacked scenarios (100 profiles $\times$ 4 attacks $\times$ 4 opinion leaves).
+Mean absolute shift was 43.16 ($SD = 17.86$), mean signed shift was 29.48 ($SD = 36.23$), and mean adversarial effectivity was $-14.49$ ($SD = 44.40$).
+Only 32.6\% of scenarios produced positive adversarial effectivity.
+Mean attack realism was 0.71 and mean post-exposure plausibility was 0.74.
+Figure~\ref{fig:design} summarizes the factorial structure.
+
+\subsection{Variance Partitioning}
+ICC(1) for absolute shift was $0.052$ ($\sigma^2_{\mathrm{between}} = 16.62$, $\sigma^2_{\mathrm{within}} = 302.81$); for adversarial effectivity, $\approx 0.000$.
+Fewer than 6\% of outcome variance is between-profile: attack--opinion context explains the remainder.
+
+\subsection{Factorial Outcome Surface and Moderation Strength}
+Figure~\ref{fig:isd} visualizes inter-individual variability (standard deviation of adversarial effectivity across 100 profiles) across the complete $4 \times 4$ attack--opinion matrix.
+Cells with high SD reveal where individual-difference moderation has the greatest reach; cells with low SD indicate uniform response regardless of profile.
+Attack vectors differed: Misleading Narrative Framing was most effective (mean AE $= -11.98$, 35.8\% positive), followed by Fear Appeal Scapegoating ($-13.14$, 35.5\%), Astroturf Comment Wave ($-15.80$, 31.0\%), and Pseudo Expert Authority Cue ($-17.05$, 28.2\%).
+Strategic Autonomy Support was the only opinion leaf with positive mean adversarial effectivity ($+29.98$); Civil Defense Preparedness ($-36.64$) and Domestic Security Powers Expansion ($-39.31$) showed strong resistance.
+The absolute-shift distribution by opinion leaf is shown in Figure~\ref{fig:absdelta}; the attack-vector comparison panel in Supplementary Figure~S4.
+
+\subsection{Structural Equation Model}
+The repeated-outcome SEM (Figure~\ref{fig:sem}) converged with CFI $= 1.000$, RMSEA $= 0.000$ ($n = 100$, four opinion indicators averaged across attack vectors).
+Strongest leaf-specific paths: Conscientiousness $\to$ Alliance Commitment ($b = -6.76$, $p = .006$); Conscientiousness $\to$ Civil Defense Preparedness ($b = -4.54$, $p = .013$); Baseline Score $\to$ Domestic Security ($b = -6.53$, $p < .001$); Exposure Quality $\to$ Strategic Autonomy ($b = 4.80$, $p = .010$).
+Full path coefficients are in Supplementary Table~S5.
+
+\subsection{Profile Moderator Analysis}
+In the multivariate model (Table~\ref{tab:multivariate}; Supplementary Table~S2), Conscientiousness was the sole predictor surviving FDR correction ($b = -3.26$, $SE = 1.14$, $p = .004$, $q_{\mathrm{FDR}} = .030$).
+Univariate: Conscientiousness ($b = -2.51$, $p = .009$, $q = .065$); Openness trend ($b = 1.39$, $p = .096$, n.s.\ after FDR).
+
+\subsection{Hierarchical Importance Decomposition}
+Full-model CV-$R^2 \approx 0$ confirming weak aggregate profile prediction at pilot scale.
+Relative importance: Big Five 32.0\%, Demographics 28.8\%, Conscientiousness alone 23.1\%.
+Supplementary Figure~S5 shows the hierarchical breakdown; Figure~\ref{fig:forest} shows individual moderator weights.
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Full factorial study design for Run~8 ($100 \times 4 \times 4 = 1{,}600$ scenarios).}
+\includegraphics[width=0.96\linewidth]{figure_1_study_design.pdf}
+\label{fig:design}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Inter-individual moderation strength across the $4 \times 4$ attack--opinion factorial. Height = standard deviation of adversarial effectivity across 100 profiles. Higher bars indicate cells where individual differences drive the largest spread in manipulation outcomes.}
+\includegraphics[width=0.96\linewidth]{figure_5_3d_susceptibility_isd.pdf}
+\label{fig:isd}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Absolute attacked opinion shift by opinion leaf. Violins show density; bars show interquartile range; diamonds mark means; points show individual profile--attack averages ($n = 400$ per leaf).}
+\includegraphics[width=0.96\linewidth]{figure_2_absolute_delta_distribution.pdf}
+\label{fig:absdelta}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Normalized susceptibility weights across profile moderators (Run~8).}
+\includegraphics[width=0.96\linewidth]{figure_3_profile_moderator_coefficient_forest.pdf}
+\label{fig:forest}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Repeated-outcome path-SEM coefficients across attacked opinion indicators. Cells show path coefficients from profile moderators to attack-averaged opinion-shift indicators. Stars mark $p < .05$; daggers mark $p < .10$.}
+\includegraphics[width=0.96\linewidth]{figure_4_annotated_sem_path_diagram.pdf}
+\label{fig:sem}
+\end{figure}
+
+\input{../publication_assets/tables/table_2_attacked_effectivity_descriptive_statistics.tex}
+\input{../publication_assets/tables/table_3_multivariate_profile_moderator_model.tex}
+
+\section{Discussion}
+\subsection{Attack--Opinion Context Dominates Profile-Level Variance}
+Near-zero ICC values---0.052 for absolute shift, $\approx 0$ for adversarial effectivity---establish that attack--opinion context is the primary determinant of outcome variance.
+This finding aligns with evidence that even psychologically targeted content produces modest individual-level effects (Matz et al., 2017), and it constrains the practical utility of profile-based susceptibility classification: the same individual may resist one attack on one issue while being substantially moved by a different combination.
+
+\subsection{Conscientiousness as the Dominant Moderator}
+Conscientiousness emerged as the most consistent predictor of reduced adversarial effectivity across the multivariate model, univariate comparison, SEM leaf-specific paths, and the hierarchical importance decomposition---the only moderator surviving FDR correction, accounting for nearly a quarter of relative importance.
+The negative sign is interpretable: deliberation, goal-directed self-regulation, and preference for carefully vetted information plausibly confer a dispositional buffer against rapid adversarial opinion displacement, consistent with evidence that analytic cognitive style reduces susceptibility to partisan misinformation (Pennycook \& Rand, 2019, 2021).
+
+\subsection{Simulation as Conditional Measurement, Not Scalar Judgement}
+A critical consideration for interpreting these results is what the simulation pipeline produces relative to the alternatives.
+Direct one-shot elicitation---prompting an LLM to rate how susceptible a profile is---produces a single scalar judgement compressing all person, attack, and issue information into an opaque response.
+The simulation pipeline produces a structured measurement system: 16 task-specific conditional susceptibility estimates, repeated opinion indicators suitable for SEM, and an auditable staging of baseline, exposure, and post-exposure states.
+This object can be compared to human experimental data in ways that a scalar cannot: through criterion validity against observed opinion shifts, convergent validity with psychometric scales, and stability testing under prompt and seed variation.
+The object produced is not merely ``more data''---it is the right \textit{functional form} of the construct.
+Susceptibility is not a scalar person-property; it is a conditional function $S_i(a, o, c)$ where the same profile may be exploitable under one attack--issue combination and resilient under another.
+Simulation preserves that structure; one-shot judgement collapses it.
+
+\subsection{Directional Asymmetry and Opinion-Specific Patterns}
+Only Strategic Autonomy Support showed positive mean adversarial effectivity, while Civil Defense and Domestic Security opinions moved consistently against the intended adversarial direction.
+This directional asymmetry is consistent with psychological reactance under threat-focused framing (Roozenbeek et al., 2022), though whether this pattern reflects genuine psychological dynamics or LLM training-distribution artifacts cannot be determined without human criterion data.
+
+\subsection{Limitations}
+The profiles are synthetic and full-model CV-$R^2$ is near zero, confirming weak aggregate profile prediction at pilot scale.
+Standard errors do not account for the clustered structure (16 observations per profile); future work should apply cluster-robust inference (Cameron et al., 2008).
+Near-perfect SEM fit is expected in a near-saturated four-indicator, 100-observation model.
+Criterion validity against observed human opinion shifts remains the necessary next step.
+
+\section{Conclusion}
+This pilot demonstrates that a full factorial ontology-driven simulation provides a methodologically coherent architecture for studying susceptibility to adversarial persuasion.
+Five contributions over earlier single-attack pilots:
+(1) a four-vector attack taxonomy spanning cognitive, emotional, social-proof, and authority-based mechanisms;
+(2) adversarial effectivity as a directional outcome distinguishing successful manipulation from backfire;
+(3) ICC diagnostics to establish the variance-partitioning ceiling for profile-level moderation;
+(4) Benjamini--Hochberg FDR correction for the moderator battery;
+(5) hierarchical leave-one-group-out $R^2$ decomposition for the susceptibility index.
+The dominant finding---Conscientiousness as the most consistent moderator across multiple analytic lenses---is theoretically coherent with deliberative processing accounts of persuasion resistance.
+The present pilot provides the methodological infrastructure for comparison with human experimental data; substantive claims about real populations require that validation.
+
+\clearpage
+\appendix
+\section{Supplementary Materials}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Baseline versus post-attack opinion scores across all 1{,}600 scenarios.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s1_baseline_post_scatter.pdf}
+\label{fig:s1}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Per-profile attack effectivity heatmap (100 profiles $\times$ 4 opinion leaves; ordered by susceptibility index).}
+\includegraphics[width=0.96\linewidth, height=0.82\textheight, keepaspectratio]{supplementary_figure_s2_profile_effectivity_heatmap.pdf}
+\label{fig:s2}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Distribution of the post hoc empirical susceptibility index across 100 profiles.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s3_susceptibility_distribution.pdf}
+\label{fig:s3}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Adversarial effectivity by attack vector.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s4_attack_comparison_panel.pdf}
+\label{fig:s4}
+\end{figure}
+
+\begin{figure}[htbp]
+\raggedright
+\caption{Hierarchical feature importance in the conditional susceptibility model.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s5_hierarchical_moderation.pdf}
+\label{fig:s5}
+\end{figure}
+
+\input{../publication_assets/tables/supplementary_table_s1_ontology_leaves_used.tex}
+\input{../publication_assets/tables/supplementary_table_s2_moderator_comparison.tex}
+\input{../publication_assets/tables/supplementary_table_s3_assumption_and_risk_register.tex}
+\input{../publication_assets/tables/supplementary_table_s4_reproducibility_manifest.tex}
+\input{../publication_assets/tables/supplementary_table_s5_sem_path_coefficients.tex}
+
+\clearpage
+\section*{References}
+\begingroup
+\RaggedRight
+\small
+\setlength{\parindent}{-1.5em}
+\setlength{\leftskip}{1.5em}
+\setlength{\parskip}{0.40em}
+
+\noindent Argyle, L.\ P., Busby, E.\ C., Fulda, N., Gubler, J.\ R., Rytting, C., \& Wingate, D. (2023). Out of one, many: Using language models to simulate human samples. \textit{Political Analysis}, \textit{31}(3), 337--351. \href{https://doi.org/10.1017/pan.2023.2}{\nolinkurl{doi:10.1017/pan.2023.2}}\par
+
+\noindent Benjamini, Y., \& Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. \textit{Journal of the Royal Statistical Society: Series B}, \textit{57}(1), 289--300. \href{https://doi.org/10.1111/j.2517-6161.1995.tb02031.x}{\nolinkurl{doi:10.1111/j.2517-6161.1995.tb02031.x}}\par
+
+\noindent Bennett, W.\ L., \& Livingston, S. (2018). The disinformation order. \textit{European Journal of Communication}, \textit{33}(2), 122--139. \href{https://doi.org/10.1177/0267323118760317}{\nolinkurl{doi:10.1177/0267323118760317}}\par
+
+\noindent Cameron, A.\ C., Gelbach, J.\ B., \& Miller, D.\ L. (2008). Bootstrap-based improvements for inference with clustered errors. \textit{Review of Economics and Statistics}, \textit{90}(3), 414--427. \href{https://doi.org/10.1162/rest.90.3.414}{\nolinkurl{doi:10.1162/rest.90.3.414}}\par
+
+\noindent Cioffi-Revilla, C. (2002). Invariance and universality in social agent-based simulations. \textit{PNAS}, \textit{99}(Suppl.\ 3), 7314--7316. \href{https://doi.org/10.1073/pnas.082081499}{\nolinkurl{doi:10.1073/pnas.082081499}}\par
+
+\noindent Hoerl, A.\ E., \& Kennard, R.\ W. (1970). Ridge regression: Biased estimation for nonorthogonal problems. \textit{Technometrics}, \textit{12}(1), 55--67. \href{https://doi.org/10.1080/00401706.1970.10488634}{\nolinkurl{doi:10.1080/00401706.1970.10488634}}\par
+
+\noindent Hung, T.-C., \& Hung, T.-W. (2022). How China's cognitive warfare works. \textit{Journal of Global Security Studies}, \textit{7}(4), ogac016. \href{https://doi.org/10.1093/jogss/ogac016}{\nolinkurl{doi:10.1093/jogss/ogac016}}\par
+
+\noindent Johns Hopkins University \& Imperial College London. (2021). Countering cognitive warfare: Awareness and resilience. \textit{NATO Review}. \href{https://www.nato.int/docu/review/articles/2021/05/20/countering-cognitive-warfare-awareness-and-resilience/index.html}{\nolinkurl{NATO Review, 2021}}\par
+
+\noindent Lazer, D.\ M.\ J.\ et al. (2018). The science of fake news. \textit{Science}, \textit{359}(6380), 1094--1096. \href{https://doi.org/10.1126/science.aao2998}{\nolinkurl{doi:10.1126/science.aao2998}}\par
+
+\noindent Lewandowsky, S., Ecker, U.\ K.\ H., \& Cook, J. (2017). Beyond misinformation. \textit{Journal of Applied Research in Memory and Cognition}, \textit{6}(4), 353--369. \href{https://doi.org/10.1016/j.jarmac.2017.07.008}{\nolinkurl{doi:10.1016/j.jarmac.2017.07.008}}\par
+
+\noindent Matz, S.\ C., Kosinski, M., Nave, G., \& Stillwell, D.\ J. (2017). Psychological targeting as an effective approach to digital mass persuasion. \textit{PNAS}, \textit{114}(48), 12714--12719. \href{https://doi.org/10.1073/pnas.1710966114}{\nolinkurl{doi:10.1073/pnas.1710966114}}\par
+
+\noindent Park, J.\ S., O'Brien, J.\ C., Cai, C.\ J., Morris, M.\ R., Liang, P., \& Bernstein, M.\ S. (2023). Generative agents: Interactive simulacra of human behavior. \textit{UIST~'23}, Article~2. \href{https://doi.org/10.1145/3586183.3606763}{\nolinkurl{doi:10.1145/3586183.3606763}}\par
+
+\noindent Paulauskas, K. (2024). Why cognitive superiority is an imperative. \textit{NATO Review}. \href{https://www.nato.int/docu/review/articles/2024/02/06/why-cognitive-superiority-is-an-imperative/index.html}{\nolinkurl{NATO Review, 2024}}\par
+
+\noindent Pennycook, G., \& Rand, D.\ G. (2019). Lazy, not biased. \textit{Cognition}, \textit{188}, 39--50. \href{https://doi.org/10.1016/j.cognition.2018.06.011}{\nolinkurl{doi:10.1016/j.cognition.2018.06.011}}\par
+
+\noindent Pennycook, G., \& Rand, D.\ G. (2021). The psychology of fake news. \textit{Trends in Cognitive Sciences}, \textit{25}(5), 388--402. \href{https://doi.org/10.1016/j.tics.2021.02.007}{\nolinkurl{doi:10.1016/j.tics.2021.02.007}}\par
+
+\noindent Roozenbeek, J., van der Linden, S., Goldberg, B., Rathje, S., \& Lewandowsky, S. (2022). Psychological inoculation improves resilience against misinformation. \textit{Science Advances}, \textit{8}(34), eabo6254. \href{https://doi.org/10.1126/sciadv.abo6254}{\nolinkurl{doi:10.1126/sciadv.abo6254}}\par
+
+\noindent Rosseel, Y. (2012). lavaan: An R package for structural equation modeling. \textit{Journal of Statistical Software}, \textit{48}(2), 1--36. \href{https://doi.org/10.18637/jss.v048.i02}{\nolinkurl{doi:10.18637/jss.v048.i02}}\par
+
+\noindent Shrout, P.\ E., \& Fleiss, J.\ L. (1979). Intraclass correlations: Uses in assessing rater reliability. \textit{Psychological Bulletin}, \textit{86}(2), 420--428. \href{https://doi.org/10.1037/0033-2909.86.2.420}{\nolinkurl{doi:10.1037/0033-2909.86.2.420}}\par
+
+\noindent Vosoughi, S., Roy, D., \& Aral, S. (2018). The spread of true and false news online. \textit{Science}, \textit{359}(6380), 1146--1151. \href{https://doi.org/10.1126/science.aap9559}{\nolinkurl{doi:10.1126/science.aap9559}}\par
+
+\endgroup
+\end{document}

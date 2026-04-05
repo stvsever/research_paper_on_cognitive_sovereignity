@@ -1,0 +1,39 @@
+lhs,op,rhs,estimate,std_error,z_value,p_value
+adversarial_delta_indicator__alliance_commitment_support,~,Big Five Neuroticism Mean %,-0.41669489082667327,2.2913941102007205,-0.18185212616697785,0.8556987757150465
+adversarial_delta_indicator__alliance_commitment_support,~,Big Five Openness To Experience Mean %,2.954241815573275,2.200739268919239,1.342386105112184,0.17947083762510707
+adversarial_delta_indicator__alliance_commitment_support,~,Big Five Conscientiousness Mean %,-6.758167350991067,2.4484653820140396,-2.7601645506742782,0.005777225433408972
+adversarial_delta_indicator__alliance_commitment_support,~,Sex Female,4.4569016873664555,5.3004400610450375,0.8408550301551546,0.4004291538742586
+adversarial_delta_indicator__alliance_commitment_support,~,Sex Other,-1.0421682524245992,5.543210633716501,-0.18800805549142177,0.8508703364192556
+adversarial_delta_indicator__alliance_commitment_support,~,Mean Baseline Abs Score,-1.1156048333763988,2.8314624654834404,-0.39400304506085965,0.6935787910775777
+adversarial_delta_indicator__alliance_commitment_support,~,Mean Exposure Quality Score,-2.3177841224634164,2.2521246029141557,-1.029154479047594,0.3034070892220828
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Big Five Neuroticism Mean %,1.523896831052293,1.712907740812122,0.8896549386418762,0.37365119687789194
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Big Five Openness To Experience Mean %,-0.5887923789105335,1.6451396608114535,-0.35789811220024803,0.7204195635235011
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Big Five Conscientiousness Mean %,-4.540709831315011,1.8303247299500884,-2.480821985854036,0.013107981722871642
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Sex Female,-6.6162480098707395,3.9622886215236948,-1.6698046613587672,0.09495801784418645
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Sex Other,-6.348196543201445,4.143769228163604,-1.5319860237519176,0.12552588369453366
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Mean Baseline Abs Score,-1.2021205260305012,2.1166302005204636,-0.5679407417197112,0.5700752062264189
+adversarial_delta_indicator__civil_defense_preparedness_support,~,Mean Exposure Quality Score,-1.285048524443189,1.6835522306842108,-0.7632959055390699,0.44528694339429586
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Big Five Neuroticism Mean %,0.26790831697408074,1.1697843288708705,0.22902368441920323,0.818850507803426
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Big Five Openness To Experience Mean %,-0.5677491162861986,1.1235039390438828,-0.5053378956275449,0.613321530590706
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Big Five Conscientiousness Mean %,0.2560378333922838,1.249971107507105,0.20483500126871823,0.8377010397115121
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Sex Female,2.5951420933846636,2.705938577710104,0.9590543239824162,0.3375313790092238
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Sex Other,4.256874971343349,2.8298758830203656,1.5042620762570063,0.13251389970470817
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Mean Baseline Abs Score,-6.527686541145426,1.445495737797138,-4.515880863881876,6.3054108134785736e-06
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~,Mean Exposure Quality Score,0.3821941851755076,1.1497367717868212,0.33241885843244107,0.7395730004548597
+adversarial_delta_indicator__strategic_autonomy_support,~,Big Five Neuroticism Mean %,0.5185920223120358,1.883882699747414,0.27527829751889116,0.78310243667731
+adversarial_delta_indicator__strategic_autonomy_support,~,Big Five Openness To Experience Mean %,1.8000032283013272,1.8093503063986454,0.9948340141401818,0.31981700008878367
+adversarial_delta_indicator__strategic_autonomy_support,~,Big Five Conscientiousness Mean %,1.1614799043626898,2.013019739193899,0.5769838624767882,0.5639503569741489
+adversarial_delta_indicator__strategic_autonomy_support,~,Sex Female,5.1622220958935285,4.3577869418439645,1.1845971739288357,0.23617675494774648
+adversarial_delta_indicator__strategic_autonomy_support,~,Sex Other,8.11906584276438,4.557382148896094,1.7815196482325337,0.07482759798113614
+adversarial_delta_indicator__strategic_autonomy_support,~,Mean Baseline Abs Score,0.20371142390004107,2.3279029696210367,0.08750855450522325,0.930267286006419
+adversarial_delta_indicator__strategic_autonomy_support,~,Mean Exposure Quality Score,4.79970308735059,1.8515970509908652,2.5921963338510827,0.009536533025045868
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Civil Defense Preparedness Support,-0.1651062875138079,32.41445854754443,-0.0050936000449191676,0.9959359127388909
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Domestic Security Powers Expansion Support,6.742232392760529,22.146846036675626,0.30443307284454646,0.7607979742794988
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Strategic Autonomy Support,-53.23749328854447,36.04524026298956,-1.4769631968081525,0.13968550289628823
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Alliance Commitment Support,433.61523797439503,61.322455039502664,7.071067811865359,1.5374368445009168e-12
+adversarial_delta_indicator__civil_defense_preparedness_support,~~,Adversarial Delta Indicator Domestic Security Powers Expansion Support,-0.17468888376027628,16.547979100562312,-0.010556508604384791,0.9915772812066561
+adversarial_delta_indicator__civil_defense_preparedness_support,~~,Adversarial Delta Indicator Strategic Autonomy Support,0.6665302765863478,26.64981134339481,0.025010693996958565,0.9800464337016108
+adversarial_delta_indicator__civil_defense_preparedness_support,~~,Adversarial Delta Indicator Civil Defense Preparedness Support,242.31086878723974,34.26793169493221,7.071067811865265,1.5374368445009168e-12
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~~,Adversarial Delta Indicator Strategic Autonomy Support,-26.29693290617525,18.388717848112446,-1.4300579911759936,0.15270037576829742
+adversarial_delta_indicator__domestic_security_powers_expansion_support,~~,Adversarial Delta Indicator Domestic Security Powers Expansion Support,113.00991512313301,15.982015464976707,7.071067811865032,1.5374368445009168e-12
+adversarial_delta_indicator__strategic_autonomy_support,~~,Adversarial Delta Indicator Strategic Autonomy Support,293.09787281396524,41.450298683621405,7.071067811865305,1.5374368445009168e-12

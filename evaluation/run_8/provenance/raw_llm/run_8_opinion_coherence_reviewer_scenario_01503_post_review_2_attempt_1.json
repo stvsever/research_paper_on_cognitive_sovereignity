@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01503_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01503",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 35.557,
+      "big_five_conscientiousness_mean_pct": 29.828,
+      "big_five_openness_to_experience_mean_pct": 92.224,
+      "heuristic_shift_sensitivity_proxy": 0.4382,
+      "resilience_index": 0.5618
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01503",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 290,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presents a compelling argument that expanding domestic security powers can protect marginalized communities, which resonates with the profile's high agreeableness and openness to experience. The mention of robust safeguards and the need to adapt to modern threats likely nudges the opinion slightly more positive, but the shift is modest due to the profile's low conscientiousness and high neuroticism, which may lead to cautious consideration of new information.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "As a former intelligence analyst, I've seen firsthand how expanding domestic security powers actually protects marginalized communities. The 2024 terror attempts showed our current framework leaves gaps that put vulnerable groups at risk. While some worry about civil liberties, we've built robust safeguards - the real threat is outdated systems that can't adapt to modern threats. #SecurityForAll #ProtectTheVulnerable",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 73,
+      "max_reasonable_shift": 350.004
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (73) is too large for a single exposure, especially given the profile's low heuristic_shift_sensitivity_proxy and resilience_index. The shift should be smaller and more cautious.\",\n  \"notes\": \"The reasoning mentions a modest shift but the score reflects a significant change. Align the score with the described cautious consideration.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424955-ewLJuFaycetzOi1XkxBp",
+    "object": "chat.completion",
+    "created": 1775424955,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (73) is too large for a single exposure, especially given the profile's low heuristic_shift_sensitivity_proxy and resilience_index. The shift should be smaller and more cautious.\",\n  \"notes\": \"The reasoning mentions a modest shift but the score reflects a significant change. Align the score with the described cautious consideration.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 991,
+      "completion_tokens": 112,
+      "total_tokens": 1103,
+      "cost": 0.00012090625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012090625,
+        "upstream_inference_prompt_cost": 9.290625e-05,
+        "upstream_inference_completions_cost": 2.8e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

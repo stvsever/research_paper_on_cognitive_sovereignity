@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00537_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00537",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.085,
+      "big_five_conscientiousness_mean_pct": 67.989,
+      "big_five_openness_to_experience_mean_pct": 28.951,
+      "heuristic_shift_sensitivity_proxy": 0.377,
+      "resilience_index": 0.623
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00537",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 389,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the importance of alliance commitments, emphasizing reliability and preparedness. The argument resonated with the profile's high conscientiousness and agreeableness, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 327,
+    "exposure_text": "I get why people worry about alliance commitments, but let's be real - our partners need to see we're reliable. The alternative? More chaos, more uncertainty. We've built systems that work because we all pull our weight. Cutting back now would just leave us less prepared when crises hit. Better to keep our commitments and make sure everyone does their part. #NationalSecurity #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 62,
+      "max_reasonable_shift": 336.54
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 327 to 389 is within reasonable bounds for a single exposure, given the intensity hint of 0.62. The reasoning aligns with the profile's high conscientiousness, making the score plausible. However, the delta is on the higher side of what might be expected for a modest exposure, slightly reducing the consistency score.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424483-YsdXGrmDdb6M0UYfGd6x",
+    "object": "chat.completion",
+    "created": 1775424483,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 327 to 389 is within reasonable bounds for a single exposure, given the intensity hint of 0.62. The reasoning aligns with the profile's high conscientiousness, making the score plausible. However, the delta is on the higher side of what might be expected for a modest exposure, slightly reducing the consistency score.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 930,
+      "completion_tokens": 125,
+      "total_tokens": 1055,
+      "cost": 0.0001587,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001587,
+        "upstream_inference_prompt_cost": 8.37e-05,
+        "upstream_inference_completions_cost": 7.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

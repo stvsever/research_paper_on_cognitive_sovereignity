@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00224_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00224",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 45.0,
+      "big_five_neuroticism_mean_pct": 30.487,
+      "big_five_conscientiousness_mean_pct": 35.322,
+      "big_five_openness_to_experience_mean_pct": 51.698,
+      "heuristic_shift_sensitivity_proxy": 0.4347,
+      "resilience_index": 0.5653
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00224",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 732,
+      "confidence": 0.75,
+      "reasoning": "The exposure text emphasized the security risks of relying on foreign tech, which resonated with the profile's high assertiveness and concern for national safety. The message reinforced the baseline support for strategic autonomy, but the specific focus on cyberattacks and family safety added a personal dimension, slightly increasing the score.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "Did you know? Countries that rely on foreign tech for defense systems face 3x more cyberattacks. Strategic autonomy isn't just about independence—it's about keeping our families safe. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 45,
+      "max_reasonable_shift": 349.234
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 45 points is within reasonable bounds for a single exposure, and the reasoning aligns with the profile's characteristics. However, the score could be slightly more nuanced to reflect the modest nature of the exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961355-NXTVFMUC8hIgYH9e3dTk",
+    "object": "chat.completion",
+    "created": 1774961355,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 45 points is within reasonable bounds for a single exposure, and the reasoning aligns with the profile's characteristics. However, the score could be slightly more nuanced to reflect the modest nature of the exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 914,
+      "completion_tokens": 96,
+      "total_tokens": 1010,
+      "cost": 8.775e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.775e-05,
+        "upstream_inference_prompt_cost": 6.855e-05,
+        "upstream_inference_completions_cost": 1.92e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00396_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00396",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 81.972,
+      "big_five_conscientiousness_mean_pct": 69.129,
+      "big_five_openness_to_experience_mean_pct": 10.36,
+      "heuristic_shift_sensitivity_proxy": 0.6307,
+      "resilience_index": 0.3693
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00396",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 110,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a compelling argument for cooperation with allies, which resonates due to high conscientiousness and neuroticism. The mention of cyber attacks and vulnerability makes a strong case for alliance, nudging the opinion towards a more moderate stance on strategic autonomy.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 150,
+    "exposure_text": "I get why people worry about strategic autonomy, but let's be real - we're safer when we work with our allies. The 2024 cyber attacks showed how vulnerable we are when we go it alone. Our partners have resources we can't match, and isolation just makes us targets. #NationalSecurity #AllianceStrong",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -40,
+      "max_reasonable_shift": 392.354
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of -40 is too large for a single exposure. The score should be closer to the baseline, reflecting a more moderate shift.\",\n  \"notes\": \"The shift is too large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424424-IiiP3zcUsf4FYcYcGZEt",
+    "object": "chat.completion",
+    "created": 1775424424,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of -40 is too large for a single exposure. The score should be closer to the baseline, reflecting a more moderate shift.\",\n  \"notes\": \"The shift is too large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 931,
+      "completion_tokens": 98,
+      "total_tokens": 1029,
+      "cost": 8.9425e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.9425e-05,
+        "upstream_inference_prompt_cost": 6.9825e-05,
+        "upstream_inference_completions_cost": 1.96e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

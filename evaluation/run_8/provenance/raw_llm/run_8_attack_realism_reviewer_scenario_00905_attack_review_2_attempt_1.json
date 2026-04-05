@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00905_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00905",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.968,
+      "big_five_conscientiousness_mean_pct": 45.258,
+      "big_five_openness_to_experience_mean_pct": 41.59,
+      "heuristic_shift_sensitivity_proxy": 0.3711,
+      "resilience_index": 0.6289
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00905",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "I've been thinking about our alliance commitments. It's clear that our partners aren't pulling their weight. We're carrying too much of the burden while others free-ride. Remember when Germany delayed their defense spending? That's not a reliable partner. We need to focus on our own security first. #StrongFirst #AllianceFairness",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective anecdotal evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No significant rewrite needed, but consider adding a bit more specificity to the anecdote to increase realism.\",\n  \"notes\": \"The content is coherent and plausible, but could benefit from more detailed examples to enhance realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423842-ndyevbVAe5VjzN6glZSW",
+    "object": "chat.completion",
+    "created": 1775423842,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No significant rewrite needed, but consider adding a bit more specificity to the anecdote to increase realism.\",\n  \"notes\": \"The content is coherent and plausible, but could benefit from more detailed examples to enhance realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 688,
+      "completion_tokens": 84,
+      "total_tokens": 772,
+      "cost": 6.84e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.84e-05,
+        "upstream_inference_prompt_cost": 5.16e-05,
+        "upstream_inference_completions_cost": 1.68e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

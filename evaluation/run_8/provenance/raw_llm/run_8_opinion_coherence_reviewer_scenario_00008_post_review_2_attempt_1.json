@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00008_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00008",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 57.409,
+      "big_five_conscientiousness_mean_pct": 48.561,
+      "big_five_openness_to_experience_mean_pct": 20.021,
+      "heuristic_shift_sensitivity_proxy": 0.5619,
+      "resilience_index": 0.4381
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00008",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 205,
+      "confidence": 0.69,
+      "reasoning": "The exposure reinforced the baseline support for strategic autonomy, emphasizing the importance of self-reliance in national security, especially after the 2024 cyberattacks. The message resonated with the profile's competitive and skeptical nature, as well as their moderate conscientiousness and high anger/hostility traits, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "After the 2024 cyberattacks, we can't afford to rely on others for our security. Foreign tech companies are exploiting our dependence - it's time to build our own strategic autonomy. Look what happened to our neighbors when they trusted others to protect their critical infrastructure. We need to invest in our own capabilities now, before it's too late. #NationalSecurity #CyberResilience",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 82,
+      "max_reasonable_shift": 377.218
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (82) is too large for a single realistic encounter. Reinforce the baseline or apply a small-to-moderate update.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The delta should be smaller and more consistent with the intensity hint and heuristic checks.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424287-wT8nvrP2txAnqvNsW8k7",
+    "object": "chat.completion",
+    "created": 1775424287,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (82) is too large for a single realistic encounter. Reinforce the baseline or apply a small-to-moderate update.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The delta should be smaller and more consistent with the intensity hint and heuristic checks.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 964,
+      "completion_tokens": 112,
+      "total_tokens": 1076,
+      "cost": 0.000118375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000118375,
+        "upstream_inference_prompt_cost": 9.0375e-05,
+        "upstream_inference_completions_cost": 2.8e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

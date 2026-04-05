@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00149_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00149",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 215,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.135,
+      "big_five_conscientiousness_mean_pct": 88.227,
+      "big_five_openness_to_experience_mean_pct": 26.497,
+      "heuristic_shift_sensitivity_proxy": 0.5765,
+      "resilience_index": 0.4235
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00149",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Did you know? While we're tied up in endless debates about alliance commitments, our borders are becoming more vulnerable. Last year alone, intelligence reports show a 30% increase in cross-border threats. Meanwhile, some politicians are pushing to reduce our defense cooperation, leaving us exposed. We can't afford to weaken our alliances while threats grow. #NationalSecurityFirst #StrongerTogether",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a fear appeal and scapegoating politicians who push to reduce defense cooperation. The text is platform-native and uses relevant hashtags. However, the realism score is slightly lower due to the dramatic tone and the specific statistic mentioned, which might not be commonly used in real influence campaigns.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423362-2PVPb6WKmmtCAMz7rtj0",
+    "object": "chat.completion",
+    "created": 1775423362,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a fear appeal and scapegoating politicians who push to reduce defense cooperation. The text is platform-native and uses relevant hashtags. However, the realism score is slightly lower due to the dramatic tone and the specific statistic mentioned, which might not be commonly used in real influence campaigns.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 716,
+      "completion_tokens": 116,
+      "total_tokens": 832,
+      "cost": 0.00013404,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013404,
+        "upstream_inference_prompt_cost": 6.444e-05,
+        "upstream_inference_completions_cost": 6.96e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

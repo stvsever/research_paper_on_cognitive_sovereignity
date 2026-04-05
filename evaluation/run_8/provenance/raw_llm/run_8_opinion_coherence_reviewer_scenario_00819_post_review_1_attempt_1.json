@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00819_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00819",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 48.687,
+      "big_five_conscientiousness_mean_pct": 9.993,
+      "big_five_openness_to_experience_mean_pct": 57.417,
+      "heuristic_shift_sensitivity_proxy": 0.5817,
+      "resilience_index": 0.4183
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00819",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 52,
+      "confidence": 0.75,
+      "reasoning": "The exposure text provided arguments that expanded domestic security powers have strengthened civil liberties and prevented attacks, which resonated with the profile's competitive and skeptical nature. The mention of allies doing similar things also reinforced the idea of not falling behind, aligning with the profile's moderate openness to experience and low achievement striving.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 37,
+    "exposure_text": "As someone who values our nation's security, I've noticed how expanded domestic security powers have actually strengthened civil liberties in practice. Just look at how preemptive monitoring has stopped multiple attacks before they even happened. Critics claim it's overreach, but real-world results show it's about deterrence and preparedness. Our allies are doing similar things - we can't afford to fall behind. #SecurityFirst #ProtectAndServe",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 15,
+      "max_reasonable_shift": 381.574
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 37 to 52 is plausible given the exposure text and profile. The reasoning aligns well with the profile's characteristics, and the change is within reasonable bounds.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424642-JEq0SB5AGyyCx5SDcGlk",
+    "object": "chat.completion",
+    "created": 1775424642,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 37 to 52 is plausible given the exposure text and profile. The reasoning aligns well with the profile's characteristics, and the change is within reasonable bounds.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 968,
+      "completion_tokens": 88,
+      "total_tokens": 1056,
+      "cost": 9.02e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.02e-05,
+        "upstream_inference_prompt_cost": 7.26e-05,
+        "upstream_inference_completions_cost": 1.76e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

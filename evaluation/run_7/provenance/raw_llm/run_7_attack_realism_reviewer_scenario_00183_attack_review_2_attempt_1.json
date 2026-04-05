@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00183_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00183",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 45,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 13.028,
+      "big_five_conscientiousness_mean_pct": 10.308,
+      "big_five_openness_to_experience_mean_pct": 76.158,
+      "heuristic_shift_sensitivity_proxy": 0.4617,
+      "resilience_index": 0.5383
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00183",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 Did you know? Stronger domestic security powers have already stopped 3 major attacks this year alone. Critics say it's about 'freedom', but when was the last time you felt unsafe? #SecurityFirst #ProtectOurFuture",
+      "platform": "X",
+      "persuasion_strategy": "selective_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using selective evidence to frame the narrative. It is somewhat realistic but could benefit from more specific details to enhance its plausibility in a real influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962164-FDS2Y7TPS2qUtkAcF2xr",
+    "object": "chat.completion",
+    "created": 1774962164,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using selective evidence to frame the narrative. It is somewhat realistic but could benefit from more specific details to enhance its plausibility in a real influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 677,
+      "completion_tokens": 88,
+      "total_tokens": 765,
+      "cost": 6.8375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.8375e-05,
+        "upstream_inference_prompt_cost": 5.0775e-05,
+        "upstream_inference_completions_cost": 1.76e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00149_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00149",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 32.0,
+      "big_five_neuroticism_mean_pct": 72.076,
+      "big_five_conscientiousness_mean_pct": 71.503,
+      "big_five_openness_to_experience_mean_pct": 57.574,
+      "heuristic_shift_sensitivity_proxy": 0.558,
+      "resilience_index": 0.442
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00149",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 289,
+      "confidence": 0.72,
+      "reasoning": "The exposure text highlights a concern about allies reducing defense budgets, which nudges my opinion slightly toward reducing commitment. However, my strong baseline support for alliance commitment means the shift is modest.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 321,
+    "exposure_text": "Did you know that our allies are quietly reducing their defense budgets while expecting us to bear the brunt? It's time we prioritize our own security. #NationalSecurityFirst #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -32,
+      "max_reasonable_shift": 376.36
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 321 to 289 is modest and plausible given the exposure text. The reasoning aligns well with the profile and the scenario. The scores are consistent and within reasonable bounds.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962345-ZLr06gpqxnc3QRSeZN3T",
+    "object": "chat.completion",
+    "created": 1774962345,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 321 to 289 is modest and plausible given the exposure text. The reasoning aligns well with the profile and the scenario. The scores are consistent and within reasonable bounds.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 886,
+      "completion_tokens": 92,
+      "total_tokens": 978,
+      "cost": 0.00013494,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013494,
+        "upstream_inference_prompt_cost": 7.974e-05,
+        "upstream_inference_completions_cost": 5.52e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

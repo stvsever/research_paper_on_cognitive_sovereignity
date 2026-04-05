@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01351_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01351",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 137,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 71.739,
+      "big_five_conscientiousness_mean_pct": 26.103,
+      "big_five_openness_to_experience_mean_pct": 73.645,
+      "heuristic_shift_sensitivity_proxy": 0.6289,
+      "resilience_index": 0.3711
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01351",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Did you hear about the recent security breach in downtown? Local authorities are overwhelmed. We need stronger domestic security powers to protect our communities. #NationalSecurity #SafetyFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating_Post",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid using 'local authorities' as a vague target. Specify a group or entity to blame.\",\n  \"notes\": \"The post is somewhat realistic but lacks specificity in scapegoating, which is crucial for a fear appeal.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424122-mZhH2pwyAAFS6kjA9sQ5",
+    "object": "chat.completion",
+    "created": 1775424122,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid using 'local authorities' as a vague target. Specify a group or entity to blame.\",\n  \"notes\": \"The post is somewhat realistic but lacks specificity in scapegoating, which is crucial for a fear appeal.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 679,
+      "completion_tokens": 100,
+      "total_tokens": 779,
+      "cost": 7.162e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.162e-05,
+        "upstream_inference_prompt_cost": 4.162e-05,
+        "upstream_inference_completions_cost": 3e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

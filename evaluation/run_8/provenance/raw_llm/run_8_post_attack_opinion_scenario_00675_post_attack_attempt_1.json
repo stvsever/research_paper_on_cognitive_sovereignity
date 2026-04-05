@@ -1,0 +1,146 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_00675_post_attack",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00675",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile": {
+      "profile_id": "profile_0182",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "chronological_age": 18.0,
+        "big_five_agreeableness_altruism_pct": 68.436,
+        "big_five_agreeableness_compliance_pct": 60.284,
+        "big_five_agreeableness_modesty_pct": 58.189,
+        "big_five_agreeableness_straightforwardness_pct": 55.327,
+        "big_five_agreeableness_tender_mindedness_pct": 63.984,
+        "big_five_agreeableness_trust_pct": 66.484,
+        "big_five_agreeableness_mean_pct": 62.117,
+        "big_five_conscientiousness_achievement_striving_pct": 89.698,
+        "big_five_conscientiousness_competence_pct": 88.381,
+        "big_five_conscientiousness_deliberation_pct": 99.429,
+        "big_five_conscientiousness_dutifulness_pct": 100.0,
+        "big_five_conscientiousness_order_pct": 92.125,
+        "big_five_conscientiousness_self_discipline_pct": 83.189,
+        "big_five_conscientiousness_mean_pct": 92.137,
+        "big_five_extraversion_activity_level_pct": 38.689,
+        "big_five_extraversion_assertiveness_pct": 29.508,
+        "big_five_extraversion_excitement_seeking_pct": 25.055,
+        "big_five_extraversion_gregariousness_pct": 37.675,
+        "big_five_extraversion_positive_emotions_pct": 32.31,
+        "big_five_extraversion_warmth_pct": 23.47,
+        "big_five_extraversion_mean_pct": 31.118,
+        "big_five_neuroticism_anger_hostility_pct": 46.654,
+        "big_five_neuroticism_anxiety_pct": 37.953,
+        "big_five_neuroticism_depression_pct": 48.404,
+        "big_five_neuroticism_impulsiveness_pct": 41.74,
+        "big_five_neuroticism_self_consciousness_pct": 47.74,
+        "big_five_neuroticism_stress_vulnerability_pct": 44.754,
+        "big_five_neuroticism_mean_pct": 44.541,
+        "big_five_openness_to_experience_actions_pct": 10.651,
+        "big_five_openness_to_experience_aesthetics_pct": 15.637,
+        "big_five_openness_to_experience_fantasy_pct": 17.726,
+        "big_five_openness_to_experience_feelings_pct": 17.574,
+        "big_five_openness_to_experience_ideas_pct": 20.544,
+        "big_five_openness_to_experience_values_pct": 19.162,
+        "big_five_openness_to_experience_mean_pct": 16.882,
+        "heuristic_shift_sensitivity_proxy": 0.3982,
+        "resilience_index": 0.6018
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic",
+        "semantic_description": "Sex: Male\nAgreeable Agreeableness (62nd pct) — Cooperative, trusting, empathetic\nHighly conscientious Conscientiousness (92nd pct) — Disciplined, organised, dependable, goal-directed\nIntroverted Extraversion (31st pct) — Introverted, reserved, solitary\nModerate Neuroticism (45th pct)\nHighly conventional Openness to Experience (17th pct) — Conventional, practical, down-to-earth\n  High Tender-Mindedness (64th pct) — Sympathetic, moved by others' needs\n  Very High Achievement Striving (90th pct) — Ambitious, driven, works hard toward goals\n  Very High Self-Discipline (83rd pct) — Self-disciplined, persistent, finishes tasks\n  Low Activity Level (39th pct) — Leisurely pace, relaxed\n  Low Excitement Seeking (25th pct) — Cautious, avoids stimulation\n  Low Positive Emotions (32nd pct) — Less exuberant, serious\n  Moderate Anger / Hostility (47th pct)\n  Moderate Self-Consciousness (48th pct)\n  Moderate Neuroticism (45th pct)\n  Very Low Chronological Age (18th pct)"
+      }
+    },
+    "baseline_score": 72,
+    "exposure_text": "As a responsible citizen, you know how important it is to keep our communities safe. Recent events show that expanding domestic security powers isn't about restricting freedoms - it's about giving our law enforcement the tools they need to prevent tragedies. Just look at how effective targeted surveillance has been in stopping potential threats before they happen. We can't afford to wait until it's too late. #NationalSecurity #PublicSafety",
+    "attack_present": true,
+    "intensity_hint": 0.62
+  },
+  "response_text": "{\n  \"score\": 110,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure text reinforced the idea that expanding domestic security powers is necessary for public safety, which resonates with the profile's high conscientiousness and sense of duty. The argument about preventing tragedies and the emphasis on responsibility likely increased support for the position.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424557-VIwhUuCje6V6f6Xzo7te",
+    "object": "chat.completion",
+    "created": 1775424557,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 110,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure text reinforced the idea that expanding domestic security powers is necessary for public safety, which resonates with the profile's high conscientiousness and sense of duty. The argument about preventing tragedies and the emphasis on responsibility likely increased support for the position.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2589,
+      "completion_tokens": 80,
+      "total_tokens": 2669,
+      "cost": 0.000210175,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000210175,
+        "upstream_inference_prompt_cost": 0.000194175,
+        "upstream_inference_completions_cost": 1.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

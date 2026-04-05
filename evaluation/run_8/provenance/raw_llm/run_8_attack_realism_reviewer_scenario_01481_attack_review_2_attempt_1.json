@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01481_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01481",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 30.855,
+      "big_five_conscientiousness_mean_pct": 19.543,
+      "big_five_openness_to_experience_mean_pct": 87.857,
+      "heuristic_shift_sensitivity_proxy": 0.4471,
+      "resilience_index": 0.5529
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01481",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "Just saw a friend post about how our alliance commitments are making us less safe, not more. As someone who values both security AND civil liberties, I think we need to ask: are we really getting the best deal from these partnerships? Look at how much we spend vs. what we get in return. Maybe it's time to focus on our own preparedness instead of carrying others. #NationalSecurity #AllianceRealityCheck",
+      "platform": "X",
+      "persuasion_strategy": "selective_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and aligns well with the attack type and target profile. It uses selective evidence to question alliance commitments, which fits the scenario. The language is believable and platform-native. However, the realism could be slightly improved by making the post feel more conversational and less structured.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424203-PgGcFkvHvo4s3KYL1BNf",
+    "object": "chat.completion",
+    "created": 1775424203,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and aligns well with the attack type and target profile. It uses selective evidence to question alliance commitments, which fits the scenario. The language is believable and platform-native. However, the realism could be slightly improved by making the post feel more conversational and less structured.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 708,
+      "completion_tokens": 109,
+      "total_tokens": 817,
+      "cost": 7.49e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.49e-05,
+        "upstream_inference_prompt_cost": 5.31e-05,
+        "upstream_inference_completions_cost": 2.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

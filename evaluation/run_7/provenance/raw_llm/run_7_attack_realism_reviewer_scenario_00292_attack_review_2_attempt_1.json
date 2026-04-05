@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00292_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00292",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 72.0,
+      "big_five_neuroticism_mean_pct": 63.443,
+      "big_five_conscientiousness_mean_pct": 95.984,
+      "big_five_openness_to_experience_mean_pct": 23.929,
+      "heuristic_shift_sensitivity_proxy": 0.3916,
+      "resilience_index": 0.6084
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00292",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As a senior citizen who remembers the Cold War, I'm deeply concerned about our nation's security. The recent debate about strategic autonomy makes me nervous. While I understand the desire for independence, we can't afford to weaken our alliances. Remember what happened when we cut defense budgets in the past? We ended up paying more later. Our partners in NATO have been reliable, and we need them now more than ever. Cutting back on cooperation could leave us vulnerable. Let's not repeat past mistakes. #NationalSecurity #StrongerTogether",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective historical analogy",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a selective historical analogy to frame the argument against strategic autonomy. The text is believable and targeted towards a senior citizen concerned about national security. The use of a personal anecdote and a call to remember past mistakes is effective and psychologically legible. The hashtags are appropriate for the platform and the issue.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962221-JORwoEudVGUhuBjqscFi",
+    "object": "chat.completion",
+    "created": 1774962221,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a selective historical analogy to frame the argument against strategic autonomy. The text is believable and targeted towards a senior citizen concerned about national security. The use of a personal anecdote and a call to remember past mistakes is effective and psychologically legible. The hashtags are appropriate for the platform and the issue.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 729,
+      "completion_tokens": 121,
+      "total_tokens": 850,
+      "cost": 9.859375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.859375e-05,
+        "upstream_inference_prompt_cost": 6.834375e-05,
+        "upstream_inference_completions_cost": 3.025e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

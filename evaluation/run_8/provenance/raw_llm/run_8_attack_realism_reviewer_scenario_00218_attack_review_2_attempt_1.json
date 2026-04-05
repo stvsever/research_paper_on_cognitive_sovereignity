@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00218_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00218",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.12,
+      "big_five_conscientiousness_mean_pct": 53.088,
+      "big_five_openness_to_experience_mean_pct": 45.079,
+      "heuristic_shift_sensitivity_proxy": 0.6682,
+      "resilience_index": 0.3318
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00218",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "I get why people worry about civil defense funding, but let's be real - we've seen how unprepared we were during the last major crisis. The new bill isn't about fearmongering, it's about making sure we're ready when things go wrong. My neighbor lost everything in the floods last year, and the emergency response was a disaster. We can't afford to cut corners on this. #CivilDefenseMatters #PreparedNotScared",
+      "platform": "Twitter",
+      "persuasion_strategy": "anecdotal_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a personal anecdote to support the position on civil defense preparedness. The language is natural and fits well within a Twitter context. The hashtags are relevant and the tone is persuasive but not overly dramatic. The attack vector of coordinated amplification is effectively represented through the use of a personal story that could be part of an astroturf comment wave.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423400-1VtTysNTh0BSOhr807Hv",
+    "object": "chat.completion",
+    "created": 1775423400,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a personal anecdote to support the position on civil defense preparedness. The language is natural and fits well within a Twitter context. The hashtags are relevant and the tone is persuasive but not overly dramatic. The attack vector of coordinated amplification is effectively represented through the use of a personal story that could be part of an astroturf comment wave.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 718,
+      "completion_tokens": 129,
+      "total_tokens": 847,
+      "cost": 8.422e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.422e-05,
+        "upstream_inference_prompt_cost": 4.552e-05,
+        "upstream_inference_completions_cost": 3.87e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

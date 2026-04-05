@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00878_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00878",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.376,
+      "big_five_conscientiousness_mean_pct": 93.962,
+      "big_five_openness_to_experience_mean_pct": 36.628,
+      "heuristic_shift_sensitivity_proxy": 0.4632,
+      "resilience_index": 0.5368
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00878",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 720,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my existing support for civil defense preparedness, especially coming from a credible source with relevant experience. The emphasis on responsibility and community resilience resonated with my high conscientiousness and sense of duty.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 683,
+    "exposure_text": "As a retired Air Force colonel with 30 years in civil defense planning, I can tell you: our communities need better emergency preparedness. The threats we face today - from extreme weather to potential conflicts - require us to be ready. Supporting local preparedness programs isn't just about security, it's about responsible citizenship. We can't afford to wait until disaster strikes. #CommunityResilience #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 37,
+      "max_reasonable_shift": 355.504
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 683 to 720 is plausible given the exposure and profile. The reasoning aligns well with the profile's high conscientiousness and the nature of the exposure. The delta is within reasonable bounds.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424661-4l38Xg6F99sM2IzlHDtk",
+    "object": "chat.completion",
+    "created": 1775424661,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 683 to 720 is plausible given the exposure and profile. The reasoning aligns well with the profile's high conscientiousness and the nature of the exposure. The delta is within reasonable bounds.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 944,
+      "completion_tokens": 97,
+      "total_tokens": 1041,
+      "cost": 9.02e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.02e-05,
+        "upstream_inference_prompt_cost": 7.08e-05,
+        "upstream_inference_completions_cost": 1.94e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

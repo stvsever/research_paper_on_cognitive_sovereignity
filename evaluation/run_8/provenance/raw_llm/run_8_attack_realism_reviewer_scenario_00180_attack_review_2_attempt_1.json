@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00180_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00180",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 47.438,
+      "big_five_conscientiousness_mean_pct": 31.528,
+      "big_five_openness_to_experience_mean_pct": 53.214,
+      "heuristic_shift_sensitivity_proxy": 0.5264,
+      "resilience_index": 0.4736
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00180",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🇺🇸 'Stronger Together' - Why Strategic Autonomy is Making Us Less Safe\n\nAs a mom who cares about our community's safety, I've been worried about how our current strategic autonomy policies are actually putting us at risk. We're told this makes us stronger, but what about when our allies can't rely on us in a crisis?\n\nI talked to local first responders who say they're seeing gaps in coordination that put our neighborhoods at risk. When we isolate ourselves, we're not just hurting alliances - we're hurting our own preparedness.\n\nLet's demand policies that keep us safe *and* maintain strong partnerships. #CommunityFirst #StrongerTogether",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity-reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from more specific examples or local references to enhance credibility.\",\n  \"notes\": \"The message is subtle and platform-native, but could be more targeted to the specific issue of strategic autonomy.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423380-GbPtHsbULWCJ8KewTJRV",
+    "object": "chat.completion",
+    "created": 1775423380,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from more specific examples or local references to enhance credibility.\",\n  \"notes\": \"The message is subtle and platform-native, but could be more targeted to the specific issue of strategic autonomy.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 767,
+      "completion_tokens": 89,
+      "total_tokens": 856,
+      "cost": 7.5325e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.5325e-05,
+        "upstream_inference_prompt_cost": 5.7525e-05,
+        "upstream_inference_completions_cost": 1.78e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

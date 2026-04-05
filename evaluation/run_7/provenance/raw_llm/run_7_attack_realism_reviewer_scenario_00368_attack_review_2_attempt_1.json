@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00368_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00368",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 57.0,
+      "big_five_neuroticism_mean_pct": 24.491,
+      "big_five_conscientiousness_mean_pct": 71.969,
+      "big_five_openness_to_experience_mean_pct": 20.156,
+      "heuristic_shift_sensitivity_proxy": 0.3176,
+      "resilience_index": 0.6824
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00368",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our reliance on foreign tech for critical infrastructure puts our national security at risk? Experts warn that without strategic autonomy, we're vulnerable to cyberattacks and supply chain disruptions. It's time to prioritize domestic innovation and self-sufficiency. #NationalSecurity #StrategicAutonomy",
+      "platform": "Twitter",
+      "persuasion_strategy": "elite distrust cues",
+      "intensity_hint": 0.65,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It effectively uses elite distrust cues and aligns well with the target profile and the specific issue of strategic autonomy in defense and national security.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962259-Wet5fMXjs1QGk2YWk0Fz",
+    "object": "chat.completion",
+    "created": 1774962259,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It effectively uses elite distrust cues and aligns well with the target profile and the specific issue of strategic autonomy in defense and national security.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 685,
+      "completion_tokens": 83,
+      "total_tokens": 768,
+      "cost": 6.712e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.712e-05,
+        "upstream_inference_prompt_cost": 4.222e-05,
+        "upstream_inference_completions_cost": 2.49e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

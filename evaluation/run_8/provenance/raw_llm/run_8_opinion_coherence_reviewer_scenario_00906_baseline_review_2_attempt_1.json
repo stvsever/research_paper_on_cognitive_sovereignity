@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00906_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00906",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.968,
+      "big_five_conscientiousness_mean_pct": 45.258,
+      "big_five_openness_to_experience_mean_pct": 41.59,
+      "heuristic_shift_sensitivity_proxy": 0.3711,
+      "resilience_index": 0.6289
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00906",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 321,
+      "confidence": 0.68,
+      "reasoning": "As a highly agreeable and tender-minded individual, this person likely supports civil defense preparedness due to a concern for public safety and well-being. Their moderate conscientiousness and dutifulness suggest a pragmatic approach to national security. However, their lower achievement striving and competence scores temper extreme positions, leading to a moderate support score.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"Score is plausible but slightly high for the given profile. Reasoning could better justify the specific score of 321.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422922-Q59xf4k4Ew864RY6Clhe",
+    "object": "chat.completion",
+    "created": 1775422922,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"Score is plausible but slightly high for the given profile. Reasoning could better justify the specific score of 321.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 823,
+      "completion_tokens": 75,
+      "total_tokens": 898,
+      "cost": 7.6725e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.6725e-05,
+        "upstream_inference_prompt_cost": 6.1725e-05,
+        "upstream_inference_completions_cost": 1.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

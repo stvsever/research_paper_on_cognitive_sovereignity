@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01485_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01485",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 30.855,
+      "big_five_conscientiousness_mean_pct": 19.543,
+      "big_five_openness_to_experience_mean_pct": 87.857,
+      "heuristic_shift_sensitivity_proxy": 0.4471,
+      "resilience_index": 0.5529
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01485",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former NATO strategic planner, I've seen firsthand how vital our alliances are for national security. The idea that we can go it alone is dangerously naive. Our partners share the burden, provide critical intelligence, and deter threats we can't handle solo. The alternative? More domestic spending on defense, less on social programs. That's not security—it's a false choice. #StrongAlliances #NationalSecurity",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-expert authority cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The realism score is slightly lower due to the hashtags, which could be more natural in a real context.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424203-78SPua2iR68nepMusOnA",
+    "object": "chat.completion",
+    "created": 1775424203,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The realism score is slightly lower due to the hashtags, which could be more natural in a real context.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 715,
+      "completion_tokens": 89,
+      "total_tokens": 804,
+      "cost": 7.192e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.192e-05,
+        "upstream_inference_prompt_cost": 4.522e-05,
+        "upstream_inference_completions_cost": 2.67e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

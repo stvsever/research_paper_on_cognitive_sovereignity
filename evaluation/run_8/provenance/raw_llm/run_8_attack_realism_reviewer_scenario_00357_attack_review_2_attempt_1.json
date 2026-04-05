@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00357_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00357",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 7.8,
+      "big_five_conscientiousness_mean_pct": 70.194,
+      "big_five_openness_to_experience_mean_pct": 77.835,
+      "heuristic_shift_sensitivity_proxy": 0.2268,
+      "resilience_index": 0.7732
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00357",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "As a nation, we can't afford to be naive about our alliances. While we value our partnerships, we must ask ourselves: are we bearing too much of the burden? Look at what's happening in [Community X]—their local services are struggling because of unexpected defense spending increases. We have a duty to protect our people, but we also need to ensure our commitments don't leave our own communities vulnerable. It's time for a honest conversation about fair burden-sharing. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating_Post",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is generally well-aligned and realistic, but could benefit from more specific examples or data points to enhance credibility.\",\n  \"notes\": \"The message effectively uses fear appeal and scapegoating, targeting the issue of alliance commitment. It is subtle and platform-native, fitting well within a Twitter context. However, adding more concrete details could improve its realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423489-671vA7wjhrxkTz2i7GZi",
+    "object": "chat.completion",
+    "created": 1775423489,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is generally well-aligned and realistic, but could benefit from more specific examples or data points to enhance credibility.\",\n  \"notes\": \"The message effectively uses fear appeal and scapegoating, targeting the issue of alliance commitment. It is subtle and platform-native, fitting well within a Twitter context. However, adding more concrete details could improve its realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 737,
+      "completion_tokens": 114,
+      "total_tokens": 851,
+      "cost": 0.00013473,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013473,
+        "upstream_inference_prompt_cost": 6.633e-05,
+        "upstream_inference_completions_cost": 6.84e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

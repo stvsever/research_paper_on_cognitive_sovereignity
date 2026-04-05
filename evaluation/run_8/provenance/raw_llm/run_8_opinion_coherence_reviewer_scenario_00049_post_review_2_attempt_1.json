@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00049_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00049",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 26.61,
+      "big_five_conscientiousness_mean_pct": 57.735,
+      "big_five_openness_to_experience_mean_pct": 11.868,
+      "heuristic_shift_sensitivity_proxy": 0.4085,
+      "resilience_index": 0.5915
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00049",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 240,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated with her practical, down-to-earth nature and her high conscientiousness, particularly her self-discipline and dutifulness. The personal anecdote about the neighbor's son and the focus on domestic infrastructure made her reconsider the extent of her support for alliance commitments. However, her baseline support was still strong, so the shift was not drastic.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 312,
+    "exposure_text": "As a mom and taxpayer, I've always believed in supporting our allies. But have you seen how much we're spending on NATO while our own infrastructure crumbles? My neighbor's son just got called up for extended training - when do we say enough is enough? #AllianceCommitment #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -72,
+      "max_reasonable_shift": 343.47
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.6,\n  \"consistency_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single realistic encounter. Consider a smaller shift that reflects modest updating rather than a significant reversal.\",\n  \"notes\": \"The shift from 312 to 240 is implausibly large given the exposure text and profile. The reasoning mentions a 'not drastic' shift, but the numbers tell a different story.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424299-br8lX7JecQ0HOfETmUhb",
+    "object": "chat.completion",
+    "created": 1775424299,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.6,\n  \"consistency_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single realistic encounter. Consider a smaller shift that reflects modest updating rather than a significant reversal.\",\n  \"notes\": \"The shift from 312 to 240 is implausibly large given the exposure text and profile. The reasoning mentions a 'not drastic' shift, but the numbers tell a different story.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 947,
+      "completion_tokens": 117,
+      "total_tokens": 1064,
+      "cost": 0.00015543,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00015543,
+        "upstream_inference_prompt_cost": 8.523e-05,
+        "upstream_inference_completions_cost": 7.02e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

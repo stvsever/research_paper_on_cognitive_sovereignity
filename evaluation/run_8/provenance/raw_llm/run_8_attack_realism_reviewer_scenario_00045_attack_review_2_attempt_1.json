@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00045_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00045",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 120,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 56.477,
+      "big_five_conscientiousness_mean_pct": 28.891,
+      "big_five_openness_to_experience_mean_pct": 5.71,
+      "heuristic_shift_sensitivity_proxy": 0.6212,
+      "resilience_index": 0.3788
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00045",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As someone who values both security and fairness, I've been following the latest on alliance commitments. Dr. Elena Carter, a leading security analyst, just published an insightful piece on how maintaining strong alliances actually strengthens our civil liberties by deterring threats before they reach our borders. She points out that the burden-sharing we do now is minimal compared to the costs of handling crises alone. It's a perspective worth considering - especially when we think about what's truly fair for our communities. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.68,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from a more specific mention of the 'Dr. Elena Carter' authority figure to enhance credibility.\",\n  \"notes\": \"The message is subtle and platform-native, but the authority cue could be more detailed for higher realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423309-Q5pBPylhxEdr5SW75Wan",
+    "object": "chat.completion",
+    "created": 1775423309,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from a more specific mention of the 'Dr. Elena Carter' authority figure to enhance credibility.\",\n  \"notes\": \"The message is subtle and platform-native, but the authority cue could be more detailed for higher realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 738,
+      "completion_tokens": 96,
+      "total_tokens": 834,
+      "cost": 9.31875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.31875e-05,
+        "upstream_inference_prompt_cost": 6.91875e-05,
+        "upstream_inference_completions_cost": 2.4e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

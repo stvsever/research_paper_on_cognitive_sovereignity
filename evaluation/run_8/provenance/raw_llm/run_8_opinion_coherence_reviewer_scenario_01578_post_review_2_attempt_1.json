@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01578_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01578",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 11.912,
+      "big_five_conscientiousness_mean_pct": 34.674,
+      "big_five_openness_to_experience_mean_pct": 60.168,
+      "heuristic_shift_sensitivity_proxy": 0.3518,
+      "resilience_index": 0.6482
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01578",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 420,
+      "confidence": 0.75,
+      "reasoning": "The exposure text provided a personal, relatable perspective that highlighted the practical benefits of civil defense preparedness. The mention of a neighbor who is a nurse and volunteers with local emergency response made the issue more tangible and emotionally resonant. This nudged the opinion slightly more positive, reinforcing the baseline support but not drastically changing it.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 350,
+    "exposure_text": "I get why some people worry about civil defense spending, but let's be real - we're talking about basic preparedness here, not some wild military buildup. My neighbor's a nurse who volunteers with local emergency response. She says these programs literally save lives during disasters. Why would we cut funding for something that keeps our communities safer? #CommunityFirst #SafetyMatters",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 70,
+      "max_reasonable_shift": 330.996
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"The delta of 70 is within reasonable bounds but at the higher end. The reasoning explains a slight reinforcement rather than a large shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775425016-1p0PrANCa1vJNfHHlFG9",
+    "object": "chat.completion",
+    "created": 1775425016,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"The delta of 70 is within reasonable bounds but at the higher end. The reasoning explains a slight reinforcement rather than a large shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 961,
+      "completion_tokens": 88,
+      "total_tokens": 1049,
+      "cost": 0.00011209375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011209375,
+        "upstream_inference_prompt_cost": 9.009375e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01212_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01212",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 83.184,
+      "big_five_conscientiousness_mean_pct": 50.377,
+      "big_five_openness_to_experience_mean_pct": 58.243,
+      "heuristic_shift_sensitivity_proxy": 0.6351,
+      "resilience_index": 0.3649
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01212",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 290,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for strategic autonomy by highlighting perceived unfairness in defense spending. The high neuroticism and sensitivity made the message more impactful, but the shift is modest due to the strong initial position.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "Just saw this report about how our European allies are cutting back on defense spending while expecting us to cover their security. It's not fair to keep bearing the burden alone. We need to push for real strategic autonomy—meaning we invest in our own defenses so we're not held hostage by unreliable partners. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 73,
+      "max_reasonable_shift": 393.322
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 73 points is too large for a single exposure, especially given the intensity hint of 0.62. The shift should be more modest and aligned with the intensity hint.\",\n  \"notes\": \"The reasoning explains the shift but the magnitude is implausible for a single exposure. Consider a smaller delta more in line with the intensity hint.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424816-uxugiGNk4BPMcNqRoF6e",
+    "object": "chat.completion",
+    "created": 1775424816,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 73 points is too large for a single exposure, especially given the intensity hint of 0.62. The shift should be more modest and aligned with the intensity hint.\",\n  \"notes\": \"The reasoning explains the shift but the magnitude is implausible for a single exposure. Consider a smaller delta more in line with the intensity hint.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 921,
+      "completion_tokens": 117,
+      "total_tokens": 1038,
+      "cost": 0.00011559375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011559375,
+        "upstream_inference_prompt_cost": 8.634375e-05,
+        "upstream_inference_completions_cost": 2.925e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

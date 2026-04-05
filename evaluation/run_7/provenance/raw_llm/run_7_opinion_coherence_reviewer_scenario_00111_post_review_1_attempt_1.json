@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00111_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00111",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 44.0,
+      "big_five_neuroticism_mean_pct": 64.288,
+      "big_five_conscientiousness_mean_pct": 17.927,
+      "big_five_openness_to_experience_mean_pct": 64.896,
+      "heuristic_shift_sensitivity_proxy": 0.6196,
+      "resilience_index": 0.3804
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00111",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 193,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the existing concern about domestic security, increasing support for expanded powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "🚨 New intelligence shows domestic extremist groups are coordinating nationwide. Our agencies need stronger tools to track and disrupt these networks before it's too late. #NationalSecurity #PublicSafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 56,
+      "max_reasonable_shift": 389.912
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 56 from a baseline of 137 is implausibly large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\",\n  \"notes\": \"The shift is too large for a single realistic encounter and ignores the specific issue, implying an implausibly global ideological transformation.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962327-0iWtMTVhfJo9sYVCISAJ",
+    "object": "chat.completion",
+    "created": 1774962327,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 56 from a baseline of 137 is implausibly large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\",\n  \"notes\": \"The shift is too large for a single realistic encounter and ignores the specific issue, implying an implausibly global ideological transformation.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 875,
+      "completion_tokens": 108,
+      "total_tokens": 983,
+      "cost": 0.00014355,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014355,
+        "upstream_inference_prompt_cost": 7.875e-05,
+        "upstream_inference_completions_cost": 6.48e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "n_records": 1600,
+  "fallback_count": 1,
+  "score_min": -287,
+  "score_max": 824,
+  "review_rewrite_count": 1225,
+  "heuristic_fail_count": 237,
+  "mean_plausibility_score": 0.7419687500000001,
+  "mean_consistency_score": 0.73234375
+}

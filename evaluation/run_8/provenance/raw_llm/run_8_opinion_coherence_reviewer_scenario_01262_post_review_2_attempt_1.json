@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01262_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01262",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.484,
+      "big_five_conscientiousness_mean_pct": 87.457,
+      "big_five_openness_to_experience_mean_pct": 90.46,
+      "heuristic_shift_sensitivity_proxy": 0.2236,
+      "resilience_index": 0.7764
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01262",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 659,
+      "confidence": 0.78,
+      "reasoning": "The exposure reinforced the existing support for civil defense preparedness by emphasizing its importance for national security and community protection. The appeal to national security and the mention of FEMA's role resonated with the profile's high conscientiousness and agreeableness, slightly increasing support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a former FEMA director, I've seen firsthand how vital civil defense preparedness is for national security. Our communities need robust emergency response systems—not just for disasters, but to deter threats. Let's ensure our tax dollars go to protecting all Americans, not just political priorities. #CivilDefenseMatters #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 36,
+      "max_reasonable_shift": 302.792
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The generated opinion score is plausible and consistent with the profile and exposure. The delta from baseline is reasonable and the reasoning aligns well with the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424862-EStCUZIHnmaoXsE0sah4",
+    "object": "chat.completion",
+    "created": 1775424862,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The generated opinion score is plausible and consistent with the profile and exposure. The delta from baseline is reasonable and the reasoning aligns well with the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 940,
+      "completion_tokens": 84,
+      "total_tokens": 1024,
+      "cost": 0.000109125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000109125,
+        "upstream_inference_prompt_cost": 8.8125e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

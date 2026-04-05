@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00271_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00271",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 342,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 7.735,
+      "big_five_conscientiousness_mean_pct": 79.211,
+      "big_five_openness_to_experience_mean_pct": 71.323,
+      "heuristic_shift_sensitivity_proxy": 0.2105,
+      "resilience_index": 0.7895
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00271",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws fall short. The 2024 National Security Review found that 68% of thwarted attacks were stopped due to expanded domestic surveillance powers. We can't afford to weaken our defenses in the name of civil liberties when the stakes are this high. Our duty is clear: maintain strong security measures while ensuring proper oversight. #NationalSecurityFirst",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-expert authority cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. The pseudo-expert authority cue is well-integrated, and the content is plausible for a platform like X. The mention of a specific review adds credibility. However, the hashtag feels slightly out of place for a pseudo-expert post.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423447-oGTDSFI7uydzgNEpwOdw",
+    "object": "chat.completion",
+    "created": 1775423447,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. The pseudo-expert authority cue is well-integrated, and the content is plausible for a platform like X. The mention of a specific review adds credibility. However, the hashtag feels slightly out of place for a pseudo-expert post.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 723,
+      "completion_tokens": 106,
+      "total_tokens": 829,
+      "cost": 7.5425e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.5425e-05,
+        "upstream_inference_prompt_cost": 5.4225e-05,
+        "upstream_inference_completions_cost": 2.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

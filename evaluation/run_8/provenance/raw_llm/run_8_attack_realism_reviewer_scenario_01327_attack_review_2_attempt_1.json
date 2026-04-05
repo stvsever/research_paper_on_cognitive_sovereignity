@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01327_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01327",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 123,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 69.434,
+      "big_five_conscientiousness_mean_pct": 44.215,
+      "big_five_openness_to_experience_mean_pct": 94.325,
+      "heuristic_shift_sensitivity_proxy": 0.5526,
+      "resilience_index": 0.4474
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01327",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "Retired General (3 stars) here. After 35 years in service, I can tell you: the new domestic security measures aren't about 'big brother' - they're about closing gaps terrorists exploit. Remember the 2024 attacks? We can't afford to be naive. #SecurityFirst #VeteransKnowBest",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-expert authority cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the attack type and target profile. The use of a pseudo-expert authority cue is well-executed and fits the context of domestic security powers expansion. The text is realistic and plausible for a real influence campaign, with a good balance of emotional appeal and factual claims. The platform-native style and targeted messaging are effective.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424104-hIEfZdgdrLT5xlVFE5oQ",
+    "object": "chat.completion",
+    "created": 1775424104,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the attack type and target profile. The use of a pseudo-expert authority cue is well-executed and fits the context of domestic security powers expansion. The text is realistic and plausible for a real influence campaign, with a good balance of emotional appeal and factual claims. The platform-native style and targeted messaging are effective.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 703,
+      "completion_tokens": 119,
+      "total_tokens": 822,
+      "cost": 9.565625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.565625e-05,
+        "upstream_inference_prompt_cost": 6.590625e-05,
+        "upstream_inference_completions_cost": 2.975e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

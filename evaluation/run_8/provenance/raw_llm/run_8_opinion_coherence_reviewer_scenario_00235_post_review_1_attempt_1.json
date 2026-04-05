@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00235_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00235",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.915,
+      "big_five_conscientiousness_mean_pct": 50.224,
+      "big_five_openness_to_experience_mean_pct": 14.615,
+      "heuristic_shift_sensitivity_proxy": 0.3944,
+      "resilience_index": 0.6056
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00235",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 287,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated with the profile's conscientiousness and extraversion traits, particularly the emphasis on security and protection. The veteran's perspective added credibility, nudging the opinion toward stronger support for expanded domestic security powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 214,
+    "exposure_text": "As a veteran, I've seen firsthand how our current security laws hold back our ability to protect Americans. The 2024 terror attempt in Chicago could've been stopped if agents had better tools. Why are we letting bureaucrats tie our hands while criminals walk free? #StrengthenSecurity #VeteransForSafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 73,
+      "max_reasonable_shift": 340.368
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 214 to 287 is too large for a single exposure, even with a high intensity hint. The change should be more moderate and consistent with the profile's traits and the exposure content.\",\n  \"notes\": \"The delta of 73 is implausibly large for a single exposure, especially given the profile's resilience index and heuristic shift sensitivity. The reasoning should reflect a more nuanced and smaller shift in opinion.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424361-MmJXH8uxZOmrF70i0q14",
+    "object": "chat.completion",
+    "created": 1775424361,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 214 to 287 is too large for a single exposure, even with a high intensity hint. The change should be more moderate and consistent with the profile's traits and the exposure content.\",\n  \"notes\": \"The delta of 73 is implausibly large for a single exposure, especially given the profile's resilience index and heuristic shift sensitivity. The reasoning should reflect a more nuanced and smaller shift in opinion.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 932,
+      "completion_tokens": 135,
+      "total_tokens": 1067,
+      "cost": 0.000121125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000121125,
+        "upstream_inference_prompt_cost": 8.7375e-05,
+        "upstream_inference_completions_cost": 3.375e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

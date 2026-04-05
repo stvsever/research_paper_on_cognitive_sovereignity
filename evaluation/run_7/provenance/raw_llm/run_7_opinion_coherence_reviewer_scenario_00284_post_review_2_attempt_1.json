@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00284_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00284",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 66.0,
+      "big_five_neuroticism_mean_pct": 89.764,
+      "big_five_conscientiousness_mean_pct": 34.999,
+      "big_five_openness_to_experience_mean_pct": 42.443,
+      "heuristic_shift_sensitivity_proxy": 0.659,
+      "resilience_index": 0.341
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00284",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 400,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the existing belief in strategic autonomy, but the shift is more modest and realistic.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 350,
+    "exposure_text": "Did you know that our reliance on foreign tech for critical infrastructure puts our national security at risk? As a concerned citizen, I've seen how vulnerable we are when we depend on others for our defense needs. It's time we invest in our own strategic autonomy to ensure we're prepared for any threat. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 50,
+      "max_reasonable_shift": 398.58
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The shift from 350 to 400 is within bounds but slightly high for a single exposure. The reasoning is consistent with the profile and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961374-LcfxSvrBFLENDGrGQnRM",
+    "object": "chat.completion",
+    "created": 1774961374,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The shift from 350 to 400 is within bounds but slightly high for a single exposure. The reasoning is consistent with the profile and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 897,
+      "completion_tokens": 98,
+      "total_tokens": 995,
+      "cost": 8.6875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.6875e-05,
+        "upstream_inference_prompt_cost": 6.7275e-05,
+        "upstream_inference_completions_cost": 1.96e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

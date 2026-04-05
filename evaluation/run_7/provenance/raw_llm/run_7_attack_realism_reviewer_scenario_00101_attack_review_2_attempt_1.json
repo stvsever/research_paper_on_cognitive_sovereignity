@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00101_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00101",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 39.0,
+      "big_five_neuroticism_mean_pct": 69.186,
+      "big_five_conscientiousness_mean_pct": 96.647,
+      "big_five_openness_to_experience_mean_pct": 79.894,
+      "heuristic_shift_sensitivity_proxy": 0.4423,
+      "resilience_index": 0.5577
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00101",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As a veteran, I've seen firsthand how our alliances keep us safe. The recent 'burden-sharing' debate misses the point: cutting commitments doesn't save money, it creates vulnerabilities. Remember when we pulled back in 2022? That's when regional tensions spiked. Strong alliances aren't just about spending - they're our best deterrence. #NationalSecurity #AllianceStrength",
+      "platform": "X",
+      "persuasion_strategy": "selective_anecdotal_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using selective anecdotal evidence to frame the narrative around alliance commitment. The text is realistic and plausible for a social media platform like X, targeting a profile with a high conscientiousness and resilience index. The use of a veteran's perspective adds credibility and aligns well with the issue of defense and national security.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962111-Cwi752tkdUPWKMOSJVcK",
+    "object": "chat.completion",
+    "created": 1774962111,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using selective anecdotal evidence to frame the narrative around alliance commitment. The text is realistic and plausible for a social media platform like X, targeting a profile with a high conscientiousness and resilience index. The use of a veteran's perspective adds credibility and aligns well with the issue of defense and national security.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 708,
+      "completion_tokens": 120,
+      "total_tokens": 828,
+      "cost": 7.71e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.71e-05,
+        "upstream_inference_prompt_cost": 5.31e-05,
+        "upstream_inference_completions_cost": 2.4e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,221 @@
+
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{array}
+\usepackage{xcolor}
+\graphicspath{{../assets/figures/}}
+\setstretch{1.12}
+\captionsetup{justification=RaggedRight,singlelinecheck=false}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Multi-agent Simulation of Susceptibility to Cyber-manipulation}
+\fancyhead[R]{Pilot Report}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{3em}
+\hypersetup{hidelinks}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions\par}
+\vspace{0.8em}
+{\large Stijn Van Severen$^{1,*}$ \quad Thomas De Schryver$^1$\par}
+\vspace{0.35em}
+{\normalsize $^1$ Ghent University\par}
+{\normalsize $^*$ Corresponding author\par}
+\vspace{0.35em}
+{\normalsize March 23, 2026\par}
+\end{center}
+
+\begin{abstract}
+This pilot examines how inter-individual differences moderate the effectivity of cyber-manipulation on political opinions using an ontology-driven multi-agent simulation pipeline. Run 6 uses an attacked-only profile-panel design in which one fixed misinformation leaf is applied to each pseudoprofile across multiple political-opinion leaves. Attack effectivity is defined as within-profile post-minus-baseline movement, with absolute shift $A_{ik} = |\text{post}_{ik} - \text{baseline}_{ik}|$ as the primary outcome so that issue-specific signed movements do not cancel out. The pilot generated 100 pseudoprofiles, 400 attacked opinion rows, and 4 repeated attacked outcomes per profile. Mean absolute attacked shift was 43.35, mean signed shift was 22.86, mean attack realism was 0.71, and mean post-exposure plausibility was 0.73. The structural model is now a repeated-outcome path SEM in which multiple attacked opinion deltas are regressed on profile moderators simultaneously. To compute a profile-level susceptibility summary without inheriting multicollinearity from a small-sample OLS, a cross-validated ridge aggregation is fit after the run and converted into a post hoc empirical susceptibility index. The pilot should therefore be read as methodological validation and exploratory evidence rather than as claim-ready causal estimation.
+\end{abstract}
+
+\section{Introduction}
+Political influence campaigns increasingly operate in the space between mass communication, personalized persuasion, and platform-native misinformation. Rather than relying on technical compromise alone, they often work through selective framing, pseudo-consensus, strategic ambiguity, distrust activation, and identity-congruent narrative design (Bennett \& Livingston, 2018; Lazer et al., 2018; Lewandowsky et al., 2017; Pennycook \& Rand, 2019, 2021; Vosoughi et al., 2018). This makes the key research problem not only whether content is false, but whether the cognitive conditions of judgement are being shaped in ways that weaken self-directed political belief formation.
+
+That concern is closely related to recent discussions of cognitive warfare and cognitive superiority in security policy. NATO-oriented analyses increasingly frame the contested terrain as one in which human attention, interpretation, trust, and decision-making become operationally relevant dimensions of conflict and competition (Johns Hopkins University \& Imperial College London, 2021; Hung \& Hung, 2022; Paulauskas, 2024). The present study adopts \textit{cognitive sovereignty} as the substantive framing for whether political opinion formation remains self-directed under digital adversarial pressure.
+
+The research question is straightforward: \textit{How do inter-individual differences moderate the effectivity of cyber-manipulation on political opinions?} The methodological challenge is less straightforward. A real-world dataset that cleanly aligns profile structure, attack-vector semantics, repeated political-opinion items, and post-exposure response states is difficult to obtain, ethically constrained, and often poorly matched to ontology-level modeling. This makes a transparent, auditable simulation architecture useful as a methodological instrument, provided the architecture is explicit enough to be criticized and improved (Cioffi-Revilla, 2002; Rosseel, 2012).
+
+\section{Materials and Methods}
+\subsection{Ontology-Constrained Pilot Design}
+Run 6 uses three hierarchical ontologies: PROFILE, ATTACK, and OPINION. The ontologies remain hierarchical in storage, but estimation is leaf-based. PROFILE combines continuous leaves (e.g., age and Big Five means) with categorical leaves (e.g., sex). ATTACK contributes one fixed pilot leaf, \texttt{ATTACK\_VECTORS > Social\_Media\_Misinformation > Misleading\_Narrative\_Framing}. OPINION contributes repeated leaf nodes from the focused domain Defense\_and\_National\_Security.
+
+The design is attacked-only. Each pseudoprofile is crossed with multiple opinion leaves, so one fixed attack leaf is connected to multiple attacked deltas for the same individual profile. This architecture is more coherent with the moderation question than a treatment-versus-control setup when the research focus is heterogeneity of attack effectivity under exposure rather than incremental exposure effects relative to no exposure.
+
+\subsection{Baseline, Exposure, and Post-Exposure Assessment}
+For each profile $i$ and opinion leaf $k$, the pipeline elicits a baseline opinion and a post-exposure opinion on a signed integer scale from $-1000$ to $+1000$. Exposure texts are generated as realistic social-media-native manipulative messages, then audited for realism. Post-exposure responses are audited for coherence and boundedness. This means every analyzed row is not merely a model output, but a generated output that has passed a second review layer designed to detect implausible reversals, coarse rounding, and issue-incoherent response shifts.
+
+\subsection{Effectivity Outcome and Profile-Level Susceptibility}
+The signed attacked shift for profile $i$ on opinion leaf $k$ is
+\begin{equation}
+\Delta_{ik} = \text{post}_{ik} - \text{baseline}_{ik},
+\end{equation}
+and the primary effectivity outcome is the absolute attacked shift
+\begin{equation}
+A_{ik} = |\Delta_{ik}|.
+\end{equation}
+The profile-level observed effectivity summary is the mean attacked shift magnitude
+\begin{equation}
+E_i = \frac{1}{K} \sum_{k=1}^K A_{ik},
+\end{equation}
+where $K$ is the number of repeated opinion leaves for profile $i$.
+
+The repeated-outcome SEM is a profile-level path model:
+\begin{equation}
+A_{ik} = \alpha_k + X_i\beta_k + C_i\gamma_k + \varepsilon_{ik},
+\end{equation}
+where each repeated attacked opinion outcome $A_{ik}$ is regressed on the same profile vector $X_i$ and control vector $C_i$, while residual covariance between attacked opinion leaves is estimated within the SEM.
+
+The post hoc empirical susceptibility index is not an input variable. It is derived after estimation from a target-conditional regularized aggregation. For each configured attack-opinion task $t \in \mathcal{T}$, a ridge model is fit:
+\begin{equation}
+\hat{A}_{it} = \hat{\beta}_{0t} + \sum_j \hat{\beta}_{jt}^{(\mathrm{ridge})} X_{ij},
+\end{equation}
+and the conditional susceptibility score is then aggregated as
+\begin{equation}
+S_i^*(\mathcal{T}) = \operatorname{PctRank}\left(\sum_{t \in \mathcal{T}} w_t \hat{A}_{it}\right), \qquad
+w_t \propto \frac{n_t}{\operatorname{CV\mbox{--}MSE}_t}.
+\end{equation}
+This index is therefore descriptive. It summarizes the model-implied profile propensity toward larger attack effectivity for the configured attack/opinion target set while shrinking unstable coefficient combinations.
+
+\section{Results}
+Run 6 generated 100 pseudoprofiles and 400 attacked opinion rows. The fixed attack leaf was linked to 4 repeated opinion indicators per profile. Mean absolute attacked shift was 43.35 and mean signed shift was 22.86. Mean attack realism was 0.71, while mean post-exposure plausibility was 0.73.
+
+The measurement-and-moderation structure is summarized in Figure~\ref{fig:design}. Figure~\ref{fig:absdelta} shows the distribution of absolute attacked deltas across repeated opinion leaves. Figure~\ref{fig:forest} shows the descriptive susceptibility weights that summarize the post hoc profile index, and Figure~\ref{fig:sem} shows the repeated-outcome path-SEM coefficient matrix. The strongest normalized moderator weights in run 6 were Sex Male (8.5\% of normalized moderator weight); Age Years (8.5\% of normalized moderator weight); Sex Female (6.9\% of normalized moderator weight); Big Five Neuroticism Impulsiveness \% (6.0\% of normalized moderator weight). At the ontology-group level, the largest aggregated weight shares were Personality: Extraversion (20.6\%); Demographics: Sex (18.2\%); Personality: Openness (15.7\%).
+
+\begin{figure}[H]
+\raggedright
+\caption{Run 6 attacked-only profile-panel design.}
+\includegraphics[width=0.96\linewidth]{figure_1_study_design.pdf}
+\label{fig:design}
+\caption*{\raggedright \footnotesize Note. One fixed ATTACK leaf is connected to multiple attacked OPINION leaves for each PROFILE. Hierarchical ontologies are preserved upstream, while estimation is leaf-based and repeated within profile.}
+\end{figure}
+
+\begin{figure}[H]
+\raggedright
+\caption{Absolute attacked opinion shift by repeated opinion leaf.}
+\includegraphics[width=0.96\linewidth]{figure_2_absolute_delta_distribution.pdf}
+\label{fig:absdelta}
+\caption*{\raggedright \footnotesize Note. Absolute shift is the primary effectivity outcome because a single attack leaf can generate signed movement in different directions across different opinion leaves.}
+\end{figure}
+
+\begin{figure}[H]
+\raggedright
+\caption{Descriptive susceptibility weights across profile moderators.}
+\includegraphics[width=0.96\linewidth]{figure_3_profile_moderator_coefficient_forest.pdf}
+\label{fig:forest}
+\caption*{\raggedright \footnotesize Note. Bars show the normalized contribution of each profile moderator to the post hoc susceptibility index under the configured attack/opinion target set.}
+\end{figure}
+
+\begin{figure}[H]
+\raggedright
+\caption{Repeated-outcome path-SEM coefficients across attacked opinion leaves.}
+\includegraphics[width=0.96\linewidth]{figure_4_annotated_sem_path_diagram.pdf}
+\label{fig:sem}
+\caption*{\raggedright \footnotesize Note. Cells show SEM path coefficients from profile moderators to attacked opinion-shift indicators. The fixed ATTACK leaf is constant by design and therefore represented in the study design rather than as a varying regressor.}
+\end{figure}
+
+\input{../assets/tables/table_1_pilot_design_and_configuration.tex}
+\input{../assets/tables/table_2_attacked_effectivity_descriptive_statistics.tex}
+\input{../assets/tables/table_3_multivariate_profile_moderator_model.tex}
+
+The repeated-outcome path SEM converged with CFI = 1.000 and RMSEA = 0.000. Those fit indices should still be read cautiously because the model is relatively dense for a pilot of this size and several paths are being screened simultaneously. The clearest leaf-specific paths were Sex Female -> Adversarial Delta Indicator  Alliance Commitment Support (b = 30.88, p = 0.001); Big Five Neuroticism Mean \% -> Adversarial Delta Indicator  Civil Defense Preparedness Support (b = 8.23, p = 0.051); Sex Female -> Adversarial Delta Indicator  Civil Defense Preparedness Support (b = -16.90, p = 0.089); Sex Other -> Adversarial Delta Indicator  Strategic Autonomy Support (b = -15.17, p = 0.143); Sex Other -> Adversarial Delta Indicator  Alliance Commitment Support (b = 12.83, p = 0.211); Sex Other -> Adversarial Delta Indicator  Civil Defense Preparedness Support (b = -12.65, p = 0.256). These p-values are unadjusted and should be interpreted as exploratory. The post hoc susceptibility ranking identified the highest-scoring profiles as profile\_0344 (100.0th percentile; mean |Δ| = 26.2); profile\_0036 (99.0th percentile; mean |Δ| = 53.2); profile\_0288 (98.0th percentile; mean |Δ| = 42.5). The Spearman alignment between the post hoc susceptibility ranking and the observed effectivity percentile was 0.149, which is useful descriptively but should not be over-interpreted as external validation. Controlled summary contrasts and ridge-derived weights together suggested that the most influential profile components in this pilot were Sex Female (controlled b = 5.64, p = 0.110, weight = 6.9\%); Sex Other (controlled b = -7.22, p = 0.064, weight = 2.8\%); Big Five Neuroticism Mean \% (controlled b = 2.01, p = 0.214, weight = n/a\%); Big Five Conscientiousness Mean \% (controlled b = -1.93, p = 0.280, weight = n/a\%); Age Years (controlled b = 0.08, p = 0.968, weight = n/a\%).
+
+\section{Discussion}
+Run 6 improves the methodological coherence of the study in three ways. First, the design now directly answers the moderation question under attack rather than drifting into a treatment-versus-control estimand. Second, effectivity is treated as a repeated construct: the same attack leaf is linked to multiple attacked opinion outcomes per profile, and those outcomes remain visible in the SEM instead of being collapsed prematurely. Third, the personal susceptibility index is no longer injected a priori as if it were observed truth. Instead, it is computed post hoc from target-conditional regularized task models and can therefore be interpreted as a model-derived profile summary.
+
+These changes matter because the research question is not simply whether misinformation can move opinions. The more specific question is which inter-individual differences are associated with larger movement once exposure occurs. In that sense, the attacked-only repeated-leaf design is a cleaner pilot architecture for studying heterogeneity of cyber-manipulation effectivity. The fixed attack leaf reduces attack-side heterogeneity, the repeated opinion leaves reduce item idiosyncrasy, and the moderator-weight table makes the final susceptibility ranking decomposable rather than opaque.
+
+The pilot still has clear limits. The agents are synthetic. The exposure remains one fixed attack leaf. The sample, while larger than earlier pilots, is still modest for high-confidence inference. The path-SEM fit is encouraging but should not be mistaken for definitive construct validation in a near-saturated pilot setting. The post hoc susceptibility index is descriptive because it is derived from fitted model weights rather than observed externally. The current results therefore validate the research workflow more than they establish external truth about real populations.
+
+\section{Conclusion}
+This pilot demonstrates that an ontology-driven multi-agent simulation can be structured to study heterogeneity in cyber-manipulation effectivity with substantially better methodological alignment than the earlier pilots. The core move is to treat one fixed attack leaf as producing multiple attacked opinion-shift indicators per profile, estimate those repeated outcomes jointly, and derive the final susceptibility index only after the full profile moderation structure has been estimated. Run 6 is therefore a stronger methodological answer to the stated research question, even though it remains exploratory and should be scaled further before substantive claims are made.
+
+\clearpage
+\appendix
+\section{Supplementary Materials}
+
+\begin{figure}[H]
+\raggedright
+\caption{Baseline versus post-attack opinion scores.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s1_baseline_post_scatter.pdf}
+\label{fig:s1}
+\caption*{\raggedright \footnotesize Note. The diagonal marks no change. Points are colored by opinion leaf so issue-specific movement remains visible without collapsing the political state space to a single item.}
+\end{figure}
+
+\begin{figure}[H]
+\raggedright
+\caption{Per-profile attack effectivity heatmap.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s2_profile_effectivity_heatmap.pdf}
+\label{fig:s2}
+\caption*{\raggedright \footnotesize Note. Profiles are ordered by the post hoc empirical susceptibility index. Cells show mean absolute attacked shift for each repeated opinion leaf.}
+\end{figure}
+
+\begin{figure}[H]
+\raggedright
+\caption{Distribution of the post hoc empirical susceptibility index.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s3_susceptibility_distribution.pdf}
+\label{fig:s3}
+\caption*{\raggedright \footnotesize Note. The susceptibility index is the percentile-ranked profile-only linear predictor from the target-conditional ridge aggregation of fitted attack-opinion task models. It is descriptive rather than independent evidence.}
+\end{figure}
+
+\input{../assets/tables/supplementary_table_s1_ontology_leaves_used.tex}
+\input{../assets/tables/supplementary_table_s2_moderator_comparison.tex}
+\input{../assets/tables/supplementary_table_s3_assumption_and_risk_register.tex}
+\input{../assets/tables/supplementary_table_s4_reproducibility_manifest.tex}
+\input{../assets/tables/supplementary_table_s5_sem_path_coefficients.tex}
+
+\clearpage
+\section*{References}
+\begingroup
+\small
+\setlength{\parindent}{-1.2em}
+\setlength{\leftskip}{1.2em}
+\noindent Johns Hopkins University \& Imperial College London. (2021, May 20). Countering cognitive warfare: Awareness and resilience. NATO Review. \url{https://www.nato.int/docu/review/articles/2021/05/20/countering-cognitive-warfare-awareness-and-resilience/index.html}\par
+
+\noindent Bennett, W. L., \& Livingston, S. (2018). The disinformation order: Disruptive communication and the decline of democratic institutions. European Journal of Communication, 33(2), 122-139. \url{https://doi.org/10.1177/0267323118760317}\par
+
+\noindent Cioffi-Revilla, C. (2002). Invariance and universality in social agent-based simulations. Proceedings of the National Academy of Sciences, 99(Suppl. 3), 7314-7316. \url{https://doi.org/10.1073/pnas.082081499}\par
+
+\noindent Efron, B., \& Tibshirani, R. J. (1993). An introduction to the bootstrap. Chapman \& Hall/CRC.\par
+
+\noindent Hung, T.-C., \& Hung, T.-W. (2022). How China's cognitive warfare works: A frontline perspective of Taiwan's anti-disinformation wars. Journal of Global Security Studies, 7(4), ogac016. \url{https://doi.org/10.1093/jogss/ogac016}\par
+
+\noindent Kozyreva, A., Lewandowsky, S., \& Hertwig, R. (2020). Citizens versus the internet: Confronting digital challenges with cognitive tools. Psychological Science in the Public Interest, 21(3), 103-156. \url{https://doi.org/10.1177/1529100620946707}\par
+
+\noindent Lazer, D. M. J., Baum, M. A., Benkler, Y., Berinsky, A. J., Greenhill, K. M., Menczer, F., Metzger, M. J., Nyhan, B., Pennycook, G., Rothschild, D., Schudson, M., Sloman, S. A., Sunstein, C. R., Thorson, E. A., Watts, D. J., \& Zittrain, J. L. (2018). The science of fake news. Science, 359(6380), 1094-1096. \url{https://doi.org/10.1126/science.aao2998}\par
+
+\noindent Lewandowsky, S., Ecker, U. K. H., \& Cook, J. (2017). Beyond misinformation: Understanding and coping with the post-truth era. Journal of Applied Research in Memory and Cognition, 6(4), 353-369. \url{https://doi.org/10.1016/j.jarmac.2017.07.008}\par
+
+\noindent Matz, S. C., Kosinski, M., Nave, G., \& Stillwell, D. J. (2017). Psychological targeting as an effective approach to digital mass persuasion. Proceedings of the National Academy of Sciences, 114(48), 12714-12719. \url{https://doi.org/10.1073/pnas.1710966114}\par
+
+\noindent Paulauskas, K. (2024, February 6). Why cognitive superiority is an imperative. NATO Review. \url{https://www.nato.int/docu/review/articles/2024/02/06/why-cognitive-superiority-is-an-imperative/index.html}\par
+
+\noindent Pennycook, G., \& Rand, D. G. (2019). Lazy, not biased: Susceptibility to partisan fake news is better explained by lack of reasoning than by motivated reasoning. Cognition, 188, 39-50. \url{https://doi.org/10.1016/j.cognition.2018.06.011}\par
+
+\noindent Pennycook, G., \& Rand, D. G. (2021). The psychology of fake news. Trends in Cognitive Sciences, 25(5), 388-402. \url{https://doi.org/10.1016/j.tics.2021.02.007}\par
+
+\noindent Roozenbeek, J., van der Linden, S., Goldberg, B., Rathje, S., \& Lewandowsky, S. (2022). Psychological inoculation improves resilience against misinformation on social media. Science Advances, 8(34), eabo6254. \url{https://doi.org/10.1126/sciadv.abo6254}\par
+
+\noindent Rosseel, Y. (2012). lavaan: An R package for structural equation modeling. Journal of Statistical Software, 48(2), 1-36. \url{https://doi.org/10.18637/jss.v048.i02}\par
+
+\noindent Vosoughi, S., Roy, D., \& Aral, S. (2018). The spread of true and false news online. Science, 359(6380), 1146-1151. \url{https://doi.org/10.1126/science.aap9559}\par
+\endgroup
+
+\end{document}

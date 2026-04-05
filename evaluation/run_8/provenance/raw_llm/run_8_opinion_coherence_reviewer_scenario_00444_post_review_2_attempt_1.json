@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00444_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00444",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.449,
+      "big_five_conscientiousness_mean_pct": 87.696,
+      "big_five_openness_to_experience_mean_pct": 77.925,
+      "heuristic_shift_sensitivity_proxy": 0.3344,
+      "resilience_index": 0.6656
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00444",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 778,
+      "confidence": 0.78,
+      "reasoning": "The exposure reinforced the importance of strategic autonomy, especially in light of recent cyber attacks and allies' reduced commitment. The message's urgency and focus on national security resonated, slightly increasing support for the issue.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 723,
+    "exposure_text": "Just saw a report that our allies are cutting back on joint defense exercises. If we don't step up our strategic autonomy now, who's going to have our back when it counts? Remember the 2024 cyber attacks? We can't afford to be caught off guard again. Time to invest in our own defenses and make sure we're prepared for any threat. #NationalSecurityFirst #StrategicAutonomy",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 55,
+      "max_reasonable_shift": 363.568
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better reflect the modest shift.\",\n  \"notes\": \"The shift from 723 to 778 is within reasonable bounds, but the reasoning could better justify the specific magnitude of the change. The exposure text is somewhat intense but not extreme, and the shift is modest. The profile suggests some openness to new ideas but also resilience, which aligns with a small-to-moderate update.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424443-BUNftX1nAau0qYJFVeSi",
+    "object": "chat.completion",
+    "created": 1775424443,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better reflect the modest shift.\",\n  \"notes\": \"The shift from 723 to 778 is within reasonable bounds, but the reasoning could better justify the specific magnitude of the change. The exposure text is somewhat intense but not extreme, and the shift is modest. The profile suggests some openness to new ideas but also resilience, which aligns with a small-to-moderate update.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 938,
+      "completion_tokens": 134,
+      "total_tokens": 1072,
+      "cost": 9.715e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.715e-05,
+        "upstream_inference_prompt_cost": 7.035e-05,
+        "upstream_inference_completions_cost": 2.68e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

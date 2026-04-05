@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01092_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01092",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 123,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 90.702,
+      "big_five_conscientiousness_mean_pct": 5.995,
+      "big_five_openness_to_experience_mean_pct": 69.127,
+      "heuristic_shift_sensitivity_proxy": 0.769,
+      "resilience_index": 0.231
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01092",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 Did you know? While we debate strategic autonomy, our allies are quietly shifting defense burdens onto us. A recent report shows that just 3 key partners have cut their defense budgets by 15% this year alone. Meanwhile, our preparedness programs face funding cuts. It's time to demand accountability - our security shouldn't be a gamble. #NationalSecurityFirst #StrategicAutonomy",
+      "platform": "Twitter",
+      "persuasion_strategy": "threat_salience",
+      "intensity_hint": 0.72,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the narrative more specific and less alarmist. Avoid using exclamation marks and hashtags. Incorporate more subtle persuasion techniques.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved by making it more specific and less dramatic.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423959-IWiY8yZ47NX4NkRJdvz3",
+    "object": "chat.completion",
+    "created": 1775423959,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the narrative more specific and less alarmist. Avoid using exclamation marks and hashtags. Incorporate more subtle persuasion techniques.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved by making it more specific and less dramatic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 704,
+      "completion_tokens": 94,
+      "total_tokens": 798,
+      "cost": 0.00011976,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011976,
+        "upstream_inference_prompt_cost": 6.336e-05,
+        "upstream_inference_completions_cost": 5.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

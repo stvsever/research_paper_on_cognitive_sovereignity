@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01386_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01386",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 15.218,
+      "big_five_conscientiousness_mean_pct": 59.57,
+      "big_five_openness_to_experience_mean_pct": 35.903,
+      "heuristic_shift_sensitivity_proxy": 0.3287,
+      "resilience_index": 0.6713
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01386",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "I've been a civil defense volunteer for years, and let me tell you, the current lack of preparedness is a national security risk. We need to step up funding for local emergency response teams. My town's team saved lives during the last flood, but they're underfunded and understaffed. If we don't act now, we're putting our families at risk. #SupportCivilDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "social-proof",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding more specific details about the volunteer experience to enhance realism.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It uses social-proof effectively and is plausible for a Twitter post. However, adding more specific details could improve realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424159-Ok2Ip6pr6PEyKlsuFR4F",
+    "object": "chat.completion",
+    "created": 1775424159,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding more specific details about the volunteer experience to enhance realism.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It uses social-proof effectively and is plausible for a Twitter post. However, adding more specific details could improve realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 704,
+      "completion_tokens": 103,
+      "total_tokens": 807,
+      "cost": 7.34e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.34e-05,
+        "upstream_inference_prompt_cost": 5.28e-05,
+        "upstream_inference_completions_cost": 2.06e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

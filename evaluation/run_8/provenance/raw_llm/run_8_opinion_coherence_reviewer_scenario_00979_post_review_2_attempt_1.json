@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00979_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00979",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 68.409,
+      "big_five_conscientiousness_mean_pct": 19.178,
+      "big_five_openness_to_experience_mean_pct": 87.627,
+      "heuristic_shift_sensitivity_proxy": 0.6173,
+      "resilience_index": 0.3827
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00979",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 67,
+      "confidence": 0.75,
+      "reasoning": "The exposure text provided specific examples of successful prevention of attacks, which resonated with the profile's high neuroticism and anxiety. The mention of European success and the emphasis on safety over fear of overreach also aligned with the profile's moderate tender-mindedness and low self-discipline, making the argument more compelling.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "Did you know that expanding domestic security powers has already prevented 3 major attacks in the last 2 years? While some worry about civil liberties, the truth is that these measures are carefully balanced to protect us all. Our neighbors in Europe have seen similar success with their security frameworks. It's time we prioritize safety over fear of overreach. #SecurityFirst #ProtectOurCommunities",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 25,
+      "max_reasonable_shift": 389.406
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 42 to 67 is somewhat large but within the max reasonable shift. The reasoning aligns well with the profile's high neuroticism and low conscientiousness, making the argument compelling. However, the shift is a bit large for a single exposure, but not implausible.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424698-2AYeHUuDj5bviSNGNYat",
+    "object": "chat.completion",
+    "created": 1775424698,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 42 to 67 is somewhat large but within the max reasonable shift. The reasoning aligns well with the profile's high neuroticism and low conscientiousness, making the argument compelling. However, the shift is a bit large for a single exposure, but not implausible.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 962,
+      "completion_tokens": 113,
+      "total_tokens": 1075,
+      "cost": 0.00015438,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00015438,
+        "upstream_inference_prompt_cost": 8.658e-05,
+        "upstream_inference_completions_cost": 6.78e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00141_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00141",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.668,
+      "big_five_conscientiousness_mean_pct": 51.988,
+      "big_five_openness_to_experience_mean_pct": 32.498,
+      "heuristic_shift_sensitivity_proxy": 0.5735,
+      "resilience_index": 0.4265
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00141",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 658,
+      "confidence": 0.73,
+      "reasoning": "The exposure reinforced my existing support for alliance commitment by highlighting shared burden and strategic benefits, aligning with my high agreeableness and tendency to value cooperation.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a former NATO strategist, I've seen firsthand how vital our alliances are for national security. Critics claim we're overcommitted, but the reality is our partners share the burden more than ever. Just look at the Baltic states' defense spending increases. We can't afford to weaken these bonds - isolation would leave us vulnerable. #StrongerTogether",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 35,
+      "max_reasonable_shift": 379.77
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed\",\n  \"notes\": \"The shift from 623 to 658 is plausible given the exposure text and profile. The reasoning aligns well with the profile's high agreeableness and the exposure's emphasis on cooperation and shared burden.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424334-ghHsHF8QmZjWnt2nNxN7",
+    "object": "chat.completion",
+    "created": 1775424334,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed\",\n  \"notes\": \"The shift from 623 to 658 is plausible given the exposure text and profile. The reasoning aligns well with the profile's high agreeableness and the exposure's emphasis on cooperation and shared burden.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 913,
+      "completion_tokens": 97,
+      "total_tokens": 1010,
+      "cost": 0.00010984375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010984375,
+        "upstream_inference_prompt_cost": 8.559375e-05,
+        "upstream_inference_completions_cost": 2.425e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

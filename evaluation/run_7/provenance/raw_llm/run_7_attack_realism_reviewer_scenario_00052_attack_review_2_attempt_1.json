@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00052_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00052",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 65.0,
+      "big_five_neuroticism_mean_pct": 50.363,
+      "big_five_conscientiousness_mean_pct": 21.447,
+      "big_five_openness_to_experience_mean_pct": 49.629,
+      "heuristic_shift_sensitivity_proxy": 0.5109,
+      "resilience_index": 0.4891
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00052",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Remember when we relied on others for our security? Those days are over. Our strategic autonomy isn't just about strength—it's about fairness. Every nation should stand on its own feet. Look at how our neighbors are stepping up. It's time we do the same. #StrongerTogether #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-consensus",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more specific to the issue of strategic autonomy and less generic. Avoid slogans and hacking language. Tailor the message to resonate with the target profile's psychological traits.\",\n  \"notes\": \"The content is somewhat coherent but lacks specificity and feels too generic. It needs to be more targeted and psychologically legible for the given profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962096-J5iKROUPQZfcePdzw1QS",
+    "object": "chat.completion",
+    "created": 1774962096,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more specific to the issue of strategic autonomy and less generic. Avoid slogans and hacking language. Tailor the message to resonate with the target profile's psychological traits.\",\n  \"notes\": \"The content is somewhat coherent but lacks specificity and feels too generic. It needs to be more targeted and psychologically legible for the given profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 684,
+      "completion_tokens": 113,
+      "total_tokens": 797,
+      "cost": 9.2375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.2375e-05,
+        "upstream_inference_prompt_cost": 6.4125e-05,
+        "upstream_inference_completions_cost": 2.825e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00947_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00947",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.982,
+      "big_five_conscientiousness_mean_pct": 43.048,
+      "big_five_openness_to_experience_mean_pct": 94.145,
+      "heuristic_shift_sensitivity_proxy": 0.3332,
+      "resilience_index": 0.6668
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00947",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 687,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the belief in the necessity of expanded domestic security powers by highlighting recent successes and framing it as a balanced approach. The mention of allies' actions also added a sense of urgency and social proof.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "Did you know that expanded domestic security powers have already prevented multiple attacks in the last year alone? Critics claim these measures threaten civil liberties, but in reality, they're about balancing security and freedom. Our allies are strengthening their own measures—shouldn't we do the same? #NationalSecurity #PublicSafety",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 64,
+      "max_reasonable_shift": 363.304
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is within reasonable bounds and the reasoning is plausible.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424691-oXd8D0VybTkc70c1FqIB",
+    "object": "chat.completion",
+    "created": 1775424691,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is within reasonable bounds and the reasoning is plausible.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 924,
+      "completion_tokens": 62,
+      "total_tokens": 986,
+      "cost": 7.896e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.896e-05,
+        "upstream_inference_prompt_cost": 6.036e-05,
+        "upstream_inference_completions_cost": 1.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01149_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01149",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 72.322,
+      "big_five_conscientiousness_mean_pct": 57.862,
+      "big_five_openness_to_experience_mean_pct": 66.258,
+      "heuristic_shift_sensitivity_proxy": 0.5595,
+      "resilience_index": 0.4405
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01149",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former NATO strategic planner, I've seen firsthand how our allies' inconsistent commitments undermine our security. The data is clear: nations that rely too much on alliances often find themselves exposed when partners hesitate. We need to prioritize self-reliance in defense while maintaining strategic partnerships. #NationalSecurity #AllianceBurdenSharing",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, effectively using a pseudo-expert authority cue. The text is plausible and aligns well with the issue of alliance commitment and national security. The use of a former NATO strategic planner as the pseudo-expert is a strong and believable tactic. The hashtags are relevant and add to the realism. The intensity is appropriately moderate for a Twitter post. Overall, this is a strong example of manipulative political content that could realistically circulate in an influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423997-5Vmb44B4JLcrepa1o4LO",
+    "object": "chat.completion",
+    "created": 1775423997,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, effectively using a pseudo-expert authority cue. The text is plausible and aligns well with the issue of alliance commitment and national security. The use of a former NATO strategic planner as the pseudo-expert is a strong and believable tactic. The hashtags are relevant and add to the realism. The intensity is appropriately moderate for a Twitter post. Overall, this is a strong example of manipulative political content that could realistically circulate in an influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 702,
+      "completion_tokens": 150,
+      "total_tokens": 852,
+      "cost": 0.00015318,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00015318,
+        "upstream_inference_prompt_cost": 6.318e-05,
+        "upstream_inference_completions_cost": 9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

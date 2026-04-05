@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00304_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00304",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 32.842,
+      "big_five_conscientiousness_mean_pct": 45.901,
+      "big_five_openness_to_experience_mean_pct": 88.461,
+      "heuristic_shift_sensitivity_proxy": 0.4496,
+      "resilience_index": 0.5504
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00304",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 652,
+      "confidence": 0.75,
+      "reasoning": "The exposure text reinforced the positive aspects of strategic autonomy by emphasizing alliance benefits, which resonated with the profile's high extraversion and openness to experience. The message's positive framing and focus on cooperation likely increased support slightly.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "🚨 Strategic autonomy isn't just about us - it's about standing with our allies! Did you know that by strengthening our own defense capabilities, we actually make alliances like NATO more effective? It's not about isolation; it's about being a reliable partner. #StrongerTogether #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 29,
+      "max_reasonable_shift": 352.512
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The delta is plausible and within the max reasonable shift. The reasoning aligns with the profile's traits and the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962423-sPYYfZMwT91UjfD5yFkT",
+    "object": "chat.completion",
+    "created": 1774962423,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The delta is plausible and within the max reasonable shift. The reasoning aligns with the profile's traits and the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 917,
+      "completion_tokens": 75,
+      "total_tokens": 992,
+      "cost": 8.216e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.216e-05,
+        "upstream_inference_prompt_cost": 5.966e-05,
+        "upstream_inference_completions_cost": 2.25e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

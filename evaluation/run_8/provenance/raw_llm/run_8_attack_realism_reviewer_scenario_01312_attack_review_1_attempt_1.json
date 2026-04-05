@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01312_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01312",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 423,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 12.507,
+      "big_five_conscientiousness_mean_pct": 25.517,
+      "big_five_openness_to_experience_mean_pct": 6.56,
+      "heuristic_shift_sensitivity_proxy": 0.4309,
+      "resilience_index": 0.5691
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01312",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a retired military strategist, I've seen firsthand how our over-reliance on foreign tech puts national security at risk. Strategic autonomy isn't just about being self-sufficient—it's about ensuring our civil liberties and preparedness aren't held hostage by geopolitical tensions. Trust me, this isn't about isolation; it's about smart, pragmatic security. #NationalSecurity #StrategicAutonomy",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-expert authority cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The text is realistic and plausible for a social media platform like X. The message is targeted and psychologically legible, fitting well within the context of the issue and the attack type.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424095-SedwAzpXvVhiiLY8j690",
+    "object": "chat.completion",
+    "created": 1775424095,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The text is realistic and plausible for a social media platform like X. The message is targeted and psychologically legible, fitting well within the context of the issue and the attack type.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 714,
+      "completion_tokens": 104,
+      "total_tokens": 818,
+      "cost": 7.632e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.632e-05,
+        "upstream_inference_prompt_cost": 4.512e-05,
+        "upstream_inference_completions_cost": 3.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

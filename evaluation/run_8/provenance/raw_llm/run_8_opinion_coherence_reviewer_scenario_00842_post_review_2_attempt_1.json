@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00842_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00842",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 24.765,
+      "big_five_conscientiousness_mean_pct": 21.423,
+      "big_five_openness_to_experience_mean_pct": 20.773,
+      "heuristic_shift_sensitivity_proxy": 0.4821,
+      "resilience_index": 0.5179
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00842",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 254,
+      "confidence": 0.72,
+      "reasoning": "The exposure text highlighted practical concerns about emergency preparedness in local communities, which resonated with my tendency to be sympathetic and tender-minded. The personal anecdote about a firefighter's experience made the issue more relatable and urgent. While I was already somewhat supportive of civil defense preparedness, this specific example increased my conviction that it's an important practical matter rather than just fear-mongering.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "I get why people worry about civil defense spending, but look at what's actually happening in our communities. My neighbor's son, a firefighter, told me last week how their local emergency response drills have been cut back due to budget constraints. Meanwhile, we're seeing more extreme weather events every year. It's not about fear-mongering - it's about being practical. We need to make sure our communities have the resources they need to handle emergencies when they happen. #CommunitySafety #PreparednessMatters",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 37,
+      "max_reasonable_shift": 359.662
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"Delta of 37 is reasonable but at the upper limit for a single exposure. The reasoning aligns well with the profile and exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424661-HCW1aOPWtYlUT8zBMBz0",
+    "object": "chat.completion",
+    "created": 1775424661,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"Delta of 37 is reasonable but at the upper limit for a single exposure. The reasoning aligns well with the profile and exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1004,
+      "completion_tokens": 88,
+      "total_tokens": 1092,
+      "cost": 0.000116125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000116125,
+        "upstream_inference_prompt_cost": 9.4125e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

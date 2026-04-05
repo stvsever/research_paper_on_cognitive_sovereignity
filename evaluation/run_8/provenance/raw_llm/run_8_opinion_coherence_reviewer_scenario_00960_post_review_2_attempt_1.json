@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00960_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00960",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.982,
+      "big_five_conscientiousness_mean_pct": 43.048,
+      "big_five_openness_to_experience_mean_pct": 94.145,
+      "heuristic_shift_sensitivity_proxy": 0.3332,
+      "resilience_index": 0.6668
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00960",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 720,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the existing positive stance on strategic autonomy, particularly due to the emphasis on national security and self-reliance. The personal anecdote from a retired Air Force strategist added credibility, nudging the opinion slightly higher but not drastically altering the baseline.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "As a retired Air Force strategist, I've seen firsthand how critical strategic autonomy is for our national security. The recent cyberattacks on our allies prove that relying on others for defense is a risky gamble. We need to invest in our own capabilities to ensure we're not left vulnerable. Remember, when it comes to national security, it's better to be self-reliant than to hope others will have our back. #StrategicAutonomy #NationalSecurity",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 33,
+      "max_reasonable_shift": 363.304
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The generated opinion score is plausible and consistent with the profile and the exposure. The delta from the baseline is reasonable and the reasoning provided is coherent.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424693-ctI2kyeyVjrYAHIYmC78",
+    "object": "chat.completion",
+    "created": 1775424693,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The generated opinion score is plausible and consistent with the profile and the exposure. The delta from the baseline is reasonable and the reasoning provided is coherent.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 960,
+      "completion_tokens": 89,
+      "total_tokens": 1049,
+      "cost": 0.00011225,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011225,
+        "upstream_inference_prompt_cost": 9e-05,
+        "upstream_inference_completions_cost": 2.225e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

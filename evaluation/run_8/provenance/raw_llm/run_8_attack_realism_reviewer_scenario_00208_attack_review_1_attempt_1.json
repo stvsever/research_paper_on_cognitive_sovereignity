@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00208_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00208",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 42,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.463,
+      "big_five_conscientiousness_mean_pct": 38.284,
+      "big_five_openness_to_experience_mean_pct": 9.281,
+      "heuristic_shift_sensitivity_proxy": 0.7426,
+      "resilience_index": 0.2574
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00208",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As someone who values both security and personal freedom, I found this expert's take on strategic autonomy really compelling. Dr. Elena Vasquez, a senior fellow at the Atlantic Council, points out that while full autonomy might sound appealing, it actually makes us more vulnerable. 'Reliable allies with shared values are our best deterrent,' she argues. In today's uncertain world, isn't it smarter to strengthen our partnerships rather than go it alone? #NationalSecurity #StrongerTogether",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from more specific details about the expert's credentials and a more nuanced argument.\",\n  \"notes\": \"The use of a pseudo-expert authority cue is appropriate for the scenario. The text is plausible for a Twitter post, but could be improved with more specific details to enhance realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423393-k9a5bSUQDmUG3CqgdFr6",
+    "object": "chat.completion",
+    "created": 1775423393,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from more specific details about the expert's credentials and a more nuanced argument.\",\n  \"notes\": \"The use of a pseudo-expert authority cue is appropriate for the scenario. The text is plausible for a Twitter post, but could be improved with more specific details to enhance realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 730,
+      "completion_tokens": 109,
+      "total_tokens": 839,
+      "cost": 9.56875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.56875e-05,
+        "upstream_inference_prompt_cost": 6.84375e-05,
+        "upstream_inference_completions_cost": 2.725e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

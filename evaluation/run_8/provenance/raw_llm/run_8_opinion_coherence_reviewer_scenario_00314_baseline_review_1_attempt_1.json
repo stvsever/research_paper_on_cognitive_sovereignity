@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00314_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00314",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.46,
+      "big_five_conscientiousness_mean_pct": 72.716,
+      "big_five_openness_to_experience_mean_pct": 4.339,
+      "heuristic_shift_sensitivity_proxy": 0.3374,
+      "resilience_index": 0.6626
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00314",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 450,
+      "confidence": 0.85,
+      "reasoning": "As a young, highly extraverted, and conscientious male, this individual likely values proactive measures for civil defense preparedness. His high achievement striving and self-discipline suggest a belief in the importance of being prepared. His low neuroticism indicates he is not overly anxious but rather pragmatic about potential threats. His conventional openness to experience may make him more likely to support established civil defense measures.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "confidence_bounded": true,
+        "overall_pass": false
+      },
+      "pass_count": 2
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Adjust score to reflect a more moderate stance based on the profile's pragmatic and conscientious nature.\",\n  \"notes\": \"Score seems high for a pragmatic, low-neuroticism profile. Consider a more moderate score reflecting practical support without excessive enthusiasm.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422695-CwyKgOdh8jgGbRKBnOTB",
+    "object": "chat.completion",
+    "created": 1775422695,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Adjust score to reflect a more moderate stance based on the profile's pragmatic and conscientious nature.\",\n  \"notes\": \"Score seems high for a pragmatic, low-neuroticism profile. Consider a more moderate score reflecting practical support without excessive enthusiasm.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 834,
+      "completion_tokens": 93,
+      "total_tokens": 927,
+      "cost": 7.926e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.926e-05,
+        "upstream_inference_prompt_cost": 5.136e-05,
+        "upstream_inference_completions_cost": 2.79e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

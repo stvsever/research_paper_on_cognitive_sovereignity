@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00214_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00214",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 47.0,
+      "big_five_neuroticism_mean_pct": 36.682,
+      "big_five_conscientiousness_mean_pct": 52.159,
+      "big_five_openness_to_experience_mean_pct": 85.031,
+      "heuristic_shift_sensitivity_proxy": 0.3821,
+      "resilience_index": 0.6179
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00214",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 450,
+      "confidence": 0.85,
+      "reasoning": "As a middle-aged male with moderate conscientiousness and high openness to ideas, I value preparedness and practical solutions. My higher-than-average neuroticism, particularly in anxiety and stress vulnerability, makes me more inclined to support measures that enhance national security and civil defense. However, my low extraversion and moderate agreeableness temper my enthusiasm, leading to a balanced but supportive stance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "confidence_bounded": true,
+        "overall_pass": false
+      },
+      "pass_count": 2
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the score to better reflect the nuanced reasoning provided.\",\n  \"notes\": \"The score of 450 is somewhat plausible given the profile, but the reasoning suggests a more balanced stance that might warrant a slightly lower score. The low resolution of the score is a minor concern.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961955-kR9BnqB4uX0OKh4cCxgO",
+    "object": "chat.completion",
+    "created": 1774961955,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the score to better reflect the nuanced reasoning provided.\",\n  \"notes\": \"The score of 450 is somewhat plausible given the profile, but the reasoning suggests a more balanced stance that might warrant a slightly lower score. The low resolution of the score is a minor concern.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 835,
+      "completion_tokens": 102,
+      "total_tokens": 937,
+      "cost": 0.00013635,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013635,
+        "upstream_inference_prompt_cost": 7.515e-05,
+        "upstream_inference_completions_cost": 6.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

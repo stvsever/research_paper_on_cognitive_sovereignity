@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00965_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00965",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 452,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.61,
+      "big_five_conscientiousness_mean_pct": 80.004,
+      "big_five_openness_to_experience_mean_pct": 67.599,
+      "heuristic_shift_sensitivity_proxy": 0.3601,
+      "resilience_index": 0.6399
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00965",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Our allies' budget cuts are putting us at risk. Just last month, Germany announced a 10% reduction in defense spending. How can we maintain credible deterrence when partners won't meet their commitments? It's time to strengthen our alliances by ensuring every member pulls their weight. #NationalSecurity #AllianceCommitment",
+      "platform": "X",
+      "persuasion_strategy": "selective_evidence_fear_appeal",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It uses a specific example (Germany's budget cuts) to make a broader point about alliance commitment, which is a good example of selective evidence. The fear appeal is subtle and tied to the specific issue of defense spending. The hashtags are relevant and platform-appropriate. The text is believable as part of a manipulative political feed.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423899-cLW2bR8dbK0ksJWHeFVG",
+    "object": "chat.completion",
+    "created": 1775423899,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It uses a specific example (Germany's budget cuts) to make a broader point about alliance commitment, which is a good example of selective evidence. The fear appeal is subtle and tied to the specific issue of defense spending. The hashtags are relevant and platform-appropriate. The text is believable as part of a manipulative political feed.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 700,
+      "completion_tokens": 125,
+      "total_tokens": 825,
+      "cost": 9.6875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.6875e-05,
+        "upstream_inference_prompt_cost": 6.5625e-05,
+        "upstream_inference_completions_cost": 3.125e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

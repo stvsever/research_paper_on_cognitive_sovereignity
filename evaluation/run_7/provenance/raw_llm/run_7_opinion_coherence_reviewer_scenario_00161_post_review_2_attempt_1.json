@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00161_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00161",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 32.0,
+      "big_five_neuroticism_mean_pct": 91.287,
+      "big_five_conscientiousness_mean_pct": 77.783,
+      "big_five_openness_to_experience_mean_pct": 43.891,
+      "heuristic_shift_sensitivity_proxy": 0.6424,
+      "resilience_index": 0.3576
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00161",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 375,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a compelling argument that reducing alliance commitments could enhance safety and protect civil liberties, which resonates with the profile's high conscientiousness and concern for order. The message's focus on strategic autonomy and expert consensus slightly shifts the opinion, but the baseline support for alliances remains strong due to the profile's tendency toward compliance and trust in established systems.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 427,
+    "exposure_text": "New report shows that reducing our alliance commitments could actually make us safer. By focusing on strategic autonomy, we can deter threats more effectively while protecting our civil liberties. Experts agree: burden-sharing isn't always in our best interest. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -52,
+      "max_reasonable_shift": 394.928
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the profile's high conscientiousness and resilience index.\",\n  \"notes\": \"The shift is larger than expected for a single exposure, but the reasoning aligns with the profile's traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962351-6kicR8YWiE1SNL2Kvtgh",
+    "object": "chat.completion",
+    "created": 1774962351,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the profile's high conscientiousness and resilience index.\",\n  \"notes\": \"The shift is larger than expected for a single exposure, but the reasoning aligns with the profile's traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 86,
+      "total_tokens": 1022,
+      "cost": 0.00013584,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013584,
+        "upstream_inference_prompt_cost": 8.424e-05,
+        "upstream_inference_completions_cost": 5.16e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

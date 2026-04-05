@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01312_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01312",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 12.507,
+      "big_five_conscientiousness_mean_pct": 25.517,
+      "big_five_openness_to_experience_mean_pct": 6.56,
+      "heuristic_shift_sensitivity_proxy": 0.4309,
+      "resilience_index": 0.5691
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01312",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 487,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the existing support for strategic autonomy by emphasizing practical security concerns and civil liberties, aligning with the profile's pragmatic nature and low openness to experience.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "As a retired military strategist, I've seen firsthand how our over-reliance on foreign tech puts national security at risk. Strategic autonomy isn't just about being self-sufficient—it's about ensuring our civil liberties and preparedness aren't held hostage by geopolitical tensions. Trust me, this isn't about isolation; it's about smart, pragmatic security. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 64,
+      "max_reasonable_shift": 348.398
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 423 to 487 is within reasonable bounds given the exposure and profile. However, the reasoning could better explain how the exposure specifically reinforced the existing support for strategic autonomy.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424864-2XZhqokNADatVQ90Vplx",
+    "object": "chat.completion",
+    "created": 1775424864,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 423 to 487 is within reasonable bounds given the exposure and profile. However, the reasoning could better explain how the exposure specifically reinforced the existing support for strategic autonomy.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 928,
+      "completion_tokens": 91,
+      "total_tokens": 1019,
+      "cost": 0.00013812,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013812,
+        "upstream_inference_prompt_cost": 8.352e-05,
+        "upstream_inference_completions_cost": 5.46e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

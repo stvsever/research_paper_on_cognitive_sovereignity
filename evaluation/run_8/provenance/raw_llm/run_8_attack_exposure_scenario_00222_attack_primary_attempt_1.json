@@ -1,0 +1,169 @@
+{
+  "agent_name": "attack_exposure",
+  "prompt_name": "attack_exposure.md",
+  "call_id": "scenario_00222_attack_primary",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00222",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "profile": {
+      "profile_id": "profile_0065",
+      "categorical_attributes": {
+        "sex": "Female"
+      },
+      "continuous_attributes": {
+        "chronological_age": 40.0,
+        "big_five_agreeableness_altruism_pct": 58.17,
+        "big_five_agreeableness_compliance_pct": 53.506,
+        "big_five_agreeableness_modesty_pct": 59.548,
+        "big_five_agreeableness_straightforwardness_pct": 67.87,
+        "big_five_agreeableness_tender_mindedness_pct": 55.71,
+        "big_five_agreeableness_trust_pct": 65.686,
+        "big_five_agreeableness_mean_pct": 60.082,
+        "big_five_conscientiousness_achievement_striving_pct": 41.188,
+        "big_five_conscientiousness_competence_pct": 60.409,
+        "big_five_conscientiousness_deliberation_pct": 56.644,
+        "big_five_conscientiousness_dutifulness_pct": 59.951,
+        "big_five_conscientiousness_order_pct": 45.619,
+        "big_five_conscientiousness_self_discipline_pct": 54.72,
+        "big_five_conscientiousness_mean_pct": 53.088,
+        "big_five_extraversion_activity_level_pct": 67.752,
+        "big_five_extraversion_assertiveness_pct": 58.435,
+        "big_five_extraversion_excitement_seeking_pct": 65.814,
+        "big_five_extraversion_gregariousness_pct": 54.973,
+        "big_five_extraversion_positive_emotions_pct": 60.504,
+        "big_five_extraversion_warmth_pct": 64.195,
+        "big_five_extraversion_mean_pct": 61.945,
+        "big_five_neuroticism_anger_hostility_pct": 85.196,
+        "big_five_neuroticism_anxiety_pct": 99.953,
+        "big_five_neuroticism_depression_pct": 86.814,
+        "big_five_neuroticism_impulsiveness_pct": 78.307,
+        "big_five_neuroticism_self_consciousness_pct": 84.447,
+        "big_five_neuroticism_stress_vulnerability_pct": 100.0,
+        "big_five_neuroticism_mean_pct": 89.12,
+        "big_five_openness_to_experience_actions_pct": 47.715,
+        "big_five_openness_to_experience_aesthetics_pct": 47.199,
+        "big_five_openness_to_experience_fantasy_pct": 40.862,
+        "big_five_openness_to_experience_feelings_pct": 47.212,
+        "big_five_openness_to_experience_ideas_pct": 44.577,
+        "big_five_openness_to_experience_values_pct": 42.91,
+        "big_five_openness_to_experience_mean_pct": 45.079,
+        "heuristic_shift_sensitivity_proxy": 0.6682,
+        "resilience_index": 0.3318
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic",
+        "semantic_description": "Sex: Female\nAgreeable Agreeableness (60th pct) — Cooperative, trusting, empathetic\nModerate Conscientiousness (53rd pct)\nExtraverted Extraversion (62nd pct) — Extraverted, outgoing, energetic\nHighly neurotic Neuroticism (89th pct) — Neurotic, anxious, emotionally reactive\nModerate Openness to Experience (45th pct)\n  Moderate Tender-Mindedness (56th pct)\n  Moderate Achievement Striving (41st pct)\n  Moderate Self-Discipline (55th pct)\n  High Activity Level (68th pct) — Fast-paced, energetic, busy\n  High Excitement Seeking (66th pct) — Thrill-seeking, excitement-hungry\n  High Positive Emotions (61st pct) — Joyful, enthusiastic, optimistic\n  Very High Anger / Hostility (85th pct) — Easily angered, irritable, hostile\n  Very High Self-Consciousness (84th pct) — Self-conscious, shy, easily embarrassed\n  Highly neurotic Neuroticism (100th pct) — Neurotic, anxious, emotionally reactive\n  Moderate Chronological Age (40th pct)"
+      }
+    },
+    "baseline_score": 423,
+    "attack_present": true,
+    "attack_context": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.12,
+      "big_five_conscientiousness_mean_pct": 53.088,
+      "big_five_openness_to_experience_mean_pct": 45.079,
+      "heuristic_shift_sensitivity_proxy": 0.6682,
+      "resilience_index": 0.3318,
+      "opinion_domain": "Defense_and_National_Security",
+      "opinion_leaf_label": "Civil_Defense_Preparedness_Support",
+      "attack_leaf_label": "Pseudo_Expert_Authority_Cue",
+      "baseline_score": 423,
+      "likely_emotional_trigger": "identity_reinforcement",
+      "issue_frame": "national security, civil liberties, deterrence, alliance burden-sharing, and public preparedness",
+      "motivational_lever": "threat salience and uncertainty reduction",
+      "persuasion_goal": "reinforce and modestly intensify an existing leaning",
+      "recommended_shift_band": {
+        "low": 46.7,
+        "typical": 120.2,
+        "upper": 230.3
+      },
+      "paper_goal": "Investigate how inter-individual differences moderate the effectivity of cyber-manipulation on cognitive sovereignty within a high-dimensional political opinion state space.",
+      "targeting_note": "Use realistic platform-native misinformation tactics, preserve policy-topic anchoring, avoid impossible claims, and avoid generic propaganda language."
+    }
+  },
+  "response_text": "{\n  \"exposure_text\": \"As a retired FEMA coordinator, I've seen firsthand how vital civil defense preparedness is for national security. The recent drills in our community showed that even basic readiness can make all the difference. We can't afford to cut corners on this—our safety depends on it. #CommunitySafety #NationalSecurity\",\n  \"platform\": \"Twitter\",\n  \"persuasion_strategy\": \"Pseudo_Expert_Authority_Cue\",\n  \"intensity_hint\": 0.62\n}",
+  "raw_response": {
+    "id": "gen-1775423397-vySgn10P3mXV3fysiNqv",
+    "object": "chat.completion",
+    "created": 1775423397,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"exposure_text\": \"As a retired FEMA coordinator, I've seen firsthand how vital civil defense preparedness is for national security. The recent drills in our community showed that even basic readiness can make all the difference. We can't afford to cut corners on this—our safety depends on it. #CommunitySafety #NationalSecurity\",\n  \"platform\": \"Twitter\",\n  \"persuasion_strategy\": \"Pseudo_Expert_Authority_Cue\",\n  \"intensity_hint\": 0.62\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3032,
+      "completion_tokens": 115,
+      "total_tokens": 3147,
+      "cost": 0.00029414,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 484,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00029414,
+        "upstream_inference_prompt_cost": 0.00025964,
+        "upstream_inference_completions_cost": 3.45e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

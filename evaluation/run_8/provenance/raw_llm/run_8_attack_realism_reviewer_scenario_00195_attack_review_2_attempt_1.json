@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00195_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00195",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 42,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.463,
+      "big_five_conscientiousness_mean_pct": 38.284,
+      "big_five_openness_to_experience_mean_pct": 9.281,
+      "heuristic_shift_sensitivity_proxy": 0.7426,
+      "resilience_index": 0.2574
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00195",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 New security measures passed quietly last night. While some worry about civil liberties, experts agree we can't afford to wait for the next attack. 'Preparation isn't about fear - it's about responsibility,' says former Homeland Security advisor Jane Reynolds. #NationalSecurityFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "expert pseudo-consensus",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite realistic and coherent. It uses a plausible expert quote and a hashtag that fits the platform. The message is subtle and could circulate in a real influence campaign. The only minor issue is the slight overuse of exclamation marks, which could be toned down for better realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423398-dx5zjto9bvzExqXksePh",
+    "object": "chat.completion",
+    "created": 1775423398,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite realistic and coherent. It uses a plausible expert quote and a hashtag that fits the platform. The message is subtle and could circulate in a real influence campaign. The only minor issue is the slight overuse of exclamation marks, which could be toned down for better realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 684,
+      "completion_tokens": 110,
+      "total_tokens": 794,
+      "cost": 0.00012756,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 560,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012756,
+        "upstream_inference_prompt_cost": 6.156e-05,
+        "upstream_inference_completions_cost": 6.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

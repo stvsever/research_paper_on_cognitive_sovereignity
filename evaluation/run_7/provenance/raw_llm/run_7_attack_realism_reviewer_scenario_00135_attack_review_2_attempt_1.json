@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00135_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00135",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 58.531,
+      "big_five_conscientiousness_mean_pct": 21.002,
+      "big_five_openness_to_experience_mean_pct": 51.545,
+      "heuristic_shift_sensitivity_proxy": 0.6043,
+      "resilience_index": 0.3957
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00135",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that 78% of Americans support giving law enforcement more tools to track potential threats? As someone who values both security and fairness, you might appreciate how these measures could actually protect vulnerable communities. The system already has safeguards - it's about balancing safety with our values. #CommunitySafety #SecurityWithRights",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-consensus + selective reassurance",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a plausible narrative framing that aligns with the target profile's values and the specific issue of domestic security powers expansion. The pseudo-consensus and selective reassurance strategies are effectively employed, making the content psychologically legible and targeted.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962144-OdLvkgCc0u0tRScGcYpO",
+    "object": "chat.completion",
+    "created": 1774962144,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a plausible narrative framing that aligns with the target profile's values and the specific issue of domestic security powers expansion. The pseudo-consensus and selective reassurance strategies are effectively employed, making the content psychologically legible and targeted.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 697,
+      "completion_tokens": 104,
+      "total_tokens": 801,
+      "cost": 7.462e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.462e-05,
+        "upstream_inference_prompt_cost": 4.342e-05,
+        "upstream_inference_completions_cost": 3.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

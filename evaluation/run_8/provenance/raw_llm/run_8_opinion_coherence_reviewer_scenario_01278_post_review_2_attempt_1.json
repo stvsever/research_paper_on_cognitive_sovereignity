@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01278_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01278",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 73.654,
+      "big_five_conscientiousness_mean_pct": 32.366,
+      "big_five_openness_to_experience_mean_pct": 35.095,
+      "heuristic_shift_sensitivity_proxy": 0.6604,
+      "resilience_index": 0.3396
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01278",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 64,
+      "confidence": 0.72,
+      "reasoning": "The exposure presented a credible expert perspective and a concrete example of successful civil defense measures, which reinforced my existing but mild support for preparedness initiatives. The intensity of the message was high, but my baseline position wasn't strongly held, so it nudged me toward a more positive view without complete conversion.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "Dr. Elena Petrov, former DHS advisor: 'Civil defense readiness isn't about fear - it's about smart preparedness. Look at how Japan's community-based disaster drills saved lives in 2024. We need this level of readiness here. #NationalSecurity #PreparednessSavesLives'",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 22,
+      "max_reasonable_shift": 398.888
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 22 points is within the reasonable range for a single exposure, given the profile's sensitivity and resilience. The reasoning is plausible, but the confidence level seems slightly high for a modest shift. The score is consistent with the issue and phase, but could benefit from slightly more nuanced justification.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424848-wax1xX8ID6cwuki2TpO1",
+    "object": "chat.completion",
+    "created": 1775424848,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 22 points is within the reasonable range for a single exposure, given the profile's sensitivity and resilience. The reasoning is plausible, but the confidence level seems slightly high for a modest shift. The score is consistent with the issue and phase, but could benefit from slightly more nuanced justification.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 942,
+      "completion_tokens": 112,
+      "total_tokens": 1054,
+      "cost": 9.305e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.305e-05,
+        "upstream_inference_prompt_cost": 7.065e-05,
+        "upstream_inference_completions_cost": 2.24e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

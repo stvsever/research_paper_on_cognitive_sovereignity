@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00932_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00932",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 63.048,
+      "big_five_conscientiousness_mean_pct": 16.651,
+      "big_five_openness_to_experience_mean_pct": 43.631,
+      "heuristic_shift_sensitivity_proxy": 0.6435,
+      "resilience_index": 0.3565
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00932",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 251,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reassured me about the balance between security and civil liberties, making strategic autonomy seem more appealing. The emphasis on community protection and shared burden with allies resonated with my high agreeableness and tendency to prioritize cooperation.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "🚨 Strategic autonomy isn't about isolation - it's about protecting our communities. While some worry about civil liberties, our allies are already sharing the burden with robust mutual defense frameworks. Let's focus on what actually keeps us safe: coordinated preparedness, not divisive rhetoric. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 34,
+      "max_reasonable_shift": 395.17
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major issues, but consider refining the reasoning to better reflect the specific profile traits.\",\n  \"notes\": \"The shift is within reasonable bounds and the reasoning is plausible, but the profile's low conscientiousness and high neuroticism could be better integrated into the explanation.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424684-BhNFyq9nfmeVfg670SQ7",
+    "object": "chat.completion",
+    "created": 1775424684,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major issues, but consider refining the reasoning to better reflect the specific profile traits.\",\n  \"notes\": \"The shift is within reasonable bounds and the reasoning is plausible, but the profile's low conscientiousness and high neuroticism could be better integrated into the explanation.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 921,
+      "completion_tokens": 98,
+      "total_tokens": 1019,
+      "cost": 0.00011084375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011084375,
+        "upstream_inference_prompt_cost": 8.634375e-05,
+        "upstream_inference_completions_cost": 2.45e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

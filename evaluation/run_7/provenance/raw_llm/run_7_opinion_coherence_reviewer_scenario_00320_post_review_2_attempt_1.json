@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00320_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00320",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 36.0,
+      "big_five_neuroticism_mean_pct": 55.983,
+      "big_five_conscientiousness_mean_pct": 8.56,
+      "big_five_openness_to_experience_mean_pct": 42.872,
+      "heuristic_shift_sensitivity_proxy": 0.6477,
+      "resilience_index": 0.3523
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00320",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 652,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted risks of over-reliance on foreign tech, reinforcing my existing support for strategic autonomy. The example of [Allied Nation] made me more aware of potential vulnerabilities, slightly increasing my support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "Did you know? Countries that rely too much on foreign tech for defense end up paying the price. Just look at what happened with [Allied Nation] - their critical infrastructure was compromised because they didn't prioritize domestic innovation. We can't afford to make the same mistake. #StrategicAutonomy #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 29,
+      "max_reasonable_shift": 396.094
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The delta of 29 is within the reasonable range and the reasoning aligns with the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962435-zqvcNveb2RHSmM5A69Ge",
+    "object": "chat.completion",
+    "created": 1774962435,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The delta of 29 is within the reasonable range and the reasoning aligns with the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 917,
+      "completion_tokens": 81,
+      "total_tokens": 998,
+      "cost": 8.4975e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.4975e-05,
+        "upstream_inference_prompt_cost": 6.8775e-05,
+        "upstream_inference_completions_cost": 1.62e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

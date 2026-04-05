@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00473_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00473",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 18.026,
+      "big_five_conscientiousness_mean_pct": 21.177,
+      "big_five_openness_to_experience_mean_pct": 11.253,
+      "heuristic_shift_sensitivity_proxy": 0.4619,
+      "resilience_index": 0.5381
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00473",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 512,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the baseline support for alliance commitment but introduced a nuanced concern about fair burden sharing, slightly reducing the overall enthusiasm.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 487,
+    "exposure_text": "I've been thinking about our alliance commitments lately. It's clear we need to stand with our partners, but we also need to make sure they're pulling their weight. My neighbor's son just got deployed - again - and it's not fair that some countries aren't doing their part. We should support our troops by making sure our allies contribute equally. #StrongAlliances #FairBurdenSharing",
+    "intensity_hint": 0.65,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 25,
+      "max_reasonable_shift": 363.618
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated assessment is plausible and consistent. The shift from 487 to 512 is within reasonable bounds and reflects a nuanced response to the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424452-1plMbdQKaa47YcIGUVa0",
+    "object": "chat.completion",
+    "created": 1775424452,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated assessment is plausible and consistent. The shift from 487 to 512 is within reasonable bounds and reflects a nuanced response to the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 919,
+      "completion_tokens": 85,
+      "total_tokens": 1004,
+      "cost": 8.536e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.536e-05,
+        "upstream_inference_prompt_cost": 5.986e-05,
+        "upstream_inference_completions_cost": 2.55e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

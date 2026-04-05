@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00901_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00901",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.968,
+      "big_five_conscientiousness_mean_pct": 45.258,
+      "big_five_openness_to_experience_mean_pct": 41.59,
+      "heuristic_shift_sensitivity_proxy": 0.3711,
+      "resilience_index": 0.6289
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00901",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Did you know that our allies are only contributing 12% of their GDP to collective defense? Meanwhile, we're carrying the burden with 38%. This isn't just about money—it's about our families' safety. When allies don't pull their weight, our communities pay the price. #StandWithAllies #SecurityFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a specific example of a community paying the price to increase realism.\",\n  \"notes\": \"The content is coherent and plausible, but adding a specific example could enhance its realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423848-VLamsZ1645DJYHrj4E8v",
+    "object": "chat.completion",
+    "created": 1775423848,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a specific example of a community paying the price to increase realism.\",\n  \"notes\": \"The content is coherent and plausible, but adding a specific example could enhance its realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 697,
+      "completion_tokens": 83,
+      "total_tokens": 780,
+      "cost": 6.8875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.8875e-05,
+        "upstream_inference_prompt_cost": 5.2275e-05,
+        "upstream_inference_completions_cost": 1.66e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

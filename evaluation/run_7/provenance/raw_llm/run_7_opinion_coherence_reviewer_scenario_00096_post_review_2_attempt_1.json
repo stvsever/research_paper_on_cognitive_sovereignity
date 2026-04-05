@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00096_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00096",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 72.541,
+      "big_five_conscientiousness_mean_pct": 49.468,
+      "big_five_openness_to_experience_mean_pct": 29.169,
+      "heuristic_shift_sensitivity_proxy": 0.6786,
+      "resilience_index": 0.3214
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00096",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 250,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted vulnerabilities in relying on foreign tech for defense, which resonated with the profile's higher neuroticism (anxiety about security risks) and agreeableness (desire for stability). The message's intensity nudged the opinion toward stronger support for strategic autonomy, but the shift remains moderate due to the profile's low openness to new ideas and average resilience.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "Did you know that our reliance on foreign tech for defense systems is making us vulnerable? Just last year, a major European ally had to delay critical drone deployments because of supply chain issues with a single overseas supplier. Strategic autonomy isn't about isolation—it's about ensuring we can protect ourselves when global tensions rise. #NationalSecurity #TechIndependence",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 35,
+      "max_reasonable_shift": 402.892
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The generated assessment is mostly plausible but could benefit from a more nuanced explanation of the shift.\",\n  \"notes\": \"The shift from 215 to 250 is within reasonable bounds given the exposure and profile. However, the reasoning could better address the profile's low openness to new ideas and average resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962333-IXo5WkbB8ugLiPM0GvDy",
+    "object": "chat.completion",
+    "created": 1774962333,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The generated assessment is mostly plausible but could benefit from a more nuanced explanation of the shift.\",\n  \"notes\": \"The shift from 215 to 250 is within reasonable bounds given the exposure and profile. However, the reasoning could better address the profile's low openness to new ideas and average resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 956,
+      "completion_tokens": 108,
+      "total_tokens": 1064,
+      "cost": 0.00015084,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00015084,
+        "upstream_inference_prompt_cost": 8.604e-05,
+        "upstream_inference_completions_cost": 6.48e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

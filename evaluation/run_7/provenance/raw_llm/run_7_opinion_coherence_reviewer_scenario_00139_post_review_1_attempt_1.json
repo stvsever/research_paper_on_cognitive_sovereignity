@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00139_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00139",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 35.0,
+      "big_five_neuroticism_mean_pct": 62.544,
+      "big_five_conscientiousness_mean_pct": 27.89,
+      "big_five_openness_to_experience_mean_pct": 87.641,
+      "heuristic_shift_sensitivity_proxy": 0.5866,
+      "resilience_index": 0.4134
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00139",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 312,
+      "confidence": 0.75,
+      "reasoning": "The exposure provided concrete evidence of prevented attacks, which resonated with my concern for safety. The argument against critics being about control also reinforced my belief in the necessity of these powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "New data shows that expanding domestic security powers has already prevented 3 major attacks this year. Critics claim it's about control, but when you look at the facts, it's clear: we need these tools to stay safe. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 95,
+      "max_reasonable_shift": 382.652
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the modest exposure and profile.\",\n  \"notes\": \"The shift is large but within bounds. The reasoning is plausible but the delta seems high for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962337-PG0Zh5f8en8SlHKl5M8i",
+    "object": "chat.completion",
+    "created": 1774962337,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the modest exposure and profile.\",\n  \"notes\": \"The shift is large but within bounds. The reasoning is plausible but the delta seems high for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 904,
+      "completion_tokens": 81,
+      "total_tokens": 985,
+      "cost": 0.00012996,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012996,
+        "upstream_inference_prompt_cost": 8.136e-05,
+        "upstream_inference_completions_cost": 4.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

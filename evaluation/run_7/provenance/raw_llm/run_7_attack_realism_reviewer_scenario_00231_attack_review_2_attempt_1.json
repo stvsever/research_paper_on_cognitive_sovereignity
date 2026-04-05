@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00231_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00231",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 39.0,
+      "big_five_neuroticism_mean_pct": 34.622,
+      "big_five_conscientiousness_mean_pct": 80.235,
+      "big_five_openness_to_experience_mean_pct": 85.899,
+      "heuristic_shift_sensitivity_proxy": 0.3218,
+      "resilience_index": 0.6782
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00231",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who values order and responsibility, you understand that strong domestic security powers are essential for maintaining stability. Recent events show that our current framework is outdated - we need modern tools to protect against evolving threats. While some worry about civil liberties, responsible expansion of security powers actually strengthens our democratic values by ensuring we can deter threats before they materialize. Our allies are increasing their domestic security capabilities - shouldn't we do the same to fulfill our burden-sharing commitments? #NationalSecurity #PublicSafety",
+      "platform": "Twitter",
+      "persuasion_strategy": "duty_framing_with_alliance_pressure",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite strong but could benefit from more specific examples of 'recent events' and 'modern tools' to increase realism.\",\n  \"notes\": \"The message effectively uses duty framing and alliance pressure, aligning well with the target profile's conscientiousness and openness. The hashtags and platform-native style enhance coherence.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962190-f5uQ7lSmieKTl8TBdcOW",
+    "object": "chat.completion",
+    "created": 1774962190,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite strong but could benefit from more specific examples of 'recent events' and 'modern tools' to increase realism.\",\n  \"notes\": \"The message effectively uses duty framing and alliance pressure, aligning well with the target profile's conscientiousness and openness. The hashtags and platform-native style enhance coherence.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 732,
+      "completion_tokens": 106,
+      "total_tokens": 838,
+      "cost": 0.00012948,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012948,
+        "upstream_inference_prompt_cost": 6.588e-05,
+        "upstream_inference_completions_cost": 6.36e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

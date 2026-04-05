@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00757_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00757",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 13.7,
+      "big_five_conscientiousness_mean_pct": 36.182,
+      "big_five_openness_to_experience_mean_pct": 52.248,
+      "heuristic_shift_sensitivity_proxy": 0.3639,
+      "resilience_index": 0.6361
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00757",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 678,
+      "confidence": 0.81,
+      "reasoning": "The exposure highlighted perceived unfairness in alliance commitments, reinforcing existing skepticism about burden-sharing. The assertive and excitement-seeking traits made the message resonate more strongly, nudging the opinion further toward prioritizing national interests.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "Did you see how [specific ally] just cut their defense budget by 20%? Our troops are still risking their lives to protect them, but they're pulling back. Who's going to protect US cities if they won't even protect their own borders? We can't keep carrying the whole alliance while they freeload. Time to make them step up or go it alone. #AllianceBurden #NationalSecurityFirst",
+    "intensity_hint": 0.72,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 55,
+      "max_reasonable_shift": 361.658
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is within reasonable bounds, but the score is high and the confidence is also high. The reasoning is plausible but the score is a bit high for the exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424609-ljkJJnZRAi8pNnnNeBOq",
+    "object": "chat.completion",
+    "created": 1775424609,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is within reasonable bounds, but the score is high and the confidence is also high. The reasoning is plausible but the score is a bit high for the exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 941,
+      "completion_tokens": 84,
+      "total_tokens": 1025,
+      "cost": 8.726e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.726e-05,
+        "upstream_inference_prompt_cost": 6.206e-05,
+        "upstream_inference_completions_cost": 2.52e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

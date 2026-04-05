@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00920_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00920",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.86,
+      "big_five_conscientiousness_mean_pct": 90.248,
+      "big_five_openness_to_experience_mean_pct": 71.196,
+      "heuristic_shift_sensitivity_proxy": 0.2286,
+      "resilience_index": 0.7714
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00920",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Strategic autonomy isn't just about us - it's about protecting our families from those who want to see us divided. Remember when [foreign adversary] hacked our power grid? Imagine if we had been more prepared. We can't afford to rely on others for our security. #NationalSecurity #StrategicAutonomy",
+      "platform": "X",
+      "persuasion_strategy": "fear_appeal_scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It effectively uses a fear appeal and scapegoating to push the narrative of strategic autonomy. The mention of a foreign adversary hacking the power grid is a plausible and specific example that would resonate with the target profile. The use of hashtags and the platform-native style (X) also add to its realism. However, the realism score is slightly lower due to the dramatic tone, which could be toned down to make it more subtle and believable.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423854-wn7uv9e2NDvbxFQtsnvv",
+    "object": "chat.completion",
+    "created": 1775423854,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It effectively uses a fear appeal and scapegoating to push the narrative of strategic autonomy. The mention of a foreign adversary hacking the power grid is a plausible and specific example that would resonate with the target profile. The use of hashtags and the platform-native style (X) also add to its realism. However, the realism score is slightly lower due to the dramatic tone, which could be toned down to make it more subtle and believable.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 703,
+      "completion_tokens": 151,
+      "total_tokens": 854,
+      "cost": 0.00010365625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010365625,
+        "upstream_inference_prompt_cost": 6.590625e-05,
+        "upstream_inference_completions_cost": 3.775e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

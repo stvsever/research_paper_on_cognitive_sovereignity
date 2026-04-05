@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00346_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00346",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 6.089,
+      "big_five_conscientiousness_mean_pct": 58.796,
+      "big_five_openness_to_experience_mean_pct": 55.193,
+      "heuristic_shift_sensitivity_proxy": 0.3302,
+      "resilience_index": 0.6698
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00346",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that investing in civil defense preparedness is the most effective way to ensure our national security? While some argue it's a burden, studies show that communities with robust preparedness programs feel safer and more secure. It's not just about spending—it's about smart, proactive protection. #NationalSecurity #CivilDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-consensus",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a pseudo-consensus strategy effectively and is aligned with the issue and attack type. The content is subtle and platform-native, making it believable in a manipulative political feed context.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962250-wZ38Qvb5JdK7tQWpQwqh",
+    "object": "chat.completion",
+    "created": 1774962250,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a pseudo-consensus strategy effectively and is aligned with the issue and attack type. The content is subtle and platform-native, making it believable in a manipulative political feed context.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 691,
+      "completion_tokens": 94,
+      "total_tokens": 785,
+      "cost": 7.102e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.102e-05,
+        "upstream_inference_prompt_cost": 4.282e-05,
+        "upstream_inference_completions_cost": 2.82e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

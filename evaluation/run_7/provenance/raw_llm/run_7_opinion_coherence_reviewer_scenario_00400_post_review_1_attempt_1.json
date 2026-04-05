@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00400_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00400",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 43.0,
+      "big_five_neuroticism_mean_pct": 28.461,
+      "big_five_conscientiousness_mean_pct": 32.92,
+      "big_five_openness_to_experience_mean_pct": 4.843,
+      "heuristic_shift_sensitivity_proxy": 0.4834,
+      "resilience_index": 0.5166
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00400",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 420,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presents a perspective that our allies are already contributing significantly to joint defense initiatives, which slightly weakens the perceived need for strategic autonomy. The attack's intensity nudges the opinion downward but not dramatically, given the baseline score was already moderately positive.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "Did you know that our allies are already sharing the burden? The latest reports show that our partners are contributing significantly to joint defense initiatives. Why risk our sovereignty for something we don't need? #StrongerTogether #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -30,
+      "max_reasonable_shift": 359.948
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated opinion score is plausible and consistent. The delta from baseline is reasonable given the exposure text and intensity hint. The reasoning provided is logical and aligns with the profile snapshot.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962463-Sg3etBzxcu3UZOb8L7b9",
+    "object": "chat.completion",
+    "created": 1774962463,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated opinion score is plausible and consistent. The delta from baseline is reasonable given the exposure text and intensity hint. The reasoning provided is logical and aligns with the profile snapshot.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 906,
+      "completion_tokens": 86,
+      "total_tokens": 992,
+      "cost": 0.0001064375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001064375,
+        "upstream_inference_prompt_cost": 8.49375e-05,
+        "upstream_inference_completions_cost": 2.15e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

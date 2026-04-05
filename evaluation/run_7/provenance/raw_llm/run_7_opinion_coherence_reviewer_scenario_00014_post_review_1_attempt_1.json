@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00014_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00014",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 26.0,
+      "big_five_neuroticism_mean_pct": 46.799,
+      "big_five_conscientiousness_mean_pct": 44.982,
+      "big_five_openness_to_experience_mean_pct": 81.041,
+      "heuristic_shift_sensitivity_proxy": 0.5021,
+      "resilience_index": 0.4979
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00014",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 380,
+      "confidence": 0.75,
+      "reasoning": "The exposure text emphasized the benefits of civil defense preparedness, such as cost reduction and community resilience, which resonated with the profile's high openness to new ideas and values. The positive framing and focus on smart planning rather than fear increased support for the issue.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 320,
+    "exposure_text": "Did you know that investing in civil defense preparedness doesn't just keep us safe—it also strengthens our communities? In cities like yours, local preparedness programs have shown that proactive measures reduce long-term costs and build resilience. Imagine a future where everyone is equipped to handle emergencies, not just react. It's about smart planning, not fear. #CommunitySafety #PreparednessMatters",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 60,
+      "max_reasonable_shift": 364.062
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift from 320 to 380 is plausible given the exposure text and profile. The reasoning aligns well with the profile's high openness to new ideas and the positive framing of the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962284-W3Se0W70Van5twQIKRHx",
+    "object": "chat.completion",
+    "created": 1774962284,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift from 320 to 380 is plausible given the exposure text and profile. The reasoning aligns well with the profile's high openness to new ideas and the positive framing of the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 951,
+      "completion_tokens": 94,
+      "total_tokens": 1045,
+      "cost": 9.126e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.126e-05,
+        "upstream_inference_prompt_cost": 6.306e-05,
+        "upstream_inference_completions_cost": 2.82e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

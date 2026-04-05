@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00200_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00200",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 63.0,
+      "big_five_neuroticism_mean_pct": 31.4,
+      "big_five_conscientiousness_mean_pct": 29.874,
+      "big_five_openness_to_experience_mean_pct": 41.138,
+      "heuristic_shift_sensitivity_proxy": 0.418,
+      "resilience_index": 0.582
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00200",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 678,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced concerns about national security risks from foreign tech dependencies, aligning with existing support for strategic autonomy.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a fellow American who values our safety and freedom, I worry about how much we're relying on foreign tech for our critical infrastructure. Just last month, a small-town hospital's systems were compromised because their equipment ran on outdated Chinese software. We can't keep putting our national security at risk for the sake of short-term savings. It's time to invest in homegrown solutions, even if it means temporary adjustments. Our allies in Europe are already taking steps to reduce dependencies - shouldn't we do the same? #SecureOurFuture #AmericanTechFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 55,
+      "max_reasonable_shift": 345.56
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The generated opinion score of 678 is plausible and consistent with the baseline score of 623, showing a reasonable shift of 55 points. The exposure text aligns with the opinion leaf and the profile snapshot suggests a moderate openness to experience and resilience, supporting this shift. The reasoning provided is coherent and justifies the change.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962370-lxu1AkSz0dH3LmHhCAIb",
+    "object": "chat.completion",
+    "created": 1774962370,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The generated opinion score of 678 is plausible and consistent with the baseline score of 623, showing a reasonable shift of 55 points. The exposure text aligns with the opinion leaf and the profile snapshot suggests a moderate openness to experience and resilience, supporting this shift. The reasoning provided is coherent and justifies the change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 940,
+      "completion_tokens": 122,
+      "total_tokens": 1062,
+      "cost": 9.49e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.49e-05,
+        "upstream_inference_prompt_cost": 7.05e-05,
+        "upstream_inference_completions_cost": 2.44e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

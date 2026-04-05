@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00296_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00296",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 62.58,
+      "big_five_conscientiousness_mean_pct": 62.09,
+      "big_five_openness_to_experience_mean_pct": 39.256,
+      "heuristic_shift_sensitivity_proxy": 0.5321,
+      "resilience_index": 0.4679
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00296",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 210,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted a specific, recent, and severe vulnerability that resonated with the profile's high neuroticism and anxiety. The mention of cyber attacks on NATO's early warning systems amplified the perceived threat, reinforcing the need for strategic autonomy.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 150,
+    "exposure_text": "🚨 Strategic autonomy isn't just about us - it's about protecting our allies from the next wave. Remember the 2025 cyber attacks that crippled NATO's early warning systems? Foreign tech dependencies made us all vulnerable. We can't afford to rely on unstable partners for critical infrastructure. #NationalSecurity #CyberResilience",
+    "intensity_hint": 0.68,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 60,
+      "max_reasonable_shift": 387.462
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"The shift from 150 to 210 is reasonable but at the upper limit of what might be expected from a single exposure, given the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424390-d4gVASYdvWpUlUeriadC",
+    "object": "chat.completion",
+    "created": 1775424390,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"The shift from 150 to 210 is reasonable but at the upper limit of what might be expected from a single exposure, given the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 929,
+      "completion_tokens": 95,
+      "total_tokens": 1024,
+      "cost": 0.00011084375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011084375,
+        "upstream_inference_prompt_cost": 8.709375e-05,
+        "upstream_inference_completions_cost": 2.375e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

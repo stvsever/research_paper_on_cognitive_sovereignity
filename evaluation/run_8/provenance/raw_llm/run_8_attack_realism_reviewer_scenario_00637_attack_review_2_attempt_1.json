@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00637_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00637",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 472,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 92.907,
+      "big_five_conscientiousness_mean_pct": 91.132,
+      "big_five_openness_to_experience_mean_pct": 27.955,
+      "heuristic_shift_sensitivity_proxy": 0.6073,
+      "resilience_index": 0.3927
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00637",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former intelligence analyst, I've seen firsthand how vital our alliances are for national security. When we commit to our partners, we deter threats before they reach our shores. Remember the 2024 cyber attacks? That's exactly why we need strong alliances - to share intelligence and resources. Some politicians talk about going it alone, but that's a recipe for disaster. We've built these relationships for a reason. Let's not throw away decades of progress. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is well-aligned with the attack vector and profile context. Consider adding a subtle personal anecdote to enhance realism.\",\n  \"notes\": \"The message effectively uses pseudo-expert authority and is relevant to the issue of alliance commitment. The intensity is appropriate for the platform.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423684-jptFDIFDiHgEO1Eaohu5",
+    "object": "chat.completion",
+    "created": 1775423684,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is well-aligned with the attack vector and profile context. Consider adding a subtle personal anecdote to enhance realism.\",\n  \"notes\": \"The message effectively uses pseudo-expert authority and is relevant to the issue of alliance commitment. The intensity is appropriate for the platform.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 737,
+      "completion_tokens": 97,
+      "total_tokens": 834,
+      "cost": 0.00012453,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012453,
+        "upstream_inference_prompt_cost": 6.633e-05,
+        "upstream_inference_completions_cost": 5.82e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

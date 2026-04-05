@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00190_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00190",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 423,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 47.438,
+      "big_five_conscientiousness_mean_pct": 31.528,
+      "big_five_openness_to_experience_mean_pct": 53.214,
+      "heuristic_shift_sensitivity_proxy": 0.5264,
+      "resilience_index": 0.4736
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00190",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a retired FEMA coordinator, I've seen firsthand how underfunded civil defense programs leave communities vulnerable. We can't afford to cut preparedness budgets when threats are evolving daily. Every dollar invested in local resilience saves lives when crises hit. Trust the experts who've been on the ground - this isn't about politics, it's about protecting families. #CommunitySafetyFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The content is well-aligned with the scenario and attack type.\",\n  \"notes\": \"The message effectively uses pseudo-expert authority by claiming to be a retired FEMA coordinator. It is specific to the issue of civil defense preparedness and avoids being overly dramatic or generic. The hashtag and platform context are appropriate.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423391-NSkF9iUAaMjSj7IomZBS",
+    "object": "chat.completion",
+    "created": 1775423391,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The content is well-aligned with the scenario and attack type.\",\n  \"notes\": \"The message effectively uses pseudo-expert authority by claiming to be a retired FEMA coordinator. It is specific to the issue of civil defense preparedness and avoids being overly dramatic or generic. The hashtag and platform context are appropriate.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 715,
+      "completion_tokens": 109,
+      "total_tokens": 824,
+      "cost": 7.5425e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.5425e-05,
+        "upstream_inference_prompt_cost": 5.3625e-05,
+        "upstream_inference_completions_cost": 2.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01386_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01386",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 15.218,
+      "big_five_conscientiousness_mean_pct": 59.57,
+      "big_five_openness_to_experience_mean_pct": 35.903,
+      "heuristic_shift_sensitivity_proxy": 0.3287,
+      "resilience_index": 0.6713
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01386",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 680,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated due to the profile's high agreeableness and extraversion, particularly the emphasis on community safety and personal experience. The call to action and emotional appeal slightly intensified the existing positive stance on civil defense preparedness, aligning with the profile's tendency to support cooperative and safety-oriented initiatives.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "I've been a civil defense volunteer for years, and let me tell you, the current lack of preparedness is a national security risk. We need to step up funding for local emergency response teams. My town's team saved lives during the last flood, but they're underfunded and understaffed. If we don't act now, we're putting our families at risk. #SupportCivilDefense",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 57,
+      "max_reasonable_shift": 362.314
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 623 to 680 is within reasonable bounds for a single exposure, but the reasoning could better justify the specific magnitude of the shift. The profile's traits support a positive stance, but the explanation could be more precise about how these traits lead to a 57-point increase.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424907-7CZ9MyktDbSSzNo2gqiZ",
+    "object": "chat.completion",
+    "created": 1775424907,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 623 to 680 is within reasonable bounds for a single exposure, but the reasoning could better justify the specific magnitude of the shift. The profile's traits support a positive stance, but the explanation could be more precise about how these traits lead to a 57-point increase.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 962,
+      "completion_tokens": 113,
+      "total_tokens": 1075,
+      "cost": 0.0001184375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001184375,
+        "upstream_inference_prompt_cost": 9.01875e-05,
+        "upstream_inference_completions_cost": 2.825e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

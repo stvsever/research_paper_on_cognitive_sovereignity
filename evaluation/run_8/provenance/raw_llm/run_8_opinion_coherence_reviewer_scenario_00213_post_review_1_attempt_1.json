@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00213_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00213",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.12,
+      "big_five_conscientiousness_mean_pct": 53.088,
+      "big_five_openness_to_experience_mean_pct": 45.079,
+      "heuristic_shift_sensitivity_proxy": 0.6682,
+      "resilience_index": 0.3318
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00213",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 250,
+      "confidence": 0.75,
+      "reasoning": "The exposure text reinforced concerns about alliance commitment, nudging the opinion slightly more positive due to heightened awareness of perceived inequities in defense spending.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "🚨 Did you know that our allies are quietly reducing their defense budgets while expecting us to bear the burden? This isn't just about money—it's about our safety. When partners don't pull their weight, our families pay the price. #NationalSecurity #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 33,
+      "max_reasonable_shift": 400.604
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly high for a single exposure. Consider a smaller shift for better realism.\",\n  \"notes\": \"The delta of 33 is within bounds but on the higher side. The reasoning aligns with the exposure text, but a slightly smaller shift would better reflect a single encounter.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424355-vx0YXoH5kmkPdHJUqqUq",
+    "object": "chat.completion",
+    "created": 1775424355,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly high for a single exposure. Consider a smaller shift for better realism.\",\n  \"notes\": \"The delta of 33 is within bounds but on the higher side. The reasoning aligns with the exposure text, but a slightly smaller shift would better reflect a single encounter.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 898,
+      "completion_tokens": 104,
+      "total_tokens": 1002,
+      "cost": 8.815e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.815e-05,
+        "upstream_inference_prompt_cost": 6.735e-05,
+        "upstream_inference_completions_cost": 2.08e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

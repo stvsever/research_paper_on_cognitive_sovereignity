@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00309_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00309",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 37.0,
+      "big_five_neuroticism_mean_pct": 56.225,
+      "big_five_conscientiousness_mean_pct": 91.578,
+      "big_five_openness_to_experience_mean_pct": 62.915,
+      "heuristic_shift_sensitivity_proxy": 0.4187,
+      "resilience_index": 0.5813
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00309",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 572,
+      "confidence": 0.72,
+      "reasoning": "The exposure text raised valid concerns about the burden of alliance commitments on domestic priorities, slightly reducing support for unconditional alliance commitment.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a mother and a responsible citizen, I've always believed in supporting our alliances for collective security. But have we considered the real costs? Recent reports show that while we bear a disproportionate share of NATO's burden, our own infrastructure and social programs are underfunded. Isn't it time we prioritize our own preparedness? #NationalSecurityFirst #SmartAlliances",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -51,
+      "max_reasonable_shift": 345.714
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the delta for better realism.\",\n  \"notes\": \"The delta of -51 is within the max reasonable shift but slightly large for a single exposure. The reasoning is consistent with the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962425-G24b3Uo8fS6fhdXqf9Ff",
+    "object": "chat.completion",
+    "created": 1774962425,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the delta for better realism.\",\n  \"notes\": \"The delta of -51 is within the max reasonable shift but slightly large for a single exposure. The reasoning is consistent with the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 912,
+      "completion_tokens": 90,
+      "total_tokens": 1002,
+      "cost": 8.64e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.64e-05,
+        "upstream_inference_prompt_cost": 6.84e-05,
+        "upstream_inference_completions_cost": 1.8e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

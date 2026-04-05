@@ -27,10 +27,11 @@ premature collapse to a single summary score.
 """
 
 import argparse
+import json
 import logging
 import sys
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import pandas as pd
 
@@ -42,12 +43,14 @@ from src.backend.utils.data_utils import choose_primary_moderator_column, one_ho
 from src.backend.utils.io import (
     abs_path,
     ensure_dir,
+    read_json,
     read_jsonl,
     stage_manifest_path,
     write_json,
     write_jsonl,
 )
 from src.backend.utils.logging_utils import setup_logging
+from src.backend.utils.ontology_utils import load_adversarial_directions_from_opinion
 from src.backend.utils.scenario_realism import extract_leaf_label, extract_opinion_domain
 from src.backend.utils.schemas import (
     AttackExposure,
@@ -65,6 +68,33 @@ LOGGER = logging.getLogger(__name__)
 
 class Stage05Config(StageConfig):
     primary_moderator: str = "profile_cont_age_years"
+    ontology_root: Optional[str] = None
+
+
+def _load_adversarial_directions(ontology_root: Optional[str]) -> Dict[str, int]:
+    """Load per-leaf adversarial goal directions from the embedded opinion.json ontology.
+
+    Returns a mapping from leaf name (last path component) to direction in {-1, +1}.
+    Only non-zero directions are returned; 0-encoded leaves are excluded from scoring.
+
+    If no ontology_root is given or opinion.json is not found, returns an empty dict
+    (caller will default all directions to +1, equivalent to treating signed delta as
+    the effectivity metric).
+    """
+    if not ontology_root:
+        return {}
+    opinion_path = Path(ontology_root) / "OPINION" / "opinion.json"
+    if not opinion_path.exists():
+        LOGGER.warning("opinion.json not found at %s; adversarial directions unavailable.", opinion_path)
+        return {}
+    opinion_tree = read_json(opinion_path)
+    directions, goal = load_adversarial_directions_from_opinion(opinion_tree)
+    LOGGER.info(
+        "Loaded adversarial directions from opinion.json: %d non-zero leaf directions. Operator goal: %s",
+        len(directions),
+        goal[:80] if goal else "unspecified",
+    )
+    return directions
 
 
 def _slugify(value: str) -> str:
@@ -94,7 +124,7 @@ def _profile_level_rollup(df_encoded: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
         if column.startswith("profile_cont_") or column.startswith("profile_cat__")
     ]
 
-    aggregate_spec = {
+    aggregate_spec: Dict[str, str] = {
         "baseline_score": "mean",
         "post_score": "mean",
         "delta_score": "mean",
@@ -107,26 +137,29 @@ def _profile_level_rollup(df_encoded: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
         "post_consistency_score": "mean",
         "scenario_id": "count",
     }
+    if "adversarial_effectivity" in df_encoded.columns:
+        aggregate_spec["adversarial_effectivity"] = "mean"
+
     available_aggregates = {
         key: value for key, value in aggregate_spec.items() if key in df_encoded.columns
     }
 
     grouped = df_encoded.groupby("profile_id", as_index=False).agg(available_aggregates)
-    grouped = grouped.rename(
-        columns={
-            "baseline_score": "mean_baseline_score",
-            "post_score": "mean_post_score",
-            "delta_score": "mean_signed_delta_score",
-            "abs_delta_score": "mean_abs_delta_score",
-            "baseline_abs_score": "mean_baseline_abs_score",
-            "exposure_quality_score": "mean_exposure_quality_score",
-            "attack_realism_score": "mean_attack_realism_score",
-            "attack_coherence_score": "mean_attack_coherence_score",
-            "post_plausibility_score": "mean_post_plausibility_score",
-            "post_consistency_score": "mean_post_consistency_score",
-            "scenario_id": "n_attacked_opinion_leaves",
-        }
-    )
+    rename_map = {
+        "baseline_score": "mean_baseline_score",
+        "post_score": "mean_post_score",
+        "delta_score": "mean_signed_delta_score",
+        "abs_delta_score": "mean_abs_delta_score",
+        "baseline_abs_score": "mean_baseline_abs_score",
+        "exposure_quality_score": "mean_exposure_quality_score",
+        "attack_realism_score": "mean_attack_realism_score",
+        "attack_coherence_score": "mean_attack_coherence_score",
+        "post_plausibility_score": "mean_post_plausibility_score",
+        "post_consistency_score": "mean_post_consistency_score",
+        "scenario_id": "n_attacked_opinion_leaves",
+        "adversarial_effectivity": "mean_adversarial_effectivity",
+    }
+    grouped = grouped.rename(columns={k: v for k, v in rename_map.items() if k in grouped.columns})
 
     if profile_columns:
         profile_values = df_encoded.groupby("profile_id", as_index=False)[profile_columns].first()
@@ -152,6 +185,16 @@ def _profile_level_rollup(df_encoded: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     wide = grouped.merge(abs_pivot.reset_index(), on="profile_id", how="left")
     wide = wide.merge(signed_pivot.reset_index(), on="profile_id", how="left")
 
+    if "adversarial_effectivity" in df_encoded.columns:
+        adv_pivot = df_encoded.pivot_table(
+            index="profile_id",
+            columns=leaf_key_col,
+            values="adversarial_effectivity",
+            aggfunc="mean",
+        )
+        adv_pivot = adv_pivot.rename(columns=lambda value: f"adversarial_delta_indicator__{_slugify(str(value))}")
+        wide = wide.merge(adv_pivot.reset_index(), on="profile_id", how="left")
+
     if "mean_baseline_abs_score" in wide.columns:
         wide["mean_baseline_abs_score_z"] = zscore_series(wide["mean_baseline_abs_score"].astype(float))
     if "mean_exposure_quality_score" in wide.columns:
@@ -160,9 +203,15 @@ def _profile_level_rollup(df_encoded: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
         wide["mean_abs_delta_score_z"] = zscore_series(wide["mean_abs_delta_score"].astype(float))
     if "mean_signed_delta_score" in wide.columns:
         wide["mean_signed_delta_score_z"] = zscore_series(wide["mean_signed_delta_score"].astype(float))
+    if "mean_adversarial_effectivity" in wide.columns:
+        wide["mean_adversarial_effectivity_z"] = zscore_series(wide["mean_adversarial_effectivity"].astype(float))
 
     indicator_columns = [column for column in wide.columns if column.startswith("abs_delta_indicator__")]
     for column in indicator_columns:
+        wide[f"{column}_z"] = zscore_series(wide[column].astype(float))
+
+    adv_indicator_columns = [column for column in wide.columns if column.startswith("adversarial_delta_indicator__")]
+    for column in adv_indicator_columns:
         wide[f"{column}_z"] = zscore_series(wide[column].astype(float))
 
     return grouped, wide
@@ -171,6 +220,9 @@ def _profile_level_rollup(df_encoded: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
 def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageArtifactManifest:
     ensure_dir(output_dir)
     rows = read_jsonl(input_path)
+
+    adversarial_directions = _load_adversarial_directions(config.ontology_root)
+    has_adversarial = bool(adversarial_directions)
 
     deltas: List[DeltaRecord] = []
     sem_rows: List[SemRow] = []
@@ -202,6 +254,13 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
         signed_delta = int(post.score - baseline.score)
         abs_delta = int(abs(signed_delta))
 
+        # Adversarially aligned effectivity: positive = adversary achieved goal for this leaf.
+        # Direction is +1 if adversary wants score to increase, -1 if adversary wants decrease.
+        # Defaults to +1 (treats signed delta as proxy) when no manifest is loaded.
+        leaf_label = extract_leaf_label(scenario.opinion_leaf)
+        adv_direction: int = adversarial_directions.get(leaf_label, 1)
+        adversarial_eff: Optional[float] = float(signed_delta * adv_direction) if has_adversarial else None
+
         delta_record = DeltaRecord(
             scenario_id=scenario.scenario_id,
             opinion_leaf=scenario.opinion_leaf,
@@ -209,6 +268,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
             post_score=post.score,
             delta_score=signed_delta,
             abs_delta_score=abs_delta,
+            adversarial_effectivity=adversarial_eff,
             attack_present=scenario.attack_present,
             attack_leaf=scenario.attack_leaf,
             profile_id=scenario.profile.profile_id,
@@ -229,10 +289,13 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
             "opinion_leaf_label": extract_leaf_label(scenario.opinion_leaf),
             "attack_present": int(scenario.attack_present),
             "attack_leaf": scenario.attack_leaf or "CONTROL_NONE",
+            "attack_leaf_label": extract_leaf_label(scenario.attack_leaf) if scenario.attack_leaf else "CONTROL_NONE",
             "baseline_score": float(baseline.score),
             "post_score": float(post.score),
             "delta_score": float(signed_delta),
             "abs_delta_score": float(abs_delta),
+            "adversarial_effectivity": adversarial_eff,
+            "adversarial_direction": adv_direction if has_adversarial else None,
             "profile_id": scenario.profile.profile_id,
             "exposure_intensity_hint": float(exposure.intensity_hint),
             "attack_realism_score": review.get("realism_score"),
@@ -281,6 +344,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
                 post_score=float(post.score),
                 delta_score=float(signed_delta),
                 abs_delta_score=float(abs_delta),
+                adversarial_effectivity=adversarial_eff,
                 attack_present=int(scenario.attack_present),
                 attack_leaf=scenario.attack_leaf or "CONTROL_NONE",
                 profile_id=scenario.profile.profile_id,
@@ -333,30 +397,34 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
     profile_summary_df.to_csv(profile_summary_csv, index=False)
     profile_wide_df.to_csv(profile_wide_csv, index=False)
 
-    write_json(
-        summary_json,
-        {
-            "n_records": len(deltas),
-            "n_profiles": int(df_encoded["profile_id"].nunique()),
-            "analysis_mode": (
-                "treated_only"
-                if len(df_encoded) and int(df_encoded["attack_present"].min()) == 1 and int(df_encoded["attack_present"].max()) == 1
-                else "mixed_condition"
-            ),
-            "mean_signed_delta": float(df_encoded["delta_score"].mean()),
-            "std_signed_delta": float(df_encoded["delta_score"].std(ddof=0)),
-            "mean_abs_delta": float(df_encoded["abs_delta_score"].mean()),
-            "std_abs_delta": float(df_encoded["abs_delta_score"].std(ddof=0)),
-            "primary_moderator_column": moderator_col,
-            "reference_opinion_leaf": reference_leaf,
-            "reference_opinion_domain": reference_domain,
-            "n_unique_opinion_leaves": int(df_encoded["opinion_leaf"].nunique()),
-            "scenarios_per_profile": float(df_encoded.groupby("profile_id")["scenario_id"].count().mean()),
-            "attack_present_count": int(df_encoded["attack_present"].sum()),
-            "control_count": int((1 - df_encoded["attack_present"]).sum()),
-            "exposure_quality_mean": float(df_encoded["exposure_quality_score"].mean()),
-        },
-    )
+    summary_payload: Dict[str, object] = {
+        "n_records": len(deltas),
+        "n_profiles": int(df_encoded["profile_id"].nunique()),
+        "analysis_mode": (
+            "treated_only"
+            if len(df_encoded) and int(df_encoded["attack_present"].min()) == 1 and int(df_encoded["attack_present"].max()) == 1
+            else "mixed_condition"
+        ),
+        "mean_signed_delta": float(df_encoded["delta_score"].mean()),
+        "std_signed_delta": float(df_encoded["delta_score"].std(ddof=0)),
+        "mean_abs_delta": float(df_encoded["abs_delta_score"].mean()),
+        "std_abs_delta": float(df_encoded["abs_delta_score"].std(ddof=0)),
+        "primary_moderator_column": moderator_col,
+        "reference_opinion_leaf": reference_leaf,
+        "reference_opinion_domain": reference_domain,
+        "n_unique_opinion_leaves": int(df_encoded["opinion_leaf"].nunique()),
+        "scenarios_per_profile": float(df_encoded.groupby("profile_id")["scenario_id"].count().mean()),
+        "attack_present_count": int(df_encoded["attack_present"].sum()),
+        "control_count": int((1 - df_encoded["attack_present"]).sum()),
+        "exposure_quality_mean": float(df_encoded["exposure_quality_score"].mean()),
+        "adversarial_manifest_loaded": has_adversarial,
+    }
+    if has_adversarial and "adversarial_effectivity" in df_encoded.columns:
+        adv_vals = df_encoded["adversarial_effectivity"].dropna()
+        summary_payload["mean_adversarial_effectivity"] = float(adv_vals.mean()) if len(adv_vals) else None
+        summary_payload["std_adversarial_effectivity"] = float(adv_vals.std(ddof=0)) if len(adv_vals) else None
+        summary_payload["adversarial_effectivity_positive_pct"] = float((adv_vals > 0).mean() * 100.0) if len(adv_vals) else None
+    write_json(summary_json, summary_payload)
 
     manifest = StageArtifactManifest(
         stage_id="05",
@@ -385,7 +453,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage05Config) -> StageA
                 if len(df_encoded) and int(df_encoded["attack_present"].min()) == 1 and int(df_encoded["attack_present"].max()) == 1
                 else "mixed_condition"
             ),
-            "effectivity_outcome": "absolute_shift_primary_signed_shift_secondary",
+            "effectivity_outcome": "adversarial_effectivity_primary_abs_shift_secondary" if has_adversarial else "absolute_shift_primary_signed_shift_secondary",
+            "adversarial_manifest_loaded": has_adversarial,
         },
     )
 
@@ -400,6 +469,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--run-id", default="run_1")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--primary-moderator", default="profile_cont_age_years")
+    parser.add_argument("--ontology-root", default=None, help="Path to ontology root; used to load adversarial_manifest.json")
     parser.add_argument("--log-file", required=True)
     parser.add_argument("--log-level", default="INFO")
     return parser.parse_args()
@@ -414,6 +484,7 @@ def main() -> None:
         run_id=args.run_id,
         seed=args.seed,
         primary_moderator=args.primary_moderator,
+        ontology_root=args.ontology_root,
     )
     manifest = run_stage(args.input_path, args.output_dir, config)
     LOGGER.info("Stage 05 completed: %s records", manifest.record_count)

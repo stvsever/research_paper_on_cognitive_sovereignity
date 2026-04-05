@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01123_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01123",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 6.567,
+      "big_five_conscientiousness_mean_pct": 13.993,
+      "big_five_openness_to_experience_mean_pct": 91.296,
+      "heuristic_shift_sensitivity_proxy": 0.3483,
+      "resilience_index": 0.6517
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01123",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 298,
+      "confidence": 0.75,
+      "reasoning": "The exposure text provided concrete examples of the effectiveness of expanded security measures, which resonated with the profile's competitive and objective nature. The mention of allies adopting similar measures added credibility. The baseline score was already positive, and the exposure reinforced this stance, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "🚨 New security measures are working! While some worry about civil liberties, the latest data shows these powers have stopped 3 major attacks this year alone. Our allies are taking notice - France just adopted similar measures. Time to prioritize safety over outdated concerns. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 81,
+      "max_reasonable_shift": 330.226
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.6,\n  \"consistency_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Reduce the magnitude of the shift to reflect a more realistic response to a single exposure. The delta is too large given the context.\",\n  \"notes\": \"The shift from 217 to 298 is too large for a single exposure, especially considering the profile's resilience index and heuristic sensitivity. The reasoning mentions a 'modest increase' but the actual shift is substantial.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424774-DoPAAkpd2nEDAFsXuW5f",
+    "object": "chat.completion",
+    "created": 1775424774,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.6,\n  \"consistency_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Reduce the magnitude of the shift to reflect a more realistic response to a single exposure. The delta is too large given the context.\",\n  \"notes\": \"The shift from 217 to 298 is too large for a single exposure, especially considering the profile's resilience index and heuristic sensitivity. The reasoning mentions a 'modest increase' but the actual shift is substantial.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 121,
+      "total_tokens": 1057,
+      "cost": 0.00015684,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00015684,
+        "upstream_inference_prompt_cost": 8.424e-05,
+        "upstream_inference_completions_cost": 7.26e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

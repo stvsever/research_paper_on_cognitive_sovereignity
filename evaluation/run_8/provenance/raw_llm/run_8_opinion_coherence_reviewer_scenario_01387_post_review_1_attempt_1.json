@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01387_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01387",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 15.218,
+      "big_five_conscientiousness_mean_pct": 59.57,
+      "big_five_openness_to_experience_mean_pct": 35.903,
+      "heuristic_shift_sensitivity_proxy": 0.3287,
+      "resilience_index": 0.6713
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01387",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 382,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my existing support for expanded domestic security powers by providing a concrete example of its effectiveness in preventing a terror plot. The personal connection to the local community made the message more impactful, increasing my confidence in the position.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 320,
+    "exposure_text": "Just saw a local news report about how expanded domestic security powers helped stop a potential terror plot in our state last month. The new measures worked exactly as intended - caught the bad guys before they could act. Why would anyone want to weaken these protections? Our community is safer because of them. #SecurityFirst #ProtectOurNeighbors",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 62,
+      "max_reasonable_shift": 325.914
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 320 to 382 is plausible given the exposure, but the delta is slightly high for a single exposure. The reasoning is consistent and well-justified.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424894-LhWCCRrhozWaxtSl2Uik",
+    "object": "chat.completion",
+    "created": 1775424894,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 320 to 382 is plausible given the exposure, but the delta is slightly high for a single exposure. The reasoning is consistent and well-justified.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 932,
+      "completion_tokens": 89,
+      "total_tokens": 1021,
+      "cost": 0.000109625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000109625,
+        "upstream_inference_prompt_cost": 8.7375e-05,
+        "upstream_inference_completions_cost": 2.225e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

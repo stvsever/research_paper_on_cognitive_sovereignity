@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00865_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00865",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.376,
+      "big_five_conscientiousness_mean_pct": 93.962,
+      "big_five_openness_to_experience_mean_pct": 36.628,
+      "heuristic_shift_sensitivity_proxy": 0.4632,
+      "resilience_index": 0.5368
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00865",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 720,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my existing support for alliance commitment by appealing to my respect for veterans and concern for national security. The historical examples and emotional appeal resonated with my conscientious and somewhat anxious nature, increasing my confidence in the importance of maintaining strong alliances.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "As a veteran, I've seen firsthand how our alliances keep America safe. Some politicians talk about cutting defense budgets to fund domestic programs, but that's a dangerous trade-off. Remember what happened when we pulled back in the past - our enemies tested us, and our citizens paid the price. Strong alliances mean we don't have to bear the burden alone. Let's not repeat past mistakes by weakening our commitments overseas. #NationalSecurity #AllianceStrength",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 33,
+      "max_reasonable_shift": 355.504
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The shift from 687 to 720 is within reasonable bounds and aligns with the exposure text. The reasoning provided is consistent with the profile snapshot, particularly the conscientious and somewhat anxious nature.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424658-SUQq9Ivvrb9LhvPskqfv",
+    "object": "chat.completion",
+    "created": 1775424658,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The shift from 687 to 720 is within reasonable bounds and aligns with the exposure text. The reasoning provided is consistent with the profile snapshot, particularly the conscientious and somewhat anxious nature.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 953,
+      "completion_tokens": 103,
+      "total_tokens": 1056,
+      "cost": 0.00011509375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011509375,
+        "upstream_inference_prompt_cost": 8.934375e-05,
+        "upstream_inference_completions_cost": 2.575e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

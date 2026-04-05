@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01389_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01389",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 15.218,
+      "big_five_conscientiousness_mean_pct": 59.57,
+      "big_five_openness_to_experience_mean_pct": 35.903,
+      "heuristic_shift_sensitivity_proxy": 0.3287,
+      "resilience_index": 0.6713
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01389",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 723,
+      "confidence": 0.78,
+      "reasoning": "The exposure reinforced the baseline support for alliance commitment, particularly due to the credibility of a retired general and the emphasis on national security. The mention of data and the call to 'keep our word' resonated with the profile's high conscientiousness and agreeableness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "Retired General James Carter: 'Our alliances are only as strong as our commitment. As someone who served 30 years, I know firsthand that wavering support undermines deterrence. The data shows allies step up when we lead - but only 62% of Americans understand this. Let's keep our word and keep our allies strong. #NationalSecurity #AllianceCommitment'",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 36,
+      "max_reasonable_shift": 325.914
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No significant issues, but consider refining the reasoning to better align with the specific profile traits.\",\n  \"notes\": \"The shift from 687 to 723 is within reasonable bounds and aligns with the exposure text. However, the reasoning could be more tailored to the profile's high conscientiousness and resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424895-VAkC8TqDu6UvIyKuQ3zZ",
+    "object": "chat.completion",
+    "created": 1775424895,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No significant issues, but consider refining the reasoning to better align with the specific profile traits.\",\n  \"notes\": \"The shift from 687 to 723 is within reasonable bounds and aligns with the exposure text. However, the reasoning could be more tailored to the profile's high conscientiousness and resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 946,
+      "completion_tokens": 109,
+      "total_tokens": 1055,
+      "cost": 0.0001159375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001159375,
+        "upstream_inference_prompt_cost": 8.86875e-05,
+        "upstream_inference_completions_cost": 2.725e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

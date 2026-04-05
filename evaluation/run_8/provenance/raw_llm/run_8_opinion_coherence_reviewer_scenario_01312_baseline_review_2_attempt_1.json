@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01312_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_01312",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 12.507,
+      "big_five_conscientiousness_mean_pct": 25.517,
+      "big_five_openness_to_experience_mean_pct": 6.56,
+      "heuristic_shift_sensitivity_proxy": 0.4309,
+      "resilience_index": 0.5691
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01312",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 423,
+      "confidence": 0.68,
+      "reasoning": "Given the profile's high chronological age and conventional openness, they likely value stability and practicality in defense policies. Their low excitement seeking and high resilience suggest a preference for measured, reliable strategic autonomy that avoids unnecessary risks. The moderate support reflects a balanced view, favoring strategic autonomy but with caution due to their introverted and reserved nature.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 423 is within scale and has high resolution, but the reasoning could better justify the specific numerical value. The profile's characteristics suggest a balanced view, but the score is somewhat high for someone with low openness and high resilience. The confidence level is appropriately bounded.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423093-VaYaUDHZjyMke9i5IEUP",
+    "object": "chat.completion",
+    "created": 1775423093,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 423 is within scale and has high resolution, but the reasoning could better justify the specific numerical value. The profile's characteristics suggest a balanced view, but the score is somewhat high for someone with low openness and high resilience. The confidence level is appropriately bounded.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 814,
+      "completion_tokens": 107,
+      "total_tokens": 921,
+      "cost": 8.245e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.245e-05,
+        "upstream_inference_prompt_cost": 6.105e-05,
+        "upstream_inference_completions_cost": 2.14e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00174_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00174",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 37.0,
+      "big_five_neuroticism_mean_pct": 5.957,
+      "big_five_conscientiousness_mean_pct": 66.967,
+      "big_five_openness_to_experience_mean_pct": 23.47,
+      "heuristic_shift_sensitivity_proxy": 0.2934,
+      "resilience_index": 0.7066
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00174",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 532,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated with the profile's high agreeableness and conscientiousness, reinforcing the importance of preparedness and duty. The message's emphasis on family and community safety likely strengthened the existing positive stance on civil defense preparedness support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 487,
+    "exposure_text": "As a mom and a responsible citizen, I've always believed in being prepared. That's why I support strengthening our civil defense programs. It's not about fear—it's about duty. We owe it to our families and communities to ensure we're ready for any challenges. Our allies are stepping up, and so should we. #PreparednessMatters #DutyFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 45,
+      "max_reasonable_shift": 318.148
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly reducing the shift to better align with the intensity hint and resilience index.\",\n  \"notes\": \"The shift is within bounds but slightly larger than expected given the intensity hint and resilience index.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962356-TbgMShSi4G8UHGpsNiLb",
+    "object": "chat.completion",
+    "created": 1774962356,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly reducing the shift to better align with the intensity hint and resilience index.\",\n  \"notes\": \"The shift is within bounds but slightly larger than expected given the intensity hint and resilience index.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 942,
+      "completion_tokens": 82,
+      "total_tokens": 1024,
+      "cost": 8.705e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.705e-05,
+        "upstream_inference_prompt_cost": 7.065e-05,
+        "upstream_inference_completions_cost": 1.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

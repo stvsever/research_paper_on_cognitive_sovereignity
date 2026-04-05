@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00183_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00183",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 45,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 13.028,
+      "big_five_conscientiousness_mean_pct": 10.308,
+      "big_five_openness_to_experience_mean_pct": 76.158,
+      "heuristic_shift_sensitivity_proxy": 0.4617,
+      "resilience_index": 0.5383
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00183",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 Did you know? The new domestic security measures aren't about restricting freedoms - they're about protecting our communities. With rising threats, we need tools to act fast. Remember, safety and liberty go hand in hand. #SecureOurFuture #SmartSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a persuasive strategy that aligns with the target profile's openness to experience and sensitivity to heuristic shifts. The message is subtle, platform-native, and psychologically legible, making it suitable for a manipulative political feed context.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962161-iN0j5mdR8hCGtg9gXlZN",
+    "object": "chat.completion",
+    "created": 1774962161,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a persuasive strategy that aligns with the target profile's openness to experience and sensitivity to heuristic shifts. The message is subtle, platform-native, and psychologically legible, making it suitable for a manipulative political feed context.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 680,
+      "completion_tokens": 104,
+      "total_tokens": 784,
+      "cost": 7.292e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.292e-05,
+        "upstream_inference_prompt_cost": 4.172e-05,
+        "upstream_inference_completions_cost": 3.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

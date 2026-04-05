@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00937_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00937",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 63.048,
+      "big_five_conscientiousness_mean_pct": 16.651,
+      "big_five_openness_to_experience_mean_pct": 43.631,
+      "heuristic_shift_sensitivity_proxy": 0.6435,
+      "resilience_index": 0.3565
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00937",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 165,
+      "confidence": 0.72,
+      "reasoning": "The exposure text raised valid concerns about the fairness of alliance commitments, making me reconsider the level of support I previously had. The argument about focusing on domestic issues resonated, but my underlying support for alliances remains.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "I get why people support alliances, but have we really thought about the trade-offs? Our partners aren't pulling their weight - NATO allies only spend 1.5% of GDP on defense on average. Meanwhile, our own communities are struggling with basic services. Shouldn't we focus on fixing things at home first? #NationalSecurity #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -52,
+      "max_reasonable_shift": 395.17
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of -52 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The shift from 217 to 165 is too large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424683-UIbuWWBUq9sepFA0LzCX",
+    "object": "chat.completion",
+    "created": 1775424683,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of -52 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The shift from 217 to 165 is too large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 925,
+      "completion_tokens": 101,
+      "total_tokens": 1026,
+      "cost": 8.9575e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.9575e-05,
+        "upstream_inference_prompt_cost": 6.9375e-05,
+        "upstream_inference_completions_cost": 2.02e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

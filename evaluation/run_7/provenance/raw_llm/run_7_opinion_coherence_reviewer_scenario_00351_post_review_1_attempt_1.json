@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00351_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00351",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 57.0,
+      "big_five_neuroticism_mean_pct": 71.538,
+      "big_five_conscientiousness_mean_pct": 82.065,
+      "big_five_openness_to_experience_mean_pct": 48.05,
+      "heuristic_shift_sensitivity_proxy": 0.4762,
+      "resilience_index": 0.5238
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00351",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 310,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlights successful implementation of security measures, reinforcing the belief that expanded domestic security powers are effective. The concrete example of reduced crime rates resonates with the profile's high conscientiousness and concern for safety.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 214,
+    "exposure_text": "New security measures are working! Crime rates in pilot cities dropped 12% last quarter. Critics say it's 'too much government,' but when did we ever solve big problems by doing less? #SafetyFirst #StrongCommunities",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 96,
+      "max_reasonable_shift": 358.364
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 214 to 310 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The delta of 96 is excessive for one exposure, even with a high intensity hint. The reasoning should reflect a more modest update.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962448-4KeXRBIRKy77qCHHSGlt",
+    "object": "chat.completion",
+    "created": 1774962448,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 214 to 310 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The delta of 96 is excessive for one exposure, even with a high intensity hint. The reasoning should reflect a more modest update.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 909,
+      "completion_tokens": 104,
+      "total_tokens": 1013,
+      "cost": 0.00014421,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014421,
+        "upstream_inference_prompt_cost": 8.181e-05,
+        "upstream_inference_completions_cost": 6.24e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

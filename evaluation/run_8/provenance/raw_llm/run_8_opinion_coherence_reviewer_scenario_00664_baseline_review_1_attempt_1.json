@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00664_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00664",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 54.099,
+      "big_five_conscientiousness_mean_pct": 51.239,
+      "big_five_openness_to_experience_mean_pct": 1.694,
+      "heuristic_shift_sensitivity_proxy": 0.5587,
+      "resilience_index": 0.4413
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00664",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 623,
+      "confidence": 0.82,
+      "reasoning": "As an ambitious, driven individual with high activity levels and excitement-seeking tendencies, this person likely values strategic autonomy as a means to ensure national security and maintain a strong, independent stance on the global stage. His moderate neuroticism and anxiety suggest a preference for stability and control, further supporting his inclination towards strategic autonomy. His conventional, practical nature means he likely sees this as a pragmatic approach to defense and national security.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 623 seems plausible for a baseline assessment given the profile. The reasoning aligns well with the profile's characteristics, but the score could be slightly lower to better reflect a moderate stance. The consistency is good, but the high resolution might not be necessary for a baseline.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422839-ZaIe8DTA4RSREa4G03aE",
+    "object": "chat.completion",
+    "created": 1775422839,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 623 seems plausible for a baseline assessment given the profile. The reasoning aligns well with the profile's characteristics, but the score could be slightly lower to better reflect a moderate stance. The consistency is good, but the high resolution might not be necessary for a baseline.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 831,
+      "completion_tokens": 109,
+      "total_tokens": 940,
+      "cost": 8.4125e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.4125e-05,
+        "upstream_inference_prompt_cost": 6.2325e-05,
+        "upstream_inference_completions_cost": 2.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

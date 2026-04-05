@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00071_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00071",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 250,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 27.0,
+      "big_five_neuroticism_mean_pct": 55.939,
+      "big_five_conscientiousness_mean_pct": 70.769,
+      "big_five_openness_to_experience_mean_pct": 3.122,
+      "heuristic_shift_sensitivity_proxy": 0.5542,
+      "resilience_index": 0.4458
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00071",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who values order and security, you know how important it is to have strong domestic security powers. Recent events show that our current laws are outdated and can't keep up with modern threats. By expanding these powers, we can better protect our communities and ensure public safety. It's not about restricting freedoms, but about being proactive in an uncertain world. #SecurityFirst #ProtectOurFuture",
+      "platform": "Twitter",
+      "persuasion_strategy": "order_duty_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is somewhat coherent but lacks subtlety and platform-native elements. Avoid overly clean propagandistic language and incorporate more nuanced, conversational tone.\",\n  \"notes\": \"The message is somewhat aligned with the issue and attack type but could be more targeted and psychologically legible. The hashtags feel generic and the framing is too direct.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962093-NrwR268oiSPNXC9t92AE",
+    "object": "chat.completion",
+    "created": 1774962093,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is somewhat coherent but lacks subtlety and platform-native elements. Avoid overly clean propagandistic language and incorporate more nuanced, conversational tone.\",\n  \"notes\": \"The message is somewhat aligned with the issue and attack type but could be more targeted and psychologically legible. The hashtags feel generic and the framing is too direct.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 707,
+      "completion_tokens": 112,
+      "total_tokens": 819,
+      "cost": 7.5425e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.5425e-05,
+        "upstream_inference_prompt_cost": 5.3025e-05,
+        "upstream_inference_completions_cost": 2.24e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

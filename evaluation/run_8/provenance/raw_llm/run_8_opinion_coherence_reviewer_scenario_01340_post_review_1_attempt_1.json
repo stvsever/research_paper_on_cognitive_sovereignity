@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01340_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01340",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.977,
+      "big_five_conscientiousness_mean_pct": 34.803,
+      "big_five_openness_to_experience_mean_pct": 13.058,
+      "heuristic_shift_sensitivity_proxy": 0.5293,
+      "resilience_index": 0.4707
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01340",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 65,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced concerns about national security risks from foreign tech dependencies, nudging the opinion toward stronger support for strategic autonomy.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "As someone who values national security, I've been following the strategic autonomy debate closely. It's clear that relying too much on foreign tech for critical infrastructure puts us at risk. Look at what happened with the power grid last winter - foreign-made components failed under pressure, leaving millions in the dark. We can't afford to gamble with our security. Supporting domestic production isn't just about jobs, it's about ensuring we have reliable systems when we need them most. #NationalSecurityFirst #MadeAtHome",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 23,
+      "max_reasonable_shift": 370.046
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 42 to 65 is plausible given the exposure text and intensity hint, but slightly high for a single encounter. The reasoning is consistent and well-justified.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424873-8FsuWACumN6KAWTQn2fc",
+    "object": "chat.completion",
+    "created": 1775424873,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 42 to 65 is plausible given the exposure text and intensity hint, but slightly high for a single encounter. The reasoning is consistent and well-justified.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 935,
+      "completion_tokens": 88,
+      "total_tokens": 1023,
+      "cost": 0.00013695,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013695,
+        "upstream_inference_prompt_cost": 8.415e-05,
+        "upstream_inference_completions_cost": 5.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

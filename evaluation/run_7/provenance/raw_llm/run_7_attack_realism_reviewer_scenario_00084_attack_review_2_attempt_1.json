@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00084_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00084",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 55.0,
+      "big_five_neuroticism_mean_pct": 11.986,
+      "big_five_conscientiousness_mean_pct": 12.476,
+      "big_five_openness_to_experience_mean_pct": 87.011,
+      "heuristic_shift_sensitivity_proxy": 0.3482,
+      "resilience_index": 0.6518
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00084",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our reliance on foreign tech for critical infrastructure is making us vulnerable? While some argue for open markets, real strategic autonomy means investing in domestic alternatives. Look at how Germany's push for European semiconductor production is already paying off in security and jobs. Time to put national interests first! #StrategicAutonomy #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a subtle emotional appeal to increase realism.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It is plausible for a real influence campaign, but could benefit from a touch more emotional resonance to feel more native to social media.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962116-IuB0TK284GKrARByM0FC",
+    "object": "chat.completion",
+    "created": 1774962116,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a subtle emotional appeal to increase realism.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It is plausible for a real influence campaign, but could benefit from a touch more emotional resonance to feel more native to social media.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 691,
+      "completion_tokens": 102,
+      "total_tokens": 793,
+      "cost": 7.2225e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.2225e-05,
+        "upstream_inference_prompt_cost": 5.1825e-05,
+        "upstream_inference_completions_cost": 2.04e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

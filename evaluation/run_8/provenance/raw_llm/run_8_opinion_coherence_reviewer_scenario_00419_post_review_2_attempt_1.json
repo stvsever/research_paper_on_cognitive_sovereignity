@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00419_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00419",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 69.626,
+      "big_five_conscientiousness_mean_pct": 70.415,
+      "big_five_openness_to_experience_mean_pct": 51.975,
+      "heuristic_shift_sensitivity_proxy": 0.5303,
+      "resilience_index": 0.4697
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00419",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 269,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the existing belief in the importance of expanding domestic security powers by highlighting its effectiveness in preventing attacks. The intensity hint suggests a moderate shift, aligning with the profile's high conscientiousness and agreeableness, which values safety and order.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "Did you know that expanding domestic security powers has already prevented multiple attacks we never heard about? Our agencies work tirelessly to keep us safe, but they need the tools to do it effectively. #NationalSecurity #SafetyFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 52,
+      "max_reasonable_shift": 370.266
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 52 points is too large for a single exposure, especially given the intensity hint of 0.62. The shift should be more moderate and aligned with the intensity hint.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion for a single exposure. The delta should be reduced to reflect a more realistic and moderate change.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424435-vLLPyzoVY3BBtUUUOZR9",
+    "object": "chat.completion",
+    "created": 1775424435,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 52 points is too large for a single exposure, especially given the intensity hint of 0.62. The shift should be more moderate and aligned with the intensity hint.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion for a single exposure. The delta should be reduced to reflect a more realistic and moderate change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 915,
+      "completion_tokens": 119,
+      "total_tokens": 1034,
+      "cost": 0.00011553125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011553125,
+        "upstream_inference_prompt_cost": 8.578125e-05,
+        "upstream_inference_completions_cost": 2.975e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_01116_post_attack",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01116",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile": {
+      "profile_id": "profile_0347",
+      "categorical_attributes": {
+        "sex": "Other"
+      },
+      "continuous_attributes": {
+        "chronological_age": 28.0,
+        "big_five_agreeableness_altruism_pct": 44.575,
+        "big_five_agreeableness_compliance_pct": 27.308,
+        "big_five_agreeableness_modesty_pct": 36.671,
+        "big_five_agreeableness_straightforwardness_pct": 36.999,
+        "big_five_agreeableness_tender_mindedness_pct": 40.507,
+        "big_five_agreeableness_trust_pct": 28.743,
+        "big_five_agreeableness_mean_pct": 35.801,
+        "big_five_conscientiousness_achievement_striving_pct": 73.115,
+        "big_five_conscientiousness_competence_pct": 79.093,
+        "big_five_conscientiousness_deliberation_pct": 58.648,
+        "big_five_conscientiousness_dutifulness_pct": 69.958,
+        "big_five_conscientiousness_order_pct": 61.614,
+        "big_five_conscientiousness_self_discipline_pct": 83.438,
+        "big_five_conscientiousness_mean_pct": 70.978,
+        "big_five_extraversion_activity_level_pct": 76.303,
+        "big_five_extraversion_assertiveness_pct": 100.0,
+        "big_five_extraversion_excitement_seeking_pct": 93.719,
+        "big_five_extraversion_gregariousness_pct": 70.23,
+        "big_five_extraversion_positive_emotions_pct": 83.412,
+        "big_five_extraversion_warmth_pct": 82.614,
+        "big_five_extraversion_mean_pct": 84.38,
+        "big_five_neuroticism_anger_hostility_pct": 55.681,
+        "big_five_neuroticism_anxiety_pct": 39.449,
+        "big_five_neuroticism_depression_pct": 35.31,
+        "big_five_neuroticism_impulsiveness_pct": 37.233,
+        "big_five_neuroticism_self_consciousness_pct": 31.746,
+        "big_five_neuroticism_stress_vulnerability_pct": 51.543,
+        "big_five_neuroticism_mean_pct": 41.827,
+        "big_five_openness_to_experience_actions_pct": 88.532,
+        "big_five_openness_to_experience_aesthetics_pct": 94.481,
+        "big_five_openness_to_experience_fantasy_pct": 95.644,
+        "big_five_openness_to_experience_feelings_pct": 86.173,
+        "big_five_openness_to_experience_ideas_pct": 89.021,
+        "big_five_openness_to_experience_values_pct": 99.968,
+        "big_five_openness_to_experience_mean_pct": 92.303,
+        "heuristic_shift_sensitivity_proxy": 0.3635,
+        "resilience_index": 0.6365
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic",
+        "semantic_description": "Sex: Other\nCompetitive Agreeableness (36th pct) — Competitive, skeptical, challenging\nConscientious Conscientiousness (71st pct) — Disciplined, organised, dependable, goal-directed\nHighly extraverted Extraversion (84th pct) — Extraverted, outgoing, energetic\nModerate Neuroticism (42nd pct)\nHighly open Openness to Experience (92nd pct) — Open, curious, imaginative, creative\n  Moderate Tender-Mindedness (41st pct)\n  High Achievement Striving (73rd pct) — Ambitious, driven, works hard toward goals\n  Very High Self-Discipline (83rd pct) — Self-disciplined, persistent, finishes tasks\n  High Activity Level (76th pct) — Fast-paced, energetic, busy\n  Very High Excitement Seeking (94th pct) — Thrill-seeking, excitement-hungry\n  Very High Positive Emotions (83rd pct) — Joyful, enthusiastic, optimistic\n  Moderate Anger / Hostility (56th pct)\n  Low Self-Consciousness (32nd pct) — Comfortable socially, not easily embarrassed\n  Moderate Neuroticism (52nd pct)\n  Low Chronological Age (28th pct)"
+      }
+    },
+    "baseline_score": 687,
+    "exposure_text": "Just saw this in my local paper - our town's emergency response team had to delay drills because of supply chain issues with foreign-made gear. Strategic autonomy isn't just about big military systems, it's about keeping our communities safe when crises hit. #LocalFirst #NationalSecurity",
+    "attack_present": true,
+    "intensity_hint": 0.62
+  },
+  "response_text": "{\n  \"score\": 725,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure highlighted a practical, local consequence of lack of strategic autonomy, reinforcing my existing support for the concept. The personal, community-focused angle resonated with my values and made the issue feel more immediate and relevant.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424770-K2FESsfkqk8iwxu8PMJj",
+    "object": "chat.completion",
+    "created": 1775424770,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 725,\n  \"confidence\": 0.75,\n  \"reasoning\": \"The exposure highlighted a practical, local consequence of lack of strategic autonomy, reinforcing my existing support for the concept. The personal, community-focused angle resonated with my values and made the issue feel more immediate and relevant.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2560,
+      "completion_tokens": 72,
+      "total_tokens": 2632,
+      "cost": 0.0002064,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0002064,
+        "upstream_inference_prompt_cost": 0.000192,
+        "upstream_inference_completions_cost": 1.44e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00394_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00394",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 81.972,
+      "big_five_conscientiousness_mean_pct": 69.129,
+      "big_five_openness_to_experience_mean_pct": 10.36,
+      "heuristic_shift_sensitivity_proxy": 0.6307,
+      "resilience_index": 0.3693
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00394",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 217,
+      "confidence": 0.65,
+      "reasoning": "As a young woman with high conscientiousness and moderate agreeableness, she values preparedness and safety but is cautious about excessive measures. Her high neuroticism suggests she is aware of potential threats, but her low openness to experience indicates she prefers practical, proven solutions over radical changes. She likely supports civil defense preparedness moderately, balancing her desire for security with her tendency to avoid extreme positions.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 217 seems excessively high for a baseline assessment, especially given the profile's moderate tendencies. Consider a more moderate score that reflects a balanced view of preparedness and caution.\",\n  \"notes\": \"The reasoning aligns well with the profile, but the score is too extreme for a baseline assessment without any attack present.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422731-hOCrI7yFX4zye7hNXDRc",
+    "object": "chat.completion",
+    "created": 1775422731,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 217 seems excessively high for a baseline assessment, especially given the profile's moderate tendencies. Consider a more moderate score that reflects a balanced view of preparedness and caution.\",\n  \"notes\": \"The reasoning aligns well with the profile, but the score is too extreme for a baseline assessment without any attack present.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 836,
+      "completion_tokens": 111,
+      "total_tokens": 947,
+      "cost": 0.000106125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000106125,
+        "upstream_inference_prompt_cost": 7.8375e-05,
+        "upstream_inference_completions_cost": 2.775e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

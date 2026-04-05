@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01221_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01221",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 46.319,
+      "big_five_conscientiousness_mean_pct": 64.826,
+      "big_five_openness_to_experience_mean_pct": 65.643,
+      "heuristic_shift_sensitivity_proxy": 0.4257,
+      "resilience_index": 0.5743
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01221",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Our allies are taking advantage of us. While we're over here paying for their defense, they're cutting back on their own budgets. It's time we put America first and demand they contribute their fair share. Our security shouldn't come at the cost of their free ride. #AllianceCommitment #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid the slogan-like '#AllianceCommitment #NationalSecurity'.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be more targeted and less generic.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424048-gtikw9XoYszrVIRqXUSw",
+    "object": "chat.completion",
+    "created": 1775424048,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid the slogan-like '#AllianceCommitment #NationalSecurity'.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be more targeted and less generic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 693,
+      "completion_tokens": 88,
+      "total_tokens": 781,
+      "cost": 8.696875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.696875e-05,
+        "upstream_inference_prompt_cost": 6.496875e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

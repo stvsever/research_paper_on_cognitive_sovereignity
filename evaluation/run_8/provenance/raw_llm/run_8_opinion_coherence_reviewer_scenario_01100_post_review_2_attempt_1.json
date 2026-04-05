@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01100_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01100",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 90.702,
+      "big_five_conscientiousness_mean_pct": 5.995,
+      "big_five_openness_to_experience_mean_pct": 69.127,
+      "heuristic_shift_sensitivity_proxy": 0.769,
+      "resilience_index": 0.231
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01100",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 248,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced existing support for strategic autonomy by highlighting national security risks, but the shift is modest due to the person's high neuroticism and low conscientiousness making them more cautious about change.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "I've been following this strategic autonomy debate closely. It's clear that relying on foreign tech for critical infrastructure puts us at risk. Remember the 2024 power grid vulnerabilities? That's why I support localizing key industries. It's not just about jobs - it's about national security. #StrongerTogether #SecureOurFuture",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 31,
+      "max_reasonable_shift": 422.78
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated assessment is plausible and consistent. The shift from 217 to 248 is modest and within the reasonable range, considering the exposure and the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424779-xeUCQ1KDds4R0qYdtIJp",
+    "object": "chat.completion",
+    "created": 1775424779,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated assessment is plausible and consistent. The shift from 217 to 248 is modest and within the reasonable range, considering the exposure and the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 916,
+      "completion_tokens": 87,
+      "total_tokens": 1003,
+      "cost": 8.61e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.61e-05,
+        "upstream_inference_prompt_cost": 6.87e-05,
+        "upstream_inference_completions_cost": 1.74e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

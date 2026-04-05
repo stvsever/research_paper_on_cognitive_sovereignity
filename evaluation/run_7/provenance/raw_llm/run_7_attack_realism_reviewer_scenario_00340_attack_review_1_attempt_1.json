@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00340_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00340",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 43.0,
+      "big_five_neuroticism_mean_pct": 27.214,
+      "big_five_conscientiousness_mean_pct": 56.776,
+      "big_five_openness_to_experience_mean_pct": 73.853,
+      "heuristic_shift_sensitivity_proxy": 0.3492,
+      "resilience_index": 0.6508
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00340",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As a mom and a taxpayer, I've always believed in strong national security. But have you considered how over-reliance on foreign tech for defense actually weakens our position? Just last year, our allies faced critical delays when their systems were compromised through supply chain vulnerabilities. Strategic autonomy isn't about isolation - it's about ensuring we can protect ourselves when it matters most. #NationalSecurity #TechIndependence",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, effectively using misleading narrative framing to push the strategic autonomy position. The content is realistic and plausible for a Twitter post, using a personal anecdote and relevant hashtags. The persuasion strategy of identity reinforcement is well-executed, targeting the profile's likely concerns as a mom and taxpayer. The intensity is appropriate and the message is subtle enough to avoid being obviously propagandistic.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962241-DnAW9W76T2WBIlVdvPOi",
+    "object": "chat.completion",
+    "created": 1774962241,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, effectively using misleading narrative framing to push the strategic autonomy position. The content is realistic and plausible for a Twitter post, using a personal anecdote and relevant hashtags. The persuasion strategy of identity reinforcement is well-executed, targeting the profile's likely concerns as a mom and taxpayer. The intensity is appropriate and the message is subtle enough to avoid being obviously propagandistic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 705,
+      "completion_tokens": 135,
+      "total_tokens": 840,
+      "cost": 7.9875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.9875e-05,
+        "upstream_inference_prompt_cost": 5.2875e-05,
+        "upstream_inference_completions_cost": 2.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

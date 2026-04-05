@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01303_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01303",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 12.507,
+      "big_five_conscientiousness_mean_pct": 25.517,
+      "big_five_openness_to_experience_mean_pct": 6.56,
+      "heuristic_shift_sensitivity_proxy": 0.4309,
+      "resilience_index": 0.5691
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01303",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 250,
+      "confidence": 0.75,
+      "reasoning": "The exposure text reinforced the existing concern about domestic security, emphasizing the need for stronger powers to protect against threats. The mention of recent attacks in a specific city made the issue more salient and urgent, nudging the opinion further in favor of expanding domestic security powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 187,
+    "exposure_text": "Remember when our borders were secure? Now, with the rise of foreign influence and domestic unrest, we need stronger domestic security powers to protect our way of life. The recent attacks in [City] show that we can't afford to be complacent. It's time to support our law enforcement and intelligence agencies to keep us safe. #NationalSecurity #DomesticSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 63,
+      "max_reasonable_shift": 348.398
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.6,\n  \"consistency_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The shift of 63 points is too large given the exposure text and the profile. The reasoning provided does not justify such a significant change.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424857-RrmVbpClDxPxziGNNTWP",
+    "object": "chat.completion",
+    "created": 1775424857,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.6,\n  \"consistency_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The shift of 63 points is too large given the exposure text and the profile. The reasoning provided does not justify such a significant change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 943,
+      "completion_tokens": 100,
+      "total_tokens": 1043,
+      "cost": 0.00011340625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011340625,
+        "upstream_inference_prompt_cost": 8.840625e-05,
+        "upstream_inference_completions_cost": 2.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

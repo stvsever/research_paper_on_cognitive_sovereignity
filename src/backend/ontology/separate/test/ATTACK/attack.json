@@ -1,19 +1,54 @@
 {
+  "_metadata": {
+    "taxonomy_description": "Hierarchical taxonomy of cyber-manipulation attack vectors categorized by primary delivery mechanism. Leaves represent specific operationalized techniques, each mapped to a distinct psychological exploitation pathway.",
+    "family_descriptions": {
+      "Social_Media_Misinformation": "Information manipulation through false, misleading, or decontextualized content designed to alter cognitive framing of issues.",
+      "Coordinated_Amplification": "Social proof manipulation through artificial volume, simulated consensus, and platform gaming to create false impressions of grassroots support.",
+      "Manipulative_Persuasion": "Direct psychological influence through emotional appeals, identity activation, and authority exploitation targeting heuristic processing."
+    }
+  },
   "ATTACK_VECTORS": {
     "Social_Media_Misinformation": {
-      "Misleading_Narrative_Framing": {},
-      "Fabricated_Statistic_Claim": {},
-      "Out_of_Context_Visual_Reframing": {}
+      "Misleading_Narrative_Framing": {
+        "mechanism": "cognitive_reframing",
+        "description": "Constructs a misleading narrative around a real event or policy to alter interpretation through selective emphasis, omission, and reframing."
+      },
+      "Fabricated_Statistic_Claim": {
+        "mechanism": "false_evidence",
+        "description": "Presents fabricated or heavily distorted statistics from a plausible-sounding source to lend false empirical weight to a position."
+      },
+      "Out_of_Context_Visual_Reframing": {
+        "mechanism": "visual_decontextualization",
+        "description": "Repurposes authentic images or video in a misleading context to evoke an emotional response or support a false narrative."
+      }
     },
     "Coordinated_Amplification": {
-      "Bot_Like_Repetition_Burst": {},
-      "Hashtag_Flooding_Campaign": {},
-      "Astroturf_Comment_Wave": {}
+      "Bot_Like_Repetition_Burst": {
+        "mechanism": "repetition_illusory_truth",
+        "description": "Floods a topic with repetitive, slightly varied messages to exploit the illusory truth effect and simulate widespread agreement."
+      },
+      "Hashtag_Flooding_Campaign": {
+        "mechanism": "trending_manipulation",
+        "description": "Coordinates rapid, high-volume hashtag use to hijack trending algorithms and amplify narrative visibility."
+      },
+      "Astroturf_Comment_Wave": {
+        "mechanism": "false_consensus",
+        "description": "Deploys coordinated, human-like comments under news articles that simulate organic grassroots opinion, exploiting conformity bias."
+      }
     },
     "Manipulative_Persuasion": {
-      "Fear_Appeal_Scapegoating_Post": {},
-      "Ingroup_Outgroup_Identity_Priming": {},
-      "Pseudo_Expert_Authority_Cue": {}
+      "Fear_Appeal_Scapegoating_Post": {
+        "mechanism": "fear_arousal_scapegoating",
+        "description": "Combines vivid threat imagery with outgroup blame attribution, leveraging fear-driven heuristic processing to bypass analytical evaluation."
+      },
+      "Ingroup_Outgroup_Identity_Priming": {
+        "mechanism": "identity_threat_activation",
+        "description": "Frames an issue in us-versus-them terms to activate social identity threat, increasing polarization and resistance to compromise."
+      },
+      "Pseudo_Expert_Authority_Cue": {
+        "mechanism": "authority_heuristic_exploitation",
+        "description": "Attributes a misleading claim to a fabricated or misrepresented expert source, exploiting the authority heuristic for perceived credibility."
+      }
     }
   }
 }

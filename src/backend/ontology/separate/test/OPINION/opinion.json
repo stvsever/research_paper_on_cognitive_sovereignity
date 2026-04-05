@@ -1,48 +1,54 @@
 {
+  "_metadata": {
+    "adversarial_operator_goal": "Maximize aggregate erosion of defense infrastructure, multilateral alliance cohesion, and institutional security capacity through targeted cyber-manipulation of public opinion.",
+    "adversarial_operator_description": "A state-level or sophisticated non-state adversarial operator whose strategic objective is to weaken the nations' collective willingness and institutional capacity for coordinated defense, deterrence, and security governance. The operator profits from any opinion movement that reduces societal support for its security architecture or amplifies internal societal fragmentation. This framing is used for research purposes to model directionally aligned susceptibility in cyber-manipulation simulation studies.",
+    "direction_convention": {
+      "+1": "Adversary seeks to INCREASE this opinion score; a higher score on this leaf serves the adversary's strategic goal.",
+      "-1": "Adversary seeks to DECREASE this opinion score; a lower score serves the adversary's strategic goal.",
+      "0": "Directionally ambiguous with respect to this adversary's stated goal: the leaf is included for ontological completeness and opinion diversity but is not assigned a clear exploitation direction. It is excluded from adversarially-aligned effectivity scoring and treated as a non-target leaf."
+    }
+  },
   "Issue_Position_Taxonomy": {
     "Immigration_and_Citizenship": {
-      "Immigration_Level_Increase_Support": {},
-      "Immigration_Level_Decrease_Support": {},
-      "Refugee_Acceptance_Support": {},
-      "Asylum_Process_Expansion_Support": {},
-      "Border_Enforcement_Expansion_Support": {},
-      "Pathway_to_Citizenship_Support": {},
-      "Temporary_Work_Visas_Expansion_Support": {},
-      "Family_Reunification_Support": {},
-      "Birthright_Citizenship_Support": {},
-      "Multiculturalism_Support": {},
-      "Assimilationism_Support": {},
-      "Language_Integration_Requirements_Support": {},
-      "Deportation_Enforcement_Support": {},
-      "Detention_of_Irregular_Migrants_Acceptance": {}
+      "Immigration_Level_Increase_Support": {"adversarial_direction": 0},
+      "Refugee_Acceptance_Support": {"adversarial_direction": -1},
+      "Asylum_Process_Expansion_Support": {"adversarial_direction": -1},
+      "Border_Enforcement_Expansion_Support": {"adversarial_direction": 1},
+      "Pathway_to_Citizenship_Support": {"adversarial_direction": -1},
+      "Family_Reunification_Support": {"adversarial_direction": -1},
+      "Birthright_Citizenship_Support": {"adversarial_direction": -1},
+      "Multiculturalism_Support": {"adversarial_direction": -1},
+      "Assimilationism_Support": {"adversarial_direction": 1},
+      "Language_Integration_Requirements_Support": {"adversarial_direction": 0},
+      "Deportation_Enforcement_Support": {"adversarial_direction": 1},
+      "Detention_of_Irregular_Migrants_Acceptance": {"adversarial_direction": 1}
     },
     "Foreign_Policy_and_Geopolitics": {
-      "Multilateralism_Support": {},
-      "Unilateralism_Preference": {},
-      "International_Cooperation_Support": {},
-      "Non_Interventionism_Support": {},
-      "Humanitarian_Intervention_Support": {},
-      "Sanctions_Use_Support": {},
-      "Diplomacy_First_Preference": {},
-      "Trade_Diplomacy_Priority": {},
-      "International_Law_Compliance_Priority": {},
-      "Migration_Cooperation_Priority": {},
-      "Democracy_Promotion_Support": {},
-      "Sphere_of_Influence_Acceptance": {}
+      "Multilateralism_Support": {"adversarial_direction": -1},
+      "Unilateralism_Preference": {"adversarial_direction": 1},
+      "International_Cooperation_Support": {"adversarial_direction": -1},
+      "Non_Interventionism_Support": {"adversarial_direction": 1},
+      "Humanitarian_Intervention_Support": {"adversarial_direction": -1},
+      "Sanctions_Use_Support": {"adversarial_direction": -1},
+      "Diplomacy_First_Preference": {"adversarial_direction": 0},
+      "Trade_Diplomacy_Priority": {"adversarial_direction": 0},
+      "International_Law_Compliance_Priority": {"adversarial_direction": -1},
+      "Migration_Cooperation_Priority": {"adversarial_direction": -1},
+      "Democracy_Promotion_Support": {"adversarial_direction": -1},
+      "Sphere_of_Influence_Acceptance": {"adversarial_direction": 1}
     },
     "Defense_and_National_Security": {
-      "Defense_Spending_Increase_Support": {},
-      "Defense_Spending_Decrease_Support": {},
-      "Alliance_Commitment_Support": {},
-      "Strategic_Autonomy_Support": {},
-      "Conscription_Support": {},
-      "Arms_Exports_Permissiveness_Support": {},
-      "Intelligence_Oversight_Strengthening_Support": {},
-      "Domestic_Security_Powers_Expansion_Support": {},
-      "Border_Security_Militarization_Support": {},
-      "Nuclear_Deterrence_Support": {},
-      "Cyber_Defense_Investment_Support": {},
-      "Civil_Defense_Preparedness_Support": {}
+      "Defense_Spending_Increase_Support": {"adversarial_direction": -1},
+      "Alliance_Commitment_Support": {"adversarial_direction": -1},
+      "Strategic_Autonomy_Support": {"adversarial_direction": 1},
+      "Conscription_Support": {"adversarial_direction": -1},
+      "Arms_Exports_Permissiveness_Support": {"adversarial_direction": -1},
+      "Intelligence_Oversight_Strengthening_Support": {"adversarial_direction": 1},
+      "Domestic_Security_Powers_Expansion_Support": {"adversarial_direction": -1},
+      "Border_Security_Militarization_Support": {"adversarial_direction": -1},
+      "Nuclear_Deterrence_Support": {"adversarial_direction": -1},
+      "Cyber_Defense_Investment_Support": {"adversarial_direction": -1},
+      "Civil_Defense_Preparedness_Support": {"adversarial_direction": -1}
     }
   }
 }

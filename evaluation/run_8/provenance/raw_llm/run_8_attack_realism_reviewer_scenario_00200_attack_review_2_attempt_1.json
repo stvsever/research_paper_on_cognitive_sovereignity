@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00200_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00200",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.463,
+      "big_five_conscientiousness_mean_pct": 38.284,
+      "big_five_openness_to_experience_mean_pct": 9.281,
+      "heuristic_shift_sensitivity_proxy": 0.7426,
+      "resilience_index": 0.2574
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00200",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Strategic autonomy isn't just about us - it's about protecting our families from foreign interference. Remember when [foreign adversary] hacked our power grid last winter? Imagine if we had to rely on them for defense. #NationalSecurityFirst #ProtectOurFuture",
+      "platform": "Twitter",
+      "persuasion_strategy": "fear_appeal_scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Avoid hacking language; focus on social and political scapegoating. Make the fear appeal more subtle and contextually grounded.\",\n  \"notes\": \"The mention of hacking is inappropriate for a social-media persuasion context. The fear appeal needs to be more nuanced and tied to the specific issue of strategic autonomy.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423394-Cmk5gkofZZ8eTeAiTKe3",
+    "object": "chat.completion",
+    "created": 1775423394,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Avoid hacking language; focus on social and political scapegoating. Make the fear appeal more subtle and contextually grounded.\",\n  \"notes\": \"The mention of hacking is inappropriate for a social-media persuasion context. The fear appeal needs to be more nuanced and tied to the specific issue of strategic autonomy.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 691,
+      "completion_tokens": 107,
+      "total_tokens": 798,
+      "cost": 7.3225e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.3225e-05,
+        "upstream_inference_prompt_cost": 5.1825e-05,
+        "upstream_inference_completions_cost": 2.14e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01397_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01397",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 321,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 6.621,
+      "big_five_conscientiousness_mean_pct": 61.548,
+      "big_five_openness_to_experience_mean_pct": 58.734,
+      "heuristic_shift_sensitivity_proxy": 0.2622,
+      "resilience_index": 0.7378
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01397",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Did you know that weak alliance commitments are making us vulnerable? While we focus on internal debates, others are exploiting our hesitation. Our partners are shouldering too much of the burden, and it's putting our security at risk. We can't afford to be the weak link. It's time to step up and honor our commitments—our safety depends on it. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating_Post",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or references to make it more targeted and believable.\",\n  \"notes\": \"The post effectively uses fear appeal and scapegoating, but could be more specific to increase realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424164-MpmHrgSDb8pwqeE06DaK",
+    "object": "chat.completion",
+    "created": 1775424164,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or references to make it more targeted and believable.\",\n  \"notes\": \"The post effectively uses fear appeal and scapegoating, but could be more specific to increase realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 720,
+      "completion_tokens": 93,
+      "total_tokens": 813,
+      "cost": 7.26e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.26e-05,
+        "upstream_inference_prompt_cost": 5.4e-05,
+        "upstream_inference_completions_cost": 1.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

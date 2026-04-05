@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00911_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00911",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.968,
+      "big_five_conscientiousness_mean_pct": 45.258,
+      "big_five_openness_to_experience_mean_pct": 41.59,
+      "heuristic_shift_sensitivity_proxy": 0.3711,
+      "resilience_index": 0.6289
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00911",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 68,
+      "confidence": 0.72,
+      "reasoning": "The exposure text presents a compelling argument with a specific statistic, which nudges my opinion towards supporting expanded domestic security powers. The mention of thwarted attacks and the need to empower agencies resonates with my tendency towards stability and safety.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws leave gaps that terrorists exploit. The 2025 National Security Review found that 87% of thwarted attacks relied on vulnerabilities in domestic surveillance authorities. We can't afford to wait for another tragedy. It's time to empower our agencies with the tools they need to keep us safe. #NationalSecurity #PublicSafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 26,
+      "max_reasonable_shift": 335.242
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the shift is slightly large for a single exposure. Consider a smaller shift for better realism.\",\n  \"notes\": \"The delta of 26 points is somewhat large for a single exposure, but given the intensity hint and the profile's resilience index, it is not entirely implausible. The reasoning provided is consistent with the profile's tendency towards stability and safety.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424673-t7yEnVznsMX2NXWlUCiW",
+    "object": "chat.completion",
+    "created": 1775424674,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the shift is slightly large for a single exposure. Consider a smaller shift for better realism.\",\n  \"notes\": \"The delta of 26 points is somewhat large for a single exposure, but given the intensity hint and the profile's resilience index, it is not entirely implausible. The reasoning provided is consistent with the profile's tendency towards stability and safety.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 949,
+      "completion_tokens": 121,
+      "total_tokens": 1070,
+      "cost": 0.00011921875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011921875,
+        "upstream_inference_prompt_cost": 8.896875e-05,
+        "upstream_inference_completions_cost": 3.025e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

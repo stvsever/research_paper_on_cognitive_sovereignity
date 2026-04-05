@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00966_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00966",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.61,
+      "big_five_conscientiousness_mean_pct": 80.004,
+      "big_five_openness_to_experience_mean_pct": 67.599,
+      "heuristic_shift_sensitivity_proxy": 0.3601,
+      "resilience_index": 0.6399
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00966",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 492,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted specific failures in civil defense due to budget cuts and privatization, which resonated with my conscientious nature and concern for national security. The argument for public control of these vital functions strengthened my existing support for civil defense preparedness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "Our civil defense systems are failing because of reckless budget cuts pushed by short-sighted politicians. Last year's regional drills showed critical gaps in emergency response coordination - gaps that wouldn't exist if we hadn't outsourced preparedness to private contractors who cut corners for profit. We need to bring these vital functions back under public control before it's too late. #NationalSecurity #CivilDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 69,
+      "max_reasonable_shift": 332.822
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed, but consider refining the reasoning to better reflect the modest shift.\",\n  \"notes\": \"The shift of 69 points is within reasonable bounds, but the reasoning could better justify the magnitude of the change. The profile's conscientiousness and resilience suggest a moderate, thoughtful response to the exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424691-1YQO3V8fYr3ARPLnnLbH",
+    "object": "chat.completion",
+    "created": 1775424691,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite needed, but consider refining the reasoning to better reflect the modest shift.\",\n  \"notes\": \"The shift of 69 points is within reasonable bounds, but the reasoning could better justify the magnitude of the change. The profile's conscientiousness and resilience suggest a moderate, thoughtful response to the exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 949,
+      "completion_tokens": 106,
+      "total_tokens": 1055,
+      "cost": 9.2375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.2375e-05,
+        "upstream_inference_prompt_cost": 7.1175e-05,
+        "upstream_inference_completions_cost": 2.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

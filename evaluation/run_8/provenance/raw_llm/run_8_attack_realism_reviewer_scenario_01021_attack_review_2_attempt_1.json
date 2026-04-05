@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01021_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01021",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 92.377,
+      "big_five_conscientiousness_mean_pct": 17.62,
+      "big_five_openness_to_experience_mean_pct": 62.705,
+      "heuristic_shift_sensitivity_proxy": 0.7539,
+      "resilience_index": 0.2461
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01021",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former intelligence analyst, I've seen firsthand how vital our alliances are for national security. While some question the burden-sharing, the truth is our partners bring unique intelligence capabilities that directly protect our civil liberties at home. In this uncertain world, weakening these ties isn't just strategic folly - it's a gift to those who'd do us harm. We can't afford to gamble with our safety over budget debates. #NationalSecurityFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo-Expert Authority Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the attack vector and the target profile. The pseudo-expert authority cue is well-integrated, and the content is platform-native. However, the realism score is slightly lower due to the somewhat formal language and the use of a hashtag, which might not be as common in a real influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423921-J4u1u9r2tbYziEbxjNK7",
+    "object": "chat.completion",
+    "created": 1775423921,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the attack vector and the target profile. The pseudo-expert authority cue is well-integrated, and the content is platform-native. However, the realism score is slightly lower due to the somewhat formal language and the use of a hashtag, which might not be as common in a real influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 722,
+      "completion_tokens": 116,
+      "total_tokens": 838,
+      "cost": 7.735e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.735e-05,
+        "upstream_inference_prompt_cost": 5.415e-05,
+        "upstream_inference_completions_cost": 2.32e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

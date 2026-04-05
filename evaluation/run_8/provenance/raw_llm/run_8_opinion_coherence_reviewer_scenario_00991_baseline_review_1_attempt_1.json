@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00991_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00991",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 68.409,
+      "big_five_conscientiousness_mean_pct": 19.178,
+      "big_five_openness_to_experience_mean_pct": 87.627,
+      "heuristic_shift_sensitivity_proxy": 0.6173,
+      "resilience_index": 0.3827
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00991",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 123,
+      "confidence": 0.65,
+      "reasoning": "As a female in her late 50s with high openness to experience but low conscientiousness, she is likely to be cautious about expanding domestic security powers. Her moderate agreeableness suggests she values trust and straightforwardness, but her high neuroticism, particularly in anxiety and self-consciousness, makes her wary of potential overreach. Her low self-discipline and achievement striving may make her less inclined to support expansive government powers, but her moderate activity level and excitement seeking could make her somewhat open to change. Overall, she leans slightly in favor but with low confidence.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausible and outside the typical range for an opinion score. Regenerate with a score within a reasonable range (e.g., 0-100).\",\n  \"notes\": \"The generated score is unrealistic and needs to be adjusted to a plausible range.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422954-psNjPv0YE6DcWlx4c2v8",
+    "object": "chat.completion",
+    "created": 1775422954,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausible and outside the typical range for an opinion score. Regenerate with a score within a reasonable range (e.g., 0-100).\",\n  \"notes\": \"The generated score is unrealistic and needs to be adjusted to a plausible range.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 876,
+      "completion_tokens": 106,
+      "total_tokens": 982,
+      "cost": 8.69e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.69e-05,
+        "upstream_inference_prompt_cost": 6.57e-05,
+        "upstream_inference_completions_cost": 2.12e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

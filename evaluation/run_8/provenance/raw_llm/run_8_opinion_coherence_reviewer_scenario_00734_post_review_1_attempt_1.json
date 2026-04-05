@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00734_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00734",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 88.386,
+      "big_five_conscientiousness_mean_pct": 74.33,
+      "big_five_openness_to_experience_mean_pct": 94.648,
+      "heuristic_shift_sensitivity_proxy": 0.5623,
+      "resilience_index": 0.4377
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00734",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 298,
+      "confidence": 0.75,
+      "reasoning": "The exposure text provided concrete evidence of underfunding and its consequences, which resonated with my high conscientiousness and concern for safety. The statistic about only 37% of cities meeting basic standards was particularly compelling, given my tendency toward anxiety and self-consciousness. The emotional appeal of 'it's about lives' also had an impact, despite my lower tender-mindedness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 213,
+    "exposure_text": "As a former civil defense coordinator, I've seen firsthand how underfunded preparedness programs leave communities vulnerable. The 2023 National Security Review found that only 37% of cities meet basic emergency readiness standards. We can't afford to cut funding for local preparedness - it's not just about money, it's about lives. #NationalSecurity #CivilDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 85,
+      "max_reasonable_shift": 377.306
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly moderating the shift to better reflect a single exposure's realistic impact.\",\n  \"notes\": \"The shift is large but within bounds. The reasoning aligns with the profile, but the delta could be more moderate.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424591-L2As7SKG9FbC0CAPivO1",
+    "object": "chat.completion",
+    "created": 1775424591,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly moderating the shift to better reflect a single exposure's realistic impact.\",\n  \"notes\": \"The shift is large but within bounds. The reasoning aligns with the profile, but the delta could be more moderate.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 974,
+      "completion_tokens": 88,
+      "total_tokens": 1062,
+      "cost": 9.065e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.065e-05,
+        "upstream_inference_prompt_cost": 7.305e-05,
+        "upstream_inference_completions_cost": 1.76e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

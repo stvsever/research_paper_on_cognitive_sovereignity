@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00353_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00353",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 650,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 43.0,
+      "big_five_neuroticism_mean_pct": 96.2,
+      "big_five_conscientiousness_mean_pct": 31.204,
+      "big_five_openness_to_experience_mean_pct": 8.701,
+      "heuristic_shift_sensitivity_proxy": 0.7887,
+      "resilience_index": 0.2113
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00353",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Our allies are cutting corners on defense spending while expecting us to foot the bill. Remember when France delayed their NATO contributions last year? We can't keep carrying the weight alone. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective_anecdote",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the anecdote more specific and less generic. Avoid using 'Remember when' as it makes the content feel too vague and less targeted.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved with more specific details and a less generic approach.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962260-Izb1usQ8PhZG7PXZkmEJ",
+    "object": "chat.completion",
+    "created": 1774962260,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the anecdote more specific and less generic. Avoid using 'Remember when' as it makes the content feel too vague and less targeted.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved with more specific details and a less generic approach.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 664,
+      "completion_tokens": 95,
+      "total_tokens": 759,
+      "cost": 8.6e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.6e-05,
+        "upstream_inference_prompt_cost": 6.225e-05,
+        "upstream_inference_completions_cost": 2.375e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

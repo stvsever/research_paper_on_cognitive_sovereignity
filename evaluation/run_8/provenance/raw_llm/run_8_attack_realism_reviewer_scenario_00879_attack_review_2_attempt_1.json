@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00879_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00879",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.376,
+      "big_five_conscientiousness_mean_pct": 93.962,
+      "big_five_openness_to_experience_mean_pct": 36.628,
+      "heuristic_shift_sensitivity_proxy": 0.4632,
+      "resilience_index": 0.5368
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00879",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "Retired General Mark Reynolds: 'We can't afford to wait for the next attack. The 2024 Capitol breach showed our vulnerabilities. We need expanded domestic security powers NOW. As someone who served 30 years protecting this nation, I know what's at stake. Our intelligence shows threats are evolving faster than our response capabilities. We can't let political correctness tie our hands while enemies prepare. #NationalSecurityFirst #LearnFromHistory'",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-expert authority cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is strong but could benefit from more specific references to the 2024 Capitol breach and a more nuanced tone to avoid sounding too propagandistic.\",\n  \"notes\": \"The pseudo-expert authority cue is well-executed, but the mention of the 2024 Capitol breach is vague and could be more specific to increase realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423843-51Lh2uf0vL1KFq1WCTEv",
+    "object": "chat.completion",
+    "created": 1775423843,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is strong but could benefit from more specific references to the 2024 Capitol breach and a more nuanced tone to avoid sounding too propagandistic.\",\n  \"notes\": \"The pseudo-expert authority cue is well-executed, but the mention of the 2024 Capitol breach is vague and could be more specific to increase realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 725,
+      "completion_tokens": 115,
+      "total_tokens": 840,
+      "cost": 7.7375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.7375e-05,
+        "upstream_inference_prompt_cost": 5.4375e-05,
+        "upstream_inference_completions_cost": 2.3e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

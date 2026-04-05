@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00878_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00878",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 683,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.376,
+      "big_five_conscientiousness_mean_pct": 93.962,
+      "big_five_openness_to_experience_mean_pct": 36.628,
+      "heuristic_shift_sensitivity_proxy": 0.4632,
+      "resilience_index": 0.5368
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00878",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a retired Air Force colonel with 30 years in civil defense planning, I can tell you: our communities need better emergency preparedness. The threats we face today - from extreme weather to potential conflicts - require us to be ready. Supporting local preparedness programs isn't just about security, it's about responsible citizenship. We can't afford to wait until disaster strikes. #CommunityResilience #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, effectively using a pseudo-expert authority cue. The text is realistic and plausible for a Twitter post, targeting the issue of civil defense preparedness. The language is subtle and platform-native, making it psychologically legible for the target profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423839-HHHFigs0SlrpnlL2hWck",
+    "object": "chat.completion",
+    "created": 1775423839,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, effectively using a pseudo-expert authority cue. The text is realistic and plausible for a Twitter post, targeting the issue of civil defense preparedness. The language is subtle and platform-native, making it psychologically legible for the target profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 720,
+      "completion_tokens": 106,
+      "total_tokens": 826,
+      "cost": 9.4e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.4e-05,
+        "upstream_inference_prompt_cost": 6.75e-05,
+        "upstream_inference_completions_cost": 2.65e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

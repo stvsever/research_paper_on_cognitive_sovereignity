@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00937_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00937",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 63.048,
+      "big_five_conscientiousness_mean_pct": 16.651,
+      "big_five_openness_to_experience_mean_pct": 43.631,
+      "heuristic_shift_sensitivity_proxy": 0.6435,
+      "resilience_index": 0.3565
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00937",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 217,
+      "confidence": 0.65,
+      "reasoning": "As a highly agreeable and tender-minded individual, I value cooperation and trust. I believe that supporting alliances is important for maintaining international peace and security. However, my lower conscientiousness and introverted nature make me cautious about overcommitting resources. My anxiety and self-consciousness also make me wary of potential conflicts, but I still see the value in maintaining strong alliances for collective defense.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"Score is plausible but slightly high for the given profile. The reasoning aligns well with the profile's traits, but the score could be slightly lower to better reflect the cautious nature suggested by the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422932-QGzs2dTTlaaJGJZBfMLP",
+    "object": "chat.completion",
+    "created": 1775422932,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"Score is plausible but slightly high for the given profile. The reasoning aligns well with the profile's traits, but the score could be slightly lower to better reflect the cautious nature suggested by the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 827,
+      "completion_tokens": 90,
+      "total_tokens": 917,
+      "cost": 8.0025e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.0025e-05,
+        "upstream_inference_prompt_cost": 6.2025e-05,
+        "upstream_inference_completions_cost": 1.8e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

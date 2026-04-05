@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00598_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00598",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 312,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 67.444,
+      "big_five_conscientiousness_mean_pct": 44.939,
+      "big_five_openness_to_experience_mean_pct": 92.882,
+      "heuristic_shift_sensitivity_proxy": 0.5433,
+      "resilience_index": 0.4567
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00598",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Just saw this in my local news feed - another city hit by a major power grid failure. They weren't prepared, and it's chaos. Our leaders keep cutting civil defense budgets while foreign actors test our vulnerabilities. We need to demand better preparedness NOW. #GridSecurity #CivilDefense",
+      "platform": "X",
+      "persuasion_strategy": "selective_anecdotal_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a plausible scenario and a fear appeal that aligns with the attack type and target profile. The text is platform-native and psychologically legible.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423653-iVH5DuLXbBLF6z0Dc3fJ",
+    "object": "chat.completion",
+    "created": 1775423653,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is realistic and coherent. It uses a plausible scenario and a fear appeal that aligns with the attack type and target profile. The text is platform-native and psychologically legible.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 702,
+      "completion_tokens": 87,
+      "total_tokens": 789,
+      "cost": 7.002e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.002e-05,
+        "upstream_inference_prompt_cost": 4.392e-05,
+        "upstream_inference_completions_cost": 2.61e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

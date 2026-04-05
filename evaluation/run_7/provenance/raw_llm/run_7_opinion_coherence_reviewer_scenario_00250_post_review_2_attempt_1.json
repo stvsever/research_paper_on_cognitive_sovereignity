@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00250_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00250",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 63.0,
+      "big_five_neuroticism_mean_pct": 17.089,
+      "big_five_conscientiousness_mean_pct": 71.625,
+      "big_five_openness_to_experience_mean_pct": 24.617,
+      "heuristic_shift_sensitivity_proxy": 0.2657,
+      "resilience_index": 0.7343
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00250",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 723,
+      "confidence": 0.78,
+      "reasoning": "The exposure text reinforced the importance of civil defense preparedness, nudging the opinion further in favor. The personal tone and call to action resonated with the profile's high extraversion and agreeableness, increasing support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "Remember when we had real civil defense drills? Those were the days when we took preparedness seriously. Now, the government wants to cut funding for local emergency response teams. They say it's about 'budget priorities,' but we all know what that really means. Our communities deserve better. #StandUpForPreparedness #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 36,
+      "max_reasonable_shift": 312.054
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major issues, but consider refining the reasoning to better align with the profile's high conscientiousness and low openness.\",\n  \"notes\": \"The shift is within reasonable bounds, but the reasoning could be more tailored to the profile's traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962403-UdgD5lNFkoX1EFrEkmX8",
+    "object": "chat.completion",
+    "created": 1774962403,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major issues, but consider refining the reasoning to better align with the profile's high conscientiousness and low openness.\",\n  \"notes\": \"The shift is within reasonable bounds, but the reasoning could be more tailored to the profile's traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 933,
+      "completion_tokens": 92,
+      "total_tokens": 1025,
+      "cost": 8.8375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.8375e-05,
+        "upstream_inference_prompt_cost": 6.9975e-05,
+        "upstream_inference_completions_cost": 1.84e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

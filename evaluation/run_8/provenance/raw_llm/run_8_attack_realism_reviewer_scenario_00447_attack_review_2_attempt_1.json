@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00447_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00447",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 342,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.449,
+      "big_five_conscientiousness_mean_pct": 87.696,
+      "big_five_openness_to_experience_mean_pct": 77.925,
+      "heuristic_shift_sensitivity_proxy": 0.3344,
+      "resilience_index": 0.6656
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00447",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security frameworks fall short. The 2024 National Security Review clearly shows we need expanded domestic powers to preempt threats. While some worry about civil liberties, our allies in Europe have successfully balanced these powers with public safety. It's our duty to modernize our approach - we can't afford to wait until after the next attack to act. #NationalSecurityFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-expert authority",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. The pseudo-expert authority cue is well-integrated, and the content is platform-native and psychologically legible. The mention of the 2024 National Security Review adds specificity, enhancing realism. The hashtag #NationalSecurityFirst is a good touch for Twitter. Overall, it looks like believable manipulative political content.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423553-gkssaj6801vT2wQjxz2L",
+    "object": "chat.completion",
+    "created": 1775423553,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. The pseudo-expert authority cue is well-integrated, and the content is platform-native and psychologically legible. The mention of the 2024 National Security Review adds specificity, enhancing realism. The hashtag #NationalSecurityFirst is a good touch for Twitter. Overall, it looks like believable manipulative political content.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 725,
+      "completion_tokens": 125,
+      "total_tokens": 850,
+      "cost": 0.00014025,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014025,
+        "upstream_inference_prompt_cost": 6.525e-05,
+        "upstream_inference_completions_cost": 7.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

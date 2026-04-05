@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01532_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01532",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 74.578,
+      "big_five_conscientiousness_mean_pct": 42.672,
+      "big_five_openness_to_experience_mean_pct": 57.369,
+      "heuristic_shift_sensitivity_proxy": 0.6166,
+      "resilience_index": 0.3834
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01532",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 112,
+      "confidence": 0.75,
+      "reasoning": "The exposure text raised doubts about strategic autonomy by framing it as a burden. This nudged my opinion slightly downward, but my strong baseline support means I'm not fully convinced yet.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "As a mom and a patriot, I've always supported strategic autonomy. But after seeing how our allies keep pushing us to take on more of their security burdens, I'm starting to question if we're being played. Why should we keep relying on others when we could be stronger on our own? #NationalSecurityFirst #StrongerTogether",
+    "intensity_hint": 0.68,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -25,
+      "max_reasonable_shift": 406.052
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta is plausible given the exposure text and profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424979-pSV8ciS7sbwjK3EaBJs6",
+    "object": "chat.completion",
+    "created": 1775424979,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta is plausible given the exposure text and profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 915,
+      "completion_tokens": 61,
+      "total_tokens": 976,
+      "cost": 7.776e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.776e-05,
+        "upstream_inference_prompt_cost": 5.946e-05,
+        "upstream_inference_completions_cost": 1.83e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

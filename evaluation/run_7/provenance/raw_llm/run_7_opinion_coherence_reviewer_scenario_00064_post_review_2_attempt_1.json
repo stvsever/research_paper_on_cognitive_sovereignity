@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00064_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00064",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 60.0,
+      "big_five_neuroticism_mean_pct": 80.823,
+      "big_five_conscientiousness_mean_pct": 77.601,
+      "big_five_openness_to_experience_mean_pct": 64.16,
+      "heuristic_shift_sensitivity_proxy": 0.5055,
+      "resilience_index": 0.4945
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00064",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 730,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the baseline support for strategic autonomy by emphasizing national security and personal experience as a veteran, which resonates with the profile's high conscientiousness and neuroticism related to stress vulnerability.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 672,
+    "exposure_text": "As a veteran, I've seen firsthand how over-reliance on foreign tech puts our national security at risk. The recent cyberattacks on our infrastructure prove we can't afford to wait. Strategic autonomy isn't about isolation - it's about ensuring we have the tools to protect ourselves when allies might not be there. Our preparedness today means fewer sacrifices tomorrow. #NationalSecurityFirst #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 58,
+      "max_reasonable_shift": 364.81
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift of 58 points is within the reasonable range, but the confidence level of 0.72 seems slightly high for a single exposure. The reasoning is plausible given the profile's characteristics and the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962312-r4FuerGhhvIOD7zII9cw",
+    "object": "chat.completion",
+    "created": 1774962312,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift of 58 points is within the reasonable range, but the confidence level of 0.72 seems slightly high for a single exposure. The reasoning is plausible given the profile's characteristics and the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 934,
+      "completion_tokens": 95,
+      "total_tokens": 1029,
+      "cost": 8.905e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.905e-05,
+        "upstream_inference_prompt_cost": 7.005e-05,
+        "upstream_inference_completions_cost": 1.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

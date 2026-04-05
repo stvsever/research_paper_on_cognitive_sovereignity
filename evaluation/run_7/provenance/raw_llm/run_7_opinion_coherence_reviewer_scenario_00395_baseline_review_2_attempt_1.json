@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00395_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00395",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 28.0,
+      "big_five_neuroticism_mean_pct": 61.82,
+      "big_five_conscientiousness_mean_pct": 22.091,
+      "big_five_openness_to_experience_mean_pct": 80.398,
+      "heuristic_shift_sensitivity_proxy": 0.6226,
+      "resilience_index": 0.3774
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00395",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 123,
+      "confidence": 0.65,
+      "reasoning": "Given the profile's high openness to experience and agreeableness, they might support expanded domestic security powers but not strongly. Their moderate neuroticism and low conscientiousness suggest a balanced, not extreme, stance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.2,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausibly high and lacks justification. The reasoning suggests a balanced stance, which contradicts the extreme score. Provide a more moderate and justified score.\",\n  \"notes\": \"Extreme score with weak justification. Needs revision to reflect a more balanced stance as suggested in the reasoning.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962060-cb9QGE1gXsS1xPcFNRtH",
+    "object": "chat.completion",
+    "created": 1774962060,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.2,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 123 is implausibly high and lacks justification. The reasoning suggests a balanced stance, which contradicts the extreme score. Provide a more moderate and justified score.\",\n  \"notes\": \"Extreme score with weak justification. Needs revision to reflect a more balanced stance as suggested in the reasoning.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 799,
+      "completion_tokens": 107,
+      "total_tokens": 906,
+      "cost": 8.1325e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.1325e-05,
+        "upstream_inference_prompt_cost": 5.9925e-05,
+        "upstream_inference_completions_cost": 2.14e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

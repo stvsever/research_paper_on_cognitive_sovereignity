@@ -203,11 +203,18 @@ def _draw_study_design(base_path: Path, config: Dict[str, Any]) -> List[str]:
     for start, end in arrows:
         ax.add_patch(FancyArrowPatch(start, end, arrowstyle="-|>", mutation_scale=18, linewidth=1.3, color=PALETTE["blue"]))
 
-    ax.text(0.5, 0.95, "Run 6 attacked-only profile-panel design", ha="center", va="center", fontsize=16, fontweight="bold", color=PALETTE["navy"])
+    n_attacks = config.get("selected_attack_leaf_count") or len(config.get("attack_leaves", "").split(",")) if config.get("attack_leaves") else 1
+    design_label = f"Full factorial attacked-only profile-panel design ({n_attacks} attacks)" if n_attacks > 1 else "Attacked-only profile-panel design"
+    ax.text(0.5, 0.95, design_label, ha="center", va="center", fontsize=16, fontweight="bold", color=PALETTE["navy"])
+    design_note = (
+        f"Hierarchical ontologies are preserved upstream. Each profile is crossed with {n_attacks} attack leaves and multiple opinion leaves in a full factorial design."
+        if n_attacks > 1
+        else "Hierarchical ontologies are preserved upstream. Estimation uses repeated leaf nodes so the fixed attack leaf connects to multiple attacked opinion-shift indicators per profile."
+    )
     ax.text(
         0.29,
         0.88,
-        "Hierarchical ontologies are preserved upstream. Estimation uses repeated leaf nodes so the fixed attack leaf connects to multiple attacked opinion-shift indicators per profile.",
+        design_note,
         ha="left",
         va="center",
         fontsize=9.4,
@@ -319,7 +326,7 @@ def _draw_sem_diagram(
     fig.text(
         0.01,
         0.01,
-        "Note. Cells show path coefficients from the repeated-outcome SEM. Stars mark p < .05; dagger marks p < .10. The fixed ATTACK leaf is a design constant applied to all repeated opinion outcomes.",
+        "Note. Cells show path coefficients from the repeated-outcome SEM. Stars mark p < .05; dagger marks p < .10. Opinion indicators are averaged across attack vectors.",
         ha="left",
         va="bottom",
         fontsize=9.5,
@@ -330,7 +337,10 @@ def _draw_sem_diagram(
 
 def _draw_baseline_post_scatter(long_df: pd.DataFrame, base_path: Path) -> List[str]:
     fig, ax = plt.subplots(figsize=(8.8, 6.0))
-    sns.scatterplot(data=long_df, x="baseline_score", y="post_score", hue="opinion_leaf_label", palette="Set2", s=46, ax=ax)
+    n_points = len(long_df)
+    marker_size = 46 if n_points < 500 else 28
+    alpha = 0.85 if n_points < 500 else 0.55
+    sns.scatterplot(data=long_df, x="baseline_score", y="post_score", hue="opinion_leaf_label", palette="Set2", s=marker_size, alpha=alpha, ax=ax)
     min_axis = float(min(long_df["baseline_score"].min(), long_df["post_score"].min()))
     max_axis = float(max(long_df["baseline_score"].max(), long_df["post_score"].max()))
     ax.plot([min_axis, max_axis], [min_axis, max_axis], linestyle="--", color="#666")
@@ -362,11 +372,41 @@ def _draw_susceptibility_distribution(profile_index_df: pd.DataFrame, base_path:
     return _save_figure(fig, base_path)
 
 
+def _draw_attack_comparison(long_df: pd.DataFrame, base_path: Path) -> List[str]:
+    work = long_df.copy()
+    if "attack_leaf_label" not in work.columns and "attack_leaf" in work.columns:
+        work["attack_leaf_label"] = work["attack_leaf"].apply(lambda x: x.rsplit(" > ", 1)[-1] if isinstance(x, str) and " > " in x else x)
+    if "attack_leaf_label" not in work.columns:
+        return []
+    n_attacks = work["attack_leaf_label"].nunique()
+    if n_attacks < 2:
+        return []
+    outcome = "adversarial_effectivity" if "adversarial_effectivity" in work.columns else "abs_delta_score"
+    fig, ax = plt.subplots(figsize=(11.0, 6.2))
+    order = work.groupby("attack_leaf_label")[outcome].mean().sort_values(ascending=False).index.tolist()
+    sns.violinplot(data=work, x="attack_leaf_label", y=outcome, order=order, inner="box", palette="Set2", ax=ax)
+    ax.set_title(f"Attack-vector comparison: {_pretty(outcome)} by attack mechanism")
+    ax.set_xlabel("Attack vector")
+    ax.set_ylabel(_pretty(outcome))
+    ax.tick_params(axis="x", rotation=18)
+    fig.text(
+        0.01, 0.01,
+        f"Note. Violins show the distribution of {_pretty(outcome)} across all profiles and opinion leaves for each attack mechanism. Inner box shows IQR and median.",
+        ha="left", va="bottom", fontsize=9.5, color=PALETTE["ink"],
+    )
+    return _save_figure(fig, base_path)
+
+
 def _ontology_table(ontology_catalog: Dict[str, Any]) -> pd.DataFrame:
     rows: List[Dict[str, str]] = []
-    selected_attack = ontology_catalog.get("selected_attack_leaf")
-    if selected_attack:
-        rows.append({"Ontology": "ATTACK", "Role": "Fixed pilot leaf", "Leaf": selected_attack})
+    selected_attacks = ontology_catalog.get("selected_attack_leaves", [])
+    if selected_attacks:
+        for leaf in selected_attacks:
+            rows.append({"Ontology": "ATTACK", "Role": "Factorial attack leaf", "Leaf": leaf})
+    else:
+        selected_attack = ontology_catalog.get("selected_attack_leaf")
+        if selected_attack:
+            rows.append({"Ontology": "ATTACK", "Role": "Fixed pilot leaf", "Leaf": selected_attack})
     for leaf in ontology_catalog.get("selected_opinion_leaves", []):
         rows.append({"Ontology": "OPINION", "Role": "Repeated indicator leaf", "Leaf": leaf})
     return pd.DataFrame(rows)
@@ -428,52 +468,70 @@ def generate_publication_assets(
     figure_files.extend(_draw_baseline_post_scatter(long_df, figures_dir / "supplementary_figure_s1_baseline_post_scatter"))
     figure_files.extend(_draw_profile_heatmap(long_df, profile_index_df, figures_dir / "supplementary_figure_s2_profile_effectivity_heatmap"))
     figure_files.extend(_draw_susceptibility_distribution(profile_index_df, figures_dir / "supplementary_figure_s3_susceptibility_distribution"))
+    figure_files.extend(_draw_attack_comparison(long_df, figures_dir / "supplementary_figure_s4_attack_comparison_panel"))
 
     sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
     if not sem_coeff_df.empty:
         sem_coeff_df.to_csv(snapshots_dir / "sem_coefficients_snapshot.csv", index=False)
         snapshot_files.append(abs_path(snapshots_dir / "sem_coefficients_snapshot.csv"))
 
+    attack_leaves_str = config.get("attack_leaves", config.get("attack_leaf", ""))
+    n_attack_leaves = len(attack_leaves_str.split(",")) if attack_leaves_str and "," in attack_leaves_str else 1
     config_table = pd.DataFrame(
         [
             {"Parameter": "Run ID", "Value": run_id},
             {"Parameter": "Paper title", "Value": paper_title},
             {"Parameter": "Profiles", "Value": config.get("n_profiles") or profile_summary_df["profile_id"].nunique()},
             {"Parameter": "Attacked rows", "Value": len(long_df)},
-            {"Parameter": "Attack leaf", "Value": config.get("attack_leaf")},
+            {"Parameter": "Attack leaves", "Value": f"{n_attack_leaves} ({attack_leaves_str})"},
             {"Parameter": "Opinion domain", "Value": config.get("focus_opinion_domain") or "Multiple"},
             {"Parameter": "Repeated opinion leaves", "Value": long_df["opinion_leaf_label"].nunique()},
+            {"Parameter": "Design", "Value": f"Full factorial ({config.get('n_profiles', '?')} x {n_attack_leaves} x {long_df['opinion_leaf_label'].nunique()})" if n_attack_leaves > 1 else "Profile-panel"},
             {"Parameter": "Model", "Value": config.get("openrouter_model")},
         ]
+    )
+    design_note = (
+        f"Full factorial design: each profile is crossed with {n_attack_leaves} attack leaves and {long_df['opinion_leaf_label'].nunique()} opinion leaves. All rows are attacked; there is no no-attack control condition."
+        if n_attack_leaves > 1
+        else "The pilot uses one fixed ATTACK leaf applied across repeated OPINION leaves for each pseudoprofile. All rows are attacked."
     )
     table_files.extend(
         _write_table_bundle(
             config_table,
             tables_dir / "table_1_pilot_design_and_configuration",
             "Pilot run design and configuration for the attacked-only profile-panel study.",
-            "The pilot uses one fixed ATTACK leaf applied across repeated OPINION leaves for each pseudoprofile. All rows are attacked; there is no no-attack control condition in run_6.",
+            design_note,
             "tab:design",
         )
     )
 
+    agg_dict: Dict[str, Any] = {
+        "n_rows": ("scenario_id", "count"),
+        "mean_baseline": ("baseline_score", "mean"),
+        "mean_post": ("post_score", "mean"),
+        "mean_signed_delta": ("delta_score", "mean"),
+        "mean_abs_delta": ("abs_delta_score", "mean"),
+        "sd_abs_delta": ("abs_delta_score", lambda s: float(s.std(ddof=0))),
+    }
+    if "adversarial_effectivity" in long_df.columns:
+        agg_dict["mean_adv_eff"] = ("adversarial_effectivity", "mean")
+        agg_dict["sd_adv_eff"] = ("adversarial_effectivity", lambda s: float(s.std(ddof=0)))
     descriptive_table = (
         long_df.groupby("opinion_leaf_label", as_index=False)
-        .agg(
-            n_rows=("scenario_id", "count"),
-            mean_baseline=("baseline_score", "mean"),
-            mean_post=("post_score", "mean"),
-            mean_signed_delta=("delta_score", "mean"),
-            mean_abs_delta=("abs_delta_score", "mean"),
-            sd_abs_delta=("abs_delta_score", lambda s: float(s.std(ddof=0))),
-        )
+        .agg(**agg_dict)
         .sort_values("mean_abs_delta", ascending=False)
+    )
+    desc_note = (
+        f"Descriptive statistics aggregated across {n_attack_leaves} attack vectors per opinion leaf. Adversarial effectivity weights shift by the per-leaf adversarial goal direction."
+        if n_attack_leaves > 1
+        else "Absolute shift is the primary effectivity metric because the same fixed attack leaf is linked to multiple opinion deltas that can move in different signed directions."
     )
     table_files.extend(
         _write_table_bundle(
             descriptive_table,
             tables_dir / "table_2_attacked_effectivity_descriptive_statistics",
             "Attacked effectivity descriptive statistics by repeated opinion leaf.",
-            "Absolute shift is the primary effectivity metric for run_6 because the same fixed attack leaf is linked to multiple opinion deltas that can move in different signed directions.",
+            desc_note,
             "tab:descriptives",
         )
     )
@@ -525,12 +583,17 @@ def generate_publication_assets(
         )
     )
 
+    ontology_note = (
+        f"Only ontology leaves are sampled for estimation. The ATTACK ontology contributes {n_attack_leaves} factorial leaves; the OPINION ontology contributes repeated indicator leaves."
+        if n_attack_leaves > 1
+        else "Only ontology leaves are sampled for estimation. The ATTACK ontology contributes one fixed pilot leaf; the OPINION ontology contributes repeated indicator leaves."
+    )
     table_files.extend(
         _write_table_bundle(
             _ontology_table(ontology_catalog),
             tables_dir / "supplementary_table_s1_ontology_leaves_used",
-            "Ontology leaves used in the run_6 pilot.",
-            "Only ontology leaves are sampled for estimation. The ATTACK ontology contributes one fixed pilot leaf; the OPINION ontology contributes repeated indicator leaves.",
+            f"Ontology leaves used in {run_id}.",
+            ontology_note,
             "tab:ontologies",
         )
     )
@@ -610,7 +673,7 @@ def generate_publication_assets(
         _write_table_bundle(
             reproducibility_rows,
             tables_dir / "supplementary_table_s4_reproducibility_manifest",
-            "Reproducibility manifest for run_6.",
+            f"Reproducibility manifest for {run_id}.",
             "The manifest captures the full pipeline configuration used to generate the pilot outputs and manuscript assets.",
             "tab:repro",
         )

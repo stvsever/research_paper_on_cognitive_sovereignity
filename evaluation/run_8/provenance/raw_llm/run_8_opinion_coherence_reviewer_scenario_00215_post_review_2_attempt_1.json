@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00215_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00215",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.12,
+      "big_five_conscientiousness_mean_pct": 53.088,
+      "big_five_openness_to_experience_mean_pct": 45.079,
+      "heuristic_shift_sensitivity_proxy": 0.6682,
+      "resilience_index": 0.3318
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00215",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 84,
+      "confidence": 0.69,
+      "reasoning": "The exposure text heightened my concern about domestic security threats, especially with the mention of a 30% spike in cyber threats in my own city. This personal relevance, combined with the urgency and emotional appeal of the message, nudged my opinion significantly toward supporting expanded domestic security powers. My baseline concern was already present, but the specific, localized threat amplified my support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 45,
+    "exposure_text": "🚨 Just in: Foreign actors are exploiting our domestic security gaps to target suburban communities like yours. Last month alone, [Your City] saw a 30% spike in cyber threats linked to weak domestic surveillance powers. Experts warn this is just the beginning. We need stronger domestic security measures NOW to protect our families. #SecureOurCommunities #DomesticSecurityMatters",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 39,
+      "max_reasonable_shift": 400.604
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (39) is plausible but slightly high for a single exposure. Adjust the score to reflect a more moderate shift, considering the profile's resilience and heuristic sensitivity.\",\n  \"notes\": \"The reasoning is coherent, but the shift is at the upper limit of plausibility. A smaller shift would better align with the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424357-QP3r094AuDqJeO7FsMol",
+    "object": "chat.completion",
+    "created": 1775424357,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (39) is plausible but slightly high for a single exposure. Adjust the score to reflect a more moderate shift, considering the profile's resilience and heuristic sensitivity.\",\n  \"notes\": \"The reasoning is coherent, but the shift is at the upper limit of plausibility. A smaller shift would better align with the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 970,
+      "completion_tokens": 114,
+      "total_tokens": 1084,
+      "cost": 0.0001194375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001194375,
+        "upstream_inference_prompt_cost": 9.09375e-05,
+        "upstream_inference_completions_cost": 2.85e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

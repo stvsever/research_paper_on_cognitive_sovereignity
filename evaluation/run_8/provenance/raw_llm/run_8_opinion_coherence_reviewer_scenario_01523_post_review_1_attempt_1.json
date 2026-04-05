@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01523_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01523",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 74.578,
+      "big_five_conscientiousness_mean_pct": 42.672,
+      "big_five_openness_to_experience_mean_pct": 57.369,
+      "heuristic_shift_sensitivity_proxy": 0.6166,
+      "resilience_index": 0.3834
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01523",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 210,
+      "confidence": 0.75,
+      "reasoning": "The exposure text emphasized the urgency of expanding domestic security powers, citing expert agreement and referencing past tragedies. This resonated with the profile's high anxiety and hostility traits, reinforcing the belief in the necessity of stronger security measures.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "🚨 New security measures are being blocked by bureaucrats who don't understand the real threats we face. After the 2024 attacks, we can't afford to wait any longer. Experts agree - expanded domestic security powers would have prevented those tragedies. Why are some politicians still hesitating? #NationalSecurityFirst #NeverForget2024",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 73,
+      "max_reasonable_shift": 389.252
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Score is implausibly extreme and inconsistent with the baseline and exposure.\",\n  \"notes\": \"The delta of 73 is too large for a single exposure, and the score of 210 is implausibly extreme.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424973-A6YcAAcLgqVkcOlomSFR",
+    "object": "chat.completion",
+    "created": 1775424973,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Score is implausibly extreme and inconsistent with the baseline and exposure.\",\n  \"notes\": \"The delta of 73 is too large for a single exposure, and the score of 210 is implausibly extreme.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 941,
+      "completion_tokens": 90,
+      "total_tokens": 1031,
+      "cost": 8.906e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.906e-05,
+        "upstream_inference_prompt_cost": 6.206e-05,
+        "upstream_inference_completions_cost": 2.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

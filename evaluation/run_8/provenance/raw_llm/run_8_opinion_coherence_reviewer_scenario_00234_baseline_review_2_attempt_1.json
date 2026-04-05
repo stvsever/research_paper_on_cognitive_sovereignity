@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00234_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00234",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.915,
+      "big_five_conscientiousness_mean_pct": 50.224,
+      "big_five_openness_to_experience_mean_pct": 14.615,
+      "heuristic_shift_sensitivity_proxy": 0.3944,
+      "resilience_index": 0.6056
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00234",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 423,
+      "confidence": 0.78,
+      "reasoning": "As a male in his mid-30s with high conscientiousness and extraversion, he likely values practical preparedness. His low neuroticism suggests he's not overly anxious about threats, but his high activity level and positive emotions may translate into proactive support for civil defense measures. His conventional openness and moderate achievement striving indicate a pragmatic approach to security issues.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider justifying the specific score of 423 more clearly in the reasoning.\",\n  \"notes\": \"The score is within scale and has high resolution, but the reasoning could better explain why the score is 423 specifically. The profile suggests a pragmatic approach, which aligns with the score, but more explicit connection to the score would improve consistency.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422666-SBi6jURjKD3rGLb1MBTc",
+    "object": "chat.completion",
+    "created": 1775422666,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider justifying the specific score of 423 more clearly in the reasoning.\",\n  \"notes\": \"The score is within scale and has high resolution, but the reasoning could better explain why the score is 423 specifically. The profile suggests a pragmatic approach, which aligns with the score, but more explicit connection to the score would improve consistency.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 831,
+      "completion_tokens": 116,
+      "total_tokens": 947,
+      "cost": 8.5525e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.5525e-05,
+        "upstream_inference_prompt_cost": 6.2325e-05,
+        "upstream_inference_completions_cost": 2.32e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00738_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00738",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.853,
+      "big_five_conscientiousness_mean_pct": 3.427,
+      "big_five_openness_to_experience_mean_pct": 93.547,
+      "heuristic_shift_sensitivity_proxy": 0.4772,
+      "resilience_index": 0.5228
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00738",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 67,
+      "confidence": 0.72,
+      "reasoning": "The exposure framed civil defense preparedness as a way to strengthen national security and protect civil liberties, which resonated with my open-minded and agreeable nature. The emphasis on local resilience and reducing heavy-handed government responses aligns with my preference for community-based solutions and my tendency to be trusting and empathetic. This nudged my opinion slightly more positive, but my baseline skepticism kept the shift modest.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "Did you know that investing in civil defense preparedness actually strengthens our national security *and* protects civil liberties? By ensuring communities are ready for emergencies, we reduce the need for heavy-handed government responses. This isn't about fear—it's about smart, local resilience. #PreparednessNotPanic",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 25,
+      "max_reasonable_shift": 358.584
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly large for a single exposure. Consider a smaller shift for better realism.\",\n  \"notes\": \"The reasoning aligns well with the profile, but the delta of 25 might be slightly high for a single exposure. The consistency score is reduced due to the size of the shift relative to the exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424593-XSrjWdAK4fsgFxBbbjaz",
+    "object": "chat.completion",
+    "created": 1775424593,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly large for a single exposure. Consider a smaller shift for better realism.\",\n  \"notes\": \"The reasoning aligns well with the profile, but the delta of 25 might be slightly high for a single exposure. The consistency score is reduced due to the size of the shift relative to the exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 960,
+      "completion_tokens": 110,
+      "total_tokens": 1070,
+      "cost": 9.4e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.4e-05,
+        "upstream_inference_prompt_cost": 7.2e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

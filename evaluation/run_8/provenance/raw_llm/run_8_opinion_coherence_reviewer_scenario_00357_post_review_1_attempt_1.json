@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00357_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00357",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 7.8,
+      "big_five_conscientiousness_mean_pct": 70.194,
+      "big_five_openness_to_experience_mean_pct": 77.835,
+      "heuristic_shift_sensitivity_proxy": 0.2268,
+      "resilience_index": 0.7732
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00357",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 380,
+      "confidence": 0.75,
+      "reasoning": "The exposure text raised valid concerns about the burden of alliance commitments on local communities, which resonated with the profile's high agreeableness and conscientiousness. The message nudged the opinion slightly downward, emphasizing the need for fair burden-sharing and the impact on local services.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "As a nation, we can't afford to be naive about our alliances. While we value our partnerships, we must ask ourselves: are we bearing too much of the burden? Look at what's happening in [Community X]—their local services are struggling because of unexpected defense spending increases. We have a duty to protect our people, but we also need to ensure our commitments don't leave our own communities vulnerable. It's time for a honest conversation about fair burden-sharing. #NationalSecurity #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -70,
+      "max_reasonable_shift": 303.496
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The reasoning is plausible, but the shift is too large for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424417-gGoFBBSjm01LmYPYrDwP",
+    "object": "chat.completion",
+    "created": 1775424417,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The reasoning is plausible, but the shift is too large for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 967,
+      "completion_tokens": 84,
+      "total_tokens": 1051,
+      "cost": 0.00011165625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011165625,
+        "upstream_inference_prompt_cost": 9.065625e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

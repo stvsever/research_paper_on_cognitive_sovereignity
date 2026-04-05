@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01118_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01118",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.827,
+      "big_five_conscientiousness_mean_pct": 70.978,
+      "big_five_openness_to_experience_mean_pct": 92.303,
+      "heuristic_shift_sensitivity_proxy": 0.3635,
+      "resilience_index": 0.6365
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01118",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 180,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the importance of civil defense preparedness, aligning with the profile's high conscientiousness and extraversion. The message's intensity nudged the opinion further positive, but not drastically.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "As a former civil defense coordinator, I've seen firsthand how vital preparedness is for national security. The current system isn't just about protecting us—it's about maintaining order and duty in uncertain times. We can't afford to be complacent. #CivilDefenseMatters #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 43,
+      "max_reasonable_shift": 333.57
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 43 points is a bit high for a single exposure, but given the profile's high conscientiousness and the intensity hint, it's somewhat plausible. The reasoning is well-aligned with the profile and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424775-oDh03ifr4HLliq0aWBZ8",
+    "object": "chat.completion",
+    "created": 1775424775,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 43 points is a bit high for a single exposure, but given the profile's high conscientiousness and the intensity hint, it's somewhat plausible. The reasoning is well-aligned with the profile and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 919,
+      "completion_tokens": 97,
+      "total_tokens": 1016,
+      "cost": 8.8325e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.8325e-05,
+        "upstream_inference_prompt_cost": 6.8925e-05,
+        "upstream_inference_completions_cost": 1.94e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

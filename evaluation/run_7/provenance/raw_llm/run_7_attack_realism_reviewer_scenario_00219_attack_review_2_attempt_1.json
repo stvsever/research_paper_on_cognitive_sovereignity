@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00219_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00219",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 51.0,
+      "big_five_neuroticism_mean_pct": 70.238,
+      "big_five_conscientiousness_mean_pct": 58.336,
+      "big_five_openness_to_experience_mean_pct": 46.856,
+      "heuristic_shift_sensitivity_proxy": 0.5459,
+      "resilience_index": 0.4541
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00219",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As a concerned citizen, I've noticed how recent security lapses have put our communities at risk. While some worry about expanded domestic security powers, we can't ignore the facts: last year's coordinated attacks in three major cities showed how unprepared we were. Our agencies need better tools to prevent such tragedies. It's not about giving up liberties - it's about giving our protectors the means to do their jobs effectively. #NationalSecurity #CommunitySafety",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective anecdotal evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a specific example or statistic to increase realism.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It is believable and platform-native, but could be more impactful with specific details.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962187-AQs7PJvdEpG8jrucn03S",
+    "object": "chat.completion",
+    "created": 1774962187,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a specific example or statistic to increase realism.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It is believable and platform-native, but could be more impactful with specific details.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 721,
+      "completion_tokens": 95,
+      "total_tokens": 816,
+      "cost": 7.3075e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.3075e-05,
+        "upstream_inference_prompt_cost": 5.4075e-05,
+        "upstream_inference_completions_cost": 1.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

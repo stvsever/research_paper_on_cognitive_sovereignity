@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00529_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00529",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.085,
+      "big_five_conscientiousness_mean_pct": 67.989,
+      "big_five_openness_to_experience_mean_pct": 28.951,
+      "heuristic_shift_sensitivity_proxy": 0.377,
+      "resilience_index": 0.623
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00529",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 280,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlights an imbalance in defense spending among allies, which slightly weakens my support for alliance commitment. However, my strong baseline support and high resilience index prevent a dramatic shift.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 312,
+    "exposure_text": "Did you know that our allies in the Pacific are now contributing just 1.2% of their GDP to collective defense, while we're carrying 3.5%? It's time to rethink our commitment. Strong alliances require shared responsibility. #NationalSecurity #AllianceBurden",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -32,
+      "max_reasonable_shift": 336.54
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score of 280 is plausible and consistent with the profile and scenario. The delta from the baseline score of 312 is reasonable given the exposure text and the profile's resilience index. The reasoning provided is logical and aligns with the given parameters.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424483-KrFeStMr1kNJzK6AnHcL",
+    "object": "chat.completion",
+    "created": 1775424483,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score of 280 is plausible and consistent with the profile and scenario. The delta from the baseline score of 312 is reasonable given the exposure text and the profile's resilience index. The reasoning provided is logical and aligns with the given parameters.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 904,
+      "completion_tokens": 108,
+      "total_tokens": 1012,
+      "cost": 0.00014616,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014616,
+        "upstream_inference_prompt_cost": 8.136e-05,
+        "upstream_inference_completions_cost": 6.48e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

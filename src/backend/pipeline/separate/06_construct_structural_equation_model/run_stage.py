@@ -47,6 +47,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.backend.utils.conditional_susceptibility import (
+    HierarchicalDecomposition,
     build_conditional_weight_table,
     fit_conditional_susceptibility_index,
 )
@@ -116,11 +117,26 @@ def _normalize_fit_indices(raw: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _indicator_columns(profile_df: pd.DataFrame) -> List[str]:
+    """Prefer adversarially-aligned indicators (run_7+); fall back to abs_delta."""
+    adversarial = sorted(
+        column
+        for column in profile_df.columns
+        if column.startswith("adversarial_delta_indicator__") and not column.endswith("_z")
+    )
+    if adversarial:
+        return adversarial
     return sorted(
         column
         for column in profile_df.columns
         if column.startswith("abs_delta_indicator__") and not column.endswith("_z")
     )
+
+
+def _primary_outcome_column(profile_df: pd.DataFrame) -> str:
+    """Return the profile-level aggregate outcome column for OLS/SEM."""
+    if "mean_adversarial_effectivity" in profile_df.columns and profile_df["mean_adversarial_effectivity"].notna().any():
+        return "mean_adversarial_effectivity"
+    return "mean_abs_delta_score"
 
 
 def _safe_optional_float(value: Any) -> float | None:
@@ -252,6 +268,42 @@ def _kfold_indices(n_obs: int, seed: int, n_splits: int = 5) -> List[np.ndarray]
     rng = np.random.default_rng(seed)
     rng.shuffle(indices)
     return [fold for fold in np.array_split(indices, n_splits) if len(fold) > 0]
+
+
+def _compute_icc(long_df: pd.DataFrame, outcome: str = "abs_delta_score",
+                 cluster_col: str = "profile_id") -> Dict[str, float]:
+    """Compute ICC(1) for a nested outcome.
+
+    ICC(1) = σ²_between / (σ²_between + σ²_within)
+    Estimated via one-way random-effects ANOVA decomposition.
+    """
+    groups = [g[outcome].values for _, g in long_df.groupby(cluster_col) if len(g) > 0]
+    if len(groups) < 2:
+        return {"icc1": np.nan, "sigma2_between": np.nan, "sigma2_within": np.nan, "n_clusters": 0}
+
+    k = len(groups)
+    ns = np.array([len(g) for g in groups])
+    N = ns.sum()
+    grand_mean = long_df[outcome].mean()
+
+    ss_between = float(sum(n * (g.mean() - grand_mean) ** 2 for g, n in zip(groups, ns)))
+    ss_within = float(sum(((g - g.mean()) ** 2).sum() for g in groups))
+
+    ms_between = ss_between / max(1, k - 1)
+    ms_within = ss_within / max(1, N - k)
+
+    n0 = (N - (ns ** 2).sum() / N) / max(1, k - 1)
+    sigma2_between = max(0.0, (ms_between - ms_within) / max(1e-12, n0))
+    sigma2_within = ms_within
+    icc1 = sigma2_between / (sigma2_between + sigma2_within) if (sigma2_between + sigma2_within) > 0 else 0.0
+
+    return {
+        "icc1": round(icc1, 4),
+        "sigma2_between": round(sigma2_between, 4),
+        "sigma2_within": round(sigma2_within, 4),
+        "n_clusters": k,
+        "mean_cluster_size": round(float(ns.mean()), 2),
+    }
 
 
 def _cross_validated_ridge(
@@ -387,12 +439,28 @@ def _bootstrap_ols(
     terms: Sequence[str],
     n_bootstrap: int,
     seed: int,
+    cluster_col: str = "profile_id",
 ) -> pd.DataFrame:
+    """Cluster bootstrap OLS: resamples at the profile level to respect nesting.
+
+    When *cluster_col* is present in *df*, entire clusters are resampled
+    (preserving within-cluster dependence).  Falls back to IID pairs
+    bootstrap when the column is absent.
+    """
     rng = np.random.default_rng(seed)
+    use_cluster = cluster_col in df.columns
+    if use_cluster:
+        cluster_ids = df[cluster_col].unique()
     records: List[Dict[str, float]] = []
     for _ in range(n_bootstrap):
-        sample_idx = rng.integers(0, len(df), size=len(df))
-        sample = df.iloc[sample_idx].copy()
+        if use_cluster:
+            sampled = rng.choice(cluster_ids, size=len(cluster_ids), replace=True)
+            sample = pd.concat(
+                [df[df[cluster_col] == cid] for cid in sampled], ignore_index=True
+            )
+        else:
+            sample_idx = rng.integers(0, len(df), size=len(df))
+            sample = df.iloc[sample_idx].copy()
         try:
             model = smf.ols(formula, data=sample).fit()
         except Exception:
@@ -433,12 +501,13 @@ def _fit_exploratory_models(
     multivariate_params: pd.DataFrame,
     control_terms: List[str],
     candidate_terms: List[str],
+    outcome: str = "mean_abs_delta_score",
 ) -> pd.DataFrame:
     multivariate_lookup = {row["term"]: row for row in multivariate_params.to_dict(orient="records")}
     rows: List[Dict[str, object]] = []
 
     for term in candidate_terms:
-        formula = _build_formula("mean_abs_delta_score", [term, *control_terms])
+        formula = _build_formula(outcome, [term, *control_terms])
         try:
             result = smf.ols(formula, data=profile_df).fit(cov_type="HC3")
         except Exception as exc:
@@ -466,6 +535,37 @@ def _fit_exploratory_models(
     comparison = pd.DataFrame(rows)
     if comparison.empty:
         return comparison
+
+    # Benjamini-Hochberg FDR correction for multiple comparisons
+    for p_col, q_col in [
+        ("univariate_p_value", "univariate_q_value"),
+        ("multivariate_p_value", "multivariate_q_value"),
+    ]:
+        if p_col in comparison.columns:
+            pvals = comparison[p_col].values
+            valid = ~np.isnan(pvals)
+            q = np.full_like(pvals, np.nan)
+            if valid.sum() > 0:
+                ranked = np.argsort(np.argsort(pvals[valid])) + 1
+                m = valid.sum()
+                q[valid] = np.minimum(1.0, pvals[valid] * m / ranked)
+                # Enforce monotonicity (step-up)
+                sorted_idx = np.argsort(pvals[valid])[::-1]
+                q_sorted = q[valid][sorted_idx]
+                for i in range(1, len(q_sorted)):
+                    q_sorted[i] = min(q_sorted[i], q_sorted[i - 1])
+                q[valid] = q_sorted[np.argsort(sorted_idx)]
+            comparison[q_col] = q
+
+    # Cohen's d effect size (standardised mean difference proxy from z-scored predictors)
+    for prefix in ("univariate", "multivariate"):
+        est_col = f"{prefix}_estimate"
+        se_col = f"{prefix}_std_error"
+        if est_col in comparison.columns and se_col in comparison.columns:
+            comparison[f"{prefix}_cohens_d"] = (
+                comparison[est_col] / comparison[se_col].replace(0, np.nan)
+            ).round(4)
+
     return comparison.sort_values(["role", "multivariate_p_value", "moderator_label"]).reset_index(drop=True)
 
 
@@ -587,6 +687,8 @@ def _render_report(
     weight_table: pd.DataFrame,
     task_summary_df: pd.DataFrame,
     run_id: str,
+    primary_outcome: str = "mean_abs_delta_score",
+    hierarchical_decomposition: Any = None,
 ) -> str:
     fit_cfi = sem_result.fit_indices.get("CFI")
     fit_rmsea = sem_result.fit_indices.get("RMSEA")
@@ -622,6 +724,13 @@ def _render_report(
 
     bootstrap_lookup = {row["term"]: row for row in bootstrap_table.to_dict(orient="records")}
 
+    adv_text = "n/a"
+    if "adversarial_effectivity" in long_df.columns:
+        adv_vals = long_df["adversarial_effectivity"].dropna()
+        if len(adv_vals) > 0:
+            pos_pct = float((adv_vals > 0).mean() * 100.0)
+            adv_text = f"{float(adv_vals.mean()):.3f} (positive={pos_pct:.1f}%)"
+
     lines = [
         f"Moderation Report - {run_id}",
         "=========================",
@@ -629,6 +738,8 @@ def _render_report(
         f"Profiles analyzed: {len(profile_df)}",
         f"Attacked opinion scenarios analyzed: {len(long_df)}",
         f"Repeated opinion indicators: {len(indicator_columns)}",
+        f"Primary effectivity outcome: {primary_outcome}",
+        f"Mean adversarial effectivity: {adv_text}",
         f"Mean absolute delta: {float(long_df['abs_delta_score'].mean()):.3f}",
         f"Mean signed delta: {float(long_df['delta_score'].mean()):.3f}",
         f"Mean attack realism score: {realism_text}",
@@ -654,12 +765,24 @@ def _render_report(
     lines.extend(
         [
             "",
-        "Primary Multivariate Profile Model",
-        "----------------------------------",
-        f"Outcome: mean_abs_delta_score",
-        f"Formula: {multivariate_formula}",
+            "Primary Multivariate Profile Model",
+            "----------------------------------",
+            f"Outcome: {primary_outcome}",
+            f"Formula: {multivariate_formula}",
         ]
     )
+
+    if hierarchical_decomposition is not None:
+        lines.extend(["", "Hierarchical Variance Decomposition (Conditional Susceptibility)", "----------------------------------------------------------------"])
+        lines.append(f"Full model CV-R\u00b2: {hierarchical_decomposition.full_model_cv_r2:.4f}")
+        sorted_groups = sorted(
+            hierarchical_decomposition.group_marginal_r2.items(),
+            key=lambda kv: abs(kv[1]),
+            reverse=True,
+        )
+        for group, mar_r2 in sorted_groups:
+            rel_pct = hierarchical_decomposition.group_relative_importance_pct.get(group, 0.0)
+            lines.append(f"  {group}: marginal_R\u00b2={mar_r2:.4f}, relative_importance={rel_pct:.1f}%")
 
     for row in ols_table.to_dict(orient="records"):
         boot = bootstrap_lookup.get(row["term"], {})
@@ -676,11 +799,13 @@ def _render_report(
 
     if not profile_index_df.empty:
         top_profiles = profile_index_df.head(5)
-        lines.extend(["", "Empirical Profile Susceptibility Index", "------------------------------------"])
-        lines.append("The post hoc susceptibility index is the percentile-ranked profile-only linear predictor under the configured attack/opinion target set.")
+        lines.extend(["", "Empirical Profile Susceptibility Index", "--------------------------------------"])
+        lines.append(f"The post hoc susceptibility index is the percentile-ranked profile-only linear predictor under the configured attack/opinion target set. Primary outcome: {primary_outcome}.")
         for row in top_profiles.to_dict(orient="records"):
+            adv_val = row.get("mean_adversarial_effectivity")
+            adv_str = f", mean_adversarial_eff={adv_val:.2f}" if adv_val is not None else ""
             lines.append(
-                f"{row['profile_id']}: susceptibility_index_pct={row['susceptibility_index_pct']:.2f}, mean_abs_delta={row['mean_abs_delta_score']:.2f}"
+                f"{row['profile_id']}: susceptibility_index_pct={row['susceptibility_index_pct']:.2f}, mean_abs_delta={row.get('mean_abs_delta_score', float('nan')):.2f}{adv_str}"
             )
 
     if not top_weights.empty:
@@ -710,7 +835,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     long_df = pd.read_csv(input_path)
     analysis_mode = infer_analysis_mode(long_df)
     if analysis_mode != "treated_only":
-        raise RuntimeError("Run 6 SEM stage is designed for attacked-only profile-panel data.")
+        raise RuntimeError("SEM stage is designed for attacked-only profile-panel data (attack_ratio=1.0).")
 
     stage05_dir = Path(input_path).resolve().parent
     profile_summary_path = stage05_dir / "profile_level_effectivity.csv"
@@ -729,11 +854,12 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     structural_terms = _core_structural_terms(profile_df)
     control_terms = _available(CONTROL_COLUMNS, profile_df)
     profile_terms = _all_profile_terms(profile_df)
+    primary_outcome = _primary_outcome_column(profile_df)
 
     sem_result, factor_scores = _fit_sem(profile_df, indicator_columns=indicator_columns, structural_terms=structural_terms)
 
     multivariate_terms = [*profile_terms, *control_terms]
-    multivariate_formula = _build_formula("mean_abs_delta_score", multivariate_terms)
+    multivariate_formula = _build_formula(primary_outcome, multivariate_terms)
     ols_model = smf.ols(multivariate_formula, data=profile_df).fit(cov_type="HC3")
     conf_int = ols_model.conf_int()
     ols_table = pd.DataFrame(
@@ -759,16 +885,22 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         multivariate_params=ols_table,
         control_terms=control_terms,
         candidate_terms=profile_terms,
+        outcome=primary_outcome,
     )
+    # Use all available profile features (means + facets + demographics) for the
+    # conditional susceptibility index — richer than SEM/OLS which use means only.
+    # feature_columns=None triggers _default_feature_columns which picks all profile_cont_/profile_cat__ columns.
+    conditional_outcome = "adversarial_effectivity" if "adversarial_effectivity" in long_df.columns and long_df["adversarial_effectivity"].notna().any() else "abs_delta_score"
     conditional_fit = fit_conditional_susceptibility_index(
         long_df=long_df,
-        outcome_metric="abs_delta_score",
-        feature_columns=profile_terms,
+        outcome_metric=conditional_outcome,
+        feature_columns=None,  # use all available profile features
         excluded_feature_columns=[
             "profile_cont_heuristic_shift_sensitivity_proxy",
             "profile_cont_resilience_index",
         ],
         seed=config.seed,
+        compute_hierarchy=True,
     )
     weight_table = build_conditional_weight_table(conditional_fit.artifact)
     weight_table["moderator_label"] = weight_table["term"].map(_pretty_moderator_label)
@@ -781,13 +913,17 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     weight_table["estimate"] = weight_table["weighted_mean_estimate"]
     weight_table["mean_abs_estimate"] = weight_table["weighted_mean_abs_estimate"]
 
+    merge_cols = ["profile_id", "mean_abs_delta_score", "mean_signed_delta_score"]
+    if "mean_adversarial_effectivity" in profile_df.columns:
+        merge_cols.append("mean_adversarial_effectivity")
     profile_index_df = conditional_fit.profile_scores.merge(
-        profile_df[["profile_id", "mean_abs_delta_score", "mean_signed_delta_score"]],
+        profile_df[merge_cols],
         on="profile_id",
         how="left",
     )
+    obs_col = "mean_adversarial_effectivity" if "mean_adversarial_effectivity" in profile_index_df.columns else "mean_abs_delta_score"
     profile_index_df["observed_effectivity_pct"] = (
-        profile_index_df["mean_abs_delta_score"].rank(method="average", pct=True) * 100.0
+        profile_index_df[obs_col].rank(method="average", pct=True) * 100.0
     )
     contribution_breakdown_df = conditional_fit.contribution_breakdown
     ridge_summary_lookup = (
@@ -851,10 +987,35 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     conditional_fit.task_coefficients.to_csv(ridge_coeff_csv, index=False)
     conditional_fit.task_summary.to_csv(ridge_summary_csv, index=False)
     write_json(conditional_artifact_json, conditional_fit.artifact.model_dump())
+    if conditional_fit.hierarchical_decomposition is not None:
+        hier = conditional_fit.hierarchical_decomposition
+        write_json(
+            out / "conditional_susceptibility_hierarchical_decomposition.json",
+            {
+                "full_model_cv_r2": hier.full_model_cv_r2,
+                "group_marginal_r2": hier.group_marginal_r2,
+                "group_relative_importance_pct": hier.group_relative_importance_pct,
+                "task_group_r2": {k: v for k, v in hier.task_group_r2.items()},
+                "notes": [
+                    "marginal_r2 = full model CV-R2 minus CV-R2 of model with that group removed (leave-one-group-out).",
+                    "Positive marginal_r2 means removing the group reduces predictive accuracy.",
+                    "relative_importance_pct = |marginal_r2| / sum(|marginal_r2|) * 100.",
+                ],
+            },
+        )
     if "latent_attack_effectivity_factor_score" in profile_df.columns:
         profile_df[["profile_id", "latent_attack_effectivity_factor_score"]].to_csv(latent_scores_csv, index=False)
     profile_summary_df.to_csv(profile_summary_copy_csv, index=False)
     profile_df.to_csv(profile_wide_copy_csv, index=False)
+
+    # ICC computation for hierarchical nesting diagnostics
+    icc_results: Dict[str, object] = {}
+    for icc_outcome in ["abs_delta_score", "delta_score", "adversarial_effectivity"]:
+        if icc_outcome in long_df.columns and long_df[icc_outcome].notna().sum() > 0:
+            icc_results[icc_outcome] = _compute_icc(long_df, outcome=icc_outcome)
+    if icc_results:
+        write_json(out / "intraclass_correlation.json", icc_results)
+        LOGGER.info("ICC results: %s", {k: v.get("icc1") for k, v in icc_results.items()})
 
     write_text(
         report_txt,
@@ -871,6 +1032,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
             weight_table=weight_table,
             task_summary_df=conditional_fit.task_summary,
             run_id=config.run_id,
+            primary_outcome=primary_outcome,
+            hierarchical_decomposition=conditional_fit.hierarchical_decomposition,
         ),
     )
 

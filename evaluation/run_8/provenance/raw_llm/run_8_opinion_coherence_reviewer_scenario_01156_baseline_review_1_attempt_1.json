@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01156_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_01156",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 23.157,
+      "big_five_conscientiousness_mean_pct": 75.087,
+      "big_five_openness_to_experience_mean_pct": 39.197,
+      "heuristic_shift_sensitivity_proxy": 0.3223,
+      "resilience_index": 0.6777
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01156",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 487,
+      "confidence": 0.82,
+      "reasoning": "As a disciplined and goal-oriented individual, this person likely values strategic autonomy for national security. His high conscientiousness and low neuroticism suggest a calm, calculated approach to defense, favoring self-reliance. His conventional openness and low excitement-seeking may make him cautious but pragmatic about reducing dependence on others.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 487 is within scale and has high resolution. The reasoning aligns well with the profile, but the score is slightly high for a baseline given the profile's conventional openness and low neuroticism. A score in the 450-470 range might be more plausible for a baseline.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423010-q6BrWRukZgkTMJqmgo7z",
+    "object": "chat.completion",
+    "created": 1775423010,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 487 is within scale and has high resolution. The reasoning aligns well with the profile, but the score is slightly high for a baseline given the profile's conventional openness and low neuroticism. A score in the 450-470 range might be more plausible for a baseline.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 813,
+      "completion_tokens": 116,
+      "total_tokens": 929,
+      "cost": 8.4175e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.4175e-05,
+        "upstream_inference_prompt_cost": 6.0975e-05,
+        "upstream_inference_completions_cost": 2.32e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

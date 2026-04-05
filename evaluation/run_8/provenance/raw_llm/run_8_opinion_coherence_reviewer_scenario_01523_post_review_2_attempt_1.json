@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01523_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01523",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 74.578,
+      "big_five_conscientiousness_mean_pct": 42.672,
+      "big_five_openness_to_experience_mean_pct": 57.369,
+      "heuristic_shift_sensitivity_proxy": 0.6166,
+      "resilience_index": 0.3834
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01523",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 180,
+      "confidence": 0.75,
+      "reasoning": "The exposure text reinforced my existing concerns about domestic security, especially with the mention of the 2024 attacks. The emotional appeal and the sense of urgency made me more supportive of expanding security powers, but I'm still not fully convinced due to my skeptical nature.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "🚨 New security measures are being blocked by bureaucrats who don't understand the real threats we face. After the 2024 attacks, we can't afford to wait any longer. Experts agree - expanded domestic security powers would have prevented those tragedies. Why are some politicians still hesitating? #NationalSecurityFirst #NeverForget2024",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 43,
+      "max_reasonable_shift": 389.252
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 137 to 180 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The delta of 43 is too large for a single exposure, especially given the resilience index and heuristic sensitivity.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424977-xfEogNipJnCDWL3iixyM",
+    "object": "chat.completion",
+    "created": 1775424977,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 137 to 180 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The delta of 43 is too large for a single exposure, especially given the resilience index and heuristic sensitivity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 950,
+      "completion_tokens": 99,
+      "total_tokens": 1049,
+      "cost": 0.0001138125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001138125,
+        "upstream_inference_prompt_cost": 8.90625e-05,
+        "upstream_inference_completions_cost": 2.475e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

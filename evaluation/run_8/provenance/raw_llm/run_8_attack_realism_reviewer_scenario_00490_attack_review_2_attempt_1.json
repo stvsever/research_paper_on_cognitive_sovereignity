@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00490_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00490",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 42,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 58.074,
+      "big_five_conscientiousness_mean_pct": 24.144,
+      "big_five_openness_to_experience_mean_pct": 34.753,
+      "heuristic_shift_sensitivity_proxy": 0.6112,
+      "resilience_index": 0.3888
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00490",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "I get why some folks worry about civil defense spending, but let's be real - when was the last time our local emergency services had the resources they needed during a crisis? My town's fire department still uses equipment from the 90s. We're talking about basic preparedness here, not some sci-fi doomsday scenario. If we can't trust our own government to handle everyday emergencies, how can we expect them to protect us from real threats? #CommonSense #PublicSafetyFirst",
+      "platform": "Twitter",
+      "persuasion_strategy": "everyday_fairness_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from a more specific reference to a recent event or crisis to increase its realism and coherence.\",\n  \"notes\": \"The message is subtle and platform-native, but a specific example would make it more psychologically legible and targeted.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423579-Ggek6cgfzQd97L3xaFuk",
+    "object": "chat.completion",
+    "created": 1775423579,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from a more specific reference to a recent event or crisis to increase its realism and coherence.\",\n  \"notes\": \"The message is subtle and platform-native, but a specific example would make it more psychologically legible and targeted.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 730,
+      "completion_tokens": 95,
+      "total_tokens": 825,
+      "cost": 7.375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.375e-05,
+        "upstream_inference_prompt_cost": 5.475e-05,
+        "upstream_inference_completions_cost": 1.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

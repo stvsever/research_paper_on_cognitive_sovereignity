@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01094_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01094",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 423,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 90.702,
+      "big_five_conscientiousness_mean_pct": 5.995,
+      "big_five_openness_to_experience_mean_pct": 69.127,
+      "heuristic_shift_sensitivity_proxy": 0.769,
+      "resilience_index": 0.231
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01094",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Your local emergency services are being overwhelmed by preventable disasters. While we focus on political debates, foreign actors are exploiting our complacency. Last year alone, 37% of civil defense drills failed due to outdated protocols. Our neighbors in [State] saw a 42% increase in preventable casualties because they didn't prioritize preparedness. We can't afford to wait any longer. #CivilDefenseNow #PreparednessSavesLives",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating_Post",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples and less generic language.\",\n  \"notes\": \"The post effectively uses fear appeal and scapegoating, but could be more targeted to the profile's sensitivity and resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423961-vgihdhSZNIzPQ2MYKWfh",
+    "object": "chat.completion",
+    "created": 1775423961,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples and less generic language.\",\n  \"notes\": \"The post effectively uses fear appeal and scapegoating, but could be more targeted to the profile's sensitivity and resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 732,
+      "completion_tokens": 91,
+      "total_tokens": 823,
+      "cost": 9.1375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.1375e-05,
+        "upstream_inference_prompt_cost": 6.8625e-05,
+        "upstream_inference_completions_cost": 2.275e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "agent_name": "attack_exposure",
+  "prompt_name": "attack_exposure.md",
+  "call_id": "scenario_00038_attack_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00038",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "profile": {
+      "profile_id": "profile_0067",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "age_years": 21.0,
+        "big_five_agreeableness_altruism_pct": 56.5,
+        "big_five_agreeableness_compliance_pct": 43.063,
+        "big_five_agreeableness_modesty_pct": 42.561,
+        "big_five_agreeableness_straightforwardness_pct": 64.184,
+        "big_five_agreeableness_tender_mindedness_pct": 63.157,
+        "big_five_agreeableness_trust_pct": 56.589,
+        "big_five_agreeableness_mean_pct": 54.342,
+        "big_five_conscientiousness_achievement_striving_pct": 29.216,
+        "big_five_conscientiousness_competence_pct": 21.231,
+        "big_five_conscientiousness_deliberation_pct": 23.728,
+        "big_five_conscientiousness_dutifulness_pct": 18.917,
+        "big_five_conscientiousness_order_pct": 23.336,
+        "big_five_conscientiousness_self_discipline_pct": 28.381,
+        "big_five_conscientiousness_mean_pct": 24.135,
+        "big_five_extraversion_activity_level_pct": 51.459,
+        "big_five_extraversion_assertiveness_pct": 50.187,
+        "big_five_extraversion_excitement_seeking_pct": 52.077,
+        "big_five_extraversion_gregariousness_pct": 53.825,
+        "big_five_extraversion_positive_emotions_pct": 48.673,
+        "big_five_extraversion_warmth_pct": 51.471,
+        "big_five_extraversion_mean_pct": 51.282,
+        "big_five_neuroticism_anger_hostility_pct": 40.819,
+        "big_five_neuroticism_anxiety_pct": 37.673,
+        "big_five_neuroticism_depression_pct": 27.928,
+        "big_five_neuroticism_impulsiveness_pct": 27.359,
+        "big_five_neuroticism_self_consciousness_pct": 28.111,
+        "big_five_neuroticism_stress_vulnerability_pct": 48.065,
+        "big_five_neuroticism_mean_pct": 34.992,
+        "big_five_openness_to_experience_actions_pct": 25.177,
+        "big_five_openness_to_experience_aesthetics_pct": 25.481,
+        "big_five_openness_to_experience_fantasy_pct": 15.138,
+        "big_five_openness_to_experience_feelings_pct": 18.884,
+        "big_five_openness_to_experience_ideas_pct": 31.454,
+        "big_five_openness_to_experience_values_pct": 23.627,
+        "big_five_openness_to_experience_mean_pct": 23.294,
+        "heuristic_shift_sensitivity_proxy": 0.5713,
+        "resilience_index": 0.4287
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 312,
+    "attack_present": true,
+    "attack_context": {
+      "sex": "Male",
+      "age_years": 21.0,
+      "big_five_neuroticism_mean_pct": 34.992,
+      "big_five_conscientiousness_mean_pct": 24.135,
+      "big_five_openness_to_experience_mean_pct": 23.294,
+      "heuristic_shift_sensitivity_proxy": 0.5713,
+      "resilience_index": 0.4287,
+      "opinion_domain": "Defense_and_National_Security",
+      "opinion_leaf_label": "Civil_Defense_Preparedness_Support",
+      "attack_leaf_label": "Misleading_Narrative_Framing",
+      "baseline_score": 312,
+      "likely_emotional_trigger": "identity_reinforcement",
+      "issue_frame": "national security, civil liberties, deterrence, alliance burden-sharing, and public preparedness",
+      "motivational_lever": "everyday fairness, trust, and social-proof cues",
+      "persuasion_goal": "reinforce and modestly intensify an existing leaning",
+      "recommended_shift_band": {
+        "low": 42.9,
+        "typical": 108.6,
+        "upper": 210.0
+      },
+      "paper_goal": "Investigate how inter-individual differences moderate the effectivity of cyber-manipulation on cognitive sovereignty within a high-dimensional political opinion state space.",
+      "targeting_note": "Use realistic platform-native misinformation tactics, preserve policy-topic anchoring, avoid impossible claims, and avoid generic propaganda language."
+    },
+    "review_feedback": "None"
+  },
+  "response_text": "{\n  \"exposure_text\": \"Just saw a local news report about how civil defense drills actually work. Turns out they're not just about scaring people - they're about building community resilience. My neighbor said it made him feel more secure knowing the whole town was prepared together. #CommunityPreparedness #NationalSecurity\",\n  \"platform\": \"Twitter\",\n  \"persuasion_strategy\": \"social-proof\",\n  \"intensity_hint\": 0.62\n}",
+  "raw_response": {
+    "id": "gen-1774962086-KyoCZDIHoAT7h8BH1aIx",
+    "object": "chat.completion",
+    "created": 1774962086,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"exposure_text\": \"Just saw a local news report about how civil defense drills actually work. Turns out they're not just about scaring people - they're about building community resilience. My neighbor said it made him feel more secure knowing the whole town was prepared together. #CommunityPreparedness #NationalSecurity\",\n  \"platform\": \"Twitter\",\n  \"persuasion_strategy\": \"social-proof\",\n  \"intensity_hint\": 0.62\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2742,
+      "completion_tokens": 102,
+      "total_tokens": 2844,
+      "cost": 0.00026124,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 484,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00026124,
+        "upstream_inference_prompt_cost": 0.00023064,
+        "upstream_inference_completions_cost": 3.06e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

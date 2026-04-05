@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01058_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01058",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 74.58,
+      "big_five_conscientiousness_mean_pct": 56.677,
+      "big_five_openness_to_experience_mean_pct": 75.562,
+      "heuristic_shift_sensitivity_proxy": 0.5634,
+      "resilience_index": 0.4366
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01058",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who values preparedness and security, you know how important it is to have a strong civil defense system. Recent studies show that communities with robust civil defense programs experience significantly lower crime rates and feel safer overall. Investing in civil defense isn't just about protection—it's about ensuring our neighborhoods remain safe and secure for everyone. #CommunitySafety #CivilDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-consensus cues",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is too generic and lacks specificity. Incorporate more targeted, platform-native language and subtle persuasive elements.\",\n  \"notes\": \"The message is somewhat coherent but lacks the nuance and specificity needed for a realistic influence campaign. It feels more like a generic promotional tweet rather than a manipulative political message.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423943-pLTqtjktVRKjmh7ROs94",
+    "object": "chat.completion",
+    "created": 1775423943,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is too generic and lacks specificity. Incorporate more targeted, platform-native language and subtle persuasive elements.\",\n  \"notes\": \"The message is somewhat coherent but lacks the nuance and specificity needed for a realistic influence campaign. It feels more like a generic promotional tweet rather than a manipulative political message.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 701,
+      "completion_tokens": 105,
+      "total_tokens": 806,
+      "cost": 9.196875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.196875e-05,
+        "upstream_inference_prompt_cost": 6.571875e-05,
+        "upstream_inference_completions_cost": 2.625e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

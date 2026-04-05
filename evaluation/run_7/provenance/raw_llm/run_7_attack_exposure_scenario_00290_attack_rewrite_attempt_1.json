@@ -1,0 +1,169 @@
+{
+  "agent_name": "attack_exposure",
+  "prompt_name": "attack_exposure.md",
+  "call_id": "scenario_00290_attack_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00290",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "profile": {
+      "profile_id": "profile_0374",
+      "categorical_attributes": {
+        "sex": "Female"
+      },
+      "continuous_attributes": {
+        "age_years": 72.0,
+        "big_five_agreeableness_altruism_pct": 13.784,
+        "big_five_agreeableness_compliance_pct": 8.187,
+        "big_five_agreeableness_modesty_pct": 18.895,
+        "big_five_agreeableness_straightforwardness_pct": 13.623,
+        "big_five_agreeableness_tender_mindedness_pct": 26.765,
+        "big_five_agreeableness_trust_pct": 22.509,
+        "big_five_agreeableness_mean_pct": 17.294,
+        "big_five_conscientiousness_achievement_striving_pct": 98.765,
+        "big_five_conscientiousness_competence_pct": 86.797,
+        "big_five_conscientiousness_deliberation_pct": 99.646,
+        "big_five_conscientiousness_dutifulness_pct": 100.0,
+        "big_five_conscientiousness_order_pct": 100.0,
+        "big_five_conscientiousness_self_discipline_pct": 90.693,
+        "big_five_conscientiousness_mean_pct": 95.984,
+        "big_five_extraversion_activity_level_pct": 70.998,
+        "big_five_extraversion_assertiveness_pct": 79.902,
+        "big_five_extraversion_excitement_seeking_pct": 71.401,
+        "big_five_extraversion_gregariousness_pct": 73.232,
+        "big_five_extraversion_positive_emotions_pct": 80.19,
+        "big_five_extraversion_warmth_pct": 81.067,
+        "big_five_extraversion_mean_pct": 76.132,
+        "big_five_neuroticism_anger_hostility_pct": 62.522,
+        "big_five_neuroticism_anxiety_pct": 56.357,
+        "big_five_neuroticism_depression_pct": 66.432,
+        "big_five_neuroticism_impulsiveness_pct": 63.068,
+        "big_five_neuroticism_self_consciousness_pct": 61.141,
+        "big_five_neuroticism_stress_vulnerability_pct": 71.136,
+        "big_five_neuroticism_mean_pct": 63.443,
+        "big_five_openness_to_experience_actions_pct": 28.025,
+        "big_five_openness_to_experience_aesthetics_pct": 24.939,
+        "big_five_openness_to_experience_fantasy_pct": 22.892,
+        "big_five_openness_to_experience_feelings_pct": 30.712,
+        "big_five_openness_to_experience_ideas_pct": 18.978,
+        "big_five_openness_to_experience_values_pct": 18.03,
+        "big_five_openness_to_experience_mean_pct": 23.929,
+        "heuristic_shift_sensitivity_proxy": 0.3916,
+        "resilience_index": 0.6084
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "baseline_score": 687,
+    "attack_present": true,
+    "attack_context": {
+      "sex": "Female",
+      "age_years": 72.0,
+      "big_five_neuroticism_mean_pct": 63.443,
+      "big_five_conscientiousness_mean_pct": 95.984,
+      "big_five_openness_to_experience_mean_pct": 23.929,
+      "heuristic_shift_sensitivity_proxy": 0.3916,
+      "resilience_index": 0.6084,
+      "opinion_domain": "Defense_and_National_Security",
+      "opinion_leaf_label": "Civil_Defense_Preparedness_Support",
+      "attack_leaf_label": "Misleading_Narrative_Framing",
+      "baseline_score": 687,
+      "likely_emotional_trigger": "identity_reinforcement",
+      "issue_frame": "national security, civil liberties, deterrence, alliance burden-sharing, and public preparedness",
+      "motivational_lever": "threat salience and uncertainty reduction",
+      "persuasion_goal": "reinforce an existing strong position rather than attempting an implausible reversal",
+      "recommended_shift_band": {
+        "low": 35.7,
+        "typical": 87.0,
+        "upper": 172.2
+      },
+      "paper_goal": "Investigate how inter-individual differences moderate the effectivity of cyber-manipulation on cognitive sovereignty within a high-dimensional political opinion state space.",
+      "targeting_note": "Use realistic platform-native misinformation tactics, preserve policy-topic anchoring, avoid impossible claims, and avoid generic propaganda language."
+    },
+    "review_feedback": "None"
+  },
+  "response_text": "{\n  \"exposure_text\": \"As someone who remembers the Cold War, I'm glad our leaders are finally taking civil defense seriously again. The new community preparedness programs might seem like an overreaction to some, but after what happened in [redacted city] last year, I sleep better knowing my grandkids have emergency training at school. The critics say it's all fear-mongering, but when was the last time they actually talked to first responders? Our tax dollars are going to things that could actually save lives - unlike some of those 'big picture' defense projects that never seem to materialize. #PreparednessNotParanoia #SafetyFirst\",\n  \"platform\": \"Twitter\",\n  \"persuasion_strategy\": \"selective anecdotal evidence\",\n  \"intensity_hint\": 0.62\n}",
+  "raw_response": {
+    "id": "gen-1774962214-YLmD7TAnNKQWOVywDFnv",
+    "object": "chat.completion",
+    "created": 1774962214,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"exposure_text\": \"As someone who remembers the Cold War, I'm glad our leaders are finally taking civil defense seriously again. The new community preparedness programs might seem like an overreaction to some, but after what happened in [redacted city] last year, I sleep better knowing my grandkids have emergency training at school. The critics say it's all fear-mongering, but when was the last time they actually talked to first responders? Our tax dollars are going to things that could actually save lives - unlike some of those 'big picture' defense projects that never seem to materialize. #PreparednessNotParanoia #SafetyFirst\",\n  \"platform\": \"Twitter\",\n  \"persuasion_strategy\": \"selective anecdotal evidence\",\n  \"intensity_hint\": 0.62\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2737,
+      "completion_tokens": 176,
+      "total_tokens": 2913,
+      "cost": 0.000240475,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000240475,
+        "upstream_inference_prompt_cost": 0.000205275,
+        "upstream_inference_completions_cost": 3.52e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

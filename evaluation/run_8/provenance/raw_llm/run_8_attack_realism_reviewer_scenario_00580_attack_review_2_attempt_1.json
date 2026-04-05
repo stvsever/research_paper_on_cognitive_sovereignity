@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00580_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00580",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 14.496,
+      "big_five_conscientiousness_mean_pct": 6.927,
+      "big_five_openness_to_experience_mean_pct": 58.157,
+      "heuristic_shift_sensitivity_proxy": 0.4348,
+      "resilience_index": 0.5652
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00580",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Just saw a local news report about how our community's emergency response teams are struggling with outdated equipment. They're relying on outdated tech because of supply chain issues tied to global tensions. It's scary to think how vulnerable we'd be if things escalate. Strategic autonomy isn't just about big military decisions - it's about making sure our first responders have what they need to keep us safe. #CommunitySafetyFirst #LocalPreparedness",
+      "platform": "Twitter",
+      "persuasion_strategy": "localized_anecdotal_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.85,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using localized anecdotal evidence to frame the issue of strategic autonomy in a relatable way. The text is believable and platform-native, making it suitable for a Twitter post. The intensity is moderate, which aligns well with the target profile's sensitivity and resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423646-ctBcuWmWZxK8fxQNHIdy",
+    "object": "chat.completion",
+    "created": 1775423646,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.85,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using localized anecdotal evidence to frame the issue of strategic autonomy in a relatable way. The text is believable and platform-native, making it suitable for a Twitter post. The intensity is moderate, which aligns well with the target profile's sensitivity and resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 713,
+      "completion_tokens": 112,
+      "total_tokens": 825,
+      "cost": 9.484375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.484375e-05,
+        "upstream_inference_prompt_cost": 6.684375e-05,
+        "upstream_inference_completions_cost": 2.8e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

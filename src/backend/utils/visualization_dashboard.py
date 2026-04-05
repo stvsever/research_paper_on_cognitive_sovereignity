@@ -273,12 +273,19 @@ def generate_research_visuals(
     weight_df = pd.read_csv(weight_path) if weight_path.exists() else pd.DataFrame()
 
     fit_indices = sem_result.get("fit_indices", {})
+    n_attack_leaves = int(long_df["attack_leaf"].nunique()) if "attack_leaf" in long_df.columns else 1
     summary_cards = {
         "Profiles": int(long_df["profile_id"].nunique()) if "profile_id" in long_df.columns else len(profile_df),
         "Attacked Rows": len(long_df),
+        "Attack Vectors": n_attack_leaves,
         "Opinion Leaves": int(long_df["opinion_leaf"].nunique()) if "opinion_leaf" in long_df.columns else "n/a",
         "Mean |Delta|": f"{long_df['abs_delta_score'].mean():.2f}" if "abs_delta_score" in long_df.columns else "n/a",
         "Mean Signed Delta": f"{long_df['delta_score'].mean():.2f}" if "delta_score" in long_df.columns else "n/a",
+        "Mean Adv. Effectivity": (
+            f"{long_df['adversarial_effectivity'].mean():.2f}"
+            if "adversarial_effectivity" in long_df.columns
+            else "n/a"
+        ),
         "Mean Realism": (
             f"{long_df['attack_realism_score'].dropna().mean():.2f}"
             if "attack_realism_score" in long_df.columns and len(long_df["attack_realism_score"].dropna())
@@ -479,7 +486,7 @@ def generate_research_visuals(
         exploratory_df.to_csv(data_snapshots_dir / "moderator_coefficients_snapshot.csv", index=False)
 
     notes = [
-        "All rows in run_6 are attacked; the dashboard visualizes heterogeneity of attacked opinion movement rather than a treatment-versus-control contrast.",
+        "All profiles are attacked; the dashboard visualizes heterogeneity of attacked opinion movement rather than a treatment-versus-control contrast.",
         "Absolute shift is the primary effectivity outcome because the pilot uses multiple opinion leaves with potentially different signed movement directions.",
         "The empirical susceptibility index is computed post hoc from fitted attack-opinion task models and is therefore descriptive rather than independent inferential evidence.",
         "Moderator weight groups aggregate fitted coefficient importance across ontology-consistent profile components such as age, sex, and Big Five trait families.",

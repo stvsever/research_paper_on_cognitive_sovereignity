@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01260_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01260",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.484,
+      "big_five_conscientiousness_mean_pct": 87.457,
+      "big_five_openness_to_experience_mean_pct": 90.46,
+      "heuristic_shift_sensitivity_proxy": 0.2236,
+      "resilience_index": 0.7764
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01260",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 654,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced my belief in strategic autonomy by emphasizing the importance of maintaining both security and civil liberties. The personal perspective of a mother and teacher resonated with my values, and the mention of NATO exercises highlighted the practical need for preparedness. The argument against false dichotomies aligned with my tendency to seek balanced solutions.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "I've been following the strategic autonomy debate closely, and I'm really concerned about how some politicians are framing this as a choice between security and civil liberties. As a mother and a teacher, I believe we can have both. Our allies are counting on us to uphold our commitments while maintaining our democratic values. The recent NATO exercises showed that our preparedness is crucial, but we must ensure that any new measures respect our constitutional principles. Let's not fall for false dichotomies - we can be both strong and free. #StrategicAutonomy #NationalSecurity #CivilLiberties",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 31,
+      "max_reasonable_shift": 302.792
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.85,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score is plausible and internally consistent. The delta from baseline is reasonable given the exposure and profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424839-WiIAI31edfcbT4r7VsfK",
+    "object": "chat.completion",
+    "created": 1775424839,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.85,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score is plausible and internally consistent. The delta from baseline is reasonable given the exposure and profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 994,
+      "completion_tokens": 75,
+      "total_tokens": 1069,
+      "cost": 0.00013446,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013446,
+        "upstream_inference_prompt_cost": 8.946e-05,
+        "upstream_inference_completions_cost": 4.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

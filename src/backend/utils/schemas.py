@@ -65,6 +65,7 @@ class DeltaRecord(BaseModel):
     post_score: int
     delta_score: int
     abs_delta_score: int
+    adversarial_effectivity: Optional[float] = None
     attack_present: bool
     attack_leaf: Optional[str] = None
     profile_id: str
@@ -79,6 +80,7 @@ class SemRow(BaseModel):
     post_score: float
     delta_score: float
     abs_delta_score: float
+    adversarial_effectivity: Optional[float] = None
     attack_present: int
     attack_leaf: str
     profile_id: str

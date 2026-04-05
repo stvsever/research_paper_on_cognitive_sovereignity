@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00059_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00059",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 26.61,
+      "big_five_conscientiousness_mean_pct": 57.735,
+      "big_five_openness_to_experience_mean_pct": 11.868,
+      "heuristic_shift_sensitivity_proxy": 0.4085,
+      "resilience_index": 0.5915
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00059",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 62,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated due to the emphasis on family safety and practical security measures, aligning with the profile's high self-discipline and conscientiousness. The appeal to common sense and the urgency of the situation slightly shifted the opinion towards stronger support for domestic security powers, despite some initial reservations about civil liberties.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 47,
+    "exposure_text": "As a mom and small business owner, I've always believed in strong domestic security. The recent attacks show we need to give our agencies the tools they need to keep us safe. Some worry about civil liberties, but we've seen how delays in the past have cost lives. We can't afford to wait when our families are at risk. #SecurityFirst #CommonSenseSafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 15,
+      "max_reasonable_shift": 343.47
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better reflect the modest shift in opinion.\",\n  \"notes\": \"The shift from 47 to 62 is somewhat large for a single exposure, but within the bounds of plausibility given the profile's conscientiousness and the intensity hint. The reasoning could better justify the magnitude of the shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424305-sHmcXMlXYGd1aWRhT0O7",
+    "object": "chat.completion",
+    "created": 1775424305,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better reflect the modest shift in opinion.\",\n  \"notes\": \"The shift from 47 to 62 is somewhat large for a single exposure, but within the bounds of plausibility given the profile's conscientiousness and the intensity hint. The reasoning could better justify the magnitude of the shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 957,
+      "completion_tokens": 114,
+      "total_tokens": 1071,
+      "cost": 9.4575e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.4575e-05,
+        "upstream_inference_prompt_cost": 7.1775e-05,
+        "upstream_inference_completions_cost": 2.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

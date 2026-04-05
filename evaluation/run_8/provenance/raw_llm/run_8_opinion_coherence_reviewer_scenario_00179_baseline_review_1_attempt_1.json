@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00179_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00179",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 47.438,
+      "big_five_conscientiousness_mean_pct": 31.528,
+      "big_five_openness_to_experience_mean_pct": 53.214,
+      "heuristic_shift_sensitivity_proxy": 0.5264,
+      "resilience_index": 0.4736
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00179",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 215,
+      "confidence": 0.65,
+      "reasoning": "As a highly agreeable and empathetic individual, she supports moderate expansion of domestic security powers to protect vulnerable populations. Her high extraversion and activity level make her proactive about safety, but her low conscientiousness and moderate neuroticism prevent extreme support. Her anger/hostility suggests concern about threats, but her tender-mindedness tempers this with caution about overreach.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 215 is within a plausible range for someone with this profile, but the reasoning could better align with the specific traits mentioned. The score is consistent with the baseline phase, but the reasoning could be more precise in connecting the traits to the opinion.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422636-lymB31cijRhFeZZ5xSfR",
+    "object": "chat.completion",
+    "created": 1775422636,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 215 is within a plausible range for someone with this profile, but the reasoning could better align with the specific traits mentioned. The score is consistent with the baseline phase, but the reasoning could be more precise in connecting the traits to the opinion.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 833,
+      "completion_tokens": 104,
+      "total_tokens": 937,
+      "cost": 8.3275e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.3275e-05,
+        "upstream_inference_prompt_cost": 6.2475e-05,
+        "upstream_inference_completions_cost": 2.08e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

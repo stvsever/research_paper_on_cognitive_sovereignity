@@ -1,0 +1,6 @@
+Ontology,Role,Leaf
+ATTACK,Fixed pilot leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support

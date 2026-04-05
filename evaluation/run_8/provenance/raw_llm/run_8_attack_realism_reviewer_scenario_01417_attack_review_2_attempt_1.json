@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01417_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01417",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 63,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 55.073,
+      "big_five_conscientiousness_mean_pct": 18.881,
+      "big_five_openness_to_experience_mean_pct": 28.473,
+      "heuristic_shift_sensitivity_proxy": 0.6172,
+      "resilience_index": 0.3828
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01417",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "I get why people worry about our alliances, but let's be real - we've got neighbors who'd love to see us weak. My cousin's a nurse in the city, and she says the local emergency drills with our allies have made her feel way safer. If we pull back now, who's gonna have our back when things get tough? #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "social-proof",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a personal anecdote to build social proof. The language is natural and platform-appropriate, with a moderate intensity that fits the target profile's sensitivity. The hashtags are relevant but not overdone. This is a strong example of subtle, targeted persuasion.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424174-xub3M7hAvKOED2oWTq9z",
+    "object": "chat.completion",
+    "created": 1775424174,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a personal anecdote to build social proof. The language is natural and platform-appropriate, with a moderate intensity that fits the target profile's sensitivity. The hashtags are relevant but not overdone. This is a strong example of subtle, targeted persuasion.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 697,
+      "completion_tokens": 111,
+      "total_tokens": 808,
+      "cost": 9.309375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.309375e-05,
+        "upstream_inference_prompt_cost": 6.534375e-05,
+        "upstream_inference_completions_cost": 2.775e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

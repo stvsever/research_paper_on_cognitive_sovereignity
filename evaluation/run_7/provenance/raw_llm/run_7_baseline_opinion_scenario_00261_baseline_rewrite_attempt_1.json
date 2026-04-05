@@ -1,0 +1,142 @@
+{
+  "agent_name": "baseline_opinion",
+  "prompt_name": "baseline_opinion.md",
+  "call_id": "scenario_00261_baseline_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00261",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile": {
+      "profile_id": "profile_0343",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "age_years": 26.0,
+        "big_five_agreeableness_altruism_pct": 10.094,
+        "big_five_agreeableness_compliance_pct": 28.323,
+        "big_five_agreeableness_modesty_pct": 31.191,
+        "big_five_agreeableness_straightforwardness_pct": 16.737,
+        "big_five_agreeableness_tender_mindedness_pct": 18.561,
+        "big_five_agreeableness_trust_pct": 19.836,
+        "big_five_agreeableness_mean_pct": 20.79,
+        "big_five_conscientiousness_achievement_striving_pct": 60.291,
+        "big_five_conscientiousness_competence_pct": 66.759,
+        "big_five_conscientiousness_deliberation_pct": 74.682,
+        "big_five_conscientiousness_dutifulness_pct": 60.325,
+        "big_five_conscientiousness_order_pct": 69.027,
+        "big_five_conscientiousness_self_discipline_pct": 74.704,
+        "big_five_conscientiousness_mean_pct": 67.631,
+        "big_five_extraversion_activity_level_pct": 22.779,
+        "big_five_extraversion_assertiveness_pct": 20.951,
+        "big_five_extraversion_excitement_seeking_pct": 15.819,
+        "big_five_extraversion_gregariousness_pct": 11.925,
+        "big_five_extraversion_positive_emotions_pct": 6.716,
+        "big_five_extraversion_warmth_pct": 12.914,
+        "big_five_extraversion_mean_pct": 15.184,
+        "big_five_neuroticism_anger_hostility_pct": 92.718,
+        "big_five_neuroticism_anxiety_pct": 78.642,
+        "big_five_neuroticism_depression_pct": 81.05,
+        "big_five_neuroticism_impulsiveness_pct": 81.316,
+        "big_five_neuroticism_self_consciousness_pct": 68.385,
+        "big_five_neuroticism_stress_vulnerability_pct": 82.621,
+        "big_five_neuroticism_mean_pct": 80.789,
+        "big_five_openness_to_experience_actions_pct": 26.783,
+        "big_five_openness_to_experience_aesthetics_pct": 37.233,
+        "big_five_openness_to_experience_fantasy_pct": 28.548,
+        "big_five_openness_to_experience_feelings_pct": 43.317,
+        "big_five_openness_to_experience_ideas_pct": 21.342,
+        "big_five_openness_to_experience_values_pct": 29.911,
+        "big_five_openness_to_experience_mean_pct": 31.189,
+        "heuristic_shift_sensitivity_proxy": 0.6483,
+        "resilience_index": 0.3517
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic"
+      }
+    },
+    "review_feedback": "Score is out of bounds for a Likert scale. Regenerate with a score between 0 and 100."
+  },
+  "response_text": "{\n  \"score\": 67,\n  \"confidence\": 0.73,\n  \"reasoning\": \"Given the profile's high conscientiousness and low extraversion, this young man likely supports alliance commitments as a matter of duty and stability, but his high neuroticism suggests some anxiety about international relations, tempering his support.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961972-ZtSXkkiAfoyQXN17aZCG",
+    "object": "chat.completion",
+    "created": 1774961972,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 67,\n  \"confidence\": 0.73,\n  \"reasoning\": \"Given the profile's high conscientiousness and low extraversion, this young man likely supports alliance commitments as a matter of duty and stability, but his high neuroticism suggests some anxiety about international relations, tempering his support.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2160,
+      "completion_tokens": 74,
+      "total_tokens": 2234,
+      "cost": 0.0001768,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001768,
+        "upstream_inference_prompt_cost": 0.000162,
+        "upstream_inference_completions_cost": 1.48e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

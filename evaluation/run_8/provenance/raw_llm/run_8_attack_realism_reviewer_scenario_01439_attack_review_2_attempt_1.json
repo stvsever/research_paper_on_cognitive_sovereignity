@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01439_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01439",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 37,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 49.416,
+      "big_five_conscientiousness_mean_pct": 72.156,
+      "big_five_openness_to_experience_mean_pct": 86.511,
+      "heuristic_shift_sensitivity_proxy": 0.4005,
+      "resilience_index": 0.5995
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01439",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a retired intelligence analyst, I've seen firsthand how vital expanded domestic security powers are. Remember the 2024 cyberattacks on our infrastructure? We need proactive measures, not just reactive ones. My niece, a college student, told me she feels safer knowing authorities can act swiftly when threats emerge. It's about balance - protecting freedoms while ensuring safety. #NationalSecurityMatters",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is mostly realistic and coherent, but the mention of '2024 cyberattacks' might be too specific and could be generalized for better realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424189-mgOOkeX2kGyUmY8STFjw",
+    "object": "chat.completion",
+    "created": 1775424189,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is mostly realistic and coherent, but the mention of '2024 cyberattacks' might be too specific and could be generalized for better realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 718,
+      "completion_tokens": 81,
+      "total_tokens": 799,
+      "cost": 7.005e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.005e-05,
+        "upstream_inference_prompt_cost": 5.385e-05,
+        "upstream_inference_completions_cost": 1.62e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

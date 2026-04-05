@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00824_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00824",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 48.687,
+      "big_five_conscientiousness_mean_pct": 9.993,
+      "big_five_openness_to_experience_mean_pct": 57.417,
+      "heuristic_shift_sensitivity_proxy": 0.5817,
+      "resilience_index": 0.4183
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00824",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 530,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlighted vulnerabilities in critical infrastructure due to foreign tech giants, which resonated with my concerns about national security. Given my baseline score of 472 and the intensity hint of 0.62, I feel more strongly about the need for strategic autonomy to protect essential systems. The message reinforced my existing views but also provided new information that slightly increased my confidence in the importance of this issue.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 472,
+    "exposure_text": "Did you know foreign tech giants are already infiltrating our critical infrastructure? From power grids to water treatment plants, they're exploiting weak regulations to gain control. If we don't act now, our national security could be at risk. It's time to support strategic autonomy and protect our essential systems from foreign influence. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 58,
+      "max_reasonable_shift": 381.574
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better justify the shift.\",\n  \"notes\": \"The shift from 472 to 530 is within reasonable bounds for a single exposure, but the reasoning could better explain the specific impact of the exposure text on the opinion change.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424647-Z8KcFM7M4FwsGGHF7E52",
+    "object": "chat.completion",
+    "created": 1775424647,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better justify the shift.\",\n  \"notes\": \"The shift from 472 to 530 is within reasonable bounds for a single exposure, but the reasoning could better explain the specific impact of the exposure text on the opinion change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 966,
+      "completion_tokens": 102,
+      "total_tokens": 1068,
+      "cost": 0.0001160625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001160625,
+        "upstream_inference_prompt_cost": 9.05625e-05,
+        "upstream_inference_completions_cost": 2.55e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

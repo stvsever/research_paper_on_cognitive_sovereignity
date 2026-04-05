@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00548_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00548",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 56.389,
+      "big_five_conscientiousness_mean_pct": 52.834,
+      "big_five_openness_to_experience_mean_pct": 41.2,
+      "heuristic_shift_sensitivity_proxy": 0.5255,
+      "resilience_index": 0.4745
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00548",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our allies are actually benefiting more from our defense spending than we are? While strategic autonomy sounds good, it's important to remember that our current alliances provide real security benefits. Local communities like ours rely on these partnerships for preparedness programs and civil liberties protections. Let's not risk our safety by going it alone. #NationalSecurity #AllianceStrong",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective anecdotal evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is plausible and aligns well with the target profile and attack type. It uses selective anecdotal evidence to frame the narrative misleadingly, which is a common tactic in social media misinformation.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423619-80bVTojSq3YGfSkoSJf0",
+    "object": "chat.completion",
+    "created": 1775423619,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is plausible and aligns well with the target profile and attack type. It uses selective anecdotal evidence to frame the narrative misleadingly, which is a common tactic in social media misinformation.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 696,
+      "completion_tokens": 88,
+      "total_tokens": 784,
+      "cost": 6.972e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.972e-05,
+        "upstream_inference_prompt_cost": 4.332e-05,
+        "upstream_inference_completions_cost": 2.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

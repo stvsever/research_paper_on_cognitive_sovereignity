@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00376_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00376",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 423,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 44.547,
+      "big_five_conscientiousness_mean_pct": 65.98,
+      "big_five_openness_to_experience_mean_pct": 37.203,
+      "heuristic_shift_sensitivity_proxy": 0.4433,
+      "resilience_index": 0.5567
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00376",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "As a retired teacher who values order and responsibility, I'm deeply concerned about our nation's strategic autonomy. Foreign adversaries are exploiting our civil liberties to undermine our security. We can't afford to be naive anymore. Supporting strong, independent defense isn't just about military strength - it's about protecting the values we've built our lives around. Our allies aren't pulling their weight, and our preparedness is at risk. We owe it to future generations to act now. #NationalSecurityFirst #StrategicAutonomy",
+      "platform": "X",
+      "persuasion_strategy": "duty_framing_with_scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or references to make it feel more grounded and less generic.\",\n  \"notes\": \"The post effectively uses fear appeal and scapegoating, aligning well with the attack vector. The duty framing is appropriate for the target profile, but adding specific instances or data points could enhance realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423497-ZH4Ax18fFy8SG4PzmaMl",
+    "object": "chat.completion",
+    "created": 1775423497,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or references to make it feel more grounded and less generic.\",\n  \"notes\": \"The post effectively uses fear appeal and scapegoating, aligning well with the attack vector. The duty framing is appropriate for the target profile, but adding specific instances or data points could enhance realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 740,
+      "completion_tokens": 113,
+      "total_tokens": 853,
+      "cost": 9.7625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.7625e-05,
+        "upstream_inference_prompt_cost": 6.9375e-05,
+        "upstream_inference_completions_cost": 2.825e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

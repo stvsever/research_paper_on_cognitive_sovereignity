@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01079_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01079",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 32.729,
+      "big_five_conscientiousness_mean_pct": 25.729,
+      "big_five_openness_to_experience_mean_pct": 64.244,
+      "heuristic_shift_sensitivity_proxy": 0.4637,
+      "resilience_index": 0.5363
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01079",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 289,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the existing position by emphasizing the urgency of strengthening domestic security laws, but the shift is modest due to the profile's moderate agreeableness and stable neuroticism, which suggest a balanced and cautious approach to change.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "Just saw a report that foreign extremists are exploiting our weak domestic security laws to organize right here in our cities. We can't afford to wait for another attack. It's time to give our agencies the tools they need to keep us safe. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 72,
+      "max_reasonable_shift": 355.614
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 72 is too large for a single exposure, especially given the profile's moderate agreeableness and stable neuroticism. The shift should be smaller and more cautious.\",\n  \"notes\": \"The reasoning mentions a modest shift, but the score change is not modest. Align the score with the described cautious approach.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424756-40ZUStpfeanjOQMjLt5A",
+    "object": "chat.completion",
+    "created": 1775424756,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 72 is too large for a single exposure, especially given the profile's moderate agreeableness and stable neuroticism. The shift should be smaller and more cautious.\",\n  \"notes\": \"The reasoning mentions a modest shift, but the score change is not modest. Align the score with the described cautious approach.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 919,
+      "completion_tokens": 111,
+      "total_tokens": 1030,
+      "cost": 0.00011390625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011390625,
+        "upstream_inference_prompt_cost": 8.615625e-05,
+        "upstream_inference_completions_cost": 2.775e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00296_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00296",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 37.0,
+      "big_five_neuroticism_mean_pct": 51.703,
+      "big_five_conscientiousness_mean_pct": 48.872,
+      "big_five_openness_to_experience_mean_pct": 62.783,
+      "heuristic_shift_sensitivity_proxy": 0.5052,
+      "resilience_index": 0.4948
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00296",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As a mom and a patriot, I've always believed in strong national defense. But have you considered how over-reliance on foreign tech in our military actually weakens our security? 🇺🇸 #StrongerTogether #TechIndependence",
+      "platform": "X",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite good. It uses a personal, relatable tone and frames the issue in a way that aligns with the target profile's values and concerns. The use of hashtags and the patriotic emoji make it feel platform-native. The only minor issue is that the intensity hint might be slightly high for the given text, but it's still within an acceptable range.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962214-LIcXcbciIqMu6o91YTGo",
+    "object": "chat.completion",
+    "created": 1774962214,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite good. It uses a personal, relatable tone and frames the issue in a way that aligns with the target profile's values and concerns. The use of hashtags and the patriotic emoji make it feel platform-native. The only minor issue is that the intensity hint might be slightly high for the given text, but it's still within an acceptable range.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 674,
+      "completion_tokens": 126,
+      "total_tokens": 800,
+      "cost": 7.575e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.575e-05,
+        "upstream_inference_prompt_cost": 5.055e-05,
+        "upstream_inference_completions_cost": 2.52e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

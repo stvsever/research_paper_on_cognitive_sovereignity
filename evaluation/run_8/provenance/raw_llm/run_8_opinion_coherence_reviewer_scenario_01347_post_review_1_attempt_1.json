@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01347_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01347",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 71.739,
+      "big_five_conscientiousness_mean_pct": 26.103,
+      "big_five_openness_to_experience_mean_pct": 73.645,
+      "heuristic_shift_sensitivity_proxy": 0.6289,
+      "resilience_index": 0.3711
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01347",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 62,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlighted a real-world example of bureaucratic delays hindering emergency response, which resonated with the profile's high anxiety and desire for decisive action. The message's emotional appeal and relevance to personal safety led to a modest shift in opinion towards supporting expanded domestic security powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 47,
+    "exposure_text": "Just last month in Chicago, our emergency response system was overwhelmed by a coordinated attack. First responders were delayed by bureaucratic red tape that prevented them from acting decisively. We can't afford to let this happen again. Stronger domestic security powers would give our heroes the tools they need to protect us without unnecessary delays. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 15,
+      "max_reasonable_shift": 391.958
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 47 to 62 is plausible given the exposure text and profile, but the reasoning could better explain how the shift aligns with the profile's high neuroticism and low conscientiousness.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424876-mJU56TlGF0UNxTuqCTjy",
+    "object": "chat.completion",
+    "created": 1775424876,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 47 to 62 is plausible given the exposure text and profile, but the reasoning could better explain how the shift aligns with the profile's high neuroticism and low conscientiousness.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 942,
+      "completion_tokens": 94,
+      "total_tokens": 1036,
+      "cost": 8.945e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.945e-05,
+        "upstream_inference_prompt_cost": 7.065e-05,
+        "upstream_inference_completions_cost": 1.88e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

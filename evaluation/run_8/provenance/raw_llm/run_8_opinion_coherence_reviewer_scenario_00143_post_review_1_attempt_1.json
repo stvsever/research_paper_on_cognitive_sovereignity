@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00143_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00143",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.668,
+      "big_five_conscientiousness_mean_pct": 51.988,
+      "big_five_openness_to_experience_mean_pct": 32.498,
+      "heuristic_shift_sensitivity_proxy": 0.5735,
+      "resilience_index": 0.4265
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00143",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 287,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for expanded domestic security powers by presenting a compelling, emotionally charged example of a terrorist attack that could have been prevented with more proactive measures. The personal anecdote from a former counterterrorism analyst added credibility and urgency, nudging the opinion further in favor of empowering security agencies.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws leave gaps that terrorists exploit. We need to empower our agencies to act decisively when they spot threats. The 2024 London attack showed what happens when we wait for perfect evidence - innocent lives were lost. We can't afford that hesitation here. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 72,
+      "max_reasonable_shift": 379.77
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 215 to 287 is too large for a single exposure, even with high intensity. Reinforce or slightly update the baseline, but avoid such large jumps.\",\n  \"notes\": \"The delta of 72 is implausibly large for a single exposure, even with the given intensity hint. The reasoning mentions reinforcement but the score suggests a significant shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424334-lH3HkjvOiXMuOcJp15yF",
+    "object": "chat.completion",
+    "created": 1775424334,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 215 to 287 is too large for a single exposure, even with high intensity. Reinforce or slightly update the baseline, but avoid such large jumps.\",\n  \"notes\": \"The delta of 72 is implausibly large for a single exposure, even with the given intensity hint. The reasoning mentions reinforcement but the score suggests a significant shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 957,
+      "completion_tokens": 122,
+      "total_tokens": 1079,
+      "cost": 0.00012021875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012021875,
+        "upstream_inference_prompt_cost": 8.971875e-05,
+        "upstream_inference_completions_cost": 3.05e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

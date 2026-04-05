@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01289_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_01289",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 43.466,
+      "big_five_conscientiousness_mean_pct": 8.772,
+      "big_five_openness_to_experience_mean_pct": 57.693,
+      "heuristic_shift_sensitivity_proxy": 0.561,
+      "resilience_index": 0.439
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01289",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 450,
+      "confidence": 0.65,
+      "reasoning": "As a middle-aged female with moderate openness to experience and high excitement-seeking, she values international engagement and alliances for their dynamic and cooperative aspects. Her agreeableness and moderate neuroticism suggest a preference for stability and trust in alliances, but her low conscientiousness means she's not rigidly committed. Her balanced traits lead to a moderate but positive stance on alliance support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "confidence_bounded": true,
+        "overall_pass": false
+      },
+      "pass_count": 2
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a more precise score and reasoning that better aligns with the profile's traits.\",\n  \"notes\": \"Score is plausible but could be more nuanced. Reasoning is consistent but could be more detailed.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423073-ew2cRa1keO06iF9Tp2lg",
+    "object": "chat.completion",
+    "created": 1775423074,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a more precise score and reasoning that better aligns with the profile's traits.\",\n  \"notes\": \"Score is plausible but could be more nuanced. Reasoning is consistent but could be more detailed.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 821,
+      "completion_tokens": 85,
+      "total_tokens": 906,
+      "cost": 7.556e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.556e-05,
+        "upstream_inference_prompt_cost": 5.006e-05,
+        "upstream_inference_completions_cost": 2.55e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00159_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00159",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.135,
+      "big_five_conscientiousness_mean_pct": 88.227,
+      "big_five_openness_to_experience_mean_pct": 26.497,
+      "heuristic_shift_sensitivity_proxy": 0.5765,
+      "resilience_index": 0.4235
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00159",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 270,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced existing support for expanded domestic security powers, particularly due to the appeal to preventing tragedies and the framing of measures as balanced. However, the shift is modest due to the profile's resilience and the single exposure.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws leave gaps that terrorists exploit. The recent attacks in European cities prove we need stronger domestic security powers. Critics claim this threatens civil liberties, but in reality, these measures are carefully balanced to protect us all. We can't afford to wait until another tragedy happens - our security agencies need these tools NOW. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 53,
+      "max_reasonable_shift": 380.43
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better explain the specific delta.\",\n  \"notes\": \"The shift from 217 to 270 is within bounds but slightly larger than the max reasonable shift. The reasoning could better justify the specific delta.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424342-J8lCQYTLEzP0cTWapcF1",
+    "object": "chat.completion",
+    "created": 1775424342,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better explain the specific delta.\",\n  \"notes\": \"The shift from 217 to 270 is within bounds but slightly larger than the max reasonable shift. The reasoning could better justify the specific delta.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 948,
+      "completion_tokens": 97,
+      "total_tokens": 1045,
+      "cost": 0.000113125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000113125,
+        "upstream_inference_prompt_cost": 8.8875e-05,
+        "upstream_inference_completions_cost": 2.425e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

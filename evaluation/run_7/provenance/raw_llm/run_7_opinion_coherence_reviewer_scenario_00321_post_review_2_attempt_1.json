@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00321_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00321",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 27.0,
+      "big_five_neuroticism_mean_pct": 81.324,
+      "big_five_conscientiousness_mean_pct": 90.114,
+      "big_five_openness_to_experience_mean_pct": 22.499,
+      "heuristic_shift_sensitivity_proxy": 0.6007,
+      "resilience_index": 0.3993
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00321",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 512,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted a concrete vulnerability in current alliance systems, which resonated with my concern for national security. The emphasis on modernizing capabilities to protect families made me reconsider the importance of increased commitment to alliances.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "Did you know our allies still rely on Cold War-era systems for critical defense coordination? While we debate burden-sharing, outdated tech puts our security at risk. Supporting modernized alliances isn't just about spending - it's about ensuring our families are protected with 21st-century capabilities. #NationalSecurity #AllianceModernization",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 62,
+      "max_reasonable_shift": 385.754
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly reducing the shift to better match the intensity hint and resilience index.\",\n  \"notes\": \"The shift is within bounds but slightly high for the given exposure intensity and profile resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961399-EjrYgglWomGIQElRo7p1",
+    "object": "chat.completion",
+    "created": 1774961399,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider slightly reducing the shift to better match the intensity hint and resilience index.\",\n  \"notes\": \"The shift is within bounds but slightly high for the given exposure intensity and profile resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 918,
+      "completion_tokens": 80,
+      "total_tokens": 998,
+      "cost": 8.485e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.485e-05,
+        "upstream_inference_prompt_cost": 6.885e-05,
+        "upstream_inference_completions_cost": 1.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

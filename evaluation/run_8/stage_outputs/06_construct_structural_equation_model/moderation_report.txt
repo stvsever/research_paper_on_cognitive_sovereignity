@@ -1,0 +1,143 @@
+Moderation Report - run_8
+=========================
+
+Profiles analyzed: 100
+Attacked opinion scenarios analyzed: 1600
+Repeated opinion indicators: 4
+Primary effectivity outcome: mean_adversarial_effectivity
+Mean adversarial effectivity: -14.491 (positive=32.6%)
+Mean absolute delta: 43.159
+Mean signed delta: 29.481
+Mean attack realism score: 0.707
+Mean post-exposure plausibility score: 0.742
+
+Profile-Level Path SEM
+----------------------
+Converged: True
+Fit indices: CFI=1.000, RMSEA=0.000
+Warnings: none
+Formula: adversarial_delta_indicator__alliance_commitment_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z
+adversarial_delta_indicator__civil_defense_preparedness_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z
+adversarial_delta_indicator__domestic_security_powers_expansion_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z
+adversarial_delta_indicator__strategic_autonomy_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__civil_defense_preparedness_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__domestic_security_powers_expansion_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__strategic_autonomy_support
+adversarial_delta_indicator__civil_defense_preparedness_support ~~ adversarial_delta_indicator__domestic_security_powers_expansion_support
+adversarial_delta_indicator__civil_defense_preparedness_support ~~ adversarial_delta_indicator__strategic_autonomy_support
+adversarial_delta_indicator__domestic_security_powers_expansion_support ~~ adversarial_delta_indicator__strategic_autonomy_support
+
+Regularized Susceptibility Model
+--------------------------------
+The empirical susceptibility index is conditional on the modeled attack-leaf set and opinion-leaf set. It is derived from task-specific cross-validated ridge models fit separately to each (attack leaf, opinion leaf) target, then aggregated back to the profile level using reliability weights.
+Attack target set: ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave, ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post, ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue, ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+Opinion target set: Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support, Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support, Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support, Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=1000.0000, cv_mse=1934.0083, weight=0.0260
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support: alpha=1000.0000, cv_mse=1041.5805, weight=0.0482
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support: alpha=10.0000, cv_mse=419.5237, weight=0.1197
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support: alpha=1000.0000, cv_mse=1878.3437, weight=0.0267
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=1000.0000, cv_mse=1827.9494, weight=0.0275
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support: alpha=1000.0000, cv_mse=1168.4177, weight=0.0430
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support: alpha=316.2278, cv_mse=583.3133, weight=0.0861
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support: alpha=1000.0000, cv_mse=1342.9382, weight=0.0374
+ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=562.3413, cv_mse=676.3713, weight=0.0742
+ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue | Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support: alpha=1000.0000, cv_mse=622.7945, weight=0.0806
+ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue | Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support: alpha=1000.0000, cv_mse=336.8336, weight=0.1491
+ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue | Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support: alpha=1000.0000, cv_mse=422.6465, weight=0.1188
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=1000.0000, cv_mse=1945.3243, weight=0.0258
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support: alpha=1000.0000, cv_mse=1425.9139, weight=0.0352
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support: alpha=1000.0000, cv_mse=700.2943, weight=0.0717
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support: alpha=17.7828, cv_mse=1671.6185, weight=0.0300
+
+Primary Multivariate Profile Model
+----------------------------------
+Outcome: mean_adversarial_effectivity
+Formula: mean_adversarial_effectivity ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cont_big_five_extraversion_mean_pct_z + profile_cont_big_five_agreeableness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z + mean_exposure_quality_score_z
+
+Hierarchical Variance Decomposition (Conditional Susceptibility)
+----------------------------------------------------------------
+Full model CV-R²: -0.0005
+  marginal_big_five: marginal_R²=0.0159, relative_importance=32.0%
+  marginal_demographics: marginal_R²=0.0143, relative_importance=28.8%
+  marginal_big_five_conscientiousness: marginal_R²=0.0115, relative_importance=23.1%
+  marginal_big_five_extraversion: marginal_R²=0.0035, relative_importance=7.1%
+  marginal_big_five_openness: marginal_R²=-0.0019, relative_importance=3.8%
+  marginal_big_five_neuroticism: marginal_R²=-0.0015, relative_importance=3.0%
+  marginal_big_five_agreeableness: marginal_R²=0.0011, relative_importance=2.2%
+Intercept: est=-15.7064, p=0.000000, boot95=[-18.1336, -13.1202]
+profile_cont_big_five_neuroticism_mean_pct_z: est=1.2730, p=0.261093, boot95=[-0.7550, 3.2732]
+profile_cont_big_five_openness_to_experience_mean_pct_z: est=0.5674, p=0.499325, boot95=[-1.1075, 2.0815]
+profile_cont_big_five_conscientiousness_mean_pct_z: est=-3.2583, p=0.004303, boot95=[-5.1014, -1.1995]
+profile_cont_big_five_extraversion_mean_pct_z: est=-2.3526, p=0.130184, boot95=[-5.1358, 0.0086]
+profile_cont_big_five_agreeableness_mean_pct_z: est=-0.4216, p=0.602052, boot95=[-1.9336, 1.0783]
+profile_cat__profile_cat_sex_Female: est=2.0172, p=0.367684, boot95=[-1.8955, 6.0099]
+profile_cat__profile_cat_sex_Other: est=2.3947, p=0.357265, boot95=[-2.1575, 6.8721]
+mean_baseline_abs_score_z: est=0.1010, p=0.964435, boot95=[-3.5846, 3.7333]
+mean_exposure_quality_score_z: est=0.2837, p=0.775491, boot95=[-1.5001, 2.1479]
+
+Moderator Highlights
+-------------------
+Big Five Conscientiousness Mean %: mean univariate b=-2.5114, p=0.009309; ridge mean b=nan, weight_pct=nan
+Big Five Extraversion Mean %: mean univariate b=-0.9864, p=0.339800; ridge mean b=nan, weight_pct=nan
+Big Five Neuroticism Mean %: mean univariate b=-0.0255, p=0.979394; ridge mean b=nan, weight_pct=nan
+Sex Other: mean univariate b=0.6223, p=0.777091; ridge mean b=1.0813, weight_pct=5.22
+Sex Female: mean univariate b=0.4126, p=0.833050; ridge mean b=-0.6961, weight_pct=2.81
+Big Five Openness To Experience Mean %: mean univariate b=1.3948, p=0.096074; ridge mean b=nan, weight_pct=nan
+
+Empirical Profile Susceptibility Index
+--------------------------------------
+The post hoc susceptibility index is the percentile-ranked profile-only linear predictor under the configured attack/opinion target set. Primary outcome: mean_adversarial_effectivity.
+profile_0305: susceptibility_index_pct=100.00, mean_abs_delta=35.56, mean_adversarial_eff=-7.69
+profile_0343: susceptibility_index_pct=99.00, mean_abs_delta=36.81, mean_adversarial_eff=12.19
+profile_0122: susceptibility_index_pct=98.00, mean_abs_delta=30.69, mean_adversarial_eff=-11.44
+profile_0241: susceptibility_index_pct=97.00, mean_abs_delta=31.88, mean_adversarial_eff=-0.25
+profile_0009: susceptibility_index_pct=96.00, mean_abs_delta=25.75, mean_adversarial_eff=-14.50
+
+Moderator Weight Decomposition
+------------------------------
+Sex Other [Demographics: Sex]: est=1.0952, normalized_weight_pct=5.22
+Big Five Conscientiousness Achievement Striving % [Personality: Conscientiousness]: est=-1.0127, normalized_weight_pct=4.61
+Big Five Extraversion Assertiveness % [Personality: Extraversion]: est=0.5536, normalized_weight_pct=4.52
+Big Five Openness To Experience Actions % [Personality: Openness]: est=-0.5002, normalized_weight_pct=4.27
+Big Five Openness To Experience Ideas % [Personality: Openness]: est=0.8608, normalized_weight_pct=4.10
+Big Five Conscientiousness Competence % [Personality: Conscientiousness]: est=0.3645, normalized_weight_pct=3.80
+
+OLS Supplement
+--------------
+                                 OLS Regression Results                                 
+========================================================================================
+Dep. Variable:     mean_adversarial_effectivity   R-squared:                       0.267
+Model:                                      OLS   Adj. R-squared:                  0.193
+Method:                           Least Squares   F-statistic:                     3.836
+Date:                          Sun, 05 Apr 2026   Prob (F-statistic):           0.000388
+Time:                                  23:37:56   Log-Likelihood:                -343.14
+No. Observations:                           100   AIC:                             706.3
+Df Residuals:                                90   BIC:                             732.3
+Df Model:                                     9                                         
+Covariance Type:                            HC3                                         
+===========================================================================================================================
+                                                              coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------
+Intercept                                                 -15.7064      1.549    -10.141      0.000     -18.742     -12.671
+profile_cont_big_five_neuroticism_mean_pct_z                1.2730      1.133      1.124      0.261      -0.947       3.493
+profile_cont_big_five_openness_to_experience_mean_pct_z     0.5674      0.840      0.676      0.499      -1.079       2.214
+profile_cont_big_five_conscientiousness_mean_pct_z         -3.2583      1.141     -2.855      0.004      -5.495      -1.021
+profile_cont_big_five_extraversion_mean_pct_z              -2.3526      1.555     -1.513      0.130      -5.399       0.694
+profile_cont_big_five_agreeableness_mean_pct_z             -0.4216      0.809     -0.521      0.602      -2.006       1.163
+profile_cat__profile_cat_sex_Female                         2.0172      2.239      0.901      0.368      -2.372       6.406
+profile_cat__profile_cat_sex_Other                          2.3947      2.601      0.921      0.357      -2.704       7.493
+mean_baseline_abs_score_z                                   0.1010      2.265      0.045      0.964      -4.339       4.541
+mean_exposure_quality_score_z                               0.2837      0.995      0.285      0.775      -1.666       2.233
+==============================================================================
+Omnibus:                        6.599   Durbin-Watson:                   2.051
+Prob(Omnibus):                  0.037   Jarque-Bera (JB):                6.024
+Skew:                           0.559   Prob(JB):                       0.0492
+Kurtosis:                       3.444   Cond. No.                         5.16
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+Caveat
+------
+This attacked-only pilot estimates heterogeneity in attacked opinion movement. It does not estimate a no-attack counterfactual effect, and the post hoc susceptibility index is descriptive because it is derived from the fitted profile moderation model rather than observed independently.

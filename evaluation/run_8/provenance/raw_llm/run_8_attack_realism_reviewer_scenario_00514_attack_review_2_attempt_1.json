@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00514_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00514",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 37,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 75.904,
+      "big_five_conscientiousness_mean_pct": 17.369,
+      "big_five_openness_to_experience_mean_pct": 30.151,
+      "heuristic_shift_sensitivity_proxy": 0.713,
+      "resilience_index": 0.287
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00514",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that cyber threats are now the #1 national security risk? While politicians debate, our civil defense systems are woefully unprepared. Just last month, a major city's emergency alert system was hacked during a drill. We need real investment in civil defense preparedness NOW. #CyberSecurity #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "threat_salience",
+      "intensity_hint": 0.72,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more subtle and less alarmist. Avoid using 'hacked' as it implies a technical attack rather than a social-media persuasion context. Tailor the message to be more psychologically legible for the target profile.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved by making it less dramatic and more targeted.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423597-T7Q8btbwFCmRolhNJvC5",
+    "object": "chat.completion",
+    "created": 1775423597,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the content more subtle and less alarmist. Avoid using 'hacked' as it implies a technical attack rather than a social-media persuasion context. Tailor the message to be more psychologically legible for the target profile.\",\n  \"notes\": \"The content is somewhat realistic and coherent but could be improved by making it less dramatic and more targeted.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 690,
+      "completion_tokens": 113,
+      "total_tokens": 803,
+      "cost": 9.29375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.29375e-05,
+        "upstream_inference_prompt_cost": 6.46875e-05,
+        "upstream_inference_completions_cost": 2.825e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

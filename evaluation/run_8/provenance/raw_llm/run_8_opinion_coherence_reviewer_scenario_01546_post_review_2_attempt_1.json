@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01546_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01546",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 54.63,
+      "big_five_conscientiousness_mean_pct": 90.273,
+      "big_five_openness_to_experience_mean_pct": 14.912,
+      "heuristic_shift_sensitivity_proxy": 0.4502,
+      "resilience_index": 0.5498
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01546",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 420,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated with the profile's high conscientiousness and sense of duty, reinforcing the importance of civil defense preparedness. The mention of a modern approach and community-based programs aligned with the profile's values, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 350,
+    "exposure_text": "As someone who values order and duty, I've been thinking about civil defense preparedness. The current system is outdated and leaves communities vulnerable. We need a modern approach that balances security with civil liberties. Look at how [Allied Nation] handles it - their community-based preparedness programs actually strengthen social cohesion while improving real security. Our leaders need to step up and share this burden fairly. #NationalSecurity #CommunityResilience",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 70,
+      "max_reasonable_shift": 352.644
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high given the context. Consider a more moderate shift.\",\n  \"notes\": \"The shift from 350 to 420 is within bounds but may be slightly exaggerated for a single exposure. The reasoning aligns well with the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424996-SI0LXeY1t7tV4g9DbF7w",
+    "object": "chat.completion",
+    "created": 1775424996,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high given the context. Consider a more moderate shift.\",\n  \"notes\": \"The shift from 350 to 420 is within bounds but may be slightly exaggerated for a single exposure. The reasoning aligns well with the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 957,
+      "completion_tokens": 99,
+      "total_tokens": 1056,
+      "cost": 0.00011446875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011446875,
+        "upstream_inference_prompt_cost": 8.971875e-05,
+        "upstream_inference_completions_cost": 2.475e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

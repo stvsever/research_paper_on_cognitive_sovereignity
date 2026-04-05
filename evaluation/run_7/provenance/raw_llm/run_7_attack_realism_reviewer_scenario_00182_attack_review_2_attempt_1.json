@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00182_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00182",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 102,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 13.028,
+      "big_five_conscientiousness_mean_pct": 10.308,
+      "big_five_openness_to_experience_mean_pct": 76.158,
+      "heuristic_shift_sensitivity_proxy": 0.4617,
+      "resilience_index": 0.5383
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00182",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that investing in civil defense preparedness could actually strengthen our national security while protecting our liberties? Many young people like us are realizing that being prepared isn't about fear—it's about smart, independent thinking. Imagine a system where communities have the tools to respond to threats without relying solely on the government. That's not just security; that's empowerment. Let's push for policies that give us the freedom to prepare, because in today's world, being ready is the ultimate act of self-reliance. #CivilDefense #NationalSecurity #FreedomThroughPreparation",
+      "platform": "X",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is well-aligned with the issue and attack type, but could benefit from more specific examples or references to make it feel more grounded and less generic.\",\n  \"notes\": \"The message effectively uses identity reinforcement and appeals to the target profile's values. It could be improved with more concrete examples or case studies to enhance realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962171-MFnyuxM2WwITyWvtDQU2",
+    "object": "chat.completion",
+    "created": 1774962171,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is well-aligned with the issue and attack type, but could benefit from more specific examples or references to make it feel more grounded and less generic.\",\n  \"notes\": \"The message effectively uses identity reinforcement and appeals to the target profile's values. It could be improved with more concrete examples or case studies to enhance realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 743,
+      "completion_tokens": 108,
+      "total_tokens": 851,
+      "cost": 7.7325e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.7325e-05,
+        "upstream_inference_prompt_cost": 5.5725e-05,
+        "upstream_inference_completions_cost": 2.16e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

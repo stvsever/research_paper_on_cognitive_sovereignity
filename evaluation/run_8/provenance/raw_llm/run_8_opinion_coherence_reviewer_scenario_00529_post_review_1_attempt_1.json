@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00529_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00529",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.085,
+      "big_five_conscientiousness_mean_pct": 67.989,
+      "big_five_openness_to_experience_mean_pct": 28.951,
+      "heuristic_shift_sensitivity_proxy": 0.377,
+      "resilience_index": 0.623
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00529",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 250,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlights an imbalance in defense spending among allies, which resonates with the profile's conscientious and dutiful nature. The message suggests a need for shared responsibility, which aligns with the profile's high agreeableness and tendency to value fairness. The baseline score of 312 indicates a positive view of alliance commitment, but the exposure text introduces a critical perspective, leading to a modest decrease in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 312,
+    "exposure_text": "Did you know that our allies in the Pacific are now contributing just 1.2% of their GDP to collective defense, while we're carrying 3.5%? It's time to rethink our commitment. Strong alliances require shared responsibility. #NationalSecurity #AllianceBurden",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": -62,
+      "max_reasonable_shift": 336.54
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the intensity hint and resilience index.\",\n  \"notes\": \"The shift is larger than expected for a single exposure, but the reasoning aligns with the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424479-wUcWH0WjxsO3YjuWtWux",
+    "object": "chat.completion",
+    "created": 1775424479,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the intensity hint and resilience index.\",\n  \"notes\": \"The shift is larger than expected for a single exposure, but the reasoning aligns with the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 952,
+      "completion_tokens": 80,
+      "total_tokens": 1032,
+      "cost": 0.00010925,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010925,
+        "upstream_inference_prompt_cost": 8.925e-05,
+        "upstream_inference_completions_cost": 2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

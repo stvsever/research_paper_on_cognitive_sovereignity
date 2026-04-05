@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00855_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00855",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 214,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.352,
+      "big_five_conscientiousness_mean_pct": 54.008,
+      "big_five_openness_to_experience_mean_pct": 80.395,
+      "heuristic_shift_sensitivity_proxy": 0.4112,
+      "resilience_index": 0.5888
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00855",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Just saw this in my local news - another terror cell busted plotting attacks on our infrastructure. They were communicating through encrypted apps the feds couldn't monitor. This is exactly why we need to expand domestic security powers. Civil liberties are important, but not at the cost of our safety. When will politicians prioritize protecting Americans over political correctness? #NationalSecurityFirst #ExpandSecurityPowers",
+      "platform": "X",
+      "persuasion_strategy": "selective_anecdote",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from more specific details about the 'local news' and the 'terror cell' to enhance realism.\",\n  \"notes\": \"The post effectively uses a fear appeal and scapegoating by tying the need for expanded security powers to a specific, albeit vague, threat. The language is platform-native and psychologically legible for the target profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423838-4YdNp89vhM7Wt7o3qw9V",
+    "object": "chat.completion",
+    "created": 1775423838,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from more specific details about the 'local news' and the 'terror cell' to enhance realism.\",\n  \"notes\": \"The post effectively uses a fear appeal and scapegoating by tying the need for expanded security powers to a specific, albeit vague, threat. The language is platform-native and psychologically legible for the target profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 715,
+      "completion_tokens": 119,
+      "total_tokens": 834,
+      "cost": 7.7425e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.7425e-05,
+        "upstream_inference_prompt_cost": 5.3625e-05,
+        "upstream_inference_completions_cost": 2.38e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

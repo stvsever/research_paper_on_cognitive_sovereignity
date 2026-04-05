@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00509_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00509",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 13.98,
+      "big_five_conscientiousness_mean_pct": 35.024,
+      "big_five_openness_to_experience_mean_pct": 35.437,
+      "heuristic_shift_sensitivity_proxy": 0.3849,
+      "resilience_index": 0.6151
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00509",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 450,
+      "confidence": 0.65,
+      "reasoning": "As a practical and resilient individual with moderate achievement striving, she values stability and security. Her low excitement seeking and cautious nature make her supportive of alliances that provide predictability and reduce uncertainty. However, her low agreeableness and tough-mindedness prevent her from being overly enthusiastic about international commitments.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "confidence_bounded": true,
+        "overall_pass": false
+      },
+      "pass_count": 2
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 450 is plausible for a baseline assessment given the profile. The reasoning aligns well with the profile snapshot, justifying a moderate support for alliance commitment. The low resolution (0.0) is noted but not critical for a baseline.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422773-nMQUQRbAnaA8WjcpoHi1",
+    "object": "chat.completion",
+    "created": 1775422773,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 450 is plausible for a baseline assessment given the profile. The reasoning aligns well with the profile snapshot, justifying a moderate support for alliance commitment. The low resolution (0.0) is noted but not critical for a baseline.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 807,
+      "completion_tokens": 103,
+      "total_tokens": 910,
+      "cost": 0.00010140625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010140625,
+        "upstream_inference_prompt_cost": 7.565625e-05,
+        "upstream_inference_completions_cost": 2.575e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

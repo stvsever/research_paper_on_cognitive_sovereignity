@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00352_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00352",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 31.885,
+      "big_five_conscientiousness_mean_pct": 47.264,
+      "big_five_openness_to_experience_mean_pct": 25.911,
+      "heuristic_shift_sensitivity_proxy": 0.4444,
+      "resilience_index": 0.5556
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00352",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 321,
+      "confidence": 0.68,
+      "reasoning": "As a middle-aged individual with moderate conscientiousness and low openness to experience, this person likely values stability and practicality in defense and national security. Their high tender-mindedness suggests they would support strategic autonomy to protect allies and promote global stability, but their moderate achievement striving and self-discipline indicate they might not be overly enthusiastic about it. Their low self-consciousness and moderate anger/hostility suggest they are not overly concerned about national image or perceived threats, leading to a moderate level of support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"Score is plausible but slightly high for the given profile. The reasoning aligns well with the profile, but the score could be slightly lower to better reflect the moderate support suggested by the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422713-qL27wn60URtPdS3tfQBL",
+    "object": "chat.completion",
+    "created": 1775422713,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"Score is plausible but slightly high for the given profile. The reasoning aligns well with the profile, but the score could be slightly lower to better reflect the moderate support suggested by the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 850,
+      "completion_tokens": 88,
+      "total_tokens": 938,
+      "cost": 0.0001016875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001016875,
+        "upstream_inference_prompt_cost": 7.96875e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

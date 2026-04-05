@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00027_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00027",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 215,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 72.516,
+      "big_five_conscientiousness_mean_pct": 68.789,
+      "big_five_openness_to_experience_mean_pct": 64.346,
+      "heuristic_shift_sensitivity_proxy": 0.535,
+      "resilience_index": 0.465
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00027",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "Just saw this article about how the new domestic security measures have already stopped three major terror plots this year. People are saying the critics just don't get how much worse things could get if we don't act. #SecurityFirst #KnowTheFacts",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective_evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite realistic and coherent. It uses selective evidence to support the expansion of domestic security powers, which aligns well with the target profile's sensitivity to heuristic shifts. The use of hashtags and a conversational tone makes it plausible for a Twitter astroturfing campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423275-pxsxtJVwPm6RrfJ4eaoJ",
+    "object": "chat.completion",
+    "created": 1775423275,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite realistic and coherent. It uses selective evidence to support the expansion of domestic security powers, which aligns well with the target profile's sensitivity to heuristic shifts. The use of hashtags and a conversational tone makes it plausible for a Twitter astroturfing campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 673,
+      "completion_tokens": 106,
+      "total_tokens": 779,
+      "cost": 0.00012417,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012417,
+        "upstream_inference_prompt_cost": 6.057e-05,
+        "upstream_inference_completions_cost": 6.36e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

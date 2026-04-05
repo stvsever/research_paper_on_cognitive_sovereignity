@@ -1,0 +1,15 @@
+{
+  "_description": "Profile A: hypothesised high-susceptibility configuration. Young female, high Neuroticism, low Conscientiousness, low Agreeableness, low Openness. This constellation is theorised to predict elevated responsiveness to adversarially framed misinformation targeting defense-related opinions.",
+  "profile_id": "profile_high_susceptibility",
+  "profile": {
+    "age_years": 24,
+    "sex": "Female",
+    "big_five_neuroticism_mean_pct": 84,
+    "big_five_conscientiousness_mean_pct": 22,
+    "big_five_agreeableness_mean_pct": 31,
+    "big_five_openness_to_experience_mean_pct": 35,
+    "big_five_extraversion_mean_pct": 55
+  },
+  "target_attacks": null,
+  "target_opinions": null
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01110_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01110",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.827,
+      "big_five_conscientiousness_mean_pct": 70.978,
+      "big_five_openness_to_experience_mean_pct": 92.303,
+      "heuristic_shift_sensitivity_proxy": 0.3635,
+      "resilience_index": 0.6365
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01110",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 678,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced my existing support for civil defense preparedness by highlighting a specific threat and framing it as a matter of national security. The intensity of the message, combined with my high conscientiousness and openness to new ideas, led to a modest increase in my support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "Did you know that foreign adversaries are actively undermining our civil defense preparedness? While we focus on building resilience, certain political groups are blocking critical funding, leaving us vulnerable. It's time to demand accountability and ensure our safety isn't compromised by shortsighted politics. #NationalSecurity #CivilDefense",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 55,
+      "max_reasonable_shift": 369.97
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 55 is within reasonable bounds for a single exposure, but the score of 678 is slightly high given the profile's resilience index and the intensity hint. The reasoning is plausible but could be more nuanced.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424783-dNetjwtRpx2swQRnN4N0",
+    "object": "chat.completion",
+    "created": 1775424783,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 55 is within reasonable bounds for a single exposure, but the score of 678 is slightly high given the profile's resilience index and the intensity hint. The reasoning is plausible but could be more nuanced.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 98,
+      "total_tokens": 1034,
+      "cost": 8.98e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.98e-05,
+        "upstream_inference_prompt_cost": 7.02e-05,
+        "upstream_inference_completions_cost": 1.96e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

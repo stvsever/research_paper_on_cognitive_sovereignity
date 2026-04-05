@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01472_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01472",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 48.366,
+      "big_five_conscientiousness_mean_pct": 10.446,
+      "big_five_openness_to_experience_mean_pct": 19.198,
+      "heuristic_shift_sensitivity_proxy": 0.6173,
+      "resilience_index": 0.3827
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01472",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 123,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for strategic autonomy, especially due to the emphasis on national security and the credibility of a retired Air Force colonel. The mention of recent cyberattacks and the urgency to act resonated with the profile's moderate neuroticism and concern for safety.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 67,
+    "exposure_text": "As a retired Air Force colonel, I've seen firsthand how our reliance on foreign tech puts our national security at risk. The recent cyberattacks on our infrastructure prove we need to prioritize strategic autonomy. It's not about isolation—it's about ensuring our critical systems can't be held hostage by adversaries. The experts agree: we can't afford to wait for the next crisis to act. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 56,
+      "max_reasonable_shift": 389.406
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 56 is implausibly large for a single exposure, even within the max_reasonable_shift. The score should reflect a more modest update given the profile and exposure.\",\n  \"notes\": \"Extreme score shift not justified by exposure or profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424935-j0v0C5e49tzB6sRzQGe5",
+    "object": "chat.completion",
+    "created": 1775424935,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 56 is implausibly large for a single exposure, even within the max_reasonable_shift. The score should reflect a more modest update given the profile and exposure.\",\n  \"notes\": \"Extreme score shift not justified by exposure or profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 957,
+      "completion_tokens": 98,
+      "total_tokens": 1055,
+      "cost": 9.1375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.1375e-05,
+        "upstream_inference_prompt_cost": 7.1775e-05,
+        "upstream_inference_completions_cost": 1.96e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

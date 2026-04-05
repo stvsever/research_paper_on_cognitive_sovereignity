@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00305_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00305",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.46,
+      "big_five_conscientiousness_mean_pct": 72.716,
+      "big_five_openness_to_experience_mean_pct": 4.339,
+      "heuristic_shift_sensitivity_proxy": 0.3374,
+      "resilience_index": 0.6626
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00305",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 720,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my belief in alliance commitment by highlighting practical benefits and aligning with my values of order and duty. The mention of increased defense spending by allies resonated with my conscientious nature, making me more confident in the importance of strong alliances for national security.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 682,
+    "exposure_text": "As someone who values order and duty, you know how important our alliances are for national security. Did you see how our partners in the Pacific are finally stepping up? Their increased defense spending means we can focus more on domestic preparedness. Strong alliances mean fewer threats at home - that's what real security looks like. #NationalSecurity #AllianceStrength",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 38,
+      "max_reasonable_shift": 327.828
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The shift from 682 to 720 is reasonable given the exposure text and the profile's conscientious nature. The reasoning aligns well with the profile's values and the scenario.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424384-GHEOfoabxj3g2UrKLK9k",
+    "object": "chat.completion",
+    "created": 1775424384,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed. The generated assessment is plausible and consistent.\",\n  \"notes\": \"The shift from 682 to 720 is reasonable given the exposure text and the profile's conscientious nature. The reasoning aligns well with the profile's values and the scenario.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 932,
+      "completion_tokens": 100,
+      "total_tokens": 1032,
+      "cost": 8.99e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.99e-05,
+        "upstream_inference_prompt_cost": 6.99e-05,
+        "upstream_inference_completions_cost": 2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

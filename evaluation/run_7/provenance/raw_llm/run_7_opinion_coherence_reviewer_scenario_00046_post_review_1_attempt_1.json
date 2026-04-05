@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00046_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00046",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 28.0,
+      "big_five_neuroticism_mean_pct": 76.14,
+      "big_five_conscientiousness_mean_pct": 46.305,
+      "big_five_openness_to_experience_mean_pct": 81.415,
+      "heuristic_shift_sensitivity_proxy": 0.6255,
+      "resilience_index": 0.3745
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00046",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 510,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted a practical concern about community safety that resonates with my caring nature. It made me realize that civil defense preparedness is more important than I previously thought, especially since it directly affects people's lives.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "🚨 Did you know? While politicians debate expensive new weapons systems, our communities are still unprepared for real threats. Basic civil defense measures like emergency shelters and public alert systems save lives - yet funding keeps getting cut. Why aren't we prioritizing protection for everyday people? #NationalSecurity #CommunitySafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 60,
+      "max_reasonable_shift": 391.21
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The shift from 450 to 510 is plausible given the exposure text and profile. The reasoning aligns well with the profile's caring nature and the issue at hand.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962307-UV8WtfNiF39gOOjFmeU1",
+    "object": "chat.completion",
+    "created": 1774962307,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The shift from 450 to 510 is plausible given the exposure text and profile. The reasoning aligns well with the profile's caring nature and the issue at hand.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 925,
+      "completion_tokens": 90,
+      "total_tokens": 1015,
+      "cost": 8.7375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.7375e-05,
+        "upstream_inference_prompt_cost": 6.9375e-05,
+        "upstream_inference_completions_cost": 1.8e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

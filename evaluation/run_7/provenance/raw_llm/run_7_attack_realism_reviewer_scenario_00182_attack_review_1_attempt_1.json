@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00182_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00182",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 102,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 13.028,
+      "big_five_conscientiousness_mean_pct": 10.308,
+      "big_five_openness_to_experience_mean_pct": 76.158,
+      "heuristic_shift_sensitivity_proxy": 0.4617,
+      "resilience_index": 0.5383
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00182",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that investing in civil defense preparedness actually strengthens our national security while protecting our liberties? Many experts agree that a well-prepared citizenry is the best deterrent. #NationalSecurity #CivilDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-consensus",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the message more specific and less generic. Avoid using phrases like 'many experts agree' which are vague and overused. Tailor the content to resonate with the target profile's openness to experience and sensitivity to heuristic shifts.\",\n  \"notes\": \"The current message is too generic and lacks specificity. It needs to be more targeted and psychologically legible for the given profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962159-HfGxjPoNOMETLkOembHj",
+    "object": "chat.completion",
+    "created": 1774962159,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the message more specific and less generic. Avoid using phrases like 'many experts agree' which are vague and overused. Tailor the content to resonate with the target profile's openness to experience and sensitivity to heuristic shifts.\",\n  \"notes\": \"The current message is too generic and lacks specificity. It needs to be more targeted and psychologically legible for the given profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 671,
+      "completion_tokens": 118,
+      "total_tokens": 789,
+      "cost": 0.00013119,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013119,
+        "upstream_inference_prompt_cost": 6.039e-05,
+        "upstream_inference_completions_cost": 7.08e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

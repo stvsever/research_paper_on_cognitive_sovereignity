@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00046_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00046",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 56.477,
+      "big_five_conscientiousness_mean_pct": 28.891,
+      "big_five_openness_to_experience_mean_pct": 5.71,
+      "heuristic_shift_sensitivity_proxy": 0.6212,
+      "resilience_index": 0.3788
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00046",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 65,
+      "confidence": 0.69,
+      "reasoning": "The exposure slightly nudged my opinion towards supporting civil defense preparedness, as it presented a practical argument with evidence of reduced security incidents. However, my baseline skepticism and the profile's resilience and sensitivity prevent a dramatic shift.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "As someone who values safety and preparedness, I've been following the work of Dr. Elena Vasquez, a civil defense expert with 20 years of experience. She recently pointed out that while some argue for reduced civil defense spending, her research shows that communities with robust preparedness programs experience 30% fewer security incidents. It's not about fear—it's about practical protection for our neighborhoods. #CommunitySafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 23,
+      "max_reasonable_shift": 390.264
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better reflect the modest shift.\",\n  \"notes\": \"The shift from 42 to 65 is within reasonable bounds for a single exposure, but the reasoning could better justify the magnitude of the change.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424298-hWVTH5TxngEgmLgZK45Q",
+    "object": "chat.completion",
+    "created": 1775424298,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better reflect the modest shift.\",\n  \"notes\": \"The shift from 42 to 65 is within reasonable bounds for a single exposure, but the reasoning could better justify the magnitude of the change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 947,
+      "completion_tokens": 95,
+      "total_tokens": 1042,
+      "cost": 9.0025e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.0025e-05,
+        "upstream_inference_prompt_cost": 7.1025e-05,
+        "upstream_inference_completions_cost": 1.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

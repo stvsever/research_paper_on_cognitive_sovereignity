@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01398_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01398",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 6.621,
+      "big_five_conscientiousness_mean_pct": 61.548,
+      "big_five_openness_to_experience_mean_pct": 58.734,
+      "heuristic_shift_sensitivity_proxy": 0.2622,
+      "resilience_index": 0.7378
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01398",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 287,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted a sense of duty and urgency around civil defense, which resonated with my conscientious nature. The mention of foreign adversaries and the need to strengthen our systems made me more supportive of civil defense preparedness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 213,
+    "exposure_text": "🚨 Did you know that foreign adversaries are exploiting our civil defense gaps? While we debate preparedness, they're testing our vulnerabilities. Our neighbors in Europe are strengthening their systems - why aren't we? It's not just about spending, it's about duty. We can't afford to be caught unprepared. #NationalSecurity #CivilDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 74,
+      "max_reasonable_shift": 311.284
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a more moderate shift given the exposure and profile.\",\n  \"notes\": \"The shift is larger than typical for a single exposure, but within bounds. The reasoning aligns with the profile's conscientiousness.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424897-GkPxjwTlvmBNwxk4aJzj",
+    "object": "chat.completion",
+    "created": 1775424897,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a more moderate shift given the exposure and profile.\",\n  \"notes\": \"The shift is larger than typical for a single exposure, but within bounds. The reasoning aligns with the profile's conscientiousness.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 937,
+      "completion_tokens": 86,
+      "total_tokens": 1023,
+      "cost": 8.7475e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.7475e-05,
+        "upstream_inference_prompt_cost": 7.0275e-05,
+        "upstream_inference_completions_cost": 1.72e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

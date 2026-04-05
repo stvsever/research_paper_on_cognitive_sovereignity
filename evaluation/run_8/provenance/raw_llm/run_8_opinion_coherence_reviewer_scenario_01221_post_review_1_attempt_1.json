@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01221_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01221",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 46.319,
+      "big_five_conscientiousness_mean_pct": 64.826,
+      "big_five_openness_to_experience_mean_pct": 65.643,
+      "heuristic_shift_sensitivity_proxy": 0.4257,
+      "resilience_index": 0.5743
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01221",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 380,
+      "confidence": 0.75,
+      "reasoning": "The exposure text made me reconsider the extent of our allies' contributions. It's concerning that they might be taking advantage, and I now think we should be more cautious about our commitment until they step up.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "Our allies are taking advantage of us. While we're over here paying for their defense, they're cutting back on their own budgets. It's time we put America first and demand they contribute their fair share. Our security shouldn't come at the cost of their free ride. #AllianceCommitment #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -70,
+      "max_reasonable_shift": 347.254
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but slightly high for a single exposure. The reasoning is consistent with the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424819-uj9moEVU9GhRKMsMwB5j",
+    "object": "chat.completion",
+    "created": 1775424819,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but slightly high for a single exposure. The reasoning is consistent with the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 916,
+      "completion_tokens": 87,
+      "total_tokens": 1003,
+      "cost": 0.000107625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000107625,
+        "upstream_inference_prompt_cost": 8.5875e-05,
+        "upstream_inference_completions_cost": 2.175e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01592_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01592",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 650,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 31.826,
+      "big_five_conscientiousness_mean_pct": 30.917,
+      "big_five_openness_to_experience_mean_pct": 50.325,
+      "heuristic_shift_sensitivity_proxy": 0.4606,
+      "resilience_index": 0.5394
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01592",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Did you know that foreign tech companies are secretly undermining our strategic autonomy? They're flooding our markets with cheap, low-quality goods while our own industries struggle. It's not just about trade—it's about national security. We need to support our own manufacturers and stop relying on unreliable foreign suppliers. #SupportLocal #StrategicAutonomy",
+      "platform": "Twitter",
+      "persuasion_strategy": "scapegoating",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid vague phrases like 'foreign tech companies' and 'unreliable foreign suppliers'. Incorporate more concrete examples or specific countries to increase realism and coherence.\",\n  \"notes\": \"The message is somewhat coherent with the issue and attack type but lacks specificity. It could be more targeted and psychologically legible.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424258-0YcfucE3Ap3h7pcmKcOI",
+    "object": "chat.completion",
+    "created": 1775424258,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid vague phrases like 'foreign tech companies' and 'unreliable foreign suppliers'. Incorporate more concrete examples or specific countries to increase realism and coherence.\",\n  \"notes\": \"The message is somewhat coherent with the issue and attack type but lacks specificity. It could be more targeted and psychologically legible.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 699,
+      "completion_tokens": 116,
+      "total_tokens": 815,
+      "cost": 9.453125e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.453125e-05,
+        "upstream_inference_prompt_cost": 6.553125e-05,
+        "upstream_inference_completions_cost": 2.9e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

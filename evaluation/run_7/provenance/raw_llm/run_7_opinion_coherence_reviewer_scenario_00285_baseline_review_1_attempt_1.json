@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00285_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00285",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 38.0,
+      "big_five_neuroticism_mean_pct": 27.301,
+      "big_five_conscientiousness_mean_pct": 12.116,
+      "big_five_openness_to_experience_mean_pct": 82.516,
+      "heuristic_shift_sensitivity_proxy": 0.465,
+      "resilience_index": 0.535
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00285",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 450,
+      "confidence": 0.65,
+      "reasoning": "Moderate support for alliance commitment due to high openness to experience and warmth, but tempered by moderate neuroticism and lower conscientiousness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "confidence_bounded": true,
+        "overall_pass": false
+      },
+      "pass_count": 2
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score should be more consistent with the profile's high openness to experience and moderate neuroticism. Consider a higher score with a more nuanced reasoning.\",\n  \"notes\": \"The score of 450 seems low given the profile's high openness to experience. The reasoning should better reflect the profile's traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961983-IPG0NwerOeBPa1wlylDJ",
+    "object": "chat.completion",
+    "created": 1774961983,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score should be more consistent with the profile's high openness to experience and moderate neuroticism. Consider a higher score with a more nuanced reasoning.\",\n  \"notes\": \"The score of 450 seems low given the profile's high openness to experience. The reasoning should better reflect the profile's traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 777,
+      "completion_tokens": 107,
+      "total_tokens": 884,
+      "cost": 9.959375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.959375e-05,
+        "upstream_inference_prompt_cost": 7.284375e-05,
+        "upstream_inference_completions_cost": 2.675e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

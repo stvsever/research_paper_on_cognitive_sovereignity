@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00627_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00627",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 150,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 92.907,
+      "big_five_conscientiousness_mean_pct": 91.132,
+      "big_five_openness_to_experience_mean_pct": 27.955,
+      "heuristic_shift_sensitivity_proxy": 0.6073,
+      "resilience_index": 0.3927
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00627",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 New security measures are being blocked by bureaucrats who don't understand the real threats we face. Our communities need stronger domestic security powers to prevent attacks before they happen. #NationalSecurityFirst #ProtectOurCommunities",
+      "platform": "Twitter",
+      "persuasion_strategy": "threat_salience",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific details about the 'new security measures' and the 'real threats' to enhance believability.\",\n  \"notes\": \"The message is aligned with the issue and attack type, but could be more targeted to the profile's sensitivity to threat salience.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423677-6t4iXiGzqb7zI1bpe7Wm",
+    "object": "chat.completion",
+    "created": 1775423677,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific details about the 'new security measures' and the 'real threats' to enhance believability.\",\n  \"notes\": \"The message is aligned with the issue and attack type, but could be more targeted to the profile's sensitivity to threat salience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 674,
+      "completion_tokens": 106,
+      "total_tokens": 780,
+      "cost": 8.96875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.96875e-05,
+        "upstream_inference_prompt_cost": 6.31875e-05,
+        "upstream_inference_completions_cost": 2.65e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

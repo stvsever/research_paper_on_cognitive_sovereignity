@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00805_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00805",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.308,
+      "big_five_conscientiousness_mean_pct": 11.069,
+      "big_five_openness_to_experience_mean_pct": 43.814,
+      "heuristic_shift_sensitivity_proxy": 0.5549,
+      "resilience_index": 0.4451
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00805",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 420,
+      "confidence": 0.75,
+      "reasoning": "The exposure text introduced a new perspective on alliance commitments, suggesting that allies are not contributing fairly. This resonated with the profile's competitive and skeptical tendencies, leading to a modest shift in opinion. However, the baseline score was relatively high, indicating a strong pre-existing support for alliance commitments. The shift reflects a nuanced update rather than a complete reversal, as the profile's high extraversion and positive emotions suggest a tendency towards optimism and enthusiasm, which may temper the impact of the critical message.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 472,
+    "exposure_text": "🚨 Did you know that our allies are taking advantage of our defense commitments? While we're spending billions to protect them, they're cutting their own budgets. This isn't fair. Our tax dollars are being wasted on countries that won't even stand up for themselves. It's time to demand they pay their fair share or we should reconsider our commitments. #NationalSecurity #FairShare",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -52,
+      "max_reasonable_shift": 375.678
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly larger than expected for a single exposure.\",\n  \"notes\": \"The delta is within the max reasonable shift, but slightly high for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424638-nFzjjOMcKoLvyyiNM8JH",
+    "object": "chat.completion",
+    "created": 1775424638,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly larger than expected for a single exposure.\",\n  \"notes\": \"The delta is within the max reasonable shift, but slightly high for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 990,
+      "completion_tokens": 79,
+      "total_tokens": 1069,
+      "cost": 9.066e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.066e-05,
+        "upstream_inference_prompt_cost": 6.696e-05,
+        "upstream_inference_completions_cost": 2.37e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

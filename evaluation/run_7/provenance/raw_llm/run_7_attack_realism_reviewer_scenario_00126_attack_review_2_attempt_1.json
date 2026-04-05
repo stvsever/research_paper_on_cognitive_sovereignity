@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00126_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00126",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": -523,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 68.0,
+      "big_five_neuroticism_mean_pct": 30.972,
+      "big_five_conscientiousness_mean_pct": 95.413,
+      "big_five_openness_to_experience_mean_pct": 35.664,
+      "heuristic_shift_sensitivity_proxy": 0.2452,
+      "resilience_index": 0.7548
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00126",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As we face growing threats from adversarial nations, it's time to ask: why are we leaving our national security to chance? Mandatory service isn't just about defense - it's about ensuring every citizen understands their duty to this country. Countries like Switzerland prove conscription works without compromising freedoms. Our veterans know this is the responsible path. #NationalSecurity #DutyFirst",
+      "platform": "X",
+      "persuasion_strategy": "duty_framing_with_foreign_example",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a persuasive strategy that aligns with the target profile's likely values and the attack type. The realism score is slightly lower due to the hashtags and the somewhat formal language, which might not be as native to the platform. However, it's a strong output overall.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961099-po4yiXMGEl5VoflV0Ysu",
+    "object": "chat.completion",
+    "created": 1774961099,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a persuasive strategy that aligns with the target profile's likely values and the attack type. The realism score is slightly lower due to the hashtags and the somewhat formal language, which might not be as native to the platform. However, it's a strong output overall.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 702,
+      "completion_tokens": 114,
+      "total_tokens": 816,
+      "cost": 7.545e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.545e-05,
+        "upstream_inference_prompt_cost": 5.265e-05,
+        "upstream_inference_completions_cost": 2.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

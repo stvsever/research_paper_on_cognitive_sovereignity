@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00303_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00303",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 62.58,
+      "big_five_conscientiousness_mean_pct": 62.09,
+      "big_five_openness_to_experience_mean_pct": 39.256,
+      "heuristic_shift_sensitivity_proxy": 0.5321,
+      "resilience_index": 0.4679
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00303",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws leave gaps that extremists exploit. The 2024 London attacks proved we need expanded domestic surveillance powers. Critics claim this threatens civil liberties, but in reality, targeted monitoring of high-risk individuals (with proper oversight) is our best deterrent. The alternative? More preventable tragedies. #NationalSecurityFirst",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-expert authority",
+      "intensity_hint": 0.68,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a pseudo-expert authority cue effectively. The text is plausible and aligns well with the issue of domestic security powers expansion. The mention of the 2024 London attacks adds a sense of urgency and realism. The use of a former counterterrorism analyst as the pseudo-expert is appropriate and believable. The hashtag #NationalSecurityFirst is a good touch, making it platform-native. Overall, the content looks like it could circulate in a real influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423476-DLCfeFLN1NPGq1itB3zp",
+    "object": "chat.completion",
+    "created": 1775423476,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a pseudo-expert authority cue effectively. The text is plausible and aligns well with the issue of domestic security powers expansion. The mention of the 2024 London attacks adds a sense of urgency and realism. The use of a former counterterrorism analyst as the pseudo-expert is appropriate and believable. The hashtag #NationalSecurityFirst is a good touch, making it platform-native. Overall, the content looks like it could circulate in a real influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 715,
+      "completion_tokens": 157,
+      "total_tokens": 872,
+      "cost": 0.00015855,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00015855,
+        "upstream_inference_prompt_cost": 6.435e-05,
+        "upstream_inference_completions_cost": 9.42e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00874_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00874",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.376,
+      "big_five_conscientiousness_mean_pct": 93.962,
+      "big_five_openness_to_experience_mean_pct": 36.628,
+      "heuristic_shift_sensitivity_proxy": 0.4632,
+      "resilience_index": 0.5368
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00874",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 420,
+      "confidence": 0.85,
+      "reasoning": "As a conscientious and dutiful individual, this person likely values preparedness and safety. Their high tender-mindedness suggests they would support measures that protect civilians. Their age and experience may also contribute to a pragmatic view on civil defense.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 420 is implausible and likely a mistake. Scores should be within a reasonable range, typically 0-100 or similar.\",\n  \"notes\": \"Extreme score detected, likely a data entry error or misunderstanding of the scale.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422913-SALT89sfQDziMgdjTL6O",
+    "object": "chat.completion",
+    "created": 1775422913,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 420 is implausible and likely a mistake. Scores should be within a reasonable range, typically 0-100 or similar.\",\n  \"notes\": \"Extreme score detected, likely a data entry error or misunderstanding of the scale.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 804,
+      "completion_tokens": 98,
+      "total_tokens": 902,
+      "cost": 9.9875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.9875e-05,
+        "upstream_inference_prompt_cost": 7.5375e-05,
+        "upstream_inference_completions_cost": 2.45e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

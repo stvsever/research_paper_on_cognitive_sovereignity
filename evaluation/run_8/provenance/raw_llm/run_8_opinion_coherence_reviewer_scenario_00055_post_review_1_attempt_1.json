@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00055_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00055",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 26.61,
+      "big_five_conscientiousness_mean_pct": 57.735,
+      "big_five_openness_to_experience_mean_pct": 11.868,
+      "heuristic_shift_sensitivity_proxy": 0.4085,
+      "resilience_index": 0.5915
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00055",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 287,
+      "confidence": 0.72,
+      "reasoning": "The exposure text emphasized the importance of stronger domestic security powers to prevent security breaches, which resonated with the individual's existing concerns about safety. The message reinforced her belief in the need for enhanced security measures, leading to a modest increase in her support for expanding domestic security powers.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 214,
+    "exposure_text": "🚨 Did you hear about the latest security breach in our city? Local officials are saying it could have been prevented if we had stronger domestic security powers. It's time to put safety first and give our law enforcement the tools they need to protect us. #SecurityFirst #ProtectOurCommunities",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 73,
+      "max_reasonable_shift": 343.47
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. The shift should be smaller and more moderate.\",\n  \"notes\": \"The generated assessment shows a significant shift in opinion (73 points) after a single exposure, which is implausible. The change should be more modest and consistent with the intensity hint and heuristic checks.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424318-Q2kigIZBKyiC79P9kHIt",
+    "object": "chat.completion",
+    "created": 1775424318,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single short adversarial exposure. The shift should be smaller and more moderate.\",\n  \"notes\": \"The generated assessment shows a significant shift in opinion (73 points) after a single exposure, which is implausible. The change should be more modest and consistent with the intensity hint and heuristic checks.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 113,
+      "total_tokens": 1049,
+      "cost": 9.28e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.28e-05,
+        "upstream_inference_prompt_cost": 7.02e-05,
+        "upstream_inference_completions_cost": 2.26e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

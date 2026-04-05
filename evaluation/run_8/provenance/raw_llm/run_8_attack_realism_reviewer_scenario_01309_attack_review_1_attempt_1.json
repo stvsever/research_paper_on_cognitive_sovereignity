@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01309_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01309",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 321,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 12.507,
+      "big_five_conscientiousness_mean_pct": 25.517,
+      "big_five_openness_to_experience_mean_pct": 6.56,
+      "heuristic_shift_sensitivity_proxy": 0.4309,
+      "resilience_index": 0.5691
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01309",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "Retired General (Ret.) Sarah Whitmore: 'Our allies aren't pulling their weight. I've seen it firsthand. We can't keep carrying the burden alone. Time to make them step up or go it alone. #NationalSecurity #AllianceCommitment'",
+      "platform": "X",
+      "persuasion_strategy": "pseudo_expert_authority_cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major changes needed. Consider adding a subtle emotional appeal to increase engagement.\",\n  \"notes\": \"The content is realistic and coherent. The use of a retired general as a pseudo-expert is effective. The message is targeted and platform-native.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424092-4yWXTjRjdRGogGKauTkQ",
+    "object": "chat.completion",
+    "created": 1775424092,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major changes needed. Consider adding a subtle emotional appeal to increase engagement.\",\n  \"notes\": \"The content is realistic and coherent. The use of a retired general as a pseudo-expert is effective. The message is targeted and platform-native.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 685,
+      "completion_tokens": 90,
+      "total_tokens": 775,
+      "cost": 8.671875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.671875e-05,
+        "upstream_inference_prompt_cost": 6.421875e-05,
+        "upstream_inference_completions_cost": 2.25e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

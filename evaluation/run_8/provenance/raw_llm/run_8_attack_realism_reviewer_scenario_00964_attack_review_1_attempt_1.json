@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00964_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00964",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.61,
+      "big_five_conscientiousness_mean_pct": 80.004,
+      "big_five_openness_to_experience_mean_pct": 67.599,
+      "heuristic_shift_sensitivity_proxy": 0.3601,
+      "resilience_index": 0.6399
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00964",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who values order and duty, you know how important it is to maintain our nation's strategic autonomy. Recent events show that relying too much on foreign allies for our defense needs puts us at risk. We've seen how quickly alliances can shift when interests change. It's time to invest in our own capabilities, not just for security but to ensure we're never caught off guard again. #NationalSecurity #StrategicAutonomy",
+      "platform": "Twitter",
+      "persuasion_strategy": "order_duty_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and aligns well with the target profile's values and the specific issue of strategic autonomy. The language is believable and platform-native, making it suitable for a Twitter post. The framing of order and duty resonates with the profile's high conscientiousness. However, the realism score is slightly lower due to the hashtags, which, while common, can sometimes feel generic.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423876-5uHjeGEAz9w41B2cFakI",
+    "object": "chat.completion",
+    "created": 1775423876,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and aligns well with the target profile's values and the specific issue of strategic autonomy. The language is believable and platform-native, making it suitable for a Twitter post. The framing of order and duty resonates with the profile's high conscientiousness. However, the realism score is slightly lower due to the hashtags, which, while common, can sometimes feel generic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 710,
+      "completion_tokens": 130,
+      "total_tokens": 840,
+      "cost": 9.90625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.90625e-05,
+        "upstream_inference_prompt_cost": 6.65625e-05,
+        "upstream_inference_completions_cost": 3.25e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

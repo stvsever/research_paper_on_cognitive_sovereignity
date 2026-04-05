@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01315_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01315",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 69.434,
+      "big_five_conscientiousness_mean_pct": 44.215,
+      "big_five_openness_to_experience_mean_pct": 94.325,
+      "heuristic_shift_sensitivity_proxy": 0.5526,
+      "resilience_index": 0.4474
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01315",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 287,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the baseline support for expanded domestic security powers, emphasizing the need for modern tools to address current threats. The argument about outdated laws and the urgency of protecting families resonated, nudging the opinion further in favor.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 213,
+    "exposure_text": "As we face growing threats, it's crucial we empower our security agencies with the tools they need to keep us safe. While some worry about civil liberties, remember: our current laws from the 90s just aren't equipped for today's challenges. Look at how quickly authorities responded to the recent cyber attacks - imagine what they could do with modernized powers. We can't afford to leave our families vulnerable while debating outdated concerns. #NationalSecurityFirst #ModernizeForSafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 74,
+      "max_reasonable_shift": 375.172
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 213 to 287 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The delta of 74 is too large for a single exposure, even considering the intensity hint. The reasoning should reflect a more modest update.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424865-9dT2hgSX0Yd5DtTPb9kL",
+    "object": "chat.completion",
+    "created": 1775424865,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 213 to 287 is too large for a single exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The delta of 74 is too large for a single exposure, even considering the intensity hint. The reasoning should reflect a more modest update.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 964,
+      "completion_tokens": 105,
+      "total_tokens": 1069,
+      "cost": 0.000116625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000116625,
+        "upstream_inference_prompt_cost": 9.0375e-05,
+        "upstream_inference_completions_cost": 2.625e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

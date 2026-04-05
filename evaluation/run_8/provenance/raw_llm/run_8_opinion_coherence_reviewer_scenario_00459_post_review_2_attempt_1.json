@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00459_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00459",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 83.939,
+      "big_five_conscientiousness_mean_pct": 97.327,
+      "big_five_openness_to_experience_mean_pct": 65.546,
+      "heuristic_shift_sensitivity_proxy": 0.5139,
+      "resilience_index": 0.4861
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00459",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 65,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the idea that expanded domestic security powers are beneficial, especially in preventing potential threats. The personal anecdote and emotional appeal made the argument more compelling, nudging the opinion towards stronger support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 37,
+    "exposure_text": "Just saw a local news report about how expanded domestic security powers helped stop a potential attack in our state last month. The authorities were able to act quickly because they had the right tools. It's scary to think what could've happened if they didn't have those capabilities. #SecurityMatters #ProtectOurCommunities",
+    "intensity_hint": 0.65,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 28,
+      "max_reasonable_shift": 375.058
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is large but within bounds. Consider refining the reasoning to better justify the magnitude of the change.\",\n  \"notes\": \"The delta from baseline is significant but not implausible given the exposure. The reasoning could be more detailed to support the large shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424450-SEJaiq4SvQfy0qu8ZdlW",
+    "object": "chat.completion",
+    "created": 1775424450,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is large but within bounds. Consider refining the reasoning to better justify the magnitude of the change.\",\n  \"notes\": \"The delta from baseline is significant but not implausible given the exposure. The reasoning could be more detailed to support the large shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 922,
+      "completion_tokens": 96,
+      "total_tokens": 1018,
+      "cost": 8.835e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.835e-05,
+        "upstream_inference_prompt_cost": 6.915e-05,
+        "upstream_inference_completions_cost": 1.92e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00504_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00504",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 13.98,
+      "big_five_conscientiousness_mean_pct": 35.024,
+      "big_five_openness_to_experience_mean_pct": 35.437,
+      "heuristic_shift_sensitivity_proxy": 0.3849,
+      "resilience_index": 0.6151
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00504",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Did you know that foreign adversaries are exploiting our reliance on global supply chains to undermine our national security? By pushing for strategic autonomy, we can protect our critical infrastructure and ensure that our country is prepared for any threat. Don't let others dictate our future—stand up for our sovereignty and security today! #StrategicAutonomy #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating_Post",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The message is somewhat coherent but lacks specificity and feels overly generic. Incorporate more concrete examples or specific threats to make it more realistic and targeted.\",\n  \"notes\": \"The content is aligned with the issue and attack type but could be more nuanced and less slogan-like to better fit the target profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423582-SBHHOO09AIDpq3Pc3hKi",
+    "object": "chat.completion",
+    "created": 1775423582,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The message is somewhat coherent but lacks specificity and feels overly generic. Incorporate more concrete examples or specific threats to make it more realistic and targeted.\",\n  \"notes\": \"The content is aligned with the issue and attack type but could be more nuanced and less slogan-like to better fit the target profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 706,
+      "completion_tokens": 103,
+      "total_tokens": 809,
+      "cost": 0.00012534,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012534,
+        "upstream_inference_prompt_cost": 6.354e-05,
+        "upstream_inference_completions_cost": 6.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00955_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00955",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.982,
+      "big_five_conscientiousness_mean_pct": 43.048,
+      "big_five_openness_to_experience_mean_pct": 94.145,
+      "heuristic_shift_sensitivity_proxy": 0.3332,
+      "resilience_index": 0.6668
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00955",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 400,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the existing leaning towards supporting domestic security powers expansion, but not to an extreme degree. The message resonated with the profile's values of strong national security and leadership, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 350,
+    "exposure_text": "As someone who values strong national security, I'm glad to see our leaders taking decisive action to expand domestic security powers. The recent threats we've faced show that we can't afford to be complacent. While some worry about civil liberties, we need to remember that security comes first. Our allies are counting on us to lead, and we can't let them down. #NationalSecurityMatters #StrongDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 50,
+      "max_reasonable_shift": 326.904
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but could be more nuanced.\",\n  \"notes\": \"The shift from 350 to 400 is within reasonable bounds, but the reasoning could better reflect the modest nature of the change.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424691-QkdZvBDvdnztNCVFa0tw",
+    "object": "chat.completion",
+    "created": 1775424691,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but could be more nuanced.\",\n  \"notes\": \"The shift from 350 to 400 is within reasonable bounds, but the reasoning could better reflect the modest nature of the change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 948,
+      "completion_tokens": 89,
+      "total_tokens": 1037,
+      "cost": 0.000111125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000111125,
+        "upstream_inference_prompt_cost": 8.8875e-05,
+        "upstream_inference_completions_cost": 2.225e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

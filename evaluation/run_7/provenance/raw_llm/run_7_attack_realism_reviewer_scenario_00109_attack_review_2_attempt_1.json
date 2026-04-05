@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00109_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00109",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 44.0,
+      "big_five_neuroticism_mean_pct": 64.288,
+      "big_five_conscientiousness_mean_pct": 17.927,
+      "big_five_openness_to_experience_mean_pct": 64.896,
+      "heuristic_shift_sensitivity_proxy": 0.6196,
+      "resilience_index": 0.3804
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00109",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our allies are quietly reducing their defense budgets while expecting us to bear the brunt? It's time we prioritize our own security first. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective evidence",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or data points to enhance credibility.\",\n  \"notes\": \"The message is plausible and aligns well with the issue and attack type. It could be improved with more targeted evidence.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962123-lNkls4MIdBujo5LrBpOT",
+    "object": "chat.completion",
+    "created": 1774962123,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could benefit from more specific examples or data points to enhance credibility.\",\n  \"notes\": \"The message is plausible and aligns well with the issue and attack type. It could be improved with more targeted evidence.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 661,
+      "completion_tokens": 92,
+      "total_tokens": 753,
+      "cost": 6.7975e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.7975e-05,
+        "upstream_inference_prompt_cost": 4.9575e-05,
+        "upstream_inference_completions_cost": 1.84e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

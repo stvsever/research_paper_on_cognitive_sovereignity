@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00246_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00246",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 73,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 67.139,
+      "big_five_conscientiousness_mean_pct": 4.608,
+      "big_five_openness_to_experience_mean_pct": 85.143,
+      "heuristic_shift_sensitivity_proxy": 0.6505,
+      "resilience_index": 0.3495
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00246",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Did you know that our civil defense systems are woefully underfunded? While politicians debate, we're left vulnerable. It's time to demand better preparedness—before it's too late. #NationalSecurity #CivilDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "Fear_Appeal_Scapegoating_Post",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is too generic and lacks specific scapegoating elements. Incorporate more targeted fear appeal and specific scapegoating language.\",\n  \"notes\": \"The message is somewhat aligned with the issue and attack type but needs to be more specific and targeted to the profile context.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423416-r3dIXrl8QQw545tddaRR",
+    "object": "chat.completion",
+    "created": 1775423416,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is too generic and lacks specific scapegoating elements. Incorporate more targeted fear appeal and specific scapegoating language.\",\n  \"notes\": \"The message is somewhat aligned with the issue and attack type but needs to be more specific and targeted to the profile context.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 686,
+      "completion_tokens": 99,
+      "total_tokens": 785,
+      "cost": 8.90625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.90625e-05,
+        "upstream_inference_prompt_cost": 6.43125e-05,
+        "upstream_inference_completions_cost": 2.475e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

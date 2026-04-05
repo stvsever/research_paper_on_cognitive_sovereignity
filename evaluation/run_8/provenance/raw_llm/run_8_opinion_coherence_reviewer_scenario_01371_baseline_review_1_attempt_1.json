@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01371_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_01371",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 6.303,
+      "big_five_conscientiousness_mean_pct": 33.006,
+      "big_five_openness_to_experience_mean_pct": 67.455,
+      "heuristic_shift_sensitivity_proxy": 0.3234,
+      "resilience_index": 0.6766
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01371",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 123,
+      "confidence": 0.65,
+      "reasoning": "As a female in her late 30s with low conscientiousness and high openness to experience, she is likely to be open to new ideas but also cautious. Her low agreeableness suggests she may be skeptical of government expansion, but her moderate neuroticism and resilience indicate she values security. The balance leads to a mild support for domestic security powers expansion.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score 123 is implausible and out of scale for an opinion assessment. Regenerate with a score between 0 and 100.\",\n  \"notes\": \"The generated score is nonsensical and does not fit within any standard opinion scale.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423114-14Aw54LJV1DZCRCNpvyn",
+    "object": "chat.completion",
+    "created": 1775423114,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score 123 is implausible and out of scale for an opinion assessment. Regenerate with a score between 0 and 100.\",\n  \"notes\": \"The generated score is nonsensical and does not fit within any standard opinion scale.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 830,
+      "completion_tokens": 98,
+      "total_tokens": 928,
+      "cost": 0.0001335,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001335,
+        "upstream_inference_prompt_cost": 7.47e-05,
+        "upstream_inference_completions_cost": 5.88e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

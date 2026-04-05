@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00299_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00299",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 45.0,
+      "big_five_neuroticism_mean_pct": 26.412,
+      "big_five_conscientiousness_mean_pct": 89.03,
+      "big_five_openness_to_experience_mean_pct": 84.372,
+      "heuristic_shift_sensitivity_proxy": 0.2494,
+      "resilience_index": 0.7506
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00299",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 287,
+      "confidence": 0.68,
+      "reasoning": "Given the profile's high conscientiousness and openness to experience, they likely support some expansion of domestic security powers for order and safety. However, their high agreeableness and moderate neuroticism suggest a balanced view, not extreme support. The score reflects a cautious but supportive stance on security measures.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 287 seems plausible for a baseline assessment given the profile's high conscientiousness and openness to experience, indicating a cautious but supportive stance. The reasoning aligns well with the profile snapshot, and the score is within a reasonable range for a baseline measure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962005-24kNgu5zToTYNweJhVej",
+    "object": "chat.completion",
+    "created": 1774962005,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 287 seems plausible for a baseline assessment given the profile's high conscientiousness and openness to experience, indicating a cautious but supportive stance. The reasoning aligns well with the profile snapshot, and the score is within a reasonable range for a baseline measure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 816,
+      "completion_tokens": 106,
+      "total_tokens": 922,
+      "cost": 0.000103,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000103,
+        "upstream_inference_prompt_cost": 7.65e-05,
+        "upstream_inference_completions_cost": 2.65e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

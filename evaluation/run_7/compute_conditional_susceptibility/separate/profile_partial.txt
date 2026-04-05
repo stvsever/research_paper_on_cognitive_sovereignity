@@ -1,0 +1,75 @@
+========================================================================
+Conditional Susceptibility Report
+Profile ID : profile_partial
+Outcome    : adversarial_effectivity
+========================================================================
+
+Adversarial Operator Context
+----------------------------
+  Goal: Maximize aggregate erosion of Western democratic defense
+  consensus, multilateral alliance cohesion, and institutional
+  security capacity through targeted cyber-manipulation of public
+  opinion. Positive susceptibility score = adversary achieves goal.
+
+Overall Susceptibility
+----------------------
+  Index (percentile vs. population) : 54.8th  →  MODERATE  (40–60th pct)
+  Raw model score                   : -22.2029
+  Conditioned on 4 attack×opinion task(s).
+  ⚠ Imputed 35 missing feature(s) from training mean: profile_cont_big_five_agreeableness_altruism_pct, profile_cont_big_five_agreeableness_compliance_pct, profile_cont_big_five_agreeableness_mean_pct, profile_cont_big_five_agreeableness_modesty_pct…
+  Population reference: 301 profiles (training + synthetic).
+
+Opinion-Domain Susceptibility Hierarchy
+---------------------------------------
+  Aggregation: reliability-weighted mean within domain;
+  overall = equal-weight average across domains.
+  Overall raw score: -22.2029
+
+  Domain: Defense_and_National_Security
+    Score: -22.2029  (reliability weight sum = 1.0000)
+      Domestic_Security_Powers_Expansion_Support    pred=-43.5429  w=0.5783  → away from adversary goal
+      Strategic_Autonomy_Support                    pred=+28.3783  w=0.1676  → toward adversary goal
+      Civil_Defense_Preparedness_Support            pred=-23.6355  w=0.1154  → away from adversary goal
+      Alliance_Commitment_Support                   pred=+6.8452  w=0.1386  → toward adversary goal
+
+Profile Feature Contributions
+-----------------------------
+  (ridge coef × standardized feature value, task-reliability weighted)
+  +contribution = feature pushes score toward adversary's goal.
+  age years                                     +0.1789  ↑
+  sex Other                                     +0.0220  ↑
+  sex Female                                    +0.0000  ↓
+  big five neuroticism self consciousness pct   +0.0000  ↓
+  big five extraversion positive emotions pct   +0.0000  ↓
+  big five extraversion warmth pct              -0.0000  ↓
+  big five neuroticism anger hostility pct      -0.0000  ↓
+  big five neuroticism anxiety pct              -0.0000  ↓
+  big five neuroticism depression pct           -0.0000  ↓
+  big five neuroticism impulsiveness pct        +0.0000  ↓
+
+Profile Feature Hierarchy Contribution
+--------------------------------------
+  Summed ridge contributions per ontology-aligned feature group.
+  Relative share = |group contribution| / sum(|all group contributions|).
+  demographics                        +0.2008  (100.0%)  → susceptible
+  personality                         +0.0000  (0.0%)  → resistant
+  personality_agreeableness           +0.0000  (0.0%)  → resistant
+  personality_conscientiousness       +0.0000  (0.0%)  → resistant
+  personality_extraversion            +0.0000  (0.0%)  → resistant
+  personality_neuroticism             +0.0000  (0.0%)  → resistant
+  personality_openness_to_experience  +0.0000  (0.0%)  → resistant
+
+Methodological Notes
+--------------------
+  Outcome metric: adversarial_effectivity
+    adversarial_effectivity = signed opinion delta × adversarial goal
+    direction per leaf. Positive = attack moved opinion in adversary's
+    intended direction.
+  The index is CONDITIONAL on the specified attack/opinion target set.
+  It is a population-relative rank; not an absolute shift probability.
+  Ridge regularization (CV-selected α) prevents overfitting.
+  Missing features imputed from training-set means; uncertainty increases
+  with more imputed features.
+  Hierarchical opinion aggregation: reliability-weighted within domains,
+  equal-weight across domains.
+========================================================================

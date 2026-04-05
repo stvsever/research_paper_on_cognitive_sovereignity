@@ -1,0 +1,142 @@
+{
+  "agent_name": "baseline_opinion",
+  "prompt_name": "baseline_opinion.md",
+  "call_id": "scenario_00616_baseline",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00616",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile": {
+      "profile_id": "profile_0156",
+      "categorical_attributes": {
+        "sex": "Male"
+      },
+      "continuous_attributes": {
+        "chronological_age": 42.0,
+        "big_five_agreeableness_altruism_pct": 32.972,
+        "big_five_agreeableness_compliance_pct": 28.012,
+        "big_five_agreeableness_modesty_pct": 32.244,
+        "big_five_agreeableness_straightforwardness_pct": 32.87,
+        "big_five_agreeableness_tender_mindedness_pct": 25.914,
+        "big_five_agreeableness_trust_pct": 24.064,
+        "big_five_agreeableness_mean_pct": 29.346,
+        "big_five_conscientiousness_achievement_striving_pct": 95.863,
+        "big_five_conscientiousness_competence_pct": 88.537,
+        "big_five_conscientiousness_deliberation_pct": 99.103,
+        "big_five_conscientiousness_dutifulness_pct": 88.057,
+        "big_five_conscientiousness_order_pct": 83.587,
+        "big_five_conscientiousness_self_discipline_pct": 81.873,
+        "big_five_conscientiousness_mean_pct": 89.503,
+        "big_five_extraversion_activity_level_pct": 39.351,
+        "big_five_extraversion_assertiveness_pct": 40.848,
+        "big_five_extraversion_excitement_seeking_pct": 50.814,
+        "big_five_extraversion_gregariousness_pct": 43.831,
+        "big_five_extraversion_positive_emotions_pct": 36.302,
+        "big_five_extraversion_warmth_pct": 32.7,
+        "big_five_extraversion_mean_pct": 40.641,
+        "big_five_neuroticism_anger_hostility_pct": 69.628,
+        "big_five_neuroticism_anxiety_pct": 75.091,
+        "big_five_neuroticism_depression_pct": 73.072,
+        "big_five_neuroticism_impulsiveness_pct": 51.825,
+        "big_five_neuroticism_self_consciousness_pct": 77.758,
+        "big_five_neuroticism_stress_vulnerability_pct": 83.413,
+        "big_five_neuroticism_mean_pct": 71.798,
+        "big_five_openness_to_experience_actions_pct": 53.887,
+        "big_five_openness_to_experience_aesthetics_pct": 64.735,
+        "big_five_openness_to_experience_fantasy_pct": 55.029,
+        "big_five_openness_to_experience_feelings_pct": 83.319,
+        "big_five_openness_to_experience_ideas_pct": 74.636,
+        "big_five_openness_to_experience_values_pct": 56.143,
+        "big_five_openness_to_experience_mean_pct": 64.625,
+        "heuristic_shift_sensitivity_proxy": 0.4797,
+        "resilience_index": 0.5203
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic",
+        "semantic_description": "Sex: Male\nCompetitive Agreeableness (29th pct) — Competitive, skeptical, challenging\nHighly conscientious Conscientiousness (90th pct) — Disciplined, organised, dependable, goal-directed\nAmbivert Extraversion (41st pct)\nAnxious Neuroticism (72nd pct) — Neurotic, anxious, emotionally reactive\nOpen Openness to Experience (65th pct) — Open, curious, imaginative, creative\n  Low Tender-Mindedness (26th pct) — Tough-minded, unsympathetic, objective\n  Very High Achievement Striving (96th pct) — Ambitious, driven, works hard toward goals\n  Very High Self-Discipline (82nd pct) — Self-disciplined, persistent, finishes tasks\n  Low Activity Level (39th pct) — Leisurely pace, relaxed\n  Moderate Excitement Seeking (51st pct)\n  Low Positive Emotions (36th pct) — Less exuberant, serious\n  High Anger / Hostility (70th pct) — Easily angered, irritable, hostile\n  High Self-Consciousness (78th pct) — Self-conscious, shy, easily embarrassed\n  Highly neurotic Neuroticism (83rd pct) — Neurotic, anxious, emotionally reactive\n  Moderate Chronological Age (42nd pct)"
+      }
+    }
+  },
+  "response_text": "{\n  \"score\": 650,\n  \"confidence\": 0.85,\n  \"reasoning\": \"High conscientiousness and achievement striving suggest support for strategic autonomy as a means to ensure national security and stability. Moderate openness to ideas and values indicates a willingness to consider long-term benefits, while high neuroticism may drive a preference for reducing vulnerability.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422815-jo89rp3LIFqRC73UNlGI",
+    "object": "chat.completion",
+    "created": 1775422815,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 650,\n  \"confidence\": 0.85,\n  \"reasoning\": \"High conscientiousness and achievement striving suggest support for strategic autonomy as a means to ensure national security and stability. Moderate openness to ideas and values indicates a willingness to consider long-term benefits, while high neuroticism may drive a preference for reducing vulnerability.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2464,
+      "completion_tokens": 81,
+      "total_tokens": 2545,
+      "cost": 0.00024442,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00024442,
+        "upstream_inference_prompt_cost": 0.00022012,
+        "upstream_inference_completions_cost": 2.43e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

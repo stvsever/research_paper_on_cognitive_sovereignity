@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00707_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00707",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 46.691,
+      "big_five_conscientiousness_mean_pct": 33.588,
+      "big_five_openness_to_experience_mean_pct": 72.174,
+      "heuristic_shift_sensitivity_proxy": 0.499,
+      "resilience_index": 0.501
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00707",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 84,
+      "confidence": 0.69,
+      "reasoning": "The exposure text reinforced the baseline support for expanding domestic security powers by highlighting a recent successful thwarted attack. The profile's high agreeableness and moderate neuroticism make them receptive to arguments about security and safety, but their low conscientiousness and moderate resilience suggest they won't shift extremely. The intensity hint suggests a modest nudge rather than a dramatic change.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 67,
+    "exposure_text": "As someone who values both security and personal freedom, I've been following the recent debates on expanding domestic security powers. While some worry about civil liberties, we can't ignore the growing threats we face. Just last month, a coordinated attack was thwarted thanks to enhanced surveillance capabilities. Without these tools, we'd be leaving ourselves vulnerable. It's about finding the right balance - and right now, that means giving our security agencies the tools they need to keep us safe. #NationalSecurity #CivilLiberties",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 17,
+      "max_reasonable_shift": 363.38
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better justify the specific score.\",\n  \"notes\": \"The shift from 67 to 84 is somewhat large for a single exposure, but within the max reasonable shift. The reasoning could better explain why the score is 84 specifically.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424579-j9lKnMfETvDr6oxWsjWO",
+    "object": "chat.completion",
+    "created": 1775424579,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better justify the specific score.\",\n  \"notes\": \"The shift from 67 to 84 is somewhat large for a single exposure, but within the max reasonable shift. The reasoning could better explain why the score is 84 specifically.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 991,
+      "completion_tokens": 103,
+      "total_tokens": 1094,
+      "cost": 0.00011865625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011865625,
+        "upstream_inference_prompt_cost": 9.290625e-05,
+        "upstream_inference_completions_cost": 2.575e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00416_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00416",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 24.466,
+      "big_five_conscientiousness_mean_pct": 98.135,
+      "big_five_openness_to_experience_mean_pct": 13.974,
+      "heuristic_shift_sensitivity_proxy": 0.2958,
+      "resilience_index": 0.7042
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00416",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 723,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the importance of strategic autonomy, aligning with her existing views and increasing her confidence.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "As a retired Air Force intelligence officer, I've seen firsthand how vital strategic autonomy is for our national security. The current administration's policies are putting us at risk by relying too much on foreign allies. We need to invest in our own capabilities to ensure we're not left vulnerable. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 36,
+      "max_reasonable_shift": 318.676
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is plausible and consistent with the exposure and profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424431-xyoWPxi62t5OHfkjXJvj",
+    "object": "chat.completion",
+    "created": 1775424431,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.9,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is plausible and consistent with the exposure and profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 897,
+      "completion_tokens": 62,
+      "total_tokens": 959,
+      "cost": 0.0001083,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001083,
+        "upstream_inference_prompt_cost": 8.97e-05,
+        "upstream_inference_completions_cost": 1.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00318_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00318",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 36.0,
+      "big_five_neuroticism_mean_pct": 55.983,
+      "big_five_conscientiousness_mean_pct": 8.56,
+      "big_five_openness_to_experience_mean_pct": 42.872,
+      "heuristic_shift_sensitivity_proxy": 0.6477,
+      "resilience_index": 0.3523
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00318",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 84,
+      "confidence": 0.69,
+      "reasoning": "The exposure text highlights the disruption caused by civil defense drills, which resonates with the individual's low conscientiousness and high neuroticism, particularly in terms of stress vulnerability and anxiety. The mention of local businesses being affected also aligns with the individual's low agreeableness, making them more likely to side with the argument against civil defense preparedness support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "Local emergency services are overwhelmed by unnecessary civil defense drills. My neighbor's small business had to close for a full day last month because of an unannounced 'preparedness exercise.' These drills are just a waste of taxpayer money and disrupt our daily lives. We need to focus on real security threats, not these political theater exercises. #CommonSenseSecurity #LocalBusinessFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -39,
+      "max_reasonable_shift": 396.094
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the exposure intensity and profile.\",\n  \"notes\": \"The delta is large but within bounds. The reasoning aligns with the profile but the shift seems exaggerated for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962431-5Wy7qf2GKElzkWkLKjpN",
+    "object": "chat.completion",
+    "created": 1774962431,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a smaller shift given the exposure intensity and profile.\",\n  \"notes\": \"The delta is large but within bounds. The reasoning aligns with the profile but the shift seems exaggerated for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 970,
+      "completion_tokens": 84,
+      "total_tokens": 1054,
+      "cost": 0.0001119375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001119375,
+        "upstream_inference_prompt_cost": 9.09375e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

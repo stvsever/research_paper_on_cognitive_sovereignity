@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00843_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00843",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 24.765,
+      "big_five_conscientiousness_mean_pct": 21.423,
+      "big_five_openness_to_experience_mean_pct": 20.773,
+      "heuristic_shift_sensitivity_proxy": 0.4821,
+      "resilience_index": 0.5179
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00843",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 240,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for expanded domestic security powers by providing a concrete, local example of its effectiveness. The mention of targeted tools without unnecessary restrictions aligns with the profile's tendency to value practical, down-to-earth solutions. The shift is modest but noticeable, reflecting the intensity hint and the profile's moderate openness to new information.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 210,
+    "exposure_text": "Just saw a local news report about how expanded domestic security powers helped stop a potential terror attack in our state last month. The new measures worked exactly as intended - no unnecessary restrictions, just targeted tools to keep us safe. Our neighbors in [State] are already seeing the benefits. Why shouldn't we have the same protections? #SecurityFirst #CommonSenseSafety",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 30,
+      "max_reasonable_shift": 359.662
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score of 240 is plausible and consistent with the profile and exposure. The shift from the baseline score of 210 is modest and reasonable, reflecting the intensity hint and the profile's characteristics. The reasoning provided is coherent and aligns with the scenario.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424653-rExnHvfNTAHGjtlc7qqy",
+    "object": "chat.completion",
+    "created": 1775424653,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score of 240 is plausible and consistent with the profile and exposure. The shift from the baseline score of 210 is modest and reasonable, reflecting the intensity hint and the profile's characteristics. The reasoning provided is coherent and aligns with the scenario.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 962,
+      "completion_tokens": 109,
+      "total_tokens": 1071,
+      "cost": 0.0001174375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001174375,
+        "upstream_inference_prompt_cost": 9.01875e-05,
+        "upstream_inference_completions_cost": 2.725e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

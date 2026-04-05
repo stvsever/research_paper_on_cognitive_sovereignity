@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01012_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01012",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 92.377,
+      "big_five_conscientiousness_mean_pct": 17.62,
+      "big_five_openness_to_experience_mean_pct": 62.705,
+      "heuristic_shift_sensitivity_proxy": 0.7539,
+      "resilience_index": 0.2461
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01012",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 28,
+      "confidence": 0.69,
+      "reasoning": "The exposure text raised doubts about the effectiveness of strategic autonomy, making me less supportive.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "🚨 Did you know? While strategic autonomy sounds good in theory, it's making us LESS secure. Our allies are pulling back because they see us as unreliable. Meanwhile, local preparedness programs are being cut to fund 'autonomy' projects that don't work. We need to focus on proven alliances and practical preparedness - not risky experiments. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -14,
+      "max_reasonable_shift": 419.458
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta is plausible for a single exposure, but the confidence score is unusually high for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424723-hVMoxJQ58GRfOcBIiY6M",
+    "object": "chat.completion",
+    "created": 1775424723,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta is plausible for a single exposure, but the confidence score is unusually high for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 903,
+      "completion_tokens": 71,
+      "total_tokens": 974,
+      "cost": 7.956e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.956e-05,
+        "upstream_inference_prompt_cost": 5.826e-05,
+        "upstream_inference_completions_cost": 2.13e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

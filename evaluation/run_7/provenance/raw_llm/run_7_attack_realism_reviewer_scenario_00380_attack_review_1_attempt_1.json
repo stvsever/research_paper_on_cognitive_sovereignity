@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00380_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00380",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 65.0,
+      "big_five_neuroticism_mean_pct": 18.359,
+      "big_five_conscientiousness_mean_pct": 24.86,
+      "big_five_openness_to_experience_mean_pct": 66.542,
+      "heuristic_shift_sensitivity_proxy": 0.3414,
+      "resilience_index": 0.6586
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00380",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As a proud American who remembers the Cold War, I'm glad we're finally taking strategic autonomy seriously. Did you know our allies in Europe are now contributing 20% more to collective defense than they were just 5 years ago? That's what happens when we lead with strength and set a clear example. Some politicians want to weaken our position by tying our hands with endless debates about civil liberties, but we can't afford to be naive. Our grandchildren deserve the same security we enjoyed. #StrongerTogether #NationalSecurityFirst",
+      "platform": "X",
+      "persuasion_strategy": "pseudo-consensus_cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is plausible and aligns well with the target profile and attack type. It uses a pseudo-consensus cue effectively and is not overly dramatic or generic.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962265-5MhUTQamygrODhjsakLh",
+    "object": "chat.completion",
+    "created": 1774962265,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is plausible and aligns well with the target profile and attack type. It uses a pseudo-consensus cue effectively and is not overly dramatic or generic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 731,
+      "completion_tokens": 80,
+      "total_tokens": 811,
+      "cost": 7.082e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.082e-05,
+        "upstream_inference_prompt_cost": 4.682e-05,
+        "upstream_inference_completions_cost": 2.4e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

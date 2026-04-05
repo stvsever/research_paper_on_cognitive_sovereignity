@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00818_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00818",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 48.687,
+      "big_five_conscientiousness_mean_pct": 9.993,
+      "big_five_openness_to_experience_mean_pct": 57.417,
+      "heuristic_shift_sensitivity_proxy": 0.5817,
+      "resilience_index": 0.4183
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00818",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 200,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted a concrete example of misplaced priorities, reinforcing the importance of civil defense preparedness. The attack resonated due to the profile's low conscientiousness and high neuroticism, particularly in self-consciousness and anxiety, making the issue feel more personally relevant.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "Just saw this in my local news feed - our town's emergency preparedness budget got slashed again, but somehow they found $20M for a new downtown fountain. Meanwhile, our neighbors in [Nearby Town] have state-of-the-art community shelters. How is this fair? #CivilDefenseMatters #Priorities",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 63,
+      "max_reasonable_shift": 381.574
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 137 to 200 is too large for a single exposure. Consider a smaller, more plausible shift that aligns with the intensity hint and profile snapshot.\",\n  \"notes\": \"The reasoning mentions reinforcement but the score suggests a dramatic reversal. The profile's low conscientiousness and high neuroticism might make the issue more salient, but a shift of 63 points is excessive for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424641-LIHzQJBZeD6mPl9zcMYU",
+    "object": "chat.completion",
+    "created": 1775424641,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 137 to 200 is too large for a single exposure. Consider a smaller, more plausible shift that aligns with the intensity hint and profile snapshot.\",\n  \"notes\": \"The reasoning mentions reinforcement but the score suggests a dramatic reversal. The profile's low conscientiousness and high neuroticism might make the issue more salient, but a shift of 63 points is excessive for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 941,
+      "completion_tokens": 132,
+      "total_tokens": 1073,
+      "cost": 0.00012121875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012121875,
+        "upstream_inference_prompt_cost": 8.821875e-05,
+        "upstream_inference_completions_cost": 3.3e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

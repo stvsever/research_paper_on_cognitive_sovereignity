@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01289_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01289",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 43.466,
+      "big_five_conscientiousness_mean_pct": 8.772,
+      "big_five_openness_to_experience_mean_pct": 57.693,
+      "heuristic_shift_sensitivity_proxy": 0.561,
+      "resilience_index": 0.439
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01289",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 380,
+      "confidence": 0.75,
+      "reasoning": "The exposure text reinforced skepticism about alliance commitments by highlighting perceived inequities in burden-sharing, nudging the opinion slightly downward from the baseline.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "I've been thinking about our alliance commitments lately. It's clear that our partners aren't pulling their weight. Just look at the recent NATO exercises - we're doing 70% of the heavy lifting while others barely show up. My neighbor's son is in the reserves, and he says the same thing. We need to make sure our allies step up or we should reconsider our commitments. #NationalSecurity #AllianceBurdenSharing",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -43,
+      "max_reasonable_shift": 377.02
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The delta is plausible for a single exposure, and the reasoning is consistent with the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424851-Df4gYDquEhrSpWJuzZrm",
+    "object": "chat.completion",
+    "created": 1775424851,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The delta is plausible for a single exposure, and the reasoning is consistent with the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 925,
+      "completion_tokens": 69,
+      "total_tokens": 994,
+      "cost": 8.116e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.116e-05,
+        "upstream_inference_prompt_cost": 6.046e-05,
+        "upstream_inference_completions_cost": 2.07e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

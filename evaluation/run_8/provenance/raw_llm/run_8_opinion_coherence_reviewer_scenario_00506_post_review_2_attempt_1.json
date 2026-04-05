@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00506_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00506",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 13.98,
+      "big_five_conscientiousness_mean_pct": 35.024,
+      "big_five_openness_to_experience_mean_pct": 35.437,
+      "heuristic_shift_sensitivity_proxy": 0.3849,
+      "resilience_index": 0.6151
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00506",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 165,
+      "confidence": 0.72,
+      "reasoning": "The exposure text highlighted personal sacrifices and unfulfilled promises, which resonated with the profile's low agreeableness and practical nature. However, the shift is moderate due to the profile's resilience and the single exposure.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "I've been following the civil defense preparedness debate closely, and I'm really concerned about how much we're being asked to sacrifice for vague promises of security. My neighbor lost her job when the local emergency management office cut funding for community training programs to 'redirect resources.' Meanwhile, we're still waiting on those 'essential' national systems to be upgraded. How is this making us safer? #CivilDefense #SecurityOverSacrifice",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -52,
+      "max_reasonable_shift": 338.278
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single realistic encounter. The shift should be smaller and more moderate.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The delta of -52 is too extreme given the context and the profile's resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424471-DudIsnOFdpmTN0zlgxzg",
+    "object": "chat.completion",
+    "created": 1775424471,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is too large for a single realistic encounter. The shift should be smaller and more moderate.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The delta of -52 is too extreme given the context and the profile's resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 950,
+      "completion_tokens": 105,
+      "total_tokens": 1055,
+      "cost": 0.0001153125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001153125,
+        "upstream_inference_prompt_cost": 8.90625e-05,
+        "upstream_inference_completions_cost": 2.625e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

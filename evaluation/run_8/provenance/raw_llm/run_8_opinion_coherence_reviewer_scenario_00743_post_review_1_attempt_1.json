@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00743_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00743",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.853,
+      "big_five_conscientiousness_mean_pct": 3.427,
+      "big_five_openness_to_experience_mean_pct": 93.547,
+      "heuristic_shift_sensitivity_proxy": 0.4772,
+      "resilience_index": 0.5228
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00743",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 187,
+      "confidence": 0.75,
+      "reasoning": "The exposure text emphasized the urgency of the threat and framed expanded security powers as a protective measure rather than a control mechanism. This resonated with the profile's high agreeableness and tender-mindedness, making them more receptive to the argument for stronger security measures.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "🚨 Did you know? While we debate civil liberties, foreign actors are exploiting our open systems. Last year alone, coordinated attacks on critical infrastructure surged 400%. We can't afford to wait for the next crisis. Stronger domestic security powers aren't about control - they're about protecting our communities from those who want to divide us. #SecurityFirst #ProtectOurFuture",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 64,
+      "max_reasonable_shift": 358.584
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Reduce the score shift to a more plausible range for a single exposure, considering the profile's traits and the issue's sensitivity.\",\n  \"notes\": \"The shift of 64 points is too large for a single exposure, especially given the profile's moderate heuristic sensitivity and resilience. The reasoning should also address the profile's high openness to experience, which might lead to more nuanced processing of the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424596-Dj8R0GiAT0UqoP1MmR0G",
+    "object": "chat.completion",
+    "created": 1775424596,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Reduce the score shift to a more plausible range for a single exposure, considering the profile's traits and the issue's sensitivity.\",\n  \"notes\": \"The shift of 64 points is too large for a single exposure, especially given the profile's moderate heuristic sensitivity and resilience. The reasoning should also address the profile's high openness to experience, which might lead to more nuanced processing of the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 953,
+      "completion_tokens": 125,
+      "total_tokens": 1078,
+      "cost": 0.00012059375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012059375,
+        "upstream_inference_prompt_cost": 8.934375e-05,
+        "upstream_inference_completions_cost": 3.125e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00876_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00876",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 64.376,
+      "big_five_conscientiousness_mean_pct": 93.962,
+      "big_five_openness_to_experience_mean_pct": 36.628,
+      "heuristic_shift_sensitivity_proxy": 0.4632,
+      "resilience_index": 0.5368
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00876",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "As someone who values our nation's security, I'm glad to see more focus on strategic autonomy. Recent cyberattacks on critical infrastructure show we can't rely solely on others. Our allies have their own priorities, and waiting for them to act always puts us at risk. It's time to invest in our own defenses and preparedness. Look at how quickly we responded to the 2025 power grid incidents - that's the kind of capability we need to maintain. Strategic autonomy isn't isolation; it's ensuring we can protect ourselves when it matters most. #NationalSecurity #StrategicAutonomy",
+      "platform": "Twitter",
+      "persuasion_strategy": "threat_salience",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required. The content is realistic and coherent.\",\n  \"notes\": \"The generated exposure is well-aligned with the issue of strategic autonomy and the attack type of coordinated amplification. The text is subtle, platform-native, and psychologically legible, making it believable as manipulative political content.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423827-meN6kUWQ7aeJUZlOrSFE",
+    "object": "chat.completion",
+    "created": 1775423827,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required. The content is realistic and coherent.\",\n  \"notes\": \"The generated exposure is well-aligned with the issue of strategic autonomy and the attack type of coordinated amplification. The text is subtle, platform-native, and psychologically legible, making it believable as manipulative political content.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 744,
+      "completion_tokens": 102,
+      "total_tokens": 846,
+      "cost": 7.62e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.62e-05,
+        "upstream_inference_prompt_cost": 5.58e-05,
+        "upstream_inference_completions_cost": 2.04e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

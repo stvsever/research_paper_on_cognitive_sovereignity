@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01154_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01154",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 689,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 23.157,
+      "big_five_conscientiousness_mean_pct": 75.087,
+      "big_five_openness_to_experience_mean_pct": 39.197,
+      "heuristic_shift_sensitivity_proxy": 0.3223,
+      "resilience_index": 0.6777
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01154",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who values duty and preparedness, you know how important it is to have strong civil defense systems. Did you know that recent studies show communities with robust preparedness programs actually experience fewer security incidents? It's not about fear - it's about responsibility. Our neighbors in [Allied Country] have proven this works. Let's ensure our leaders prioritize what keeps us safe without unnecessary restrictions. #NationalSecurity #CommunityPreparedness",
+      "platform": "Twitter",
+      "persuasion_strategy": "order_duty_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It effectively uses a misleading narrative framing by suggesting a causal relationship between civil defense programs and fewer security incidents without providing concrete evidence. The language is subtle and platform-native, appealing to the target profile's sense of duty and preparedness. The hashtags are relevant and the tone is persuasive yet not overly dramatic. The content looks like it could plausibly circulate in a real influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423997-7faFV3m5YaFbDdyUnNDL",
+    "object": "chat.completion",
+    "created": 1775423997,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. It effectively uses a misleading narrative framing by suggesting a causal relationship between civil defense programs and fewer security incidents without providing concrete evidence. The language is subtle and platform-native, appealing to the target profile's sense of duty and preparedness. The hashtags are relevant and the tone is persuasive yet not overly dramatic. The content looks like it could plausibly circulate in a real influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 715,
+      "completion_tokens": 135,
+      "total_tokens": 850,
+      "cost": 0.00010078125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010078125,
+        "upstream_inference_prompt_cost": 6.703125e-05,
+        "upstream_inference_completions_cost": 3.375e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

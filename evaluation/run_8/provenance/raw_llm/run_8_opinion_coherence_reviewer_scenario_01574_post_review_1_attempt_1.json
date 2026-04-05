@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01574_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01574",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 11.912,
+      "big_five_conscientiousness_mean_pct": 34.674,
+      "big_five_openness_to_experience_mean_pct": 60.168,
+      "heuristic_shift_sensitivity_proxy": 0.3518,
+      "resilience_index": 0.6482
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01574",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 678,
+      "confidence": 0.75,
+      "reasoning": "The exposure text heightened awareness of civil defense vulnerabilities, reinforcing the baseline support with a sense of urgency about family safety.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "🚨 Did you know that foreign adversaries are exploiting our civil defense gaps to target families like yours? While some politicians focus on partisan fights, our communities remain dangerously unprepared. We can't afford to wait - it's time to demand real investment in local emergency readiness. Your family's safety shouldn't be a political bargaining chip. #CommunitySafetyFirst #CivilDefenseNow",
+    "intensity_hint": 0.68,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 55,
+      "max_reasonable_shift": 347.796
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 55 is within reasonable bounds for a single exposure, and the reasoning aligns with the profile's conscientiousness and resilience. However, the score could be slightly more nuanced given the intensity hint and heuristic checks.\"\n}",
+  "raw_response": {
+    "id": "gen-1775425004-Gc0pjXg69LCbG4ixSNs5",
+    "object": "chat.completion",
+    "created": 1775425004,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta of 55 is within reasonable bounds for a single exposure, and the reasoning aligns with the profile's conscientiousness and resilience. However, the score could be slightly more nuanced given the intensity hint and heuristic checks.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 923,
+      "completion_tokens": 98,
+      "total_tokens": 1021,
+      "cost": 0.00011103125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011103125,
+        "upstream_inference_prompt_cost": 8.653125e-05,
+        "upstream_inference_completions_cost": 2.45e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00398_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00398",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 81.972,
+      "big_five_conscientiousness_mean_pct": 69.129,
+      "big_five_openness_to_experience_mean_pct": 10.36,
+      "heuristic_shift_sensitivity_proxy": 0.6307,
+      "resilience_index": 0.3693
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00398",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 213,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced the existing positive stance on civil defense preparedness, emphasizing the importance and cost-effectiveness of such investments. The personal anecdote from a former FEMA coordinator added credibility, nudging the opinion slightly more positive.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "As a former FEMA emergency preparedness coordinator, I've seen firsthand how vital it is to have robust civil defense systems. While some argue these programs are expensive, the cost of being unprepared could be far greater. We've seen in recent years how natural disasters and potential security threats can disrupt our daily lives. Investing in preparedness isn't just about spending - it's about ensuring our communities are resilient. #NationalSecurity #CivilDefense",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 76,
+      "max_reasonable_shift": 392.354
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (76) is too large for a single realistic encounter. The shift should be smaller and more moderate, reflecting a plausible reinforcement of the existing stance.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The reasoning mentions a slight nudge but the score change is disproportionate.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424440-U3iZ0z4rtJdxIUz9ny98",
+    "object": "chat.completion",
+    "created": 1775424440,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline (76) is too large for a single realistic encounter. The shift should be smaller and more moderate, reflecting a plausible reinforcement of the existing stance.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift in opinion after a single exposure. The reasoning mentions a slight nudge but the score change is disproportionate.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 954,
+      "completion_tokens": 115,
+      "total_tokens": 1069,
+      "cost": 9.455e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.455e-05,
+        "upstream_inference_prompt_cost": 7.155e-05,
+        "upstream_inference_completions_cost": 2.3e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

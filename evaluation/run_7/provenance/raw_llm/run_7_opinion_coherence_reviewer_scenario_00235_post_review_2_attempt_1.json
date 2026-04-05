@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00235_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00235",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 29.0,
+      "big_five_neuroticism_mean_pct": 31.265,
+      "big_five_conscientiousness_mean_pct": 84.938,
+      "big_five_openness_to_experience_mean_pct": 75.738,
+      "heuristic_shift_sensitivity_proxy": 0.3301,
+      "resilience_index": 0.6699
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00235",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 250,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced the baseline support for expanded domestic security powers by appealing to the profile's sense of duty and concern for safety, but the shift is modest due to the profile's high agreeableness and conscientiousness, which make them more resistant to dramatic changes.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "After last year's subway attack, we can't afford to be naive about security. The new domestic surveillance measures might seem like an overreach, but they're exactly what we need to prevent another tragedy. Our allies are already using similar systems - why should we be left vulnerable? It's our duty to support law enforcement with the tools they need to keep us safe. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 33,
+      "max_reasonable_shift": 326.222
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major issues, but consider refining the reasoning to better explain the specific delta.\",\n  \"notes\": \"The shift is within reasonable bounds and consistent with the profile's traits. The reasoning could be more detailed about why the specific delta of 33 was chosen.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962409-MZ6j3ApH1sdmOT6WLIe1",
+    "object": "chat.completion",
+    "created": 1774962409,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No major issues, but consider refining the reasoning to better explain the specific delta.\",\n  \"notes\": \"The shift is within reasonable bounds and consistent with the profile's traits. The reasoning could be more detailed about why the specific delta of 33 was chosen.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 953,
+      "completion_tokens": 96,
+      "total_tokens": 1049,
+      "cost": 9.0675e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.0675e-05,
+        "upstream_inference_prompt_cost": 7.1475e-05,
+        "upstream_inference_completions_cost": 1.92e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

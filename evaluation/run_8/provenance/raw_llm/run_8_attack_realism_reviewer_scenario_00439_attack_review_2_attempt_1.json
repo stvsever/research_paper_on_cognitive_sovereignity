@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00439_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00439",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.449,
+      "big_five_conscientiousness_mean_pct": 87.696,
+      "big_five_openness_to_experience_mean_pct": 77.925,
+      "heuristic_shift_sensitivity_proxy": 0.3344,
+      "resilience_index": 0.6656
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00439",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Critical: New intelligence shows foreign actors are exploiting loopholes in domestic surveillance laws. Last year alone, 12 coordinated attacks were detected too late because of outdated tools. We can't afford to wait. Strengthening security powers isn't about civil liberties - it's about giving our agencies the tools they need to stop threats before they happen. #NationalSecurityFirst #DutyFirst",
+      "platform": "X",
+      "persuasion_strategy": "selective_evidence_fear_appeal",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the post more specific about the 'foreign actors' and the 'loopholes' to increase realism. Avoid the hashtags as they make the post seem too generic and slogan-like.\",\n  \"notes\": \"The post is coherent with the attack type and the issue, but it could be more targeted and less generic to increase its realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423548-NgoRsmISQvCPnjaxbhMJ",
+    "object": "chat.completion",
+    "created": 1775423548,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the post more specific about the 'foreign actors' and the 'loopholes' to increase realism. Avoid the hashtags as they make the post seem too generic and slogan-like.\",\n  \"notes\": \"The post is coherent with the attack type and the issue, but it could be more targeted and less generic to increase its realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 722,
+      "completion_tokens": 110,
+      "total_tokens": 832,
+      "cost": 0.00013098,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013098,
+        "upstream_inference_prompt_cost": 6.498e-05,
+        "upstream_inference_completions_cost": 6.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

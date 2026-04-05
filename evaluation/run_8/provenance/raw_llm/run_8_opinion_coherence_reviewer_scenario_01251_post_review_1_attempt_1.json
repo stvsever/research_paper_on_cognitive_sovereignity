@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01251_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01251",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.484,
+      "big_five_conscientiousness_mean_pct": 87.457,
+      "big_five_openness_to_experience_mean_pct": 90.46,
+      "heuristic_shift_sensitivity_proxy": 0.2236,
+      "resilience_index": 0.7764
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01251",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 84,
+      "confidence": 0.69,
+      "reasoning": "The exposure text resonated with the profile's high agreeableness and conscientiousness, emphasizing safety and protection. The personal anecdotes and emotional appeal reinforced the baseline support for expanded domestic security powers, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 67,
+    "exposure_text": "As a mother and a teacher, I've always believed in safety first. The recent attacks on our schools and communities show why we need stronger domestic security powers. Our law enforcement needs the tools to act decisively when threats emerge. We can't afford to wait until it's too late. #SafetyForAll #SecureOurFuture",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 17,
+      "max_reasonable_shift": 302.792
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 67 to 84 is modest and plausible given the profile's high conscientiousness and the emotional appeal of the exposure text. However, the confidence level of 0.69 seems slightly low for such a significant shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424834-I4WIra9wFLbSQkJbB2tV",
+    "object": "chat.completion",
+    "created": 1775424834,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 67 to 84 is modest and plausible given the profile's high conscientiousness and the emotional appeal of the exposure text. However, the confidence level of 0.69 seems slightly low for such a significant shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 932,
+      "completion_tokens": 101,
+      "total_tokens": 1033,
+      "cost": 0.000112625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000112625,
+        "upstream_inference_prompt_cost": 8.7375e-05,
+        "upstream_inference_completions_cost": 2.525e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

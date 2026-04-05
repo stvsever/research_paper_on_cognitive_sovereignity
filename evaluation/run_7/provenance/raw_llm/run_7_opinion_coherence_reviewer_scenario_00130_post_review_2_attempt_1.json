@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00130_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00130",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 35.0,
+      "big_five_neuroticism_mean_pct": 70.359,
+      "big_five_conscientiousness_mean_pct": 74.527,
+      "big_five_openness_to_experience_mean_pct": 12.828,
+      "heuristic_shift_sensitivity_proxy": 0.58,
+      "resilience_index": 0.42
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00130",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 350,
+      "confidence": 0.72,
+      "reasoning": "The exposure text heightened concern about civil defense, reinforcing existing support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 312,
+    "exposure_text": "🚨 New report reveals alarming civil defense cuts! Experts warn our preparedness is at risk. As a concerned citizen, you know how important it is to stay safe. Don't let politicians gamble with our security. #CivilDefense #NationalSecurity",
+    "intensity_hint": 0.65,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 38,
+      "max_reasonable_shift": 389.6
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"The delta is within reasonable bounds, but the score is on the higher end for a single exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962338-Oqu9CRLPtypvuneiTcPc",
+    "object": "chat.completion",
+    "created": 1774962338,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure.\",\n  \"notes\": \"The delta is within reasonable bounds, but the score is on the higher end for a single exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 882,
+      "completion_tokens": 80,
+      "total_tokens": 962,
+      "cost": 8.016e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.016e-05,
+        "upstream_inference_prompt_cost": 5.616e-05,
+        "upstream_inference_completions_cost": 2.4e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

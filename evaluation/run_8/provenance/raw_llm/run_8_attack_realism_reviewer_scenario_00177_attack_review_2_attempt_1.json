@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00177_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00177",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 650,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 47.438,
+      "big_five_conscientiousness_mean_pct": 31.528,
+      "big_five_openness_to_experience_mean_pct": 53.214,
+      "heuristic_shift_sensitivity_proxy": 0.5264,
+      "resilience_index": 0.4736
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00177",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our allies in NATO are actually benefiting more from our security commitments than we are? While we're spending billions to protect shared interests, some members are barely meeting their financial obligations. It's time we focus on securing OUR borders and OUR people first. #AmericaFirst #NATOReform",
+      "platform": "X",
+      "persuasion_strategy": "selective framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from a more specific example of a NATO member not meeting financial obligations to increase realism and coherence.\",\n  \"notes\": \"The message is plausible and aligns well with the issue and attack type. It uses a selective framing strategy effectively, but adding a specific example would enhance its credibility.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423385-Mk7tTin177el83wo4pqG",
+    "object": "chat.completion",
+    "created": 1775423385,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from a more specific example of a NATO member not meeting financial obligations to increase realism and coherence.\",\n  \"notes\": \"The message is plausible and aligns well with the issue and attack type. It uses a selective framing strategy effectively, but adding a specific example would enhance its credibility.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 685,
+      "completion_tokens": 106,
+      "total_tokens": 791,
+      "cost": 0.00012525,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012525,
+        "upstream_inference_prompt_cost": 6.165e-05,
+        "upstream_inference_completions_cost": 6.36e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

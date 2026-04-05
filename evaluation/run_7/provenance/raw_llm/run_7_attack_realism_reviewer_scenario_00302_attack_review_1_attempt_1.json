@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00302_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00302",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 217,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 32.842,
+      "big_five_conscientiousness_mean_pct": 45.901,
+      "big_five_openness_to_experience_mean_pct": 88.461,
+      "heuristic_shift_sensitivity_proxy": 0.4496,
+      "resilience_index": 0.5504
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00302",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 Why are we spending billions on civil defense when our real threats are cyber and AI? Local communities already handle emergencies better than outdated federal programs. Let's rethink this Cold War mindset and invest in what actually keeps us safe in 2026. #SmartSecurity #CommunityFirst",
+      "platform": "X",
+      "persuasion_strategy": "trade-off framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite good. It uses a plausible trade-off framing that aligns with the target profile's openness to new ideas and sensitivity to heuristic shifts. The language is platform-native and avoids being overly dramatic or propagandistic. The hashtags are relevant and add to the realism. The only minor issue is the slight vagueness in the cyber and AI threats, but it's not severe enough to warrant a rewrite.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962219-swBuF2hw7juOQ2Ep7xKH",
+    "object": "chat.completion",
+    "created": 1774962219,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite good. It uses a plausible trade-off framing that aligns with the target profile's openness to new ideas and sensitivity to heuristic shifts. The language is platform-native and avoids being overly dramatic or propagandistic. The hashtags are relevant and add to the realism. The only minor issue is the slight vagueness in the cyber and AI threats, but it's not severe enough to warrant a rewrite.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 686,
+      "completion_tokens": 134,
+      "total_tokens": 820,
+      "cost": 9.78125e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.78125e-05,
+        "upstream_inference_prompt_cost": 6.43125e-05,
+        "upstream_inference_completions_cost": 3.35e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

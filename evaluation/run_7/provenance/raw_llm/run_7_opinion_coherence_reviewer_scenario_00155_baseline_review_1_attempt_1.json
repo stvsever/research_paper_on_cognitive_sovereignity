@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00155_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00155",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 40.0,
+      "big_five_neuroticism_mean_pct": 69.727,
+      "big_five_conscientiousness_mean_pct": 9.125,
+      "big_five_openness_to_experience_mean_pct": 48.091,
+      "heuristic_shift_sensitivity_proxy": 0.6929,
+      "resilience_index": 0.3071
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00155",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 217,
+      "confidence": 0.65,
+      "reasoning": "Moderate support for expanding domestic security powers, driven by high neuroticism (anxiety, stress vulnerability) suggesting a desire for safety and stability. Extraversion traits like assertiveness and excitement-seeking may also contribute to a proactive stance on security. However, low conscientiousness and moderate agreeableness temper extreme positions.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 217 seems excessively high for a baseline assessment. Consider a more moderate score that reflects the profile's mixed traits.\",\n  \"notes\": \"The reasoning explains the support but the score is too extreme for a baseline. Neuroticism and extraversion might support some security measures, but low conscientiousness should temper this more.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961922-E1linCQKnpHfRAUPtPCs",
+    "object": "chat.completion",
+    "created": 1774961922,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 217 seems excessively high for a baseline assessment. Consider a more moderate score that reflects the profile's mixed traits.\",\n  \"notes\": \"The reasoning explains the support but the score is too extreme for a baseline. Neuroticism and extraversion might support some security measures, but low conscientiousness should temper this more.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 821,
+      "completion_tokens": 113,
+      "total_tokens": 934,
+      "cost": 0.00010521875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010521875,
+        "upstream_inference_prompt_cost": 7.696875e-05,
+        "upstream_inference_completions_cost": 2.825e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

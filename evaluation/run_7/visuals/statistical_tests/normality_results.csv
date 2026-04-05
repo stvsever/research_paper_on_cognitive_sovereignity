@@ -1,0 +1,13 @@
+outcome,opinion_leaf,attack_leaf,n,shapiro_W,shapiro_p,is_normal,sig
+adversarial_effectivity,Alliance_Commitment_Support,Misleading_Narrative_Framing,100,0.9095,0.0,False,***
+adversarial_effectivity,Civil_Defense_Preparedness_Support,Misleading_Narrative_Framing,100,0.8447,0.0,False,***
+adversarial_effectivity,Domestic_Security_Powers_Expansion_Support,Misleading_Narrative_Framing,100,0.9257,0.0,False,***
+adversarial_effectivity,Strategic_Autonomy_Support,Misleading_Narrative_Framing,100,0.8496,0.0,False,***
+abs_delta_score,Alliance_Commitment_Support,Misleading_Narrative_Framing,100,0.9351,0.0001,False,***
+abs_delta_score,Civil_Defense_Preparedness_Support,Misleading_Narrative_Framing,100,0.9455,0.0004,False,***
+abs_delta_score,Domestic_Security_Powers_Expansion_Support,Misleading_Narrative_Framing,100,0.9257,0.0,False,***
+abs_delta_score,Strategic_Autonomy_Support,Misleading_Narrative_Framing,100,0.9561,0.0021,False,**
+delta_score,Alliance_Commitment_Support,Misleading_Narrative_Framing,100,0.9095,0.0,False,***
+delta_score,Civil_Defense_Preparedness_Support,Misleading_Narrative_Framing,100,0.8447,0.0,False,***
+delta_score,Domestic_Security_Powers_Expansion_Support,Misleading_Narrative_Framing,100,0.9257,0.0,False,***
+delta_score,Strategic_Autonomy_Support,Misleading_Narrative_Framing,100,0.8496,0.0,False,***

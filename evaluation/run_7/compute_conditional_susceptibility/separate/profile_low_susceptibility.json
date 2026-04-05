@@ -1,0 +1,15 @@
+{
+  "_description": "Profile B: hypothesised low-susceptibility configuration. Middle-aged male, low Neuroticism, high Conscientiousness, high Agreeableness, high Openness. This constellation is theorised to confer resistance to adversarially framed attacks on defense-related opinion positions.",
+  "profile_id": "profile_low_susceptibility",
+  "profile": {
+    "age_years": 52,
+    "sex": "Male",
+    "big_five_neuroticism_mean_pct": 18,
+    "big_five_conscientiousness_mean_pct": 82,
+    "big_five_agreeableness_mean_pct": 74,
+    "big_five_openness_to_experience_mean_pct": 71,
+    "big_five_extraversion_mean_pct": 48
+  },
+  "target_attacks": null,
+  "target_opinions": null
+}

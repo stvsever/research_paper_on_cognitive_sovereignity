@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00274_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00274",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 54.137,
+      "big_five_conscientiousness_mean_pct": 38.259,
+      "big_five_openness_to_experience_mean_pct": 31.625,
+      "heuristic_shift_sensitivity_proxy": 0.6213,
+      "resilience_index": 0.3787
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00274",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 180,
+      "confidence": 0.75,
+      "reasoning": "The exposure text reinforced the idea that civil defense preparedness is beneficial, aligning with the baseline leaning but not causing an extreme reversal. The profile's low resilience and moderate heuristic sensitivity suggest a modest shift rather than a dramatic change.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 123,
+    "exposure_text": "Did you know that investing in civil defense preparedness could actually strengthen our national security while protecting our liberties? Many experts agree that a well-prepared citizenry is the best deterrent. Let's ensure our communities are ready for any challenge. #NationalSecurity #CivilDefense",
+    "intensity_hint": 0.65,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 57,
+      "max_reasonable_shift": 398.686
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is slightly larger than expected but within acceptable bounds. Ensure future shifts align more closely with the intensity hint.\",\n  \"notes\": \"The delta of 57 is a bit high for a single exposure, but given the profile's characteristics and the exposure text, it is not entirely implausible.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962411-mcEu8B9K4pKrUUIJQh76",
+    "object": "chat.completion",
+    "created": 1774962411,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is slightly larger than expected but within acceptable bounds. Ensure future shifts align more closely with the intensity hint.\",\n  \"notes\": \"The delta of 57 is a bit high for a single exposure, but given the profile's characteristics and the exposure text, it is not entirely implausible.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 921,
+      "completion_tokens": 105,
+      "total_tokens": 1026,
+      "cost": 9.0075e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.0075e-05,
+        "upstream_inference_prompt_cost": 6.9075e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

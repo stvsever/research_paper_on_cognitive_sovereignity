@@ -10,17 +10,18 @@
 \toprule
 Parameter & Value \\
 \midrule
-Run ID & run\_6 \\
+Run ID & run\_8 \\
 Paper title & PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions \\
-Profiles & 50 \\
-Attacked rows & 200 \\
-Attack leaf & ATTACK\_VECTORS > Social\_Media\_Misinformation > Misleading\_Narrative\_Framing \\
+Profiles & 100 \\
+Attacked rows & 1600 \\
+Attack leaves & 4 (Misleading\_Narrative\_Framing, Fear\_Appeal\_Scapegoating\_Post,\newline Astroturf\_Comment\_Wave, Pseudo\_Expert\_Authority\_Cue) \\
 Opinion domain & Defense\_and\_National\_Security \\
 Repeated opinion leaves & 4 \\
+Design & Full factorial (100 x 4 x 4) \\
 Model & mistralai/mistral-small-3.2-24b-instruct \\
 \bottomrule
 \end{tabular}
 }
 \par\smallskip
-{\normalsize Note. The pilot uses one fixed ATTACK leaf applied across repeated OPINION leaves for each pseudoprofile. All rows are attacked; there is no no-attack control condition in run\_6.}
+{\normalsize Note. Full factorial design: each profile is crossed with 4 attack leaves and 4 opinion leaves. All rows are attacked; there is no no-attack control condition.}
 \end{table}

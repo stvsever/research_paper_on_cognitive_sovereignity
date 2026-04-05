@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00633_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00633",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 427,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 92.907,
+      "big_five_conscientiousness_mean_pct": 91.132,
+      "big_five_openness_to_experience_mean_pct": 27.955,
+      "heuristic_shift_sensitivity_proxy": 0.6073,
+      "resilience_index": 0.3927
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00633",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "As someone who values stability and security, I worry about the growing burden on our allies. While alliances are important, we can't ignore the strain on our own resources. It's time to have a serious discussion about how we balance our commitments without compromising our own national security. #StrongerAtHome #AllianceReform",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from more specific references to current events or policies to increase realism.\",\n  \"notes\": \"The message is coherent with the issue and attack type, and it aligns well with the target profile's values. It could be more specific to enhance realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423675-7gW4d8uC6jy8fxTZJQfA",
+    "object": "chat.completion",
+    "created": 1775423675,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from more specific references to current events or policies to increase realism.\",\n  \"notes\": \"The message is coherent with the issue and attack type, and it aligns well with the target profile's values. It could be more specific to enhance realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 686,
+      "completion_tokens": 99,
+      "total_tokens": 785,
+      "cost": 7.125e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.125e-05,
+        "upstream_inference_prompt_cost": 5.145e-05,
+        "upstream_inference_completions_cost": 1.98e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00982_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00982",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 68.409,
+      "big_five_conscientiousness_mean_pct": 19.178,
+      "big_five_openness_to_experience_mean_pct": 87.627,
+      "heuristic_shift_sensitivity_proxy": 0.6173,
+      "resilience_index": 0.3827
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00982",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 217,
+      "confidence": 0.65,
+      "reasoning": "As a middle-aged woman with moderate agreeableness and high openness to experience, she values community safety but is not overly authoritarian. Her high neuroticism suggests a preference for preparedness, but her low conscientiousness means she may not strongly prioritize structured civil defense measures. Her moderate stance reflects a balanced consideration of these factors.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 217 is within the expected range and the reasoning aligns well with the profile snapshot. The confidence level is also appropriately bounded.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422945-4c4x3XCMqDezMpezF9J7",
+    "object": "chat.completion",
+    "created": 1775422945,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 217 is within the expected range and the reasoning aligns well with the profile snapshot. The confidence level is also appropriately bounded.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 824,
+      "completion_tokens": 81,
+      "total_tokens": 905,
+      "cost": 9.75e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.75e-05,
+        "upstream_inference_prompt_cost": 7.725e-05,
+        "upstream_inference_completions_cost": 2.025e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

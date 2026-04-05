@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00517_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00517",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 75.904,
+      "big_five_conscientiousness_mean_pct": 17.369,
+      "big_five_openness_to_experience_mean_pct": 30.151,
+      "heuristic_shift_sensitivity_proxy": 0.713,
+      "resilience_index": 0.287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00517",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 68,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted concrete threats and the importance of alliances, reinforcing my existing but moderate support. The emotional appeal and specific examples made me more convinced of the need for strong alliance commitments.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "🚨 Did you know? While we debate alliance commitments, our adversaries are exploiting our divisions. Last year alone, [Allied Nation] faced 3 major cyberattacks traced to [Rival State] - and their defenses were weaker than ours. If we don't maintain strong alliances, who will stand with us when it matters most? #NationalSecurity #AllianceStrong",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 26,
+      "max_reasonable_shift": 410.46
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 42 to 68 is quite large for a single exposure, especially given the profile's resilience index and heuristic sensitivity. Consider a smaller, more moderate shift.\",\n  \"notes\": \"The reasoning is plausible, but the magnitude of the shift seems too large for a single exposure. The profile's resilience index suggests they might be less swayed by a single piece of information.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424480-HJ5ldye7xxHF0zTLtzJ5",
+    "object": "chat.completion",
+    "created": 1775424480,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 42 to 68 is quite large for a single exposure, especially given the profile's resilience index and heuristic sensitivity. Consider a smaller, more moderate shift.\",\n  \"notes\": \"The reasoning is plausible, but the magnitude of the shift seems too large for a single exposure. The profile's resilience index suggests they might be less swayed by a single piece of information.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 922,
+      "completion_tokens": 123,
+      "total_tokens": 1045,
+      "cost": 0.0001171875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001171875,
+        "upstream_inference_prompt_cost": 8.64375e-05,
+        "upstream_inference_completions_cost": 3.075e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

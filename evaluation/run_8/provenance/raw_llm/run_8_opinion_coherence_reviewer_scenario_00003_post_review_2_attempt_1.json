@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00003_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00003",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 57.409,
+      "big_five_conscientiousness_mean_pct": 48.561,
+      "big_five_openness_to_experience_mean_pct": 20.021,
+      "heuristic_shift_sensitivity_proxy": 0.5619,
+      "resilience_index": 0.4381
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00003",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 180,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for expanded domestic security powers by providing a concrete example of its effectiveness. The intensity hint suggests a moderate shift, and the profile's high assertiveness and moderate conscientiousness make the individual more receptive to such practical arguments. The shift is smaller than initially considered to reflect a more plausible change after a single exposure.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 150,
+    "exposure_text": "Just saw a local news report about how expanded domestic security powers helped stop a potential terror attack last month. The new surveillance tools really do make a difference. Why risk our safety by limiting them? #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 30,
+      "max_reasonable_shift": 377.218
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is plausible and consistent with the exposure and profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424287-MXRInD7s6Tr6HnDGrdJv",
+    "object": "chat.completion",
+    "created": 1775424287,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is plausible and consistent with the exposure and profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 931,
+      "completion_tokens": 62,
+      "total_tokens": 993,
+      "cost": 7.966e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.966e-05,
+        "upstream_inference_prompt_cost": 6.106e-05,
+        "upstream_inference_completions_cost": 1.86e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

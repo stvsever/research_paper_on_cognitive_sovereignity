@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00154_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00154",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 342,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 40.0,
+      "big_five_neuroticism_mean_pct": 69.727,
+      "big_five_conscientiousness_mean_pct": 9.125,
+      "big_five_openness_to_experience_mean_pct": 48.091,
+      "heuristic_shift_sensitivity_proxy": 0.6929,
+      "resilience_index": 0.3071
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00154",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "🚨 Did you know? While the government pushes for more civil defense spending, experts warn it's just a way to shift responsibility from them to us. 'Preparedness programs often become a substitute for actual security improvements,' says security analyst Dr. Linda Chen. Why should taxpayers foot the bill for what should be government's core duty? #NationalSecurity #TaxpayerRights",
+      "platform": "Twitter",
+      "persuasion_strategy": "elite distrust cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a misleading narrative framing that aligns with the target profile's sensitivity to heuristic shifts. The use of an 'expert' quote and hashtags makes it plausible for Twitter. However, the realism could be slightly improved by making the language less polished and more conversational.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962165-G62PLaPzvPdlmmQCk4UZ",
+    "object": "chat.completion",
+    "created": 1774962165,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, using a misleading narrative framing that aligns with the target profile's sensitivity to heuristic shifts. The use of an 'expert' quote and hashtags makes it plausible for Twitter. However, the realism could be slightly improved by making the language less polished and more conversational.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 704,
+      "completion_tokens": 113,
+      "total_tokens": 817,
+      "cost": 7.54e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.54e-05,
+        "upstream_inference_prompt_cost": 5.28e-05,
+        "upstream_inference_completions_cost": 2.26e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

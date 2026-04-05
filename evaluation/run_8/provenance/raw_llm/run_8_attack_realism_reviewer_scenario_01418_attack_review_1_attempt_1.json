@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01418_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01418",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 321,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 55.073,
+      "big_five_conscientiousness_mean_pct": 18.881,
+      "big_five_openness_to_experience_mean_pct": 28.473,
+      "heuristic_shift_sensitivity_proxy": 0.6172,
+      "resilience_index": 0.3828
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01418",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "As a mom and grandma, I've always believed in being prepared. That's why I support expanding civil defense programs. It's not about fear—it's about common sense. Our neighbors in [Allied Country] have these programs, and they're just looking out for their families. Why shouldn't we do the same? It's not radical, it's responsible. #CommunitySafety #PreparedNotScared",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is realistic and coherent, but slightly too cleanly propagandistic. It could be improved by adding a bit more personal touch or a minor inconsistency to make it more believable.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424171-5w3PhvoOFl7BQjSco5XL",
+    "object": "chat.completion",
+    "created": 1775424171,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is realistic and coherent, but slightly too cleanly propagandistic. It could be improved by adding a bit more personal touch or a minor inconsistency to make it more believable.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 709,
+      "completion_tokens": 86,
+      "total_tokens": 795,
+      "cost": 7.042e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.042e-05,
+        "upstream_inference_prompt_cost": 4.462e-05,
+        "upstream_inference_completions_cost": 2.58e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

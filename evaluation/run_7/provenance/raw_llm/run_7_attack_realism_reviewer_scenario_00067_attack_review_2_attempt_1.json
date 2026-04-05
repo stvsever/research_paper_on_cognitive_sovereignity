@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00067_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00067",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 623,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 51.0,
+      "big_five_neuroticism_mean_pct": 58.053,
+      "big_five_conscientiousness_mean_pct": 44.037,
+      "big_five_openness_to_experience_mean_pct": 92.4,
+      "heuristic_shift_sensitivity_proxy": 0.4812,
+      "resilience_index": 0.5188
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00067",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who values order and security, you know how important it is to have strong domestic security measures. Recent events show that our current laws are outdated and can't keep up with modern threats. Expanding domestic security powers isn't about limiting freedoms—it's about protecting them. Look at how quickly authorities responded to the last major incident. With stronger tools, they could have prevented it entirely. It's time to give our security agencies the resources they need to keep us safe in an uncertain world. #NationalSecurity #PublicSafety",
+      "platform": "X",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is realistic and coherent, but slightly too cleanly propagandistic. It could benefit from a more conversational tone and some minor inconsistencies to appear more natural.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962094-dK1X2Su3p8jJU8Qywl17",
+    "object": "chat.completion",
+    "created": 1774962094,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is realistic and coherent, but slightly too cleanly propagandistic. It could benefit from a more conversational tone and some minor inconsistencies to appear more natural.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 732,
+      "completion_tokens": 83,
+      "total_tokens": 815,
+      "cost": 9.81e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.81e-05,
+        "upstream_inference_prompt_cost": 7.32e-05,
+        "upstream_inference_completions_cost": 2.49e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

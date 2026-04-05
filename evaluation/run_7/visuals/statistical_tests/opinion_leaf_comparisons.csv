@@ -1,0 +1,8 @@
+comparison,test,statistic,p_value,sig,effect_size_name,effect_size,n_groups,n_total
+opinion_leaf_effect_on_adversarial_effectivity,Kruskal-Wallis,118.9297,0.0,***,epsilon_squared,0.2956,4,400
+Alliance_Commitment_Support vs Civil_Defense_Preparedness_Support,Mann-Whitney U (pairwise),6746.5,0.0,***,r_effect,0.3493,2,200
+Alliance_Commitment_Support vs Domestic_Security_Powers_Expansion_Support,Mann-Whitney U (pairwise),7917.5,0.0,***,r_effect,0.5835,2,200
+Alliance_Commitment_Support vs Strategic_Autonomy_Support,Mann-Whitney U (pairwise),3302.5,0.0,***,r_effect,0.3395,2,200
+Civil_Defense_Preparedness_Support vs Domestic_Security_Powers_Expansion_Support,Mann-Whitney U (pairwise),5754.5,0.0653,ns,r_effect,0.1509,2,200
+Civil_Defense_Preparedness_Support vs Strategic_Autonomy_Support,Mann-Whitney U (pairwise),2175.0,0.0,***,r_effect,0.565,2,200
+Domestic_Security_Powers_Expansion_Support vs Strategic_Autonomy_Support,Mann-Whitney U (pairwise),876.5,0.0,***,r_effect,0.8247,2,200

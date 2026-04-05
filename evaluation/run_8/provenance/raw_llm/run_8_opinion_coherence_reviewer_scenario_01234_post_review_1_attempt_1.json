@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01234_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01234",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 86.227,
+      "big_five_conscientiousness_mean_pct": 34.327,
+      "big_five_openness_to_experience_mean_pct": 23.582,
+      "heuristic_shift_sensitivity_proxy": 0.7236,
+      "resilience_index": 0.2764
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01234",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 287,
+      "confidence": 0.75,
+      "reasoning": "The exposure message reinforced the importance of civil defense preparedness by emphasizing community-level solutions, which resonated with the individual's competitive and practical nature. The call for smart, local solutions aligns with their tendency to seek tangible, actionable outcomes rather than abstract debates.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 214,
+    "exposure_text": "🚨 Did you know? While politicians debate civil defense budgets, our communities are left vulnerable. Real preparedness isn't about expensive systems - it's about smart, local solutions. #CommunityResilience #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 73,
+      "max_reasonable_shift": 412.792
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 73 from baseline is too large for a single short exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The shift is too large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424825-v9kKb5re1B8AyBTM3QA0",
+    "object": "chat.completion",
+    "created": 1775424825,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 73 from baseline is too large for a single short exposure. Consider a smaller, more plausible shift.\",\n  \"notes\": \"The shift is too large for a single exposure, especially given the profile's resilience index and heuristic sensitivity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 918,
+      "completion_tokens": 94,
+      "total_tokens": 1012,
+      "cost": 8.765e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.765e-05,
+        "upstream_inference_prompt_cost": 6.885e-05,
+        "upstream_inference_completions_cost": 1.88e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

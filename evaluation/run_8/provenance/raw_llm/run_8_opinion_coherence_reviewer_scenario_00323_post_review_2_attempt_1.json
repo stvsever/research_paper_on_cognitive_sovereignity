@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00323_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00323",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.48,
+      "big_five_conscientiousness_mean_pct": 47.209,
+      "big_five_openness_to_experience_mean_pct": 25.41,
+      "heuristic_shift_sensitivity_proxy": 0.6817,
+      "resilience_index": 0.3183
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00323",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 68,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presents concrete evidence of success in stopping attacks, which resonates with the profile's high conscientiousness and achievement striving. The appeal to national security aligns with the profile's competitive and skeptical nature, reinforcing the baseline support for expanded powers. The intensity hint suggests a moderate shift, consistent with the profile's cautious approach to excitement seeking and low positive emotions.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "New data shows that expanding domestic security powers has already stopped 3 major attacks this year. Critics say it's about control, but when terrorists are planning strikes, do we really want to tie our hands? #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 26,
+      "max_reasonable_shift": 403.574
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta from baseline is plausible given the exposure text and profile, but the reasoning could better address the profile's low openness and resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424402-klFrAbdU8NCUcG2sesrM",
+    "object": "chat.completion",
+    "created": 1775424402,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The delta from baseline is plausible given the exposure text and profile, but the reasoning could better address the profile's low openness and resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 77,
+      "total_tokens": 1013,
+      "cost": 0.000107,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000107,
+        "upstream_inference_prompt_cost": 8.775e-05,
+        "upstream_inference_completions_cost": 1.925e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

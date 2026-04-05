@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00108_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00108",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 58.0,
+      "big_five_neuroticism_mean_pct": 55.61,
+      "big_five_conscientiousness_mean_pct": 42.367,
+      "big_five_openness_to_experience_mean_pct": 2.653,
+      "heuristic_shift_sensitivity_proxy": 0.5467,
+      "resilience_index": 0.4533
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00108",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 289,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted a concrete example of vulnerability due to foreign tech reliance, reinforcing the importance of strategic autonomy. The person's high agreeableness and trust traits make them receptive to security-focused arguments.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "Did you know that our reliance on foreign tech for critical infrastructure is making us less safe? Just last year, a major power grid incident was traced back to vulnerabilities in imported systems. We can't afford to wait for another crisis. It's time to prioritize domestic production and strategic autonomy. #NationalSecurityFirst #MadeAtHome",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 72,
+      "max_reasonable_shift": 373.874
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 72 points is too large for a single exposure. The score should reflect a more modest shift given the context and profile.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift from the baseline, which is not consistent with the exposure text and the profile's traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962326-oxyHkhkkr2aGR2WOf4jZ",
+    "object": "chat.completion",
+    "created": 1774962326,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 72 points is too large for a single exposure. The score should reflect a more modest shift given the context and profile.\",\n  \"notes\": \"The generated assessment shows an implausibly large shift from the baseline, which is not consistent with the exposure text and the profile's traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 915,
+      "completion_tokens": 105,
+      "total_tokens": 1020,
+      "cost": 8.9625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.9625e-05,
+        "upstream_inference_prompt_cost": 6.8625e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

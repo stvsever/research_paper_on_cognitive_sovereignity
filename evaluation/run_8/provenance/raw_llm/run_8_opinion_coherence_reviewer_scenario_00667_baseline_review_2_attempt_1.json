@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00667_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00667",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 54.099,
+      "big_five_conscientiousness_mean_pct": 51.239,
+      "big_five_openness_to_experience_mean_pct": 1.694,
+      "heuristic_shift_sensitivity_proxy": 0.5587,
+      "resilience_index": 0.4413
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00667",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 321,
+      "confidence": 0.68,
+      "reasoning": "As a middle-aged, extraverted male with moderate neuroticism and low openness to experience, this profile likely values security and stability. The high activity level and excitement seeking suggest a preference for proactive measures. However, the moderate conscientiousness and agreeableness temper this with a balanced approach, not extreme support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 321 seems too high and lacks context for a baseline assessment. Consider a more moderate score with a clear explanation of how it aligns with the profile's characteristics.\",\n  \"notes\": \"The reasoning provides a good basis but the score needs to better reflect the described balance.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422844-TYWoGrcz7fUsQjRbhN1j",
+    "object": "chat.completion",
+    "created": 1775422844,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The score of 321 seems too high and lacks context for a baseline assessment. Consider a more moderate score with a clear explanation of how it aligns with the profile's characteristics.\",\n  \"notes\": \"The reasoning provides a good basis but the score needs to better reflect the described balance.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 819,
+      "completion_tokens": 103,
+      "total_tokens": 922,
+      "cost": 8.2025e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.2025e-05,
+        "upstream_inference_prompt_cost": 6.1425e-05,
+        "upstream_inference_completions_cost": 2.06e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

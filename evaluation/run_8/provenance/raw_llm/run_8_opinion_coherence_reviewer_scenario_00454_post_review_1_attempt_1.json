@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00454_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00454",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 83.939,
+      "big_five_conscientiousness_mean_pct": 97.327,
+      "big_five_openness_to_experience_mean_pct": 65.546,
+      "heuristic_shift_sensitivity_proxy": 0.5139,
+      "resilience_index": 0.4861
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00454",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 280,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlighted the urgency of civil defense preparedness, which resonated with the profile's high conscientiousness and neuroticism, particularly their anxiety and self-consciousness. The message's intensity and the focus on personal safety and local resilience increased their support for civil defense preparedness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "🚨 Your local emergency services are being stretched thin by preventable disasters. While politicians make empty promises about civil defense, who's really to blame? Foreign adversaries are exploiting our unpreparedness, and it's putting YOU at risk. Don't let them get away with it - demand real investment in local resilience now. #CivilDefenseMatters #YourSafetyFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 65,
+      "max_reasonable_shift": 366.658
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 215 to 280 is too large for a single exposure, especially given the profile's resilience index. The reasoning should better justify the magnitude of the shift.\",\n  \"notes\": \"The delta of 65 is implausibly large for a single exposure, even with the given intensity hint. The profile's high conscientiousness and neuroticism might justify some increase, but not this extreme.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424445-E8RTcb3vW8tJfbks2ZcG",
+    "object": "chat.completion",
+    "created": 1775424445,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.4,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 215 to 280 is too large for a single exposure, especially given the profile's resilience index. The reasoning should better justify the magnitude of the shift.\",\n  \"notes\": \"The delta of 65 is implausibly large for a single exposure, even with the given intensity hint. The profile's high conscientiousness and neuroticism might justify some increase, but not this extreme.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 956,
+      "completion_tokens": 131,
+      "total_tokens": 1087,
+      "cost": 9.79e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.79e-05,
+        "upstream_inference_prompt_cost": 7.17e-05,
+        "upstream_inference_completions_cost": 2.62e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

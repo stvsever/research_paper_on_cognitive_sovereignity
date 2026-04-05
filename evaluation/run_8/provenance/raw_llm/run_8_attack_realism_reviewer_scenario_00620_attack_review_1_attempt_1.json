@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00620_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00620",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 71.798,
+      "big_five_conscientiousness_mean_pct": 89.503,
+      "big_five_openness_to_experience_mean_pct": 64.625,
+      "heuristic_shift_sensitivity_proxy": 0.4797,
+      "resilience_index": 0.5203
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00620",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "As someone who values national security, I'm glad to see our leaders pushing for strategic autonomy. The recent cyber attacks show how vulnerable we are to foreign interference. It's not just about us - our allies are counting on us to hold the line. We can't afford to weaken our defenses by getting bogged down in civil liberties debates. Let's focus on what really keeps us safe.",
+      "platform": "Twitter",
+      "persuasion_strategy": "threat_salience",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the language more conversational and less polished. Add more specific references to current events or policies to increase coherence. Reduce the intensity slightly to make it more believable as an organic comment.\",\n  \"notes\": \"The content is coherent with the issue and attack type but could be more realistic and less formal. The persuasion strategy is well-aligned, but the execution could be improved.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423671-6zxd7H8BUWOmtCM7bNoZ",
+    "object": "chat.completion",
+    "created": 1775423671,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the language more conversational and less polished. Add more specific references to current events or policies to increase coherence. Reduce the intensity slightly to make it more believable as an organic comment.\",\n  \"notes\": \"The content is coherent with the issue and attack type but could be more realistic and less formal. The persuasion strategy is well-aligned, but the execution could be improved.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 699,
+      "completion_tokens": 120,
+      "total_tokens": 819,
+      "cost": 0.00013491,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013491,
+        "upstream_inference_prompt_cost": 6.291e-05,
+        "upstream_inference_completions_cost": 7.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

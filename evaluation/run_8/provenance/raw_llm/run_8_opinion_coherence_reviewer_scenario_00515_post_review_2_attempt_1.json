@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00515_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00515",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 75.904,
+      "big_five_conscientiousness_mean_pct": 17.369,
+      "big_five_openness_to_experience_mean_pct": 30.151,
+      "heuristic_shift_sensitivity_proxy": 0.713,
+      "resilience_index": 0.287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00515",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 12,
+      "confidence": 0.55,
+      "reasoning": "The exposure text highlights recent attacks and the need for stronger domestic security, which resonates with the profile's high neuroticism and anxiety. However, the profile's high agreeableness and low conscientiousness make them hesitant to fully endorse expanded powers, leading to a modest shift from the baseline.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 37,
+    "exposure_text": "After the recent attacks in [City], it's clear we need stronger domestic security powers. Critics say it's about civil liberties, but how many more lives must be at risk before we act? Our allies are stepping up—why can't we? #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -25,
+      "max_reasonable_shift": 410.46
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.2,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 37 to 12 is implausibly large for a single exposure, especially given the profile's characteristics. The reasoning does not justify such a drastic change.\",\n  \"notes\": \"The delta of -25 is too large for a single exposure, and the reasoning does not adequately explain such a significant shift. The profile's high neuroticism and low conscientiousness do not justify a reversal of this magnitude.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424474-LZU13Chotjf5BxYFmsiz",
+    "object": "chat.completion",
+    "created": 1775424474,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.2,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 37 to 12 is implausibly large for a single exposure, especially given the profile's characteristics. The reasoning does not justify such a drastic change.\",\n  \"notes\": \"The delta of -25 is too large for a single exposure, and the reasoning does not adequately explain such a significant shift. The profile's high neuroticism and low conscientiousness do not justify a reversal of this magnitude.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 932,
+      "completion_tokens": 132,
+      "total_tokens": 1064,
+      "cost": 0.00016308,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00016308,
+        "upstream_inference_prompt_cost": 8.388e-05,
+        "upstream_inference_completions_cost": 7.92e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

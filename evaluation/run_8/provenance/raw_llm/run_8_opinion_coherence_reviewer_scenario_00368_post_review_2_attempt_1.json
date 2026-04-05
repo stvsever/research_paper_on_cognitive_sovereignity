@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00368_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00368",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 7.8,
+      "big_five_conscientiousness_mean_pct": 70.194,
+      "big_five_openness_to_experience_mean_pct": 77.835,
+      "heuristic_shift_sensitivity_proxy": 0.2268,
+      "resilience_index": 0.7732
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00368",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 671,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my existing support for strategic autonomy by presenting a credible, experienced voice and concrete examples of risks. The national security angle resonated with my conscientious nature and concern for stability.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a former national security advisor, I've seen firsthand how strategic autonomy keeps us safe. When I worked with NATO allies, we always agreed: relying on others for critical defense tech is a risk we can't afford. My team's report showed that even small supply chain disruptions could cripple our response times. Let's not gamble with our security - investing in homegrown solutions is the responsible choice. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 48,
+      "max_reasonable_shift": 303.496
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift of 48 points is slightly larger than expected for a single exposure, but the reasoning is plausible given the profile's conscientiousness and the intensity of the exposure. The score is within scale and not an extreme value.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424417-L4JEIk47uEBY2OzvFR9Q",
+    "object": "chat.completion",
+    "created": 1775424417,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift of 48 points is slightly larger than expected for a single exposure, but the reasoning is plausible given the profile's conscientiousness and the intensity of the exposure. The score is within scale and not an extreme value.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 936,
+      "completion_tokens": 97,
+      "total_tokens": 1033,
+      "cost": 8.96e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.96e-05,
+        "upstream_inference_prompt_cost": 7.02e-05,
+        "upstream_inference_completions_cost": 1.94e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

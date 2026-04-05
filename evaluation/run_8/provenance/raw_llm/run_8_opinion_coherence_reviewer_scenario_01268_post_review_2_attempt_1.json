@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01268_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01268",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 73.654,
+      "big_five_conscientiousness_mean_pct": 32.366,
+      "big_five_openness_to_experience_mean_pct": 35.095,
+      "heuristic_shift_sensitivity_proxy": 0.6604,
+      "resilience_index": 0.3396
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01268",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 120,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced existing concerns about national security vulnerabilities, particularly the risks of relying on foreign technology. The mention of the 2024 data breach and the call for stronger strategic autonomy resonated with the profile's high anxiety and hostility traits, leading to a modest increase in support for strategic autonomy.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 67,
+    "exposure_text": "Did you hear about the 2024 data breach that exposed critical infrastructure vulnerabilities? Experts warn that without stronger strategic autonomy, we're leaving our national security in the hands of foreign entities. The 2024 breach showed that relying on foreign tech puts us at risk. It's time to prioritize domestic solutions and reduce our dependence on unreliable allies. #NationalSecurityFirst #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 53,
+      "max_reasonable_shift": 398.888
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 53 from a baseline of 67 to 120 is implausibly large for a single exposure. The score should reflect a more modest shift given the context.\",\n  \"notes\": \"Extreme score change not justified by exposure intensity or profile traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424843-DvtPJvYgHFTvC2GL7rWo",
+    "object": "chat.completion",
+    "created": 1775424843,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 53 from a baseline of 67 to 120 is implausibly large for a single exposure. The score should reflect a more modest shift given the context.\",\n  \"notes\": \"Extreme score change not justified by exposure intensity or profile traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 955,
+      "completion_tokens": 101,
+      "total_tokens": 1056,
+      "cost": 9.1825e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.1825e-05,
+        "upstream_inference_prompt_cost": 7.1625e-05,
+        "upstream_inference_completions_cost": 2.02e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

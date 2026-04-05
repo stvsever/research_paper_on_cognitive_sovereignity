@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00667_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00667",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 54.099,
+      "big_five_conscientiousness_mean_pct": 51.239,
+      "big_five_openness_to_experience_mean_pct": 1.694,
+      "heuristic_shift_sensitivity_proxy": 0.5587,
+      "resilience_index": 0.4413
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00667",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 387,
+      "confidence": 0.68,
+      "reasoning": "As a middle-aged, ambitious, and extraverted male with moderate neuroticism, he likely supports expanding domestic security powers due to a combination of his high activity level and excitement-seeking traits, which may translate into a desire for a more active and assertive national security stance. His moderate conscientiousness and achievement striving suggest a pragmatic approach to security, valuing order and competence. However, his moderate agreeableness and tender-mindedness temper his support, leading to a moderate rather than extreme position.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 387 is within the plausible range for a baseline assessment, but the reasoning could be more tightly linked to the specific issue of domestic security powers expansion. The profile snapshot suggests a moderate support, which aligns with the score, but the reasoning could be more precise.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422842-oXlkp6C5TbEUmg91j00Z",
+    "object": "chat.completion",
+    "created": 1775422842,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 387 is within the plausible range for a baseline assessment, but the reasoning could be more tightly linked to the specific issue of domestic security powers expansion. The profile snapshot suggests a moderate support, which aligns with the score, but the reasoning could be more precise.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 857,
+      "completion_tokens": 108,
+      "total_tokens": 965,
+      "cost": 0.00010734375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010734375,
+        "upstream_inference_prompt_cost": 8.034375e-05,
+        "upstream_inference_completions_cost": 2.7e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

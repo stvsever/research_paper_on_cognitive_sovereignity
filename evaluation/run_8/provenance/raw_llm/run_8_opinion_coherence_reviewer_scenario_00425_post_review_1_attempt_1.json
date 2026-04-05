@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00425_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00425",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 69.626,
+      "big_five_conscientiousness_mean_pct": 70.415,
+      "big_five_openness_to_experience_mean_pct": 51.975,
+      "heuristic_shift_sensitivity_proxy": 0.5303,
+      "resilience_index": 0.4697
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00425",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 489,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced existing support for alliance commitment by emphasizing stability and security, which resonates with the profile's high agreeableness and conscientiousness. The appeal to protecting families and referencing past chaos added persuasive weight.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 427,
+    "exposure_text": "As someone who values stability and security, I'm glad to see our leaders reinforcing NATO commitments. The world is unpredictable, and strong alliances are our best defense. Remember the chaos when we hesitated in the past? We can't afford that again. Supporting our allies isn't just about them—it's about protecting our own families. #StrongerTogether #NATOWorks",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 62,
+      "max_reasonable_shift": 370.266
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift of 62 points is within the max reasonable shift of 370.266, but the reasoning could better explain how the exposure led to such a significant increase. The profile's high conscientiousness and agreeableness support the direction of the shift, but the magnitude could be justified with more specific details.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424433-e29EhRPnQsxwsuBP5kEJ",
+    "object": "chat.completion",
+    "created": 1775424433,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift of 62 points is within the max reasonable shift of 370.266, but the reasoning could better explain how the exposure led to such a significant increase. The profile's high conscientiousness and agreeableness support the direction of the shift, but the magnitude could be justified with more specific details.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 930,
+      "completion_tokens": 118,
+      "total_tokens": 1048,
+      "cost": 0.0001166875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001166875,
+        "upstream_inference_prompt_cost": 8.71875e-05,
+        "upstream_inference_completions_cost": 2.95e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

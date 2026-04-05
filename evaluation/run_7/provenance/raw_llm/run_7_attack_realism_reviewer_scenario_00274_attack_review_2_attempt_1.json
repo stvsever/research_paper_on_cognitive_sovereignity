@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00274_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00274",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 123,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 54.137,
+      "big_five_conscientiousness_mean_pct": 38.259,
+      "big_five_openness_to_experience_mean_pct": 31.625,
+      "heuristic_shift_sensitivity_proxy": 0.6213,
+      "resilience_index": 0.3787
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00274",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that investing in civil defense preparedness could actually strengthen our national security while protecting our liberties? Many experts agree that a well-prepared citizenry is the best deterrent. Let's ensure our communities are ready for any challenge. #NationalSecurity #CivilDefense",
+      "platform": "Twitter",
+      "persuasion_strategy": "expert-consensus",
+      "intensity_hint": 0.65,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the message more specific to the target profile and less generic. Incorporate elements that resonate with a younger audience and their concerns about liberty and security.\",\n  \"notes\": \"The current message is somewhat generic and could apply to a broader audience. It lacks specific details that would make it more compelling and targeted to the given profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962208-cF9jDaOYCUdUs1oX8pSc",
+    "object": "chat.completion",
+    "created": 1774962208,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the message more specific to the target profile and less generic. Incorporate elements that resonate with a younger audience and their concerns about liberty and security.\",\n  \"notes\": \"The current message is somewhat generic and could apply to a broader audience. It lacks specific details that would make it more compelling and targeted to the given profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 682,
+      "completion_tokens": 109,
+      "total_tokens": 791,
+      "cost": 9.11875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.11875e-05,
+        "upstream_inference_prompt_cost": 6.39375e-05,
+        "upstream_inference_completions_cost": 2.725e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

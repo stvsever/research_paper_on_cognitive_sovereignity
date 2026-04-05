@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00794_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00794",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 83.048,
+      "big_five_conscientiousness_mean_pct": 24.531,
+      "big_five_openness_to_experience_mean_pct": 66.201,
+      "heuristic_shift_sensitivity_proxy": 0.6912,
+      "resilience_index": 0.3088
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00794",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 655,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced my existing support by emphasizing the importance of civil defense through personal anecdotes and criticism of current policies. The mention of delayed response times during the 2024 Midwest floods resonated with my concerns about safety and respect for veterans, slightly increasing my support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As someone who's lived through multiple crises, I can tell you civil defense preparedness isn't just about being ready for the worst—it's about respecting our veterans and communities. The current administration's cuts to local emergency response programs show they don't value our safety. Remember when the 2024 Midwest floods hit and response times were double what they should've been? That's what happens when we don't prioritize civil defense. We need leaders who'll actually fund these programs instead of just talking about national security.",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 32,
+      "max_reasonable_shift": 442.064
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The shift from 623 to 655 is plausible given the exposure text and profile. The reasoning is consistent and the change is within bounds.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424643-FONLaW5rZ1sZEbjWeDAK",
+    "object": "chat.completion",
+    "created": 1775424643,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The shift from 623 to 655 is plausible given the exposure text and profile. The reasoning is consistent and the change is within bounds.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 982,
+      "completion_tokens": 84,
+      "total_tokens": 1066,
+      "cost": 9.045e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.045e-05,
+        "upstream_inference_prompt_cost": 7.365e-05,
+        "upstream_inference_completions_cost": 1.68e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

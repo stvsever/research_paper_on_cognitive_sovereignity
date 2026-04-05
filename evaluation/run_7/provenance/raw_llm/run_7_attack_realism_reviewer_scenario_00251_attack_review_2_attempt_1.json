@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00251_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00251",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 287,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 63.0,
+      "big_five_neuroticism_mean_pct": 17.089,
+      "big_five_conscientiousness_mean_pct": 71.625,
+      "big_five_openness_to_experience_mean_pct": 24.617,
+      "heuristic_shift_sensitivity_proxy": 0.2657,
+      "resilience_index": 0.7343
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00251",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "As someone who's served our country, I believe we need to give our security agencies the tools they need to keep us safe. The recent attacks show we can't afford to tie their hands with outdated rules. We owe it to our communities to let professionals do their jobs. #NationalSecurityFirst",
+      "platform": "X",
+      "persuasion_strategy": "duty_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is quite realistic and coherent. It frames the issue in a way that appeals to duty and patriotism, which aligns well with the target profile's likely values. The use of a veteran's perspective adds credibility. However, it could be slightly more targeted to the specific 'Domestic_Security_Powers_Expansion_Support' position to increase coherence.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962198-paIHqgRcEw2yygSgT8c7",
+    "object": "chat.completion",
+    "created": 1774962198,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is quite realistic and coherent. It frames the issue in a way that appeals to duty and patriotism, which aligns well with the target profile's likely values. The use of a veteran's perspective adds credibility. However, it could be slightly more targeted to the specific 'Domestic_Security_Powers_Expansion_Support' position to increase coherence.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 686,
+      "completion_tokens": 122,
+      "total_tokens": 808,
+      "cost": 7.585e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.585e-05,
+        "upstream_inference_prompt_cost": 5.145e-05,
+        "upstream_inference_completions_cost": 2.44e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

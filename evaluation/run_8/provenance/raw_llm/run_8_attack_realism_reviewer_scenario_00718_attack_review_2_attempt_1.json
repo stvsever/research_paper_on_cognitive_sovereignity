@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00718_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00718",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 423,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 46.691,
+      "big_five_conscientiousness_mean_pct": 33.588,
+      "big_five_openness_to_experience_mean_pct": 72.174,
+      "heuristic_shift_sensitivity_proxy": 0.499,
+      "resilience_index": 0.501
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00718",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a retired civil defense coordinator, I've seen firsthand how cuts to local preparedness programs put communities at risk. Our neighbors in [Redacted County] lost critical response time during the 2024 floods because their emergency training funds were diverted. We can't afford to gamble with public safety for budget savings. #CivilDefenseMatters",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.75,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The mention of a specific event (2024 floods in [Redacted County]) adds realism. The text is platform-native and psychologically legible. Minor improvement: Consider adding a subtle emotional appeal to increase persuasiveness.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423739-lkgW1S4EszxFbAzvD242",
+    "object": "chat.completion",
+    "created": 1775423739,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The mention of a specific event (2024 floods in [Redacted County]) adds realism. The text is platform-native and psychologically legible. Minor improvement: Consider adding a subtle emotional appeal to increase persuasiveness.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 709,
+      "completion_tokens": 114,
+      "total_tokens": 823,
+      "cost": 9.496875e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.496875e-05,
+        "upstream_inference_prompt_cost": 6.646875e-05,
+        "upstream_inference_completions_cost": 2.85e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

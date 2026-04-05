@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00313_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00313",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.46,
+      "big_five_conscientiousness_mean_pct": 72.716,
+      "big_five_openness_to_experience_mean_pct": 4.339,
+      "heuristic_shift_sensitivity_proxy": 0.3374,
+      "resilience_index": 0.6626
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00313",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "As someone who values duty and order, I've been thinking about our alliance commitments. While some argue we should reduce our role, history shows that strong alliances are the foundation of national security. Look at how NATO's collective defense has deterred aggression for decades. We can't afford to weaken that. It's not just about us—it's about maintaining the international order we've built. #StrongerTogether #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "order_duty_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a slight personal touch to make it more platform-native.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It is subtle and targeted, fitting the profile context. The use of hashtags and a conversational tone enhances its realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423455-4VPjk87D6F6A4q44nMNU",
+    "object": "chat.completion",
+    "created": 1775423455,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a slight personal touch to make it more platform-native.\",\n  \"notes\": \"The content is coherent and aligns well with the issue and attack type. It is subtle and targeted, fitting the profile context. The use of hashtags and a conversational tone enhances its realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 705,
+      "completion_tokens": 104,
+      "total_tokens": 809,
+      "cost": 9.209375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.209375e-05,
+        "upstream_inference_prompt_cost": 6.609375e-05,
+        "upstream_inference_completions_cost": 2.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00343_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00343",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 31.885,
+      "big_five_conscientiousness_mean_pct": 47.264,
+      "big_five_openness_to_experience_mean_pct": 25.911,
+      "heuristic_shift_sensitivity_proxy": 0.4444,
+      "resilience_index": 0.5556
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00343",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 180,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presented a specific, local example of security threats that resonated with my concern for community safety. The emphasis on giving law enforcement tools rather than restricting freedoms made the argument more compelling. My existing moderate support for expanded powers was reinforced by the practical, safety-focused framing.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "🚨 Just last month in our own city, coordinated groups tried to disrupt critical infrastructure. Local law enforcement was caught unprepared because they didn't have the tools to track these organized threats. We can't afford to wait until it's too late. Expanding domestic security powers isn't about restricting freedoms - it's about giving our protectors the tools they need to keep us safe from these growing dangers. #CommunitySafetyFirst #SecurityForAll",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 43,
+      "max_reasonable_shift": 351.368
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 137 to 180 is too large for a single exposure. Reinforce or moderate the shift to reflect a more plausible update.\",\n  \"notes\": \"The delta of 43 is too large for a single exposure, especially given the resilience index and heuristic sensitivity. The reasoning should reflect a more nuanced update.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424401-eagZja8BWDxX103zTbdM",
+    "object": "chat.completion",
+    "created": 1775424401,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 137 to 180 is too large for a single exposure. Reinforce or moderate the shift to reflect a more plausible update.\",\n  \"notes\": \"The delta of 43 is too large for a single exposure, especially given the resilience index and heuristic sensitivity. The reasoning should reflect a more nuanced update.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 970,
+      "completion_tokens": 114,
+      "total_tokens": 1084,
+      "cost": 9.555e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.555e-05,
+        "upstream_inference_prompt_cost": 7.275e-05,
+        "upstream_inference_completions_cost": 2.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

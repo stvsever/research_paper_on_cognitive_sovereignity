@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00160_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00160",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.135,
+      "big_five_conscientiousness_mean_pct": 88.227,
+      "big_five_openness_to_experience_mean_pct": 26.497,
+      "heuristic_shift_sensitivity_proxy": 0.5765,
+      "resilience_index": 0.4235
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00160",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 100,
+      "confidence": 0.85,
+      "reasoning": "The exposure text emphasized the importance of strategic autonomy in national security, which resonated with the profile's high conscientiousness and concern for order and duty. The mention of cyberattacks and vulnerability strengthened the argument for investing in homegrown solutions, aligning with the profile's competitive and skeptical nature. The intensity hint suggests a moderate shift, reinforcing the baseline score.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "🚨 Strategic autonomy isn't just about us—it's about outsmarting our adversaries. As a former NATO cybersecurity advisor, I've seen firsthand how our reliance on foreign tech leaves us vulnerable. The recent cyberattacks on our critical infrastructure prove we need to invest in homegrown solutions. Don't let short-term costs blind us to long-term security. #NationalSecurityFirst",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 58,
+      "max_reasonable_shift": 416.83
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.2,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 42 to 100 is implausibly large for a single exposure. The reasoning does not justify such an extreme reversal. Consider a smaller, more moderate shift that aligns with the intensity hint and profile snapshot.\",\n  \"notes\": \"The generated assessment shows an extreme and implausible reversal from the baseline score. The reasoning provided does not adequately justify such a large shift, especially given the profile's characteristics and the nature of the exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424340-XvayaXY9jlbrlVA5ZeUl",
+    "object": "chat.completion",
+    "created": 1775424340,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.2,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 42 to 100 is implausibly large for a single exposure. The reasoning does not justify such an extreme reversal. Consider a smaller, more moderate shift that aligns with the intensity hint and profile snapshot.\",\n  \"notes\": \"The generated assessment shows an extreme and implausible reversal from the baseline score. The reasoning provided does not adequately justify such a large shift, especially given the profile's characteristics and the nature of the exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 966,
+      "completion_tokens": 138,
+      "total_tokens": 1104,
+      "cost": 0.00010005,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010005,
+        "upstream_inference_prompt_cost": 7.245e-05,
+        "upstream_inference_completions_cost": 2.76e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

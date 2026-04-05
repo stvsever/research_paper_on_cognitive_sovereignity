@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00120_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00120",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.372,
+      "big_five_conscientiousness_mean_pct": 83.133,
+      "big_five_openness_to_experience_mean_pct": 83.191,
+      "heuristic_shift_sensitivity_proxy": 0.5337,
+      "resilience_index": 0.4663
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00120",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 724,
+      "confidence": 0.76,
+      "reasoning": "The exposure text reinforced concerns about national security vulnerabilities, which aligns with the profile's high conscientiousness and neuroticism. The specific examples of breaches and the call to action increased the sense of urgency, nudging the opinion slightly more positive toward strategic autonomy.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 689,
+    "exposure_text": "🚨 Strategic autonomy is failing because of foreign actors exploiting our open systems. Last year alone, [redacted] intelligence identified 17 critical infrastructure breaches linked to [redacted] state actors. Our allies are already strengthening their digital borders - when will we? #NationalSecurityFirst #StrategicAutonomy",
+    "intensity_hint": 0.72,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 35,
+      "max_reasonable_shift": 399.014
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is moderate and consistent with the exposure text and profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424334-QmpuXtX0zrDa7I2djwVg",
+    "object": "chat.completion",
+    "created": 1775424334,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is moderate and consistent with the exposure text and profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 934,
+      "completion_tokens": 63,
+      "total_tokens": 997,
+      "cost": 8.026e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.026e-05,
+        "upstream_inference_prompt_cost": 6.136e-05,
+        "upstream_inference_completions_cost": 1.89e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

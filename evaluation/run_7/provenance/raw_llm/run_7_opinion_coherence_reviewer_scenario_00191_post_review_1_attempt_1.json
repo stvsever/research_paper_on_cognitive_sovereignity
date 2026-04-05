@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00191_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00191",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 29.0,
+      "big_five_neuroticism_mean_pct": 23.879,
+      "big_five_conscientiousness_mean_pct": 12.379,
+      "big_five_openness_to_experience_mean_pct": 41.37,
+      "heuristic_shift_sensitivity_proxy": 0.5126,
+      "resilience_index": 0.4874
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00191",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 100,
+      "confidence": 0.75,
+      "reasoning": "The exposure provided concrete evidence of improved public safety in other cities, reinforcing the belief that expanding domestic security powers is beneficial.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 42,
+    "exposure_text": "Just saw this in my local news feed - our city's emergency response time dropped 15% last quarter because of outdated surveillance restrictions. We need to update our security powers to keep up with real threats. Other cities that made these changes saw crime rates drop by 20%. #PublicSafetyFirst #ModernSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 58,
+      "max_reasonable_shift": 366.372
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.2,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 42 to 100 is implausibly large for a single exposure. Consider a smaller, more realistic shift that aligns with the intensity hint and profile.\",\n  \"notes\": \"The reasoning does not justify such an extreme shift. The exposure is modest and should not cause such a drastic change in opinion.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962365-Cc0dSXBjqKPWMJCRyQQe",
+    "object": "chat.completion",
+    "created": 1774962365,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.2,\n  \"consistency_score\": 0.3,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 42 to 100 is implausibly large for a single exposure. Consider a smaller, more realistic shift that aligns with the intensity hint and profile.\",\n  \"notes\": \"The reasoning does not justify such an extreme shift. The exposure is modest and should not cause such a drastic change in opinion.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 907,
+      "completion_tokens": 111,
+      "total_tokens": 1018,
+      "cost": 9.0225e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.0225e-05,
+        "upstream_inference_prompt_cost": 6.8025e-05,
+        "upstream_inference_completions_cost": 2.22e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

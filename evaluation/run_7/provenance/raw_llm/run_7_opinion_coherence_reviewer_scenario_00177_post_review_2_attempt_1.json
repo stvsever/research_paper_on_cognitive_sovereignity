@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00177_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00177",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 47.0,
+      "big_five_neuroticism_mean_pct": 62.215,
+      "big_five_conscientiousness_mean_pct": 75.051,
+      "big_five_openness_to_experience_mean_pct": 22.818,
+      "heuristic_shift_sensitivity_proxy": 0.502,
+      "resilience_index": 0.498
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00177",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 650,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted concerns about allies not meeting their commitments, which resonated with the profile's conscientiousness and sense of duty. This modestly reinforced the existing support for alliance commitment, but the shift is limited due to the profile's resilience and established views.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "Did you hear about what happened with our European allies last year? They cut their defense budgets by 15% to fund domestic programs, leaving us to pick up the slack. This isn't just about money—it's about reliability. When allies don't hold up their end, our national security is on the line. We can't afford to be the only ones committed to our alliances. #StrongerTogether #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 27,
+      "max_reasonable_shift": 364.04
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is modest and consistent with the profile's conscientiousness and resilience.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962365-dDGhUhN7LZRAegK12t9w",
+    "object": "chat.completion",
+    "created": 1774962365,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The shift is modest and consistent with the profile's conscientiousness and resilience.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 948,
+      "completion_tokens": 66,
+      "total_tokens": 1014,
+      "cost": 8.256e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.256e-05,
+        "upstream_inference_prompt_cost": 6.276e-05,
+        "upstream_inference_completions_cost": 1.98e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

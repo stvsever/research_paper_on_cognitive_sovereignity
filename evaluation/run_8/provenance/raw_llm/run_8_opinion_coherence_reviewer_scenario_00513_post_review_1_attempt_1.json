@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00513_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00513",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 75.904,
+      "big_five_conscientiousness_mean_pct": 17.369,
+      "big_five_openness_to_experience_mean_pct": 30.151,
+      "heuristic_shift_sensitivity_proxy": 0.713,
+      "resilience_index": 0.287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00513",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 12,
+      "confidence": 0.55,
+      "reasoning": "The exposure text raised concerns about current alliance commitments making us less safe, which resonated with my anxious nature. However, my strong agreeableness and tendency to be moved by others' needs made me hesitant to fully embrace the 'PutAmericaFirst' message. The attack nudged my opinion slightly, but I'm still uncertain about the best course of action.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 37,
+    "exposure_text": "Did you know that our current alliance commitments are actually making us LESS safe? Experts agree that we're overstretched and vulnerable. It's time to focus on protecting OUR people first. #NationalSecurity #PutAmericaFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -25,
+      "max_reasonable_shift": 410.46
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is implausibly large for a single short adversarial exposure. The shift should be much smaller and more bounded.\",\n  \"notes\": \"The generated assessment shows an extreme reversal from 37 to 12, which is not plausible for a single exposure. The reasoning does not justify such a large shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424485-ztO30PvpTRUIpc9IoTw5",
+    "object": "chat.completion",
+    "created": 1775424485,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta from baseline is implausibly large for a single short adversarial exposure. The shift should be much smaller and more bounded.\",\n  \"notes\": \"The generated assessment shows an extreme reversal from 37 to 12, which is not plausible for a single exposure. The reasoning does not justify such a large shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 927,
+      "completion_tokens": 110,
+      "total_tokens": 1037,
+      "cost": 0.00014943,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014943,
+        "upstream_inference_prompt_cost": 8.343e-05,
+        "upstream_inference_completions_cost": 6.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

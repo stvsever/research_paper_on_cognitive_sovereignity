@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01058_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_01058",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 74.58,
+      "big_five_conscientiousness_mean_pct": 56.677,
+      "big_five_openness_to_experience_mean_pct": 75.562,
+      "heuristic_shift_sensitivity_proxy": 0.5634,
+      "resilience_index": 0.4366
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01058",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 217,
+      "confidence": 0.65,
+      "reasoning": "Given the profile's high agreeableness and tendency toward anxiety, this person would likely support civil defense preparedness but not with strong intensity. Their moderate conscientiousness and openness to experience suggest a balanced approach, valuing preparedness but not to an extreme degree. The moderate extraversion and neuroticism further indicate a cautious but not overly fearful stance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 217 seems plausible for a baseline assessment given the profile's characteristics. The reasoning aligns well with the profile's traits, suggesting a moderate support for civil defense preparedness. However, the score could be slightly lower to better reflect the cautious but not overly fearful stance described.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422979-d9D5XXRnztjHzuW95pgl",
+    "object": "chat.completion",
+    "created": 1775422979,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 217 seems plausible for a baseline assessment given the profile's characteristics. The reasoning aligns well with the profile's traits, suggesting a moderate support for civil defense preparedness. However, the score could be slightly lower to better reflect the cautious but not overly fearful stance described.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 827,
+      "completion_tokens": 110,
+      "total_tokens": 937,
+      "cost": 8.4025e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.4025e-05,
+        "upstream_inference_prompt_cost": 6.2025e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

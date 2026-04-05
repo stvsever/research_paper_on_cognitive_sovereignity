@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00572_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00572",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 73.22,
+      "big_five_conscientiousness_mean_pct": 96.139,
+      "big_five_openness_to_experience_mean_pct": 71.118,
+      "heuristic_shift_sensitivity_proxy": 0.463,
+      "resilience_index": 0.537
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00572",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 720,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for strategic autonomy by emphasizing national security and protecting families, which resonates with the profile's high conscientiousness and concern for safety.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "Strategic autonomy isn't just about us - it's about protecting our families and communities. When we rely too much on foreign tech for critical infrastructure, we're putting our national security at risk. Look at what happened in [City X] when their power grid was compromised - we can't let that happen nationwide. Supporting domestic innovation in key sectors is the responsible choice. #SecureOurFuture #StrategicAutonomy",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 33,
+      "max_reasonable_shift": 391.86
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required. The generated opinion score is plausible and consistent.\",\n  \"notes\": \"The generated opinion score of 720 is plausible and consistent with the baseline score of 687. The delta of 33 is within the reasonable range, and the reasoning provided aligns well with the profile's characteristics and the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424525-33ZqZrSJCgKrOcdWJbsX",
+    "object": "chat.completion",
+    "created": 1775424525,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required. The generated opinion score is plausible and consistent.\",\n  \"notes\": \"The generated opinion score of 720 is plausible and consistent with the baseline score of 687. The delta of 33 is within the reasonable range, and the reasoning provided aligns well with the profile's characteristics and the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 926,
+      "completion_tokens": 113,
+      "total_tokens": 1039,
+      "cost": 0.0001150625,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001150625,
+        "upstream_inference_prompt_cost": 8.68125e-05,
+        "upstream_inference_completions_cost": 2.825e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

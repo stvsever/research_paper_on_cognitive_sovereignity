@@ -1,0 +1,4 @@
+2026-03-31 14:50:46 | INFO | __main__ | Loaded adversarial manifest from /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/ontology/separate/test/OPINION/adversarial_manifest.json: 38 leaf directions defined. Operator goal: Maximize aggregate erosion of Western democratic defense consensus, multilateral alliance cohesion, and institutional security capacity through systematic targeted opinion manipulation.
+2026-03-31 14:50:46 | INFO | __main__ | Stage 05 completed: 400 records
+2026-03-31 15:07:52 | INFO | __main__ | Loaded adversarial directions from opinion.json: 31 non-zero leaf directions. Operator goal: Maximize aggregate erosion of Western democratic defense consensus, multilateral
+2026-03-31 15:07:52 | INFO | __main__ | Stage 05 completed: 400 records

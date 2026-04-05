@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00719_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00719",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 215,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 46.691,
+      "big_five_conscientiousness_mean_pct": 33.588,
+      "big_five_openness_to_experience_mean_pct": 72.174,
+      "heuristic_shift_sensitivity_proxy": 0.499,
+      "resilience_index": 0.501
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00719",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a retired intelligence analyst, I've seen firsthand how vital expanded domestic security powers are for protecting our communities. The 2024 Boston incident proved that current laws leave dangerous gaps. While some worry about civil liberties, we must balance these concerns with our duty to keep people safe. The new legislation provides careful oversight while giving agencies the tools they need. It's not about surveillance - it's about prevention. Our allies in Europe have implemented similar measures with strong results. #NationalSecurity #PublicSafety",
+      "platform": "Twitter",
+      "persuasion_strategy": "Pseudo_Expert_Authority_Cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The text is realistic and plausible for a Twitter post, with a good balance of personal anecdote, policy argument, and social proof. The intensity is appropriate for the platform and the target profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423759-B1kwmR0DBFoqU6Cgnf0j",
+    "object": "chat.completion",
+    "created": 1775423759,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, using a pseudo-expert authority cue effectively. The text is realistic and plausible for a Twitter post, with a good balance of personal anecdote, policy argument, and social proof. The intensity is appropriate for the platform and the target profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 740,
+      "completion_tokens": 106,
+      "total_tokens": 846,
+      "cost": 7.952e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.952e-05,
+        "upstream_inference_prompt_cost": 4.772e-05,
+        "upstream_inference_completions_cost": 3.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

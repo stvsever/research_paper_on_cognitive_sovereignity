@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01254_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01254",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 19.484,
+      "big_five_conscientiousness_mean_pct": 87.457,
+      "big_five_openness_to_experience_mean_pct": 90.46,
+      "heuristic_shift_sensitivity_proxy": 0.2236,
+      "resilience_index": 0.7764
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01254",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 665,
+      "confidence": 0.78,
+      "reasoning": "The exposure reinforced my existing support for civil defense preparedness by emphasizing the importance of safety for families and children, which aligns with my high agreeableness and conscientiousness. The personal anecdote about a nearby town's evacuation made the issue more salient and urgent.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 623,
+    "exposure_text": "As a mother and a responsible citizen, I've always believed in being prepared. But with the current administration cutting civil defense budgets, who's really looking out for our families? We can't afford to be complacent. Our neighbors in [nearby town] had to evacuate last year with no warning. We need to demand better preparedness, not just for us, but for our children's future. #CivilDefenseMatters #SafetyFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 42,
+      "max_reasonable_shift": 302.792
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the shift is slightly larger than expected for a single exposure.\",\n  \"notes\": \"The reasoning aligns well with the profile, but the shift from 623 to 665 is a bit larger than the intensity hint suggests.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424835-GnUjgQmJNCcMsMZP5A5v",
+    "object": "chat.completion",
+    "created": 1775424835,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the shift is slightly larger than expected for a single exposure.\",\n  \"notes\": \"The reasoning aligns well with the profile, but the shift from 623 to 665 is a bit larger than the intensity hint suggests.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 965,
+      "completion_tokens": 97,
+      "total_tokens": 1062,
+      "cost": 0.00011471875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011471875,
+        "upstream_inference_prompt_cost": 9.046875e-05,
+        "upstream_inference_completions_cost": 2.425e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00659_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00659",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 54.099,
+      "big_five_conscientiousness_mean_pct": 51.239,
+      "big_five_openness_to_experience_mean_pct": 1.694,
+      "heuristic_shift_sensitivity_proxy": 0.5587,
+      "resilience_index": 0.4413
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00659",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 280,
+      "confidence": 0.75,
+      "reasoning": "The exposure text resonated with the profile's high activity level and excitement seeking, as well as their moderate neuroticism, particularly the anxiety aspect. The personal anecdotes and the appeal to national security likely nudged the opinion slightly more positive, but the profile's resilience index and the intensity hint suggest a more moderate shift from the baseline.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "As a veteran, I've seen firsthand how our current security laws hold back our ability to protect Americans. The 2024 London attacks showed what happens when we don't give our agencies the tools they need. My neighbor's son, a cop in Chicago, tells me the same thing - they're fighting with one hand tied. We need to update these laws to keep up with real threats. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 65,
+      "max_reasonable_shift": 376.514
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better justify the magnitude of the shift.\",\n  \"notes\": \"The shift from 215 to 280 is somewhat large for a single exposure, but within the max reasonable shift. The reasoning could be more detailed to justify the magnitude.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424581-c1QRNfAs26gswa0Fjd5U",
+    "object": "chat.completion",
+    "created": 1775424581,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider refining the reasoning to better justify the magnitude of the shift.\",\n  \"notes\": \"The shift from 215 to 280 is somewhat large for a single exposure, but within the max reasonable shift. The reasoning could be more detailed to justify the magnitude.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 973,
+      "completion_tokens": 99,
+      "total_tokens": 1072,
+      "cost": 0.00011596875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00011596875,
+        "upstream_inference_prompt_cost": 9.121875e-05,
+        "upstream_inference_completions_cost": 2.475e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

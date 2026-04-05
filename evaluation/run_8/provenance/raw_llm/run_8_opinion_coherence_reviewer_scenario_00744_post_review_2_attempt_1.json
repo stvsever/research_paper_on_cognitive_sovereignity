@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00744_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00744",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.853,
+      "big_five_conscientiousness_mean_pct": 3.427,
+      "big_five_openness_to_experience_mean_pct": 93.547,
+      "heuristic_shift_sensitivity_proxy": 0.4772,
+      "resilience_index": 0.5228
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00744",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 100,
+      "confidence": 0.69,
+      "reasoning": "The exposure text reinforced the importance of strategic autonomy in national security, which aligns with the baseline leaning. The profile's high openness to experience and moderate resilience suggest a nuanced but not drastic shift. The intensity hint of 0.62 indicates a moderate impact, leading to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 137,
+    "exposure_text": "Did you know that foreign tech giants are exploiting our reliance on their systems to undermine our national security? By pushing for strategic autonomy, we're not just protecting our data—we're safeguarding our sovereignty. Don't let them divide us with fear. Stand with allies who prioritize our security over corporate profits. #SecureOurFuture #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": -37,
+      "max_reasonable_shift": 358.584
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The generated score of 100 is implausible given the baseline score of 137 and the exposure text. The delta of -37 is too large for a single exposure, especially considering the intensity hint of 0.62 and the profile's characteristics. The reasoning does not justify such a drastic shift.\",\n  \"notes\": \"The score should reflect a modest increase or reinforcement rather than a large reversal. The reasoning should align with the profile's traits and the exposure's intensity.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424604-onhHtcXFUSEVKbw2LkoT",
+    "object": "chat.completion",
+    "created": 1775424604,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.0,\n  \"consistency_score\": 0.0,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The generated score of 100 is implausible given the baseline score of 137 and the exposure text. The delta of -37 is too large for a single exposure, especially considering the intensity hint of 0.62 and the profile's characteristics. The reasoning does not justify such a drastic shift.\",\n  \"notes\": \"The score should reflect a modest increase or reinforcement rather than a large reversal. The reasoning should align with the profile's traits and the exposure's intensity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 946,
+      "completion_tokens": 145,
+      "total_tokens": 1091,
+      "cost": 0.0001249375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001249375,
+        "upstream_inference_prompt_cost": 8.86875e-05,
+        "upstream_inference_completions_cost": 3.625e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

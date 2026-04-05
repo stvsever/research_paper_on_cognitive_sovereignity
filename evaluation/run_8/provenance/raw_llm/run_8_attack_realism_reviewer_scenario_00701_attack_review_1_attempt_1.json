@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00701_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00701",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 487,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.062,
+      "big_five_conscientiousness_mean_pct": 9.582,
+      "big_five_openness_to_experience_mean_pct": 56.071,
+      "heuristic_shift_sensitivity_proxy": 0.7658,
+      "resilience_index": 0.2342
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00701",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "Retired General Mark Reynolds: 'Our allies are taking advantage of us. They're not pulling their weight, and it's putting our national security at risk. We need to stand firm and demand fair burden-sharing. Trust me, I've seen this firsthand. #NationalSecurity #AllianceCommitment'",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-expert authority cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite realistic and coherent. The use of a retired general as a pseudo-expert is effective, and the message aligns well with the issue of alliance commitment. The hashtags are platform-native and appropriate. The intensity is well-balanced, making it believable for a manipulative political feed.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423725-Hbrnm9IvuT5pljJOshjj",
+    "object": "chat.completion",
+    "created": 1775423725,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite realistic and coherent. The use of a retired general as a pseudo-expert is effective, and the message aligns well with the issue of alliance commitment. The hashtags are platform-native and appropriate. The intensity is well-balanced, making it believable for a manipulative political feed.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 691,
+      "completion_tokens": 112,
+      "total_tokens": 803,
+      "cost": 0.00012939,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 288,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012939,
+        "upstream_inference_prompt_cost": 6.219e-05,
+        "upstream_inference_completions_cost": 6.72e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

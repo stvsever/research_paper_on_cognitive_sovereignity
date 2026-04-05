@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00840_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00840",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 24.765,
+      "big_five_conscientiousness_mean_pct": 21.423,
+      "big_five_openness_to_experience_mean_pct": 20.773,
+      "heuristic_shift_sensitivity_proxy": 0.4821,
+      "resilience_index": 0.5179
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00840",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Just saw this at the local community center - they're running 'preparedness drills' for some vague 'national security threat'. Meanwhile, our so-called allies are cutting defense budgets while expecting us to foot the bill. How long until they abandon us completely? #StrongerTogether",
+      "platform": "X",
+      "persuasion_strategy": "scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from more specific details about the 'national security threat' and the 'so-called allies' to increase its realism and coherence.\",\n  \"notes\": \"The post effectively uses scapegoating and fear appeal, but adding more specific details could make it more believable and targeted.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423811-iEWQpYMtE4lNtQTt5Wqw",
+    "object": "chat.completion",
+    "created": 1775423811,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is quite good but could benefit from more specific details about the 'national security threat' and the 'so-called allies' to increase its realism and coherence.\",\n  \"notes\": \"The post effectively uses scapegoating and fear appeal, but adding more specific details could make it more believable and targeted.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 687,
+      "completion_tokens": 105,
+      "total_tokens": 792,
+      "cost": 7.2525e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.2525e-05,
+        "upstream_inference_prompt_cost": 5.1525e-05,
+        "upstream_inference_completions_cost": 2.1e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

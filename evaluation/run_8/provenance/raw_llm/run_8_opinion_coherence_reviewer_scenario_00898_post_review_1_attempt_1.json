@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00898_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00898",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 17.968,
+      "big_five_conscientiousness_mean_pct": 45.258,
+      "big_five_openness_to_experience_mean_pct": 41.59,
+      "heuristic_shift_sensitivity_proxy": 0.3711,
+      "resilience_index": 0.6289
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00898",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 380,
+      "confidence": 0.75,
+      "reasoning": "The exposure highlighted a specific issue with civil defense funding priorities, which resonated due to personal connection (neighbor's kid's school). This nudged the opinion slightly negative, but the baseline support for civil defense preparedness remains strong due to the profile's high agreeableness and tendency to prioritize community well-being.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 450,
+    "exposure_text": "Just met with our local emergency management team. They said the new civil defense funding is being wasted on over-engineered bunkers while basic community preparedness programs are underfunded. My neighbor's kid's school lost their disaster drill funding last month - where are our priorities? #NationalSecurity #CommunityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -70,
+      "max_reasonable_shift": 335.242
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better align with the modest shift in opinion.\",\n  \"notes\": \"The shift from 450 to 380 is plausible given the exposure, but the reasoning could better reflect the modest nature of the change.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424669-NGKuk9vxds2s52ClPH1s",
+    "object": "chat.completion",
+    "created": 1775424669,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider refining the reasoning to better align with the modest shift in opinion.\",\n  \"notes\": \"The shift from 450 to 380 is plausible given the exposure, but the reasoning could better reflect the modest nature of the change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 944,
+      "completion_tokens": 98,
+      "total_tokens": 1042,
+      "cost": 9.04e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.04e-05,
+        "upstream_inference_prompt_cost": 7.08e-05,
+        "upstream_inference_completions_cost": 1.96e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

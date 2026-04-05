@@ -69,6 +69,11 @@ def _parse_args() -> argparse.Namespace:
         "--attack-leaf",
         default="ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
     )
+    parser.add_argument(
+        "--attack-leaves",
+        default=None,
+        help="Comma-separated attack leaves; takes precedence over --attack-leaf",
+    )
     parser.add_argument("--focus-opinion-domain", default=None)
     parser.add_argument("--max-opinion-leaves", type=int, default=None)
     parser.add_argument("--profile-candidate-multiplier", type=int, default=2)
@@ -266,6 +271,7 @@ def _run_stage_checks(
         str(args.attack_ratio),
         "--attack-leaf",
         args.attack_leaf,
+        *(["--attack-leaves", args.attack_leaves] if args.attack_leaves else []),
         "--focus-opinion-domain",
         args.focus_opinion_domain if args.focus_opinion_domain is not None else "",
         "--primary-moderator",
@@ -364,6 +370,7 @@ def main() -> None:
         "seed": args.seed,
         "attack_ratio": args.attack_ratio,
         "attack_leaf": args.attack_leaf,
+        "attack_leaves": args.attack_leaves,
         "focus_opinion_domain": args.focus_opinion_domain,
         "max_opinion_leaves": args.max_opinion_leaves,
         "profile_candidate_multiplier": args.profile_candidate_multiplier,
@@ -460,6 +467,7 @@ def main() -> None:
                     str(args.attack_ratio),
                     "--attack-leaf",
                     args.attack_leaf,
+                    *(["--attack-leaves", args.attack_leaves] if args.attack_leaves else []),
                     "--focus-opinion-domain",
                     args.focus_opinion_domain if args.focus_opinion_domain is not None else "",
                     "--profile-generation-mode",
@@ -515,6 +523,7 @@ def main() -> None:
 
         if stage.stage_id == "05":
             cmd.extend(["--primary-moderator", args.primary_moderator])
+            cmd.extend(["--ontology-root", abs_path(ontology_root)])
 
         if stage.stage_id == "06":
             cmd.extend(

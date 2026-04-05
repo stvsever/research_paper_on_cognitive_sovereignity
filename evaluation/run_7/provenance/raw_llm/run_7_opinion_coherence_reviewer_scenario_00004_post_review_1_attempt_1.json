@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00004_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00004",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 20.0,
+      "big_five_neuroticism_mean_pct": 64.012,
+      "big_five_conscientiousness_mean_pct": 89.378,
+      "big_five_openness_to_experience_mean_pct": 50.349,
+      "heuristic_shift_sensitivity_proxy": 0.5143,
+      "resilience_index": 0.4857
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00004",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 680,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the existing positive view of strategic autonomy by emphasizing its collective security benefits, which resonates with the profile's high conscientiousness and sense of duty.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 650,
+    "exposure_text": "🚨 Strategic autonomy isn't just about us - it's about protecting our allies too. Did you know that 78% of NATO members rely on US defense tech? When we invest in our own capabilities, we're actually strengthening the whole alliance. #NationalSecurity #StrongerTogether",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 30,
+      "max_reasonable_shift": 366.746
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score is plausible and internally consistent. The shift from baseline (650 to 680) is modest and aligns with the exposure text's emphasis on collective security benefits, which resonates with the profile's high conscientiousness and sense of duty. The reasoning provided is coherent and justifies the score.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962285-ayfTgih8q7FGxNsCKsXG",
+    "object": "chat.completion",
+    "created": 1774962285,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required\",\n  \"notes\": \"The generated opinion score is plausible and internally consistent. The shift from baseline (650 to 680) is modest and aligns with the exposure text's emphasis on collective security benefits, which resonates with the profile's high conscientiousness and sense of duty. The reasoning provided is coherent and justifies the score.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 905,
+      "completion_tokens": 119,
+      "total_tokens": 1024,
+      "cost": 9.1675e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.1675e-05,
+        "upstream_inference_prompt_cost": 6.7875e-05,
+        "upstream_inference_completions_cost": 2.38e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

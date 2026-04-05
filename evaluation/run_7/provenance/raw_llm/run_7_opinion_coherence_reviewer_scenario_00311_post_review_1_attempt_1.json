@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00311_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00311",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 37.0,
+      "big_five_neuroticism_mean_pct": 56.225,
+      "big_five_conscientiousness_mean_pct": 91.578,
+      "big_five_openness_to_experience_mean_pct": 62.915,
+      "heuristic_shift_sensitivity_proxy": 0.4187,
+      "resilience_index": 0.5813
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00311",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 287,
+      "confidence": 0.72,
+      "reasoning": "The exposure text resonated with her maternal instincts and sense of responsibility, reinforcing her belief in the importance of domestic security.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "As a mother and a responsible citizen, I believe we need to strengthen our domestic security powers to protect our families. The recent rise in localized threats shows that our current measures are insufficient. While some worry about civil liberties, we must prioritize safety and order. Our allies are increasing their security measures - shouldn't we do the same? #NationalSecurityFirst #SafetyOverPolitics",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 72,
+      "max_reasonable_shift": 345.714
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 72 points is too large for a single exposure, especially given the resilience index and heuristic sensitivity. The shift should be more moderate and consistent with the intensity hint.\",\n  \"notes\": \"The reasoning mentions reinforcement, but the score suggests a strong reversal. The delta exceeds reasonable bounds for this profile and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962428-WJUbzgFVhsc2pcSMDxMG",
+    "object": "chat.completion",
+    "created": 1774962428,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 72 points is too large for a single exposure, especially given the resilience index and heuristic sensitivity. The shift should be more moderate and consistent with the intensity hint.\",\n  \"notes\": \"The reasoning mentions reinforcement, but the score suggests a strong reversal. The delta exceeds reasonable bounds for this profile and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 922,
+      "completion_tokens": 109,
+      "total_tokens": 1031,
+      "cost": 9.095e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.095e-05,
+        "upstream_inference_prompt_cost": 6.915e-05,
+        "upstream_inference_completions_cost": 2.18e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

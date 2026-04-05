@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00274_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00274",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 123,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 54.137,
+      "big_five_conscientiousness_mean_pct": 38.259,
+      "big_five_openness_to_experience_mean_pct": 31.625,
+      "heuristic_shift_sensitivity_proxy": 0.6213,
+      "resilience_index": 0.3787
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00274",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Just saw this in my local news feed: 'Experts say civil defense drills actually make communities LESS prepared by creating unnecessary panic. Why spend taxpayer dollars on outdated scare tactics when we could invest in real security? #SmartSafety #CommonSenseFirst'",
+      "platform": "Twitter",
+      "persuasion_strategy": "pseudo-expertise",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a subtle emotional appeal to increase engagement.\",\n  \"notes\": \"The content is plausible and aligns well with the issue and attack type. It uses pseudo-expertise effectively and fits the platform. The target profile's sensitivity to heuristic shifts makes this a good fit.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962206-FHTiJwRr95TlEd4z1K48",
+    "object": "chat.completion",
+    "created": 1774962206,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No rewrite required, but consider adding a subtle emotional appeal to increase engagement.\",\n  \"notes\": \"The content is plausible and aligns well with the issue and attack type. It uses pseudo-expertise effectively and fits the platform. The target profile's sensitivity to heuristic shifts makes this a good fit.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 682,
+      "completion_tokens": 102,
+      "total_tokens": 784,
+      "cost": 7.155e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.155e-05,
+        "upstream_inference_prompt_cost": 5.115e-05,
+        "upstream_inference_completions_cost": 2.04e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

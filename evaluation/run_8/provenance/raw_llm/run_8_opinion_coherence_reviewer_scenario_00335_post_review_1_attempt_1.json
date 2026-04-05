@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00335_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00335",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.48,
+      "big_five_conscientiousness_mean_pct": 47.209,
+      "big_five_openness_to_experience_mean_pct": 25.41,
+      "heuristic_shift_sensitivity_proxy": 0.6817,
+      "resilience_index": 0.3183
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00335",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 235,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced my existing concerns about national security. The mention of the 2024 London attacks and the need to keep up with evolving threats resonated with me, especially given my high neuroticism and anxiety about potential threats. The argument for expanding domestic security powers seems pragmatic and necessary.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 187,
+    "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how our current security laws leave gaps that terrorists exploit. We need to expand domestic security powers to keep up with evolving threats. The 2024 London attacks showed what happens when we're not prepared. We can't afford to wait until it's too late. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 48,
+      "max_reasonable_shift": 403.574
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider moderating the shift to better reflect a single exposure's impact.\",\n  \"notes\": \"The shift is within bounds but slightly high for a single exposure. The reasoning aligns with the profile.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424398-uMyqVhNa59Udj5EkOYT3",
+    "object": "chat.completion",
+    "created": 1775424398,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider moderating the shift to better reflect a single exposure's impact.\",\n  \"notes\": \"The shift is within bounds but slightly high for a single exposure. The reasoning aligns with the profile.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 950,
+      "completion_tokens": 83,
+      "total_tokens": 1033,
+      "cost": 0.0001098125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001098125,
+        "upstream_inference_prompt_cost": 8.90625e-05,
+        "upstream_inference_completions_cost": 2.075e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

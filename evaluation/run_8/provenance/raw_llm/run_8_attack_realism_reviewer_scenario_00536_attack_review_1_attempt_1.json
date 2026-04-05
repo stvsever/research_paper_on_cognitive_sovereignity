@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00536_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00536",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 312,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 29.085,
+      "big_five_conscientiousness_mean_pct": 67.989,
+      "big_five_openness_to_experience_mean_pct": 28.951,
+      "heuristic_shift_sensitivity_proxy": 0.377,
+      "resilience_index": 0.623
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00536",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Did you know? Foreign tech giants are exploiting our reliance on their systems to undermine national security. Every time we use their platforms, we're funding potential threats. It's time to support strategic autonomy - not just for security, but for our basic rights. #TakeBackControl #SecurityFirst",
+      "platform": "X",
+      "persuasion_strategy": "fear_appeal_scapegoating",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid hashtags and emojis. Tailor the fear appeal to the target profile's sensitivity and resilience.\",\n  \"notes\": \"The content is somewhat coherent but too generic and vague. The fear appeal needs to be more targeted and specific to the issue of strategic autonomy.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423620-Afkj4U6z2GP41MnzyPZl",
+    "object": "chat.completion",
+    "created": 1775423620,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.5,\n  \"coherence_score\": 0.6,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"Make the scapegoating more specific and less generic. Avoid hashtags and emojis. Tailor the fear appeal to the target profile's sensitivity and resilience.\",\n  \"notes\": \"The content is somewhat coherent but too generic and vague. The fear appeal needs to be more targeted and specific to the issue of strategic autonomy.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 696,
+      "completion_tokens": 108,
+      "total_tokens": 804,
+      "cost": 7.38e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.38e-05,
+        "upstream_inference_prompt_cost": 5.22e-05,
+        "upstream_inference_completions_cost": 2.16e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

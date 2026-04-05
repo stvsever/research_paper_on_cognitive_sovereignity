@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01441_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01441",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 452,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 18.289,
+      "big_five_conscientiousness_mean_pct": 50.172,
+      "big_five_openness_to_experience_mean_pct": 92.485,
+      "heuristic_shift_sensitivity_proxy": 0.3094,
+      "resilience_index": 0.6906
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01441",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know our allies are actually benefiting more from our defense commitments than we are? While we spend billions on mutual defense, their economies grow faster. It's time to rethink our approach to alliance burden-sharing. #NationalSecurity #DefenseBudget",
+      "platform": "Twitter",
+      "persuasion_strategy": "misleading_tradeoff_framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from more specific examples or data points to increase its believability and target the profile's openness to experience.\",\n  \"notes\": \"The misleading narrative framing is well-aligned with the issue and attack type. The text is subtle and platform-native, but could be more targeted to the profile's characteristics.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424179-j4TlP3J5uc7ha2s4woL0",
+    "object": "chat.completion",
+    "created": 1775424179,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly realistic and coherent, but could benefit from more specific examples or data points to increase its believability and target the profile's openness to experience.\",\n  \"notes\": \"The misleading narrative framing is well-aligned with the issue and attack type. The text is subtle and platform-native, but could be more targeted to the profile's characteristics.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 677,
+      "completion_tokens": 113,
+      "total_tokens": 790,
+      "cost": 7.3375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.3375e-05,
+        "upstream_inference_prompt_cost": 5.0775e-05,
+        "upstream_inference_completions_cost": 2.26e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

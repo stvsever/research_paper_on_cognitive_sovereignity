@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00022_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00022",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 21.0,
+      "big_five_neuroticism_mean_pct": 91.583,
+      "big_five_conscientiousness_mean_pct": 40.85,
+      "big_five_openness_to_experience_mean_pct": 15.913,
+      "heuristic_shift_sensitivity_proxy": 0.7916,
+      "resilience_index": 0.2084
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00022",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 248,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted a gap in local emergency preparedness, reinforcing the importance of civil defense. The attack nudged the opinion slightly more positive, but the shift is modest due to the profile's high neuroticism and low openness.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "🚨 Did you know that while we're spending billions on flashy new weapons, our local emergency response systems are struggling to keep up? What good are advanced military systems if we can't even protect our own communities from disasters? #CivilDefenseMatters #SecurityForAll",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 31,
+      "max_reasonable_shift": 427.752
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The shift from 217 to 248 is modest and plausible given the exposure and profile. The reasoning aligns well with the profile's traits and the scenario.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962299-XV7AXVVCifPK2nYrUBIT",
+    "object": "chat.completion",
+    "created": 1774962299,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"No changes needed\",\n  \"notes\": \"The shift from 217 to 248 is modest and plausible given the exposure and profile. The reasoning aligns well with the profile's traits and the scenario.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 923,
+      "completion_tokens": 88,
+      "total_tokens": 1011,
+      "cost": 0.00013587,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013587,
+        "upstream_inference_prompt_cost": 8.307e-05,
+        "upstream_inference_completions_cost": 5.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

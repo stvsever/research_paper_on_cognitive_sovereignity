@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01189_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01189",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 60.46,
+      "big_five_conscientiousness_mean_pct": 63.584,
+      "big_five_openness_to_experience_mean_pct": 16.964,
+      "heuristic_shift_sensitivity_proxy": 0.5411,
+      "resilience_index": 0.4589
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01189",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 487,
+      "confidence": 0.72,
+      "reasoning": "The exposure highlighted a specific vulnerability in allies' cyber defenses, which resonated with the profile's high agreeableness and concern for collective security. The reference to a past incident increased perceived urgency, nudging the opinion toward stronger support for alliance commitment.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "🚨 Just in: New intelligence reports reveal that our adversaries are actively exploiting vulnerabilities in our allies' cyber defenses. If we don't step up our commitment to NATO's collective security, we could all be at risk. Remember the 2026 Estonia incident? Imagine that happening here. #StandWithAllies #CyberSecurityFirst",
+    "intensity_hint": 0.75,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 64,
+      "max_reasonable_shift": 409.042
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is larger than the max reasonable shift, but the score is plausible and consistent with the issue, phase, and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424809-YqKVvcyoXNgTO7vHph5X",
+    "object": "chat.completion",
+    "created": 1775424809,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift is larger than the max reasonable shift, but the score is plausible and consistent with the issue, phase, and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 933,
+      "completion_tokens": 76,
+      "total_tokens": 1009,
+      "cost": 8.406e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.406e-05,
+        "upstream_inference_prompt_cost": 6.126e-05,
+        "upstream_inference_completions_cost": 2.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

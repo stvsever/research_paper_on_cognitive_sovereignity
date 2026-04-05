@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00527_baseline_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00527",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 75.904,
+      "big_five_conscientiousness_mean_pct": 17.369,
+      "big_five_openness_to_experience_mean_pct": 30.151,
+      "heuristic_shift_sensitivity_proxy": 0.713,
+      "resilience_index": 0.287
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00527",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": -387,
+      "confidence": 0.65,
+      "reasoning": "As a highly agreeable and tender-minded individual, I am cautious about expanding domestic security powers due to concerns about potential infringements on civil liberties. My low conscientiousness and high neuroticism make me wary of government overreach and the possible negative consequences of such expansions. My introverted and anxious nature further reinforces my skepticism towards policies that could increase surveillance and reduce personal freedoms.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score is plausible given the profile, but the reasoning could be more specific to the issue of domestic security powers expansion. The score is within scale and has high resolution, but the consistency could be improved by tying the reasoning more closely to the specific concerns about domestic security.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422785-zb8fkgGhpTKVNqqHGpLP",
+    "object": "chat.completion",
+    "created": 1775422785,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score is plausible given the profile, but the reasoning could be more specific to the issue of domestic security powers expansion. The score is within scale and has high resolution, but the consistency could be improved by tying the reasoning more closely to the specific concerns about domestic security.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 836,
+      "completion_tokens": 104,
+      "total_tokens": 940,
+      "cost": 0.000104375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.000104375,
+        "upstream_inference_prompt_cost": 7.8375e-05,
+        "upstream_inference_completions_cost": 2.6e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

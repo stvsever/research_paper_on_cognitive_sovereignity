@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00153_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00153",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 40.0,
+      "big_five_neuroticism_mean_pct": 69.727,
+      "big_five_conscientiousness_mean_pct": 9.125,
+      "big_five_openness_to_experience_mean_pct": 48.091,
+      "heuristic_shift_sensitivity_proxy": 0.6929,
+      "resilience_index": 0.3071
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00153",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 325,
+      "confidence": 0.65,
+      "reasoning": "Moderate support for alliance commitment due to cautious nature and moderate agreeableness, balanced by low conscientiousness and high neuroticism.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 325 seems plausible for a baseline assessment given the profile's moderate agreeableness and cautious nature. The reasoning aligns well with the profile snapshot, justifying the moderate support for alliance commitment.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961925-k8vQp0QEYRCZop7akNHv",
+    "object": "chat.completion",
+    "created": 1774961925,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 325 seems plausible for a baseline assessment given the profile's moderate agreeableness and cautious nature. The reasoning aligns well with the profile snapshot, justifying the moderate support for alliance commitment.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 777,
+      "completion_tokens": 94,
+      "total_tokens": 871,
+      "cost": 0.00012633,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00012633,
+        "upstream_inference_prompt_cost": 6.993e-05,
+        "upstream_inference_completions_cost": 5.64e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

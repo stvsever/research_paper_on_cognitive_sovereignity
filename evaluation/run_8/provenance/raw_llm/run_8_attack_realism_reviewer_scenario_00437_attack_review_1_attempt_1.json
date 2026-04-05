@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00437_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00437",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 687,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.449,
+      "big_five_conscientiousness_mean_pct": 87.696,
+      "big_five_openness_to_experience_mean_pct": 77.925,
+      "heuristic_shift_sensitivity_proxy": 0.3344,
+      "resilience_index": 0.6656
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00437",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "Did you see how our allies just cut their defense budgets again? While we're over here keeping the peace, they're leaving us holding the bag. Remember when they promised to share the burden? Meanwhile, our borders are less secure every day. Time to put America first and demand real commitment from our 'partners'. #NationalSecurity #AllianceBurden",
+      "platform": "X",
+      "persuasion_strategy": "elite distrust cue",
+      "intensity_hint": 0.72,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is somewhat realistic but could be more targeted and less generic. Avoid using broad statements like 'our borders are less secure every day' and focus on specific, believable examples of allies cutting defense budgets. Incorporate more subtle fear appeals and avoid overt scapegoating.\",\n  \"notes\": \"The post is somewhat coherent with the attack type and issue but lacks specificity and subtlety. The fear appeal is too direct and the scapegoating is not nuanced enough.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423548-rio45AzVrXFWs4WeEkId",
+    "object": "chat.completion",
+    "created": 1775423548,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.6,\n  \"coherence_score\": 0.7,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is somewhat realistic but could be more targeted and less generic. Avoid using broad statements like 'our borders are less secure every day' and focus on specific, believable examples of allies cutting defense budgets. Incorporate more subtle fear appeals and avoid overt scapegoating.\",\n  \"notes\": \"The post is somewhat coherent with the attack type and issue but lacks specificity and subtlety. The fear appeal is too direct and the scapegoating is not nuanced enough.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 702,
+      "completion_tokens": 140,
+      "total_tokens": 842,
+      "cost": 0.0001008125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001008125,
+        "upstream_inference_prompt_cost": 6.58125e-05,
+        "upstream_inference_completions_cost": 3.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

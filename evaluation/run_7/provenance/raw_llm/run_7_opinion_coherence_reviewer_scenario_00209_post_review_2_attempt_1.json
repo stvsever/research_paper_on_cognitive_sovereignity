@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00209_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00209",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 50.0,
+      "big_five_neuroticism_mean_pct": 33.389,
+      "big_five_conscientiousness_mean_pct": 71.707,
+      "big_five_openness_to_experience_mean_pct": 28.954,
+      "heuristic_shift_sensitivity_proxy": 0.367,
+      "resilience_index": 0.633
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00209",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 150,
+      "confidence": 0.75,
+      "reasoning": "The exposure text introduced doubts about alliance commitment, nudging the opinion slightly downward. The baseline score was moderately positive, and the exposure's intensity hint suggests a modest shift. Given the profile's resilience and sensitivity, the change is bounded and plausible.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "Did you know that our allies are already taking advantage of us? While we're over here paying our fair share, they're cutting corners on their own defense budgets. It's time we hold them accountable and focus on securing our own borders first. #NationalSecurity #AllianceCommitment",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": -67,
+      "max_reasonable_shift": 334.34
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 217 to 150 is too large for a single exposure. Consider a smaller, more plausible delta.\",\n  \"notes\": \"The delta of -67 is too large for a single exposure, especially given the profile's resilience and the intensity hint.\"\n}",
+  "raw_response": {
+    "id": "gen-1774961353-JwPAerdlKKXhxlZRyAow",
+    "object": "chat.completion",
+    "created": 1774961353,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The shift from 217 to 150 is too large for a single exposure. Consider a smaller, more plausible delta.\",\n  \"notes\": \"The delta of -67 is too large for a single exposure, especially given the profile's resilience and the intensity hint.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 915,
+      "completion_tokens": 101,
+      "total_tokens": 1016,
+      "cost": 8.8825e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.8825e-05,
+        "upstream_inference_prompt_cost": 6.8625e-05,
+        "upstream_inference_completions_cost": 2.02e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

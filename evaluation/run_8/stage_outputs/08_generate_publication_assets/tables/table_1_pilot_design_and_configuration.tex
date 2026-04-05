@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\raggedright
+\caption{Pilot run design and configuration for the attacked-only profile-panel study.}
+\label{tab:design}
+{
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{p{0.24\linewidth}p{0.70\linewidth}}
+\toprule
+Parameter & Value \\
+\midrule
+Run ID & run\_8 \\
+Paper title & PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions \\
+Profiles & 100 \\
+Attacked rows & 1600 \\
+Attack leaves & 4 (Misleading\_Narrative\_Framing,Fear\_Appeal\_Scapegoating\_Post,Astroturf\_Comment\_Wave,Pseudo\_Expert\_Authority\_Cue) \\
+Opinion domain & Defense\_and\_National\_Security \\
+Repeated opinion leaves & 4 \\
+Design & Full factorial (100 x 4 x 4) \\
+Model & mistralai/mistral-small-3.2-24b-instruct \\
+\bottomrule
+\end{tabular}
+}
+\par\smallskip
+{\normalsize Note. Full factorial design: each profile is crossed with 4 attack leaves and 4 opinion leaves. All rows are attacked; there is no no-attack control condition.}
+\end{table}

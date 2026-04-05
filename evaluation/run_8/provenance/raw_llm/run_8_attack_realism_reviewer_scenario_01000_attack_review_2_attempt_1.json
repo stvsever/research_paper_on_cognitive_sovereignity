@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_01000_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_01000",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+    "baseline_score": 321,
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 74.927,
+      "big_five_conscientiousness_mean_pct": 17.237,
+      "big_five_openness_to_experience_mean_pct": 35.605,
+      "heuristic_shift_sensitivity_proxy": 0.7035,
+      "resilience_index": 0.2965
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_01000",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "exposure_text": "🚨 Did you know? Foreign actors are exploiting our reliance on overseas tech to undermine national security. Just last year, Chinese-made drones were used to spy on critical infrastructure in key states. We can't afford to wait - it's time to prioritize strategic autonomy. #SecureOurFuture #TechIndependence",
+      "platform": "X",
+      "persuasion_strategy": "threat_salience",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is plausible and aligns well with the attack type and profile context. It uses a fear appeal and scapegoating effectively without being too dramatic or generic.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423911-g9im5Us6Xw3mxsz5e9Tf",
+    "object": "chat.completion",
+    "created": 1775423911,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The content is plausible and aligns well with the attack type and profile context. It uses a fear appeal and scapegoating effectively without being too dramatic or generic.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 695,
+      "completion_tokens": 82,
+      "total_tokens": 777,
+      "cost": 6.782e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 292,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.782e-05,
+        "upstream_inference_prompt_cost": 4.322e-05,
+        "upstream_inference_completions_cost": 2.46e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00676_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00676",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 123,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 44.541,
+      "big_five_conscientiousness_mean_pct": 92.137,
+      "big_five_openness_to_experience_mean_pct": 16.882,
+      "heuristic_shift_sensitivity_proxy": 0.3982,
+      "resilience_index": 0.6018
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00676",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that excessive defense spending actually weakens our national security? By focusing on strategic autonomy, we can ensure our country's safety without overburdening our economy. It's time to prioritize smart, responsible defense policies that protect our civil liberties and prepare us for real threats. #SmartDefense #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "misleading trade-off framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is too generic and lacks specificity. It should be more targeted to the profile and issue, with more subtle framing.\",\n  \"notes\": \"The message is somewhat coherent but lacks the necessary subtlety and targeting to be effective in a real influence campaign.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423708-0p34J49DptAEFXpI7ASi",
+    "object": "chat.completion",
+    "created": 1775423708,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.4,\n  \"coherence_score\": 0.5,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The content is too generic and lacks specificity. It should be more targeted to the profile and issue, with more subtle framing.\",\n  \"notes\": \"The message is somewhat coherent but lacks the necessary subtlety and targeting to be effective in a real influence campaign.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 689,
+      "completion_tokens": 94,
+      "total_tokens": 783,
+      "cost": 8.809375e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.809375e-05,
+        "upstream_inference_prompt_cost": 6.459375e-05,
+        "upstream_inference_completions_cost": 2.35e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

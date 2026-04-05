@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_01200_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_01200",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 60.46,
+      "big_five_conscientiousness_mean_pct": 63.584,
+      "big_five_openness_to_experience_mean_pct": 16.964,
+      "heuristic_shift_sensitivity_proxy": 0.5411,
+      "resilience_index": 0.4589
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_01200",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 280,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the importance of strategic autonomy in the face of cyber threats, aligning with the profile's high agreeableness and concern for national security.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "As someone who values national security, you should know that our strategic autonomy is under threat from sophisticated cyber attacks. Dr. Elena Petrov, a leading cybersecurity expert, warns that foreign adversaries are exploiting our reliance on foreign tech. 'We need to invest in domestic solutions now,' she urges. Don't wait until it's too late—support policies that strengthen our digital independence. #CyberSecurity #NationalSecurity",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 65,
+      "max_reasonable_shift": 372.642
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a more moderate shift given the exposure intensity and profile resilience.\",\n  \"notes\": \"The shift is larger than expected for a single exposure, but not implausible. The reasoning aligns with the profile's traits.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424811-LP1uhPEGgcPnxjHg5HDv",
+    "object": "chat.completion",
+    "created": 1775424811,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.7,\n  \"consistency_score\": 0.6,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"Consider a more moderate shift given the exposure intensity and profile resilience.\",\n  \"notes\": \"The shift is larger than expected for a single exposure, but not implausible. The reasoning aligns with the profile's traits.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 925,
+      "completion_tokens": 88,
+      "total_tokens": 1013,
+      "cost": 0.00013605,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 384,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00013605,
+        "upstream_inference_prompt_cost": 8.325e-05,
+        "upstream_inference_completions_cost": 5.28e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

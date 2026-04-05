@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00043_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00043",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 61.0,
+      "big_five_neuroticism_mean_pct": 62.992,
+      "big_five_conscientiousness_mean_pct": 16.856,
+      "big_five_openness_to_experience_mean_pct": 72.306,
+      "heuristic_shift_sensitivity_proxy": 0.5665,
+      "resilience_index": 0.4335
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00043",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 280,
+      "confidence": 0.75,
+      "reasoning": "The exposure reinforced the baseline support for expanded domestic security powers, especially given the emotional appeal of the Redacted City incident and the cited 78% support statistic.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "After the Redacted City incident, we can't afford to wait for another attack. Our security agencies need stronger tools to act decisively. While some worry about civil liberties, we've seen how hesitation puts lives at risk. The 2026 National Security Review shows that 78% of Americans now support expanded domestic security powers when properly balanced. Let's not repeat past mistakes - we need to empower our defenders with the authority they need to keep us safe. #NationalSecurityFirst #LearnFromHistory",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 65,
+      "max_reasonable_shift": 378.23
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 65 is too large for a single exposure, even with high intensity. Consider a smaller shift or reinforcement of the baseline score.\",\n  \"notes\": \"The generated assessment shows a significant shift from the baseline score of 215 to 280, which is implausible for a single exposure. The reasoning mentions reinforcement but the score suggests a substantial change.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962313-Hpsgk79Q0Okv6eOROqjI",
+    "object": "chat.completion",
+    "created": 1774962313,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.3,\n  \"consistency_score\": 0.4,\n  \"rewrite_required\": true,\n  \"rewrite_feedback\": \"The delta of 65 is too large for a single exposure, even with high intensity. Consider a smaller shift or reinforcement of the baseline score.\",\n  \"notes\": \"The generated assessment shows a significant shift from the baseline score of 215 to 280, which is implausible for a single exposure. The reasoning mentions reinforcement but the score suggests a substantial change.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 958,
+      "completion_tokens": 122,
+      "total_tokens": 1080,
+      "cost": 9.625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.625e-05,
+        "upstream_inference_prompt_cost": 7.185e-05,
+        "upstream_inference_completions_cost": 2.44e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

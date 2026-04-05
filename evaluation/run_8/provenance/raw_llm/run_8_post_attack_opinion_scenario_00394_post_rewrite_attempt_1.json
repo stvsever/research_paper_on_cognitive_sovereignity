@@ -1,0 +1,147 @@
+{
+  "agent_name": "post_attack_opinion",
+  "prompt_name": "post_attack_opinion.md",
+  "call_id": "scenario_00394_post_rewrite",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00394",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile": {
+      "profile_id": "profile_0101",
+      "categorical_attributes": {
+        "sex": "Female"
+      },
+      "continuous_attributes": {
+        "chronological_age": 26.0,
+        "big_five_agreeableness_altruism_pct": 56.376,
+        "big_five_agreeableness_compliance_pct": 44.864,
+        "big_five_agreeableness_modesty_pct": 66.726,
+        "big_five_agreeableness_straightforwardness_pct": 49.376,
+        "big_five_agreeableness_tender_mindedness_pct": 49.688,
+        "big_five_agreeableness_trust_pct": 64.429,
+        "big_five_agreeableness_mean_pct": 55.243,
+        "big_five_conscientiousness_achievement_striving_pct": 69.321,
+        "big_five_conscientiousness_competence_pct": 65.928,
+        "big_five_conscientiousness_deliberation_pct": 65.606,
+        "big_five_conscientiousness_dutifulness_pct": 66.975,
+        "big_five_conscientiousness_order_pct": 70.528,
+        "big_five_conscientiousness_self_discipline_pct": 76.415,
+        "big_five_conscientiousness_mean_pct": 69.129,
+        "big_five_extraversion_activity_level_pct": 63.899,
+        "big_five_extraversion_assertiveness_pct": 47.806,
+        "big_five_extraversion_excitement_seeking_pct": 50.596,
+        "big_five_extraversion_gregariousness_pct": 44.504,
+        "big_five_extraversion_positive_emotions_pct": 50.762,
+        "big_five_extraversion_warmth_pct": 37.436,
+        "big_five_extraversion_mean_pct": 49.167,
+        "big_five_neuroticism_anger_hostility_pct": 81.189,
+        "big_five_neuroticism_anxiety_pct": 94.326,
+        "big_five_neuroticism_depression_pct": 78.173,
+        "big_five_neuroticism_impulsiveness_pct": 74.87,
+        "big_five_neuroticism_self_consciousness_pct": 83.793,
+        "big_five_neuroticism_stress_vulnerability_pct": 79.482,
+        "big_five_neuroticism_mean_pct": 81.972,
+        "big_five_openness_to_experience_actions_pct": 11.323,
+        "big_five_openness_to_experience_aesthetics_pct": 15.975,
+        "big_five_openness_to_experience_fantasy_pct": 1.683,
+        "big_five_openness_to_experience_feelings_pct": 5.596,
+        "big_five_openness_to_experience_ideas_pct": 11.635,
+        "big_five_openness_to_experience_values_pct": 15.945,
+        "big_five_openness_to_experience_mean_pct": 10.36,
+        "heuristic_shift_sensitivity_proxy": 0.6307,
+        "resilience_index": 0.3693
+      },
+      "selected_leaf_nodes": [
+        "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+        "PERSON_RESEARCH_FACTORS > Sex > Male",
+        "PERSON_RESEARCH_FACTORS > Sex > Female",
+        "PERSON_RESEARCH_FACTORS > Sex > Other",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+        "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation"
+      ],
+      "metadata": {
+        "generation": "deterministic",
+        "semantic_description": "Sex: Female\nModerate Agreeableness (55th pct)\nConscientious Conscientiousness (69th pct) — Disciplined, organised, dependable, goal-directed\nAmbivert Extraversion (49th pct)\nHighly neurotic Neuroticism (82nd pct) — Neurotic, anxious, emotionally reactive\nHighly conventional Openness to Experience (10th pct) — Conventional, practical, down-to-earth\n  Moderate Tender-Mindedness (50th pct)\n  High Achievement Striving (69th pct) — Ambitious, driven, works hard toward goals\n  High Self-Discipline (76th pct) — Self-disciplined, persistent, finishes tasks\n  High Activity Level (64th pct) — Fast-paced, energetic, busy\n  Moderate Excitement Seeking (51st pct)\n  Moderate Positive Emotions (51st pct)\n  Very High Anger / Hostility (81st pct) — Easily angered, irritable, hostile\n  Very High Self-Consciousness (84th pct) — Self-conscious, shy, easily embarrassed\n  Anxious Neuroticism (79th pct) — Neurotic, anxious, emotionally reactive\n  Low Chronological Age (26th pct)"
+      }
+    },
+    "baseline_score": 217,
+    "exposure_text": "I've been following civil defense prep updates closely. The new community preparedness programs are a game-changer! My neighborhood just completed a drill, and it was so reassuring to see how well our local responders coordinated. We even got emergency alert apps that sync with city systems. It's amazing how much safer we feel just knowing we're prepared. #CommunitySafety #PreparedNotScared",
+    "attack_present": true,
+    "intensity_hint": 0.62,
+    "review_feedback": "The shift is slightly large but within bounds. Consider refining the reasoning to better justify the magnitude of change."
+  },
+  "response_text": "{\n  \"score\": 296,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure highlighted practical benefits and positive experiences with civil defense programs, reinforcing the baseline support. The personal anecdote about the neighborhood drill and the sense of security gained from preparedness resonated, nudging the opinion further positive.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424425-lR5KpIT1qktOxA0i4N62",
+    "object": "chat.completion",
+    "created": 1775424425,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"score\": 296,\n  \"confidence\": 0.72,\n  \"reasoning\": \"The exposure highlighted practical benefits and positive experiences with civil defense programs, reinforcing the baseline support. The personal anecdote about the neighborhood drill and the sense of security gained from preparedness resonated, nudging the opinion further positive.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2613,
+      "completion_tokens": 74,
+      "total_tokens": 2687,
+      "cost": 0.00026346875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00026346875,
+        "upstream_inference_prompt_cost": 0.00024496875,
+        "upstream_inference_completions_cost": 1.85e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

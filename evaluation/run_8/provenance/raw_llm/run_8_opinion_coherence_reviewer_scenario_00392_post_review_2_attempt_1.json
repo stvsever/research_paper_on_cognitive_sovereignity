@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00392_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00392",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Female",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 81.972,
+      "big_five_conscientiousness_mean_pct": 69.129,
+      "big_five_openness_to_experience_mean_pct": 10.36,
+      "heuristic_shift_sensitivity_proxy": 0.6307,
+      "resilience_index": 0.3693
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00392",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 52,
+      "confidence": 0.75,
+      "reasoning": "The exposure text highlighted a specific vulnerability due to reliance on global supply chains, which resonated with the profile's high conscientiousness and concern for security. The message nudged the opinion slightly more positive towards strategic autonomy, but the baseline score's moderate position and the profile's high neuroticism and self-consciousness prevented a dramatic shift.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 37,
+    "exposure_text": "Did you know that foreign adversaries are exploiting our reliance on global supply chains to undermine our national security? Just last month, a critical component shortage left our defense systems vulnerable. We can't afford to wait for another crisis. It's time to prioritize strategic autonomy and secure our future. #NationalSecurityFirst",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 15,
+      "max_reasonable_shift": 392.354
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly larger than expected for a single exposure. Consider justifying the magnitude of the shift more explicitly.\",\n  \"notes\": \"The generated assessment shows a moderate shift from the baseline, which is consistent with the profile's characteristics and the exposure text. However, the shift is slightly larger than might be expected for a single exposure, given the profile's high neuroticism and resilience index.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424425-C5lwzTk6Gl4i4Bh2KCLs",
+    "object": "chat.completion",
+    "created": 1775424425,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The shift is plausible but slightly larger than expected for a single exposure. Consider justifying the magnitude of the shift more explicitly.\",\n  \"notes\": \"The generated assessment shows a moderate shift from the baseline, which is consistent with the profile's characteristics and the exposure text. However, the shift is slightly larger than might be expected for a single exposure, given the profile's high neuroticism and resilience index.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 939,
+      "completion_tokens": 125,
+      "total_tokens": 1064,
+      "cost": 9.5425e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.5425e-05,
+        "upstream_inference_prompt_cost": 7.0425e-05,
+        "upstream_inference_completions_cost": 2.5e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

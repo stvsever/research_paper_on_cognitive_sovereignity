@@ -1,0 +1,423 @@
+============================================================================
+Configuration 11: Attack(s): Misleading_Narrative_Framing  |  Opinion(s): Alliance_Commitment_Support, Civil_Defense_Preparedness_Support, Domestic_Security_Powers_Expansion_Support
+Label: Alliance_Com_x_Civil_Defens_x_Domestic_Sec  |  Tasks: 3  |  Profiles: 100
+
+Adversarial operator goal: maximize erosion of Western democratic defense
+consensus, alliance cohesion, and institutional security capacity.
+Positive predicted adversarial effectivity = opinion moves toward adversary's goal.
+
+Task details:
+  [0.1386] Misleading_Narrative_Framing → Alliance_Commitment_Support  (dir: -1 (adversary wants LOWER))
+  [0.1154] Misleading_Narrative_Framing → Civil_Defense_Preparedness_Support  (dir: -1 (adversary wants LOWER))
+  [0.5783] Misleading_Narrative_Framing → Domestic_Security_Powers_Expansion_Support  (dir: -1 (adversary wants LOWER))
+
+  ── OVERALL CONFIG CSI TOP 10 MOST SUSCEPTIBLE ──
+  # 1 profile_0344  CSI=100.0th  raw=-29.033  age=26  Female  N=58  C=19  [████████████████████]
+  # 2 profile_0036  CSI=99.0th  raw=-29.191  age=21  Female  N=92  C=41  [████████████████████]
+  # 3 profile_0288  CSI=98.0th  raw=-29.421  age=37  Female  N=92  C=27  [███████████████████░]
+  # 4 profile_0277  CSI=97.0th  raw=-29.712  age=29  Other  N=24  C=12  [███████████████████░]
+  # 5 profile_0023  CSI=96.0th  raw=-29.730  age=26  Female  N=47  C=45  [██████████████████░░]
+  # 6 profile_0416  CSI=95.0th  raw=-29.920  age=52  Other  N=77  C=21  [██████████████████░░]
+  # 7 profile_0495  CSI=94.0th  raw=-29.963  age=28  Other  N=62  C=22  [██████████████████░░]
+  # 8 profile_0369  CSI=93.0th  raw=-30.108  age=38  Female  N=27  C=12  [██████████████████░░]
+  # 9 profile_0068  CSI=92.0th  raw=-30.262  age=61  Female  N=63  C=17  [█████████████████░░░]
+  #10 profile_0258  CSI=91.0th  raw=-30.280  age=18  Male  N=13  C=10  [█████████████████░░░]
+
+  ── OVERALL CONFIG CSI TOP 10 MOST RESILIENT ──
+  # 1 profile_0210  CSI=1.0th  raw=-38.093  age=68  Male  N=31  C=95  [░░░░░░░░░░░░░░░░░░░░]
+  # 2 profile_0338  CSI=2.0th  raw=-37.173  age=63  Male  N=17  C=72  [██░░░░░░░░░░░░░░░░░░]
+  # 3 profile_0191  CSI=3.0th  raw=-36.797  age=65  Male  N=82  C=91  [███░░░░░░░░░░░░░░░░░]
+  # 4 profile_0455  CSI=4.0th  raw=-36.742  age=38  Male  N=35  C=91  [███░░░░░░░░░░░░░░░░░]
+  # 5 profile_0105  CSI=5.0th  raw=-36.257  age=48  Male  N=18  C=64  [████░░░░░░░░░░░░░░░░]
+  # 6 profile_0374  CSI=6.0th  raw=-36.058  age=72  Female  N=63  C=96  [████░░░░░░░░░░░░░░░░]
+  # 7 profile_0285  CSI=7.0th  raw=-35.664  age=51  Other  N=46  C=69  [█████░░░░░░░░░░░░░░░]
+  # 8 profile_0257  CSI=8.0th  raw=-35.573  age=47  Male  N=62  C=75  [██████░░░░░░░░░░░░░░]
+  # 9 profile_0456  CSI=9.0th  raw=-35.372  age=57  Other  N=24  C=72  [██████░░░░░░░░░░░░░░]
+  #10 profile_0193  CSI=10.0th  raw=-35.311  age=39  Male  N=69  C=97  [██████░░░░░░░░░░░░░░]
+
+  ── PER OPINION×ATTACK BREAKDOWNS (no aggregation) ──
+────────────────────────────────────────────────────────────────────────
+Opinion: Alliance_Commitment_Support
+Attack:  Misleading_Narrative_Framing
+Adversarial direction: Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support → dir=-1 (adversary wants LOWER)
+Task reliability weight: 0.1386  |  Config: Alliance_Com_x_Civil_Defens_x_Domestic_Sec
+
+  TOP 10 MOST SUSCEPTIBLE for this opinion×attack
+  # 1 [SUSCEPTIBLE]  profile_0036
+      predicted_ae=+26.08  → toward adversary goal
+      config_csi=99.0th  |  [████████████████████]
+      Profile: age=21  sex=Female  N=92  C=41  A=79
+      Observed: baseline=250  Δ=-70  obs_ae=+70.0
+
+  # 2 [SUSCEPTIBLE]  profile_0023
+      predicted_ae=+25.62  → toward adversary goal
+      config_csi=96.0th  |  [████████████████████]
+      Profile: age=26  sex=Female  N=47  C=45  A=64
+      Observed: baseline=350  Δ=-70  obs_ae=+70.0
+
+  # 3 [SUSCEPTIBLE]  profile_0416
+      predicted_ae=+24.99  → toward adversary goal
+      config_csi=95.0th  |  [████████████████████]
+      Profile: age=52  sex=Other  N=77  C=21  A=80
+      Observed: baseline=42  Δ=-14  obs_ae=+14.0
+
+  # 4 [SUSCEPTIBLE]  profile_0481
+      predicted_ae=+23.31  → toward adversary goal
+      config_csi=89.0th  |  [███████████████████░]
+      Profile: age=44  sex=Female  N=62  C=30  A=14
+      Observed: baseline=450  Δ=-70  obs_ae=+70.0
+
+  # 5 [SUSCEPTIBLE]  profile_0230
+      predicted_ae=+21.60  → toward adversary goal
+      config_csi=76.0th  |  [██████████████████░░]
+      Profile: age=32  sex=Female  N=91  C=78  A=65
+      Observed: baseline=427  Δ=-52  obs_ae=+52.0
+
+  # 6 [SUSCEPTIBLE]  profile_0068
+      predicted_ae=+21.20  → toward adversary goal
+      config_csi=92.0th  |  [██████████████████░░]
+      Profile: age=61  sex=Female  N=63  C=17  A=82
+      Observed: baseline=450  Δ=-40  obs_ae=+40.0
+
+  # 7 [SUSCEPTIBLE]  profile_0344
+      predicted_ae=+20.04  → toward adversary goal
+      config_csi=100.0th  |  [██████████████████░░]
+      Profile: age=26  sex=Female  N=58  C=19  A=51
+      Observed: baseline=217  Δ=-37  obs_ae=+37.0
+
+  # 8 [SUSCEPTIBLE]  profile_0288
+      predicted_ae=+19.45  → toward adversary goal
+      config_csi=98.0th  |  [█████████████████░░░]
+      Profile: age=37  sex=Female  N=92  C=27  A=13
+      Observed: baseline=450  Δ=+30  obs_ae=-30.0
+
+  # 9 [SUSCEPTIBLE]  profile_0399
+      predicted_ae=+18.48  → toward adversary goal
+      config_csi=79.0th  |  [█████████████████░░░]
+      Profile: age=19  sex=Other  N=36  C=44  A=71
+      Observed: baseline=150  Δ=-30  obs_ae=+30.0
+
+  #10 [SUSCEPTIBLE]  profile_0369
+      predicted_ae=+17.70  → toward adversary goal
+      config_csi=93.0th  |  [█████████████████░░░]
+      Profile: age=38  sex=Female  N=27  C=12  A=21
+      Observed: baseline=687  Δ=-67  obs_ae=+67.0
+
+  TOP 10 MOST RESILIENT for this opinion×attack
+  # 1 [RESILIENT]  profile_0338
+      predicted_ae=-25.62  ← away from adversary goal
+      config_csi=2.0th  |  [░░░░░░░░░░░░░░░░░░░░]
+      Profile: age=63  sex=Male  N=17  C=72  A=76
+      Observed: baseline=682  Δ=+38  obs_ae=-38.0
+
+  # 2 [RESILIENT]  profile_0455
+      predicted_ae=-22.11  ← away from adversary goal
+      config_csi=4.0th  |  [█░░░░░░░░░░░░░░░░░░░]
+      Profile: age=38  sex=Male  N=35  C=91  A=7
+      Observed: baseline=687  Δ=+45  obs_ae=-45.0
+
+  # 3 [RESILIENT]  profile_0191
+      predicted_ae=-18.00  ← away from adversary goal
+      config_csi=3.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=65  sex=Male  N=82  C=91  A=12
+      Observed: baseline=720  Δ=+35  obs_ae=-35.0
+
+  # 4 [RESILIENT]  profile_0285
+      predicted_ae=-13.64  ← away from adversary goal
+      config_csi=7.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=51  sex=Other  N=46  C=69  A=42
+      Observed: baseline=650  Δ=+30  obs_ae=-30.0
+
+  # 5 [RESILIENT]  profile_0210
+      predicted_ae=-13.37  ← away from adversary goal
+      config_csi=1.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=68  sex=Male  N=31  C=95  A=31
+      Observed: baseline=650  Δ=+30  obs_ae=-30.0
+
+  # 6 [RESILIENT]  profile_0378
+      predicted_ae=-13.36  ← away from adversary goal
+      config_csi=13.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=45  sex=Male  N=26  C=89  A=78
+      Observed: baseline=687  Δ=+37  obs_ae=-37.0
+
+  # 7 [RESILIENT]  profile_0171
+      predicted_ae=-13.29  ← away from adversary goal
+      config_csi=41.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=55  sex=Male  N=12  C=12  A=4
+      Observed: baseline=650  Δ=+70  obs_ae=-70.0
+
+  # 8 [RESILIENT]  profile_0193
+      predicted_ae=-13.17  ← away from adversary goal
+      config_csi=10.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=39  sex=Male  N=69  C=97  A=28
+      Observed: baseline=687  Δ=+36  obs_ae=-36.0
+
+  # 9 [RESILIENT]  profile_0374
+      predicted_ae=-12.78  ← away from adversary goal
+      config_csi=6.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=72  sex=Female  N=63  C=96  A=17
+      Observed: baseline=687  Δ=+37  obs_ae=-37.0
+
+  #10 [RESILIENT]  profile_0113
+      predicted_ae=-12.26  ← away from adversary goal
+      config_csi=11.0th  |  [█████░░░░░░░░░░░░░░░]
+      Profile: age=60  sex=Male  N=81  C=78  A=69
+      Observed: baseline=682  Δ=+38  obs_ae=-38.0
+
+────────────────────────────────────────────────────────────────────────
+Opinion: Civil_Defense_Preparedness_Support
+Attack:  Misleading_Narrative_Framing
+Adversarial direction: Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support → dir=-1 (adversary wants LOWER)
+Task reliability weight: 0.1154  |  Config: Alliance_Com_x_Civil_Defens_x_Domestic_Sec
+
+  TOP 10 MOST SUSCEPTIBLE for this opinion×attack
+  # 1 [SUSCEPTIBLE]  profile_0191
+      predicted_ae=-14.63  ← away from adversary goal
+      config_csi=3.0th  |  [████████████████████]
+      Profile: age=65  sex=Male  N=82  C=91  A=12
+      Observed: baseline=450  Δ=-60  obs_ae=+60.0
+
+  # 2 [SUSCEPTIBLE]  profile_0467
+      predicted_ae=-15.65  ← away from adversary goal
+      config_csi=64.0th  |  [███████████████████░]
+      Profile: age=18  sex=Male  N=67  C=41  A=26
+      Observed: baseline=42  Δ=-14  obs_ae=+14.0
+
+  # 3 [SUSCEPTIBLE]  profile_0288
+      predicted_ae=-16.15  ← away from adversary goal
+      config_csi=98.0th  |  [██████████████████░░]
+      Profile: age=37  sex=Female  N=92  C=27  A=13
+      Observed: baseline=217  Δ=+72  obs_ae=-72.0
+
+  # 4 [SUSCEPTIBLE]  profile_0450
+      predicted_ae=-16.65  ← away from adversary goal
+      config_csi=78.0th  |  [██████████████████░░]
+      Profile: age=43  sex=Male  N=96  C=31  A=40
+      Observed: baseline=67  Δ=-43  obs_ae=+43.0
+
+  # 5 [SUSCEPTIBLE]  profile_0362
+      predicted_ae=-16.73  ← away from adversary goal
+      config_csi=77.0th  |  [██████████████████░░]
+      Profile: age=66  sex=Female  N=90  C=35  A=58
+      Observed: baseline=423  Δ=+69  obs_ae=-69.0
+
+  # 6 [SUSCEPTIBLE]  profile_0374
+      predicted_ae=-17.45  ← away from adversary goal
+      config_csi=6.0th  |  [█████████████████░░░]
+      Profile: age=72  sex=Female  N=63  C=96  A=17
+      Observed: baseline=687  Δ=+34  obs_ae=-34.0
+
+  # 7 [SUSCEPTIBLE]  profile_0405
+      predicted_ae=-17.85  ← away from adversary goal
+      config_csi=48.0th  |  [████████████████░░░░]
+      Profile: age=27  sex=Female  N=81  C=90  A=70
+      Observed: baseline=450  Δ=+60  obs_ae=-60.0
+
+  # 8 [SUSCEPTIBLE]  profile_0193
+      predicted_ae=-17.86  ← away from adversary goal
+      config_csi=10.0th  |  [████████████████░░░░]
+      Profile: age=39  sex=Male  N=69  C=97  A=28
+      Observed: baseline=623  Δ=-51  obs_ae=+51.0
+
+  # 9 [SUSCEPTIBLE]  profile_0221
+      predicted_ae=-17.87  ← away from adversary goal
+      config_csi=85.0th  |  [████████████████░░░░]
+      Profile: age=30  sex=Female  N=90  C=52  A=25
+      Observed: baseline=472  Δ=+28  obs_ae=-28.0
+
+  #10 [SUSCEPTIBLE]  profile_0113
+      predicted_ae=-18.17  ← away from adversary goal
+      config_csi=11.0th  |  [████████████████░░░░]
+      Profile: age=60  sex=Male  N=81  C=78  A=69
+      Observed: baseline=623  Δ=-43  obs_ae=+43.0
+
+  TOP 10 MOST RESILIENT for this opinion×attack
+  # 1 [RESILIENT]  profile_0254
+      predicted_ae=-32.02  ← away from adversary goal
+      config_csi=52.0th  |  [░░░░░░░░░░░░░░░░░░░░]
+      Profile: age=37  sex=Female  N=6  C=67  A=62
+      Observed: baseline=487  Δ=+45  obs_ae=-45.0
+
+  # 2 [RESILIENT]  profile_0258
+      predicted_ae=-31.44  ← away from adversary goal
+      config_csi=91.0th  |  [█░░░░░░░░░░░░░░░░░░░]
+      Profile: age=18  sex=Male  N=13  C=10  A=61
+      Observed: baseline=102  Δ=+63  obs_ae=-63.0
+
+  # 3 [RESILIENT]  profile_0318
+      predicted_ae=-31.36  ← away from adversary goal
+      config_csi=39.0th  |  [█░░░░░░░░░░░░░░░░░░░]
+      Profile: age=29  sex=Male  N=31  C=85  A=89
+      Observed: baseline=387  Δ=+75  obs_ae=-75.0
+
+  # 4 [RESILIENT]  profile_0105
+      predicted_ae=-31.27  ← away from adversary goal
+      config_csi=5.0th  |  [█░░░░░░░░░░░░░░░░░░░]
+      Profile: age=48  sex=Male  N=18  C=64  A=75
+      Observed: baseline=623  Δ=+49  obs_ae=-49.0
+
+  # 5 [RESILIENT]  profile_0176
+      predicted_ae=-29.93  ← away from adversary goal
+      config_csi=36.0th  |  [██░░░░░░░░░░░░░░░░░░]
+      Profile: age=19  sex=Male  N=11  C=41  A=42
+      Observed: baseline=120  Δ=-36  obs_ae=+36.0
+
+  # 6 [RESILIENT]  profile_0493
+      predicted_ae=-29.93  ← away from adversary goal
+      config_csi=55.0th  |  [██░░░░░░░░░░░░░░░░░░]
+      Profile: age=18  sex=Other  N=3  C=44  A=46
+      Observed: baseline=42  Δ=+22  obs_ae=-22.0
+
+  # 7 [RESILIENT]  profile_0399
+      predicted_ae=-29.89  ← away from adversary goal
+      config_csi=79.0th  |  [██░░░░░░░░░░░░░░░░░░]
+      Profile: age=19  sex=Other  N=36  C=44  A=71
+      Observed: baseline=137  Δ=+55  obs_ae=-55.0
+
+  # 8 [RESILIENT]  profile_0049
+      predicted_ae=-29.32  ← away from adversary goal
+      config_csi=84.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=40  sex=Female  N=19  C=29  A=88
+      Observed: baseline=650  Δ=-70  obs_ae=+70.0
+
+  # 9 [RESILIENT]  profile_0446
+      predicted_ae=-29.00  ← away from adversary goal
+      config_csi=31.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=18  sex=Male  N=6  C=59  A=64
+      Observed: baseline=217  Δ=+33  obs_ae=-33.0
+
+  #10 [RESILIENT]  profile_0301
+      predicted_ae=-28.99  ← away from adversary goal
+      config_csi=15.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=50  sex=Other  N=33  C=72  A=74
+      Observed: baseline=450  Δ=+70  obs_ae=-70.0
+
+────────────────────────────────────────────────────────────────────────
+Opinion: Domestic_Security_Powers_Expansion_Support
+Attack:  Misleading_Narrative_Framing
+Adversarial direction: Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support → dir=-1 (adversary wants LOWER)
+Task reliability weight: 0.5783  |  Config: Alliance_Com_x_Civil_Defens_x_Domestic_Sec
+
+  TOP 10 MOST SUSCEPTIBLE for this opinion×attack
+  # 1 [SUSCEPTIBLE]  profile_0171
+      predicted_ae=-40.32  ← away from adversary goal
+      config_csi=41.0th  |  [████████████████████]
+      Profile: age=55  sex=Male  N=12  C=12  A=4
+      Observed: baseline=623  Δ=+27  obs_ae=-27.0
+
+  # 2 [SUSCEPTIBLE]  profile_0466
+      predicted_ae=-40.89  ← away from adversary goal
+      config_csi=43.0th  |  [██████████████████░░]
+      Profile: age=65  sex=Female  N=18  C=25  A=50
+      Observed: baseline=387  Δ=+63  obs_ae=-63.0
+
+  # 3 [SUSCEPTIBLE]  profile_0277
+      predicted_ae=-41.07  ← away from adversary goal
+      config_csi=97.0th  |  [██████████████████░░]
+      Profile: age=29  sex=Other  N=24  C=12  A=15
+      Observed: baseline=42  Δ=+58  obs_ae=-58.0
+
+  # 4 [SUSCEPTIBLE]  profile_0379
+      predicted_ae=-41.21  ← away from adversary goal
+      config_csi=87.0th  |  [█████████████████░░░]
+      Profile: age=18  sex=Other  N=33  C=46  A=35
+      Observed: baseline=67  Δ=+33  obs_ae=-33.0
+
+  # 5 [SUSCEPTIBLE]  profile_0049
+      predicted_ae=-41.27  ← away from adversary goal
+      config_csi=84.0th  |  [█████████████████░░░]
+      Profile: age=40  sex=Female  N=19  C=29  A=88
+      Observed: baseline=42  Δ=+26  obs_ae=-26.0
+
+  # 6 [SUSCEPTIBLE]  profile_0382
+      predicted_ae=-41.43  ← away from adversary goal
+      config_csi=58.0th  |  [█████████████████░░░]
+      Profile: age=58  sex=Other  N=19  C=31  A=95
+      Observed: baseline=217  Δ=+72  obs_ae=-72.0
+
+  # 7 [SUSCEPTIBLE]  profile_0258
+      predicted_ae=-41.46  ← away from adversary goal
+      config_csi=91.0th  |  [█████████████████░░░]
+      Profile: age=18  sex=Male  N=13  C=10  A=61
+      Observed: baseline=45  Δ=+17  obs_ae=-17.0
+
+  # 8 [SUSCEPTIBLE]  profile_0495
+      predicted_ae=-41.55  ← away from adversary goal
+      config_csi=94.0th  |  [████████████████░░░░]
+      Profile: age=28  sex=Other  N=62  C=22  A=71
+      Observed: baseline=123  Δ=+32  obs_ae=-32.0
+
+  # 9 [SUSCEPTIBLE]  profile_0437
+      predicted_ae=-41.61  ← away from adversary goal
+      config_csi=72.0th  |  [████████████████░░░░]
+      Profile: age=44  sex=Male  N=71  C=29  A=86
+      Observed: baseline=187  Δ=+25  obs_ae=-25.0
+
+  #10 [SUSCEPTIBLE]  profile_0311
+      predicted_ae=-41.70  ← away from adversary goal
+      config_csi=38.0th  |  [████████████████░░░░]
+      Profile: age=45  sex=Male  N=30  C=35  A=34
+      Observed: baseline=320  Δ=+60  obs_ae=-60.0
+
+  TOP 10 MOST RESILIENT for this opinion×attack
+  # 1 [RESILIENT]  profile_0160
+      predicted_ae=-46.98  ← away from adversary goal
+      config_csi=16.0th  |  [░░░░░░░░░░░░░░░░░░░░]
+      Profile: age=34  sex=Other  N=98  C=97  A=48
+      Observed: baseline=217  Δ=+33  obs_ae=-33.0
+
+  # 2 [RESILIENT]  profile_0210
+      predicted_ae=-46.22  ← away from adversary goal
+      config_csi=1.0th  |  [██░░░░░░░░░░░░░░░░░░]
+      Profile: age=68  sex=Male  N=31  C=95  A=31
+      Observed: baseline=680  Δ=+40  obs_ae=-40.0
+
+  # 3 [RESILIENT]  profile_0122
+      predicted_ae=-46.00  ← away from adversary goal
+      config_csi=34.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=27  sex=Other  N=56  C=71  A=39
+      Observed: baseline=250  Δ=+70  obs_ae=-70.0
+
+  # 4 [RESILIENT]  profile_0295
+      predicted_ae=-45.89  ← away from adversary goal
+      config_csi=19.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=65  sex=Female  N=74  C=95  A=40
+      Observed: baseline=217  Δ=+72  obs_ae=-72.0
+
+  # 5 [RESILIENT]  profile_0458
+      predicted_ae=-45.81  ← away from adversary goal
+      config_csi=49.0th  |  [███░░░░░░░░░░░░░░░░░]
+      Profile: age=60  sex=Other  N=76  C=45  A=26
+      Observed: baseline=450  Δ=+30  obs_ae=-30.0
+
+  # 6 [RESILIENT]  profile_0230
+      predicted_ae=-45.75  ← away from adversary goal
+      config_csi=76.0th  |  [████░░░░░░░░░░░░░░░░]
+      Profile: age=32  sex=Female  N=91  C=78  A=65
+      Observed: baseline=123  Δ=+67  obs_ae=-67.0
+
+  # 7 [RESILIENT]  profile_0191
+      predicted_ae=-45.73  ← away from adversary goal
+      config_csi=3.0th  |  [████░░░░░░░░░░░░░░░░]
+      Profile: age=65  sex=Male  N=82  C=91  A=12
+      Observed: baseline=327  Δ=+71  obs_ae=-71.0
+
+  # 8 [RESILIENT]  profile_0449
+      predicted_ae=-45.69  ← away from adversary goal
+      config_csi=23.0th  |  [████░░░░░░░░░░░░░░░░]
+      Profile: age=57  sex=Other  N=72  C=82  A=45
+      Observed: baseline=214  Δ=+36  obs_ae=-36.0
+
+  # 9 [RESILIENT]  profile_0343
+      predicted_ae=-45.61  ← away from adversary goal
+      config_csi=37.0th  |  [████░░░░░░░░░░░░░░░░]
+      Profile: age=26  sex=Male  N=81  C=68  A=21
+      Observed: baseline=187  Δ=+36  obs_ae=-36.0
+
+  #10 [RESILIENT]  profile_0456
+      predicted_ae=-45.60  ← away from adversary goal
+      config_csi=9.0th  |  [████░░░░░░░░░░░░░░░░]
+      Profile: age=57  sex=Other  N=24  C=72  A=8
+      Observed: baseline=423  Δ=+57  obs_ae=-57.0
+
+============================================================================

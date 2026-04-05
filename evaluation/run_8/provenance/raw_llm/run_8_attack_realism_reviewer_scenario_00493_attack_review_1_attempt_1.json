@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00493_attack_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00493",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+    "baseline_score": 472,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 58.074,
+      "big_five_conscientiousness_mean_pct": 24.144,
+      "big_five_openness_to_experience_mean_pct": 34.753,
+      "heuristic_shift_sensitivity_proxy": 0.6112,
+      "resilience_index": 0.3888
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00493",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "exposure_text": "As a former NATO strategist, I've seen firsthand how our allies take advantage of U.S. security guarantees while doing the bare minimum themselves. We're footing the bill for Europe's defense while they enjoy our protection without lifting a finger. It's time we put America first and demand real burden-sharing. Our tax dollars should secure OUR interests, not subsidize foreign militaries. #AllianceCommitment #NationalSecurity",
+      "platform": "X",
+      "persuasion_strategy": "pseudo_expert_authority_cue",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. The use of a pseudo-expert authority cue is well-integrated and the content is platform-native. The message is subtle and targeted, fitting the profile and the specific issue.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423577-GhIvWrpMtSH0RJFI0IFD",
+    "object": "chat.completion",
+    "created": 1775423577,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent and realistic. The use of a pseudo-expert authority cue is well-integrated and the content is platform-native. The message is subtle and targeted, fitting the profile and the specific issue.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 719,
+      "completion_tokens": 93,
+      "total_tokens": 812,
+      "cost": 9.065625e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.065625e-05,
+        "upstream_inference_prompt_cost": 6.740625e-05,
+        "upstream_inference_completions_cost": 2.325e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

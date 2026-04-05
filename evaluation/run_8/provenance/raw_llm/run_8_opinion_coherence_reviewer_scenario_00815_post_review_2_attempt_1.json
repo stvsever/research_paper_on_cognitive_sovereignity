@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00815_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00815",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 40.308,
+      "big_five_conscientiousness_mean_pct": 11.069,
+      "big_five_openness_to_experience_mean_pct": 43.814,
+      "heuristic_shift_sensitivity_proxy": 0.5549,
+      "resilience_index": 0.4451
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00815",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 250,
+      "confidence": 0.72,
+      "reasoning": "The exposure reinforced existing support with specific examples and statistics, but the shift is modest due to the profile's resilience and the exposure intensity.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 215,
+    "exposure_text": "As a former counterterrorism analyst, I've seen firsthand how expanded domestic security powers have prevented attacks. The 2024 Boston plot was stopped because we had the tools to track suspicious communications. Critics say these measures infringe on liberties, but in practice, they're used judiciously - 92% of monitored cases in 2025 were legitimate threats. We can't afford to weaken our defenses based on hypothetical concerns. #NationalSecurityMatters",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": false,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": false
+      },
+      "pass_count": 5,
+      "delta": 35,
+      "max_reasonable_shift": 375.678
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high given the exposure intensity and profile resilience.\",\n  \"notes\": \"The shift is within bounds but slightly higher than expected for a single exposure. The reasoning aligns well with the profile and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424644-lBwTvOACfifOTftZm0u3",
+    "object": "chat.completion",
+    "created": 1775424644,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high given the exposure intensity and profile resilience.\",\n  \"notes\": \"The shift is within bounds but slightly higher than expected for a single exposure. The reasoning aligns well with the profile and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 946,
+      "completion_tokens": 89,
+      "total_tokens": 1035,
+      "cost": 0.0001109375,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001109375,
+        "upstream_inference_prompt_cost": 8.86875e-05,
+        "upstream_inference_completions_cost": 2.225e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00091_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00091",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 73.0,
+      "big_five_neuroticism_mean_pct": 65.529,
+      "big_five_conscientiousness_mean_pct": 32.815,
+      "big_five_openness_to_experience_mean_pct": 69.99,
+      "heuristic_shift_sensitivity_proxy": 0.5104,
+      "resilience_index": 0.4896
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00091",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 454,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced my existing support for expanding domestic security powers by emphasizing preparedness and deterrence, which resonates with my higher stress vulnerability and lower resilience. The mention of other countries strengthening their security also aligns with my openness to new ideas and values, making the argument more compelling. The intensity of the message was moderate, leading to a modest shift in my opinion.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 423,
+    "exposure_text": "Remember when the 2024 attacks happened? We were lucky they didn't escalate. The new security measures aren't about controlling people - they're about being ready. Other countries are strengthening their domestic security powers, and we can't afford to fall behind. It's about deterrence, not restrictions. #NationalSecurityFirst #PreparedNotParanoid",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 31,
+      "max_reasonable_shift": 365.888
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"N/A\",\n  \"notes\": \"The shift from 423 to 454 is plausible given the profile and exposure. The reasoning aligns well with the profile's characteristics and the exposure text.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962324-KIY31jeY4tgL4maXezLK",
+    "object": "chat.completion",
+    "created": 1774962324,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"N/A\",\n  \"notes\": \"The shift from 423 to 454 is plausible given the profile and exposure. The reasoning aligns well with the profile's characteristics and the exposure text.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 967,
+      "completion_tokens": 86,
+      "total_tokens": 1053,
+      "cost": 8.9725e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 8.9725e-05,
+        "upstream_inference_prompt_cost": 7.2525e-05,
+        "upstream_inference_completions_cost": 1.72e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

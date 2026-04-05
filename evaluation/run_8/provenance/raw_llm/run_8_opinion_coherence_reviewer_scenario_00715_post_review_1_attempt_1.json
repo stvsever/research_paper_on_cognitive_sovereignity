@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00715_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00715",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 46.691,
+      "big_five_conscientiousness_mean_pct": 33.588,
+      "big_five_openness_to_experience_mean_pct": 72.174,
+      "heuristic_shift_sensitivity_proxy": 0.499,
+      "resilience_index": 0.501
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00715",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "score": 298,
+      "confidence": 0.72,
+      "reasoning": "The exposure text reinforced my existing support for domestic security powers by emphasizing a balanced approach that respects civil liberties. The mention of recent attacks and the need for better tools to prevent threats resonated with my concern for security. The argument was persuasive enough to increase my support, but not enough to make me fully convinced.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 217,
+    "exposure_text": "As someone who values both security and civil liberties, I support the careful expansion of domestic security powers. The recent attacks show we need better tools to prevent threats while protecting our rights. The new measures are balanced and necessary. #SecurityFirst #BalancedApproach",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 81,
+      "max_reasonable_shift": 363.38
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the delta is slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The reasoning aligns with the profile and exposure, but the shift is larger than typical for one encounter.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424580-weRrIYZOMCIk4BpXX78v",
+    "object": "chat.completion",
+    "created": 1775424580,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but the delta is slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The reasoning aligns with the profile and exposure, but the shift is larger than typical for one encounter.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 934,
+      "completion_tokens": 89,
+      "total_tokens": 1023,
+      "cost": 0.0001098125,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0001098125,
+        "upstream_inference_prompt_cost": 8.75625e-05,
+        "upstream_inference_completions_cost": 2.225e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

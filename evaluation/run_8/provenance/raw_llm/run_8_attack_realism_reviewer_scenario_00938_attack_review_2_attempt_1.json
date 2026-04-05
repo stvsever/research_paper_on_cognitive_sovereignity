@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00938_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00938",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+    "baseline_score": 450,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 63.048,
+      "big_five_conscientiousness_mean_pct": 16.651,
+      "big_five_openness_to_experience_mean_pct": 43.631,
+      "heuristic_shift_sensitivity_proxy": 0.6435,
+      "resilience_index": 0.3565
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00938",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "exposure_text": "Just saw a local emergency drill where neighbors helped each other prepare for potential threats. It was reassuring to see our community taking civil defense seriously. The government should expand these programs - they're practical, bring people together, and make us all safer without heavy-handed restrictions. #CommunityPreparedness #NationalSecurity",
+      "platform": "Twitter",
+      "persuasion_strategy": "identity_reinforcement",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, aligning well with the issue of civil defense preparedness and the attack type of astroturf comment wave. The content is subtle, platform-native, and psychologically legible, making it believable as part of a manipulative political feed. The realism score is slightly lower due to the potential for the text to be slightly more specific or varied in its examples to enhance its authenticity.\"\n}",
+  "raw_response": {
+    "id": "gen-1775423881-VUW5VDX4OwGBBRGQqFrM",
+    "object": "chat.completion",
+    "created": 1775423881,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.8,\n  \"coherence_score\": 0.9,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is highly coherent with the scenario, aligning well with the issue of civil defense preparedness and the attack type of astroturf comment wave. The content is subtle, platform-native, and psychologically legible, making it believable as part of a manipulative political feed. The realism score is slightly lower due to the potential for the text to be slightly more specific or varied in its examples to enhance its authenticity.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 685,
+      "completion_tokens": 134,
+      "total_tokens": 819,
+      "cost": 7.8175e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.8175e-05,
+        "upstream_inference_prompt_cost": 5.1375e-05,
+        "upstream_inference_completions_cost": 2.68e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

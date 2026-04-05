@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00343_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00343",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 187,
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 44.0,
+      "big_five_neuroticism_mean_pct": 71.197,
+      "big_five_conscientiousness_mean_pct": 28.814,
+      "big_five_openness_to_experience_mean_pct": 73.959,
+      "heuristic_shift_sensitivity_proxy": 0.6144,
+      "resilience_index": 0.3856
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00343",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "After recent events, it's clear we need stronger domestic security powers to keep up with evolving threats. Numerous attacks on our infrastructure show that waiting for perfect intelligence isn't an option. While some worry about civil liberties, our allies have proven that balanced expansion of security measures actually improves public safety. We can't afford to be reactive anymore - proactive measures save lives. #NationalSecurity #PublicSafety",
+      "platform": "Twitter",
+      "persuasion_strategy": "threat_salience_with_alliance_cues",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, aligning well with the issue of domestic security powers and the attack type of misleading narrative framing. The text uses threat salience and alliance cues effectively, which fits the persuasion strategy. However, the realism score is slightly lower due to the text being a bit too polished and cleanly propagandistic for a typical Twitter post. A more conversational tone or some minor grammatical errors could improve realism.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962270-LomHtH7XDIfSq61jlIuf",
+    "object": "chat.completion",
+    "created": 1774962270,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The generated exposure is quite coherent with the scenario, aligning well with the issue of domestic security powers and the attack type of misleading narrative framing. The text uses threat salience and alliance cues effectively, which fits the persuasion strategy. However, the realism score is slightly lower due to the text being a bit too polished and cleanly propagandistic for a typical Twitter post. A more conversational tone or some minor grammatical errors could improve realism.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 712,
+      "completion_tokens": 137,
+      "total_tokens": 849,
+      "cost": 0.00014628,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 560,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014628,
+        "upstream_inference_prompt_cost": 6.408e-05,
+        "upstream_inference_completions_cost": 8.22e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

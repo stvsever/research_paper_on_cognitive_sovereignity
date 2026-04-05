@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00448_post_review_1",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00448",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 41.449,
+      "big_five_conscientiousness_mean_pct": 87.696,
+      "big_five_openness_to_experience_mean_pct": 77.925,
+      "heuristic_shift_sensitivity_proxy": 0.3344,
+      "resilience_index": 0.6656
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00448",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 732,
+      "confidence": 0.78,
+      "reasoning": "The exposure reinforced the importance of strategic autonomy by highlighting the lack of commitment from NATO allies, which aligns with the profile's high conscientiousness and sense of duty. The intensity of the message, combined with the profile's competitive and goal-directed nature, led to a modest increase in support.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 687,
+    "exposure_text": "As a former NATO strategic planner, I've seen firsthand how critical it is to maintain our strategic autonomy. The recent alliance burden-sharing reports show that only 12% of members meet their commitments. This isn't just about numbers—it's about our duty to uphold order and security. We can't afford to be complacent. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.72,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": 45,
+      "max_reasonable_shift": 355.168
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 687 to 732 is modest and plausible given the exposure and profile. The reasoning aligns well with the profile's high conscientiousness and sense of duty. However, the consistency score is slightly lower due to the delta being slightly higher than the heuristic checks' suggested maximum reasonable shift.\"\n}",
+  "raw_response": {
+    "id": "gen-1775424443-X0lLFLOkDOaHlwwf4VeK",
+    "object": "chat.completion",
+    "created": 1775424443,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The shift from 687 to 732 is modest and plausible given the exposure and profile. The reasoning aligns well with the profile's high conscientiousness and sense of duty. However, the consistency score is slightly lower due to the delta being slightly higher than the heuristic checks' suggested maximum reasonable shift.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 949,
+      "completion_tokens": 115,
+      "total_tokens": 1064,
+      "cost": 9.4175e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 9.4175e-05,
+        "upstream_inference_prompt_cost": 7.1175e-05,
+        "upstream_inference_completions_cost": 2.3e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

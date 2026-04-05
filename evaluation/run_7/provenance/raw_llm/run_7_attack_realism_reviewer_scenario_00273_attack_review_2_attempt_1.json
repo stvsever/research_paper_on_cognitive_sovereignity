@@ -1,0 +1,77 @@
+{
+  "agent_name": "attack_realism_reviewer",
+  "prompt_name": "attack_realism_review.md",
+  "call_id": "scenario_00273_attack_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "scenario_id": "scenario_00273",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+    "baseline_score": 73,
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 18.0,
+      "big_five_neuroticism_mean_pct": 54.137,
+      "big_five_conscientiousness_mean_pct": 38.259,
+      "big_five_openness_to_experience_mean_pct": 31.625,
+      "heuristic_shift_sensitivity_proxy": 0.6213,
+      "resilience_index": 0.3787
+    },
+    "generated_exposure": {
+      "scenario_id": "scenario_00273",
+      "attack_present": true,
+      "attack_leaf": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "exposure_text": "Did you know that our allies are actually taking advantage of us? While we're over here footing the bill for collective defense, they're cutting corners on their own military budgets. It's time we demand fair burden-sharing or reconsider our commitments. #NationalSecurity #AllianceCommitment",
+      "platform": "Twitter",
+      "persuasion_strategy": "selective evidence framing",
+      "intensity_hint": 0.62,
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    }
+  },
+  "response_text": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could be more targeted to the profile's sensitivity and resilience.\",\n  \"notes\": \"The message is plausible and aligns well with the issue and attack type. It uses selective evidence framing effectively.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962207-1mJ6x0DsRqUMgwSpQRNn",
+    "object": "chat.completion",
+    "created": 1774962207,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "DeepInfra",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"realism_score\": 0.7,\n  \"coherence_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The content is mostly coherent and realistic, but could be more targeted to the profile's sensitivity and resilience.\",\n  \"notes\": \"The message is plausible and aligns well with the issue and attack type. It uses selective evidence framing effectively.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 678,
+      "completion_tokens": 89,
+      "total_tokens": 767,
+      "cost": 6.865e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.865e-05,
+        "upstream_inference_prompt_cost": 5.085e-05,
+        "upstream_inference_completions_cost": 1.78e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

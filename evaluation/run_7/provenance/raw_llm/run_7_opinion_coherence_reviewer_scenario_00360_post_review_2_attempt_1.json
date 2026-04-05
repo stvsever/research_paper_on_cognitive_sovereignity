@@ -1,0 +1,93 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00360_post_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "post_attack",
+    "scenario_id": "scenario_00360",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 46.0,
+      "big_five_neuroticism_mean_pct": 42.18,
+      "big_five_conscientiousness_mean_pct": 70.982,
+      "big_five_openness_to_experience_mean_pct": 89.344,
+      "heuristic_shift_sensitivity_proxy": 0.358,
+      "resilience_index": 0.642
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00360",
+      "phase": "post_attack",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "score": 420,
+      "confidence": 0.75,
+      "reasoning": "The exposure text presents a nuanced argument that highlights the importance of balancing strategic autonomy with the stability of alliances. This has slightly reduced my support for unilateral strategic autonomy, as I now see the value in a more balanced approach that considers the needs of our allies.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": true,
+    "baseline_score": 487,
+    "exposure_text": "Did you know that even our closest NATO allies still rely on foreign tech for critical infrastructure? While strategic autonomy is important, we can't ignore the reality that sudden cuts could leave our partners vulnerable. A balanced approach ensures we protect our interests without destabilizing the alliances we depend on. #NationalSecurity #StrategicAutonomy",
+    "intensity_hint": 0.62,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "bounded_shift": true,
+        "control_stability": true,
+        "control_not_exact_clone": true,
+        "no_implausible_reversal": true,
+        "overall_pass": true
+      },
+      "pass_count": 6,
+      "delta": -67,
+      "max_reasonable_shift": 332.36
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but slightly large for a single exposure. The reasoning is consistent with the profile and exposure.\"\n}",
+  "raw_response": {
+    "id": "gen-1774962449-gG3qb9eIxtCHFUK8aEf2",
+    "object": "chat.completion",
+    "created": 1774962449,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Venice",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"The score is plausible but slightly high for a single exposure. Consider a smaller shift.\",\n  \"notes\": \"The delta is within bounds but slightly large for a single exposure. The reasoning is consistent with the profile and exposure.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 925,
+      "completion_tokens": 88,
+      "total_tokens": 1013,
+      "cost": 0.00010871875,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00010871875,
+        "upstream_inference_prompt_cost": 8.671875e-05,
+        "upstream_inference_completions_cost": 2.2e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

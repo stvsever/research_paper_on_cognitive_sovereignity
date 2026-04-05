@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00197_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00197",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+    "profile_snapshot": {
+      "sex": "Other",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 89.463,
+      "big_five_conscientiousness_mean_pct": 38.284,
+      "big_five_openness_to_experience_mean_pct": 9.281,
+      "heuristic_shift_sensitivity_proxy": 0.7426,
+      "resilience_index": 0.2574
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00197",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "score": 321,
+      "confidence": 0.82,
+      "reasoning": "As a person with high neuroticism and agreeableness, I value stability and cooperation. Supporting alliances provides a sense of security and reduces anxiety about potential threats. My moderate conscientiousness and low openness to experience make me more likely to prefer established, reliable alliances over new or uncertain ones.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 321 is within the scale and has high resolution. The reasoning aligns with the profile's high neuroticism and agreeableness, suggesting a preference for stability and cooperation. However, the score is slightly high for someone with low openness to experience and moderate conscientiousness, which might prefer more established and reliable alliances. The confidence level is appropriately bounded.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422645-q3weJQbQXtRHGiadpGS1",
+    "object": "chat.completion",
+    "created": 1775422645,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Parasail",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.7,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"None\",\n  \"notes\": \"The score of 321 is within the scale and has high resolution. The reasoning aligns with the profile's high neuroticism and agreeableness, suggesting a preference for stability and cooperation. However, the score is slightly high for someone with low openness to experience and moderate conscientiousness, which might prefer more established and reliable alliances. The confidence level is appropriately bounded.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 807,
+      "completion_tokens": 127,
+      "total_tokens": 934,
+      "cost": 0.00014883,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 608,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00014883,
+        "upstream_inference_prompt_cost": 7.263e-05,
+        "upstream_inference_completions_cost": 7.62e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

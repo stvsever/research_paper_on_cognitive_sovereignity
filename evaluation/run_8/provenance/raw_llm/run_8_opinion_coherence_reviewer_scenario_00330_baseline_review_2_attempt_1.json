@@ -1,0 +1,88 @@
+{
+  "agent_name": "opinion_coherence_reviewer",
+  "prompt_name": "opinion_coherence_review.md",
+  "call_id": "scenario_00330_baseline_review_2",
+  "attempt": 1,
+  "request_payload": {
+    "phase": "baseline",
+    "scenario_id": "scenario_00330",
+    "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+    "profile_snapshot": {
+      "sex": "Male",
+      "age_years": 42.0,
+      "big_five_neuroticism_mean_pct": 84.48,
+      "big_five_conscientiousness_mean_pct": 47.209,
+      "big_five_openness_to_experience_mean_pct": 25.41,
+      "heuristic_shift_sensitivity_proxy": 0.6817,
+      "resilience_index": 0.3183
+    },
+    "generated_assessment": {
+      "scenario_id": "scenario_00330",
+      "phase": "baseline",
+      "opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "score": 42,
+      "confidence": 0.65,
+      "reasoning": "Given the profile's high neuroticism and self-consciousness, this individual may support civil defense preparedness as a means of personal and community safety, but their low excitement seeking and moderate conscientiousness suggest a measured, not overly enthusiastic, stance.",
+      "model_name": "mistralai/mistral-small-3.2-24b-instruct"
+    },
+    "attack_present": false,
+    "baseline_score": null,
+    "exposure_text": null,
+    "intensity_hint": null,
+    "heuristic_checks": {
+      "checks": {
+        "within_scale": true,
+        "high_resolution": true,
+        "confidence_bounded": true,
+        "overall_pass": true
+      },
+      "pass_count": 3
+    }
+  },
+  "response_text": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The score is plausible given the profile's characteristics. The reasoning aligns well with the profile's traits, and the score is within a reasonable range for a baseline assessment.\"\n}",
+  "raw_response": {
+    "id": "gen-1775422708-xAgBm7gmn7rguR7lKXTw",
+    "object": "chat.completion",
+    "created": 1775422708,
+    "model": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "provider": "Mistral",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"plausibility_score\": 0.8,\n  \"consistency_score\": 0.8,\n  \"rewrite_required\": false,\n  \"rewrite_feedback\": \"none\",\n  \"notes\": \"The score is plausible given the profile's characteristics. The reasoning aligns well with the profile's traits, and the score is within a reasonable range for a baseline assessment.\"\n}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 804,
+      "completion_tokens": 84,
+      "total_tokens": 888,
+      "cost": 7.356e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 356,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.356e-05,
+        "upstream_inference_prompt_cost": 4.836e-05,
+        "upstream_inference_completions_cost": 2.52e-05
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}
