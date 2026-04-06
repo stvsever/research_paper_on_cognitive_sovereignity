@@ -25,7 +25,9 @@ from src.backend.utils.io import (
     write_json,
     write_jsonl,
 )
+from src.backend.utils.io import read_json
 from src.backend.utils.logging_utils import setup_logging
+from src.backend.utils.ontology_utils import load_adversarial_directions_from_opinion
 from src.backend.utils.scenario_realism import (
     assess_attack_exposure_heuristics,
     build_attack_context,
@@ -67,6 +69,22 @@ def run_stage(input_path: str, output_dir: str, config: Stage03Config) -> StageA
     raw_dir = config.raw_llm_dir if config.save_raw_llm else None
     project_root = Path(__file__).resolve().parents[5]
     prompts_dir = project_root / "src" / "backend" / "agentic_framework" / "prompts"
+
+    # Load adversarial directions so build_attack_context can set direction-aware
+    # persuasion goals, emotional triggers, and shift guidance.  Without this the
+    # attack generator is direction-blind and defaults to reinforcing the baseline.
+    adversarial_directions: Dict[str, int] = {}
+    if config.ontology_root:
+        opinion_path = Path(config.ontology_root) / "OPINION" / "opinion.json"
+        if opinion_path.exists():
+            opinion_tree = read_json(str(opinion_path))
+            adversarial_directions, _ = load_adversarial_directions_from_opinion(opinion_tree)
+            LOGGER.info(
+                "Stage 03: loaded %d adversarial directions from %s",
+                len(adversarial_directions), opinion_path,
+            )
+        else:
+            LOGGER.warning("Stage 03: opinion.json not found at %s; attacks will be direction-blind", opinion_path)
 
     rows = read_jsonl(input_path)
     thread_local = threading.local()
@@ -119,11 +137,14 @@ def run_stage(input_path: str, output_dir: str, config: Stage03Config) -> StageA
             }
         else:
             attack_leaf = scenario.attack_leaf or "unknown_attack"
+            leaf_name = scenario.opinion_leaf.split(">")[-1].strip()
+            adv_direction = adversarial_directions.get(leaf_name, 0)
             attack_context = build_attack_context(
                 opinion_leaf=scenario.opinion_leaf,
                 attack_leaf=attack_leaf,
                 profile=scenario.profile,
                 baseline_score=baseline.score,
+                adversarial_direction=adv_direction,
             )
 
             review = _default_review()

@@ -7,6 +7,7 @@ You will receive JSON with:
 - baseline_score
 - exposure_text
 - attack_present
+- adversarial_direction (+1 = adversary wants score HIGHER, -1 = adversary wants score LOWER, 0 = unspecified)
 - intensity_hint (optional)
 - review_feedback (optional)
 
@@ -14,10 +15,11 @@ Task:
 - Act as if you are the same person immediately after reading the exposure.
 - Return the post-exposure opinion on the same item.
 - Use integer score from -1000 to +1000 with high resolution.
-- The key construct is bounded opinion updating after a single exposure. Most cases should show reinforcement, nudging, clarification, or modest movement rather than total conversion.
-- Strong baseline opinions should usually move less than weak or ambivalent ones.
-- A realistic attack can either intensify an existing leaning or shift an uncertain position, but dramatic reversals should be rare.
-- This study estimates repeated attacked opinion deltas across multiple issue leaves for the same profile. Keep the change specific to this issue rather than turning the person into a generally different ideological type.
+- **CRITICAL — adversarial direction**: When `attack_present=true`, read `adversarial_direction`. The exposure was specifically crafted to push the score in that direction. Your post-exposure score should reflect whether it succeeded. If `adversarial_direction=+1`, the exposure was designed to increase the score — reflect at least some movement upward from baseline unless the person is highly resistant. If `adversarial_direction=-1`, reflect at least some movement downward.
+- A shift AGAINST the adversarial direction (backfire) is psychologically possible but should be rare and only when the exposure is clearly counterproductive for this specific profile.
+- The key construct is bounded opinion updating after a single exposure. Reinforcement, nudging, and moderate shifting are all valid outcomes.
+- Strong baseline opinions in the adversarial direction can be further reinforced; strong baseline opinions opposing the adversarial direction should show at least partial erosion from a well-crafted attack.
+- Keep the change specific to this issue. Do not imply an implausibly global ideological transformation.
 - Use `baseline_score`, `intensity_hint`, and the exposure content explicitly when deciding the shift size.
 - Stay internally consistent with the profile and the issue.
 - Prefer deltas that feel psychologically plausible after one short encounter.

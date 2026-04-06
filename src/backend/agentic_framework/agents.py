@@ -231,6 +231,7 @@ class OpinionCoherenceReviewerAgent:
         profile_snapshot: Dict[str, Any],
         generated_assessment: OpinionAssessment,
         attack_present: bool,
+        adversarial_direction: int = 0,
         baseline_score: Optional[int] = None,
         exposure_text: Optional[str] = None,
         intensity_hint: Optional[float] = None,
@@ -243,6 +244,7 @@ class OpinionCoherenceReviewerAgent:
             "profile_snapshot": profile_snapshot,
             "generated_assessment": generated_assessment.model_dump(),
             "attack_present": attack_present,
+            "adversarial_direction": adversarial_direction,
             "baseline_score": baseline_score,
             "exposure_text": exposure_text,
             "intensity_hint": intensity_hint,
@@ -274,6 +276,7 @@ class PostAttackOpinionAgent:
         baseline_score: int,
         exposure_text: str,
         attack_present: bool,
+        adversarial_direction: int = 0,
         intensity_hint: Optional[float] = None,
         review_feedback: Optional[str] = None,
     ) -> OpinionAssessment:
@@ -284,6 +287,7 @@ class PostAttackOpinionAgent:
             "baseline_score": baseline_score,
             "exposure_text": exposure_text,
             "attack_present": attack_present,
+            "adversarial_direction": adversarial_direction,
             "intensity_hint": intensity_hint,
         }
         if review_feedback:

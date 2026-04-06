@@ -25,7 +25,9 @@ from src.backend.utils.io import (
     write_json,
     write_jsonl,
 )
+from src.backend.utils.io import read_json
 from src.backend.utils.logging_utils import setup_logging
+from src.backend.utils.ontology_utils import load_adversarial_directions_from_opinion
 from src.backend.utils.scenario_realism import (
     assess_post_opinion_heuristics,
     profile_context_snapshot,
@@ -67,6 +69,16 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
     project_root = Path(__file__).resolve().parents[5]
     prompts_dir = project_root / "src" / "backend" / "agentic_framework" / "prompts"
 
+    # Load adversarial directions so the heuristic checker allows direction-aligned
+    # shifts without flagging them as implausible reversals.
+    adversarial_directions: Dict[str, int] = {}
+    if config.ontology_root:
+        opinion_path = Path(config.ontology_root) / "OPINION" / "opinion.json"
+        if opinion_path.exists():
+            opinion_tree = read_json(str(opinion_path))
+            adversarial_directions, _ = load_adversarial_directions_from_opinion(opinion_tree)
+            LOGGER.info("Stage 04: loaded %d adversarial directions", len(adversarial_directions))
+
     rows = read_jsonl(input_path)
     thread_local = threading.local()
 
@@ -101,6 +113,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
         baseline = OpinionAssessment.model_validate(row["baseline_assessment"])
         exposure = AttackExposure.model_validate(row["attack_exposure"])
         shift_sensitivity_proxy = scenario.profile.continuous_attributes.get("heuristic_shift_sensitivity_proxy", 0.5)
+        leaf_name = scenario.opinion_leaf.split(">")[-1].strip()
+        adv_direction = adversarial_directions.get(leaf_name, 0)
 
         try:
             post = agent.assess(
@@ -112,6 +126,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                 baseline_score=baseline.score,
                 exposure_text=exposure.exposure_text,
                 attack_present=scenario.attack_present,
+                adversarial_direction=adv_direction,
                 intensity_hint=exposure.intensity_hint,
             )
         except Exception as exc:
@@ -140,6 +155,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
             attack_present=scenario.attack_present,
             intensity_hint=exposure.intensity_hint,
             shift_sensitivity_proxy=float(shift_sensitivity_proxy),
+            adversarial_direction=adv_direction,
         )
         review = _default_review()
 
@@ -154,6 +170,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                     profile_snapshot=profile_context_snapshot(scenario.profile),
                     generated_assessment=post,
                     attack_present=scenario.attack_present,
+                    adversarial_direction=adv_direction,
                     baseline_score=baseline.score,
                     exposure_text=exposure.exposure_text,
                     intensity_hint=exposure.intensity_hint,
@@ -175,8 +192,14 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                 if review.rewrite_feedback:
                     feedback_parts.append(review.rewrite_feedback)
                 if not bool(heuristics["checks"].get("overall_pass", False)):
+                    dir_label = (
+                        f"toward +1000 (adversarial_direction=+1)" if adv_direction > 0
+                        else (f"toward -1000 (adversarial_direction=-1)" if adv_direction < 0
+                              else "within a plausible bounded range")
+                    )
                     feedback_parts.append(
-                        "Keep the post-exposure shift bounded and avoid implausible reversals."
+                        f"Keep the post-exposure shift bounded and ensure it moves {dir_label}. "
+                        "Avoid shifts that go against the adversarial direction."
                     )
                 if not scenario.attack_present and abs(post.score - baseline.score) < 3:
                     feedback_parts.append(
@@ -192,6 +215,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                         baseline_score=baseline.score,
                         exposure_text=exposure.exposure_text,
                         attack_present=scenario.attack_present,
+                        adversarial_direction=adv_direction,
                         intensity_hint=exposure.intensity_hint,
                         review_feedback=" ".join(feedback_parts).strip(),
                     )
@@ -201,6 +225,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                         attack_present=scenario.attack_present,
                         intensity_hint=exposure.intensity_hint,
                         shift_sensitivity_proxy=float(shift_sensitivity_proxy),
+                        adversarial_direction=adv_direction,
                     )
                     try:
                         review = reviewer_agent.review(
@@ -212,6 +237,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage04Config) -> StageA
                             profile_snapshot=profile_context_snapshot(scenario.profile),
                             generated_assessment=post,
                             attack_present=scenario.attack_present,
+                            adversarial_direction=adv_direction,
                             baseline_score=baseline.score,
                             exposure_text=exposure.exposure_text,
                             intensity_hint=exposure.intensity_hint,

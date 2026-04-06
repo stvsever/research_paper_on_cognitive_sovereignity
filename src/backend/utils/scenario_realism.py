@@ -92,7 +92,14 @@ def build_attack_context(
     attack_leaf: str,
     profile: ProfileConfiguration,
     baseline_score: int,
+    adversarial_direction: int = 0,
 ) -> Dict[str, object]:
+    """Build attack context for the exposure generator.
+
+    adversarial_direction: +1 (adversary wants score to INCREASE), -1 (wants DECREASE), 0 (unspecified).
+    This is critical: if not provided the persuasion goal will be direction-blind and attacks will
+    systematically reinforce existing positions rather than shift them toward the adversary's goal.
+    """
     domain = extract_opinion_domain(opinion_leaf)
     leaf_label = extract_leaf_label(opinion_leaf)
     context = profile_context_snapshot(profile)
@@ -108,22 +115,109 @@ def build_attack_context(
     else:
         issue_frame = "migration, citizenship, border governance, and social cohesion"
 
-    if neuroticism >= 60:
-        motivational_lever = "threat salience and uncertainty reduction"
-    elif conscientiousness >= 60:
-        motivational_lever = "order, duty, and rule-compliance framing"
-    elif openness >= 60:
-        motivational_lever = "pluralism, complexity, and reputational self-image"
-    else:
-        motivational_lever = "everyday fairness, trust, and social-proof cues"
-
+    # ── Direction-aware persuasion goal ──────────────────────────────────────
+    # Determine whether the baseline is aligned with (reinforcement) or opposed
+    # to (erosion / shift) the adversarial goal.  This is the most important
+    # context signal for the attack generator: without it the LLM defaults to
+    # reinforcing whatever the baseline says, which systematically defeats the
+    # adversary when the baseline is in the "wrong" direction.
+    #
+    # Alignment: baseline sign matches adversarial_direction (e.g. positive
+    # baseline AND adversary wants increase, or negative baseline AND adversary
+    # wants decrease).  Misalignment: they conflict.
+    baseline_sign = 0 if baseline_score == 0 else (1 if baseline_score > 0 else -1)
+    baseline_aligned = (adversarial_direction != 0) and (baseline_sign == adversarial_direction or baseline_sign == 0)
+    baseline_misaligned = (adversarial_direction != 0) and (baseline_sign != 0) and (baseline_sign != adversarial_direction)
     baseline_strength = abs(baseline_score)
-    if baseline_strength < 180:
-        persuasion_goal = "nudge an ambivalent opinion into a clearer directional stance"
-    elif baseline_strength < 500:
-        persuasion_goal = "reinforce and modestly intensify an existing leaning"
+
+    if adversarial_direction == 0:
+        # No direction info — fall back to neutral framing
+        if baseline_strength < 180:
+            persuasion_goal = "nudge an ambivalent opinion into a clearer directional stance"
+        elif baseline_strength < 500:
+            persuasion_goal = "modestly intensify an existing leaning"
+        else:
+            persuasion_goal = "gently reinforce an existing strong opinion"
+    elif baseline_misaligned:
+        # Adversary wants to shift the person AGAINST their current position
+        if baseline_strength < 300:
+            persuasion_goal = (
+                f"shift a weakly {'positive' if baseline_sign > 0 else 'negative'} opinion "
+                f"toward a {'more positive' if adversarial_direction > 0 else 'more negative'} stance "
+                f"on {leaf_label.replace('_', ' ')} through targeted framing and selective evidence"
+            )
+        else:
+            persuasion_goal = (
+                f"gradually erode a strong {'pro' if baseline_sign > 0 else 'anti'} position on "
+                f"{leaf_label.replace('_', ' ')} — introduce doubt, reframe costs/risks, and soften "
+                f"conviction without triggering overt reactance; aim to move the score "
+                f"{'upward' if adversarial_direction > 0 else 'downward'} even if the shift is modest"
+            )
+    elif baseline_aligned:
+        # Adversary and baseline agree — reinforce and amplify
+        if baseline_strength < 300:
+            persuasion_goal = (
+                f"intensify and solidify an already {'favorable' if baseline_sign > 0 else 'negative'} "
+                f"opinion on {leaf_label.replace('_', ' ')} — push it further in the "
+                f"{'positive' if adversarial_direction > 0 else 'negative'} direction"
+            )
+        else:
+            persuasion_goal = (
+                f"reinforce and deepen the existing strong "
+                f"{'support for' if baseline_sign > 0 else 'opposition to'} {leaf_label.replace('_', ' ')}"
+            )
     else:
-        persuasion_goal = "reinforce an existing strong position rather than attempting an implausible reversal"
+        persuasion_goal = "nudge the opinion in a direction consistent with the adversarial goal"
+
+    # ── Direction-aware emotional trigger ────────────────────────────────────
+    # Use the adversarial direction rather than the baseline sign so the attack
+    # uses the right emotional lever for the goal (not just for the status quo).
+    if adversarial_direction < 0:
+        # Adversary wants to reduce / undermine → use threat, doubt, failure framing
+        if neuroticism >= 60:
+            emotional_trigger = "threat salience, uncertainty, and fear of negative outcomes"
+        elif conscientiousness >= 60:
+            emotional_trigger = "systemic failure, unreliability, and unintended negative consequences"
+        else:
+            emotional_trigger = "loss framing, social doubt, and elite distrust"
+    elif adversarial_direction > 0:
+        # Adversary wants to increase → use identity affirmation, opportunity, pride framing
+        if neuroticism >= 60:
+            emotional_trigger = "safety reassurance and identity-protective certainty"
+        elif conscientiousness >= 60:
+            emotional_trigger = "duty, principle-alignment, and ordered benefit framing"
+        elif openness >= 60:
+            emotional_trigger = "pluralism, opportunity, and reputational self-image"
+        else:
+            emotional_trigger = "social proof, everyday fairness, and consensus cues"
+    else:
+        emotional_trigger = "threat" if baseline_score < 0 else "identity_reinforcement"
+
+    # ── Direction-aware motivational lever ───────────────────────────────────
+    if adversarial_direction != 0 and baseline_misaligned:
+        # Need to erode the opposite-direction position — use the lever most likely
+        # to bypass the persona's existing defence of that position
+        if neuroticism >= 60:
+            motivational_lever = "anxiety amplification and worst-case scenario framing"
+        elif conscientiousness >= 60:
+            motivational_lever = "rule-violation and systemic-risk framing to undermine confidence"
+        elif openness >= 60:
+            motivational_lever = "alternative expert perspective and complexity-acknowledgement"
+        else:
+            motivational_lever = "social-proof erosion and elite-distrust nudge"
+    else:
+        if neuroticism >= 60:
+            motivational_lever = "threat salience and uncertainty reduction"
+        elif conscientiousness >= 60:
+            motivational_lever = "order, duty, and rule-compliance framing"
+        elif openness >= 60:
+            motivational_lever = "pluralism, complexity, and reputational self-image"
+        else:
+            motivational_lever = "everyday fairness, trust, and social-proof cues"
+
+    # ── Shift band — wider when misaligned because stronger push needed ───────
+    band_multiplier = 1.4 if baseline_misaligned and baseline_strength >= 400 else 1.0
+    shift_dir_label = "upward" if adversarial_direction > 0 else ("downward" if adversarial_direction < 0 else "any")
 
     context.update(
         {
@@ -131,14 +225,34 @@ def build_attack_context(
             "opinion_leaf_label": leaf_label,
             "attack_leaf_label": extract_leaf_label(attack_leaf),
             "baseline_score": baseline_score,
-            "likely_emotional_trigger": "threat" if baseline_score < 0 else "identity_reinforcement",
+            "adversarial_direction": adversarial_direction,
+            "adversarial_direction_label": (
+                f"INCREASE (score must move {shift_dir_label}, toward +1000)"
+                if adversarial_direction > 0
+                else (
+                    f"DECREASE (score must move {shift_dir_label}, toward -1000)"
+                    if adversarial_direction < 0
+                    else "UNSPECIFIED"
+                )
+            ),
+            "baseline_vs_goal": (
+                "ALIGNED — baseline already points in the adversarial direction; reinforce it"
+                if baseline_aligned
+                else (
+                    "MISALIGNED — baseline opposes the adversarial goal; the attack must work AGAINST the current opinion"
+                    if baseline_misaligned
+                    else "AMBIVALENT — baseline near zero; push in adversarial direction"
+                )
+            ),
+            "likely_emotional_trigger": emotional_trigger,
             "issue_frame": issue_frame,
             "motivational_lever": motivational_lever,
             "persuasion_goal": persuasion_goal,
             "recommended_shift_band": {
-                "low": round(20 + 40 * shift_sensitivity_proxy, 1),
-                "typical": round(40 + 120 * shift_sensitivity_proxy, 1),
-                "upper": round(90 + 210 * shift_sensitivity_proxy, 1),
+                "direction": shift_dir_label,
+                "low": round((20 + 40 * shift_sensitivity_proxy) * band_multiplier, 1),
+                "typical": round((40 + 120 * shift_sensitivity_proxy) * band_multiplier, 1),
+                "upper": round((90 + 210 * shift_sensitivity_proxy) * band_multiplier, 1),
             },
             "paper_goal": (
                 "Investigate how inter-individual differences moderate the effectivity of cyber-manipulation "
@@ -195,6 +309,7 @@ def assess_post_opinion_heuristics(
     attack_present: bool,
     intensity_hint: float,
     shift_sensitivity_proxy: float,
+    adversarial_direction: int = 0,
 ) -> Dict[str, object]:
     delta = post_score - baseline_score
     max_shift = 80.0 + (280.0 * intensity_hint) + (220.0 * shift_sensitivity_proxy)
@@ -206,6 +321,19 @@ def assess_post_opinion_heuristics(
     strong_baseline = abs(baseline_score) >= 500
     strong_reversal = baseline_sign != 0 and post_sign != 0 and baseline_sign != post_sign and abs(post_score) >= 250
 
+    # A "reversal" is only truly implausible if it goes AGAINST the adversarial
+    # direction — i.e. the attack pushed the opinion the wrong way AND it was
+    # large.  If the reversal is IN the adversarial direction, it is exactly what
+    # we want and should not be penalised.
+    delta_sign = 0 if delta == 0 else (1 if delta > 0 else -1)
+    reversal_in_adversarial_direction = (adversarial_direction != 0) and (delta_sign == adversarial_direction)
+    implausible_reversal = (
+        strong_baseline
+        and strong_reversal
+        and abs(delta) > max_shift * 0.75
+        and not reversal_in_adversarial_direction  # allow direction-aligned large shifts
+    )
+
     checks: Dict[str, bool] = {
         "within_scale": -1000 <= post_score <= 1000,
         "high_resolution": abs(post_score) % 50 != 0,
@@ -214,7 +342,7 @@ def assess_post_opinion_heuristics(
         # A neutral repeated measure on a high-resolution scale should not collapse into exact cloning
         # across the entire control arm. Small drift keeps the counterfactual more realistic.
         "control_not_exact_clone": True if attack_present else abs(delta) >= 3,
-        "no_implausible_reversal": not (strong_baseline and strong_reversal and abs(delta) > max_shift * 0.75),
+        "no_implausible_reversal": not implausible_reversal,
     }
     checks["overall_pass"] = all(checks.values())
     return {
