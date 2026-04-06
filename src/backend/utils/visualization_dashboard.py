@@ -2,6 +2,7 @@
 Interactive attack-effectivity dashboard — next-level visualization.
 
 Tabs (generic for any run):
+  🗂 Ontologies        → Ontology Explorer
   📡 Factorial Space   → Factorial 3D Surface, Factorial Heat + Contour
   🧠 SEM Analysis      → SEM Network (interactive), SEM Heatmap
   🔬 Estimation        → Conditional Susceptibility Estimator ★ (new), Perturbation Explorer
@@ -139,6 +140,230 @@ def _infer_sem_moderator_groups(label: str) -> Tuple[str, str]:
     return "Other Moderators", txt.split(" ")[0]
 
 
+def _humanize_ontology_label(label: str) -> str:
+    text = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", str(label).replace("_", " ").strip())
+    text = re.sub(r"\s+", " ", text).strip()
+    if not text:
+        return ""
+    if text.lower() == text:
+        specials = {"ai", "ui", "id", "uk", "us", "eu", "vat", "ngo", "api"}
+        parts = [
+            part.upper() if part.lower() in specials else part.capitalize()
+            for part in text.split(" ")
+        ]
+        return " ".join(parts)
+    return text
+
+
+def _split_ontology_children(node: Any) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    if not isinstance(node, dict):
+        return {}, {"value": node}
+    structural: Dict[str, Any] = {}
+    metadata: Dict[str, Any] = {}
+    for key, value in node.items():
+        if str(key).startswith("_"):
+            metadata[str(key)] = value
+        elif isinstance(value, dict):
+            structural[str(key)] = value
+        else:
+            metadata[str(key)] = value
+    return structural, metadata
+
+
+def _build_ontology_payload(
+    tree: Dict[str, Any],
+    *,
+    env: str,
+    ontology_key: str,
+    sampled_paths: set[str],
+    sampled_leaf_names: set[str],
+) -> Dict[str, Any]:
+    root_label = {
+        "ATTACK": "Attack Ontology",
+        "OPINION": "Opinion Ontology",
+        "PROFILE": "Profile Ontology",
+    }.get(ontology_key, ontology_key.title())
+
+    nodes: List[Dict[str, Any]] = []
+    node_counter = 0
+
+    def _walk(
+        label: str,
+        payload: Any,
+        parent_id: Optional[str],
+        raw_parts: Tuple[str, ...],
+        depth: int,
+    ) -> Tuple[str, int, int, int, int, int, int]:
+        nonlocal node_counter
+        node_id = f"{env}:{ontology_key}:{node_counter}"
+        node_counter += 1
+
+        structural, metadata = _split_ontology_children(payload)
+        metadata_preview: List[List[str]] = []
+        for key, value in list(metadata.items())[:6]:
+            if isinstance(value, (dict, list)):
+                value_txt = json.dumps(value, ensure_ascii=False)
+            else:
+                value_txt = str(value)
+            metadata_preview.append([
+                _humanize_ontology_label(key),
+                _clip_label(value_txt.replace("\n", " "), 120),
+            ])
+
+        raw_path = " > ".join(raw_parts)
+        human_path = " > ".join(_humanize_ontology_label(part) for part in raw_parts) if raw_parts else root_label
+        display_label = _humanize_ontology_label(label)
+
+        node: Dict[str, Any] = {
+            "id": node_id,
+            "parent": parent_id,
+            "name": str(label),
+            "label": display_label,
+            "short": _clip_label(display_label, 30),
+            "tiny": _clip_label(display_label, 18),
+            "depth": depth,
+            "path": raw_path,
+            "path_label": human_path,
+            "children": [],
+            "metadata_preview": metadata_preview,
+            "metadata_count": len(metadata),
+            "kind": "branch",
+            "sample_exact": False,
+            "sample_aligned": False,
+        }
+        nodes.append(node)
+
+        subtree_nodes = 1
+        subtree_leaves = 0
+        subtree_metadata_leaves = 0
+        subtree_exact = 0
+        subtree_aligned = 0
+        max_depth = depth
+
+        if not structural:
+            node["kind"] = "leaf_meta" if metadata else "leaf"
+            subtree_leaves = 1
+            if metadata:
+                subtree_metadata_leaves = 1
+            leaf_token = raw_parts[-1] if raw_parts else str(label)
+            node["sample_exact"] = bool(raw_path and raw_path in sampled_paths)
+            node["sample_aligned"] = bool(
+                raw_path and not node["sample_exact"] and leaf_token in sampled_leaf_names
+            )
+            subtree_exact = 1 if node["sample_exact"] else 0
+            subtree_aligned = 1 if node["sample_aligned"] else 0
+        else:
+            for child_name, child_payload in structural.items():
+                child_id, n_nodes, n_leaves, n_meta_leaves, child_max_depth, n_exact, n_aligned = _walk(
+                    child_name,
+                    child_payload,
+                    node_id,
+                    raw_parts + (child_name,),
+                    depth + 1,
+                )
+                node["children"].append(child_id)
+                subtree_nodes += n_nodes
+                subtree_leaves += n_leaves
+                subtree_metadata_leaves += n_meta_leaves
+                subtree_exact += n_exact
+                subtree_aligned += n_aligned
+                max_depth = max(max_depth, child_max_depth)
+
+        node["child_count"] = len(node["children"])
+        node["leaf_count"] = subtree_leaves
+        node["subtree_node_count"] = subtree_nodes
+        node["metadata_leaf_count"] = subtree_metadata_leaves
+        node["max_subtree_depth"] = max_depth
+        node["sample_exact_subtree"] = subtree_exact
+        node["sample_aligned_subtree"] = subtree_aligned
+
+        return (
+            node_id,
+            subtree_nodes,
+            subtree_leaves,
+            subtree_metadata_leaves,
+            max_depth,
+            subtree_exact,
+            subtree_aligned,
+        )
+
+    root_id, node_count, leaf_count, metadata_leaf_count, max_depth, exact_count, aligned_count = _walk(
+        root_label,
+        tree,
+        None,
+        (),
+        0,
+    )
+
+    branch_count = sum(1 for node in nodes if node["kind"] == "branch")
+    recommended_depth = 2 if leaf_count > 1500 else 3 if leaf_count > 200 else min(4, max_depth)
+
+    return {
+        "root_id": root_id,
+        "nodes": nodes,
+        "summary": {
+            "node_count": int(node_count),
+            "leaf_count": int(leaf_count),
+            "branch_count": int(branch_count),
+            "metadata_leaf_count": int(metadata_leaf_count),
+            "max_depth": int(max_depth),
+            "recommended_depth": int(max(recommended_depth, 1)),
+            "sample_exact_count": int(exact_count),
+            "sample_aligned_count": int(aligned_count),
+        },
+    }
+
+
+def _load_dashboard_ontology_payload(ontology_catalog: Dict[str, Any]) -> Dict[str, Any]:
+    project_root = Path(__file__).resolve().parents[3]
+    ontology_root = str(ontology_catalog.get("ontology_root", ""))
+    run_source = "test" if "separate/test" in ontology_root else "production"
+
+    selected_attack_paths = {str(v) for v in ontology_catalog.get("selected_attack_leaves", [])}
+    if not selected_attack_paths and ontology_catalog.get("selected_attack_leaf"):
+        selected_attack_paths.add(str(ontology_catalog["selected_attack_leaf"]))
+    selected_opinion_paths = {str(v) for v in ontology_catalog.get("selected_opinion_leaves", [])}
+
+    sampled_paths_by_key: Dict[str, set[str]] = {
+        "ATTACK": selected_attack_paths,
+        "OPINION": selected_opinion_paths,
+        "PROFILE": set(),
+    }
+    sampled_leaf_names_by_key: Dict[str, set[str]] = {
+        key: {path.split(">")[-1].strip() for path in paths if str(path).strip()}
+        for key, paths in sampled_paths_by_key.items()
+    }
+
+    sources: Dict[str, Dict[str, Any]] = {}
+    for env in ("production", "test"):
+        env_root = project_root / "src" / "backend" / "ontology" / "separate" / env
+        env_sources: Dict[str, Any] = {}
+        for ontology_key, rel in {
+            "ATTACK": env_root / "ATTACK" / "attack.json",
+            "OPINION": env_root / "OPINION" / "opinion.json",
+            "PROFILE": env_root / "PROFILE" / "profile.json",
+        }.items():
+            raw_tree = json.loads(rel.read_text(encoding="utf-8"))
+            env_sources[ontology_key] = _build_ontology_payload(
+                raw_tree,
+                env=env,
+                ontology_key=ontology_key,
+                sampled_paths=sampled_paths_by_key.get(ontology_key, set()),
+                sampled_leaf_names=sampled_leaf_names_by_key.get(ontology_key, set()),
+            )
+        sources[env] = env_sources
+
+    return {
+        "current_run_source": run_source,
+        "selected_paths": {
+            "ATTACK": sorted(selected_attack_paths),
+            "OPINION": sorted(selected_opinion_paths),
+            "PROFILE": [],
+        },
+        "sources": sources,
+    }
+
+
 def _build_tree_nodes(paths_with_values: List[Tuple[List[str], float]]) -> Tuple[List[str], List[str], List[str], List[float], List[str]]:
     nodes: Dict[str, Dict[str, Any]] = {}
     for path, value in paths_with_values:
@@ -214,6 +439,852 @@ body{{margin:0;padding:16px;background:#ffffff;font-family:"IBM Plex Sans","Aven
 
 # ─── figure builders ──────────────────────────────────────────────────────────
 
+def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
+    payload_json = json.dumps(ontology_payload, ensure_ascii=False)
+    return f"""
+<div id="ontx-root">
+  <style>
+    #ontx-root .ontx-shell{{display:grid;grid-template-columns:minmax(300px,340px) minmax(0,1fr);gap:16px;align-items:start}}
+    #ontx-root .ontx-card,#ontx-root .ontx-panel,#ontx-root .ontx-canvas-card{{background:#f7faff;border:1px solid #dbe3ef;border-radius:14px;box-shadow:0 3px 14px rgba(20,33,61,0.05)}}
+    #ontx-root .ontx-card{{padding:12px 13px}}
+    #ontx-root .ontx-card + .ontx-card{{margin-top:10px}}
+    #ontx-root .ontx-title{{font-weight:800;font-size:0.92rem;color:{PALETTE['navy']};margin-bottom:8px}}
+    #ontx-root .ontx-sub{{font-size:0.76rem;line-height:1.45;color:{PALETTE['muted']};margin-bottom:8px}}
+    #ontx-root .ontx-segment{{display:flex;flex-wrap:wrap;gap:6px}}
+    #ontx-root .ontx-btn{{padding:6px 10px;border-radius:999px;border:1px solid #c8d7ec;background:#fff;color:{PALETTE['ink']};cursor:pointer;font-size:0.75rem;font-weight:700}}
+    #ontx-root .ontx-btn.active{{background:{PALETTE['blue']};border-color:{PALETTE['blue']};color:#fff}}
+    #ontx-root .ontx-focus{{display:flex;flex-direction:column;gap:8px}}
+    #ontx-root .ontx-focus-item{{padding:10px 11px;border-radius:12px;border:1px solid #dbe3ef;background:#fff;cursor:pointer;transition:transform 120ms ease,border-color 120ms ease,box-shadow 120ms ease}}
+    #ontx-root .ontx-focus-item:hover{{transform:translateY(-1px);box-shadow:0 6px 14px rgba(20,33,61,0.08)}}
+    #ontx-root .ontx-focus-item.active{{border-color:{PALETTE['blue']};box-shadow:0 0 0 2px rgba(29,78,137,0.08)}}
+    #ontx-root .ontx-focus-top{{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:5px}}
+    #ontx-root .ontx-focus-top strong{{font-size:0.82rem;color:{PALETTE['ink']}}}
+    #ontx-root .ontx-focus-pill{{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;font-size:0.66rem;font-weight:800;letter-spacing:0.02em}}
+    #ontx-root .ontx-focus-meta{{display:flex;gap:10px;flex-wrap:wrap;font-size:0.72rem;color:{PALETTE['muted']}}}
+    #ontx-root .ontx-grid{{display:grid;grid-template-columns:1fr 1fr;gap:8px}}
+    #ontx-root .ontx-select{{width:100%;padding:7px 8px;border-radius:9px;border:1px solid #dbe3ef;background:#fff;color:{PALETTE['ink']};font-size:0.80rem}}
+    #ontx-root .ontx-slider-wrap{{background:#fff;border:1px solid #dbe3ef;border-radius:10px;padding:9px 10px}}
+    #ontx-root .ontx-slider-meta{{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:0.76rem;color:{PALETTE['muted']};font-weight:700;margin-bottom:6px}}
+    #ontx-root input[type="range"]{{width:100%;accent-color:{PALETTE['blue']}}}
+    #ontx-root .ontx-toggle{{display:flex;align-items:center;gap:7px;font-size:0.77rem;color:{PALETTE['ink']};font-weight:600}}
+    #ontx-root .ontx-toggle-list{{display:flex;flex-direction:column;gap:8px}}
+    #ontx-root .ontx-search{{width:100%;padding:9px 10px;border-radius:10px;border:1px solid #dbe3ef;background:#fff;font-size:0.82rem;color:{PALETTE['ink']}}}
+    #ontx-root .ontx-results{{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow:auto;margin-top:10px;padding-right:4px}}
+    #ontx-root .ontx-result{{padding:8px 9px;border-radius:10px;background:#fff;border:1px solid #dbe3ef;cursor:pointer}}
+    #ontx-root .ontx-result strong{{display:block;font-size:0.77rem;color:{PALETTE['ink']}}}
+    #ontx-root .ontx-result span{{display:block;font-size:0.71rem;color:{PALETTE['muted']};line-height:1.4;margin-top:3px}}
+    #ontx-root .ontx-stage{{display:flex;flex-direction:column;gap:12px}}
+    #ontx-root .ontx-banner{{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#f8fbff 0%,#eef5ff 100%);border:1px solid #dbe3ef;border-radius:12px;padding:11px 13px}}
+    #ontx-root .ontx-status{{font-size:0.79rem;line-height:1.5;color:{PALETTE['muted']}}}
+    #ontx-root .ontx-status strong{{color:{PALETTE['ink']}}}
+    #ontx-root .ontx-legend{{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}}
+    #ontx-root .ontx-legend-item{{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:{PALETTE['muted']}}}
+    #ontx-root .ontx-swatch{{display:inline-block;width:28px;height:10px;border-radius:999px}}
+    #ontx-root .ontx-swatch.attack{{background:linear-gradient(90deg,rgba(231,111,81,0.22),rgba(231,111,81,0.92))}}
+    #ontx-root .ontx-swatch.opinion{{background:linear-gradient(90deg,rgba(42,157,143,0.22),rgba(42,157,143,0.92))}}
+    #ontx-root .ontx-swatch.profile{{background:linear-gradient(90deg,rgba(29,78,137,0.22),rgba(29,78,137,0.92))}}
+    #ontx-root .ontx-compare{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+    #ontx-root .ontx-compare-card{{padding:11px 12px;border-radius:12px;border:1px solid #dbe3ef;background:#fff}}
+    #ontx-root .ontx-compare-card.active{{border-color:{PALETTE['blue']};box-shadow:0 0 0 2px rgba(29,78,137,0.08)}}
+    #ontx-root .ontx-compare-top{{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:7px}}
+    #ontx-root .ontx-compare-top strong{{font-size:0.82rem;color:{PALETTE['ink']}}}
+    #ontx-root .ontx-chip{{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;font-size:0.66rem;font-weight:800;letter-spacing:0.02em}}
+    #ontx-root .ontx-compare-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}}
+    #ontx-root .ontx-metric{{padding:7px 8px;border-radius:10px;background:#f8fbff;border:1px solid #e2eaf5}}
+    #ontx-root .ontx-metric .k{{font-size:0.67rem;text-transform:uppercase;letter-spacing:0.06em;color:{PALETTE['muted']}}}
+    #ontx-root .ontx-metric .v{{font-size:0.90rem;font-weight:800;color:{PALETTE['ink']};margin-top:2px}}
+    #ontx-root .ontx-canvas-card{{padding:0;overflow:hidden}}
+    #ontx-root .ontx-canvas-head{{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:12px 14px;border-bottom:1px solid #dbe3ef;background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%)}}
+    #ontx-root .ontx-canvas-head strong{{display:block;font-size:0.94rem;color:{PALETTE['navy']}}}
+    #ontx-root .ontx-canvas-head span{{display:block;font-size:0.74rem;color:{PALETTE['muted']};margin-top:3px;line-height:1.45}}
+    #ontx-root .ontx-chipline{{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}}
+    #ontx-root .ontx-chipline .ontx-chip{{background:rgba(29,78,137,0.08);color:{PALETTE['blue']}}}
+    #ontx-root #ontx-canvas-wrap{{background:
+      radial-gradient(circle at 12% 16%, rgba(42,157,143,0.08), transparent 28%),
+      radial-gradient(circle at 88% 14%, rgba(231,111,81,0.08), transparent 26%),
+      linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
+      min-height:760px;overflow:auto;padding:16px;
+      cursor:grab;user-select:none;-webkit-user-select:none}}
+    #ontx-root #ontx-svg{{display:block}}
+    #ontx-root .ontx-bottom{{display:grid;grid-template-columns:1.15fr 1fr 0.95fr;gap:12px}}
+    #ontx-root .ontx-panel{{padding:12px 13px}}
+    #ontx-root .ontx-panel h4{{margin:0 0 8px;font-size:0.82rem;color:{PALETTE['navy']}}}
+    #ontx-root .ontx-kv{{display:grid;grid-template-columns:1fr 1fr;gap:7px}}
+    #ontx-root .ontx-kv .ontx-metric{{padding:8px 9px}}
+    #ontx-root .ontx-meta-list{{display:flex;flex-direction:column;gap:6px;margin-top:10px}}
+    #ontx-root .ontx-meta-item{{padding:7px 8px;border-radius:10px;background:#fff;border:1px solid #dbe3ef}}
+    #ontx-root .ontx-meta-item strong{{display:block;font-size:0.75rem;color:{PALETTE['ink']};margin-bottom:2px}}
+    #ontx-root .ontx-meta-item span{{font-size:0.72rem;color:{PALETTE['muted']};line-height:1.4;word-break:break-word}}
+    #ontx-root .ontx-path{{padding:8px 9px;border-radius:10px;background:#fff;border:1px solid #dbe3ef;font-size:0.73rem;line-height:1.45;color:{PALETTE['muted']};word-break:break-word}}
+    #ontx-root .ontx-highlight-list{{display:flex;flex-direction:column;gap:7px}}
+    #ontx-root .ontx-highlight-item{{padding:8px 9px;border-radius:10px;background:#fff;border:1px solid #dbe3ef}}
+    #ontx-root .ontx-highlight-item strong{{display:block;font-size:0.76rem;color:{PALETTE['ink']}}}
+    #ontx-root .ontx-highlight-item span{{display:block;font-size:0.71rem;color:{PALETTE['muted']};line-height:1.4;margin-top:3px}}
+    #ontx-root .ontx-note{{font-size:0.73rem;line-height:1.45;color:{PALETTE['muted']}}}
+    #ontx-root .ontx-legend-stack{{display:flex;flex-direction:column;gap:8px}}
+    #ontx-root .ontx-legend-row{{display:flex;align-items:center;gap:9px;font-size:0.74rem;color:{PALETTE['muted']}}}
+    #ontx-root .ontx-node-demo{{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:999px;flex:0 0 auto}}
+    #ontx-root .ontx-actions{{display:flex;flex-wrap:wrap;gap:6px}}
+    @media (max-width: 1180px) {{
+      #ontx-root .ontx-shell{{grid-template-columns:1fr}}
+      #ontx-root .ontx-bottom{{grid-template-columns:1fr}}
+      #ontx-root .ontx-compare{{grid-template-columns:1fr}}
+    }}
+  </style>
+
+  <div class="ontx-shell">
+    <div>
+      <div class="ontx-card">
+        <div class="ontx-title">Ontology Source</div>
+        <div class="ontx-sub">Production is the default explorer surface. This run used the test ontology, so the source toggle lets you compare the research-scale production hierarchy against the exact pilot ontology used in run 8.</div>
+        <div class="ontx-segment" id="ontx-source">
+          <button class="ontx-btn active" data-source="production">Production</button>
+          <button class="ontx-btn" data-source="test">Test</button>
+        </div>
+      </div>
+
+      <div class="ontx-card">
+        <div class="ontx-title">Ontology Focus</div>
+        <div class="ontx-sub">Choose which hierarchical state space to inspect: cybermanipulation attacks, opinion targets, or profile space.</div>
+        <div id="ontx-focus" class="ontx-focus"></div>
+      </div>
+
+      <div class="ontx-card">
+        <div class="ontx-title">Layout</div>
+        <div class="ontx-sub">Switch between directional tree flow, top-down structure, and radial orbit when the hierarchy gets dense.</div>
+        <div class="ontx-segment" id="ontx-layout">
+          <button class="ontx-btn active" data-layout="flow">Left → Right</button>
+          <button class="ontx-btn" data-layout="vertical">Top ↓ Bottom</button>
+          <button class="ontx-btn" data-layout="radial">Radial</button>
+        </div>
+      </div>
+
+      <div class="ontx-card">
+        <div class="ontx-title">Depth & Labels</div>
+        <div class="ontx-slider-wrap">
+          <div class="ontx-slider-meta"><span>Visible depth</span><span id="ontx-depth-display">3</span></div>
+          <input type="range" id="ontx-depth" min="1" max="8" step="1" value="3">
+        </div>
+        <div class="ontx-sub" style="margin:10px 0 6px">Label density</div>
+        <select id="ontx-label-mode" class="ontx-select">
+          <option value="compact" selected>Compact</option>
+          <option value="branches">Branches only</option>
+          <option value="full">Full labels</option>
+        </select>
+      </div>
+
+      <div class="ontx-card">
+        <div class="ontx-title">Visibility</div>
+        <div class="ontx-toggle-list">
+          <label class="ontx-toggle"><input type="checkbox" id="ontx-show-meta" checked> Show metadata halos for annotated leaves</label>
+          <label class="ontx-toggle"><input type="checkbox" id="ontx-highlight-run" checked> Highlight run-aligned leaves and branch matches</label>
+          <label class="ontx-toggle"><input type="checkbox" id="ontx-relevant-only"> Restrict view to run-aligned branches</label>
+        </div>
+      </div>
+
+      <div class="ontx-card">
+        <div class="ontx-title">Search</div>
+        <input id="ontx-search" class="ontx-search" type="text" placeholder="Search branches, leaves, or paths">
+        <div id="ontx-results" class="ontx-results"></div>
+      </div>
+
+      <div class="ontx-card">
+        <div class="ontx-title">Actions</div>
+        <div class="ontx-actions">
+          <button class="ontx-btn" id="ontx-expand-all">Expand all</button>
+          <button class="ontx-btn" id="ontx-collapse-all">Collapse all</button>
+          <button class="ontx-btn" id="ontx-reset-depth">Reset to depth</button>
+          <button class="ontx-btn" id="ontx-zoom-out">Zoom −</button>
+          <button class="ontx-btn" id="ontx-zoom-in">Zoom +</button>
+          <button class="ontx-btn" id="ontx-zoom-reset">100%</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ontx-stage">
+      <div class="ontx-banner">
+        <div class="ontx-status" id="ontx-status"></div>
+        <div class="ontx-legend">
+          <div class="ontx-legend-item"><span class="ontx-swatch attack"></span><span>attack ontology accent</span></div>
+          <div class="ontx-legend-item"><span class="ontx-swatch opinion"></span><span>opinion ontology accent</span></div>
+          <div class="ontx-legend-item"><span class="ontx-swatch profile"></span><span>profile ontology accent</span></div>
+        </div>
+      </div>
+
+      <div id="ontx-compare" class="ontx-compare"></div>
+
+      <div class="ontx-canvas-card">
+        <div class="ontx-canvas-head">
+          <div>
+            <strong id="ontx-active-title"></strong>
+            <span id="ontx-active-sub"></span>
+          </div>
+          <div class="ontx-chipline" id="ontx-chipline"></div>
+        </div>
+        <div id="ontx-canvas-wrap"></div>
+      </div>
+
+      <div class="ontx-bottom">
+        <div class="ontx-panel">
+          <h4>Selected Node</h4>
+          <div id="ontx-inspector"></div>
+        </div>
+        <div class="ontx-panel">
+          <h4>Path Highlights</h4>
+          <div id="ontx-highlights" class="ontx-highlight-list"></div>
+        </div>
+        <div class="ontx-panel">
+          <h4>Legend & Use</h4>
+          <div class="ontx-legend-stack">
+            <div class="ontx-legend-row"><span class="ontx-node-demo" style="background:{PALETTE['panel']};border:2px solid {PALETTE['ink']}"></span><span>Branch node. Click to expand or collapse the subtree.</span></div>
+            <div class="ontx-legend-row"><span class="ontx-node-demo" style="background:{PALETTE['panel']};border:2px dashed {PALETTE['amber']}"></span><span>Dashed halo marks annotated test leaves with metadata such as descriptions or adversarial direction.</span></div>
+            <div class="ontx-legend-row"><span class="ontx-node-demo" style="background:{PALETTE['panel']};border:2px solid {PALETTE['gold']};box-shadow:0 0 0 3px rgba(240,192,64,0.16)"></span><span>Gold ring marks exact run-aligned leaves in the ontology source used by the run.</span></div>
+            <div class="ontx-legend-row"><span class="ontx-node-demo" style="background:{PALETTE['panel']};border:2px solid {PALETTE['amber']}"></span><span>Amber ring marks leaf-name alignment across sources, useful when the production ontology extends the test ontology.</span></div>
+            <div class="ontx-note">Use lower visible depth for the production ATTACK and PROFILE ontologies, then search or expand selected branches to inspect local structure without overwhelming the canvas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){{
+    const DATA = {payload_json};
+    const root = document.getElementById('ontx-root');
+    const COLORS = {{
+      ATTACK:  {{ hue: 18,  accent: '{PALETTE['orange']}', soft: 'rgba(231,111,81,0.14)', edge: 'rgba(231,111,81,0.24)' }},
+      OPINION: {{ hue: 168, accent: '{PALETTE['teal']}',   soft: 'rgba(42,157,143,0.14)', edge: 'rgba(42,157,143,0.24)' }},
+      PROFILE: {{ hue: 214, accent: '{PALETTE['blue']}',   soft: 'rgba(29,78,137,0.14)', edge: 'rgba(29,78,137,0.22)' }},
+    }};
+    const expanded = {{}};
+    const depthStore = {{}};
+    const state = {{
+      source: 'production',
+      ontology: 'ATTACK',
+      layout: 'flow',
+      maxDepth: 3,
+      labelMode: 'compact',
+      showMetadata: true,
+      highlightRun: true,
+      relevantOnly: false,
+      zoom: 1,
+      search: '',
+      selectedId: null,
+    }};
+
+    function escapeHtml(txt) {{
+      return String(txt ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }}
+    function datasetKey() {{
+      return `${{state.source}}:${{state.ontology}}`;
+    }}
+    function dataset() {{
+      return DATA.sources[state.source][state.ontology];
+    }}
+    function activeSpec() {{
+      return COLORS[state.ontology];
+    }}
+    function initDatasets() {{
+      Object.entries(DATA.sources).forEach(([env, envObj]) => {{
+        Object.entries(envObj).forEach(([ontology, ds]) => {{
+          ds.nodeMap = Object.fromEntries(ds.nodes.map(n => [n.id, n]));
+          const key = `${{env}}:${{ontology}}`;
+          depthStore[key] = ds.summary.recommended_depth || 3;
+          /* Always open layers 1 & 2: expand all branch nodes at depth 0 and 1 */
+          expanded[key] = new Set(
+            ds.nodes
+              .filter(n => n.kind === 'branch' && n.depth <= 1)
+              .map(n => n.id)
+          );
+        }});
+      }});
+      state.maxDepth = depthStore[datasetKey()] || 3;
+      state.selectedId = dataset().root_id;
+    }}
+    function badgeHtml(text, bg, fg) {{
+      return `<span class="ontx-chip" style="background:${{bg}};color:${{fg}}">${{escapeHtml(text)}}</span>`;
+    }}
+    function setSource(source) {{
+      state.source = source;
+      state.maxDepth = depthStore[datasetKey()] || dataset().summary.recommended_depth || 3;
+      root.querySelector('#ontx-depth').value = state.maxDepth;
+      root.querySelector('#ontx-depth-display').textContent = state.maxDepth;
+      state.selectedId = dataset().root_id;
+      syncButtons();
+      renderAll();
+    }}
+    function setOntology(ontology) {{
+      state.ontology = ontology;
+      state.maxDepth = depthStore[datasetKey()] || dataset().summary.recommended_depth || 3;
+      root.querySelector('#ontx-depth').value = state.maxDepth;
+      root.querySelector('#ontx-depth-display').textContent = state.maxDepth;
+      state.selectedId = dataset().root_id;
+      renderAll();
+    }}
+    function setLayout(layout) {{
+      state.layout = layout;
+      syncButtons();
+      renderGraph();
+    }}
+    function syncButtons() {{
+      root.querySelectorAll('#ontx-source .ontx-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.source === state.source));
+      root.querySelectorAll('#ontx-layout .ontx-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.layout === state.layout));
+    }}
+    function relevantAvailable(ds) {{
+      return (ds.summary.sample_exact_count || 0) + (ds.summary.sample_aligned_count || 0);
+    }}
+    function currentExpanded() {{
+      return expanded[datasetKey()];
+    }}
+    function collapseAll() {{
+      expanded[datasetKey()] = new Set();
+      renderGraph();
+      renderInspector();
+    }}
+    function expandAll() {{
+      const ds = dataset();
+      expanded[datasetKey()] = new Set(ds.nodes.filter(n => n.kind === 'branch').map(n => n.id));
+      renderGraph();
+      renderInspector();
+    }}
+    function resetToDepth() {{
+      const ds = dataset();
+      expanded[datasetKey()] = new Set(ds.nodes.filter(n => n.kind === 'branch' && n.depth < state.maxDepth).map(n => n.id));
+      renderGraph();
+      renderInspector();
+    }}
+    function expandAncestors(id) {{
+      const ds = dataset();
+      const nodeMap = ds.nodeMap;
+      let cur = nodeMap[id];
+      while (cur && cur.parent) {{
+        currentExpanded().add(cur.parent);
+        cur = nodeMap[cur.parent];
+      }}
+    }}
+    /* BM25-inspired lexical search */
+    function bm25Score(tokens, node) {{
+      if (!tokens.length) return 0;
+      const k1 = 1.5, b = 0.75, AVG_LEN = 14;
+      const docText = `${{node.label}} ${{node.path_label||''}} ${{node.name||''}}`.toLowerCase();
+      const docTokens = docText.split(/[^a-z0-9]+/).filter(Boolean);
+      const docLen = Math.max(docTokens.length, 1);
+      let score = 0;
+      for (const term of tokens) {{
+        const tf = docTokens.reduce((a, t) => a + (t.startsWith(term) ? 1 : 0), 0);
+        if (!tf) continue;
+        const labelExact = node.label.toLowerCase().includes(term);
+        const labelBoost = labelExact ? 2.5 : 1.0;
+        const tf_n = (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * docLen / AVG_LEN));
+        score += tf_n * labelBoost;
+      }}
+      return score;
+    }}
+    function searchMatches(ds) {{
+      const q = state.search.trim().toLowerCase();
+      if (!q) return [];
+      const tokens = q.split(/ +/).filter(t => t.length >= 2);
+      if (!tokens.length) {{
+        return ds.nodes.filter(n => n.label.toLowerCase().startsWith(q)).slice(0, 18);
+      }}
+      return ds.nodes
+        .map(n => ({{ node: n, score: bm25Score(tokens, n) }}))
+        .filter(r => r.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 18)
+        .map(r => r.node);
+    }}
+    function allowRelevant(node) {{
+      if (!state.relevantOnly) return true;
+      return (node.sample_exact_subtree || 0) > 0 || (node.sample_aligned_subtree || 0) > 0;
+    }}
+    function collectVisible(ds) {{
+      const nodeMap = ds.nodeMap;
+      const visibleNodes = [];
+      const visibleEdges = [];
+      const visibleChildren = {{}};
+      function walk(id) {{
+        const node = nodeMap[id];
+        if (!node) return;
+        if (id !== ds.root_id && !allowRelevant(node)) return;
+        visibleNodes.push(node);
+        const childIds = node.children
+          .filter(childId => nodeMap[childId] && allowRelevant(nodeMap[childId]));
+        const open = id === ds.root_id || currentExpanded().has(id);
+        const descend = open && node.depth < state.maxDepth;
+        visibleChildren[id] = descend ? childIds : [];
+        if (descend) {{
+          childIds.forEach(childId => {{
+            visibleEdges.push([id, childId]);
+            walk(childId);
+          }});
+        }}
+      }}
+      walk(ds.root_id);
+      return {{ visibleNodes, visibleEdges, visibleChildren }};
+    }}
+    function layoutTree(ds, visible) {{
+      const order = {{}};
+      const children = visible.visibleChildren;
+      let leafIndex = 0;
+      function place(id) {{
+        const kids = children[id] || [];
+        if (!kids.length) {{
+          order[id] = leafIndex++;
+          return order[id];
+        }}
+        const vals = kids.map(place);
+        order[id] = vals.reduce((a, b) => a + b, 0) / Math.max(vals.length, 1);
+        return order[id];
+      }}
+      place(ds.root_id);
+      const maxDepth = Math.max(...visible.visibleNodes.map(n => n.depth), 0);
+      if (state.layout === 'flow') {{
+        const width = Math.max(860, 160 + maxDepth * 220 + 340);
+        const height = Math.max(440, leafIndex * 54 + 120);
+        const pos = {{}};
+        visible.visibleNodes.forEach(node => {{
+          pos[node.id] = {{
+            x: 84 + node.depth * 220,
+            y: 60 + (order[node.id] || 0) * 54,
+          }};
+        }});
+        return {{ pos, width, height, centerX: width / 2, centerY: height / 2 }};
+      }}
+      if (state.layout === 'vertical') {{
+        const width = Math.max(760, leafIndex * 60 + 160);
+        const height = Math.max(520, 120 + maxDepth * 180 + 160);
+        const pos = {{}};
+        visible.visibleNodes.forEach(node => {{
+          pos[node.id] = {{
+            x: 80 + (order[node.id] || 0) * 60,
+            y: 72 + node.depth * 180,
+          }};
+        }});
+        return {{ pos, width, height, centerX: width / 2, centerY: height / 2 }};
+      }}
+
+      const maxVisibleDepth = Math.max(...visible.visibleNodes.map(n => n.depth), 1);
+      const angleById = {{}};
+      leafIndex = 0;
+      function placeRadial(id) {{
+        const kids = children[id] || [];
+        if (!kids.length) {{
+          const angle = ((leafIndex++) / Math.max(visible.visibleNodes.filter(n => !(children[n.id] || []).length).length, 1)) * Math.PI * 2;
+          angleById[id] = angle;
+          return angle;
+        }}
+        const vals = kids.map(placeRadial);
+        angleById[id] = vals.reduce((a, b) => a + b, 0) / Math.max(vals.length, 1);
+        return angleById[id];
+      }}
+      placeRadial(ds.root_id);
+      const radiusStep = 128;
+      const radiusMax = Math.max(2, maxVisibleDepth) * radiusStep;
+      const width = Math.max(780, radiusMax * 2 + 280);
+      const height = Math.max(780, radiusMax * 2 + 280);
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const pos = {{}};
+      visible.visibleNodes.forEach(node => {{
+        const angle = angleById[node.id] || 0;
+        const radius = node.depth * radiusStep;
+        pos[node.id] = {{
+          x: centerX + Math.cos(angle - Math.PI / 2) * radius,
+          y: centerY + Math.sin(angle - Math.PI / 2) * radius,
+        }};
+      }});
+      return {{ pos, width, height, centerX, centerY }};
+    }}
+    function edgePath(p0, p1) {{
+      if (state.layout === 'flow') {{
+        const dx = (p1.x - p0.x) * 0.38;
+        return `M ${{p0.x}} ${{p0.y}} C ${{p0.x + dx}} ${{p0.y}}, ${{p1.x - dx}} ${{p1.y}}, ${{p1.x}} ${{p1.y}}`;
+      }}
+      if (state.layout === 'vertical') {{
+        const dy = (p1.y - p0.y) * 0.4;
+        return `M ${{p0.x}} ${{p0.y}} C ${{p0.x}} ${{p0.y + dy}}, ${{p1.x}} ${{p1.y - dy}}, ${{p1.x}} ${{p1.y}}`;
+      }}
+      return `M ${{p0.x}} ${{p0.y}} L ${{p1.x}} ${{p1.y}}`;
+    }}
+    function nodeFill(node) {{
+      const spec = activeSpec();
+      const leaf = node.kind !== 'branch';
+      const sat = leaf ? 74 : 56;
+      const light = Math.max(30, (leaf ? 88 : 92) - node.depth * 6.2);
+      return `hsl(${{spec.hue}}, ${{sat}}%, ${{light}}%)`;
+    }}
+    function nodeRadius(node, dense) {{
+      if (node.kind === 'branch') {{
+        return dense ? Math.min(10, 5 + Math.log2((node.leaf_count || 1) + 1) * 1.15) : Math.min(16, 7 + Math.log2((node.leaf_count || 1) + 1) * 1.3);
+      }}
+      return dense ? 3.6 : 5.4;
+    }}
+    function labelText(node, dense) {{
+      if (state.labelMode === 'branches' && node.kind !== 'branch') return '';
+      if (state.labelMode === 'full') return node.label;
+      if (state.labelMode === 'compact') {{
+        /* Always show at least tiny label on the right; suppress only in extreme density (>600 nodes) */
+        if (dense && visible_count > 600 && node.kind !== 'branch') return '';
+        return dense ? node.tiny : (node.kind === 'branch' ? node.short : node.tiny);
+      }}
+      return node.short;
+    }}
+    function labelAttrs(node, radius, position, layoutInfo) {{
+      if (state.layout === 'flow') {{
+        return {{ x: radius + 9, y: 4, anchor: 'start' }};
+      }}
+      if (state.layout === 'vertical') {{
+        return {{ x: 0, y: radius + 16, anchor: 'middle' }};
+      }}
+      const toRight = position.x >= layoutInfo.centerX;
+      return {{ x: toRight ? radius + 9 : -radius - 9, y: 4, anchor: toRight ? 'start' : 'end' }};
+    }}
+    function renderFocusCards() {{
+      const envData = DATA.sources[state.source];
+      const html = ['ATTACK', 'OPINION', 'PROFILE'].map(ontology => {{
+        const ds = envData[ontology];
+        const spec = COLORS[ontology];
+        return `
+          <div class="ontx-focus-item ${{ontology === state.ontology ? 'active' : ''}}" data-ontology="${{ontology}}">
+            <div class="ontx-focus-top">
+              <strong>${{ontology === 'ATTACK' ? 'Attack Space' : ontology === 'OPINION' ? 'Opinion Space' : 'Profile Space'}}</strong>
+              <span class="ontx-focus-pill" style="background:${{spec.soft}};color:${{spec.accent}}">${{ds.summary.leaf_count}} leaves</span>
+            </div>
+            <div class="ontx-focus-meta">
+              <span>${{ds.summary.branch_count}} branches</span>
+              <span>depth ${{ds.summary.max_depth}}</span>
+              <span>${{ds.summary.node_count}} total nodes</span>
+            </div>
+          </div>`;
+      }}).join('');
+      root.querySelector('#ontx-focus').innerHTML = html;
+      root.querySelectorAll('.ontx-focus-item').forEach(el => el.addEventListener('click', () => setOntology(el.dataset.ontology)));
+    }}
+    function renderCompare() {{
+      const current = state.ontology;
+      const html = ['production', 'test'].map(env => {{
+        const ds = DATA.sources[env][current];
+        const active = env === state.source;
+        const isRun = env === DATA.current_run_source;
+        return `
+          <div class="ontx-compare-card ${{active ? 'active' : ''}}">
+            <div class="ontx-compare-top">
+              <strong>${{env === 'production' ? 'Production ontology' : 'Test ontology'}}</strong>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                ${{active ? badgeHtml('Visible source', 'rgba(29,78,137,0.08)', '{PALETTE['blue']}') : ''}}
+                ${{isRun ? badgeHtml('Run 8 source', 'rgba(231,111,81,0.12)', '{PALETTE['orange']}') : ''}}
+              </div>
+            </div>
+            <div class="ontx-compare-grid">
+              <div class="ontx-metric"><div class="k">Leaves</div><div class="v">${{ds.summary.leaf_count}}</div></div>
+              <div class="ontx-metric"><div class="k">Branches</div><div class="v">${{ds.summary.branch_count}}</div></div>
+              <div class="ontx-metric"><div class="k">Depth</div><div class="v">${{ds.summary.max_depth}}</div></div>
+              <div class="ontx-metric"><div class="k">Annotated leaves</div><div class="v">${{ds.summary.metadata_leaf_count}}</div></div>
+            </div>
+          </div>`;
+      }}).join('');
+      root.querySelector('#ontx-compare').innerHTML = html;
+    }}
+    function renderStatus(ds, visible) {{
+      const dense = visible.visibleNodes.length > 260;
+      const runNote = DATA.current_run_source === state.source
+        ? 'Current source matches the ontology used in run 8.'
+        : 'Current source is a comparison surface; switch to Test to inspect the exact run 8 ontology.';
+      const relevantCount = ds.summary.sample_exact_count + ds.summary.sample_aligned_count;
+      root.querySelector('#ontx-status').innerHTML =
+        `<strong>Visible structure:</strong> ${{visible.visibleNodes.length}} of ${{ds.summary.node_count}} nodes, depth ≤ ${{state.maxDepth}}, ${{state.layout}} layout<br>` +
+        `<strong>Run alignment:</strong> ${{relevantCount}} highlighted leaves available for this ontology across exact or leaf-name matching. ${{runNote}}<br>` +
+        `<strong>Readability:</strong> ${{dense ? 'Dense mode is active; leaf labels are softened. Use search or reduce depth for cleaner local inspection.' : 'Local labels are fully readable at the current depth.'}}`;
+    }}
+    function renderCanvasHeader(ds, visible) {{
+      root.querySelector('#ontx-active-title').textContent =
+        `${{state.source === 'production' ? 'Production' : 'Test'}} · ${{state.ontology === 'ATTACK' ? 'Attack Ontology' : state.ontology === 'OPINION' ? 'Opinion Ontology' : 'Profile Ontology'}}`;
+      root.querySelector('#ontx-active-sub').textContent =
+        `Mixed hierarchical state space with ${{ds.summary.leaf_count}} terminal leaves, ${{ds.summary.branch_count}} branching nodes, and a maximum depth of ${{ds.summary.max_depth}}.`;
+      root.querySelector('#ontx-chipline').innerHTML =
+        badgeHtml(`Zoom ${{Math.round(state.zoom * 100)}}%`, 'rgba(20,33,61,0.06)', '{PALETTE['muted']}') +
+        badgeHtml(`Visible ${{visible.visibleNodes.length}} nodes`, 'rgba(29,78,137,0.08)', '{PALETTE['blue']}') +
+        badgeHtml(`Depth ${{state.maxDepth}}`, activeSpec().soft, activeSpec().accent);
+    }}
+    function renderSearchResults(ds) {{
+      const q = state.search.trim();
+      let items = [];
+      if (q) {{
+        items = searchMatches(ds);
+      }} else {{
+        items = ds.nodes
+          .filter(n => n.depth === 1 || n.sample_exact || n.sample_aligned)
+          .slice(0, 12);
+      }}
+      if (!items.length) {{
+        root.querySelector('#ontx-results').innerHTML = '<div class="ontx-note">No ontology paths match the current search or relevance filter.</div>';
+        return;
+      }}
+      root.querySelector('#ontx-results').innerHTML = items.map(node => `
+        <div class="ontx-result" data-node-id="${{node.id}}">
+          <strong>${{escapeHtml(node.label)}}</strong>
+          <span>${{escapeHtml(node.path_label || node.label)}}</span>
+        </div>`).join('');
+      root.querySelectorAll('.ontx-result').forEach(el => el.addEventListener('click', () => {{
+        const id = el.dataset.nodeId;
+        expandAncestors(id);
+        state.selectedId = id;
+        renderAll();
+      }}));
+    }}
+    function renderHighlights(ds, visible) {{
+      let items = ds.nodes.filter(n => n.kind !== 'branch' && (n.sample_exact || n.sample_aligned));
+      if (state.relevantOnly) {{
+        const visibleSet = new Set(visible.visibleNodes.map(n => n.id));
+        items = items.filter(n => visibleSet.has(n.id));
+      }}
+      items = items
+        .sort((a, b) => (Number(b.sample_exact) - Number(a.sample_exact)) || a.path_label.localeCompare(b.path_label))
+        .slice(0, 9);
+      if (!items.length) {{
+        root.querySelector('#ontx-highlights').innerHTML =
+          `<div class="ontx-note">${{state.ontology === 'PROFILE'
+            ? 'The profile ontology is shown structurally; this run does not carry a leaf-level selected profile subset like the attack and opinion factorial leaves.'
+            : 'No run-aligned leaf highlights are available for the current source. Switch source or disable the relevance-only filter to inspect the full ontology.'}}</div>`;
+        return;
+      }}
+      root.querySelector('#ontx-highlights').innerHTML = items.map(node => `
+        <div class="ontx-highlight-item">
+          <strong>${{escapeHtml(node.label)}} ${{node.sample_exact ? '· exact run leaf' : '· leaf-name aligned'}}</strong>
+          <span>${{escapeHtml(node.path_label)}}</span>
+        </div>`).join('');
+    }}
+    function renderInspector() {{
+      const ds = dataset();
+      const node = ds.nodeMap[state.selectedId] || ds.nodeMap[ds.root_id];
+      if (!node) return;
+      const badges = [
+        badgeHtml(node.kind === 'branch' ? 'Branch' : (node.kind === 'leaf_meta' ? 'Leaf + metadata' : 'Leaf'), activeSpec().soft, activeSpec().accent),
+        badgeHtml(`Depth ${{node.depth}}`, 'rgba(20,33,61,0.06)', '{PALETTE['muted']}'),
+      ];
+      if (node.sample_exact) badges.push(badgeHtml('Exact run-aligned', 'rgba(240,192,64,0.18)', '{PALETTE['amber']}'));
+      if (node.sample_aligned) badges.push(badgeHtml('Leaf-name aligned', 'rgba(200,155,60,0.12)', '{PALETTE['amber']}'));
+      const children = (node.children || []).slice(0, 8).map(id => ds.nodeMap[id]).filter(Boolean);
+      const metaHtml = node.metadata_preview && node.metadata_preview.length
+        ? `<div class="ontx-meta-list">${{node.metadata_preview.map(([k,v]) => `
+            <div class="ontx-meta-item">
+              <strong>${{escapeHtml(k)}}</strong>
+              <span>${{escapeHtml(v)}}</span>
+            </div>`).join('')}}</div>`
+        : `<div class="ontx-note">No leaf-level metadata stored on this node.</div>`;
+      const childHtml = children.length
+        ? `<div class="ontx-meta-list">${{children.map(child => `
+            <div class="ontx-meta-item">
+              <strong>${{escapeHtml(child.label)}}</strong>
+              <span>${{child.leaf_count}} leaves below · ${{child.child_count}} direct children</span>
+            </div>`).join('')}}</div>`
+        : '';
+
+      root.querySelector('#ontx-inspector').innerHTML = `
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:10px">
+          <div>
+            <div style="font-weight:800;font-size:0.92rem;color:{PALETTE['ink']}">${{escapeHtml(node.label)}}</div>
+            <div class="ontx-sub" style="margin:3px 0 0">${{node.parent ? 'Selected ontology node' : 'Synthetic ontology root used to organize the JSON hierarchy for visualization'}}</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${{badges.join('')}}</div>
+        </div>
+        <div class="ontx-path">${{escapeHtml(node.path_label || node.label)}}</div>
+        <div class="ontx-kv" style="margin-top:10px">
+          <div class="ontx-metric"><div class="k">Direct children</div><div class="v">${{node.child_count}}</div></div>
+          <div class="ontx-metric"><div class="k">Leaves below</div><div class="v">${{node.leaf_count}}</div></div>
+          <div class="ontx-metric"><div class="k">Subtree nodes</div><div class="v">${{node.subtree_node_count}}</div></div>
+          <div class="ontx-metric"><div class="k">Metadata leaves below</div><div class="v">${{node.metadata_leaf_count}}</div></div>
+        </div>
+        <div style="margin-top:10px;font-weight:700;font-size:0.77rem;color:{PALETTE['navy']};margin-bottom:6px">Metadata preview</div>
+        ${{metaHtml}}
+        ${{children.length ? '<div style="margin-top:10px;font-weight:700;font-size:0.77rem;color:{PALETTE['navy']};margin-bottom:6px">Visible child branches</div>' + childHtml : ''}}
+      `;
+    }}
+    let visible_count = 0;
+    function renderGraph() {{
+      const ds = dataset();
+      const visible = collectVisible(ds);
+      visible_count = visible.visibleNodes.length;
+      renderStatus(ds, visible);
+      renderCanvasHeader(ds, visible);
+      const searchIds = new Set(searchMatches(ds).map(n => n.id));
+      const layout = layoutTree(ds, visible);
+      const dense = visible_count > 260;
+      const svgWidth = layout.width * state.zoom;
+      const svgHeight = layout.height * state.zoom;
+      let svg = `<svg id="ontx-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${{layout.width}} ${{layout.height}}" width="${{svgWidth}}" height="${{svgHeight}}">`;
+      svg += `<defs>
+        <filter id="ontx-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(20,33,61,0.12)"/>
+        </filter>
+      </defs>`;
+
+      visible.visibleEdges.forEach(([a, b]) => {{
+        const p0 = layout.pos[a];
+        const p1 = layout.pos[b];
+        const accent = activeSpec().edge;
+        const boosted = searchIds.has(a) || searchIds.has(b);
+        svg += `<path d="${{edgePath(p0, p1)}}" fill="none" stroke="${{boosted ? activeSpec().accent : accent}}" stroke-width="${{boosted ? 2.2 : 1.4}}" stroke-linecap="round"/>`;
+      }});
+
+      visible.visibleNodes.forEach(node => {{
+        const pos = layout.pos[node.id];
+        const selected = node.id === state.selectedId;
+        const collapsed = node.kind === 'branch' && node.depth < state.maxDepth && !(currentExpanded().has(node.id) || node.id === ds.root_id);
+        const radius = nodeRadius(node, dense);
+        const fill = nodeFill(node);
+        const stroke = selected ? '{PALETTE['gold']}' : activeSpec().accent;
+        const label = labelText(node, dense);
+        const attrs = label ? labelAttrs(node, radius, pos, layout) : null;
+        const searchMatch = searchIds.has(node.id);
+        svg += `<g class="ontx-node" data-node-id="${{node.id}}" style="cursor:pointer">`;
+        if (state.highlightRun && (node.sample_exact || node.sample_aligned)) {{
+          const ringColor = node.sample_exact ? '{PALETTE['gold']}' : '{PALETTE['amber']}';
+          const dash = node.sample_exact ? '' : ' stroke-dasharray="4 3"';
+          svg += `<circle cx="${{pos.x}}" cy="${{pos.y}}" r="${{radius + 4.3}}" fill="none" stroke="${{ringColor}}" stroke-width="2.2"${{dash}} opacity="0.98"/>`;
+        }}
+        if (state.showMetadata && node.kind === 'leaf_meta') {{
+          svg += `<circle cx="${{pos.x}}" cy="${{pos.y}}" r="${{radius + 2.6}}" fill="none" stroke="{PALETTE['muted']}" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.72"/>`;
+        }}
+        if (searchMatch) {{
+          svg += `<circle cx="${{pos.x}}" cy="${{pos.y}}" r="${{radius + 6.6}}" fill="none" stroke="{PALETTE['sky']}" stroke-width="2" opacity="0.55"/>`;
+        }}
+        svg += `<circle cx="${{pos.x}}" cy="${{pos.y}}" r="${{radius}}" fill="${{fill}}" stroke="${{stroke}}" stroke-width="${{selected ? 2.6 : 1.4}}" filter="url(#ontx-shadow)"/>`;
+        if (node.kind === 'branch') {{
+          svg += `<text x="${{pos.x}}" y="${{pos.y + 3.2}}" text-anchor="middle" style="font:700 8px IBM Plex Sans, sans-serif;fill:${{collapsed ? '#ffffff' : '{PALETTE['ink']}'}}">${{collapsed ? '+' : '−'}}</text>`;
+        }}
+        if (label) {{
+          svg += `<text x="${{pos.x + attrs.x}}" y="${{pos.y + attrs.y}}" text-anchor="${{attrs.anchor}}" style="font:600 ${{dense ? 8.6 : 9.4}}px IBM Plex Sans, sans-serif;fill:{PALETTE['ink']};paint-order:stroke;stroke:white;stroke-width:3">${{escapeHtml(label)}}</text>`;
+        }}
+        svg += `</g>`;
+      }});
+      svg += `</svg>`;
+      root.querySelector('#ontx-canvas-wrap').innerHTML = svg;
+      root.querySelectorAll('.ontx-node').forEach(el => el.addEventListener('click', ev => {{
+        ev.stopPropagation();
+        const id = el.dataset.nodeId;
+        const node = ds.nodeMap[id];
+        state.selectedId = id;
+        if (node && node.kind === 'branch') {{
+          if (currentExpanded().has(id)) {{
+            currentExpanded().delete(id);
+          }} else {{
+            currentExpanded().add(id);
+            /* Auto-extend maxDepth so the newly expanded node can show its children */
+            if (node.depth >= state.maxDepth) {{
+              state.maxDepth = node.depth + 1;
+              depthStore[datasetKey()] = state.maxDepth;
+              root.querySelector('#ontx-depth').value = state.maxDepth;
+              root.querySelector('#ontx-depth-display').textContent = state.maxDepth;
+            }}
+          }}
+        }}
+        renderGraph();
+        renderInspector();
+      }}));
+      renderHighlights(ds, visible);
+    }}
+    function renderAll() {{
+      renderFocusCards();
+      renderCompare();
+      renderSearchResults(dataset());
+      renderGraph();
+      renderInspector();
+    }}
+
+    root.querySelectorAll('#ontx-source .ontx-btn').forEach(btn => btn.addEventListener('click', () => setSource(btn.dataset.source)));
+    root.querySelectorAll('#ontx-layout .ontx-btn').forEach(btn => btn.addEventListener('click', () => setLayout(btn.dataset.layout)));
+    root.querySelector('#ontx-depth').addEventListener('input', ev => {{
+      state.maxDepth = parseInt(ev.target.value, 10);
+      depthStore[datasetKey()] = state.maxDepth;
+      root.querySelector('#ontx-depth-display').textContent = state.maxDepth;
+      renderGraph();
+      renderInspector();
+    }});
+    root.querySelector('#ontx-label-mode').addEventListener('change', ev => {{
+      state.labelMode = ev.target.value;
+      renderGraph();
+    }});
+    root.querySelector('#ontx-show-meta').addEventListener('change', ev => {{
+      state.showMetadata = ev.target.checked;
+      renderGraph();
+    }});
+    root.querySelector('#ontx-highlight-run').addEventListener('change', ev => {{
+      state.highlightRun = ev.target.checked;
+      renderGraph();
+      renderInspector();
+    }});
+    root.querySelector('#ontx-relevant-only').addEventListener('change', ev => {{
+      state.relevantOnly = ev.target.checked;
+      renderAll();
+    }});
+    root.querySelector('#ontx-search').addEventListener('input', ev => {{
+      state.search = ev.target.value;
+      renderSearchResults(dataset());
+      renderGraph();
+    }});
+    root.querySelector('#ontx-expand-all').addEventListener('click', expandAll);
+    root.querySelector('#ontx-collapse-all').addEventListener('click', collapseAll);
+    root.querySelector('#ontx-reset-depth').addEventListener('click', resetToDepth);
+    root.querySelector('#ontx-zoom-in').addEventListener('click', () => {{
+      state.zoom = Math.min(2.4, state.zoom + 0.15);
+      renderGraph();
+    }});
+    root.querySelector('#ontx-zoom-out').addEventListener('click', () => {{
+      state.zoom = Math.max(0.55, state.zoom - 0.15);
+      renderGraph();
+    }});
+    root.querySelector('#ontx-zoom-reset').addEventListener('click', () => {{
+      state.zoom = 1;
+      renderGraph();
+    }});
+
+    /* ── Drag / pan on canvas-wrap ─────────────────────────────────────── */
+    (function() {{
+      const wrap = root.querySelector('#ontx-canvas-wrap');
+      let drag = null;
+      wrap.style.cursor = 'grab';
+      wrap.addEventListener('mousedown', e => {{
+        if (e.target.closest('.ontx-node')) return;
+        drag = {{ sx: e.clientX + wrap.scrollLeft, sy: e.clientY + wrap.scrollTop }};
+        wrap.style.cursor = 'grabbing';
+        e.preventDefault();
+      }});
+      window.addEventListener('mousemove', e => {{
+        if (!drag) return;
+        wrap.scrollLeft = drag.sx - e.clientX;
+        wrap.scrollTop  = drag.sy - e.clientY;
+      }});
+      window.addEventListener('mouseup', () => {{ drag = null; wrap.style.cursor = 'grab'; }});
+      /* touch support */
+      wrap.addEventListener('touchstart', e => {{
+        if (e.touches.length !== 1 || e.target.closest('.ontx-node')) return;
+        const t = e.touches[0];
+        drag = {{ sx: t.clientX + wrap.scrollLeft, sy: t.clientY + wrap.scrollTop }};
+      }}, {{passive: true}});
+      wrap.addEventListener('touchmove', e => {{
+        if (!drag || e.touches.length !== 1) return;
+        const t = e.touches[0];
+        wrap.scrollLeft = drag.sx - t.clientX;
+        wrap.scrollTop  = drag.sy - t.clientY;
+        e.preventDefault();
+      }}, {{passive: false}});
+      wrap.addEventListener('touchend', () => {{ drag = null; }});
+    }})();
+
+    initDatasets();
+    syncButtons();
+    renderAll();
+  }})();
+  </script>
+</div>"""
+
 def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
     """Dual go.Surface: mean AE (RdBu_r) + ISD of AE (YlOrRd)."""
     atk_col = "attack_leaf" if "attack_leaf" in long_df.columns else "attack_leaf_label"
@@ -243,7 +1314,7 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
         rows=1, cols=2,
         specs=[[{"type": "scene"}, {"type": "scene"}]],
         subplot_titles=["Mean Adversarial Effectivity (AE)", "Inter-individual Variability (SD of AE)"],
-        horizontal_spacing=0.04,
+        horizontal_spacing=0.12,
     )
 
     def _surf(mat, cscale, zlabel):
@@ -298,15 +1369,13 @@ def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
               .unstack(op_col).reindex(index=attacks, columns=opinions).fillna(0))
 
     total_cells = len(attacks) * len(opinions)
-    longest_label = max([len(label.replace("<br>", " ")) for label in atk_l + op_l] or [0])
-    stacked = len(attacks) > 6 or len(opinions) > 6 or total_cells > 36 or longest_label > 26
-    rows, cols = (2, 1) if stacked else (1, 2)
+    # Always side-by-side; let Plotly auto-manage the axis tick labels
+    rows, cols = 1, 2
     fig = make_subplots(
         rows,
         cols,
         subplot_titles=["Mean AE (red = manipulation succeeded)", "Inter-individual SD of AE"],
-        horizontal_spacing=0.22 if not stacked else 0.0,
-        vertical_spacing=0.22 if stacked else 0.0,
+        horizontal_spacing=0.20,
     )
     text_size = 11 if total_cells <= 25 else 9 if total_cells <= 49 else 0
     show_text = text_size > 0
@@ -323,12 +1392,8 @@ def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
         "colorscale": "RdBu_r",
         "zmid": 0,
         "colorbar": dict(
-            x=1.02 if stacked else 0.45,
-            y=0.80 if stacked else 0.50,
-            len=0.34 if stacked else 0.82,
-            thickness=12,
-            title="AE",
-            title_side="right",
+            x=0.44, y=0.50, len=0.82,
+            thickness=12, title="AE", title_side="right",
         ),
         **common,
     }
@@ -338,12 +1403,8 @@ def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
         "y": atk_l,
         "colorscale": "YlOrRd",
         "colorbar": dict(
-            x=1.02,
-            y=0.20 if stacked else 0.50,
-            len=0.34 if stacked else 0.82,
-            thickness=12,
-            title="SD",
-            title_side="right",
+            x=1.02, y=0.50, len=0.82,
+            thickness=12, title="SD", title_side="right",
         ),
         **common,
     }
@@ -360,17 +1421,17 @@ def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
         )
 
     fig.add_trace(go.Heatmap(**mean_kwargs), row=1, col=1)
-    fig.add_trace(go.Heatmap(**isd_kwargs), row=2 if stacked else 1, col=1 if stacked else 2)
+    fig.add_trace(go.Heatmap(**isd_kwargs), row=1, col=2)
 
-    fig.update_xaxes(tickangle=-26, tickfont_size=9.5, automargin=True)
-    fig.update_yaxes(tickfont_size=9.5, automargin=True)
+    fig.update_xaxes(tickangle=-28, tickfont_size=9, automargin=True)
+    fig.update_yaxes(tickfont_size=9, automargin=True)
     fig.update_annotations(font=dict(size=12.5))
     fig.update_layout(
         paper_bgcolor="white",
         plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=730 if stacked else 470,
-        margin=dict(l=170, r=105, t=68, b=120 if not stacked else 90),
+        height=470,
+        margin=dict(l=160, r=90, t=68, b=130),
         title=dict(
             text="Factorial Heatmap — Mean AE & Inter-individual Moderation Strength",
             font_size=14,
@@ -1870,6 +2931,148 @@ def _fig_violin(long_df: pd.DataFrame) -> go.Figure:
     return fig
 
 
+def _fig_raw_attack_comparison(long_df: pd.DataFrame) -> go.Figure:
+    """Box + strip: AE and |Δ| grouped by attack vector, color = opinion leaf."""
+    atk_col = "attack_leaf" if "attack_leaf" in long_df.columns else "attack_leaf_label"
+    op_col  = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    ae_col, abs_col = "adversarial_effectivity", "abs_delta_score"
+    for c in (atk_col, op_col, ae_col):
+        if c not in long_df.columns:
+            return go.Figure().add_annotation(text=f"Column '{c}' missing", showarrow=False)
+
+    attacks  = sorted(long_df[atk_col].dropna().unique())
+    opinions = sorted(long_df[op_col].dropna().unique())
+    atk_labels = _unique_display_map(attacks)
+    op_labels  = _unique_display_map(opinions)
+    palette    = px.colors.qualitative.Bold
+
+    fig = make_subplots(1, 2,
+        subplot_titles=["Adversarial Effectivity by Attack Vector",
+                        "Absolute Opinion Shift |Δ| by Attack Vector"],
+        horizontal_spacing=0.14)
+
+    for oi, op in enumerate(opinions):
+        sub = long_df[long_df[op_col] == op]
+        clr = palette[oi % len(palette)]
+        lbl = op_labels[op]
+        for ci, ycol in enumerate([ae_col, abs_col], 1):
+            if ycol not in sub.columns:
+                continue
+            x_vals = [_wrap_label(atk_labels[a], 22) for a in attacks]
+            y_boxes = [sub[sub[atk_col] == a][ycol].dropna().values for a in attacks]
+            for xi, (xv, yv) in enumerate(zip(x_vals, y_boxes)):
+                if len(yv) == 0:
+                    continue
+                fig.add_trace(go.Box(
+                    x=[xv] * len(yv), y=yv,
+                    name=lbl, legendgroup=lbl,
+                    showlegend=(ci == 1 and xi == 0),
+                    marker_color=clr, line_color=clr,
+                    boxmean="sd", whiskerwidth=0.5,
+                    width=0.14, opacity=0.78,
+                    hovertemplate=f"<b>{lbl}</b><br>%{{x}}<br>{ycol}: %{{y:.1f}}<extra></extra>",
+                ), row=1, col=ci)
+
+    # mean AE per attack vector as diamond markers
+    atk_means = long_df.groupby(atk_col)[ae_col].mean()
+    fig.add_trace(go.Scatter(
+        x=[_wrap_label(atk_labels[a], 22) for a in attacks],
+        y=[atk_means.get(a, 0) for a in attacks],
+        mode="markers", marker=dict(symbol="diamond", size=11,
+            color=PALETTE["navy"], line=dict(color="white", width=1.2)),
+        name="Overall mean AE", showlegend=True,
+    ), row=1, col=1)
+
+    fig.add_hline(y=0, line_dash="dot", line_color="#888", line_width=1, row=1, col=1)
+    fig.update_layout(
+        paper_bgcolor="white", plot_bgcolor="#f4f7ff",
+        font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
+        height=540, boxmode="group",
+        title=dict(text="Raw Outcome Distributions by Attack Vector", font_size=14),
+        margin=dict(l=65, r=30, t=55, b=110),
+        legend=dict(orientation="h", y=-0.22, x=0.5, xanchor="center", font_size=9),
+    )
+    fig.update_xaxes(tickangle=-20, tickfont_size=9)
+    return fig
+
+
+def _fig_raw_score_scatter(long_df: pd.DataFrame) -> go.Figure:
+    """Baseline vs. post scatter with regression trend and AE density marginals."""
+    if not {"pre_score", "post_score"}.issubset(long_df.columns):
+        # Try alternate column names
+        pre_col  = next((c for c in long_df.columns if "baseline" in c.lower() or "pre_score" in c.lower()), None)
+        post_col = next((c for c in long_df.columns if "post_score" in c.lower() or "attacked" in c.lower()), None)
+        if not pre_col or not post_col:
+            return go.Figure().add_annotation(text="Pre/post score columns unavailable", showarrow=False)
+    else:
+        pre_col, post_col = "pre_score", "post_score"
+
+    ae_col = "adversarial_effectivity"
+    op_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    df = long_df[[pre_col, post_col, op_col]].dropna()
+    if ae_col in long_df.columns:
+        df = long_df[[pre_col, post_col, op_col, ae_col]].dropna()
+
+    opinions = sorted(df[op_col].dropna().unique())
+    op_labels = _unique_display_map(opinions)
+    palette   = px.colors.qualitative.Bold
+
+    fig = go.Figure()
+    # Identity line
+    rng = [float(df[pre_col].min() - 2), float(df[pre_col].max() + 2)]
+    fig.add_trace(go.Scatter(
+        x=rng, y=rng, mode="lines",
+        line=dict(color="#aab4c8", width=1.5, dash="dot"),
+        name="No change (y = x)", showlegend=True,
+    ))
+
+    for oi, op in enumerate(opinions):
+        sub = df[df[op_col] == op]
+        clr = palette[oi % len(palette)]
+        lbl = op_labels[op]
+        color_vals = sub[ae_col].values if ae_col in sub.columns else None
+
+        scatter_kw = dict(
+            x=sub[pre_col].values, y=sub[post_col].values,
+            mode="markers",
+            marker=dict(size=5, opacity=0.55, line=dict(color="white", width=0.3),
+                        color=(color_vals if color_vals is not None else clr),
+                        colorscale="RdBu_r" if color_vals is not None else None,
+                        cmid=0 if color_vals is not None else None,
+                        showscale=False),
+            name=lbl, legendgroup=lbl, showlegend=True,
+            hovertemplate=f"<b>{lbl}</b><br>Pre: %{{x:.1f}}<br>Post: %{{y:.1f}}<extra></extra>",
+        )
+        fig.add_trace(go.Scatter(**scatter_kw))
+
+        # Regression line per opinion
+        if len(sub) >= 4:
+            x_np = sub[pre_col].values
+            y_np = sub[post_col].values
+            try:
+                m, b_intercept = np.polyfit(x_np, y_np, 1)
+                xs = np.array([x_np.min(), x_np.max()])
+                fig.add_trace(go.Scatter(
+                    x=xs, y=m * xs + b_intercept, mode="lines",
+                    line=dict(color=clr, width=1.8, dash="solid"),
+                    name=f"{lbl} trend", legendgroup=lbl, showlegend=False,
+                ))
+            except Exception:
+                pass
+
+    fig.update_layout(
+        paper_bgcolor="white", plot_bgcolor="#f4f7ff",
+        font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
+        height=540,
+        xaxis_title="Pre-attack Opinion Score",
+        yaxis_title="Post-attack Opinion Score",
+        title=dict(text="Pre vs. Post Attack Scores — Colour = AE direction", font_size=14),
+        margin=dict(l=70, r=30, t=55, b=65),
+        legend=dict(orientation="h", y=-0.16, x=0.5, xanchor="center", font_size=9),
+    )
+    return fig
+
+
 def _fig_susceptibility_scatter(profile_index_df: pd.DataFrame,
                                 long_df: pd.DataFrame) -> go.Figure:
     if profile_index_df.empty:
@@ -2915,12 +4118,13 @@ def _render_dashboard_html(
     )
 
     CATEGORIES = [
+        ("🗂 Ontologies",        ["Ontology Explorer"]),
         ("📡 Factorial Space",   ["Factorial 3D Surface", "Factorial Heat + Contour"]),
         ("🧠 SEM Analysis",      ["SEM Network", "SEM Heatmap"]),
         ("🔬 Estimation",        ["Conditional Susceptibility Estimator", "Perturbation Explorer"]),
         ("👤 Profiles",          ["Susceptibility Map", "Profile Heatmap"]),
         ("📊 Moderators",        ["Moderator Forest", "Hierarchical Importance"]),
-        ("📈 Raw Data",          ["Violin Distributions", "Baseline vs Post"]),
+        ("📈 Raw Data",          ["Violin Distributions", "Attack Comparison", "Pre vs. Post Scatter", "Baseline vs Post"]),
     ]
 
     tab_index = {title: idx for idx, (title, _) in enumerate(figure_divs)}
@@ -3073,6 +4277,7 @@ def generate_research_visuals(
 
     s05 = Path(sem_long_csv_path).resolve().parent
     s06 = Path(sem_result_json_path).resolve().parent
+    stage_outputs_root = s05.parent
 
     def _load(p: Path) -> pd.DataFrame:
         return pd.read_csv(p) if p.exists() else pd.DataFrame()
@@ -3083,6 +4288,12 @@ def generate_research_visuals(
     weight_df        = _load(s06 / "moderator_weight_table.csv")
     task_coeff_df    = _load(s06 / "conditional_susceptibility_task_coefficients.csv")
     task_summary_df  = _load(s06 / "conditional_susceptibility_task_summary.csv")
+    ontology_catalog_path = stage_outputs_root / "01_create_scenarios" / "ontology_leaf_catalog.json"
+    ontology_catalog = (
+        json.loads(ontology_catalog_path.read_text(encoding="utf-8"))
+        if ontology_catalog_path.exists() else {}
+    )
+    ontology_payload = _load_dashboard_ontology_payload(ontology_catalog)
 
     sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
     fit          = sem_result.get("fit_indices", {})
@@ -3134,6 +4345,7 @@ def generate_research_visuals(
             visual_files.append(_save_html_block(html, figures_dir / fname, title))
         figure_divs.append((title, html))
 
+    _add_html("Ontology Explorer", _html_ontology_explorer(ontology_payload), "ontology_explorer.html")
     _add_fig("Factorial 3D Surface",    _fig_factorial_3d(long_df),          "factorial_3d.html")
     _add_fig("Factorial Heat + Contour", _fig_factorial_2d(long_df),          "factorial_2d.html")
 
@@ -3150,6 +4362,8 @@ def generate_research_visuals(
                   "perturbation_explorer.html")
 
     _add_fig("Violin Distributions", _fig_violin(long_df),               "violin.html")
+    _add_fig("Attack Comparison",    _fig_raw_attack_comparison(long_df), "attack_comparison.html")
+    _add_fig("Pre vs. Post Scatter", _fig_raw_score_scatter(long_df),    "pre_post_scatter.html")
 
     if not profile_index_df.empty:
         _add_fig("Susceptibility Map", _fig_susceptibility_scatter(profile_index_df, long_df),
@@ -3174,6 +4388,7 @@ def generate_research_visuals(
 
     notes = [
         "All profiles are attacked; the dashboard visualizes heterogeneity of manipulation outcomes, not a treatment vs control contrast.",
+        "Ontology Explorer: the dashboard defaults to the production ATTACK / OPINION / PROFILE ontologies, with a source switch to the test ontologies used in run 8.",
         "Adversarial effectivity (AE = Δ × d_k): <b>positive = manipulation succeeded</b>, negative = backfire or resistance.",
         "The 3D surface shows mean AE and inter-individual SD across the full 4×4 attack–opinion factorial.",
         "SEM Network: start with the Baseline preset, then use layer toggles, p-value thresholding, and hierarchy filters to reveal leaf-level moderation paths and attack context.",
