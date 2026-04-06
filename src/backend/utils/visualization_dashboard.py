@@ -503,7 +503,7 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
       radial-gradient(circle at 12% 16%, rgba(42,157,143,0.08), transparent 28%),
       radial-gradient(circle at 88% 14%, rgba(231,111,81,0.08), transparent 26%),
       linear-gradient(180deg,#ffffff 0%,#f9fbff 100%);
-      min-height:760px;overflow:auto;padding:16px;
+      height:780px;overflow:auto;padding:16px;
       cursor:grab;user-select:none;-webkit-user-select:none}}
     #ontx-root #ontx-svg{{display:block}}
     #ontx-root .ontx-bottom{{display:grid;grid-template-columns:1.15fr 1fr 0.95fr;gap:12px}}
@@ -1136,14 +1136,18 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
       visible.visibleNodes.forEach(node => {{
         const pos = layout.pos[node.id];
         const selected = node.id === state.selectedId;
-        const collapsed = node.kind === 'branch' && node.depth < state.maxDepth && !(currentExpanded().has(node.id) || node.id === ds.root_id);
+        /* Children are visible iff this branch is in expanded set AND depth < maxDepth */
+        const childrenVisible = node.kind === 'branch' && node.child_count > 0 &&
+          (currentExpanded().has(node.id) || node.id === ds.root_id) &&
+          node.depth < state.maxDepth;
+        const canExpand = node.kind === 'branch' && node.child_count > 0 && !childrenVisible;
         const radius = nodeRadius(node, dense);
         const fill = nodeFill(node);
         const stroke = selected ? '{PALETTE['gold']}' : activeSpec().accent;
         const label = labelText(node, dense);
         const attrs = label ? labelAttrs(node, radius, pos, layout) : null;
         const searchMatch = searchIds.has(node.id);
-        svg += `<g class="ontx-node" data-node-id="${{node.id}}" style="cursor:pointer">`;
+        svg += `<g class="ontx-node" data-node-id="${{node.id}}" style="cursor:${{node.kind==='branch'&&node.child_count>0?'pointer':'default'}}">`;
         if (state.highlightRun && (node.sample_exact || node.sample_aligned)) {{
           const ringColor = node.sample_exact ? '{PALETTE['gold']}' : '{PALETTE['amber']}';
           const dash = node.sample_exact ? '' : ' stroke-dasharray="4 3"';
@@ -1156,11 +1160,14 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
           svg += `<circle cx="${{pos.x}}" cy="${{pos.y}}" r="${{radius + 6.6}}" fill="none" stroke="{PALETTE['sky']}" stroke-width="2" opacity="0.55"/>`;
         }}
         svg += `<circle cx="${{pos.x}}" cy="${{pos.y}}" r="${{radius}}" fill="${{fill}}" stroke="${{stroke}}" stroke-width="${{selected ? 2.6 : 1.4}}" filter="url(#ontx-shadow)"/>`;
-        if (node.kind === 'branch') {{
-          svg += `<text x="${{pos.x}}" y="${{pos.y + 3.2}}" text-anchor="middle" style="font:700 8px IBM Plex Sans, sans-serif;fill:${{collapsed ? '#ffffff' : '{PALETTE['ink']}'}}">${{collapsed ? '+' : '−'}}</text>`;
+        /* Show + (expandable) or − (children visible); nothing for leaf nodes */
+        if (node.kind === 'branch' && node.child_count > 0 && node.id !== ds.root_id) {{
+          const sym = canExpand ? '+' : '\u2212';
+          const symFill = canExpand ? '#ffffff' : '{PALETTE['ink']}';
+          svg += `<text x="${{pos.x}}" y="${{pos.y + 3.2}}" text-anchor="middle" style="font:700 8px IBM Plex Sans,sans-serif;fill:${{symFill}};pointer-events:none">${{sym}}</text>`;
         }}
         if (label) {{
-          svg += `<text x="${{pos.x + attrs.x}}" y="${{pos.y + attrs.y}}" text-anchor="${{attrs.anchor}}" style="font:600 ${{dense ? 8.6 : 9.4}}px IBM Plex Sans, sans-serif;fill:{PALETTE['ink']};paint-order:stroke;stroke:white;stroke-width:3">${{escapeHtml(label)}}</text>`;
+          svg += `<text x="${{pos.x + attrs.x}}" y="${{pos.y + attrs.y}}" text-anchor="${{attrs.anchor}}" style="font:600 ${{dense ? 8.6 : 9.4}}px IBM Plex Sans, sans-serif;fill:{PALETTE['ink']};paint-order:stroke;stroke:white;stroke-width:3;pointer-events:none">${{escapeHtml(label)}}</text>`;
         }}
         svg += `</g>`;
       }});
@@ -1170,23 +1177,30 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
         ev.stopPropagation();
         const id = el.dataset.nodeId;
         const node = ds.nodeMap[id];
+        if (!node) return;
         state.selectedId = id;
-        if (node && node.kind === 'branch') {{
+        /* Only branches with children can expand/collapse; leaf nodes just select */
+        if (node.kind === 'branch' && node.child_count > 0 && id !== ds.root_id) {{
           if (currentExpanded().has(id)) {{
             currentExpanded().delete(id);
           }} else {{
             currentExpanded().add(id);
-            /* Auto-extend maxDepth so the newly expanded node can show its children */
+            /* Auto-extend maxDepth so children become visible */
             if (node.depth >= state.maxDepth) {{
               state.maxDepth = node.depth + 1;
               depthStore[datasetKey()] = state.maxDepth;
-              root.querySelector('#ontx-depth').value = state.maxDepth;
-              root.querySelector('#ontx-depth-display').textContent = state.maxDepth;
+              const depthEl = root.querySelector('#ontx-depth');
+              if (depthEl) {{ depthEl.value = state.maxDepth; }}
+              const dispEl = root.querySelector('#ontx-depth-display');
+              if (dispEl) {{ dispEl.textContent = state.maxDepth; }}
             }}
           }}
         }}
         renderGraph();
         renderInspector();
+        /* Scroll selected node into view */
+        const selEl = root.querySelector(`[data-node-id="${{id}}"] circle`);
+        if (selEl) selEl.scrollIntoView({{block:'nearest',inline:'nearest'}});
       }}));
       renderHighlights(ds, visible);
     }}
@@ -1332,18 +1346,19 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
     fig.add_trace(_surf(isd_mat,  "YlOrRd",  "SD AE"),   row=1, col=2)
 
     cam = dict(eye=dict(x=1.55, y=-1.55, z=1.05))
-    for scene in ("scene", "scene2"):
-        fig.update_layout(**{scene: dict(
-            xaxis=dict(title="Opinion leaf", tickfont=dict(size=8.5), gridcolor="#ccd8ee"),
-            yaxis=dict(title="Attack vector", tickfont=dict(size=8.5), gridcolor="#ccd8ee"),
-            zaxis=dict(gridcolor="#ccd8ee"),
-            camera=cam, bgcolor="white",
-        )})
+    scene_common = dict(
+        xaxis=dict(title="Opinion leaf", tickfont=dict(size=8), gridcolor="#ccd8ee"),
+        yaxis=dict(title="Attack vector", tickfont=dict(size=8), gridcolor="#ccd8ee"),
+        zaxis=dict(gridcolor="#ccd8ee"),
+        camera=cam, bgcolor="white",
+    )
     fig.update_layout(
+        scene  = dict(**scene_common, domain=dict(x=[0.00, 0.46], y=[0.0, 1.0])),
+        scene2 = dict(**scene_common, domain=dict(x=[0.54, 1.00], y=[0.0, 1.0])),
         paper_bgcolor="white", font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
         height=600, showlegend=False,
         title=dict(text="3D Factorial Surface — Mean AE & Inter-individual Variability", font_size=14),
-        margin=dict(l=0, r=0, t=60, b=0),
+        margin=dict(l=10, r=10, t=60, b=10),
     )
     return fig
 
@@ -1424,14 +1439,17 @@ def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
     fig.add_trace(go.Heatmap(**isd_kwargs), row=1, col=2)
 
     fig.update_xaxes(tickangle=-28, tickfont_size=9, automargin=True)
-    fig.update_yaxes(tickfont_size=9, automargin=True)
+    # Left subplot: show Y-axis (attack vector) labels
+    fig.update_yaxes(tickfont_size=9, automargin=True, row=1, col=1)
+    # Right subplot: suppress Y-axis labels (redundant — same attacks as left)
+    fig.update_yaxes(showticklabels=False, row=1, col=2)
     fig.update_annotations(font=dict(size=12.5))
     fig.update_layout(
         paper_bgcolor="white",
         plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
         height=470,
-        margin=dict(l=160, r=90, t=68, b=130),
+        margin=dict(l=160, r=80, t=68, b=130),
         title=dict(
             text="Factorial Heatmap — Mean AE & Inter-individual Moderation Strength",
             font_size=14,
@@ -4124,7 +4142,7 @@ def _render_dashboard_html(
         ("🔬 Estimation",        ["Conditional Susceptibility Estimator", "Perturbation Explorer"]),
         ("👤 Profiles",          ["Susceptibility Map", "Profile Heatmap"]),
         ("📊 Moderators",        ["Moderator Forest", "Hierarchical Importance"]),
-        ("📈 Raw Data",          ["Violin Distributions", "Attack Comparison", "Pre vs. Post Scatter", "Baseline vs Post"]),
+        ("📈 Raw Data",          ["Distribution by Opinion Leaf", "Distribution by Attack Vector", "Score Trajectory"]),
     ]
 
     tab_index = {title: idx for idx, (title, _) in enumerate(figure_divs)}
@@ -4361,9 +4379,8 @@ def generate_research_visuals(
                   _html_perturbation_explorer(task_coeff_df, long_df),
                   "perturbation_explorer.html")
 
-    _add_fig("Violin Distributions", _fig_violin(long_df),               "violin.html")
-    _add_fig("Attack Comparison",    _fig_raw_attack_comparison(long_df), "attack_comparison.html")
-    _add_fig("Pre vs. Post Scatter", _fig_raw_score_scatter(long_df),    "pre_post_scatter.html")
+    _add_fig("Distribution by Opinion Leaf",   _fig_violin(long_df),               "violin.html")
+    _add_fig("Distribution by Attack Vector",  _fig_raw_attack_comparison(long_df), "attack_comparison.html")
 
     if not profile_index_df.empty:
         _add_fig("Susceptibility Map", _fig_susceptibility_scatter(profile_index_df, long_df),
@@ -4375,7 +4392,7 @@ def generate_research_visuals(
         _add_fig("Hierarchical Importance", _fig_hierarchical_importance(weight_df),        "hierarchical_importance.html")
 
     _add_fig("Profile Heatmap",  _fig_profile_heatmap(long_df, profile_index_df), "profile_heatmap.html")
-    _add_fig("Baseline vs Post", _fig_baseline_post(long_df),                     "baseline_post.html")
+    _add_fig("Score Trajectory", _fig_baseline_post(long_df),                     "baseline_post.html")
 
     # snapshots
     long_df.to_csv(snap_dir / "sem_long_encoded_snapshot.csv", index=False)
