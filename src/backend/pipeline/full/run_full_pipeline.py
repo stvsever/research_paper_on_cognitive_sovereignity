@@ -151,12 +151,24 @@ def _pick_output_file(manifest: Dict[str, object], needle: str) -> str:
 
 
 def _copy_outputs(stage_outputs_root: Path, output_root: Path) -> None:
+    def _copy_dir_contents(source_dir: Path, target_dir: Path) -> None:
+        if not source_dir.exists():
+            return
+        ensure_dir(target_dir)
+        for item in source_dir.iterdir():
+            target = target_dir / item.name
+            if item.is_dir():
+                shutil.copytree(item, target, dirs_exist_ok=True)
+            else:
+                shutil.copy2(item, target)
+
     datasets_dir = ensure_dir(output_root / "datasets")
     sem_dir = ensure_dir(output_root / "sem")
     report_dir = ensure_dir(output_root / "report")
     visuals_dir = ensure_dir(output_root / "visuals")
     publication_assets_dir = ensure_dir(output_root / "publication_assets")
     paper_dir = ensure_dir(output_root / "paper")
+    paper_publication_assets_dir = ensure_dir(paper_dir / "publication_assets")
 
     stage05 = stage_outputs_root / "05_compute_effectivity_deltas"
     stage06 = stage_outputs_root / "06_construct_structural_equation_model"
@@ -210,20 +222,12 @@ def _copy_outputs(stage_outputs_root: Path, output_root: Path) -> None:
             shutil.copy2(src, report_dir / filename)
 
     if stage07.exists():
-        for item in stage07.iterdir():
-            target = visuals_dir / item.name
-            if item.is_dir():
-                shutil.copytree(item, target, dirs_exist_ok=True)
-            else:
-                shutil.copy2(item, target)
+        _copy_dir_contents(stage07, visuals_dir)
+        _copy_dir_contents(stage07, paper_publication_assets_dir)
 
     if stage08.exists():
-        for item in stage08.iterdir():
-            target = publication_assets_dir / item.name
-            if item.is_dir():
-                shutil.copytree(item, target, dirs_exist_ok=True)
-            else:
-                shutil.copy2(item, target)
+        _copy_dir_contents(stage08, publication_assets_dir)
+        _copy_dir_contents(stage08, paper_publication_assets_dir)
 
     if stage09.exists():
         for filename in ["report_summary.json"]:

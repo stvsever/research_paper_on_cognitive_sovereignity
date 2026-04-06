@@ -1,0 +1,9 @@
+Ontology,Role,Leaf
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support

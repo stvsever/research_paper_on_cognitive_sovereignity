@@ -11,8 +11,11 @@ Tabs (generic for any run):
 """
 from __future__ import annotations
 
+import re
+from collections import Counter
 import json
 from pathlib import Path
+from textwrap import wrap
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
@@ -47,6 +50,117 @@ def _pretty(s: str) -> str:
     return s.replace("_z", "").replace("_", " ").replace("  ", " ").strip().title()
 
 
+def _pretty_indicator(s: str) -> str:
+    for prefix in ["adversarial_delta_indicator__", "abs_delta_indicator__"]:
+        if s.startswith(prefix):
+            s = s[len(prefix):]
+    return s.replace("_", " ").replace("  ", " ").strip().title()
+
+
+def _wrap_label(s: str, width: int = 18) -> str:
+    text = str(s).replace("<br>", " ").strip()
+    lines = wrap(text, width=width, break_long_words=False, break_on_hyphens=False)
+    return "<br>".join(lines) if lines else text
+
+
+def _clip_label(s: str, max_len: int = 42) -> str:
+    text = re.sub(r"\s+", " ", str(s)).strip()
+    return text if len(text) <= max_len else text[: max_len - 1].rstrip() + "…"
+
+
+def _path_parts(s: str) -> List[str]:
+    raw = str(s)
+    if ">" in raw:
+        return [_leaf(part) for part in raw.split(">") if str(part).strip()]
+    return [_leaf(raw)]
+
+
+def _path_context(s: str, keep: int = 2) -> str:
+    parts = _path_parts(s)
+    if len(parts) <= 1:
+        return ""
+    trimmed = [
+        part for idx, part in enumerate(parts[:-1])
+        if idx > 0 or part.lower() not in {"attack vectors", "issue position taxonomy", "profile"}
+    ]
+    return " / ".join(trimmed[-keep:])
+
+
+def _unique_display_map(values: List[str]) -> Dict[str, str]:
+    leaves = [_leaf(v) for v in values]
+    counts = Counter(leaves)
+    labels: Dict[str, str] = {}
+    for value, leaf_name in zip(values, leaves):
+        if counts[leaf_name] <= 1:
+            labels[value] = leaf_name
+            continue
+        context = _path_context(value, keep=1)
+        labels[value] = f"{context} • {leaf_name}" if context else leaf_name
+    return labels
+
+
+def _moderator_hierarchy(label: str, ontology_group: str | None = None) -> List[str]:
+    group_parts = [part.strip() for part in str(ontology_group or "").split(":") if part.strip()]
+    clean_label = re.sub(r"\s+", " ", str(label)).strip()
+    leaf_label = clean_label
+    if group_parts:
+        last = group_parts[-1]
+        leaf_label = re.sub(rf"(?i)\b{re.escape(last)}\b", "", leaf_label, count=1)
+        leaf_label = re.sub(r"(?i)\bBig Five\b", "", leaf_label)
+        leaf_label = re.sub(r"\s+", " ", leaf_label).strip(" -:%")
+    if not leaf_label:
+        leaf_label = clean_label
+
+    segments = ["Profile Features"]
+    segments.extend(group_parts if group_parts else ["Other Moderators"])
+    if not segments or segments[-1] != leaf_label:
+        segments.append(leaf_label)
+    deduped: List[str] = []
+    for seg in segments:
+        if not deduped or deduped[-1] != seg:
+            deduped.append(seg)
+    return deduped
+
+
+def _infer_sem_moderator_groups(label: str) -> Tuple[str, str]:
+    txt = re.sub(r"\s+", " ", str(label)).strip()
+    if txt.startswith("Big Five "):
+        remainder = txt[len("Big Five "):].replace("%", "").strip()
+        subgroup = remainder.split(" Mean")[0].strip()
+        return "Profile Traits", subgroup or "Big Five"
+    if txt.startswith("Sex "):
+        return "Demographics", "Sex"
+    if "Age" in txt:
+        return "Demographics", "Age"
+    if "Baseline" in txt:
+        return "Model Controls", "Baseline"
+    if "Exposure" in txt or "Realism" in txt or "Plausibility" in txt:
+        return "Model Controls", "Exposure / Quality"
+    return "Other Moderators", txt.split(" ")[0]
+
+
+def _build_tree_nodes(paths_with_values: List[Tuple[List[str], float]]) -> Tuple[List[str], List[str], List[str], List[float], List[str]]:
+    nodes: Dict[str, Dict[str, Any]] = {}
+    for path, value in paths_with_values:
+        for idx, segment in enumerate(path):
+            node_id = " | ".join(path[: idx + 1])
+            parent_id = " | ".join(path[:idx]) if idx else ""
+            if node_id not in nodes:
+                nodes[node_id] = {
+                    "label": segment,
+                    "parent": parent_id,
+                    "value": 0.0,
+                    "path": " → ".join(path[: idx + 1]),
+                }
+            nodes[node_id]["value"] += float(value)
+    ids = list(nodes.keys())
+    labels = [nodes[node_id]["label"] for node_id in ids]
+    parents = [nodes[node_id]["parent"] for node_id in ids]
+    values = [nodes[node_id]["value"] for node_id in ids]
+    paths = [nodes[node_id]["path"] for node_id in ids]
+    return ids, labels, parents, values, paths
+
+
 def _p_stars(p: Any) -> str:
     try:
         p = float(p)
@@ -74,17 +188,45 @@ def _save_figure_html(fig: go.Figure, path: Path) -> str:
     return str(path)
 
 
+def _save_html_block(content: str, path: Path, title: str) -> str:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    plotly_js = get_plotlyjs()
+    path.write_text(
+        f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{title}</title>
+<style>
+body{{margin:0;padding:16px;background:#ffffff;font-family:"IBM Plex Sans","Avenir Next","Segoe UI",sans-serif;color:#14213d;}}
+</style>
+<script>{plotly_js}</script>
+</head>
+<body>
+{content}
+</body>
+</html>""",
+        encoding="utf-8",
+    )
+    return str(path)
+
+
 # ─── figure builders ──────────────────────────────────────────────────────────
 
 def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
     """Dual go.Surface: mean AE (RdBu_r) + ISD of AE (YlOrRd)."""
-    atk_col, op_col, ae_col = "attack_leaf_label", "opinion_leaf_label", "adversarial_effectivity"
+    atk_col = "attack_leaf" if "attack_leaf" in long_df.columns else "attack_leaf_label"
+    op_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    ae_col = "adversarial_effectivity"
     for c in (atk_col, op_col, ae_col):
         if c not in long_df.columns:
             return go.Figure().add_annotation(text=f"Column '{c}' missing", showarrow=False)
 
     attacks  = sorted(long_df[atk_col].dropna().unique())
     opinions = sorted(long_df[op_col].dropna().unique())
+    attack_labels = _unique_display_map(attacks)
+    opinion_labels = _unique_display_map(opinions)
 
     def _matrix(func):
         return (
@@ -94,8 +236,8 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
 
     mean_mat = _matrix("mean")
     isd_mat  = _matrix("std")
-    atk_l    = [_leaf(a) for a in attacks]
-    op_l     = [_leaf(o) for o in opinions]
+    atk_l    = [_wrap_label(attack_labels[a], 18) for a in attacks]
+    op_l     = [_wrap_label(opinion_labels[o], 18) for o in opinions]
 
     fig = make_subplots(
         rows=1, cols=2,
@@ -137,188 +279,1481 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
 
 def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
     """Side-by-side 2D annotated heatmaps (mean AE | ISD)."""
-    atk_col, op_col, ae_col = "attack_leaf_label", "opinion_leaf_label", "adversarial_effectivity"
+    atk_col = "attack_leaf" if "attack_leaf" in long_df.columns else "attack_leaf_label"
+    op_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    ae_col = "adversarial_effectivity"
     if ae_col not in long_df.columns:
         return go.Figure().add_annotation(text="Data unavailable", showarrow=False)
 
     attacks  = sorted(long_df[atk_col].dropna().unique())
     opinions = sorted(long_df[op_col].dropna().unique())
-    atk_l    = [_leaf(a) for a in attacks]
-    op_l     = [_leaf(o) for o in opinions]
+    attack_labels = _unique_display_map(attacks)
+    opinion_labels = _unique_display_map(opinions)
+    atk_l    = [_wrap_label(attack_labels[a], 18) for a in attacks]
+    op_l     = [_wrap_label(opinion_labels[o], 18) for o in opinions]
 
     mean_m = (long_df.groupby([atk_col, op_col])[ae_col].mean()
               .unstack(op_col).reindex(index=attacks, columns=opinions).fillna(0))
     isd_m  = (long_df.groupby([atk_col, op_col])[ae_col].std()
               .unstack(op_col).reindex(index=attacks, columns=opinions).fillna(0))
 
-    fig = make_subplots(1, 2, subplot_titles=["Mean AE  (red = manipulation succeeded)",
-                                               "Inter-individual SD of AE"], horizontal_spacing=0.14)
-    common = dict(texttemplate="%{text}", textfont=dict(size=11, color="white"),
-                  hovertemplate="<b>%{y}</b> → <b>%{x}</b><br>%{z:.1f}<extra></extra>")
+    total_cells = len(attacks) * len(opinions)
+    longest_label = max([len(label.replace("<br>", " ")) for label in atk_l + op_l] or [0])
+    stacked = len(attacks) > 6 or len(opinions) > 6 or total_cells > 36 or longest_label > 26
+    rows, cols = (2, 1) if stacked else (1, 2)
+    fig = make_subplots(
+        rows,
+        cols,
+        subplot_titles=["Mean AE (red = manipulation succeeded)", "Inter-individual SD of AE"],
+        horizontal_spacing=0.22 if not stacked else 0.0,
+        vertical_spacing=0.22 if stacked else 0.0,
+    )
+    text_size = 11 if total_cells <= 25 else 9 if total_cells <= 49 else 0
+    show_text = text_size > 0
 
-    fig.add_trace(go.Heatmap(z=mean_m.values, x=op_l, y=atk_l,
-                             colorscale="RdBu_r", zmid=0,
-                             text=[[f"{v:.1f}" for v in row] for row in mean_m.values],
-                             colorbar=dict(x=0.44, thickness=11, title="AE", title_side="right"),
-                             **common), row=1, col=1)
-    fig.add_trace(go.Heatmap(z=isd_m.values, x=op_l, y=atk_l,
-                             colorscale="YlOrRd",
-                             text=[[f"{v:.1f}" for v in row] for row in isd_m.values],
-                             colorbar=dict(x=1.01, thickness=11, title="SD", title_side="right"),
-                             **common), row=1, col=2)
+    common = dict(
+        hovertemplate="<b>%{y}</b> → <b>%{x}</b><br>%{z:.1f}<extra></extra>",
+        xgap=4,
+        ygap=4,
+    )
+    mean_kwargs = {
+        "z": mean_m.values,
+        "x": op_l,
+        "y": atk_l,
+        "colorscale": "RdBu_r",
+        "zmid": 0,
+        "colorbar": dict(
+            x=1.02 if stacked else 0.45,
+            y=0.80 if stacked else 0.50,
+            len=0.34 if stacked else 0.82,
+            thickness=12,
+            title="AE",
+            title_side="right",
+        ),
+        **common,
+    }
+    isd_kwargs = {
+        "z": isd_m.values,
+        "x": op_l,
+        "y": atk_l,
+        "colorscale": "YlOrRd",
+        "colorbar": dict(
+            x=1.02,
+            y=0.20 if stacked else 0.50,
+            len=0.34 if stacked else 0.82,
+            thickness=12,
+            title="SD",
+            title_side="right",
+        ),
+        **common,
+    }
+    if show_text:
+        mean_kwargs.update(
+            text=[[f"{v:.1f}" for v in row] for row in mean_m.values],
+            texttemplate="%{text}",
+            textfont=dict(size=text_size, color="white"),
+        )
+        isd_kwargs.update(
+            text=[[f"{v:.1f}" for v in row] for row in isd_m.values],
+            texttemplate="%{text}",
+            textfont=dict(size=text_size, color="white"),
+        )
 
-    fig.update_xaxes(tickangle=-28, tickfont_size=9)
-    fig.update_yaxes(tickfont_size=9)
-    fig.update_layout(paper_bgcolor="white", plot_bgcolor="#f4f7ff",
-                      font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-                      height=420, margin=dict(l=150, r=90, t=52, b=100),
-                      title=dict(text="Factorial Heatmap — Mean AE & Inter-individual Moderation Strength",
-                                 font_size=14))
-    return fig
+    fig.add_trace(go.Heatmap(**mean_kwargs), row=1, col=1)
+    fig.add_trace(go.Heatmap(**isd_kwargs), row=2 if stacked else 1, col=1 if stacked else 2)
 
-
-def _fig_sem_network(sem_coeff_df: pd.DataFrame) -> go.Figure:
-    """
-    Bipartite SEM network. Edge: width ∝ |β|, colour = sign, opacity = significance.
-    Click a moderator node → highlight only its edges. Click background → reset.
-    Buttons: All paths | Significant (p<.05) | Very significant (p<.01) | Reset highlight.
-    """
-    df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy()
-    df["estimate"] = pd.to_numeric(df["estimate"], errors="coerce")
-    df["p_value"]  = pd.to_numeric(df["p_value"],  errors="coerce")
-    df = df.dropna(subset=["estimate"])
-    if df.empty:
-        return go.Figure().add_annotation(text="No SEM path data", showarrow=False)
-
-    moderators = df["rhs"].unique().tolist()
-    indicators = df["lhs"].unique().tolist()
-    n_mod, n_ind = len(moderators), len(indicators)
-
-    mod_y  = np.linspace(0.92, 0.08, n_mod)
-    ind_y  = np.linspace(0.88, 0.12, n_ind)
-    mod_pos = {m: (0.0, float(mod_y[i])) for i, m in enumerate(moderators)}
-    ind_pos = {ind: (1.0, float(ind_y[i])) for i, ind in enumerate(indicators)}
-
-    max_abs = df["estimate"].abs().max() or 1.0
-    traces: List[go.BaseTraceType] = []
-    edge_trace_meta: List[dict] = []   # {rhs, lhs, p, est}
-
-    for _, row in df.iterrows():
-        rhs, lhs = str(row["rhs"]), str(row["lhs"])
-        if rhs not in mod_pos or lhs not in ind_pos:
-            continue
-        x0, y0 = mod_pos[rhs]
-        x1, y1 = ind_pos[lhs]
-        p    = row["p_value"]
-        est  = float(row["estimate"])
-        stars = _p_stars(p)
-        alpha = 0.92 if (pd.notna(p) and p < 0.05) else 0.48 if (pd.notna(p) and p < 0.10) else 0.13
-        width = max(0.7, abs(est) / max_abs * 10)
-        col   = f"rgba(29,78,137,{alpha})" if est >= 0 else f"rgba(192,57,43,{alpha})"
-
-        traces.append(go.Scatter(
-            x=[x0, (x0*2 + x1) / 3, (x0 + x1*2) / 3, x1, None],
-            y=[y0, y0, y1, y1, None],
-            mode="lines",
-            line=dict(color=col, width=width, shape="spline"),
-            hovertemplate=(
-                f"<b>{rhs}</b> → <b>{_leaf(lhs)}</b><br>"
-                f"β = {est:.3f} {stars}<br>p = {p:.4f}<extra></extra>"
-            ),
-            showlegend=False,
-            customdata=[[rhs, lhs, p, est]],
-        ))
-        edge_trace_meta.append({"rhs": rhs, "lhs": lhs, "p": float(p) if pd.notna(p) else 1.0, "est": est})
-
-    n_edges = len(traces)
-
-    # moderator nodes
-    traces.append(go.Scatter(
-        x=[0.0] * n_mod, y=[mod_pos[m][1] for m in moderators],
-        mode="markers+text",
-        marker=dict(size=18, color=PALETTE["navy"], symbol="circle",
-                    line=dict(color="white", width=2.5)),
-        text=moderators, textposition="middle left", textfont=dict(size=9.5, color=PALETTE["ink"]),
-        hovertemplate="<b>%{text}</b><extra>Moderator</extra>",
-        name="Moderators", showlegend=False,
-    ))
-    mod_node_idx = n_edges
-
-    # indicator nodes
-    ind_labels = [_leaf(ind) for ind in indicators]
-    traces.append(go.Scatter(
-        x=[1.0] * n_ind, y=[ind_pos[ind][1] for ind in indicators],
-        mode="markers+text",
-        marker=dict(size=18, color=PALETTE["teal"], symbol="diamond",
-                    line=dict(color="white", width=2.5)),
-        text=ind_labels, textposition="middle right", textfont=dict(size=9.5, color=PALETTE["ink"]),
-        hovertemplate="<b>%{text}</b><extra>Opinion Indicator</extra>",
-        name="Indicators", showlegend=False,
-    ))
-
-    fig = go.Figure(traces)
+    fig.update_xaxes(tickangle=-26, tickfont_size=9.5, automargin=True)
+    fig.update_yaxes(tickfont_size=9.5, automargin=True)
+    fig.update_annotations(font=dict(size=12.5))
     fig.update_layout(
-        paper_bgcolor="white", plot_bgcolor="white",
+        paper_bgcolor="white",
+        plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=560,
-        xaxis=dict(visible=False, range=[-0.08, 1.08]),
-        yaxis=dict(visible=False, range=[0.0, 1.0]),
-        title=dict(text="SEM Network — Profile Moderators → Opinion Shift Indicators", font_size=14),
-        margin=dict(l=210, r=200, t=60, b=70),
-        hovermode="closest",
-        annotations=[
-            dict(x=0.02, y=1.06, xref="paper", yref="paper", showarrow=False,
-                 text="<b>PROFILE MODERATORS</b>", font=dict(size=10.5, color=PALETTE["navy"])),
-            dict(x=0.98, y=1.06, xref="paper", yref="paper", showarrow=False,
-                 text="<b>OPINION INDICATORS</b>", font=dict(size=10.5, color=PALETTE["teal"])),
-            dict(x=0.5, y=-0.08, xref="paper", yref="paper", showarrow=False,
-                 text="Width ∝ |β| &nbsp;·&nbsp; <span style='color:#1d4e89'>■</span> positive &nbsp;"
-                      "<span style='color:#c0392b'>■</span> negative &nbsp;·&nbsp; "
-                      "Opacity: solid p<.05 · medium p<.10 · faint n.s.<br>"
-                      "<i>Click a moderator node to highlight its paths — click background to reset</i>",
-                 font=dict(size=8.5, color=PALETTE["muted"])),
-        ],
-        # filter buttons
-        updatemenus=[dict(
-            type="buttons", direction="right",
-            x=0.5, xanchor="center", y=1.14, yanchor="top",
-            buttons=[
-                dict(label="All paths",
-                     method="restyle",
-                     args=[{"opacity": [1.0] * n_edges + [1.0, 1.0]}]),
-                dict(label="Significant (p<.05)",
-                     method="restyle",
-                     args=[{"opacity": [
-                         1.0 if meta["p"] < 0.05 else 0.06
-                         for meta in edge_trace_meta
-                     ] + [1.0, 1.0]}]),
-                dict(label="Very significant (p<.01)",
-                     method="restyle",
-                     args=[{"opacity": [
-                         1.0 if meta["p"] < 0.01 else 0.06
-                         for meta in edge_trace_meta
-                     ] + [1.0, 1.0]}]),
-                dict(label="Positive only",
-                     method="restyle",
-                     args=[{"opacity": [
-                         1.0 if meta["est"] > 0 else 0.06
-                         for meta in edge_trace_meta
-                     ] + [1.0, 1.0]}]),
-                dict(label="Negative only",
-                     method="restyle",
-                     args=[{"opacity": [
-                         1.0 if meta["est"] < 0 else 0.06
-                         for meta in edge_trace_meta
-                     ] + [1.0, 1.0]}]),
-            ],
-            bgcolor=PALETTE["panel"], bordercolor=PALETTE["line"],
-            font=dict(size=10), pad=dict(l=4, r=4, t=4, b=4),
-        )],
+        height=730 if stacked else 470,
+        margin=dict(l=170, r=105, t=68, b=120 if not stacked else 90),
+        title=dict(
+            text="Factorial Heatmap — Mean AE & Inter-individual Moderation Strength",
+            font_size=14,
+        ),
     )
     return fig
 
 
-def _fig_sem_heatmap(sem_coeff_df: pd.DataFrame, exploratory_df: pd.DataFrame) -> go.Figure:
+def _fig_sem_network(
+    sem_coeff_df: pd.DataFrame,
+    long_df: Optional[pd.DataFrame] = None,
+) -> go.Figure:
+    """3D hierarchical SEM map with profile ontology, attack scope, and opinion space."""
+    df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy()
+    df["estimate"] = pd.to_numeric(df["estimate"], errors="coerce")
+    df["p_value"] = pd.to_numeric(df["p_value"], errors="coerce")
+    df = df.dropna(subset=["estimate"])
+    if df.empty:
+        return go.Figure().add_annotation(text="No SEM path data", showarrow=False)
+
+    opinion_lookup: Dict[str, str] = {}
+    opinion_group_lookup: Dict[str, str] = {}
+    attack_stats = pd.DataFrame()
+    if long_df is not None and not long_df.empty:
+        opinion_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+        attack_col = "attack_leaf" if "attack_leaf" in long_df.columns else "attack_leaf_label"
+        if opinion_col in long_df.columns:
+            opinion_values = sorted(long_df[opinion_col].dropna().unique())
+            opinion_display = _unique_display_map(opinion_values)
+            for opinion_value in opinion_values:
+                leaf_name = _leaf(opinion_value)
+                opinion_lookup.setdefault(leaf_name, opinion_display[opinion_value])
+                opinion_group_lookup.setdefault(leaf_name, _path_context(opinion_value, keep=1) or "Opinion Targets")
+        if attack_col in long_df.columns:
+            attack_stats = (
+                long_df.groupby(attack_col, as_index=False)
+                .agg(
+                    mean_ae=("adversarial_effectivity", "mean"),
+                    mean_abs=("abs_delta_score", "mean"),
+                    sd_ae=("adversarial_effectivity", "std"),
+                    n_rows=("scenario_id", "count"),
+                )
+            )
+
+    df["rhs_label"] = df["rhs"].astype(str).map(lambda s: re.sub(r"\s+", " ", str(s)).strip())
+    df["lhs_leaf"] = df["lhs"].astype(str).map(_pretty_indicator)
+    df["lhs_label"] = df["lhs_leaf"].map(lambda leaf: opinion_lookup.get(leaf, leaf))
+    df["mod_root"] = df["rhs_label"].map(lambda s: _infer_sem_moderator_groups(s)[0])
+    df["mod_group"] = df["rhs_label"].map(lambda s: _infer_sem_moderator_groups(s)[1])
+    df["ind_group"] = df["lhs_leaf"].map(lambda s: opinion_group_lookup.get(s, "Opinion Targets"))
+
+    mod_rank = (
+        df.groupby(["mod_root", "rhs_label"], as_index=False)
+        .agg(abs_est=("estimate", lambda s: float(np.max(np.abs(s)))))
+        .sort_values(["mod_root", "abs_est", "rhs_label"], ascending=[True, False, True])
+    )
+    ind_rank = (
+        df.groupby(["ind_group", "lhs_label"], as_index=False)
+        .agg(abs_est=("estimate", lambda s: float(np.max(np.abs(s)))))
+        .sort_values(["ind_group", "abs_est", "lhs_label"], ascending=[True, False, True])
+    )
+
+    mod_groups = (
+        mod_rank.groupby("mod_root", as_index=False)["abs_est"]
+        .sum()
+        .sort_values("abs_est", ascending=False)["mod_root"]
+        .tolist()
+    )
+    ind_groups = (
+        ind_rank.groupby("ind_group", as_index=False)["abs_est"]
+        .sum()
+        .sort_values("abs_est", ascending=False)["ind_group"]
+        .tolist()
+    )
+    mod_group_members = {
+        group: mod_rank.loc[mod_rank["mod_root"] == group, "rhs_label"].tolist()
+        for group in mod_groups
+    }
+    ind_group_members = {
+        group: ind_rank.loc[ind_rank["ind_group"] == group, "lhs_label"].tolist()
+        for group in ind_groups
+    }
+
+    def _lane_layout(group_members: Dict[str, List[str]], group_order: List[str]) -> Tuple[Dict[str, Tuple[float, float]], Dict[str, Tuple[float, float]]]:
+        n_groups = max(len(group_order), 1)
+        z_vals = np.linspace((n_groups - 1) * 2.6 / 2, -(n_groups - 1) * 2.6 / 2, n_groups) if n_groups > 1 else np.array([0.0])
+        group_pos: Dict[str, Tuple[float, float]] = {}
+        leaf_pos: Dict[str, Tuple[float, float]] = {}
+        for z_lane, group in zip(z_vals, group_order):
+            labels = group_members.get(group, [])
+            if len(labels) <= 1:
+                y_vals = np.array([0.0] * max(len(labels), 1))
+            else:
+                y_vals = np.linspace((len(labels) - 1) * 1.15 / 2, -(len(labels) - 1) * 1.15 / 2, len(labels))
+            group_pos[group] = (0.0, float(z_lane))
+            for y_val, label in zip(y_vals, labels):
+                leaf_pos[label] = (float(y_val), float(z_lane))
+        return group_pos, leaf_pos
+
+    mod_group_pos, mod_leaf_pos = _lane_layout(mod_group_members, mod_groups)
+    ind_group_pos, ind_leaf_pos = _lane_layout(ind_group_members, ind_groups)
+
+    if not attack_stats.empty:
+        attack_stats = attack_stats.copy()
+        attack_stats["attack_label"] = attack_stats[attack_stats.columns[0]].astype(str)
+        attack_stats["attack_group"] = attack_stats["attack_label"].map(lambda s: _path_context(s, keep=1) or "Attack Scope")
+        attack_order = (
+            attack_stats.groupby("attack_group", as_index=False)["mean_abs"]
+            .sum()
+            .sort_values("mean_abs", ascending=False)["attack_group"]
+            .tolist()
+        )
+        attack_group_members = {
+            group: attack_stats.loc[attack_stats["attack_group"] == group]
+            .sort_values("mean_abs", ascending=False)["attack_label"].tolist()
+            for group in attack_order
+        }
+        attack_group_pos, attack_leaf_pos = _lane_layout(attack_group_members, attack_order)
+    else:
+        attack_order = []
+        attack_group_pos = {}
+        attack_leaf_pos = {}
+
+    mod_order = [label for group in mod_groups for label in mod_group_members[group]]
+    ind_order = [label for group in ind_groups for label in ind_group_members[group]]
+    mod_codes = {label: f"M{i+1:02d}" for i, label in enumerate(mod_order)}
+    ind_codes = {label: f"O{i+1:02d}" for i, label in enumerate(ind_order)}
+    attack_codes = {label: f"A{i+1:02d}" for i, label in enumerate(sum([attack_group_members[g] for g in attack_order], []))}
+
+    max_abs = float(df["estimate"].abs().max() or 1.0)
+    group_edges = (
+        df.groupby(["mod_root", "ind_group"], as_index=False)
+        .agg(
+            mean_est=("estimate", "mean"),
+            mean_abs=("estimate", lambda s: float(np.mean(np.abs(s)))),
+            min_p=("p_value", "min"),
+            n_paths=("estimate", "count"),
+        )
+    )
+
+    def _line_rgba(est: float, p_val: float | None, strong_alpha: float = 0.95) -> str:
+        if p_val is None or pd.isna(p_val):
+            alpha = 0.18
+        elif p_val < 0.01:
+            alpha = strong_alpha
+        elif p_val < 0.05:
+            alpha = 0.78
+        elif p_val < 0.10:
+            alpha = 0.48
+        else:
+            alpha = 0.18
+        return f"rgba(29,78,137,{alpha})" if est >= 0 else f"rgba(192,57,43,{alpha})"
+
+    x_mod_group, x_mod_leaf, x_center, x_ind_group, x_ind_leaf = 0.0, 1.0, 2.35, 3.7, 4.7
+    z_all = [pos[1] for pos in mod_group_pos.values()] + [pos[1] for pos in ind_group_pos.values()] + [pos[1] for pos in attack_group_pos.values()]
+    z_min = min(z_all) - 1.2 if z_all else -2.0
+    z_max = max(z_all) + 1.2 if z_all else 2.0
+    y_max_candidates = [abs(pos[0]) for pos in mod_leaf_pos.values()] + [abs(pos[0]) for pos in ind_leaf_pos.values()] + [abs(pos[0]) for pos in attack_leaf_pos.values()]
+    y_limit = max(y_max_candidates + [1.8]) + 0.9
+
+    traces: List[go.BaseTraceType] = []
+    group_edge_count = 0
+    leaf_edge_count = 0
+    leaf_edge_meta: List[Dict[str, Any]] = []
+
+    plane_y = np.array([[-y_limit, y_limit], [-y_limit, y_limit]])
+    plane_z = np.array([[z_min, z_min], [z_max, z_max]])
+    plane_x = np.full((2, 2), x_center)
+    traces.append(go.Surface(
+        x=plane_x,
+        y=plane_y,
+        z=plane_z,
+        showscale=False,
+        opacity=0.14,
+        hoverinfo="skip",
+        colorscale=[[0, "rgba(240,192,64,0.28)"], [1, "rgba(231,111,81,0.18)"]],
+        name="AE corridor",
+    ))
+
+    for _, row in group_edges.iterrows():
+        mod_group = str(row["mod_root"])
+        ind_group = str(row["ind_group"])
+        if mod_group not in mod_group_pos or ind_group not in ind_group_pos:
+            continue
+        y0, z0 = mod_group_pos[mod_group]
+        y1, z1 = ind_group_pos[ind_group]
+        est = float(row["mean_est"])
+        p_val = float(row["min_p"]) if pd.notna(row["min_p"]) else None
+        p_text = f"{p_val:.4f}" if p_val is not None else "n/a"
+        traces.append(go.Scatter3d(
+            x=[x_mod_group, 1.55, x_center, 3.05, x_ind_group],
+            y=[y0, y0 * 0.5, (y0 + y1) / 2, y1 * 0.5, y1],
+            z=[z0, z0, (z0 + z1) / 2, z1, z1],
+            mode="lines",
+            line=dict(color=_line_rgba(est, p_val, strong_alpha=0.88), width=max(5.0, row["mean_abs"] / max_abs * 12.0)),
+            hovertemplate=(
+                f"<b>{mod_group}</b> → <b>{ind_group}</b><br>"
+                f"Mean β = {est:.3f}<br>"
+                f"Mean |β| = {float(row['mean_abs']):.3f}<br>"
+                f"Paths aggregated = {int(row['n_paths'])}<br>"
+                f"Best p = {p_text}<extra>Group summary</extra>"
+            ),
+            showlegend=False,
+            visible=True,
+        ))
+        group_edge_count += 1
+
+    for _, row in df.iterrows():
+        rhs = str(row["rhs_label"])
+        lhs = str(row["lhs_label"])
+        if rhs not in mod_leaf_pos or lhs not in ind_leaf_pos:
+            continue
+        y0, z0 = mod_leaf_pos[rhs]
+        y1, z1 = ind_leaf_pos[lhs]
+        est = float(row["estimate"])
+        p_val = float(row["p_value"]) if pd.notna(row["p_value"]) else None
+        p_text = f"{p_val:.4f}" if p_val is not None else "n/a"
+        traces.append(go.Scatter3d(
+            x=[x_mod_leaf, 1.75, x_center, 2.95, x_ind_leaf],
+            y=[y0, y0 * 0.62, (y0 + y1) / 2, y1 * 0.62, y1],
+            z=[z0, z0, (z0 + z1) / 2, z1, z1],
+            mode="lines",
+            line=dict(color=_line_rgba(est, p_val), width=max(3.0, abs(est) / max_abs * 9.0)),
+            hovertemplate=(
+                f"<b>{mod_codes.get(rhs, rhs)}</b> {rhs}<br>"
+                f"→ <b>{ind_codes.get(lhs, lhs)}</b> {lhs}<br>"
+                f"β = {est:.3f} {_p_stars(p_val)}<br>"
+                f"p = {p_text}<extra>Leaf path</extra>"
+            ),
+            showlegend=False,
+            visible=False,
+        ))
+        leaf_edge_meta.append({"p": p_val if p_val is not None else 1.0})
+        leaf_edge_count += 1
+
+    # group nodes
+    traces.extend([
+        go.Scatter3d(
+            x=[x_mod_group] * len(mod_groups),
+            y=[mod_group_pos[g][0] for g in mod_groups],
+            z=[mod_group_pos[g][1] for g in mod_groups],
+            mode="markers+text",
+            marker=dict(size=16, color="#dbe8fb", symbol="square", line=dict(color=PALETTE["navy"], width=2)),
+            text=[_clip_label(g, 22) for g in mod_groups],
+            textposition="middle left",
+            textfont=dict(size=10, color=PALETTE["navy"]),
+            customdata=np.array(mod_groups, dtype=object),
+            hovertemplate="<b>%{customdata}</b><extra>Profile family</extra>",
+            showlegend=False,
+            visible=True,
+        ),
+        go.Scatter3d(
+            x=[x_ind_group] * len(ind_groups),
+            y=[ind_group_pos[g][0] for g in ind_groups],
+            z=[ind_group_pos[g][1] for g in ind_groups],
+            mode="markers+text",
+            marker=dict(size=16, color="#d8f2ef", symbol="square", line=dict(color=PALETTE["teal"], width=2)),
+            text=[_clip_label(g, 22) for g in ind_groups],
+            textposition="middle right",
+            textfont=dict(size=10, color=PALETTE["teal"]),
+            customdata=np.array(ind_groups, dtype=object),
+            hovertemplate="<b>%{customdata}</b><extra>Opinion family</extra>",
+            showlegend=False,
+            visible=True,
+        ),
+    ])
+
+    # attack scope nodes
+    if not attack_stats.empty:
+        attack_hover = []
+        attack_sizes = []
+        attack_text = []
+        attack_labels_order = sum([attack_group_members[g] for g in attack_order], [])
+        mean_abs_max = float(max(attack_stats["mean_abs"].max(), 0.01))
+        for attack_label in attack_labels_order:
+            row = attack_stats.loc[attack_stats["attack_label"] == attack_label].iloc[0]
+            attack_hover.append([
+                attack_codes[attack_label],
+                attack_label,
+                float(row["mean_ae"]),
+                float(row["mean_abs"]),
+                float(row["sd_ae"]) if pd.notna(row["sd_ae"]) else 0.0,
+                int(row["n_rows"]),
+            ])
+            attack_sizes.append(10 + float(row["mean_abs"]) / mean_abs_max * 14)
+            attack_text.append(attack_codes[attack_label] if len(attack_labels_order) > 5 else _clip_label(_leaf(attack_label), 16))
+        traces.append(go.Scatter3d(
+            x=[x_center] * len(attack_labels_order),
+            y=[attack_leaf_pos[a][0] for a in attack_labels_order],
+            z=[attack_leaf_pos[a][1] for a in attack_labels_order],
+            mode="markers+text",
+            marker=dict(
+                size=attack_sizes,
+                color=[v[3] for v in attack_hover],
+                colorscale="YlOrRd",
+                line=dict(color="white", width=1.6),
+                opacity=0.92,
+            ),
+            text=attack_text,
+            textposition="top center",
+            textfont=dict(size=9, color=PALETTE["orange"]),
+            customdata=np.array(attack_hover, dtype=object),
+            hovertemplate=(
+                "<b>%{customdata[0]}</b> %{customdata[1]}<br>"
+                "Mean AE = %{customdata[2]:.2f}<br>"
+                "Mean |Δ| = %{customdata[3]:.2f}<br>"
+                "SD AE = %{customdata[4]:.2f}<br>"
+                "Rows = %{customdata[5]}<extra>Attack scope context</extra>"
+            ),
+            showlegend=False,
+            visible=True,
+        ))
+
+    traces.extend([
+        go.Scatter3d(
+            x=[x_mod_leaf] * len(mod_order),
+            y=[mod_leaf_pos[label][0] for label in mod_order],
+            z=[mod_leaf_pos[label][1] for label in mod_order],
+            mode="markers+text",
+            marker=dict(size=10, color=PALETTE["navy"], symbol="circle", line=dict(color="white", width=1.6)),
+            text=[mod_codes[label] for label in mod_order],
+            textposition="middle left",
+            textfont=dict(size=9, color=PALETTE["ink"]),
+            customdata=np.array([[mod_codes[label], label, _infer_sem_moderator_groups(label)[0]] for label in mod_order], dtype=object),
+            hovertemplate="<b>%{customdata[0]}</b> %{customdata[1]}<br>Family: %{customdata[2]}<extra>Moderator leaf</extra>",
+            showlegend=False,
+            visible=False,
+        ),
+        go.Scatter3d(
+            x=[x_ind_leaf] * len(ind_order),
+            y=[ind_leaf_pos[label][0] for label in ind_order],
+            z=[ind_leaf_pos[label][1] for label in ind_order],
+            mode="markers+text",
+            marker=dict(size=10, color=PALETTE["teal"], symbol="diamond", line=dict(color="white", width=1.6)),
+            text=[ind_codes[label] for label in ind_order],
+            textposition="middle right",
+            textfont=dict(size=9, color=PALETTE["ink"]),
+            customdata=np.array([[ind_codes[label], label, next((g for g in ind_groups if label in ind_group_members[g]), "Opinion Targets")] for label in ind_order], dtype=object),
+            hovertemplate="<b>%{customdata[0]}</b> %{customdata[1]}<br>Family: %{customdata[2]}<extra>Opinion leaf</extra>",
+            showlegend=False,
+            visible=False,
+        ),
+    ])
+
+    # trace visibility masks
+    base_count = 1  # center plane
+    group_edge_start = 1
+    leaf_edge_start = group_edge_start + group_edge_count
+    node_start = leaf_edge_start + leaf_edge_count
+    total_traces = len(traces)
+
+    attack_trace_count = 1 if not attack_stats.empty else 0
+    always_visible_idx = {0, node_start, node_start + 1}
+    if attack_trace_count:
+        always_visible_idx.add(node_start + 2)
+    mod_leaf_trace_idx = node_start + 2 + attack_trace_count
+    ind_leaf_trace_idx = node_start + 3 + attack_trace_count
+
+    def _mask(view: str) -> List[bool]:
+        vis = [False] * total_traces
+        for idx in always_visible_idx:
+            if idx < total_traces:
+                vis[idx] = True
+        if view == "group":
+            for idx in range(group_edge_start, leaf_edge_start):
+                vis[idx] = True
+        elif view == "leaf":
+            vis[mod_leaf_trace_idx] = True
+            vis[ind_leaf_trace_idx] = True
+            for idx in range(leaf_edge_start, node_start):
+                vis[idx] = True
+        elif view == "sig":
+            vis[mod_leaf_trace_idx] = True
+            vis[ind_leaf_trace_idx] = True
+            for idx, meta in enumerate(leaf_edge_meta, start=leaf_edge_start):
+                vis[idx] = meta["p"] < 0.05
+        elif view == "hsig":
+            vis[mod_leaf_trace_idx] = True
+            vis[ind_leaf_trace_idx] = True
+            for idx, meta in enumerate(leaf_edge_meta, start=leaf_edge_start):
+                vis[idx] = meta["p"] < 0.01
+        return vis
+
+    cameras = {
+        "Perspective": dict(eye=dict(x=1.75, y=1.55, z=0.95)),
+        "Profile Side": dict(eye=dict(x=0.15, y=2.3, z=0.55)),
+        "Opinion Side": dict(eye=dict(x=-0.15, y=-2.3, z=0.55)),
+        "Top Down": dict(eye=dict(x=0.0, y=0.15, z=2.65)),
+    }
+
+    fig = go.Figure(traces)
+    fig.update_layout(
+        paper_bgcolor="white",
+        font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
+        height=max(760, 90 * max(len(mod_groups), len(ind_groups)) + 320),
+        title=dict(text="Hierarchical Structural Equation Model — 3D Moderation Space", font_size=14),
+        margin=dict(l=20, r=20, t=92, b=110),
+        scene=dict(
+            xaxis=dict(visible=False, range=[-0.35, 5.05]),
+            yaxis=dict(visible=False, range=[-y_limit, y_limit]),
+            zaxis=dict(visible=False, range=[z_min, z_max]),
+            aspectmode="manual",
+            aspectratio=dict(x=2.4, y=1.6, z=1.1),
+            bgcolor="white",
+            camera=dict(eye=dict(x=1.75, y=1.55, z=0.95)),
+        ),
+        annotations=[
+            dict(x=0.12, y=1.08, xref="paper", yref="paper", showarrow=False,
+                 text="<b>PROFILE ONTOLOGY</b>", font=dict(size=11, color=PALETTE["navy"])),
+            dict(x=0.50, y=1.08, xref="paper", yref="paper", showarrow=False,
+                 text="<b>ATTACK-EFFECTIVITY SCOPE</b>", font=dict(size=11, color=PALETTE["orange"])),
+            dict(x=0.88, y=1.08, xref="paper", yref="paper", showarrow=False,
+                 text="<b>OPINION SPACE</b>", font=dict(size=11, color=PALETTE["teal"])),
+            dict(x=0.50, y=-0.13, xref="paper", yref="paper", showarrow=False,
+                 text=(
+                     "Default view collapses to group summary for readability. Switch to leaf detail for M## / O## codes; hover nodes and paths for full labels and coefficients.<br>"
+                     "Attack nodes in the middle summarize the manipulated attack space for the run; SEM paths themselves connect profile-side moderators to attack-effectivity indicators in opinion space."
+                 ),
+                 font=dict(size=8.6, color=PALETTE["muted"])),
+        ],
+        updatemenus=[
+            dict(
+                type="buttons",
+                direction="right",
+                x=0.24,
+                xanchor="center",
+                y=1.17,
+                yanchor="top",
+                buttons=[
+                    dict(label="Group Summary", method="update", args=[{"visible": _mask("group")}]),
+                    dict(label="Leaf Detail", method="update", args=[{"visible": _mask("leaf")}]),
+                    dict(label="Significant", method="update", args=[{"visible": _mask("sig")}]),
+                    dict(label="Highly Significant", method="update", args=[{"visible": _mask("hsig")}]),
+                ],
+                bgcolor=PALETTE["panel"],
+                bordercolor=PALETTE["line"],
+                font=dict(size=10),
+                pad=dict(l=4, r=4, t=4, b=4),
+            ),
+            dict(
+                type="buttons",
+                direction="right",
+                x=0.76,
+                xanchor="center",
+                y=1.17,
+                yanchor="top",
+                buttons=[
+                    dict(label=name, method="relayout", args=[{"scene.camera": camera}])
+                    for name, camera in cameras.items()
+                ],
+                bgcolor=PALETTE["panel"],
+                bordercolor=PALETTE["line"],
+                font=dict(size=10),
+                pad=dict(l=4, r=4, t=4, b=4),
+            ),
+        ],
+    )
+    fig.update_traces(selector=dict(type="surface"), visible=True)
+    fig.update_layout(showlegend=False)
+    for idx, visible in enumerate(_mask("group")):
+        fig.data[idx].visible = visible
+    return fig
+
+
+def _html_sem_network(
+    sem_coeff_df: pd.DataFrame,
+    long_df: Optional[pd.DataFrame] = None,
+) -> str:
+    """Custom interactive 3D hierarchical SEM network with explicit UI controls."""
+    df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy()
+    df["estimate"] = pd.to_numeric(df["estimate"], errors="coerce")
+    df["p_value"] = pd.to_numeric(df["p_value"], errors="coerce")
+    df = df.dropna(subset=["estimate"])
+    if df.empty:
+        return "<p>No SEM path data available.</p>"
+
+    opinion_lookup: Dict[str, str] = {}
+    opinion_group_lookup: Dict[str, str] = {}
+    attack_stats = pd.DataFrame()
+    if long_df is not None and not long_df.empty:
+        opinion_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+        attack_col = "attack_leaf" if "attack_leaf" in long_df.columns else "attack_leaf_label"
+        if opinion_col in long_df.columns:
+            opinion_values = sorted(long_df[opinion_col].dropna().unique())
+            opinion_display = _unique_display_map(opinion_values)
+            for opinion_value in opinion_values:
+                leaf_name = _pretty_indicator(str(opinion_value))
+                opinion_lookup.setdefault(leaf_name, opinion_display[opinion_value])
+                opinion_group_lookup.setdefault(leaf_name, _path_context(opinion_value, keep=1) or "Opinion Targets")
+        if attack_col in long_df.columns:
+            attack_stats = (
+                long_df.groupby(attack_col, as_index=False)
+                .agg(
+                    mean_ae=("adversarial_effectivity", "mean"),
+                    mean_abs=("abs_delta_score", "mean"),
+                    sd_ae=("adversarial_effectivity", "std"),
+                    n_rows=("scenario_id", "count"),
+                )
+                .rename(columns={attack_col: "attack_label"})
+            )
+
+    df["rhs_label"] = df["rhs"].astype(str).map(lambda s: re.sub(r"\s+", " ", str(s)).strip())
+    df["lhs_leaf"] = df["lhs"].astype(str).map(_pretty_indicator)
+    df["lhs_label"] = df["lhs_leaf"].map(lambda leaf: opinion_lookup.get(leaf, leaf))
+    df["mod_root"] = df["rhs_label"].map(lambda s: _infer_sem_moderator_groups(s)[0])
+    df["ind_group"] = df["lhs_leaf"].map(lambda s: opinion_group_lookup.get(s, "Opinion Targets"))
+    df["mod_role"] = df["mod_root"].map(
+        lambda g: "control" if g == "Model Controls" else "demographic" if g == "Demographics" else "profile"
+    )
+
+    mod_rank = (
+        df.groupby(["mod_root", "mod_role", "rhs_label"], as_index=False)
+        .agg(abs_est=("estimate", lambda s: float(np.max(np.abs(s)))))
+        .sort_values(["mod_root", "abs_est", "rhs_label"], ascending=[True, False, True])
+    )
+    ind_rank = (
+        df.groupby(["ind_group", "lhs_label"], as_index=False)
+        .agg(abs_est=("estimate", lambda s: float(np.max(np.abs(s)))))
+        .sort_values(["ind_group", "abs_est", "lhs_label"], ascending=[True, False, True])
+    )
+
+    mod_groups = (
+        mod_rank.groupby("mod_root", as_index=False)["abs_est"]
+        .sum()
+        .sort_values("abs_est", ascending=False)["mod_root"]
+        .tolist()
+    )
+    ind_groups = (
+        ind_rank.groupby("ind_group", as_index=False)["abs_est"]
+        .sum()
+        .sort_values("abs_est", ascending=False)["ind_group"]
+        .tolist()
+    )
+    mod_group_members = {
+        group: mod_rank.loc[mod_rank["mod_root"] == group, "rhs_label"].tolist()
+        for group in mod_groups
+    }
+    ind_group_members = {
+        group: ind_rank.loc[ind_rank["ind_group"] == group, "lhs_label"].tolist()
+        for group in ind_groups
+    }
+    mod_role_lookup = {row["rhs_label"]: row["mod_role"] for _, row in mod_rank.iterrows()}
+
+    def _lane_layout(group_members: Dict[str, List[str]], group_order: List[str]) -> Tuple[Dict[str, Tuple[float, float]], Dict[str, Tuple[float, float]]]:
+        n_groups = max(len(group_order), 1)
+        z_vals = np.linspace((n_groups - 1) * 2.6 / 2, -(n_groups - 1) * 2.6 / 2, n_groups) if n_groups > 1 else np.array([0.0])
+        group_pos: Dict[str, Tuple[float, float]] = {}
+        leaf_pos: Dict[str, Tuple[float, float]] = {}
+        for z_lane, group in zip(z_vals, group_order):
+            labels = group_members.get(group, [])
+            if len(labels) <= 1:
+                y_vals = np.array([0.0] * max(len(labels), 1))
+            else:
+                y_vals = np.linspace((len(labels) - 1) * 1.12 / 2, -(len(labels) - 1) * 1.12 / 2, len(labels))
+            group_pos[group] = (0.0, float(z_lane))
+            for y_val, label in zip(y_vals, labels):
+                leaf_pos[label] = (float(y_val), float(z_lane))
+        return group_pos, leaf_pos
+
+    def _reorder_within_groups(
+        frame: pd.DataFrame,
+        src_col: str,
+        src_groups: Dict[str, List[str]],
+        tgt_col: str,
+        tgt_groups: Dict[str, List[str]],
+        n_iter: int = 4,
+    ) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
+        src_members = {k: list(v) for k, v in src_groups.items()}
+        tgt_members = {k: list(v) for k, v in tgt_groups.items()}
+        for _ in range(n_iter):
+            _, tgt_leaf = _lane_layout(tgt_members, list(tgt_members.keys()))
+            src_scores = (
+                frame.groupby(src_col)[[tgt_col, "estimate"]]
+                .apply(lambda g: float(np.average(
+                    [tgt_leaf[val][0] + tgt_leaf[val][1] * 0.15 for val in g[tgt_col]],
+                    weights=np.abs(g["estimate"]).to_numpy(),
+                )))
+                .to_dict()
+            )
+            for group, labels in src_members.items():
+                src_members[group] = sorted(labels, key=lambda label: (src_scores.get(label, 0.0), label))
+
+            _, src_leaf = _lane_layout(src_members, list(src_members.keys()))
+            tgt_scores = (
+                frame.groupby(tgt_col)[[src_col, "estimate"]]
+                .apply(lambda g: float(np.average(
+                    [src_leaf[val][0] + src_leaf[val][1] * 0.15 for val in g[src_col]],
+                    weights=np.abs(g["estimate"]).to_numpy(),
+                )))
+                .to_dict()
+            )
+            for group, labels in tgt_members.items():
+                tgt_members[group] = sorted(labels, key=lambda label: (tgt_scores.get(label, 0.0), label))
+        return src_members, tgt_members
+
+    mod_group_members, ind_group_members = _reorder_within_groups(
+        df,
+        "rhs_label",
+        mod_group_members,
+        "lhs_label",
+        ind_group_members,
+    )
+
+    mod_group_pos, mod_leaf_pos = _lane_layout(mod_group_members, mod_groups)
+    ind_group_pos, ind_leaf_pos = _lane_layout(ind_group_members, ind_groups)
+
+    attack_group_members: Dict[str, List[str]] = {}
+    attack_group_pos: Dict[str, Tuple[float, float]] = {}
+    attack_leaf_pos: Dict[str, Tuple[float, float]] = {}
+    attack_order: List[str] = []
+    if not attack_stats.empty:
+        attack_stats["attack_group"] = attack_stats["attack_label"].map(lambda s: _path_context(s, keep=1) or "Attack Scope")
+        attack_order = (
+            attack_stats.groupby("attack_group", as_index=False)["mean_abs"]
+            .sum()
+            .sort_values("mean_abs", ascending=False)["attack_group"]
+            .tolist()
+        )
+        attack_group_members = {
+            group: attack_stats.loc[attack_stats["attack_group"] == group]
+            .sort_values("mean_abs", ascending=False)["attack_label"].tolist()
+            for group in attack_order
+        }
+        attack_group_pos, attack_leaf_pos = _lane_layout(attack_group_members, attack_order)
+
+    mod_order = [label for group in mod_groups for label in mod_group_members[group]]
+    ind_order = [label for group in ind_groups for label in ind_group_members[group]]
+    attack_order_flat = [label for group in attack_order for label in attack_group_members[group]]
+
+    mod_codes = {label: f"M{i+1:02d}" for i, label in enumerate(mod_order)}
+    ind_codes = {label: f"O{i+1:02d}" for i, label in enumerate(ind_order)}
+    attack_codes = {label: f"A{i+1:02d}" for i, label in enumerate(attack_order_flat)}
+
+    x_mod_group, x_mod_leaf, x_attack_group, x_attack_leaf, x_ind_group, x_ind_leaf = 0.0, 1.0, 2.0, 2.45, 3.7, 4.7
+
+    profile_group_nodes = [
+        dict(
+            id=f"pg::{group}",
+            label=group,
+            short=_clip_label(group, 24),
+            x=x_mod_group,
+            y=mod_group_pos[group][0],
+            z=mod_group_pos[group][1],
+            family=group,
+            role="group",
+        )
+        for group in mod_groups
+    ]
+    profile_leaf_nodes = [
+        dict(
+            id=f"pl::{label}",
+            code=mod_codes[label],
+            label=label,
+            short=_clip_label(label.replace("Big Five ", ""), 24),
+            x=x_mod_leaf,
+            y=mod_leaf_pos[label][0],
+            z=mod_leaf_pos[label][1],
+            family=next((g for g in mod_groups if label in mod_group_members[g]), "Other Moderators"),
+            role=mod_role_lookup.get(label, "profile"),
+        )
+        for label in mod_order
+    ]
+    opinion_group_nodes = [
+        dict(
+            id=f"og::{group}",
+            label=group,
+            short=_clip_label(group, 24),
+            x=x_ind_group,
+            y=ind_group_pos[group][0],
+            z=ind_group_pos[group][1],
+            family=group,
+            role="group",
+        )
+        for group in ind_groups
+    ]
+    opinion_leaf_nodes = [
+        dict(
+            id=f"ol::{label}",
+            code=ind_codes[label],
+            label=label,
+            short=_clip_label(label, 24),
+            x=x_ind_leaf,
+            y=ind_leaf_pos[label][0],
+            z=ind_leaf_pos[label][1],
+            family=next((g for g in ind_groups if label in ind_group_members[g]), "Opinion Targets"),
+            role="leaf",
+        )
+        for label in ind_order
+    ]
+    attack_group_nodes = [
+        dict(
+            id=f"ag::{group}",
+            label=group,
+            short=_clip_label(group, 20),
+            x=x_attack_group,
+            y=attack_group_pos[group][0],
+            z=attack_group_pos[group][1],
+            family=group,
+            role="group",
+        )
+        for group in attack_order
+    ]
+    attack_leaf_nodes = []
+    if not attack_stats.empty:
+        mean_abs_max = float(max(attack_stats["mean_abs"].max(), 0.01))
+        for attack_label in attack_order_flat:
+            row = attack_stats.loc[attack_stats["attack_label"] == attack_label].iloc[0]
+            attack_leaf_nodes.append(dict(
+                id=f"al::{attack_label}",
+                code=attack_codes[attack_label],
+                label=attack_label,
+                short=_clip_label(_leaf(attack_label), 22),
+                x=x_attack_leaf,
+                y=attack_leaf_pos[attack_label][0],
+                z=attack_leaf_pos[attack_label][1],
+                family=row["attack_group"],
+                mean_ae=float(row["mean_ae"]),
+                mean_abs=float(row["mean_abs"]),
+                sd_ae=float(row["sd_ae"]) if pd.notna(row["sd_ae"]) else 0.0,
+                n_rows=int(row["n_rows"]),
+                size=float(10 + float(row["mean_abs"]) / mean_abs_max * 14),
+            ))
+
+    group_edges = []
+    grouped = (
+        df.groupby(["mod_root", "ind_group"], as_index=False)
+        .agg(
+            mean_est=("estimate", "mean"),
+            mean_abs=("estimate", lambda s: float(np.mean(np.abs(s)))),
+            min_p=("p_value", "min"),
+            n_paths=("estimate", "count"),
+        )
+    )
+    for _, row in grouped.iterrows():
+        mod_group = str(row["mod_root"])
+        ind_group = str(row["ind_group"])
+        if mod_group not in mod_group_pos or ind_group not in ind_group_pos:
+            continue
+        y0, z0 = mod_group_pos[mod_group]
+        y1, z1 = ind_group_pos[ind_group]
+        group_edges.append(dict(
+            id=f"ge::{mod_group}::{ind_group}",
+            source_group=mod_group,
+            target_group=ind_group,
+            source_role="group",
+            estimate=float(row["mean_est"]),
+            abs_est=float(row["mean_abs"]),
+            p=float(row["min_p"]) if pd.notna(row["min_p"]) else 1.0,
+            n_paths=int(row["n_paths"]),
+            x=[x_mod_group, 1.10, 2.15, 3.00, x_ind_group],
+            y=[y0, y0 * 0.58, (y0 + y1) / 2, y1 * 0.58, y1],
+            z=[z0, z0, (z0 + z1) / 2, z1, z1],
+        ))
+
+    leaf_edges = []
+    for _, row in df.iterrows():
+        rhs = str(row["rhs_label"])
+        lhs = str(row["lhs_label"])
+        if rhs not in mod_leaf_pos or lhs not in ind_leaf_pos:
+            continue
+        y0, z0 = mod_leaf_pos[rhs]
+        y1, z1 = ind_leaf_pos[lhs]
+        src_group = next((g for g in mod_groups if rhs in mod_group_members[g]), "Other Moderators")
+        tgt_group = next((g for g in ind_groups if lhs in ind_group_members[g]), "Opinion Targets")
+        leaf_edges.append(dict(
+            id=f"le::{rhs}::{lhs}",
+            source=rhs,
+            target=lhs,
+            source_code=mod_codes[rhs],
+            target_code=ind_codes[lhs],
+            source_group=src_group,
+            target_group=tgt_group,
+            source_role=mod_role_lookup.get(rhs, "profile"),
+            estimate=float(row["estimate"]),
+            abs_est=float(abs(row["estimate"])),
+            p=float(row["p_value"]) if pd.notna(row["p_value"]) else 1.0,
+            x=[x_mod_leaf, 1.75, 2.35, 2.95, x_ind_leaf],
+            y=[y0, y0 * 0.62, (y0 + y1) / 2, y1 * 0.62, y1],
+            z=[z0, z0, (z0 + z1) / 2, z1, z1],
+        ))
+
+    payload = {
+        "profile_groups": mod_groups,
+        "opinion_groups": ind_groups,
+        "profile_group_nodes": profile_group_nodes,
+        "profile_leaf_nodes": profile_leaf_nodes,
+        "attack_group_nodes": attack_group_nodes,
+        "attack_leaf_nodes": attack_leaf_nodes,
+        "opinion_group_nodes": opinion_group_nodes,
+        "opinion_leaf_nodes": opinion_leaf_nodes,
+        "group_edges": group_edges,
+        "leaf_edges": leaf_edges,
+        "max_abs_beta": float(max(df["estimate"].abs().max(), 0.01)),
+        "z_range": [
+            float(min(
+                [node["z"] for node in profile_group_nodes + opinion_group_nodes + attack_group_nodes] + [-1.8]
+            ) - 1.2),
+            float(max(
+                [node["z"] for node in profile_group_nodes + opinion_group_nodes + attack_group_nodes] + [1.8]
+            ) + 1.2),
+        ],
+        "y_limit": float(max(
+            [abs(node["y"]) for node in profile_leaf_nodes + opinion_leaf_nodes + attack_leaf_nodes] + [1.8]
+        ) + 0.95),
+    }
+
+    profile_filter_html = "".join(
+        f"""<label class="semn-chip"><input type="checkbox" class="semn-profile-group" value="{group}" checked> <span>{group}</span></label>"""
+        for group in mod_groups
+    )
+    opinion_filter_html = "".join(
+        f"""<label class="semn-chip"><input type="checkbox" class="semn-opinion-group" value="{group}" checked> <span>{group}</span></label>"""
+        for group in ind_groups
+    )
+
+    return f"""
+<div id="semn-root">
+  <style>
+    #semn-root .semn-shell{{display:grid;grid-template-columns:minmax(290px,330px) minmax(0,1fr);gap:16px;align-items:start}}
+    #semn-root .semn-card{{background:#f7faff;border:1px solid #dbe3ef;border-radius:12px;padding:12px 13px;box-shadow:0 3px 14px rgba(20,33,61,0.05)}}
+    #semn-root .semn-card + .semn-card{{margin-top:10px}}
+    #semn-root .semn-title{{font-weight:800;font-size:0.92rem;color:{PALETTE['navy']};margin-bottom:8px}}
+    #semn-root .semn-sub{{font-size:0.75rem;color:{PALETTE['muted']};line-height:1.45;margin-bottom:8px}}
+    #semn-root .semn-segment{{display:flex;flex-wrap:wrap;gap:6px}}
+    #semn-root .semn-btn{{padding:6px 9px;border-radius:999px;border:1px solid #c8d7ec;background:#fff;color:{PALETTE['ink']};cursor:pointer;font-size:0.75rem;font-weight:700}}
+    #semn-root .semn-btn.active{{background:{PALETTE['blue']};border-color:{PALETTE['blue']};color:#fff}}
+    #semn-root .semn-grid{{display:grid;grid-template-columns:1fr 1fr;gap:8px}}
+    #semn-root .semn-grid.one{{grid-template-columns:1fr}}
+    #semn-root .semn-row{{display:flex;justify-content:space-between;align-items:center;gap:8px}}
+    #semn-root .semn-toggle{{display:flex;align-items:center;gap:7px;font-size:0.76rem;color:{PALETTE['ink']};font-weight:600}}
+    #semn-root .semn-select{{width:100%;padding:7px 8px;border-radius:8px;border:1px solid #dbe3ef;background:#fff;color:{PALETTE['ink']};font-size:0.80rem}}
+    #semn-root .semn-slider-wrap{{background:#fff;border:1px solid #dbe3ef;border-radius:10px;padding:9px 10px}}
+    #semn-root .semn-slider-meta{{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:0.76rem;color:{PALETTE['muted']};font-weight:700}}
+    #semn-root input[type="range"]{{width:100%;accent-color:{PALETTE['blue']}}}
+    #semn-root .semn-quick{{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}}
+    #semn-root .semn-chip{{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:9px;background:#fff;border:1px solid #dbe3ef;font-size:0.75rem;color:{PALETTE['ink']}}}
+    #semn-root .semn-filter-list{{display:flex;flex-wrap:wrap;gap:6px;max-height:140px;overflow:auto;padding-right:3px}}
+    #semn-root .semn-stage{{display:flex;flex-direction:column;gap:12px}}
+    #semn-root .semn-banner{{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#f8fbff 0%,#eef5ff 100%);border:1px solid #dbe3ef;border-radius:12px;padding:11px 13px}}
+    #semn-root .semn-status{{font-size:0.79rem;color:{PALETTE['muted']};line-height:1.45}}
+    #semn-root .semn-status strong{{color:{PALETTE['ink']}}}
+    #semn-root .semn-legend{{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}}
+    #semn-root .semn-legend-item{{font-size:0.73rem;color:{PALETTE['muted']};display:flex;align-items:center;gap:6px}}
+    #semn-root .semn-swatch{{display:inline-block;width:28px;height:8px;border-radius:999px}}
+    #semn-root .semn-swatch.pos{{background:linear-gradient(90deg,rgba(255,219,210,0.75),rgba(192,57,43,0.95))}}
+    #semn-root .semn-swatch.neg{{background:linear-gradient(90deg,rgba(216,232,255,0.75),rgba(29,78,137,0.95))}}
+    #semn-root .semn-swatch.sig{{background:linear-gradient(90deg,rgba(120,120,120,0.20),rgba(120,120,120,0.95))}}
+    #semn-root #semn-plot{{background:#fff;border:1px solid #dbe3ef;border-radius:14px;min-height:660px}}
+    #semn-root .semn-bottom{{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:12px}}
+    #semn-root .semn-panel{{background:#fff;border:1px solid #dbe3ef;border-radius:12px;padding:12px 13px}}
+    #semn-root .semn-panel h4{{margin:0 0 8px;font-size:0.82rem;color:{PALETTE['navy']}}}
+    #semn-root .semn-list{{display:flex;flex-direction:column;gap:7px}}
+    #semn-root .semn-item{{padding:7px 8px;border-radius:10px;background:#f8fbff;border:1px solid #e0eaf8}}
+    #semn-root .semn-item-top{{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:0.76rem}}
+    #semn-root .semn-item-top strong{{color:{PALETTE['ink']}}}
+    #semn-root .semn-badge{{display:inline-flex;align-items:center;padding:2px 6px;border-radius:999px;font-size:0.66rem;font-weight:800;letter-spacing:0.02em}}
+    #semn-root .semn-badge.hsig{{background:rgba(231,111,81,0.14);color:{PALETTE['red']}}}
+    #semn-root .semn-badge.sig{{background:rgba(29,78,137,0.14);color:{PALETTE['blue']}}}
+    #semn-root .semn-badge.weak{{background:rgba(20,33,61,0.08);color:{PALETTE['muted']}}}
+    #semn-root .semn-item-sub{{font-size:0.72rem;color:{PALETTE['muted']};line-height:1.4;margin-top:3px}}
+    #semn-root .semn-map{{display:flex;flex-wrap:wrap;gap:7px}}
+    #semn-root .semn-map span{{padding:4px 6px;border-radius:8px;background:#f7faff;border:1px solid #e0eaf8;font-size:0.72rem;color:{PALETTE['ink']}}}
+    @media (max-width: 1120px) {{
+      #semn-root .semn-shell{{grid-template-columns:1fr}}
+      #semn-root .semn-bottom{{grid-template-columns:1fr}}
+    }}
+  </style>
+  <div class="semn-shell">
+    <div>
+      <div class="semn-card">
+        <div class="semn-title">View Presets</div>
+        <div class="semn-sub">Start with a simple baseline summary of PROFILE-side moderation families, then progressively add leaf-level SEM paths and attack-context structure.</div>
+        <div class="semn-segment" id="semn-view-mode">
+          <button class="semn-btn active" data-view="overview">Baseline</button>
+          <button class="semn-btn" data-view="leaf">Leaf Detail</button>
+          <button class="semn-btn" data-view="all">All Layers</button>
+        </div>
+      </div>
+
+      <div class="semn-card">
+        <div class="semn-title">Path Threshold</div>
+        <div class="semn-slider-wrap">
+          <div class="semn-slider-meta"><span>Maximum p-value shown</span><span id="semn-p-display">0.10</span></div>
+          <input type="range" id="semn-p-slider" min="0" max="100" value="50" step="1">
+          <div class="semn-quick">
+            <button class="semn-btn" data-p="0.01">0.01</button>
+            <button class="semn-btn" data-p="0.05">0.05</button>
+            <button class="semn-btn active" data-p="0.10">0.10</button>
+            <button class="semn-btn" data-p="1.00">All</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="semn-card">
+        <div class="semn-title">Layer Controls</div>
+        <div class="semn-sub">Presets set a good default; these switches let you explicitly choose which moderation layers stay visible.</div>
+        <div class="semn-grid one">
+          <label class="semn-toggle"><input type="checkbox" id="semn-show-group-edges" checked> Show family ribbons</label>
+          <label class="semn-toggle"><input type="checkbox" id="semn-show-leaf-edges"> Show leaf-level paths</label>
+          <label class="semn-toggle"><input type="checkbox" id="semn-show-group-nodes" checked> Show family nodes</label>
+          <label class="semn-toggle"><input type="checkbox" id="semn-show-leaf-nodes"> Show leaf nodes</label>
+        </div>
+        <div class="semn-row" style="margin-top:10px">
+          <label class="semn-toggle"><input type="checkbox" id="semn-include-controls"> Include model controls</label>
+          <label class="semn-toggle"><input type="checkbox" id="semn-show-attack" checked> Show attack context</label>
+        </div>
+      </div>
+
+      <div class="semn-card">
+        <div class="semn-title">Path Filters</div>
+        <div class="semn-grid">
+          <div>
+            <div class="semn-sub" style="margin-bottom:6px">Direction</div>
+            <div class="semn-segment" id="semn-sign-mode">
+              <button class="semn-btn active" data-sign="all">All</button>
+              <button class="semn-btn" data-sign="positive">Positive</button>
+              <button class="semn-btn" data-sign="negative">Negative</button>
+            </div>
+          </div>
+          <div>
+            <div class="semn-sub" style="margin-bottom:6px">Labels</div>
+            <select id="semn-label-density" class="semn-select">
+              <option value="minimal">Minimal</option>
+              <option value="codes" selected>Codes</option>
+              <option value="short">Short labels</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="semn-card">
+        <div class="semn-title">Hierarchy Filters</div>
+        <div class="semn-sub">Choose which PROFILE-side families and OPINION-space families remain in the 3D moderation view.</div>
+        <div class="semn-sub" style="font-weight:700;color:{PALETTE['ink']};margin-bottom:6px">Profile families</div>
+        <div class="semn-filter-list">{profile_filter_html}</div>
+        <div class="semn-sub" style="font-weight:700;color:{PALETTE['ink']};margin:10px 0 6px">Opinion families</div>
+        <div class="semn-filter-list">{opinion_filter_html}</div>
+      </div>
+
+      <div class="semn-card">
+        <div class="semn-title">Camera</div>
+        <div class="semn-segment" id="semn-camera-mode">
+          <button class="semn-btn active" data-camera="perspective">Perspective</button>
+          <button class="semn-btn" data-camera="profile">Profile Side</button>
+          <button class="semn-btn" data-camera="opinion">Opinion Side</button>
+          <button class="semn-btn" data-camera="top">Top Down</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="semn-stage">
+      <div class="semn-banner">
+        <div class="semn-status" id="semn-status"></div>
+        <div class="semn-legend">
+          <div class="semn-legend-item"><span class="semn-swatch pos"></span><span>positive moderation of attack effectivity</span></div>
+          <div class="semn-legend-item"><span class="semn-swatch neg"></span><span>negative moderation / resistance</span></div>
+          <div class="semn-legend-item"><span class="semn-swatch sig"></span><span>stronger opacity = lower p-value</span></div>
+          <div class="semn-legend-item"><span style="font-weight:800;color:{PALETTE['ink']}">|β|</span><span>thicker ribbons = stronger moderation</span></div>
+        </div>
+      </div>
+      <div id="semn-plot"></div>
+      <div class="semn-bottom">
+        <div class="semn-panel">
+          <h4>Interpretation</h4>
+          <div id="semn-logic" class="semn-sub" style="margin:0"></div>
+        </div>
+        <div class="semn-panel">
+          <h4>Highlighted Paths</h4>
+          <div id="semn-focus" class="semn-list"></div>
+        </div>
+        <div class="semn-panel">
+          <h4>Visible Node Map</h4>
+          <div id="semn-map" class="semn-map"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){{
+    const DATA = {json.dumps(payload)};
+    const root = document.getElementById('semn-root');
+    const plotEl = root.querySelector('#semn-plot');
+
+    const cameras = {{
+      perspective: {{eye: {{x: 1.7, y: 1.55, z: 0.95}}}},
+      profile:     {{eye: {{x: 0.18, y: 2.35, z: 0.55}}}},
+      opinion:     {{eye: {{x: -0.18, y: -2.35, z: 0.55}}}},
+      top:         {{eye: {{x: 0.0, y: 0.14, z: 2.7}}}},
+    }};
+
+    function sliderToP(val) {{
+      return Math.pow(10, -2 + (parseFloat(val) / 50));
+    }}
+    function pToSlider(p) {{
+      const clamped = Math.max(0.01, Math.min(1, p));
+      return Math.round((Math.log10(clamped) + 2) * 50);
+    }}
+    function fmtP(p) {{
+      if (p >= 0.995) return 'All';
+      if (p < 0.02) return p.toFixed(3);
+      if (p < 0.1) return p.toFixed(2);
+      return p.toFixed(2);
+    }}
+    function colorForEdge(est, p, maxAbs) {{
+      const t = Math.max(0.12, Math.min(1, Math.abs(est) / Math.max(maxAbs, 0.01)));
+      const pos0 = [255, 224, 216], pos1 = [192, 57, 43];
+      const neg0 = [218, 232, 255], neg1 = [29, 78, 137];
+      const base = est >= 0 ? pos0 : neg0;
+      const end  = est >= 0 ? pos1 : neg1;
+      const r = Math.round(base[0] + (end[0] - base[0]) * t);
+      const g = Math.round(base[1] + (end[1] - base[1]) * t);
+      const b = Math.round(base[2] + (end[2] - base[2]) * t);
+      let a = 0.16;
+      if (p <= 0.01) a = 0.98;
+      else if (p <= 0.05) a = 0.82;
+      else if (p <= 0.10) a = 0.54;
+      return `rgba(${{r}},${{g}},${{b}},${{a}})`;
+    }}
+    function activeButtonValue(containerId, attr) {{
+      const btn = root.querySelector(`#${{containerId}} .semn-btn.active`);
+      return btn ? btn.dataset[attr] : null;
+    }}
+    function selectedValues(selector) {{
+      return Array.from(root.querySelectorAll(selector)).filter(el => el.checked).map(el => el.value);
+    }}
+    function labelText(node, density, mode) {{
+      if (!node) return '';
+      if (node.role === 'group') return node.short || node.label;
+      if (density === 'minimal') return mode === 'leaf' || mode === 'all' ? (node.code || '') : '';
+      if (density === 'codes') return node.code || '';
+      return node.code ? `${{node.code}}  ${{node.short || node.label}}` : (node.short || node.label);
+    }}
+    function pBadge(p) {{
+      if (p <= 0.01) return ['Highly significant', 'hsig'];
+      if (p <= 0.05) return ['Significant', 'sig'];
+      return ['Exploratory', 'weak'];
+    }}
+    function applyPreset(mode) {{
+      const groupEdges = root.querySelector('#semn-show-group-edges');
+      const leafEdges = root.querySelector('#semn-show-leaf-edges');
+      const groupNodes = root.querySelector('#semn-show-group-nodes');
+      const leafNodes = root.querySelector('#semn-show-leaf-nodes');
+      if (!groupEdges || !leafEdges || !groupNodes || !leafNodes) return;
+      if (mode === 'overview') {{
+        groupEdges.checked = true;
+        leafEdges.checked = false;
+        groupNodes.checked = true;
+        leafNodes.checked = false;
+      }} else if (mode === 'leaf') {{
+        groupEdges.checked = false;
+        leafEdges.checked = true;
+        groupNodes.checked = false;
+        leafNodes.checked = true;
+      }} else {{
+        groupEdges.checked = true;
+        leafEdges.checked = true;
+        groupNodes.checked = true;
+        leafNodes.checked = true;
+      }}
+    }}
+    function syncQuickPButtons(pMax) {{
+      root.querySelectorAll('.semn-btn[data-p]').forEach(el => el.classList.remove('active'));
+      const matches = [
+        ['0.01', 0.01],
+        ['0.05', 0.05],
+        ['0.10', 0.10],
+        ['1.00', 1.00],
+      ];
+      const found = matches.find(([, v]) => Math.abs(v - pMax) < 1e-3);
+      if (!found) return;
+      const btn = root.querySelector(`.semn-btn[data-p="${{found[0]}}"]`);
+      if (btn) btn.classList.add('active');
+    }}
+    function state() {{
+      return {{
+        mode: activeButtonValue('semn-view-mode', 'view') || 'overview',
+        sign: activeButtonValue('semn-sign-mode', 'sign') || 'all',
+        pMax: sliderToP(root.querySelector('#semn-p-slider').value),
+        showGroupEdges: root.querySelector('#semn-show-group-edges').checked,
+        showLeafEdges: root.querySelector('#semn-show-leaf-edges').checked,
+        showGroupNodes: root.querySelector('#semn-show-group-nodes').checked,
+        showLeafNodes: root.querySelector('#semn-show-leaf-nodes').checked,
+        includeControls: root.querySelector('#semn-include-controls').checked,
+        showAttack: root.querySelector('#semn-show-attack').checked,
+        labelDensity: root.querySelector('#semn-label-density').value,
+        camera: activeButtonValue('semn-camera-mode', 'camera') || 'perspective',
+        profileGroups: selectedValues('.semn-profile-group'),
+        opinionGroups: selectedValues('.semn-opinion-group'),
+      }};
+    }}
+    function edgePass(edge, st) {{
+      if (edge.p > st.pMax) return false;
+      if (st.sign === 'positive' && edge.estimate <= 0) return false;
+      if (st.sign === 'negative' && edge.estimate >= 0) return false;
+      if (!st.profileGroups.includes(edge.source_group)) return false;
+      if (!st.opinionGroups.includes(edge.target_group)) return false;
+      if (!st.includeControls && edge.source_role === 'control') return false;
+      return true;
+    }}
+    function nodePass(node, st) {{
+      if (!node) return false;
+      if (node.family && DATA.profile_groups.includes(node.family)) {{
+        if (!st.profileGroups.includes(node.family)) return false;
+        if (!st.includeControls && node.role === 'control') return false;
+      }}
+      if (node.family && DATA.opinion_groups.includes(node.family)) {{
+        if (!st.opinionGroups.includes(node.family)) return false;
+      }}
+      return true;
+    }}
+    function makeLineTrace(edge, maxAbs, name) {{
+      return {{
+        type: 'scatter3d',
+        mode: 'lines',
+        x: edge.x,
+        y: edge.y,
+        z: edge.z,
+        line: {{
+          color: colorForEdge(edge.estimate, edge.p, maxAbs),
+          width: Math.max(name === 'group' ? 5.5 : 3.0, (Math.abs(edge.estimate) / Math.max(maxAbs, 0.01)) * (name === 'group' ? 13.0 : 9.0)),
+        }},
+        hovertemplate: name === 'group'
+          ? `<b>${{edge.source_group}}</b> → <b>${{edge.target_group}}</b><br>Mean β = ${{edge.estimate.toFixed(3)}}<br>Mean |β| = ${{edge.abs_est.toFixed(3)}}<br>Best p = ${{edge.p.toFixed(4)}}<br>Aggregated paths = ${{edge.n_paths}}<extra>Group summary</extra>`
+          : `<b>${{edge.source_code}}</b> ${{edge.source}}<br>→ <b>${{edge.target_code}}</b> ${{edge.target}}<br>β = ${{edge.estimate.toFixed(3)}}<br>p = ${{edge.p.toFixed(4)}}<extra>Leaf path</extra>`,
+        showlegend: false,
+      }};
+    }}
+    function makeNodeTrace(nodes, marker, density, mode, hoverTitle) {{
+      return {{
+        type: 'scatter3d',
+        mode: 'markers+text',
+        x: nodes.map(n => n.x),
+        y: nodes.map(n => n.y),
+        z: nodes.map(n => n.z),
+        text: nodes.map(n => labelText(n, density, mode)),
+        textposition: marker.textposition,
+        textfont: marker.textfont,
+        marker: marker.marker,
+        customdata: nodes.map(n => [n.code || '', n.label, n.family || '', n.role || '']),
+        hovertemplate: `<b>%{{customdata[0]}}</b> %{{customdata[1]}}<br>Family: %{{customdata[2]}}<br>Type: %{{customdata[3]}}<extra>${{hoverTitle}}</extra>`,
+        showlegend: false,
+      }};
+    }}
+    function makeAttackTrace(nodes, density, mode) {{
+      return {{
+        type: 'scatter3d',
+        mode: 'markers+text',
+        x: nodes.map(n => n.x),
+        y: nodes.map(n => n.y),
+        z: nodes.map(n => n.z),
+        text: nodes.map(n => density === 'minimal' ? n.code : (density === 'codes' ? n.code : `${{n.code}}  ${{n.short}}`)),
+        textposition: 'top center',
+        textfont: {{size: 9, color: '{PALETTE['orange']}'}},
+        marker: {{
+          size: nodes.map(n => n.size || 10),
+          color: nodes.map(n => n.mean_ae),
+          colorscale: 'RdBu_r',
+          cmid: 0,
+          line: {{color: 'white', width: 1.6}},
+          opacity: 0.92,
+        }},
+        customdata: nodes.map(n => [n.code, n.label, n.mean_ae, n.mean_abs, n.sd_ae, n.n_rows]),
+        hovertemplate: `<b>%{{customdata[0]}}</b> %{{customdata[1]}}<br>Mean AE = %{{customdata[2]:.2f}}<br>Mean |Δ| = %{{customdata[3]:.2f}}<br>SD AE = %{{customdata[4]:.2f}}<br>Rows = %{{customdata[5]}}<extra>Attack scope</extra>`,
+        showlegend: false,
+      }};
+    }}
+    function buildTraces(st) {{
+      const traces = [];
+      const visibleGroupEdges = DATA.group_edges.filter(edge => edgePass(edge, st));
+      const visibleLeafEdges = DATA.leaf_edges.filter(edge => edgePass(edge, st));
+
+      if (st.showAttack) {{
+        traces.push({{
+          type: 'surface',
+          x: [[2.22, 2.22], [2.22, 2.22]],
+          y: [[-DATA.y_limit, DATA.y_limit], [-DATA.y_limit, DATA.y_limit]],
+          z: [[DATA.z_range[0], DATA.z_range[0]], [DATA.z_range[1], DATA.z_range[1]]],
+          showscale: false,
+          opacity: 0.12,
+          hoverinfo: 'skip',
+          colorscale: [[0, 'rgba(240,192,64,0.30)'], [1, 'rgba(231,111,81,0.16)']],
+          name: 'Attack scope plane',
+        }});
+      }}
+
+      if (st.showGroupEdges) visibleGroupEdges.forEach(edge => traces.push(makeLineTrace(edge, DATA.max_abs_beta, 'group')));
+      if (st.showLeafEdges) visibleLeafEdges.forEach(edge => traces.push(makeLineTrace(edge, DATA.max_abs_beta, 'leaf')));
+
+      const profileGroupNodes = DATA.profile_group_nodes.filter(n => nodePass(n, st));
+      const opinionGroupNodes = DATA.opinion_group_nodes.filter(n => nodePass(n, st));
+      const profileLeafNodes = DATA.profile_leaf_nodes.filter(n => nodePass(n, st));
+      const opinionLeafNodes = DATA.opinion_leaf_nodes.filter(n => nodePass(n, st));
+      const attackGroupNodes = DATA.attack_group_nodes;
+      const attackLeafNodes = DATA.attack_leaf_nodes;
+
+      if (st.showGroupNodes) {{
+        traces.push(makeNodeTrace(profileGroupNodes, {{
+          marker: {{size: 17, color: '#dbe8fb', symbol: 'square', line: {{color: '{PALETTE['navy']}', width: 2}}}},
+          textposition: 'middle left',
+          textfont: {{size: 10, color: '{PALETTE['navy']}'}},
+        }}, 'short', st.mode, 'Profile family'));
+        if (st.showAttack && attackGroupNodes.length) {{
+          traces.push(makeNodeTrace(attackGroupNodes, {{
+            marker: {{size: 15, color: '#f7e4bf', symbol: 'square', line: {{color: '{PALETTE['orange']}', width: 1.8}}}},
+            textposition: 'middle center',
+            textfont: {{size: 9.5, color: '{PALETTE['orange']}'}},
+          }}, 'short', st.mode, 'Attack family'));
+        }}
+        traces.push(makeNodeTrace(opinionGroupNodes, {{
+          marker: {{size: 17, color: '#d8f2ef', symbol: 'square', line: {{color: '{PALETTE['teal']}', width: 2}}}},
+          textposition: 'middle right',
+          textfont: {{size: 10, color: '{PALETTE['teal']}'}},
+        }}, 'short', st.mode, 'Opinion family'));
+      }}
+      if (st.showLeafNodes) {{
+        traces.push(makeNodeTrace(profileLeafNodes, {{
+          marker: {{size: 10, color: '{PALETTE['navy']}', symbol: 'circle', line: {{color: 'white', width: 1.5}}}},
+          textposition: 'middle left',
+          textfont: {{size: 8.5, color: '{PALETTE['ink']}'}},
+        }}, st.labelDensity, st.mode, 'Profile moderator'));
+        if (st.showAttack && attackLeafNodes.length) traces.push(makeAttackTrace(attackLeafNodes, st.labelDensity, st.mode));
+        traces.push(makeNodeTrace(opinionLeafNodes, {{
+          marker: {{size: 10, color: '{PALETTE['teal']}', symbol: 'diamond', line: {{color: 'white', width: 1.5}}}},
+          textposition: 'middle right',
+          textfont: {{size: 8.5, color: '{PALETTE['ink']}'}},
+        }}, st.labelDensity, st.mode, 'Opinion indicator'));
+      }}
+      return {{
+        traces,
+        visibleGroupEdges,
+        visibleLeafEdges,
+        profileGroupNodes,
+        opinionGroupNodes,
+        profileLeafNodes,
+        opinionLeafNodes,
+        attackGroupNodes,
+        attackLeafNodes,
+      }};
+    }}
+    function updateStatus(st, built) {{
+      const modeText = st.mode === 'overview' ? 'group summary' : st.mode === 'leaf' ? 'leaf detail' : 'all layers';
+      const pText = fmtP(st.pMax);
+      const edgeCount = (st.showGroupEdges ? built.visibleGroupEdges.length : 0) + (st.showLeafEdges ? built.visibleLeafEdges.length : 0);
+      const controlText = st.includeControls ? 'including model controls' : 'inter-individual differences only';
+      const hsig = built.visibleLeafEdges.filter(edge => edge.p <= 0.01).length;
+      const sig = built.visibleLeafEdges.filter(edge => edge.p > 0.01 && edge.p <= 0.05).length;
+      const exploratory = built.visibleLeafEdges.filter(edge => edge.p > 0.05).length;
+      const profileShown = st.showLeafNodes ? built.profileLeafNodes.length : built.profileGroupNodes.length;
+      const opinionShown = st.showLeafNodes ? built.opinionLeafNodes.length : built.opinionGroupNodes.length;
+      const attackShown = st.showAttack ? (st.showLeafNodes ? built.attackLeafNodes.length : built.attackGroupNodes.length) : 0;
+      root.querySelector('#semn-status').innerHTML =
+        `<strong>Preset:</strong> ${{modeText}}<br>` +
+        `<strong>Visible paths:</strong> ${{edgeCount}} under p ≤ ${{pText}}, ${{st.sign}} sign filter, ${{controlText}}<br>` +
+        `<strong>Coverage:</strong> ${{profileShown}} profile-side nodes, ${{opinionShown}} opinion-side nodes` +
+        `${{st.showAttack ? `, ${{attackShown}} attack-context nodes` : ''}}<br>` +
+        `<strong>Significance mix:</strong> ${{hsig}} highly significant, ${{sig}} significant, ${{exploratory}} exploratory leaf paths<br>` +
+        `<strong>Logic:</strong> PROFILE-side moderators shape attacked opinion-shift indicators; attack nodes in the middle show manipulated context for the run, not direct SEM regressors.`;
+      root.querySelector('#semn-p-display').textContent = fmtP(st.pMax);
+    }}
+    function updateLogic(st, built) {{
+      const ribbonTxt = st.showGroupEdges ? `${{built.visibleGroupEdges.length}} family ribbons` : 'no family ribbons';
+      const leafTxt = st.showLeafEdges ? `${{built.visibleLeafEdges.length}} leaf-level SEM paths` : 'no leaf-level paths';
+      const txt = st.mode === 'overview'
+        ? `Baseline keeps the moderation story readable first: which PROFILE-side families shape which parts of opinion space under cybermanipulation.`
+        : st.mode === 'leaf'
+        ? `Leaf detail exposes each SEM coefficient individually. M## codes are profile-side moderators; O## codes are opinion indicators; A## nodes summarize attack context for the run.`
+        : `All layers overlays family structure, leaf-level coefficients, and attack context so you can compare the coarse moderation map against exact SEM paths.`;
+      root.querySelector('#semn-logic').textContent = `${{txt}} Current selection shows ${{ribbonTxt}} and ${{leafTxt}}.`;
+    }}
+    function updateFocus(st, visibleGroupEdges, visibleLeafEdges) {{
+      const items = []
+        .concat(st.showGroupEdges ? visibleGroupEdges.map(item => Object.assign({{_kind: 'group'}}, item)) : [])
+        .concat(st.showLeafEdges ? visibleLeafEdges.map(item => Object.assign({{_kind: 'leaf'}}, item)) : [])
+        .sort((a,b) => (a.p - b.p) || (Math.abs(b.estimate) - Math.abs(a.estimate)))
+        .slice(0, 8);
+      const wrap = root.querySelector('#semn-focus');
+      if (!items.length) {{
+        wrap.innerHTML = `<div class="semn-sub" style="margin:0">No paths remain under the current filters.</div>`;
+        return;
+      }}
+      wrap.innerHTML = items.map(item => {{
+        const badge = pBadge(item.p);
+        const title = item._kind === 'group'
+          ? `${{item.source_group}} → ${{item.target_group}}`
+          : `${{item.source_code}} → ${{item.target_code}}`;
+        const sub = item._kind === 'group'
+          ? `${{item.n_paths}} constituent paths · mean β = ${{item.estimate.toFixed(3)}} · best p = ${{item.p.toFixed(4)}}`
+          : `${{item.source}} → ${{item.target}} · β = ${{item.estimate.toFixed(3)}} · p = ${{item.p.toFixed(4)}}`;
+        return `
+          <div class="semn-item">
+            <div class="semn-item-top">
+              <strong>${{title}}</strong>
+              <span class="semn-badge ${{badge[1]}}">${{badge[0]}}</span>
+            </div>
+            <div class="semn-item-sub">${{sub}}</div>
+          </div>`;
+      }}).join('');
+    }}
+    function updateNodeMap(st, profileLeafNodes, opinionLeafNodes, attackLeafNodes) {{
+      const nodes = [];
+      if (profileLeafNodes.length) nodes.push('<span><strong>Profile moderators</strong></span>');
+      profileLeafNodes.forEach(n => nodes.push(`<span><strong>${{n.code}}</strong> ${{n.short}}</span>`));
+      if (opinionLeafNodes.length) nodes.push('<span><strong>Opinion indicators</strong></span>');
+      opinionLeafNodes.forEach(n => nodes.push(`<span><strong>${{n.code}}</strong> ${{n.short}}</span>`));
+      if (st.showAttack && attackLeafNodes.length) nodes.push('<span><strong>Attack context</strong></span>');
+      if (st.showAttack) attackLeafNodes.forEach(n => nodes.push(`<span><strong>${{n.code}}</strong> ${{n.short}}</span>`));
+      root.querySelector('#semn-map').innerHTML = nodes.join('');
+    }}
+    function render() {{
+      const st = state();
+      const built = buildTraces(st);
+      const layout = {{
+        paper_bgcolor: 'white',
+        margin: {{l: 0, r: 0, t: 16, b: 0}},
+        font: {{family: 'IBM Plex Sans, Avenir Next, Segoe UI, sans-serif'}},
+        scene: {{
+          xaxis: {{visible: false, range: [-0.35, 5.05]}},
+          yaxis: {{visible: false, range: [-DATA.y_limit, DATA.y_limit]}},
+          zaxis: {{visible: false, range: DATA.z_range}},
+          aspectmode: 'manual',
+          aspectratio: {{x: 2.45, y: 1.55, z: 1.1}},
+          bgcolor: 'white',
+          camera: cameras[st.camera],
+        }},
+        showlegend: false,
+      }};
+      Plotly.react(plotEl, built.traces, layout, {{displayModeBar: false, responsive: true}});
+      syncQuickPButtons(st.pMax);
+      updateStatus(st, built);
+      updateLogic(st, built);
+      updateFocus(st, built.visibleGroupEdges, built.visibleLeafEdges);
+      updateNodeMap(st, built.profileLeafNodes, built.opinionLeafNodes, built.attackLeafNodes);
+    }}
+
+    root.querySelectorAll('.semn-btn[data-view]').forEach(btn => btn.addEventListener('click', () => {{
+      root.querySelectorAll('#semn-view-mode .semn-btn').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      applyPreset(btn.dataset.view);
+      render();
+    }}));
+    root.querySelectorAll('.semn-btn[data-sign]').forEach(btn => btn.addEventListener('click', () => {{
+      root.querySelectorAll('#semn-sign-mode .semn-btn').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }}));
+    root.querySelectorAll('.semn-btn[data-camera]').forEach(btn => btn.addEventListener('click', () => {{
+      root.querySelectorAll('#semn-camera-mode .semn-btn').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }}));
+    root.querySelector('#semn-p-slider').addEventListener('input', render);
+    root.querySelectorAll('.semn-btn[data-p]').forEach(btn => btn.addEventListener('click', () => {{
+      root.querySelectorAll('.semn-btn[data-p]').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      root.querySelector('#semn-p-slider').value = pToSlider(parseFloat(btn.dataset.p));
+      render();
+    }}));
+    root.querySelectorAll('#semn-show-group-edges,#semn-show-leaf-edges,#semn-show-group-nodes,#semn-show-leaf-nodes,#semn-include-controls,#semn-show-attack,#semn-label-density,.semn-profile-group,.semn-opinion-group')
+      .forEach(el => el.addEventListener('change', render));
+
+    const parentPanel = root.closest('.tab-panel');
+    if (parentPanel) {{
+      const obs = new MutationObserver(() => {{
+        if (parentPanel.classList.contains('active')) {{
+          setTimeout(() => Plotly.Plots.resize(plotEl), 40);
+        }}
+      }});
+      obs.observe(parentPanel, {{attributes: true, attributeFilter: ['class']}});
+    }}
+    window.addEventListener('resize', () => Plotly.Plots.resize(plotEl));
+    applyPreset('overview');
+    render();
+  }})();
+  </script>
+</div>"""
+
+
+def _fig_sem_heatmap(
+    sem_coeff_df: pd.DataFrame,
+    exploratory_df: pd.DataFrame,
+    long_df: Optional[pd.DataFrame] = None,
+) -> go.Figure:
     df = sem_coeff_df[sem_coeff_df["op"] == "~"].copy()
     df["estimate"] = pd.to_numeric(df["estimate"], errors="coerce")
     df["p_value"]  = pd.to_numeric(df["p_value"],  errors="coerce")
@@ -330,7 +1765,16 @@ def _fig_sem_heatmap(sem_coeff_df: pd.DataFrame, exploratory_df: pd.DataFrame) -
         hm = hm.reindex([r for r in order if r in hm.index])
 
     hm = hm[[c for c in indicators if c in hm.columns]]
-    col_labels = [_leaf(c) for c in hm.columns]
+
+    indicator_labels: Dict[str, str] = {col: _pretty_indicator(str(col)) for col in hm.columns}
+    if long_df is not None and not long_df.empty:
+        opinion_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+        if opinion_col in long_df.columns:
+            opinion_values = sorted(long_df[opinion_col].dropna().unique())
+            opinion_display = _unique_display_map(opinion_values)
+            for value in opinion_values:
+                indicator_labels[_pretty_indicator(str(value))] = opinion_display[value]
+    col_labels = [_wrap_label(indicator_labels.get(_pretty_indicator(str(c)), _pretty_indicator(str(c))), 18) for c in hm.columns]
 
     annot, hover = [], []
     for rhs in hm.index:
@@ -369,11 +1813,13 @@ def _fig_sem_heatmap(sem_coeff_df: pd.DataFrame, exploratory_df: pd.DataFrame) -
 
 def _fig_violin(long_df: pd.DataFrame) -> go.Figure:
     """Violin + strip scatter of AE and |Δ| by opinion leaf."""
-    op_col, ae_col, abs_col = "opinion_leaf_label", "adversarial_effectivity", "abs_delta_score"
+    op_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    ae_col, abs_col = "adversarial_effectivity", "abs_delta_score"
     if op_col not in long_df.columns:
         return go.Figure().add_annotation(text="Data unavailable", showarrow=False)
 
     opinions = sorted(long_df[op_col].dropna().unique())
+    opinion_labels = _unique_display_map(opinions)
     colors   = px.colors.qualitative.Bold[:max(len(opinions), 4)]
 
     fig = make_subplots(1, 2,
@@ -383,7 +1829,7 @@ def _fig_violin(long_df: pd.DataFrame) -> go.Figure:
 
     for i, (op, clr) in enumerate(zip(opinions, colors)):
         sub = long_df[long_df[op_col] == op]
-        lbl = _leaf(op)
+        lbl = opinion_labels[op]
 
         for col_idx, ycol in enumerate([ae_col, abs_col], 1):
             if ycol not in sub.columns:
@@ -558,56 +2004,119 @@ def _fig_hierarchical_importance(weight_df: pd.DataFrame) -> go.Figure:
 
     df = weight_df.copy()
     df["normalized_weight_pct"] = pd.to_numeric(df["normalized_weight_pct"], errors="coerce").fillna(0)
+    if "estimate" in df.columns:
+        df["estimate"] = pd.to_numeric(df["estimate"], errors="coerce")
+    if "mean_abs_estimate" in df.columns:
+        df["mean_abs_estimate"] = pd.to_numeric(df["mean_abs_estimate"], errors="coerce")
     df_pos = df[df["normalized_weight_pct"] > 0].copy()
     if df_pos.empty:
         return go.Figure().add_annotation(text="All weights zero", showarrow=False)
 
-    group_sum = (df_pos.groupby("ontology_group", as_index=False)["normalized_weight_pct"]
-                 .sum().rename(columns={"normalized_weight_pct": "weight"})
-                 .sort_values("weight", ascending=False))
+    path_rows: List[Tuple[List[str], float]] = []
+    for _, row in df_pos.iterrows():
+        label = str(row.get("moderator_label") or row.get("term") or "Unnamed moderator")
+        ontology_group = None if pd.isna(row.get("ontology_group")) else str(row.get("ontology_group"))
+        path_rows.append((_moderator_hierarchy(label, ontology_group), float(row["normalized_weight_pct"])))
 
-    fig = make_subplots(1, 2,
-                        column_widths=[0.38, 0.62],
-                        subplot_titles=["Feature Group (treemap)", "Individual Feature Importance"],
-                        specs=[[{"type": "treemap"}, {"type": "xy"}]])
+    ids, labels, parents, values, paths = _build_tree_nodes(path_rows)
 
-    labels  = group_sum["ontology_group"].tolist() + ["Root"]
-    parents = ["Root"] * len(group_sum)            + [""]
-    values  = group_sum["weight"].tolist()         + [group_sum["weight"].sum()]
+    top_n = min(18, len(df_pos))
+    df_top = df_pos.sort_values("normalized_weight_pct", ascending=False).head(top_n).iloc[::-1]
+    estimate_col = "estimate" if "estimate" in df_top.columns else "weighted_mean_estimate"
+    if estimate_col in df_top.columns:
+        df_top[estimate_col] = pd.to_numeric(df_top[estimate_col], errors="coerce").fillna(0)
+    else:
+        df_top[estimate_col] = 0.0
+    df_top["leaf_label"] = [
+        _clip_label(_moderator_hierarchy(
+            str(row.get("moderator_label") or row.get("term") or "Unnamed moderator"),
+            None if pd.isna(row.get("ontology_group")) else str(row.get("ontology_group")),
+        )[-1], 34)
+        for _, row in df_top.iterrows()
+    ]
+
+    fig = make_subplots(
+        1,
+        2,
+        column_widths=[0.40, 0.60],
+        horizontal_spacing=0.20,
+        subplot_titles=["Ontology hierarchy", f"Top leaf moderators ({top_n} of {len(df_pos)})"],
+        specs=[[{"type": "treemap"}, {"type": "xy"}]],
+    )
 
     fig.add_trace(go.Treemap(
-        labels=labels, parents=parents, values=values,
-        textinfo="label+percent parent",
-        marker=dict(colors=values, colorscale="Blues",
-                    line=dict(width=1.5, color="white")),
-        hovertemplate="%{label}<br>Weight: %{value:.1f}%<extra></extra>",
-        root_color="lightgrey",
+        ids=ids,
+        labels=[_wrap_label(label, 16) for label in labels],
+        parents=parents,
+        values=values,
+        branchvalues="total",
+        textinfo="label+value",
+        marker=dict(
+            colors=values,
+            colorscale="Blues",
+            line=dict(width=1.6, color="white"),
+        ),
+        tiling=dict(pad=4),
+        customdata=np.array(paths, dtype=object),
+        hovertemplate="%{customdata}<br>Weight: %{value:.1f}%<extra></extra>",
+        root_color="#eef4ff",
     ), row=1, col=1)
 
-    df_s = df_pos.sort_values("normalized_weight_pct", ascending=True)
-    bar_labels = (df_s["moderator_label"].tolist()
-                  if "moderator_label" in df_s.columns else df_s["ontology_group"].tolist())
     fig.add_trace(go.Bar(
-        x=df_s["normalized_weight_pct"], y=bar_labels, orientation="h",
-        marker=dict(color=df_s["normalized_weight_pct"], colorscale="Blues",
-                    line=dict(color="white", width=0.5)),
-        text=df_s["normalized_weight_pct"].apply(lambda v: f"{v:.1f}%"),
+        x=df_top["normalized_weight_pct"],
+        y=df_top["leaf_label"],
+        orientation="h",
+        marker=dict(
+            color=df_top[estimate_col],
+            colorscale="RdBu_r",
+            cmid=0,
+            line=dict(color="white", width=0.6),
+            colorbar=dict(title="Signed β", thickness=12),
+        ),
+        text=[f"{v:.1f}%" for v in df_top["normalized_weight_pct"]],
         textposition="outside",
-        hovertemplate="%{y}<br>%{x:.1f}%<extra></extra>",
+        cliponaxis=False,
+        customdata=np.column_stack([
+            df_top["moderator_label"].astype(str),
+            df_top[estimate_col].astype(float),
+            df_top["normalized_weight_pct"].astype(float),
+        ]),
+        hovertemplate=(
+            "<b>%{customdata[0]}</b><br>"
+            "Weight: %{customdata[2]:.1f}%<br>"
+            "Signed β: %{customdata[1]:.3f}<extra></extra>"
+        ),
     ), row=1, col=2)
 
+    fig.update_xaxes(
+        title="Normalized importance share (%)",
+        row=1,
+        col=2,
+        automargin=True,
+    )
+    fig.update_yaxes(
+        tickfont=dict(size=9.2),
+        row=1,
+        col=2,
+        automargin=True,
+    )
+    fig.update_annotations(font=dict(size=12.5))
     fig.update_layout(
-        paper_bgcolor="white", plot_bgcolor="#f4f7ff",
+        paper_bgcolor="white",
+        plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=max(520, 24 * len(df_pos) + 160), showlegend=False,
+        height=max(620, 30 * top_n + 220),
+        showlegend=False,
         title=dict(text="Hierarchical Feature Importance — Conditional Susceptibility Model", font_size=14),
-        margin=dict(l=200, r=70, t=60, b=50),
+        margin=dict(l=50, r=110, t=78, b=54),
+        bargap=0.22,
     )
     return fig
 
 
 def _fig_profile_heatmap(long_df: pd.DataFrame, profile_index_df: pd.DataFrame) -> go.Figure:
-    op_col, ae_col = "opinion_leaf_label", "adversarial_effectivity"
+    op_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    ae_col = "adversarial_effectivity"
     if op_col not in long_df.columns or ae_col not in long_df.columns:
         return go.Figure().add_annotation(text="Data unavailable", showarrow=False)
 
@@ -618,7 +2127,8 @@ def _fig_profile_heatmap(long_df: pd.DataFrame, profile_index_df: pd.DataFrame) 
                  ["profile_id"].tolist())
         matrix = matrix.reindex([p for p in order if p in matrix.index])
 
-    col_labels = [_leaf(c) for c in matrix.columns]
+    opinion_labels = _unique_display_map(list(matrix.columns))
+    col_labels = [_wrap_label(opinion_labels[c], 18) for c in matrix.columns]
     n = len(matrix)
     fig = go.Figure(go.Heatmap(
         z=matrix.fillna(0).values, x=col_labels, y=matrix.index.tolist(),
@@ -644,7 +2154,13 @@ def _fig_baseline_post(long_df: pd.DataFrame) -> go.Figure:
         return go.Figure().add_annotation(text="Data unavailable", showarrow=False)
 
     has_ae = "adversarial_effectivity" in long_df.columns
-    has_leaf = "opinion_leaf_label" in long_df.columns
+    opinion_col = "opinion_leaf" if "opinion_leaf" in long_df.columns else "opinion_leaf_label"
+    has_leaf = opinion_col in long_df.columns
+    opinion_text = None
+    if has_leaf:
+        vals = long_df[opinion_col].astype(str).tolist()
+        display_map = _unique_display_map(sorted(set(vals)))
+        opinion_text = [display_map.get(v, _leaf(v)) for v in vals]
 
     fig = go.Figure(go.Scatter(
         x=long_df["baseline_score"],
@@ -659,7 +2175,7 @@ def _fig_baseline_post(long_df: pd.DataFrame) -> go.Figure:
             colorbar=dict(title="AE", thickness=12) if has_ae else None,
             showscale=has_ae,
         ),
-        text=long_df["opinion_leaf_label"] if has_leaf else None,
+        text=opinion_text if has_leaf else None,
         hovertemplate="Baseline: %{x}<br>Post: %{y}<br>%{text}<extra></extra>",
     ))
 
@@ -700,10 +2216,16 @@ def _html_perturbation_explorer(task_coeff_df: pd.DataFrame,
         ("profile_cont_chronological_age",                       "Age",               40, 18, 80),
     ]
 
-    tasks_json: dict = {}
+    attack_values = sorted(task_coeff_df["attack_leaf"].dropna().unique())
+    opinion_values = sorted(task_coeff_df["opinion_leaf"].dropna().unique())
+    attack_labels = _unique_display_map(attack_values)
+    opinion_labels = _unique_display_map(opinion_values)
+
+    tasks_json: Dict[str, Dict[str, Dict[str, float]]] = {}
     for (ak, ok), grp in task_coeff_df.groupby(["attack_leaf", "opinion_leaf"]):
-        key = f"{_leaf(ak)} | {_leaf(ok)}"
-        tasks_json[key] = dict(zip(grp["term"].tolist(), grp["estimate"].astype(float).tolist()))
+        tasks_json.setdefault(str(ak), {})[str(ok)] = dict(
+            zip(grp["term"].tolist(), grp["estimate"].astype(float).tolist())
+        )
 
     slider_defs = json.dumps([{"term": t, "label": lbl, "default": d, "min": mn, "max": mx}
                                for t, lbl, d, mn, mx in SLIDERS])
@@ -728,6 +2250,10 @@ def _html_perturbation_explorer(task_coeff_df: pd.DataFrame,
 <script>
 (function(){{
 const TASKS={json.dumps(tasks_json)};
+const ATTACKS={json.dumps(attack_values)};
+const OPINIONS={json.dumps(opinion_values)};
+const ATTACK_LABELS={json.dumps(attack_labels)};
+const OPINION_LABELS={json.dumps(opinion_labels)};
 const SL={slider_defs};
 function vals(){{
   const v={{'Intercept':1}};
@@ -744,16 +2270,15 @@ function cellBg(ae){{
   const u=-t;return `rgb(${{Math.round(60-40*u)}},${{Math.round(60+60*u)}},${{Math.round(190+65*u)}})`;
 }}
 function upd(){{
-  const v=vals();const atks=new Set(),ops=new Set();
-  Object.keys(TASKS).forEach(k=>{{const[a,o]=k.split(' | ');atks.add(a);ops.add(o);}});
+  const v=vals();
   let h='<table style="border-collapse:collapse;font-size:0.82rem">';
   h+='<tr><th style="padding:5px 8px;border-bottom:2px solid #dbe3ef;text-align:left;font-size:0.76rem">Attack \\ Opinion</th>';
-  [...ops].forEach(o=>h+=`<th style="padding:5px 7px;border-bottom:2px solid #dbe3ef;font-size:0.76rem;min-width:80px">${{o}}</th>`);
+  OPINIONS.forEach(o=>h+=`<th title="${{o}}" style="padding:5px 7px;border-bottom:2px solid #dbe3ef;font-size:0.76rem;min-width:80px">${{OPINION_LABELS[o]}}</th>`);
   h+='</tr>';
-  [...atks].forEach(a=>{{
-    h+=`<tr><td style="padding:5px 8px;font-weight:600;border-right:1px solid #dbe3ef;font-size:0.78rem;white-space:nowrap">${{a}}</td>`;
-    [...ops].forEach(o=>{{
-      const k=`${{a}} | ${{o}}`;const c=TASKS[k]||{{}};
+  ATTACKS.forEach(a=>{{
+    h+=`<tr><td title="${{a}}" style="padding:5px 8px;font-weight:600;border-right:1px solid #dbe3ef;font-size:0.78rem;white-space:nowrap">${{ATTACK_LABELS[a]}}</td>`;
+    OPINIONS.forEach(o=>{{
+      const c=(TASKS[a]||{{}})[o]||{{}};
       let ae=0;Object.entries(c).forEach(([t,e])=>ae+=e*(v[t]||0));
       const bg=cellBg(ae),tc=Math.abs(ae)>28?'#fff':'#14213d';
       h+=`<td style="text-align:center;padding:7px;background:${{bg}};color:${{tc}};border:2px solid rgba(255,255,255,0.4);border-radius:4px;font-weight:700;font-size:0.9rem">${{ae.toFixed(1)}}</td>`;
@@ -801,37 +2326,41 @@ def _html_cs_estimator(
     if task_coeff_df.empty:
         return "<p>Conditional susceptibility data unavailable.</p>"
 
-    # ── extract feature metadata ──
-    feat_cols = sorted([c for c in long_df.columns
-                        if (c.startswith("profile_cont_") or c.startswith("profile_cat__"))
-                        and c != "profile_cont_heuristic_shift_sensitivity_proxy"])
+    feat_cols = sorted([
+        c for c in long_df.columns
+        if (c.startswith("profile_cont_") or c.startswith("profile_cat__"))
+        and c != "profile_cont_heuristic_shift_sensitivity_proxy"
+    ])
 
     profile_feats_df = long_df.groupby("profile_id")[feat_cols].first().reset_index()
     feat_means = {c: float(profile_feats_df[c].mean()) for c in feat_cols}
-    feat_stds  = {c: float(max(profile_feats_df[c].std(), 0.01)) for c in feat_cols}
 
-    # profiles as JSON dict {profile_id: {term: value}}
-    profiles_json: dict = {}
+    profiles_json: Dict[str, Dict[str, float]] = {}
     for _, row in profile_feats_df.iterrows():
-        profiles_json[str(row["profile_id"])] = {c: float(row[c]) for c in feat_cols
-                                                   if not pd.isna(row[c])}
+        profiles_json[str(row["profile_id"])] = {
+            c: float(row[c]) for c in feat_cols if not pd.isna(row[c])
+        }
 
-    # task coefficients: {short_label: {term: coeff}}
-    tasks_json: dict = {}
-    weights_json: dict = {}
+    all_attacks = sorted(task_coeff_df["attack_leaf"].dropna().unique())
+    all_opinions = sorted(task_coeff_df["opinion_leaf"].dropna().unique())
+    attack_labels = _unique_display_map(all_attacks)
+    opinion_labels = _unique_display_map(all_opinions)
+    attack_context = {value: _path_context(value, keep=1) for value in all_attacks}
+    opinion_context = {value: _path_context(value, keep=1) for value in all_opinions}
+
+    tasks_json: Dict[str, Dict[str, Dict[str, float]]] = {}
+    weights_json: Dict[str, Dict[str, float]] = {}
     for (ak, ok), grp in task_coeff_df.groupby(["attack_leaf", "opinion_leaf"]):
-        key = f"{_leaf(ak)} | {_leaf(ok)}"
-        tasks_json[key] = dict(zip(grp["term"].tolist(), grp["estimate"].astype(float).tolist()))
+        tasks_json.setdefault(str(ak), {})[str(ok)] = dict(
+            zip(grp["term"].tolist(), grp["estimate"].astype(float).tolist())
+        )
+        weights_json.setdefault(str(ak), {})[str(ok)] = 1.0
 
     if not task_summary_df.empty:
         for _, row in task_summary_df.iterrows():
-            key = f"{_leaf(str(row['attack_leaf']))} | {_leaf(str(row['opinion_leaf']))}"
-            weights_json[key] = float(row.get("reliability_weight", 1.0))
-    else:
-        weights_json = {k: 1.0 for k in tasks_json}
-
-    all_attacks  = sorted({k.split(" | ")[0] for k in tasks_json})
-    all_opinions = sorted({k.split(" | ")[1] for k in tasks_json})
+            ak = str(row["attack_leaf"])
+            ok = str(row["opinion_leaf"])
+            weights_json.setdefault(ak, {})[ok] = float(row.get("reliability_weight", 1.0))
 
     # Big Five structure for grouped sliders
     BIG5_GROUPS = [
@@ -862,14 +2391,17 @@ def _html_cs_estimator(
         f"profile_cont_big_five_{g[0]}_mean_pct", 50.0), 1) for g in BIG5_GROUPS]
 
     return f"""
-<div id="cse-root" style="display:grid;grid-template-columns:300px 1fr;grid-template-rows:auto;gap:16px;align-items:start">
+<div id="cse-root" style="display:grid;grid-template-columns:minmax(295px,330px) minmax(0,1fr);grid-template-rows:auto;gap:16px;align-items:start">
 
 <!-- ══ LEFT: profile builder ══ -->
 <div style="display:flex;flex-direction:column;gap:10px">
 
   <div style="background:#f0f5ff;border-radius:10px;padding:12px 14px">
     <div style="font-weight:700;font-size:0.92rem;color:{PALETTE['navy']};margin-bottom:10px">
-      🧬 Profile Configuration
+      👤 Profile Configuration
+    </div>
+    <div style="font-size:0.76rem;line-height:1.45;color:{PALETTE['muted']};margin:-2px 0 10px">
+      Build a synthetic profile manually or load a random observed profile. The score updates against the currently selected conditional task scope.
     </div>
 
     <!-- Big Five groups -->
@@ -925,37 +2457,55 @@ def _html_cs_estimator(
 
     <!-- Action buttons -->
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
-      <button onclick="cse_reset()" style="flex:1;padding:6px;background:{PALETTE['blue']};color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:0.80rem;font-weight:600">Reset</button>
-      <button onclick="cse_random()" style="flex:1;padding:6px;background:{PALETTE['teal']};color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:0.80rem;font-weight:600">Random</button>
-      <button onclick="cse_preset('high_c')" style="flex:1;padding:6px;background:#f0f0f0;color:{PALETTE['ink']};border:1px solid #dbe3ef;border-radius:7px;cursor:pointer;font-size:0.75rem">High C</button>
-      <button onclick="cse_preset('low_c')"  style="flex:1;padding:6px;background:#f0f0f0;color:{PALETTE['ink']};border:1px solid #dbe3ef;border-radius:7px;cursor:pointer;font-size:0.75rem">Low C</button>
+      <button onclick="cse_reset()" style="flex:1;padding:7px;background:{PALETTE['blue']};color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:0.80rem;font-weight:600">Reset to mean</button>
+      <button onclick="cse_random()" style="flex:1;padding:7px;background:{PALETTE['teal']};color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:0.80rem;font-weight:600">Load random observed</button>
     </div>
   </div>
 
   <!-- Task selector -->
   <div style="background:#f0f5ff;border-radius:10px;padding:12px 14px">
     <div style="font-weight:700;font-size:0.92rem;color:{PALETTE['navy']};margin-bottom:8px">
-      🎯 Task Selector
+      🎯 Conditional Task Scope
     </div>
-    <div style="font-size:0.78rem;font-weight:600;color:{PALETTE['muted']};margin-bottom:5px">
-      Attack vectors
-      <a onclick="cse_all_atk(true)" style="cursor:pointer;color:{PALETTE['blue']};margin-left:6px">All</a>
-      <a onclick="cse_all_atk(false)" style="cursor:pointer;color:{PALETTE['orange']};margin-left:4px">None</a>
+    <div style="font-size:0.76rem;line-height:1.45;color:{PALETTE['muted']};margin:-1px 0 10px">
+      Only the selected attack × opinion tasks contribute to the Conditional Susceptibility Score.
     </div>
-    <div id="cse-atk-checks" style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
-      {''.join(f"""<label style="font-size:0.82rem;display:flex;align-items:center;gap:6px;cursor:pointer">
-        <input type="checkbox" checked id="cse-atk-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']}">
-        {atk}</label>""" for i, atk in enumerate(all_attacks))}
+    <div id="cse-task-summary" style="display:inline-flex;align-items:center;gap:8px;padding:5px 9px;border-radius:999px;background:rgba(29,78,137,0.08);color:{PALETTE['blue']};font-size:0.74rem;font-weight:700;margin-bottom:12px"></div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+      <div style="font-size:0.78rem;font-weight:700;color:{PALETTE['muted']}">Attack vectors <span id="cse-atk-count"></span></div>
+      <div style="display:flex;gap:5px">
+        <button type="button" onclick="cse_all_atk(true)" style="padding:4px 8px;border-radius:999px;border:1px solid #bdd0ea;background:#fff;color:{PALETTE['blue']};cursor:pointer;font-size:0.72rem;font-weight:700">Select all</button>
+        <button type="button" onclick="cse_all_atk(false)" style="padding:4px 8px;border-radius:999px;border:1px solid #ead2cc;background:#fff;color:{PALETTE['orange']};cursor:pointer;font-size:0.72rem;font-weight:700">Clear</button>
+      </div>
     </div>
-    <div style="font-size:0.78rem;font-weight:600;color:{PALETTE['muted']};margin-bottom:5px">
-      Opinion domains
-      <a onclick="cse_all_op(true)" style="cursor:pointer;color:{PALETTE['blue']};margin-left:6px">All</a>
-      <a onclick="cse_all_op(false)" style="cursor:pointer;color:{PALETTE['orange']};margin-left:4px">None</a>
+    <div id="cse-atk-checks" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;max-height:160px;overflow:auto;padding-right:3px">
+      {''.join(f"""<label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,0.55)">
+        <input type="checkbox" checked id="cse-atk-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']};margin-top:2px">
+        <span style="display:flex;flex-direction:column;gap:1px">
+          <span title="{atk}" style="font-weight:600;color:{PALETTE['ink']}">{attack_labels[atk]}</span>
+          <span style="font-size:0.71rem;color:{PALETTE['muted']}">{attack_context[atk] or "Attack family"}</span>
+        </span></label>""" for i, atk in enumerate(all_attacks))}
     </div>
-    <div id="cse-op-checks" style="display:flex;flex-direction:column;gap:4px">
-      {''.join(f"""<label style="font-size:0.82rem;display:flex;align-items:center;gap:6px;cursor:pointer">
-        <input type="checkbox" checked id="cse-op-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']}">
-        {op}</label>""" for i, op in enumerate(all_opinions))}
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+      <div style="font-size:0.78rem;font-weight:700;color:{PALETTE['muted']}">Opinion targets <span id="cse-op-count"></span></div>
+      <div style="display:flex;gap:5px">
+        <button type="button" onclick="cse_all_op(true)" style="padding:4px 8px;border-radius:999px;border:1px solid #bdd0ea;background:#fff;color:{PALETTE['blue']};cursor:pointer;font-size:0.72rem;font-weight:700">Select all</button>
+        <button type="button" onclick="cse_all_op(false)" style="padding:4px 8px;border-radius:999px;border:1px solid #ead2cc;background:#fff;color:{PALETTE['orange']};cursor:pointer;font-size:0.72rem;font-weight:700">Clear</button>
+      </div>
+    </div>
+    <div id="cse-op-checks" style="display:flex;flex-direction:column;gap:5px;max-height:170px;overflow:auto;padding-right:3px">
+      {''.join(f"""<label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,0.55)">
+        <input type="checkbox" checked id="cse-op-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']};margin-top:2px">
+        <span style="display:flex;flex-direction:column;gap:1px">
+          <span title="{op}" style="font-weight:600;color:{PALETTE['ink']}">{opinion_labels[op]}</span>
+          <span style="font-size:0.71rem;color:{PALETTE['muted']}">{opinion_context[op] or "Opinion family"}</span>
+        </span></label>""" for i, op in enumerate(all_opinions))}
+    </div>
+
+    <div style="font-size:0.72rem;line-height:1.45;color:{PALETTE['muted']};margin-top:8px">
+      This selector defines the condition under which the score is estimated. Unselected tasks are excluded rather than down-weighted.
     </div>
   </div>
 
@@ -972,7 +2522,7 @@ def _html_cs_estimator(
         red = manipulation succeeded · blue = backfire
       </span>
     </div>
-    <div id="cse-grid"></div>
+    <div id="cse-grid" style="overflow:auto"></div>
   </div>
 
   <!-- Gauge + Radar side by side -->
@@ -980,7 +2530,7 @@ def _html_cs_estimator(
 
     <div style="background:#fff;border:1px solid #dbe3ef;border-radius:10px;padding:14px">
       <div style="font-weight:700;font-size:0.88rem;color:{PALETTE['navy']};margin-bottom:8px">
-        🎯 Susceptibility Score
+        🎯 Conditional Susceptibility Score
       </div>
       <div id="cse-gauge-wrap" style="text-align:center;padding:6px 0"></div>
       <div id="cse-gauge-text" style="text-align:center;font-size:0.78rem;color:{PALETTE['muted']};margin-top:4px"></div>
@@ -1021,6 +2571,8 @@ const RADAR_LABELS = {json.dumps(radar_labels)};
 const RADAR_MEANS  = {json.dumps(radar_means)};
 const ALL_ATTACKS  = {json.dumps(all_attacks)};
 const ALL_OPINIONS = {json.dumps(all_opinions)};
+const ATTACK_LABELS = {json.dumps(attack_labels)};
+const OPINION_LABELS = {json.dumps(opinion_labels)};
 const B5_GROUPS    = {json.dumps([g[0] for g in BIG5_GROUPS])};
 const B5_LABELS    = {json.dumps([g[1] for g in BIG5_GROUPS])};
 const B5_FACETS    = {json.dumps({g[0]: g[2] for g in BIG5_GROUPS})};
@@ -1071,27 +2623,31 @@ function getVals() {{
 function getSelectedTasks() {{
   const atks = ALL_ATTACKS.filter((_,i) => document.getElementById('cse-atk-'+i)?.checked);
   const ops  = ALL_OPINIONS.filter((_,i) => document.getElementById('cse-op-'+i)?.checked);
-  return Object.keys(TASKS).filter(k => {{
-    const [a,o] = k.split(' | ');
-    return atks.includes(a) && ops.includes(o);
+  const pairs = [];
+  atks.forEach(a => {{
+    ops.forEach(o => {{
+      if ((TASKS[a]||{{}})[o]) pairs.push([a,o]);
+    }});
   }});
+  return pairs;
 }}
 
-function predictAE(pf, taskKey) {{
-  const c = TASKS[taskKey] || {{}};
+function predictAE(pf, attackKey, opinionKey) {{
+  const c = ((TASKS[attackKey] || {{}})[opinionKey]) || {{}};
   let ae = 0;
   Object.entries(c).forEach(([t,e]) => ae += e * (pf[t] ?? 0));
   return ae;
 }}
 
-function computeScore(pf, selectedKeys) {{
-  if (selectedKeys.length === 0) return {{ae_map:{{}}, raw:0, pct:50, dist:[]}};
+function computeScore(pf, selectedPairs) {{
+  if (selectedPairs.length === 0) return {{ae_map:{{}}, raw:0, pct:50, dist:[]}};
   const ae_map = {{}};
   let wsum = 0, wtot = 0;
-  selectedKeys.forEach(k => {{
-    const ae = predictAE(pf, k);
-    ae_map[k] = ae;
-    const w = WEIGHTS[k] || 1;
+  selectedPairs.forEach(([a,o]) => {{
+    const ae = predictAE(pf, a, o);
+    if (!ae_map[a]) ae_map[a] = {{}};
+    ae_map[a][o] = ae;
+    const w = ((WEIGHTS[a] || {{}})[o]) || 1;
     wsum += ae * w; wtot += w;
   }});
   const raw = wtot > 0 ? wsum / wtot : 0;
@@ -1099,7 +2655,11 @@ function computeScore(pf, selectedKeys) {{
   // distribution: re-score all 100 original profiles on selected tasks
   const dist = Object.values(PROFILES).map(pfOrig => {{
     let ws=0, wt=0;
-    selectedKeys.forEach(k => {{ const w=WEIGHTS[k]||1; ws+=predictAE(pfOrig,k)*w; wt+=w; }});
+    selectedPairs.forEach(([a,o]) => {{
+      const w = ((WEIGHTS[a] || {{}})[o]) || 1;
+      ws += predictAE(pfOrig, a, o) * w;
+      wt += w;
+    }});
     return wt > 0 ? ws/wt : 0;
   }}).sort((a,b)=>a-b);
 
@@ -1114,6 +2674,19 @@ function aeColor(ae) {{
   const u=-t; return `rgb(${{Math.round(55-30*u)}},${{Math.round(70+60*u)}},${{Math.round(190+65*u)}})`;
 }}
 
+function renderTaskScope(selectedPairs) {{
+  const selAtks = ALL_ATTACKS.filter((_,i) => document.getElementById('cse-atk-'+i)?.checked);
+  const selOps  = ALL_OPINIONS.filter((_,i) => document.getElementById('cse-op-'+i)?.checked);
+  document.getElementById('cse-atk-count').textContent = `(${{
+    selAtks.length
+  }}/${{ALL_ATTACKS.length}})`;
+  document.getElementById('cse-op-count').textContent = `(${{
+    selOps.length
+  }}/${{ALL_OPINIONS.length}})`;
+  document.getElementById('cse-task-summary').textContent =
+    `Conditional score uses ${{selectedPairs.length}} / ${{Object.values(TASKS).reduce((n, obj) => n + Object.keys(obj).length, 0)}} configured tasks`;
+}}
+
 function renderGrid(ae_map) {{
   const selAtks = ALL_ATTACKS.filter((_,i) => document.getElementById('cse-atk-'+i)?.checked);
   const selOps  = ALL_OPINIONS.filter((_,i) => document.getElementById('cse-op-'+i)?.checked);
@@ -1123,16 +2696,15 @@ function renderGrid(ae_map) {{
   }}
   let h='<table style="border-collapse:collapse;font-size:0.82rem;width:100%">';
   h+=`<tr><th style="padding:6px 10px;border-bottom:2px solid #dbe3ef;text-align:left;font-size:0.75rem;color:{PALETTE['muted']}">Attack \\ Opinion</th>`;
-  selOps.forEach(o=>h+=`<th style="padding:6px 8px;border-bottom:2px solid #dbe3ef;font-size:0.75rem;color:{PALETTE['muted']};min-width:90px">${{o}}</th>`);
+  selOps.forEach(o=>h+=`<th title="${{o}}" style="padding:6px 8px;border-bottom:2px solid #dbe3ef;font-size:0.75rem;color:{PALETTE['muted']};min-width:90px">${{OPINION_LABELS[o]}}</th>`);
   h+='</tr>';
   selAtks.forEach(a=>{{
-    h+=`<tr><td style="padding:7px 10px;font-weight:600;border-right:1px solid #dbe3ef;white-space:nowrap;font-size:0.80rem;color:{PALETTE['ink']}">${{a}}</td>`;
+    h+=`<tr><td title="${{a}}" style="padding:7px 10px;font-weight:600;border-right:1px solid #dbe3ef;white-space:nowrap;font-size:0.80rem;color:{PALETTE['ink']};min-width:180px">${{ATTACK_LABELS[a]}}</td>`;
     selOps.forEach(o=>{{
-      const k=`${{a}} | ${{o}}`;
-      const ae = ae_map[k] ?? 0;
+      const ae = ((ae_map[a] || {{}})[o]) ?? 0;
       const bg=aeColor(ae), tc=Math.abs(ae)>25?'#fff':'{PALETTE['ink']}';
       const lbl = ae>5?'↑ succ':ae<-5?'↓ back':'≈ neut';
-      h+=`<td style="text-align:center;padding:8px 6px;background:${{bg}};color:${{tc}};border:2px solid rgba(255,255,255,0.35);border-radius:5px;font-weight:700;font-size:0.92rem" title="${{k}}">
+      h+=`<td title="${{a}} | ${{o}}" style="text-align:center;padding:8px 6px;background:${{bg}};color:${{tc}};border:2px solid rgba(255,255,255,0.35);border-radius:5px;font-weight:700;font-size:0.92rem">
         ${{ae.toFixed(1)}}<br><span style="font-size:0.65rem;opacity:0.85">${{lbl}}</span></td>`;
     }});
     h+='</tr>';
@@ -1142,7 +2714,7 @@ function renderGrid(ae_map) {{
 
 function renderGauge(pct, raw, nProfiles) {{
   const gc = pct<33?'{PALETTE['teal']}':pct<67?'{PALETTE['amber']}':'{PALETTE['red']}';
-  const label = pct>=75?'High susceptibility':pct>=50?'Moderate-high':pct>=25?'Moderate-low':'Low susceptibility';
+  const label = pct>=75?'High conditional susceptibility':pct>=50?'Moderately high':pct>=25?'Moderately low':'Low conditional susceptibility';
   document.getElementById('cse-gauge-wrap').innerHTML=`
     <div style="position:relative;display:inline-block;width:180px">
       <div style="background:#e8edf5;border-radius:20px;height:18px;overflow:hidden;width:180px">
@@ -1153,7 +2725,7 @@ function renderGauge(pct, raw, nProfiles) {{
       <div style="font-size:0.72rem;color:{PALETTE['muted']};margin-top:2px">raw score: ${{raw.toFixed(1)}}</div>
     </div>`;
   document.getElementById('cse-gauge-text').textContent=
-    `Ranked ${{pct}}th percentile vs ${{nProfiles}} original profiles (task-subset re-scored)`;
+    `Conditional score ranks at the ${{pct}}th percentile vs ${{nProfiles}} original profiles under the selected task scope`;
 }}
 
 function renderRadar(pf) {{
@@ -1182,10 +2754,15 @@ function renderRadar(pf) {{
   }}
 }}
 
-function renderContrib(pf, selectedKeys) {{
+function renderContrib(pf, selectedPairs) {{
   const contribs = {{}};
-  selectedKeys.forEach(k => {{
-    const c = TASKS[k] || {{}};
+  if (!selectedPairs.length) {{
+    document.getElementById('cse-contrib').innerHTML =
+      '<div style="font-size:0.80rem;color:{PALETTE["muted"]}">Select at least one attack and one opinion target to see feature contributions.</div>';
+    return;
+  }}
+  selectedPairs.forEach(([a,o]) => {{
+    const c = ((TASKS[a] || {{}})[o]) || {{}};
     Object.entries(c).forEach(([term, coef]) => {{
       if (term==='Intercept') return;
       const delta = (pf[term]??0) - (FEAT_MEANS[term]??0);
@@ -1226,12 +2803,13 @@ function renderContrib(pf, selectedKeys) {{
 // ── main update ─────────────────────────────────────────────────────────────
 function cse_update() {{
   const pf   = getVals();
-  const keys = getSelectedTasks();
-  const {{ae_map, raw, pct, dist}} = computeScore(pf, keys);
+  const pairs = getSelectedTasks();
+  const {{ae_map, raw, pct, dist}} = computeScore(pf, pairs);
+  renderTaskScope(pairs);
   renderGrid(ae_map);
   renderGauge(pct, raw, dist.length);
   renderRadar(pf);
-  renderContrib(pf, keys);
+  renderContrib(pf, pairs);
 }}
 window.cse_update = cse_update;
 
@@ -1309,13 +2887,6 @@ window.cse_random = function() {{
   document.getElementById('cse-v-age').textContent=age;
   const sex=pf['profile_cat__profile_cat_sex_Female']>0.5?'Female':pf['profile_cat__profile_cat_sex_Other']>0.5?'Other':'Male';
   document.getElementById('cse-sex').value=sex;
-  cse_update();
-}};
-
-window.cse_preset = function(name) {{
-  cse_reset();
-  if(name==='high_c'){{document.getElementById('cse-sl-conscientiousness-mean').value=85;document.getElementById('cse-mv-conscientiousness').textContent=85;}}
-  if(name==='low_c'){{document.getElementById('cse-sl-conscientiousness-mean').value=15;document.getElementById('cse-mv-conscientiousness').textContent=15;}}
   cse_update();
 }};
 
@@ -1558,21 +3129,25 @@ def generate_research_visuals(
         visual_files.append(_save_figure_html(fig, figures_dir / fname))
         figure_divs.append((title, fig.to_html(include_plotlyjs=False, full_html=False)))
 
-    def _add_html(title: str, html: str) -> None:
+    def _add_html(title: str, html: str, fname: Optional[str] = None) -> None:
+        if fname:
+            visual_files.append(_save_html_block(html, figures_dir / fname, title))
         figure_divs.append((title, html))
 
     _add_fig("Factorial 3D Surface",    _fig_factorial_3d(long_df),          "factorial_3d.html")
     _add_fig("Factorial Heat + Contour", _fig_factorial_2d(long_df),          "factorial_2d.html")
 
     if not sem_coeff_df.empty:
-        _add_fig("SEM Network",  _fig_sem_network(sem_coeff_df),               "sem_network.html")
-        _add_fig("SEM Heatmap",  _fig_sem_heatmap(sem_coeff_df, exploratory_df),"sem_heatmap.html")
+        _add_html("SEM Network", _html_sem_network(sem_coeff_df, long_df),               "sem_network.html")
+        _add_fig("SEM Heatmap",  _fig_sem_heatmap(sem_coeff_df, exploratory_df, long_df), "sem_heatmap.html")
 
     if not task_coeff_df.empty:
         _add_html("Conditional Susceptibility Estimator",
-                  _html_cs_estimator(task_coeff_df, task_summary_df, long_df))
+                  _html_cs_estimator(task_coeff_df, task_summary_df, long_df),
+                  "conditional_susceptibility_estimator.html")
         _add_html("Perturbation Explorer",
-                  _html_perturbation_explorer(task_coeff_df, long_df))
+                  _html_perturbation_explorer(task_coeff_df, long_df),
+                  "perturbation_explorer.html")
 
     _add_fig("Violin Distributions", _fig_violin(long_df),               "violin.html")
 
@@ -1601,9 +3176,9 @@ def generate_research_visuals(
         "All profiles are attacked; the dashboard visualizes heterogeneity of manipulation outcomes, not a treatment vs control contrast.",
         "Adversarial effectivity (AE = Δ × d_k): <b>positive = manipulation succeeded</b>, negative = backfire or resistance.",
         "The 3D surface shows mean AE and inter-individual SD across the full 4×4 attack–opinion factorial.",
-        "SEM Network: edge width ∝ |β| · blue = positive · red = negative · opacity = significance. Use filter buttons to focus.",
-        "Conditional Susceptibility Estimator: configure any profile, select any task subset, get predicted AE grid and percentile rank.",
-        "The susceptibility percentile is re-computed on the fly for the selected task subset vs the 100 original profiles.",
+        "SEM Network: start with the Baseline preset, then use layer toggles, p-value thresholding, and hierarchy filters to reveal leaf-level moderation paths and attack context.",
+        "Conditional Susceptibility Estimator: configure any profile, choose any conditional attack × opinion scope, and inspect the predicted AE grid plus score rank.",
+        "The Conditional Susceptibility Score is re-computed on the fly for the selected task subset versus the 100 original profiles.",
         "ICC(1) ≈ 0.052 for |Δ|: attack–opinion context explains ~95% of variance; stable profile traits explain ~5%.",
         "SEM fit (CFI=1.000, RMSEA=0.000) is expected in a near-saturated 4-indicator model at n=100.",
     ]
