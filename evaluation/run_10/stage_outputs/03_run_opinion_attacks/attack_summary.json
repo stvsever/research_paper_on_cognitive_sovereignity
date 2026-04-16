@@ -1,0 +1,16 @@
+{
+  "n_records": 1000,
+  "n_attack": 1000,
+  "n_control": 0,
+  "attack_leaf_counts": {
+    "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave": 250,
+    "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post": 250,
+    "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing": 250,
+    "ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion": 250
+  },
+  "self_supervise_attack_realism": true,
+  "review_rewrite_count": 1000,
+  "heuristic_fail_count": 1000,
+  "mean_realism_score": 0.0,
+  "mean_coherence_score": 0.0
+}

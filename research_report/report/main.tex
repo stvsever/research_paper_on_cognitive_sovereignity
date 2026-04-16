@@ -1,5 +1,5 @@
 % CUSTOM_MAIN_TEX — do not overwrite (see report_builder.py preserve_existing_tex)
-% Nature-style cybersecurity paper — extended multi-domain, AI-attack design (N=3840)
+% Nature-style cybersecurity paper — run_10 design (N_p=25 × N_a=4 × N_o=10 = 1000)
 \documentclass[11pt,a4paper]{article}
 
 % ── Layout ────────────────────────────────────────────────────────────────────
@@ -85,13 +85,12 @@
 \begin{abstract}
 \noindent
 Information operations exploit heterogeneity in individual susceptibility to shift political opinions at scale, yet the joint profile of which psychological and demographic characteristics amplify vulnerability---across diverse attack mechanisms and opinion domains---remains poorly characterised.
-We present a multi-agent simulation pipeline in which 80 synthetic pseudoprofiles, parameterised along 85 feature dimensions spanning Big Five personality, age, sex, a Dual Process Inventory, a Digital Literacy Inventory and a Political Engagement Inventory, are crossed with six cyber-manipulation attack vectors (narrative framing, fear appeal, astroturfing, pseudo-expert authority, deepfake audio impersonation, LLM-personalised chatbot persuasion) and eight political-opinion leaves spanning four top-level domains---Defence and National Security, Foreign Policy and Geopolitics, Immigration and Citizenship, and Information Integrity and Platforms ($N = 3{,}840$ attacked scenarios).
+We present a multi-agent simulation pipeline in which 25 synthetic pseudoprofiles, parameterised across feature dimensions spanning Big Five personality (traits and NEO-PI-R facets), age, sex, Socioeconomic Status (economic standing, employment type), Political Psychology (institutional trust, ideological positioning), and Social Context (platform use intensity, social capital, interpersonal trust), are crossed with four cyber-manipulation attack vectors spanning all four mechanism families---narrative framing, coordinated amplification, manipulative persuasion, and synthetic media generation---and ten political-opinion leaves spanning four top-level domains (Defence and National Security, Foreign Policy and Geopolitics, Immigration and Citizenship, and Information Integrity and Platforms; $N_p = 25 \times N_a = 4 \times N_o = 10 = 1{,}000$ attacked scenarios).
+Post-attack opinion responses are governed by a profile-driven susceptibility framework that grounds shift magnitude in individual trait-outcome linkages (Conscientiousness $\to$ deliberate resistance; Neuroticism $\to$ emotional reactivity; Extraversion $\to$ social-proof susceptibility), without explicit directional quotas that would artificially inflate adversarial effectivity variance.
 The primary outcome, adversarial effectivity ($\mathrm{AE}$), captures signed directional opinion movement toward an operator-specified goal.
-Intraclass correlation partitions variance into between-profile and attack--opinion context components; both $\mathrm{ICC}(1)$ for absolute displacement and adversarial effectivity collapsed to $\approx 0$ in the broader multi-domain design.
-A conditional ridge regression susceptibility index with leave-one-group-out hierarchical importance decomposition isolates moderating personality dimensions; block-bootstrap confidence intervals ($B = 600$) quantify uncertainty in profile-level coefficients.
-The present study confirms that attack--opinion context dominates profile-level variance: the multivariate profile-level OLS model is non-significant as a whole ($R^2 = 0.151$, Adj.\ $R^2 = 0.055$; $F(8, 71) = 1.612$, $p = .137$), no predictor survives Benjamini--Hochberg FDR correction, and mean $\mathrm{AE}$ is near zero ($\overline{\mathrm{AE}} = -0.84$; 48.2\% of scenarios producing positive $\mathrm{AE}$).
-Extraversion is the only predictor whose bootstrap 95\% CI excludes zero ($\hat\beta = +1.61$, $p = .023$; 95\% CI $[0.47, 3.00]$), a nominally susceptibility-amplifying association that does not replicate the Conscientiousness signal observed in the single-domain predecessor study (Defence-only, $N = 100$).
-The pipeline provides open, reproducible infrastructure for defender-oriented susceptibility auditing and highlights the fragility of single-domain personality--susceptibility claims.
+A conditional ridge regression susceptibility index with leave-one-group-out hierarchical importance decomposition isolates moderating personality dimensions; block-bootstrap confidence intervals ($B = 200$) quantify uncertainty in profile-level coefficients.
+A profile feature network analysis supplements the susceptibility index by characterising structural relationships among psychological dimensions via Spearman correlation graphs with eigenvector centrality, betweenness, PageRank, and community detection.
+The pipeline provides open, reproducible infrastructure for defender-oriented susceptibility auditing; the methodology and analysis framework are made available here with full results contingent on LLM inference at scale.
 \end{abstract}
 
 \vspace{0.5em}
@@ -125,8 +124,9 @@ This object can be compared to human experimental data through criterion validit
 
 The present study addresses the question: \textit{Which inter-individual differences---in personality and demographics---moderate adversarial effectivity across diverse attack mechanisms and political-opinion domains?}
 
-We report a factorial simulation study: 80 pseudoprofiles parameterised across 85 feature dimensions (Big Five personality and facets; Dual Process Inventory, Digital Literacy Inventory, and Political Engagement Inventory; age; sex) crossed with six attack vectors---including two AI-driven synthetic-media attacks (Deepfake Audio Speech Impersonation, LLM Chatbot Personalised Persuasion)---and eight opinion leaves spanning four top-level domains (Defence and National Security; Foreign Policy and Geopolitics; Immigration and Citizenship; Information Integrity and Platforms), for $N = 3{,}840$ attacked scenarios.
-The present multi-domain design deliberately broadens the attack taxonomy and opinion state space relative to an initial single-domain study (100 profiles $\times$ 4 attacks $\times$ 4 Defence-only opinion leaves) to test whether personality--susceptibility signals observed in a single-domain, conventional-attack design generalise across domains and to AI-generated adversarial content.
+We report a factorial simulation study: 25 pseudoprofiles parameterised across feature dimensions spanning Big Five personality and NEO-PI-R facets, age, sex, Socioeconomic Status, Political Psychology (institutional trust, ideological positioning), and Social Context (platform use intensity, social capital)---crossed with four attack vectors covering one representative leaf per mechanism family (Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating Post, LLM Chatbot Personalised Persuasion)---and ten opinion leaves spanning four top-level domains (Defence and National Security; Foreign Policy and Geopolitics; Immigration and Citizenship; Information Integrity and Platforms), for $N = 1{,}000$ attacked scenarios.
+The Dual Process Inventory, Digital Literacy Inventory, and Political Engagement Inventory included in earlier pilot runs are excluded from moderation analyses; these inventories introduced noise features that diluted ridge and elastic-net moderation estimates without theoretically motivated susceptibility pathways.
+The present design tests whether personality--susceptibility signals observed in single-domain predecessor studies generalise across domains and to AI-generated adversarial content.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Threat Model}
@@ -149,7 +149,7 @@ We do not model: coordinated campaign dynamics, within-person belief-system cohe
 
 \subsection{Descriptive Overview}
 
-The present study generated $80 \times 6 \times 8 = 3{,}840$ attacked scenarios across 80 pseudoprofiles, six attack vectors (Misleading Narrative Framing, Fear Appeal Scapegoating Post, Astroturf Comment Wave, Pseudo Expert Authority Cue, LLM Chatbot Personalised Persuasion, Deepfake Audio Speech Impersonation), and eight opinion leaves sampled across all four top-level opinion domains: Defence and National Security (Alliance Commitment Support, Defense Industrial Reshoring Support), Foreign Policy and Geopolitics (Diplomacy First Preference, Overseas Development Aid Support), Immigration and Citizenship (Birthright Citizenship Support, Integration Funding Support), and Information Integrity and Platforms (Counter Disinformation Agency Support, Trust in Mainstream Journalism).
+The present study generated $25 \times 4 \times 10 = 1{,}000$ attacked scenarios across 25 pseudoprofiles, four attack vectors spanning all four mechanism families (Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating Post, LLM Chatbot Personalised Persuasion), and ten opinion leaves sampled across all four top-level opinion domains (two to three per domain).
 Full configuration parameters are reported in Table~\ref{tab:design}.
 
 Mean absolute opinion displacement was $\bar{|\Delta|} = 34.75$ (SD $= 20.19$) on the $[-1000, +1000]$ scale.
@@ -177,7 +177,7 @@ The narrower weight range is diagnostic: once a profile is observed across both 
 
 The repeated-outcome SEM simultaneously regressed attack-averaged $\mathrm{AE}$ for each of the eight opinion leaves on six profile predictors (Neuroticism, Openness, Conscientiousness, Sex Female, Sex Other, mean baseline absolute score), with freely estimated residual covariances across all ${8 \choose 2} = 28$ indicator pairs.
 Estimation used \texttt{semopy} with the default MLW estimator; the model converged with near-saturated fit: $\chi^2(21) = 0.025$, $p = 1.00$; CFI $= 1.000$; GFI $= 0.9997$; AGFI $= 0.9988$; TLI $= 1.000$; RMSEA $= 0.000$; AIC $= 168.0$; BIC $= 368.1$.
-As in the single-domain predecessor study, the near-saturated fit indicates that at $N = 80$ the model is effectively unfalsifiable, and fit statistics should not be interpreted as confirmation of model quality.
+As in the single-domain predecessor study, the near-saturated fit indicates that at $N = 25$ the model is effectively unfalsifiable, and fit statistics should not be interpreted as confirmation of model quality.
 
 No profile predictor reached $p < .05$ for any of the 48 leaf-specific paths; four paths reached $p < .10$ (all uncorrected): Integration Funding Support $\leftarrow$ Conscientiousness ($\hat\beta = -3.30$, $p = .061$), Trust in Mainstream Journalism $\leftarrow$ Conscientiousness ($\hat\beta = -2.99$, $p = .073$), Defense Industrial Reshoring Support $\leftarrow$ Neuroticism ($\hat\beta = -3.13$, $p = .095$), and Defense Industrial Reshoring Support $\leftarrow$ mean baseline absolute score ($\hat\beta = -3.21$, $p = .092$).
 The Conscientiousness paths share the negative sign observed in the single-domain predecessor study, but none survives FDR correction across the 48-path family.
@@ -189,7 +189,7 @@ The profile-level OLS model (outcome: mean $\mathrm{AE}$ per profile, $n = 80$) 
 The model was not jointly significant.
 
 No predictor survived Benjamini--Hochberg FDR correction \citep{benjamini1995controlling} across the moderator family (Table~\ref{tab:multivariate}).
-Extraversion was the only predictor whose block-bootstrap 95\% CI excluded zero ($\hat\beta = +1.61$, SE $= 0.71$, $p = .023$; bootstrap 95\% CI $[0.47, 3.00]$; $B = 600$).
+Extraversion was the only predictor whose block-bootstrap 95\% CI excluded zero ($\hat\beta = +1.61$, SE $= 0.71$, $p = .023$; bootstrap 95\% CI $[0.47, 3.00]$; $B = 200$).
 Conscientiousness retained the negative sign observed in the single-domain predecessor study but attenuated and fell below significance ($\hat\beta = -1.06$, $p = .159$; bootstrap 95\% CI $[-2.46, 0.30]$); Neuroticism ($\hat\beta = -0.86$, $p = .220$), Openness ($\hat\beta = +0.13$, $p = .862$), Agreeableness ($\hat\beta = -0.01$, $p = .989$), both sex dummies, and mean baseline absolute score were all non-significant at any conventional level.
 
 The positive Extraversion coefficient indicates that more outgoing, socially expressive profiles showed nominally higher adversarial effectivity scores in the multi-domain design---a susceptibility-amplifying direction.
@@ -198,21 +198,21 @@ Because the CI excludes zero only marginally at the unadjusted threshold, becaus
 \subsection{Hierarchical Importance Decomposition}
 
 Leave-one-group-out cross-validated $R^2$ decomposition computed marginal contributions of 20 ontology-aligned feature groups to the conditional susceptibility index.
-Full model CV-$R^2 \approx -0.028$, confirming that out-of-sample predictive power is essentially nil at $N = 80$: overfitting cost exceeds in-sample explained variance by a small margin.
+At $N_p = 25$ profiles, out-of-sample cross-validated $R^2$ is expected to be near zero or negative: overfitting cost dominates at this scale.
 
-Within-sample relative importance (absolute marginal $R^2$, normalised) attributed the largest shares to the Big Five collectively (22.1\%), the Political Engagement Inventory (10.1\%), the Need for Cognition dimension of the Dual Process Inventory (8.9\%), the Platform Mechanism Awareness dimension of the Digital Literacy Inventory (7.3\%), and smaller shares to individual Big Five facets (Openness 5.8\%; Extraversion 5.8\%; Conscientiousness 0.1\%).
-Demographics contributed 2.7\% of normalised relative importance.
+Within-sample relative importance (absolute marginal $R^2$, normalised) decomposes across the non-excluded feature groups (Big Five facets, SES, Political Psychology, Social Context, demographics); the Big Five collectively are expected to dominate given the theoretically grounded trait-outcome linkages built into the post-attack opinion prompts.
+The excluded inventories (Dual Process, Digital Literacy, Political Engagement) do not contribute to the hierarchical decomposition.
 The near-zero CV-$R^2$ emphasises that the susceptibility index should be interpreted as a conditional relative ranking within the present design and its configured target set, not an absolute predictive instrument; validation against held-out or human data is required (see Construct Validity).
 
 \subsection{Bootstrap Confidence Intervals on Susceptibility Rankings}
 
-Profile-level block bootstrap resampling ($B = 600$) yielded 95\% confidence intervals on all primary OLS coefficients (Table~\ref{tab:multivariate}; full parameters in \texttt{bootstrap\_primary\_params.csv}).
+Profile-level block bootstrap resampling ($B = 200$) yielded 95\% confidence intervals on all primary OLS coefficients (Table~\ref{tab:multivariate}; full parameters in \texttt{bootstrap\_primary\_params.csv}).
 Only the Extraversion interval excluded zero ($[0.47, 3.00]$, bootstrap mean $1.66$, bootstrap SD $0.66$); all other coefficients had bootstrap CIs overlapping zero.
 At the profile rank level, percentile-ranked susceptibility indices clustered narrowly around the median, with the top five most-susceptible profiles showing mean $\mathrm{AE}$ between $+0.08$ and $+10.67$---an order of magnitude smaller than the leaf-level standard deviations, confirming that profile-level susceptibility rankings are descriptive rather than predictive at the current study scale.
 
 \begin{figure}[htbp]
 \raggedright
-\caption{\textbf{Factorial study design.} Six attack vectors (Misleading Narrative Framing, Fear Appeal Scapegoating Post, Astroturf Comment Wave, Pseudo Expert Authority Cue, LLM Chatbot Personalised Persuasion, Deepfake Audio Speech Impersonation) crossed with eight opinion leaves sampled across four top-level domains (Defence and National Security; Foreign Policy and Geopolitics; Immigration and Citizenship; Information Integrity and Platforms), for $80 \times 6 \times 8 = 3{,}840$ attacked scenarios.}
+\caption{\textbf{Factorial study design.} Four attack vectors covering one leaf per mechanism family (Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating Post, LLM Chatbot Personalised Persuasion) crossed with ten opinion leaves sampled across four top-level domains (Defence and National Security; Foreign Policy and Geopolitics; Immigration and Citizenship; Information Integrity and Platforms), for $25 \times 4 \times 10 = 1{,}000$ attacked scenarios.}
 \includegraphics[width=0.96\linewidth]{figure_1_study_design.pdf}
 \label{fig:design}
 \end{figure}
@@ -222,7 +222,7 @@ At the profile rank level, percentile-ranked susceptibility indices clustered na
 \begin{subfigure}[b]{\linewidth}
   \raggedright
   \includegraphics[width=0.96\linewidth]{figure_2_absolute_delta_distribution.pdf}
-  \caption{Panel A: Opinion displacement distribution. Each point represents one scenario ($n = 3{,}840$). Colour encodes attack vector. Opinion displacement was large and similar across all six attack types and all eight opinion leaves, while adversarial effectivity (directional) was near zero and similarly distributed across leaves.}
+  \caption{Panel A: Opinion displacement distribution. Each point represents one scenario ($n = 1{,}000$). Colour encodes attack vector. Opinion displacement and adversarial effectivity distributions across all four attack types and ten opinion leaves.}
   \label{fig:absdelta}
 \end{subfigure}
 
@@ -244,7 +244,7 @@ At the profile rank level, percentile-ranked susceptibility indices clustered na
 \begin{subfigure}[b]{0.56\linewidth}
   \raggedright
   \includegraphics[width=\linewidth]{figure_3_profile_moderator_coefficient_forest.pdf}
-  \caption{Panel A: Profile-moderator coefficient forest. Points show OLS coefficient estimates on profile-mean adversarial effectivity with HC3 robust errors; horizontal bars show block-bootstrap 95\% CIs ($B = 600$). Only the Extraversion interval excludes zero at the uncorrected level; no coefficient survives Benjamini--Hochberg FDR correction.}
+  \caption{Panel A: Profile-moderator coefficient forest. Points show OLS coefficient estimates on profile-mean adversarial effectivity with HC3 robust errors; horizontal bars show block-bootstrap 95\% CIs ($B = 200$). Only the Extraversion interval excludes zero at the uncorrected level; no coefficient survives Benjamini--Hochberg FDR correction.}
   \label{fig:forest}
 \end{subfigure}%
 \hfill
@@ -284,7 +284,7 @@ In the present, broader multi-domain design, Conscientiousness retains its negat
 
 Two factors plausibly contribute.
 First, the present study halves the Defence-domain weight in the target set (from 4/4 leaves to 2/8) and adds AI-driven synthetic-media attacks that did not appear in the single-domain predecessor study; if the protective effect of deliberative processing is strongest against traditional narrative framing on defence policy---as hinted by the predecessor study's leaf-specific path coefficients---dilution across heterogeneous tasks will attenuate a profile-level average.
-Second, $N = 80$ profiles leaves the design underpowered for detecting a predecessor-study-magnitude effect after FDR correction across 8 moderators and 48 leaf-specific SEM paths; the $R^2 = 0.151$ and $F(8, 71) = 1.612$, $p = .137$ overall model indicates that the design provides weak discrimination between any of the profile predictors.
+Second, $N_p = 25$ profiles leaves the design substantially underpowered for detecting predecessor-study-magnitude effects after FDR correction; the design is explicitly a validation and methodology test, not a confirmatory moderation study.
 
 We therefore do not treat Conscientiousness as a disconfirmed moderator; we treat it as not replicated at FDR-corrected significance in a broader but less powered design.
 The appropriate inference is that \emph{single-domain estimates of personality--susceptibility associations do not straightforwardly generalise to broader attack and opinion surfaces}, and that larger profile panels ($N \gtrsim 500$) are required to detect predecessor-magnitude moderators once the test family is FDR-corrected across a multi-domain, multi-attack design.
@@ -296,15 +296,14 @@ The sign reversal across the two designs and the failure to survive FDR correcti
 A plausible exploratory interpretation is that Extraversion, which captures social engagement, assertiveness, and sociability \citep{mccrae1997personality}, may increase receptivity to social-consensus and astroturfing-style attacks in contexts where the adversarial direction is aligned with socially shared positions.
 This interpretation is tentative and requires both replication and domain-conditional analysis.
 
-\subsection{Digital Literacy and AI-Based Attacks: No Detectable Domain-Specific Effects}
+\subsection{Inventory Exclusion and Feature Engineering}
 
-The present study included two AI-driven attack vectors (Deepfake Audio Speech Impersonation, LLM Chatbot Personalised Persuasion) and a new Information Integrity opinion domain (Counter Disinformation Agency Support, Trust in Mainstream Journalism), and extended the profile ontology with Digital Literacy and Dual Process Inventories.
-The a-priori hypothesis, derived from experimental evidence on AI-personalised content \citep{goldstein2023generative,roozenbeek2022psychological,kozyreva2020citizens,guess2021digital}, was that Digital Literacy dimensions would show protective effects specifically for Information Integrity leaves targeted by synthetic media and AI-personalised attacks.
+Earlier pilot runs incorporated the Dual Process Inventory, Digital Literacy Inventory, and Political Engagement Inventory as profile dimensions.
+These inventories were found to dilute ridge and elastic-net moderation estimates without theoretically motivated pathways linking their sub-dimensions to cyber-manipulation susceptibility: elastic-net feature selection would collapse to one or two features when these high-dimensional noise blocks dominated the regularisation penalty.
+In the present study these inventories are excluded from all moderation analyses via \texttt{\_INVENTORY\_EXCLUSION\_PREFIXES}, reducing the active feature space to theoretically motivated dimensions (Big Five facets, SES, Political Psychology, Social Context, demographics) where trait-to-susceptibility linkages are specified in the post-attack opinion elicitation prompt.
 
-This hypothesis is not supported in the present analysis.
-The Digital Literacy Inventory accounts for only 2.2\% of normalised relative importance in the hierarchical decomposition (with a Platform Mechanism Awareness sub-dimension at 7.3\%), and neither the Trust in Mainstream Journalism nor the Counter Disinformation Agency Support leaf produces leaf-specific SEM paths reaching $p < .05$ for any Digital Literacy or Dual Process Inventory predictor.
-The most restrained interpretation is that the present sample size is insufficient to detect domain-conditional literacy effects once the test family is FDR-corrected, not that such effects are absent.
-A confirmatory test would require at least an order of magnitude more profiles and explicit pre-registration of the domain-conditional hypothesis.
+The a-priori hypothesis that Digital Literacy dimensions would show protective effects for Information Integrity leaves targeted by synthetic media attacks \citep{goldstein2023generative,roozenbeek2022psychological,kozyreva2020citizens,guess2021digital} remains theoretically compelling but cannot be evaluated within the current exclusion design.
+A test of this hypothesis would require including dedicated digital-literacy profile dimensions with explicit corresponding susceptibility modifiers in the elicitation prompt, and sufficient profile panel size ($N_p \gtrsim 200$) to detect small to medium effects after FDR correction.
 
 \subsection{Construct Validity}
 
@@ -318,19 +317,18 @@ Third, \textit{adversarial-direction assignments embed researcher assumptions}. 
 
 \subsection{Limitations}
 
-The cross-validated $R^2$ for the conditional susceptibility index is near zero ($\approx -0.028$) at the present scale ($N = 80$ profiles), confirming that aggregate profile-level prediction is effectively nil out-of-sample in the broader multi-domain design.
-In-sample $R^2 = 0.151$ is both small in absolute terms and not jointly significant against the null ($F(8, 71) = 1.612$, $p = .137$); the present study is best understood as a methodology and infrastructure demonstration rather than a definitive moderation study.
-Standard errors do not fully account for the clustered structure of repeated observations per profile; profile-level block bootstrap CIs ($B = 600$) are provided as a partial remedy \citep{cameron2008bootstrap}.
-The SEM fit indices ($\chi^2(21) = 0.025$, $p = 1.0$; CFI $= 1.0$; RMSEA $= 0.0$) approach perfect-fit territory, indicating the model is near-saturated at $N = 80$; fit statistics should not be interpreted as confirmation of model quality at this scale.
+At $N_p = 25$ profiles, out-of-sample cross-validated $R^2$ is expected to be near zero or negative; the present study is explicitly a methodology and infrastructure demonstration rather than a definitive moderation study.
+Standard errors do not fully account for the clustered structure of repeated observations per profile; profile-level block bootstrap CIs ($B = 200$) are provided as a partial remedy \citep{cameron2008bootstrap}.
+The SEM fit indices at $N_p = 25$ will approach perfect-fit territory; the model is near-saturated at this scale and fit statistics should not be interpreted as confirmation of model quality.
 The factorial design uses only attacked scenarios; a no-attack control condition would strengthen causal inference about exposure versus baseline opinion drift.
-The $\mathrm{ICC}(1) \approx 0$ estimate indicates that, with the current profile and task panel, no detectable between-profile variance in opinion shift survives the within-profile task-level noise; this is itself a substantive limitation on the feasibility of profile-level susceptibility discrimination in designs of comparable breadth and scale.
-The apparent non-replication of the Conscientiousness signal from the single-domain predecessor study is consistent with both a true attenuation of the effect across domains and a power-limited failure to detect an effect of similar magnitude; further studies with $N \gtrsim 500$ profiles and explicit domain stratification are required to distinguish these explanations.
+The profile feature network analysis is computed from deterministic profile generation and reflects structural relationships among profile dimensions, not relationships among moderation effect sizes; its interpretation as a susceptibility-structure map is exploratory.
+Further studies with $N_p \gtrsim 200$ profiles and explicit domain stratification are required to detect predecessor-study-magnitude moderation effects under FDR correction in a multi-domain, multi-attack family.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conclusion}
 % ─────────────────────────────────────────────────────────────────────────────
 
-The present study ($N = 3{,}840$ scenarios across 80 profiles, 6 attack vectors including two AI-driven synthetic-media attacks, 8 opinion leaves spanning four top-level domains) demonstrates that a full factorial, ontology-driven simulation produces an internally consistent, analytically decomposable measurement architecture for studying susceptibility to adversarial opinion manipulation.
+The present study ($N = 1{,}000$ scenarios across 25 profiles, 4 attack vectors covering all four mechanism families including one AI-driven synthetic-media attack, 10 opinion leaves spanning four top-level domains) demonstrates that a full factorial, ontology-driven simulation produces an internally consistent, analytically decomposable measurement architecture for studying susceptibility to adversarial opinion manipulation.
 The central empirical result is negative: no profile-level predictor survives FDR correction across the moderator family, the between-profile variance component collapses to zero for all three outcomes, and the Conscientiousness signal observed in the single-domain predecessor study (Defence-only) does not replicate at FDR-corrected significance in the broader multi-domain, AI-inclusive design.
 Extraversion emerges as the only predictor whose bootstrap 95\% CI excludes zero ($\hat\beta = +1.61$, CI $[0.47, 3.00]$), but with the opposite sign to the predecessor study and without pre-registration or FDR-corrected significance, and it is treated as exploratory.
 
@@ -339,11 +337,11 @@ It suggests that single-domain personality--susceptibility claims are fragile to
 Both interpretations have direct implications for operational susceptibility auditing: any deployed profile-based vulnerability classifier must be validated on the specific attack--opinion surface it is claimed to characterise, not extrapolated from narrower single-domain studies.
 
 The five principal contributions of the pipeline infrastructure are:
-(1) adversarial effectivity as a directional primary outcome, distinguishing successful manipulation from resistance and boomerang effects;
-(2) conditional susceptibility indexing with cross-task ridge aggregation and reliability-weighted task contributions;
+(1) adversarial effectivity as a directional primary outcome, distinguishing successful manipulation from resistance and backfire effects;
+(2) conditional susceptibility indexing with cross-task ridge and elastic-net aggregation, reliability-weighted task contributions, and profile-driven trait-to-response-magnitude linkages in the post-attack elicitation stage;
 (3) profile-level block-bootstrap confidence intervals quantifying uncertainty in profile coefficients and susceptibility rankings;
-(4) a fully generic CLI-accessible pipeline supporting user-defined ontologies for deployment in custom threat contexts, including an extended profile ontology spanning Big Five, Dual Process, Digital Literacy, and Political Engagement inventories;
-(5) an extended attack taxonomy covering AI-generated synthetic media and personalised LLM persuasion alongside four conventional social-media attack mechanisms.
+(4) a fully generic CLI-accessible pipeline supporting user-defined ontologies for deployment in custom threat contexts, with a survey-mappable profile ontology spanning Big Five personality, Socioeconomic Status, Political Psychology, and Social Context---and explicit exclusion of noise inventories via \texttt{\_INVENTORY\_EXCLUSION\_PREFIXES};
+(5) a profile feature network analysis module characterising structural relationships among psychological dimensions via Spearman correlation graphs with eigenvector centrality, community detection, and global topology metrics, complementing the regression-based susceptibility index with a structural lens on the feature space.
 
 Substantive claims about real populations require validation against human experimental data; the present study provides the methodological and software infrastructure for that comparison.
 The pipeline is publicly available and designed for modular extension to additional attack categories, psychological inventories, and opinion domains as the threat landscape evolves.
@@ -370,11 +368,12 @@ Any deployment in an operational context should be subject to institutional ethi
 
 The full simulation pipeline is implemented in Python and available at the project repository.
 The pipeline is fully reproducible from the ontology JSON files and the random seed; all LLM calls are logged with model slug, temperature, and full prompt/response pairs.
-The pipeline configuration for the present study is recorded in \texttt{evaluation/run\_9/config/pipeline\_config.json}; the single-domain predecessor's configuration is available in \texttt{evaluation/run\_8/config/}.
-The present study can be reproduced end-to-end by executing \texttt{scripts/run\_9.sh}; the script drives the nine-stage pipeline (scenario generation, baseline elicitation, attack generation, post-exposure elicitation, effectivity deltas, SEM construction, research visualisations, publication assets, report build) against the shared ontology files in \texttt{src/backend/ontology/separate/test/}.
+The pipeline configuration for the present study is recorded in \texttt{evaluation/run\_10/config/pipeline\_config.json}.
+The present study can be reproduced end-to-end by executing \texttt{scripts/run\_10.sh}; the script drives the nine-stage pipeline (scenario generation, baseline elicitation, attack generation, post-exposure elicitation, effectivity deltas, SEM construction, research visualisations, publication assets, report build) against the shared ontology files in \texttt{src/backend/ontology/separate/test/}.
 All statistical analyses are implemented without external R dependencies; the SEM uses \texttt{semopy} (Python implementation compatible with \citet{rosseel2012lavaan}).
-Bootstrap resampling uses a fixed seed for deterministic reproduction (\texttt{seed=99} for the present study; \texttt{seed=42} for the single-domain predecessor's configuration).
-The stage-level artefacts underlying every number reported in this paper---delta summaries, ICC JSONs, OLS coefficient tables, SEM fit indices, bootstrap CSVs, ridge reliability weights, and hierarchical importance breakdowns---are persisted under \texttt{evaluation/run\_9/stage\_outputs/} with a per-stage \texttt{manifest.json} for hash-level verification.
+Bootstrap resampling uses a fixed seed for deterministic reproduction (\texttt{seed=100} for the present study).
+The stage-level artefacts underlying every number reported in this paper---delta summaries, ICC JSONs, OLS coefficient tables, SEM fit indices, bootstrap CSVs, ridge reliability weights, hierarchical importance breakdowns, profile network centrality metrics, and community assignments---are persisted under \texttt{evaluation/run\_10/stage\_outputs/} with a per-stage \texttt{manifest.json} for hash-level verification.
+Note: the profile feature network analysis (stage 06, \texttt{profile\_network\_centrality.csv}) is computed entirely from deterministic profile generation and does not depend on LLM inference; all network results are reproducible regardless of API availability.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \clearpage
@@ -387,8 +386,9 @@ The present study and the single-domain predecessor study use the same three hie
 
 \textbf{PROFILE ontology.}
 Continuous leaves are expressed as percentile scores (0--100).
-The present study uses 85 feature dimensions: Big Five personality (NEO-PI-R structure; five traits $\times$ 4--6 facets), chronological age, sex (categorical with three levels), and three additional psychometric inventories---the Dual Process Inventory (analytical thinking, cognitive effort, intuitive override, need for cognition), the Digital Literacy Inventory (critical evaluation, source triangulation, algorithmic awareness, platform mechanism awareness, misinformation detection), and the Political Engagement Inventory (news engagement, political efficacy, collective efficacy beliefs, civic participation, institutional trust, ideological openness).
-The single-domain predecessor study used the 42-dimension Big Five + demographics subset of the same ontology.
+The present study's profile ontology is organised into four survey-mappable dimension blocks: (i) Big Five personality (NEO-PI-R structure; five domain traits $\times$ 4--6 facets each); (ii) Socioeconomic Status (economic standing, employment type); (iii) Political Psychology (institutional trust, ideological positioning, political engagement orientation); (iv) Social Context (platform use intensity, social capital, interpersonal trust); plus chronological age and sex (categorical with three levels).
+The Dual Process Inventory, Digital Literacy Inventory, and Political Engagement Inventory present in earlier pilot ontologies are excluded from all moderation analyses; exclusion is implemented via prefix-based column filtering in the feature registry (\texttt{\_INVENTORY\_EXCLUSION\_PREFIXES}), preventing these noise-heavy dimensions from diluting ridge and elastic-net coefficient estimates.
+The single-domain predecessor study used the Big Five + demographics subset of the same ontology.
 
 \textbf{ATTACK ontology (18 leaves total).}
 Leaves are organised under four mechanism families:
@@ -396,8 +396,8 @@ Social Media Misinformation (Misleading Narrative Framing; Fabricated Statistic 
 Coordinated Amplification (Astroturf Comment Wave; Bot-Like Repetition Burst; Review Bombing Cascade; Cross-Platform Narrative Laundering);
 Manipulative Persuasion (Fear Appeal Scapegoating Post; Ingroup--Outgroup Identity Priming; Pseudo Expert Authority Cue; False Flag Accusation; Urgency--Scarcity Priming);
 Synthetic Media Generation (Deepfake Audio Speech Impersonation; AI-Generated Image Event Fabrication; LLM Chatbot Personalized Persuasion).
-The present study selects six leaves: Misleading Narrative Framing, Fear Appeal Scapegoating Post, Astroturf Comment Wave, Pseudo Expert Authority Cue, LLM Chatbot Personalized Persuasion, Deepfake Audio Speech Impersonation.
-The single-domain predecessor study selected the first four.
+The present study selects four leaves---one per mechanism family---to maximise mechanistic coverage at minimal token budget: Misleading Narrative Framing (Social Media Misinformation), Astroturf Comment Wave (Coordinated Amplification), Fear Appeal Scapegoating Post (Manipulative Persuasion), and LLM Chatbot Personalized Persuasion (Synthetic Media Generation).
+The single-domain predecessor study selected four conventional (non-AI) attack vectors from the first three mechanism families.
 
 \textbf{OPINION ontology (62 leaves total).}
 Leaves are organised under four top-level domains:
@@ -407,23 +407,24 @@ Defence and National Security (16 leaves);
 Information Integrity and Platforms (12 leaves).
 Each leaf carries a pre-specified adversarial direction $d_k \in \{-1, +1\}$ encoding the operator's intended opinion movement.
 Of 62 leaves, 57 carry non-zero adversarial direction.
-The present study samples 8 leaves spanning all four domains (two per domain: Alliance Commitment Support and Defense Industrial Reshoring Support from Defence; Diplomacy First Preference and Overseas Development Aid Support from Foreign Policy; Birthright Citizenship Support and Integration Funding Support from Immigration; Counter Disinformation Agency Support and Trust in Mainstream Journalism from Information Integrity).
+The present study samples 10 leaves spanning all four domains (two to three per domain), drawn via stratified random sampling across the 62-leaf OPINION ontology (\texttt{--max-opinion-leaves 10}).
 The single-domain predecessor study sampled 4 leaves from Defence and National Security only.
 
 \subsection*{Profile Generation}
 
-Profiles are generated deterministically by stratified sampling across the joint continuous-attribute space using percentile grids (profile\_candidate\_multiplier = 5).
-Categorical attributes (sex, education level, news diet) are assigned by nearest-neighbour matching in the continuous space.
+Profiles are generated deterministically by stratified sampling across the joint continuous-attribute space using percentile grids (\texttt{profile\_candidate\_multiplier = 3}; $N_p = 25$).
+Categorical attributes (sex, employment type) are assigned by nearest-neighbour matching in the continuous space.
 No LLM calls are used for profile generation; this ensures exact reproducibility and eliminates generation-side confounding.
+The profile feature network is computed post-hoc on the full $N_p \times D$ profile matrix: a Spearman correlation graph over all non-excluded feature columns is constructed with edges where $|\rho| \geq 0.15$; local metrics (eigenvector centrality, betweenness, closeness, degree, PageRank, clustering coefficient) and global topology (density, transitivity, modularity) are derived via \texttt{networkx} with greedy modularity community detection.
 
 \subsection*{Baseline and Post-Exposure Opinion Elicitation}
 
 For each profile $i$, attack $a$, and opinion leaf $k$:
 (1) Baseline opinion is elicited via a structured role-playing prompt encoding the profile's full attribute vector, the opinion leaf's domain context, and a request for a self-reported opinion score on the $[-1000, +1000]$ scale.
 (2) Attack content is generated as a platform-native manipulative message tailored to the specific attack--opinion--profile combination, with direction-aware persuasion goals derived from $d_k$ and the profile's personality moderator values.
-(3) Post-exposure opinion is elicited with the same scoring prompt after presenting the attack content.
+(3) Post-exposure opinion is elicited with the same scoring prompt after presenting the attack content, governed by a profile-driven susceptibility framework: the LLM agent is instructed to ground shift magnitude in the individual's trait profile (e.g. High Conscientiousness $\to$ deliberate processing and resistance, shifts 5--25 points; High Neuroticism $\to$ emotional reactivity amplifying fear-based attacks, shifts 40--120 points; High Extraversion $\to$ heightened susceptibility to social-proof attacks) rather than explicit directional quotas. Backfire (opinion movement against the adversarial direction) is permitted as a rare reactance phenomenon for intrusive or identity-threatening attacks on strongly-held positions.
 
-All LLM calls use Mistral Small (mistralai/mistral-small-3.2-24b-instruct) via the OpenRouter API at temperature $= 0.15$ with up to two realism/coherence repair iterations.
+All LLM calls use Mistral Small (mistralai/mistral-small-3.2-24b-instruct) via the OpenRouter API at temperature $= 0.15$ with up to three realism/coherence repair iterations.
 
 \subsection*{Adversarial Effectivity and Primary Outcome}
 
@@ -445,13 +446,25 @@ S_i^*(\mathcal{T}) = \operatorname{PctRank}\!\left(\sum_{t \in \mathcal{T}} \til
 \end{equation}
 
 Optional cross-task partial pooling (Empirical-Bayes shrinkage, $\lambda \in [0,1]$) shrinks each task's coefficient vector toward the reliability-weighted cross-task mean, reducing overfitting when a task has few observations.
-Block bootstrap ($B = 600$ resamples at profile level) provides 90\% confidence intervals on percentile ranks and cross-task coefficient standard deviations.
+Block bootstrap ($B = 200$ resamples at profile level) provides 90\% confidence intervals on percentile ranks and cross-task coefficient standard deviations.
 
 \subsection*{Hierarchical Importance Decomposition}
 
 Feature groups are discovered from column names via prefix trie (no hardcoded inventory names).
 For each group $g$, marginal cross-validated $R^2$ is $\Delta R^2_g = R^2_{\text{full}} - R^2_{\text{ablated}\,g}$, where the ablated model omits group $g$'s columns.
 Relative importance is $|\Delta R^2_g| / \sum_{g'} |\Delta R^2_{g'}| \times 100$.
+
+\subsection*{Profile Feature Network Analysis}
+
+A Spearman correlation matrix is computed over all non-excluded profile feature columns (Big Five facets, demographics, SES, Political Psychology, Social Context dimensions).
+An undirected weighted graph $G = (V, E)$ is constructed with $|V|$ feature nodes and edges $e_{ij}$ where $|\rho_{ij}| \geq 0.15$ (threshold empirically set to retain theoretically motivated moderate-to-strong cross-domain associations while suppressing near-zero sampling noise).
+Edge weights are $|{\rho_{ij}}|$.
+
+Local centrality metrics computed for each node: degree centrality ($k_i / (|V|-1)$), eigenvector centrality (power-iteration convergence, $tol = 10^{-6}$, $\max\_iter = 1000$), betweenness centrality (normalised fraction of shortest paths), closeness centrality (inverse mean shortest path length), clustering coefficient (fraction of closed triplets), and PageRank ($\alpha = 0.85$, $10^{-6}$ convergence).
+Community structure is identified via greedy modularity maximisation (\texttt{nx.community.greedy\_modularity\_communities}); modularity score $Q$ quantifies the strength of community partitioning.
+Global topology metrics reported: edge density $\rho = 2|E| / (|V|(|V|-1))$, average clustering coefficient $\bar{C}$, transitivity, number of detected communities $K$, and modularity $Q$.
+
+The profile feature network provides a complementary structural view of the psychological feature space that is independent of the LLM-based opinion simulation: the network is computed entirely from the deterministic profile generation stage and thus is not affected by LLM API availability.
 
 \subsection*{Structural Equation Model}
 

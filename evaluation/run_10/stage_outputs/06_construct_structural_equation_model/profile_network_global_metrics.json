@@ -1,0 +1,14 @@
+{
+  "n_nodes": 91,
+  "n_edges": 1807,
+  "density": 0.44126984126984126,
+  "avg_clustering": 0.16508410133273474,
+  "transitivity": 0.509373879959196,
+  "n_communities": 5,
+  "modularity_score": 0.31290147688686254,
+  "avg_degree": 39.714285714285715,
+  "max_degree": 59,
+  "corr_threshold": 0.15,
+  "n_features_total": 91,
+  "note": "Spearman correlation network of profile features. Edge = |rho| >= threshold."
+}

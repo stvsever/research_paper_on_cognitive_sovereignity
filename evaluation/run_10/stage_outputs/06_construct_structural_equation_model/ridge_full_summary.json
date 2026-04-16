@@ -1,0 +1,7 @@
+{
+  "cv_r2": -0.17487504965868084,
+  "cv_r2_std": 0.2024575317359506,
+  "alpha": 1124.2100350620863,
+  "n_features": 91,
+  "note": "Ridge on all profile features (StandardScaler). CV-R² via 5-fold. Unlike LASSO/EN, ridge retains all coefficients — use for effect direction and relative magnitude interpretation across ALL predictors."
+}

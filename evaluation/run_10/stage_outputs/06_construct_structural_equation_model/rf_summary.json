@@ -1,0 +1,6 @@
+{
+  "oob_r2": -0.19421254100972907,
+  "n_estimators": 500,
+  "n_features": 91,
+  "note": "OOB R² is an unbiased estimate of held-out accuracy (each tree scored on samples it never saw during training)."
+}

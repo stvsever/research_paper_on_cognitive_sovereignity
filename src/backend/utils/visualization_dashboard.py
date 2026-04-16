@@ -4241,29 +4241,43 @@ def _fig_umap_embedding(
 ) -> go.Figure:
     """Interactive 2-D UMAP scatter of all ontology leaves.
 
-    Parameters
-    ----------
-    embedding_dashboard_dict : output of EmbeddingArtifact.to_dashboard_dict()
-    color_by : 'ontology' | 'cluster'
+    Features:
+    - Convex hull outlines per semantic group (filled, semi-transparent)
+    - Bold centroid annotation labels with white background boxes
+    - Per-leaf hover with full path + embedding text
+    - color_by='ontology' uses PROFILE/ATTACK/OPINION colours
+    - color_by='cluster' uses semantic k-means cluster colours
     """
     points = embedding_dashboard_dict.get("points", [])
     if not points:
         fig = go.Figure()
-        fig.add_annotation(text="No embedding data available. Run embed_ontology() first.", showarrow=False)
+        fig.add_annotation(
+            text="No embedding data available — run embed_ontology() first.",
+            showarrow=False, font=dict(size=14, color=PALETTE["muted"]),
+            xref="paper", yref="paper", x=0.5, y=0.5,
+        )
         return _apply_style(fig, height=600)
 
-    xs = [p["x"] for p in points]
-    ys = [p["y"] for p in points]
+    xs = np.array([p["x"] for p in points])
+    ys = np.array([p["y"] for p in points])
     ontologies = [p["ontology"] for p in points]
     clusters = [str(p["cluster"]) for p in points]
     leaves = [p["leaf"].replace("_", " ") for p in points]
     paths = [p["path"] for p in points]
-    texts = [p.get("text", "")[:120] + "…" if len(p.get("text","")) > 120 else p.get("text","") for p in points]
+    texts = [
+        (p.get("text", "")[:110] + "…") if len(p.get("text", "")) > 110 else p.get("text", "")
+        for p in points
+    ]
 
     ONT_COLORS = {
         "PROFILE": PALETTE["blue"],
         "ATTACK":  PALETTE["orange"],
         "OPINION": PALETTE["teal"],
+    }
+    ONT_FILL = {
+        "PROFILE": "rgba(29,78,137,0.10)",
+        "ATTACK":  "rgba(231,111,81,0.10)",
+        "OPINION": "rgba(42,157,143,0.10)",
     }
 
     CLUSTER_PALETTE = [
@@ -4272,8 +4286,7 @@ def _fig_umap_embedding(
         "#073b4c", "#ffd166",
     ]
 
-    # Extract primary path segment (first component) for group-level labelling.
-    # path format: "PROFILE > Big_Five > Neuroticism > Anxiety"
+    # Primary path segment (first level below ontology root) for group labelling.
     primary_groups = []
     for p in points:
         parts = p["path"].split(" > ")
@@ -4281,91 +4294,154 @@ def _fig_umap_embedding(
 
     hover = [
         f"<b>{leaf}</b><br>"
-        f"<span style='color:#aaa;font-size:11px'>{ont} · {grp.replace('_',' ')}</span>"
+        f"<span style='color:#888;font-size:11px'>{ont} · {grp.replace('_', ' ')}</span>"
         f"<br><i style='font-size:10px'>{path}</i>"
         f"<br><span style='font-size:11px'>{txt}</span>"
         for leaf, ont, path, txt, grp in zip(leaves, ontologies, paths, texts, primary_groups)
     ]
 
-    def _centroid(mask_idx):
-        cx = sum(xs[i] for i in mask_idx) / len(mask_idx)
-        cy = sum(ys[i] for i in mask_idx) / len(mask_idx)
-        return cx, cy
+    def _convex_hull_trace(idx_list: List[int], color: str, fillcolor: str, name: str) -> Optional[go.Scatter]:
+        """Return a closed convex hull Scatter trace, or None if < 3 points."""
+        if len(idx_list) < 3:
+            return None
+        try:
+            from scipy.spatial import ConvexHull
+        except ImportError:
+            return None
+        pts = np.column_stack([[xs[i] for i in idx_list], [ys[i] for i in idx_list]])
+        try:
+            hull = ConvexHull(pts)
+        except Exception:
+            return None
+        hull_xs = pts[hull.vertices, 0].tolist() + [pts[hull.vertices[0], 0]]
+        hull_ys = pts[hull.vertices, 1].tolist() + [pts[hull.vertices[0], 1]]
+        return go.Scatter(
+            x=hull_xs, y=hull_ys,
+            mode="lines",
+            fill="toself",
+            fillcolor=fillcolor,
+            line=dict(width=1.5, color=color, dash="dot"),
+            showlegend=False,
+            hoverinfo="skip",
+            name=f"hull_{name}",
+        )
+
+    def _label_annotation(cx: float, cy: float, label: str, color: str) -> Dict[str, Any]:
+        return dict(
+            x=cx, y=cy,
+            xref="x", yref="y",
+            text=f"<b>{label}</b>",
+            showarrow=False,
+            font=dict(size=11, color=color, family="IBM Plex Mono, monospace"),
+            bgcolor="rgba(255,255,255,0.82)",
+            bordercolor=color,
+            borderwidth=1,
+            borderpad=3,
+            align="center",
+        )
 
     fig = go.Figure()
+    annotations: List[Dict[str, Any]] = []
 
     if color_by == "ontology":
-        # Per-ontology scatter (muted, no individual labels to avoid clutter)
-        for ont in ["PROFILE", "ATTACK", "OPINION"]:
-            mask = [i for i, o in enumerate(ontologies) if o == ont]
-            if not mask:
-                continue
-            fig.add_trace(go.Scatter(
-                x=[xs[i] for i in mask],
-                y=[ys[i] for i in mask],
-                mode="markers",
-                name=ont,
-                marker=dict(
-                    size=8,
-                    color=ONT_COLORS.get(ont, "#888"),
-                    line=dict(width=0.5, color="#fff"),
-                    opacity=0.78,
-                ),
-                hovertemplate="%{customdata}<extra></extra>",
-                customdata=[hover[i] for i in mask],
-            ))
-        # Add group centroid labels (primary path segment) for interpretability
+        # Hull per primary group, colored by ontology
         unique_groups = sorted(set(primary_groups))
         for grp in unique_groups:
             g_idx = [i for i, g in enumerate(primary_groups) if g == grp]
             if not g_idx:
                 continue
             ont = ontologies[g_idx[0]]
-            cx, cy = _centroid(g_idx)
+            col = ONT_COLORS.get(ont, "#888")
+            fill = ONT_FILL.get(ont, "rgba(128,128,128,0.08)")
+            hull_tr = _convex_hull_trace(g_idx, col, fill, grp)
+            if hull_tr is not None:
+                fig.add_trace(hull_tr)
+
+        # Scatter per ontology with hover
+        for ont in ["PROFILE", "ATTACK", "OPINION"]:
+            mask = [i for i, o in enumerate(ontologies) if o == ont]
+            if not mask:
+                continue
             fig.add_trace(go.Scatter(
-                x=[cx], y=[cy],
-                mode="text",
-                text=[f"<b>{grp.replace('_', ' ')}</b>"],
-                textfont=dict(size=10, color=ONT_COLORS.get(ont, "#444"),
-                              family="IBM Plex Sans, sans-serif"),
-                textposition="middle center",
-                showlegend=False,
-                hoverinfo="skip",
-            ))
-    else:
-        unique_clusters = sorted(set(clusters), key=lambda c: int(c) if c.lstrip("-").isdigit() else 0)
-        for ci, clust in enumerate(unique_clusters):
-            mask = [i for i, c in enumerate(clusters) if c == clust]
-            col = CLUSTER_PALETTE[ci % len(CLUSTER_PALETTE)]
-            # Derive a meaningful cluster label from the most-common primary group in the cluster
-            grp_counts: dict = {}
-            for i in mask:
-                g = f"{ontologies[i]}:{primary_groups[i]}"
-                grp_counts[g] = grp_counts.get(g, 0) + 1
-            top_grp = max(grp_counts, key=grp_counts.__getitem__) if grp_counts else clust
-            # Format: "PROFILE: Big Five" style
-            grp_label = top_grp.replace("_", " ").replace(":", ": ") if ":" in top_grp else f"Cluster {clust}"
-            fig.add_trace(go.Scatter(
-                x=[xs[i] for i in mask],
-                y=[ys[i] for i in mask],
-                mode="markers",
-                name=grp_label,
-                marker=dict(size=9, color=col, opacity=0.85, line=dict(width=0.5, color="#fff")),
+                x=xs[np.array(mask)].tolist(), y=ys[np.array(mask)].tolist(),
+                mode="markers+text",
+                name=ont,
+                marker=dict(
+                    size=9,
+                    color=ONT_COLORS.get(ont, "#888"),
+                    line=dict(width=0.8, color="#fff"),
+                    opacity=0.82,
+                ),
+                text=[leaves[i] for i in mask],
+                textfont=dict(size=6, color=ONT_COLORS.get(ont, "#888")),
+                textposition="top center",
                 hovertemplate="%{customdata}<extra></extra>",
                 customdata=[hover[i] for i in mask],
             ))
-            # Annotate cluster centroid with abbreviated label
-            cx, cy = _centroid(mask)
-            short = grp_label.split(": ")[-1][:22]
+
+        # Centroid annotations per primary group
+        for grp in unique_groups:
+            g_idx = [i for i, g in enumerate(primary_groups) if g == grp]
+            ont = ontologies[g_idx[0]]
+            col = ONT_COLORS.get(ont, "#444")
+            cx = float(xs[np.array(g_idx)].mean())
+            cy = float(ys[np.array(g_idx)].mean())
+            label = grp.replace("_", " ")
+            annotations.append(_label_annotation(cx, cy, label, col))
+
+    else:  # color_by == "cluster"
+        unique_clusters = sorted(
+            set(clusters),
+            key=lambda c: int(c) if c.lstrip("-").isdigit() else 0,
+        )
+        cluster_color_map = {
+            clust: CLUSTER_PALETTE[ci % len(CLUSTER_PALETTE)]
+            for ci, clust in enumerate(unique_clusters)
+        }
+
+        # Build cluster labels from dominant primary group
+        cluster_labels: Dict[str, str] = {}
+        for clust in unique_clusters:
+            mask = [i for i, c in enumerate(clusters) if c == clust]
+            grp_counts: Dict[str, int] = {}
+            for i in mask:
+                k = f"{ontologies[i]}: {primary_groups[i].replace('_', ' ')}"
+                grp_counts[k] = grp_counts.get(k, 0) + 1
+            if grp_counts:
+                top = max(grp_counts, key=grp_counts.__getitem__)
+                cluster_labels[clust] = top.split(": ", 1)[-1][:28]
+            else:
+                cluster_labels[clust] = f"Cluster {clust}"
+
+        # Hull + scatter per cluster
+        for clust in unique_clusters:
+            mask = [i for i, c in enumerate(clusters) if c == clust]
+            col = cluster_color_map[clust]
+            fill = col.replace("#", "rgba(") if col.startswith("#") else col
+            # Build fill from hex
+            r = int(col[1:3], 16)
+            g_val = int(col[3:5], 16)
+            b = int(col[5:7], 16)
+            fill = f"rgba({r},{g_val},{b},0.10)"
+
+            hull_tr = _convex_hull_trace(mask, col, fill, clust)
+            if hull_tr is not None:
+                fig.add_trace(hull_tr)
+
+            label_short = cluster_labels[clust]
             fig.add_trace(go.Scatter(
-                x=[cx], y=[cy],
-                mode="text",
-                text=[f"<b>{short}</b>"],
-                textfont=dict(size=9, color=col, family="IBM Plex Sans, sans-serif"),
-                textposition="middle center",
-                showlegend=False,
-                hoverinfo="skip",
+                x=xs[np.array(mask)].tolist(), y=ys[np.array(mask)].tolist(),
+                mode="markers",
+                name=label_short,
+                marker=dict(size=9, color=col, opacity=0.85, line=dict(width=0.8, color="#fff")),
+                hovertemplate="%{customdata}<extra></extra>",
+                customdata=[hover[i] for i in mask],
             ))
+
+            # Centroid annotation
+            cx = float(xs[np.array(mask)].mean())
+            cy = float(ys[np.array(mask)].mean())
+            annotations.append(_label_annotation(cx, cy, label_short, col))
 
     model = embedding_dashboard_dict.get("model", "unknown")
     cluster_algo = embedding_dashboard_dict.get("cluster_algo", "")
@@ -4374,19 +4450,25 @@ def _fig_umap_embedding(
 
     fig.update_layout(
         title=dict(
-            text=(f"Semantic Embedding Space — 2D UMAP projection<br>"
-                  f"<span style='font-size:12px;color:#4a5d7a'>"
-                  f"Model: {model} ({dim}d) · Clustering: {cluster_algo} k={cluster_n}</span>"),
-            font=dict(size=16),
+            text=(
+                f"Semantic Embedding Space — UMAP 2D projection<br>"
+                f"<span style='font-size:11px;color:#4a5d7a'>"
+                f"Model: {model} ({dim}d) &nbsp;·&nbsp; {cluster_algo} k={cluster_n} &nbsp;·&nbsp; "
+                f"Convex hulls = semantic group boundaries</span>"
+            ),
+            font=dict(size=15),
         ),
-        xaxis=dict(title="UMAP 1", showgrid=True, gridcolor=PALETTE["line"], zeroline=False),
-        yaxis=dict(title="UMAP 2", showgrid=True, gridcolor=PALETTE["line"], zeroline=False),
+        xaxis=dict(title="UMAP Dim 1", showgrid=True, gridcolor=PALETTE["line"], zeroline=False),
+        yaxis=dict(title="UMAP Dim 2", showgrid=True, gridcolor=PALETTE["line"], zeroline=False,
+                   scaleanchor="x"),
         legend=dict(
             orientation="v", yanchor="top", y=1.0, xanchor="left", x=1.01,
-            font=dict(size=12),
+            font=dict(size=11), bgcolor="rgba(255,255,255,0.9)",
+            bordercolor=PALETTE["line"], borderwidth=1,
         ),
-        margin=dict(l=50, r=160, t=90, b=50),
-        height=640,
+        annotations=annotations,
+        margin=dict(l=50, r=170, t=90, b=50),
+        height=680,
         plot_bgcolor="#f8fafc",
         paper_bgcolor="#ffffff",
     )

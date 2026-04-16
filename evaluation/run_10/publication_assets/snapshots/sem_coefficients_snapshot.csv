@@ -1,0 +1,116 @@
+lhs,op,rhs,estimate,std_error,z_value,p_value
+adversarial_delta_indicator__alliance_commitment_support,~,Big Five Neuroticism Mean %,-0.1835121797510194,3.7989747057616774,-0.04830571245253336,0.9614726019917561
+adversarial_delta_indicator__alliance_commitment_support,~,Big Five Openness To Experience Mean %,-1.4168717074187127,3.8248924766897923,-0.3704343889542634,0.7110588546680738
+adversarial_delta_indicator__alliance_commitment_support,~,Big Five Conscientiousness Mean %,-8.823303688318914,3.7358984067303327,-2.361762212918078,0.018188304289970203
+adversarial_delta_indicator__alliance_commitment_support,~,Sex Female,-10.369969535789789,11.321315377093555,-0.9159686123372606,0.3596833578152068
+adversarial_delta_indicator__alliance_commitment_support,~,Sex Other,-7.707704303160128,10.034451865658465,-0.7681240994874787,0.4424134605875216
+adversarial_delta_indicator__alliance_commitment_support,~,Mean Baseline Abs Score,-3.2371692266201038,3.6972204922587473,-0.8755683447598606,0.38126474053677084
+adversarial_delta_indicator__asylum_process_expansion_support,~,Big Five Neuroticism Mean %,1.4616029828648582,3.9107611745562436,0.3737387474269209,0.7085986946529688
+adversarial_delta_indicator__asylum_process_expansion_support,~,Big Five Openness To Experience Mean %,-2.5531609356322016,3.93744158706939,-0.6484314444222277,0.5167059380737316
+adversarial_delta_indicator__asylum_process_expansion_support,~,Big Five Conscientiousness Mean %,-5.053186071296613,3.845828828228082,-1.313939412541013,0.18886659410272744
+adversarial_delta_indicator__asylum_process_expansion_support,~,Sex Female,-6.870085854790826,11.654449963695383,-0.5894817753039523,0.5555381341276595
+adversarial_delta_indicator__asylum_process_expansion_support,~,Sex Other,0.9784989651569563,10.329719938554472,0.09472657254769595,0.9245320110372577
+adversarial_delta_indicator__asylum_process_expansion_support,~,Mean Baseline Abs Score,0.9824047635479677,3.806012799445656,0.25811914339615366,0.7963149577669293
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~,Big Five Neuroticism Mean %,-0.2431113411753075,4.248915791231523,-0.0572172650907694,0.9543721251367243
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~,Big Five Openness To Experience Mean %,-7.651532032552052,4.2779031982819,-1.7886173851767584,0.07367645605927708
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~,Big Five Conscientiousness Mean %,1.6128480200980917,4.178368892722241,0.38599943219635696,0.6994970893227319
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~,Sex Female,-6.132887455811628,12.662183722963304,-0.4843467438155191,0.6281398072681372
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~,Sex Other,-5.564447262376341,11.222907308039185,-0.49581156732800635,0.6200273629423627
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~,Mean Baseline Abs Score,0.2496666581615896,4.135110062564455,0.06037727034687304,0.9518551612600759
+adversarial_delta_indicator__family_reunification_support,~,Big Five Neuroticism Mean %,-7.3236189518033745,4.051399928295303,-1.8076761320581618,0.07065692145558411
+adversarial_delta_indicator__family_reunification_support,~,Big Five Openness To Experience Mean %,0.5450141151276598,4.079039821532938,0.13361333523895463,0.8937083387511353
+adversarial_delta_indicator__family_reunification_support,~,Big Five Conscientiousness Mean %,6.729599112117285,3.9841324855863167,1.6891002336046181,0.09120022310418552
+adversarial_delta_indicator__family_reunification_support,~,Sex Female,2.3479914528325154,12.073567175217333,0.19447371425173318,0.8458049757940207
+adversarial_delta_indicator__family_reunification_support,~,Sex Other,0.8877373570404713,10.70119722233329,0.08295682610051233,0.933885869013203
+adversarial_delta_indicator__family_reunification_support,~,Mean Baseline Abs Score,-2.608310064384005,3.9428845931801932,-0.6615233093291152,0.5082767713109533
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~,Big Five Neuroticism Mean %,2.4816898256168423,3.6230637068232454,0.6849699664243936,0.49336287321734806
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~,Big Five Openness To Experience Mean %,1.7062884274053727,3.6477813589489636,0.4677606082993248,0.6399557933564473
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~,Big Five Conscientiousness Mean %,-3.8407064383277505,3.562908147104835,-1.07796953492825,0.2810473519744574
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~,Sex Female,-1.7952724101850266,10.797083432547781,-0.16627382953928244,0.8679414603455431
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~,Sex Other,6.667748081683376,9.56980795823509,0.696748368492065,0.48596028311854367
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~,Mean Baseline Abs Score,-2.0118757194941654,3.526021208119662,-0.5705795855284935,0.5682846599524198
+adversarial_delta_indicator__humanitarian_intervention_support,~,Big Five Neuroticism Mean %,6.011152711224664,2.7261245767649487,2.205017614549297,0.027452858506000766
+adversarial_delta_indicator__humanitarian_intervention_support,~,Big Five Openness To Experience Mean %,-3.515331732411539,2.7447230349739327,-1.2807600940484853,0.2002779447631291
+adversarial_delta_indicator__humanitarian_intervention_support,~,Big Five Conscientiousness Mean %,4.0926036062544,2.6808613512057144,1.5266002489879715,0.12686044508526506
+adversarial_delta_indicator__humanitarian_intervention_support,~,Sex Female,17.41792095690553,8.124117289855342,2.1439770421154924,0.03203472634530247
+adversarial_delta_indicator__humanitarian_intervention_support,~,Sex Other,20.622915701961674,7.200670697767064,2.864027056306574,0.004182922808124712
+adversarial_delta_indicator__humanitarian_intervention_support,~,Mean Baseline Abs Score,-5.952578471270202,2.6531062800653062,-2.243626090667365,0.024856469111751434
+adversarial_delta_indicator__multiculturalism_support,~,Big Five Neuroticism Mean %,1.1610033676897193,3.9439647881441324,0.2943746787951789,0.7684716135502152
+adversarial_delta_indicator__multiculturalism_support,~,Big Five Openness To Experience Mean %,-3.4340558205631435,3.9708717258956927,-0.8648115722719986,0.3871422184880169
+adversarial_delta_indicator__multiculturalism_support,~,Big Five Conscientiousness Mean %,0.8742308188821429,3.878481145421069,0.22540545798811826,0.8216638660321318
+adversarial_delta_indicator__multiculturalism_support,~,Sex Female,-7.6159190382719215,11.753399972632796,-0.6479758245277588,0.5170005867042979
+adversarial_delta_indicator__multiculturalism_support,~,Sex Other,10.4010453749509,10.417422565741902,0.9984279037651926,0.31807190841996436
+adversarial_delta_indicator__multiculturalism_support,~,Mean Baseline Abs Score,3.686384680487304,3.838327065815464,0.9604144246376671,0.33684668119496397
+adversarial_delta_indicator__nuclear_deterrence_support,~,Big Five Neuroticism Mean %,3.446590420463936,3.87992537972716,0.8883135841920278,0.37437209461255083
+adversarial_delta_indicator__nuclear_deterrence_support,~,Big Five Openness To Experience Mean %,0.8016730264940711,3.906395420987886,0.20522065487449584,0.8373997326120932
+adversarial_delta_indicator__nuclear_deterrence_support,~,Big Five Conscientiousness Mean %,2.1716615212152197,3.8155050157011017,0.5691675183961477,0.56924246151537
+adversarial_delta_indicator__nuclear_deterrence_support,~,Sex Female,1.9134087933314878,11.562556285742291,0.16548319818263144,0.8685636734173547
+adversarial_delta_indicator__nuclear_deterrence_support,~,Sex Other,7.172257444386845,10.248271568160652,0.6998504476275713,0.4840207059677297
+adversarial_delta_indicator__nuclear_deterrence_support,~,Mean Baseline Abs Score,-0.4808039501896994,3.7760029306343976,-0.12733145578062177,0.8986780648147841
+adversarial_delta_indicator__sanctions_use_support,~,Big Five Neuroticism Mean %,3.182774377327389,3.34923198297128,0.9502997682778701,0.34195995661402123
+adversarial_delta_indicator__sanctions_use_support,~,Big Five Openness To Experience Mean %,0.34821942780185666,3.3720814710681926,0.10326542546181307,0.9177523153652463
+adversarial_delta_indicator__sanctions_use_support,~,Big Five Conscientiousness Mean %,4.8263678248291,3.2936229899019636,1.4653674205047051,0.1428207011404572
+adversarial_delta_indicator__sanctions_use_support,~,Sex Female,19.824708092165494,9.981038171367278,1.9862370779259098,0.04700700562251936
+adversarial_delta_indicator__sanctions_use_support,~,Sex Other,7.717386731665218,8.846520370108879,0.8723640944455727,0.383009781834204
+adversarial_delta_indicator__sanctions_use_support,~,Mean Baseline Abs Score,2.63952083123567,3.259523971557245,0.8097872125707434,0.4180624832599851
+adversarial_delta_indicator__trust_in_mainstream_journalism,~,Big Five Neuroticism Mean %,4.820811496317574,3.0993640718109208,1.555419558535205,0.11984617898749161
+adversarial_delta_indicator__trust_in_mainstream_journalism,~,Big Five Openness To Experience Mean %,-3.770319401936616,3.1205088843610556,-1.2082386372399017,0.2269554839374932
+adversarial_delta_indicator__trust_in_mainstream_journalism,~,Big Five Conscientiousness Mean %,7.0257882803425975,3.0479037620847103,2.3051214305844034,0.02115977357563592
+adversarial_delta_indicator__trust_in_mainstream_journalism,~,Sex Female,19.80183281048728,9.236407410711838,2.14388906096976,0.03204177690301768
+adversarial_delta_indicator__trust_in_mainstream_journalism,~,Sex Other,6.111721359941736,8.186529788042453,0.7465582509536575,0.4553302572701532
+adversarial_delta_indicator__trust_in_mainstream_journalism,~,Mean Baseline Abs Score,-2.692995243874329,3.0163486853151755,-0.8927997140993822,0.37196443949097135
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Asylum Process Expansion Support,-45.9945335870104,69.30662019339651,-0.6636383863282381,0.5069217826704908
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Critical Infrastructure Hardening Support,14.37985988205668,74.68858951209396,0.19253088023208723,0.8473263814305627
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Family Reunification Support,-99.3416085899037,73.88527972190809,-1.344538573364108,0.17877429167699233
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support,-31.965103277353897,63.96026252117618,-0.4997650418769041,0.6172405283855389
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Humanitarian Intervention Support,-97.76350512408723,51.72313536222441,-1.8901310688038095,0.058740432824165856
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Multiculturalism Support,-119.9912159529216,73.31556168591119,-1.6366404784153525,0.10170561254090815
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,-18.061688400027897,68.24746247986077,-0.2646499627053164,0.7912791272906834
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Sanctions Use Support,97.14958350276919,61.95559256823261,1.5680518816081912,0.11686902490612883
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,-122.93486604169549,59.73564716440387,-2.057981655465342,0.03959189439226374
+adversarial_delta_indicator__alliance_commitment_support,~~,Adversarial Delta Indicator Alliance Commitment Support,333.6493872061054,94.37029769286795,3.535533905932751,0.00040695201744500586
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Critical Infrastructure Hardening Support,58.99467319276916,77.73003272505147,0.7589688454325727,0.4478711936381772
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Family Reunification Support,-17.474594776055383,73.34112933833559,-0.23826459905521433,0.8116758766126446
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support,169.03997942817972,73.72164145920551,2.292949208431789,0.021850929304344735
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Humanitarian Intervention Support,88.02826351802653,52.34369628473345,1.6817357153988217,0.09262009913212332
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Multiculturalism Support,-17.263726475618927,71.39869167367803,-0.24179331680923732,0.808940317700158
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,-75.07280454984594,71.74586030561288,-1.0463712363341993,0.2953896674640415
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Sanctions Use Support,-135.89275335959854,66.38015818829228,-2.0471893570082575,0.04063949601678396
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,84.70200738344191,58.547379037399196,1.4467258616194258,0.1479737182591987
+adversarial_delta_indicator__asylum_process_expansion_support,~~,Adversarial Delta Indicator Asylum Process Expansion Support,353.57383369936286,100.0057821835774,3.5355339059327116,0.00040695201744500586
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Family Reunification Support,-121.5744711965706,83.2234329820001,-1.460820190184461,0.1440647934747279
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support,-40.68446313016434,71.64090716906654,-0.5678943042157722,0.5701067397398321
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Humanitarian Intervention Support,-24.301158063929964,53.776476453975974,-0.45189197333758746,0.6513468071615653
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Multiculturalism Support,-10.678771102038834,77.51104716555926,-0.13777095643191917,0.8904214388434477
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,26.30824598670797,76.4049113788404,0.3443266344000164,0.7306006561868086
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Sanctions Use Support,-9.45352768085666,65.82488409455638,-0.14361632095358765,0.8858034520110969
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,28.823857942182848,61.1612023166859,0.4712768364646536,0.6374430548380303
+adversarial_delta_indicator__critical_infrastructure_hardening_support,~~,Adversarial Delta Indicator Critical Infrastructure Hardening Support,417.3628367145877,118.04803682245549,3.5355339059327076,0.00040695201744500586
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support,44.00953337247753,68.43693793581593,0.6430669562357033,0.5201806546203045
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Humanitarian Intervention Support,-4.022092164738111,51.073099217326494,-0.07875167605598411,0.9372301415281521
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Multiculturalism Support,-124.0709734601447,77.93566596676175,-1.591966552426168,0.111392220164521
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,34.41775046077249,73.00542631944123,0.47144099001866424,0.6373258502142232
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Sanctions Use Support,45.32446841297117,63.39053114800554,0.715003764633963,0.4746067170578234
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,83.37123548626589,60.405388617722906,1.380195333464065,0.1675265104314143
+adversarial_delta_indicator__family_reunification_support,~~,Adversarial Delta Indicator Family Reunification Support,379.46153551355496,107.32792998443807,3.535533905932698,0.00040695201744500586
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~~,Adversarial Delta Indicator Humanitarian Intervention Support,68.76485325791162,47.693642445215545,1.4418033459469697,0.14935785871327956
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~~,Adversarial Delta Indicator Multiculturalism Support,-31.308527759788557,66.36488061793807,-0.4717634909950484,0.6370956129245926
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,-166.3625817639996,73.01742923412924,-2.2783954941847973,0.022703024620415402
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~~,Adversarial Delta Indicator Sanctions Use Support,-17.152131560720125,56.21069826188249,-0.30513998386586483,0.7602595396914016
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,18.129246202271727,52.04661965662247,0.3483270637339959,0.7275945710711462
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support,~~,Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support,303.4656007156509,85.83303364915425,3.5355339059327027,0.00040695201744500586
+adversarial_delta_indicator__humanitarian_intervention_support,~~,Adversarial Delta Indicator Multiculturalism Support,44.87873086188575,50.516373887348685,0.8883996892168914,0.37432579249660525
+adversarial_delta_indicator__humanitarian_intervention_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,-4.332226452903507,48.913049833721914,-0.08856995152889996,0.929423689411705
+adversarial_delta_indicator__humanitarian_intervention_support,~~,Adversarial Delta Indicator Sanctions Use Support,-14.17565872289824,42.31122631079235,-0.33503303872055606,0.7376001637218796
+adversarial_delta_indicator__humanitarian_intervention_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,13.305991025052265,39.15715281001311,0.3398099726405381,0.7339996372753352
+adversarial_delta_indicator__humanitarian_intervention_support,~~,Adversarial Delta Indicator Humanitarian Intervention Support,171.8101922450621,48.595260805379134,3.5355339059326636,0.00040695201744500586
+adversarial_delta_indicator__multiculturalism_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,-157.74261959121733,77.46789556705473,-2.036232150577478,0.04172704927769355
+adversarial_delta_indicator__multiculturalism_support,~~,Adversarial Delta Indicator Sanctions Use Support,-21.41772650225743,61.2253542547594,-0.34981792695127045,0.7264753443098426
+adversarial_delta_indicator__multiculturalism_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,-44.61238226553423,57.21877742140282,-0.7796808019327949,0.4355787817526322
+adversarial_delta_indicator__multiculturalism_support,~~,Adversarial Delta Indicator Multiculturalism Support,359.6032311998197,101.71115332719384,3.5355339059327275,0.00040695201744500586
+adversarial_delta_indicator__nuclear_deterrence_support,~~,Adversarial Delta Indicator Sanctions Use Support,50.425896364685244,60.92415631843915,0.827683129514633,0.40784997579616666
+adversarial_delta_indicator__nuclear_deterrence_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,-34.89875831869845,56.03749440971375,-0.6227751380805553,0.5334322982971154
+adversarial_delta_indicator__nuclear_deterrence_support,~~,Adversarial Delta Indicator Nuclear Deterrence Support,348.02005709637035,98.43493694470881,3.5355339059327147,0.00040695201744500586
+adversarial_delta_indicator__sanctions_use_support,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,-79.22360781970639,50.54378724710415,-1.5674252392759478,0.11701532830049022
+adversarial_delta_indicator__sanctions_use_support,~~,Adversarial Delta Indicator Sanctions Use Support,259.3271500115544,73.34879452758042,3.535533905932692,0.00040695201744500586
+adversarial_delta_indicator__trust_in_mainstream_journalism,~~,Adversarial Delta Indicator Trust In Mainstream Journalism,222.07655732720846,62.81273585145289,3.53553390593268,0.00040695201744500586

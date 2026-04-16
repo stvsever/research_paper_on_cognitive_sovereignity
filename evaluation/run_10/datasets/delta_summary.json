@@ -1,0 +1,21 @@
+{
+  "n_records": 1000,
+  "n_profiles": 25,
+  "analysis_mode": "treated_only",
+  "mean_signed_delta": -0.101,
+  "std_signed_delta": 39.8721807655413,
+  "mean_abs_delta": 34.227,
+  "std_abs_delta": 20.452713047417458,
+  "primary_moderator_column": "profile_cont_big_five_neuroticism_mean_pct",
+  "reference_opinion_leaf": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+  "reference_opinion_domain": "Defense_and_National_Security",
+  "n_unique_opinion_leaves": 10,
+  "scenarios_per_profile": 40.0,
+  "attack_present_count": 1000,
+  "control_count": 0,
+  "exposure_quality_mean": 0.1933333333333333,
+  "adversarial_manifest_loaded": true,
+  "mean_adversarial_effectivity": 0.101,
+  "std_adversarial_effectivity": 39.8721807655413,
+  "adversarial_effectivity_positive_pct": 49.6
+}

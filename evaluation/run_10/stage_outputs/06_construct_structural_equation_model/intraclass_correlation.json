@@ -1,0 +1,23 @@
+{
+  "abs_delta_score": {
+    "icc1": 0.0107,
+    "sigma2_between": 4.4886,
+    "sigma2_within": 414.4188,
+    "n_clusters": 25,
+    "mean_cluster_size": 40.0
+  },
+  "delta_score": {
+    "icc1": 0.0,
+    "sigma2_between": 0.0,
+    "sigma2_within": 1603.9746,
+    "n_clusters": 25,
+    "mean_cluster_size": 40.0
+  },
+  "adversarial_effectivity": {
+    "icc1": 0.0,
+    "sigma2_between": 0.0,
+    "sigma2_within": 1603.9746,
+    "n_clusters": 25,
+    "mean_cluster_size": 40.0
+  }
+}

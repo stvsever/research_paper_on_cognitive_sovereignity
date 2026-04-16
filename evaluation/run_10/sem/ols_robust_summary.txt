@@ -1,0 +1,32 @@
+                                 OLS Regression Results                                 
+========================================================================================
+Dep. Variable:     mean_adversarial_effectivity   R-squared:                       0.364
+Model:                                      OLS   Adj. R-squared:                  0.046
+Method:                           Least Squares   F-statistic:                    0.8933
+Date:                          Thu, 16 Apr 2026   Prob (F-statistic):              0.544
+Time:                                  21:31:02   Log-Likelihood:                -70.503
+No. Observations:                            25   AIC:                             159.0
+Df Residuals:                                16   BIC:                             170.0
+Df Model:                                     8                                         
+Covariance Type:                            HC3                                         
+===========================================================================================================================
+                                                              coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------
+Intercept                                                  -3.3701      3.602     -0.936      0.349     -10.429       3.689
+profile_cont_big_five_neuroticism_mean_pct_z                1.6042      1.224      1.311      0.190      -0.795       4.003
+profile_cont_big_five_openness_to_experience_mean_pct_z    -2.1419      1.384     -1.547      0.122      -4.855       0.571
+profile_cont_big_five_conscientiousness_mean_pct_z          1.2637      1.591      0.794      0.427      -1.855       4.383
+profile_cont_big_five_extraversion_mean_pct_z               0.6497      1.540      0.422      0.673      -2.369       3.668
+profile_cont_big_five_agreeableness_mean_pct_z              0.5427      1.510      0.359      0.719      -2.416       3.501
+profile_cat__profile_cat_sex_Female                         3.0428      4.447      0.684      0.494      -5.673      11.759
+profile_cat__profile_cat_sex_Other                          5.0368      4.277      1.178      0.239      -3.346      13.420
+mean_baseline_abs_score_z                                  -0.8926      1.366     -0.653      0.514      -3.571       1.786
+==============================================================================
+Omnibus:                        2.136   Durbin-Watson:                   1.336
+Prob(Omnibus):                  0.344   Jarque-Bera (JB):                1.502
+Skew:                          -0.598   Prob(JB):                        0.472
+Kurtosis:                       2.890   Cond. No.                         5.48
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)

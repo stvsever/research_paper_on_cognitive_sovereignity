@@ -31,8 +31,6 @@
 - [Citation](#citation)
 - [License](#license)
 
-> **Custom ontology guide:** See [`src/backend/user_ontology/tool_usage.ipynb`](src/backend/user_ontology/tool_usage.ipynb) for a professional guide to using custom PROFILE × ATTACK × OPINION ontologies, including step-by-step format specification, validation walkthrough, and output interpretation.
-
 ---
 
 ## Abstract
@@ -47,36 +45,37 @@ The present study extends an earlier single-domain design to test generalization
 
 ## Key Findings
 
-> **Main result:** The full-factorial design used *N_p* = **80 pseudoprofiles** crossed with *N_a* = **6 attack vectors** and *N_o* = **8 opinion leaves** across 4 political domains. Attack vectors span four mechanism families: cognitive reframing, emotional manipulation, false consensus, authority heuristic exploitation, and two AI-based vectors. The primary effectivity outcome is **adversarial effectivity** (*AE*): the signed opinion delta multiplied by each opinion leaf's pre-assigned adversarial goal direction.
+> **Main result (run_10):** *N_p* = **25 pseudoprofiles** × *N_a* = **4 attack vectors** × *N_o* = **10 opinion leaves** across 4 political domains = **1,000 scenarios**. Attack vectors: one per mechanism family (Misleading Narrative, Astroturf, Fear Appeal, LLM Chatbot). Profile ontology: Big Five + SES + Political Psychology + Social Context + demographics (91 features; old Dual_Process/Digital_Literacy/Political_Engagement inventories excluded). Post-attack opinion agent: **profile-driven susceptibility** — no explicit directional % constraints; trait-outcome linkages govern shifting behaviour.
+
+> ⚠️ **Data quality note (run_10):** The OpenRouter API returned HTTP 403 for all LLM calls during this run (API key out of credits). All opinion scoring used deterministic fallbacks producing random ±70 deltas. As a result, AE ≈ 50/50 random and moderation analysis is noise (CV-R² < 0). The **profile feature network analysis is unaffected** (purely deterministic profile data). Recharge the API key and re-run stage 02–04 to obtain real opinion data.
 
 ### Headline Results
 
-| Metric | Value |
-|--------|-------|
-| *N* (attacked scenarios) | *N_p* × *N_a* × *N_o* = **3,840** |
-| Profile feature dimensions | 80 (Big Five + Socioeconomic Status + Political Psychology + Social Context + demographics) |
-| Mean \|Δ\| | 34.75 (*SD* = 20.19) |
-| Mean *AE* | −0.84 (*SD* = 40.18) |
-| Positive *AE* rate | 48.2% |
-| ICC(1) | 0 across all outcomes |
-| OLS benchmark (Big Five + age + sex only) | *R*² = 0.151, *F*(8,71) = 1.612, *p* = .137 (non-significant) |
-| Ridge (all 100 features, CV-tuned λ) | CV-*R*² = −0.153 ± 0.134; all features retained with theoretically correct directions |
-| Elastic Net / LASSO (all 100 features, feature selector) | CV-*R*² = −0.139 ± 0.124; 1 feature retained (consistent with ICC = 0 in run_9) |
-| Random Forest (all 100 features, OOB) | OOB *R*² = −0.009 |
-| Only nominally significant moderator (OLS) | Extraversion (*β* = +1.61, *p* = .023, bootstrap 95% CI [0.47, 3.00]) |
-| Top ridge predictors (expected direction) | Extraversion ↑, Bot-awareness ↑, Political interest ↑; Institutional trust ↓, Conscientiousness ↓ |
-| SEM fit | CFI = 1.000, RMSEA = 0.000 |
-
-> **Methodological interpretation:** Near-zero CV-R² across all three models (Ridge, Elastic Net, RF) is caused by ICC(1) = 0 in run_9 — the post-attack opinion agent had ~51.8% backfire rate, making AE effectively uncorrelated with profile features. Ridge coefficient **directions** are theoretically correct (institutional trust and conscientiousness negatively predict susceptibility; extraversion and political interest positively predict it) but effect sizes are near-zero because the run_9 simulation did not produce profile-discriminating AE. Run_10 corrects the post-attack agent prompt (backfire target < 15%) and should recover interpretable moderation effects.
+| Metric | run_10 value |
+|--------|-------------|
+| *N* (scenarios) | 25 × 4 × 10 = **1,000** |
+| Profile feature dimensions | **91** (Big Five + SES + Political Psychology + Social Context + demographics) |
+| Attack vectors | 4 (one per mechanism family) |
+| Opinion domains | 4 (10 leaves sampled) |
+| ICC(1) \|Δ\| | 0.011 (attack–opinion context dominates) |
+| Ridge CV-*R*² (91 features) | −0.175 ± 0.203 (noise — API fallback data) |
+| **Profile network: nodes** | **91** features |
+| **Profile network: edges** | **1,807** (Spearman \|ρ\| ≥ 0.15) |
+| **Profile network: communities** | **5** (greedy modularity, Q = 0.313) |
+| **Top centrality node** | Platform Primary Type Instagram/TikTok (eigenvector = 0.145) |
+| **Top Big Five node** | Openness Mean (eigenvector = 0.140) |
 
 ### Methodological Position
 
 - **Full-factorial multi-domain design**: *N_a* attack leaves × *N_o* opinion leaves per profile across 4 political domains — enables cross-attack and cross-domain comparison of susceptibility moderators
 - Effectivity is **directional**: each opinion leaf carries an adversarial goal direction (`±1`); `AE = signed_delta × direction`
+- **Profile-driven opinion prompt** (run_10+): no hard % constraints — Conscientiousness → deliberate resistance; Neuroticism → emotional reactivity; Extraversion → social susceptibility; Institutional Trust → authority-cue sensitivity
+- **Old inventories excluded**: Dual_Process, Digital_Literacy, Political_Engagement_Inventory omitted (not survey-mappable); run_10 uses SES + Political Psychology + Social Context instead
 - The SEM is a **profile-level repeated-outcome path model** with multiple adversarial effectivity indicators
-- **Three-estimator moderation stack**: (1) **Ridge** on all ~100 profile features — primary effect estimator, retains all predictors with continuous shrinkage; (2) **Elastic Net / LASSO** — feature selector, identifies hardest survivors; (3) **OLS** (Big Five benchmark, conventional reference). Ridge is preferred because Big Five facets are collinear — LASSO arbitrarily zeroes correlated features, giving a misleading single-feature picture
+- **Three-estimator moderation stack**: (1) **Ridge** on all ~91 profile features — primary effect estimator; (2) **Elastic Net / LASSO** — feature selector; (3) **OLS** (Big Five benchmark)
+- **Profile feature network analysis** (new): Spearman correlation network → eigenvector/betweenness/degree/closeness/PageRank + community detection; centrality = hub-and-spoke influence structure of the profile feature space
 - The susceptibility index is computed **post hoc** from target-conditional ridge task models with **hierarchical R² decomposition**
-- **Cluster bootstrap** at the profile level (B = 600) preserves within-profile dependence in inference
+- **Cluster bootstrap** at the profile level (B = 200 in run_10 test) preserves within-profile dependence
 - Fully auditable provenance across all 9 pipeline stages
 
 ### Main Results
@@ -84,25 +83,25 @@ The present study extends an earlier single-domain design to test generalization
 <div align="center">
 <img src="research_report/assets/figures/figure_3_profile_moderator_coefficient_forest.png" width="780" alt="Ridge and OLS moderator coefficients across all N_a attack vectors and N_o opinion leaves.">
 
-*Figure 1. Three-estimator moderation comparison (top 30 features by |Ridge coefficient|). ■ Ridge (all ~100 profile features, std-scaled, CV-λ): retains theoretically motivated predictors — institutional trust and conscientiousness negatively predict susceptibility; extraversion and political engagement positively predict it. ◇ OLS benchmark: Big Five means only; Extraversion nominally significant (β = +1.61, p = .023, bootstrap 95% CI [0.47, 3.00]). Near-zero overall R² is expected given ICC(1) = 0 in run_9 (simulation quality issue corrected for run_10).*
+*Figure 1. Three-estimator moderation comparison from run_9 (top 30 features by |Ridge coefficient|, 51 features after excluding non-survey-mappable inventories). ■ Ridge: Conscientiousness facets (−) predict resistance; Extraversion facets (+) and low Education predict susceptibility — theoretically expected directions. ◇ OLS benchmark: Big Five means only. Run_10 architecture with naturalized profile-driven prompt will recover stronger, cleaner moderation signal when run with a working API key.*
 </div>
 
 <div align="center">
-<img src="research_report/assets/figures/supplementary_figure_s2_profile_effectivity_heatmap.png" width="780" alt="Profile × attack–opinion adversarial effectivity matrix.">
+<img src="research_report/assets/figures/figure_2_factorial_attack_opinion_matrix.png" width="780" alt="Attack × opinion adversarial effectivity matrix.">
 
-*Figure 2. Profile × attack–opinion adversarial effectivity matrix (N_p = 80 rows, N_a × N_o = 48 columns). Colour encodes mean AE per cell; red = manipulation succeeded, blue = backfire. The low cross-row contrast (ICC ≈ 0) indicates that attack–opinion context, not stable profile traits, drives effectivity variance.*
+*Figure 2. Mean adversarial effectivity (AE) across the full attack-type × opinion-topic factorial (N_p = 80 profiles per cell). Colour encodes cell-mean AE; warm = manipulation succeeded on average, cool = average resistance. The high cell-to-cell variance confirms that attack–opinion context is the primary driver of effectivity; the between-profile variance within each cell (ICC ≈ 0) is the focus of the moderation analysis.*
 </div>
 
 ---
 
 ### Ontology Embedding Space
 
-All *N_p* + *N_a* + *N_o* leaves are embedded via TF-IDF of leaf names + UMAP projection, coloured by primary ontology node. Convex hulls delineate semantic clusters.
+All ontology leaves are embedded via sentence-transformer semantic encoding + UMAP 2D projection. Nodes are coloured by ontology (PROFILE / ATTACK / OPINION); filled convex hulls delineate primary sub-tree groups; labelled centroids annotate each cluster.
 
 <div align="center">
 <img src="research_report/assets/figures/figure_umap_ontology_embedding.png" width="900" alt="UMAP semantic embedding of PROFILE, ATTACK, and OPINION ontology leaves.">
 
-*Figure 3. Lexical-semantic UMAP embedding of all ontology leaves. Panel A — PROFILE (80 leaves: Big Five facets, Socioeconomic Status, Political Psychology, Social Context, demographics); Panel B — ATTACK (N_a leaves across four mechanism families); Panel C — OPINION (N_o leaves × 4 political domains). Colour = primary node; convex hulls = cluster boundaries.*
+*Figure 3. Semantic UMAP embedding of all ontology leaves (sentence-transformer all-MiniLM-L6-v2, k-means k=8). PROFILE leaves (blue) — Big Five facets, Socioeconomic Status, Political Psychology, Social Context, demographics. ATTACK leaves (orange) — four mechanism families. OPINION leaves (teal) — four political domains. Convex hulls = primary sub-tree boundaries; labelled centroids = dominant semantic group.*
 </div>
 
 ---
@@ -214,8 +213,6 @@ python -m src.backend.user_ontology.cli \
   --n-profiles 40 \
   --openrouter-model mistralai/mistral-small-3.2-24b-instruct
 ```
-
-See [`src/backend/user_ontology/tool_usage.ipynb`](src/backend/user_ontology/tool_usage.ipynb) — a 12-section professional guide covering format specification, validation, design guidelines, cost estimation, and output interpretation.
 
 ### Semantic Embedding
 

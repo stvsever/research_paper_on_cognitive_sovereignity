@@ -1,0 +1,1348 @@
+{
+  "backend": "local_st[sentence-transformers/all-MiniLM-L6-v2]",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "dim": 384,
+  "cluster_algo": "kmeans",
+  "cluster_n": 8,
+  "notes": [
+    "Embedding text prepends full leaf path for disambiguation.",
+    "UMAP parameters: n_neighbors=min(12,n-1), min_dist=0.08, metric=cosine.",
+    "Clustering: kmeans (k=8)."
+  ],
+  "records": [
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Age > Chronological_Age",
+      "leaf": "Chronological_Age",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Age → Chronological_Age. Leaf label: Chronological Age.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Sex > Male",
+      "leaf": "Male",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Sex → Male. Leaf label: Male.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Sex > Female",
+      "leaf": "Female",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Sex → Female. Leaf label: Female.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Sex > Other",
+      "leaf": "Other",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Sex → Other. Leaf label: Other.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Education_Level > Primary_Or_Less",
+      "leaf": "Primary_Or_Less",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Education_Level → Primary_Or_Less. Leaf label: Primary Or Less.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Education_Level > Secondary_Completed",
+      "leaf": "Secondary_Completed",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Education_Level → Secondary_Completed. Leaf label: Secondary Completed.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Education_Level > Post_Secondary_Non_Tertiary",
+      "leaf": "Post_Secondary_Non_Tertiary",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Education_Level → Post_Secondary_Non_Tertiary. Leaf label: Post Secondary Non Tertiary.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Education_Level > Bachelor_Equivalent",
+      "leaf": "Bachelor_Equivalent",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Education_Level → Bachelor_Equivalent. Leaf label: Bachelor Equivalent.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Education_Level > Master_Equivalent",
+      "leaf": "Master_Equivalent",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Education_Level → Master_Equivalent. Leaf label: Master Equivalent.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Education_Level > Doctoral_Equivalent",
+      "leaf": "Doctoral_Equivalent",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Education_Level → Doctoral_Equivalent. Leaf label: Doctoral Equivalent.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > News_Diet_Primary_Type > Legacy_Print_Dominant",
+      "leaf": "Legacy_Print_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → News_Diet_Primary_Type → Legacy_Print_Dominant. Leaf label: Legacy Print Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > News_Diet_Primary_Type > Broadcast_Television_Dominant",
+      "leaf": "Broadcast_Television_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → News_Diet_Primary_Type → Broadcast_Television_Dominant. Leaf label: Broadcast Television Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > News_Diet_Primary_Type > Broadcast_Radio_Dominant",
+      "leaf": "Broadcast_Radio_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → News_Diet_Primary_Type → Broadcast_Radio_Dominant. Leaf label: Broadcast Radio Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > News_Diet_Primary_Type > Online_Legacy_Outlet_Dominant",
+      "leaf": "Online_Legacy_Outlet_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → News_Diet_Primary_Type → Online_Legacy_Outlet_Dominant. Leaf label: Online Legacy Outlet Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > News_Diet_Primary_Type > Social_Media_Feed_Dominant",
+      "leaf": "Social_Media_Feed_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → News_Diet_Primary_Type → Social_Media_Feed_Dominant. Leaf label: Social Media Feed Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > News_Diet_Primary_Type > Messaging_App_And_Forwarded_Content_Dominant",
+      "leaf": "Messaging_App_And_Forwarded_Content_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → News_Diet_Primary_Type → Messaging_App_And_Forwarded_Content_Dominant. Leaf label: Messaging App And Forwarded Content Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anxiety",
+      "leaf": "Anxiety",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Neuroticism → Anxiety. Leaf label: Anxiety.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Anger_Hostility",
+      "leaf": "Anger_Hostility",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Neuroticism → Anger_Hostility. Leaf label: Anger Hostility.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Depression",
+      "leaf": "Depression",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Neuroticism → Depression. Leaf label: Depression.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Self_Consciousness",
+      "leaf": "Self_Consciousness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Neuroticism → Self_Consciousness. Leaf label: Self Consciousness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Impulsiveness",
+      "leaf": "Impulsiveness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Neuroticism → Impulsiveness. Leaf label: Impulsiveness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Neuroticism > Stress_Vulnerability",
+      "leaf": "Stress_Vulnerability",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Neuroticism → Stress_Vulnerability. Leaf label: Stress Vulnerability.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Warmth",
+      "leaf": "Warmth",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Extraversion → Warmth. Leaf label: Warmth.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Gregariousness",
+      "leaf": "Gregariousness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Extraversion → Gregariousness. Leaf label: Gregariousness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Assertiveness",
+      "leaf": "Assertiveness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Extraversion → Assertiveness. Leaf label: Assertiveness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Activity_Level",
+      "leaf": "Activity_Level",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Extraversion → Activity_Level. Leaf label: Activity Level.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Excitement_Seeking",
+      "leaf": "Excitement_Seeking",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Extraversion → Excitement_Seeking. Leaf label: Excitement Seeking.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Extraversion > Positive_Emotions",
+      "leaf": "Positive_Emotions",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Extraversion → Positive_Emotions. Leaf label: Positive Emotions.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Fantasy",
+      "leaf": "Fantasy",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Openness_to_Experience → Fantasy. Leaf label: Fantasy.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Aesthetics",
+      "leaf": "Aesthetics",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Openness_to_Experience → Aesthetics. Leaf label: Aesthetics.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Feelings",
+      "leaf": "Feelings",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Openness_to_Experience → Feelings. Leaf label: Feelings.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Actions",
+      "leaf": "Actions",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Openness_to_Experience → Actions. Leaf label: Actions.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Ideas",
+      "leaf": "Ideas",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Openness_to_Experience → Ideas. Leaf label: Ideas.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Openness_to_Experience > Values",
+      "leaf": "Values",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Openness_to_Experience → Values. Leaf label: Values.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Trust",
+      "leaf": "Trust",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Agreeableness → Trust. Leaf label: Trust.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Straightforwardness",
+      "leaf": "Straightforwardness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Agreeableness → Straightforwardness. Leaf label: Straightforwardness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Altruism",
+      "leaf": "Altruism",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Agreeableness → Altruism. Leaf label: Altruism.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Compliance",
+      "leaf": "Compliance",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Agreeableness → Compliance. Leaf label: Compliance.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Modesty",
+      "leaf": "Modesty",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Agreeableness → Modesty. Leaf label: Modesty.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Agreeableness > Tender_Mindedness",
+      "leaf": "Tender_Mindedness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Agreeableness → Tender_Mindedness. Leaf label: Tender Mindedness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Competence",
+      "leaf": "Competence",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Conscientiousness → Competence. Leaf label: Competence.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Order",
+      "leaf": "Order",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Conscientiousness → Order. Leaf label: Order.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Dutifulness",
+      "leaf": "Dutifulness",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Conscientiousness → Dutifulness. Leaf label: Dutifulness.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Achievement_Striving",
+      "leaf": "Achievement_Striving",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Conscientiousness → Achievement_Striving. Leaf label: Achievement Striving.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Self_Discipline",
+      "leaf": "Self_Discipline",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Conscientiousness → Self_Discipline. Leaf label: Self Discipline.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Personality > Big_Five > Conscientiousness > Deliberation",
+      "leaf": "Deliberation",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Personality → Big_Five → Conscientiousness → Deliberation. Leaf label: Deliberation.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Economic_Standing > Household_Income_Quintile",
+      "leaf": "Household_Income_Quintile",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Economic_Standing → Household_Income_Quintile. Leaf label: Household Income Quintile.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Economic_Standing > Subjective_Class_Position",
+      "leaf": "Subjective_Class_Position",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Economic_Standing → Subjective_Class_Position. Leaf label: Subjective Class Position.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Economic_Standing > Economic_Anxiety",
+      "leaf": "Economic_Anxiety",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Economic_Standing → Economic_Anxiety. Leaf label: Economic Anxiety.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Economic_Standing > Financial_Security",
+      "leaf": "Financial_Security",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Economic_Standing → Financial_Security. Leaf label: Financial Security.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Economic_Standing > Upward_Mobility_Belief",
+      "leaf": "Upward_Mobility_Belief",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Economic_Standing → Upward_Mobility_Belief. Leaf label: Upward Mobility Belief.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Employment_Type > Employed_Full_Time",
+      "leaf": "Employed_Full_Time",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Employment_Type → Employed_Full_Time. Leaf label: Employed Full Time.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Employment_Type > Employed_Part_Time",
+      "leaf": "Employed_Part_Time",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Employment_Type → Employed_Part_Time. Leaf label: Employed Part Time.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Employment_Type > Unemployed_Seeking",
+      "leaf": "Unemployed_Seeking",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Employment_Type → Unemployed_Seeking. Leaf label: Unemployed Seeking.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Employment_Type > Student",
+      "leaf": "Student",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Employment_Type → Student. Leaf label: Student.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Employment_Type > Retired",
+      "leaf": "Retired",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Employment_Type → Retired. Leaf label: Retired.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Socioeconomic_Status > Employment_Type > Other_Inactive",
+      "leaf": "Other_Inactive",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Socioeconomic_Status → Employment_Type → Other_Inactive. Leaf label: Other Inactive.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Ideological_Positioning > Political_Orientation_LR",
+      "leaf": "Political_Orientation_LR",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Ideological_Positioning → Political_Orientation_LR. Leaf label: Political Orientation LR.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Ideological_Positioning > Ideological_Extremity",
+      "leaf": "Ideological_Extremity",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Ideological_Positioning → Ideological_Extremity. Leaf label: Ideological Extremity.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Ideological_Positioning > Partisan_Identity_Strength",
+      "leaf": "Partisan_Identity_Strength",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Ideological_Positioning → Partisan_Identity_Strength. Leaf label: Partisan Identity Strength.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Institutional_Trust > Government_Trust",
+      "leaf": "Government_Trust",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Institutional_Trust → Government_Trust. Leaf label: Government Trust.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Institutional_Trust > Mainstream_Media_Trust",
+      "leaf": "Mainstream_Media_Trust",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Institutional_Trust → Mainstream_Media_Trust. Leaf label: Mainstream Media Trust.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Institutional_Trust > Scientific_Consensus_Trust",
+      "leaf": "Scientific_Consensus_Trust",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Institutional_Trust → Scientific_Consensus_Trust. Leaf label: Scientific Consensus Trust.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Institutional_Trust > Conspiracy_Belief_Propensity",
+      "leaf": "Conspiracy_Belief_Propensity",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Institutional_Trust → Conspiracy_Belief_Propensity. Leaf label: Conspiracy Belief Propensity.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Institutional_Trust > Satisfaction_With_Democracy",
+      "leaf": "Satisfaction_With_Democracy",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Institutional_Trust → Satisfaction_With_Democracy. Leaf label: Satisfaction With Democracy.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Political_Engagement > Political_Interest",
+      "leaf": "Political_Interest",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Political_Engagement → Political_Interest. Leaf label: Political Interest.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Political_Engagement > Voting_Likelihood",
+      "leaf": "Voting_Likelihood",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Political_Engagement → Voting_Likelihood. Leaf label: Voting Likelihood.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Political_Psychology > Political_Engagement > Civic_Participation",
+      "leaf": "Civic_Participation",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Political_Psychology → Political_Engagement → Civic_Participation. Leaf label: Civic Participation.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Social_Media_Hours_Daily",
+      "leaf": "Social_Media_Hours_Daily",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Social_Media_Hours_Daily. Leaf label: Social Media Hours Daily.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Information_Echo_Chamber",
+      "leaf": "Information_Echo_Chamber",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Information_Echo_Chamber. Leaf label: Information Echo Chamber.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Online_Political_Discussion",
+      "leaf": "Online_Political_Discussion",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Online_Political_Discussion. Leaf label: Online Political Discussion.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Platform_Primary_Type > Facebook_Dominant",
+      "leaf": "Facebook_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Platform_Primary_Type → Facebook_Dominant. Leaf label: Facebook Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Platform_Primary_Type > Twitter_X_Dominant",
+      "leaf": "Twitter_X_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Platform_Primary_Type → Twitter_X_Dominant. Leaf label: Twitter X Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Platform_Primary_Type > Instagram_TikTok_Dominant",
+      "leaf": "Instagram_TikTok_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Platform_Primary_Type → Instagram_TikTok_Dominant. Leaf label: Instagram TikTok Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Platform_Primary_Type > YouTube_Dominant",
+      "leaf": "YouTube_Dominant",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Platform_Primary_Type → YouTube_Dominant. Leaf label: YouTube Dominant.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Online_Behavior > Platform_Primary_Type > No_Social_Media",
+      "leaf": "No_Social_Media",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Online_Behavior → Platform_Primary_Type → No_Social_Media. Leaf label: No Social Media.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Social_Capital > Interpersonal_Trust",
+      "leaf": "Interpersonal_Trust",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Social_Capital → Interpersonal_Trust. Leaf label: Interpersonal Trust.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Social_Capital > Social_Network_Diversity",
+      "leaf": "Social_Network_Diversity",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Social_Capital → Social_Network_Diversity. Leaf label: Social Network Diversity.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Social_Capital > Community_Belonging",
+      "leaf": "Community_Belonging",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Social_Capital → Community_Belonging. Leaf label: Community Belonging.",
+      "metadata": {}
+    },
+    {
+      "ontology": "PROFILE",
+      "path": "PERSON_RESEARCH_FACTORS > Social_Context > Social_Capital > Social_Isolation",
+      "leaf": "Social_Isolation",
+      "text": "PROFILE taxonomy: PERSON_RESEARCH_FACTORS → Social_Context → Social_Capital → Social_Isolation. Leaf label: Social Isolation.",
+      "metadata": {}
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Immigration_Level_Increase_Support",
+      "leaf": "Immigration_Level_Increase_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Immigration_Level_Increase_Support. Leaf label: Immigration Level Increase Support. adversarial_direction: 0.",
+      "metadata": {
+        "adversarial_direction": 0
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Refugee_Acceptance_Support",
+      "leaf": "Refugee_Acceptance_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Refugee_Acceptance_Support. Leaf label: Refugee Acceptance Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support",
+      "leaf": "Asylum_Process_Expansion_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Asylum_Process_Expansion_Support. Leaf label: Asylum Process Expansion Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Border_Enforcement_Expansion_Support",
+      "leaf": "Border_Enforcement_Expansion_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Border_Enforcement_Expansion_Support. Leaf label: Border Enforcement Expansion Support. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Pathway_to_Citizenship_Support",
+      "leaf": "Pathway_to_Citizenship_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Pathway_to_Citizenship_Support. Leaf label: Pathway to Citizenship Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support",
+      "leaf": "Family_Reunification_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Family_Reunification_Support. Leaf label: Family Reunification Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Birthright_Citizenship_Support",
+      "leaf": "Birthright_Citizenship_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Birthright_Citizenship_Support. Leaf label: Birthright Citizenship Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support",
+      "leaf": "Multiculturalism_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Multiculturalism_Support. Leaf label: Multiculturalism Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Assimilationism_Support",
+      "leaf": "Assimilationism_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Assimilationism_Support. Leaf label: Assimilationism Support. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Language_Integration_Requirements_Support",
+      "leaf": "Language_Integration_Requirements_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Language_Integration_Requirements_Support. Leaf label: Language Integration Requirements Support. adversarial_direction: 0.",
+      "metadata": {
+        "adversarial_direction": 0
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Deportation_Enforcement_Support",
+      "leaf": "Deportation_Enforcement_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Deportation_Enforcement_Support. Leaf label: Deportation Enforcement Support. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Detention_of_Irregular_Migrants_Acceptance",
+      "leaf": "Detention_of_Irregular_Migrants_Acceptance",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Detention_of_Irregular_Migrants_Acceptance. Leaf label: Detention of Irregular Migrants Acceptance. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Integration_Funding_Support",
+      "leaf": "Integration_Funding_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Integration_Funding_Support. Leaf label: Integration Funding Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Cross_Border_Labor_Mobility_Support",
+      "leaf": "Cross_Border_Labor_Mobility_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Cross_Border_Labor_Mobility_Support. Leaf label: Cross Border Labor Mobility Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Humanitarian_Corridor_Support",
+      "leaf": "Humanitarian_Corridor_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Humanitarian_Corridor_Support. Leaf label: Humanitarian Corridor Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > Migration_Securitization_Framing_Acceptance",
+      "leaf": "Migration_Securitization_Framing_Acceptance",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → Migration_Securitization_Framing_Acceptance. Leaf label: Migration Securitization Framing Acceptance. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Immigration_and_Citizenship > EU_Common_Asylum_System_Support",
+      "leaf": "EU_Common_Asylum_System_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Immigration_and_Citizenship → EU_Common_Asylum_System_Support. Leaf label: EU Common Asylum System Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Multilateralism_Support",
+      "leaf": "Multilateralism_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Multilateralism_Support. Leaf label: Multilateralism Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Unilateralism_Preference",
+      "leaf": "Unilateralism_Preference",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Unilateralism_Preference. Leaf label: Unilateralism Preference. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > International_Cooperation_Support",
+      "leaf": "International_Cooperation_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → International_Cooperation_Support. Leaf label: International Cooperation Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Non_Interventionism_Support",
+      "leaf": "Non_Interventionism_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Non_Interventionism_Support. Leaf label: Non Interventionism Support. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support",
+      "leaf": "Humanitarian_Intervention_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Humanitarian_Intervention_Support. Leaf label: Humanitarian Intervention Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support",
+      "leaf": "Sanctions_Use_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Sanctions_Use_Support. Leaf label: Sanctions Use Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Diplomacy_First_Preference",
+      "leaf": "Diplomacy_First_Preference",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Diplomacy_First_Preference. Leaf label: Diplomacy First Preference. adversarial_direction: 0.",
+      "metadata": {
+        "adversarial_direction": 0
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Trade_Diplomacy_Priority",
+      "leaf": "Trade_Diplomacy_Priority",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Trade_Diplomacy_Priority. Leaf label: Trade Diplomacy Priority. adversarial_direction: 0.",
+      "metadata": {
+        "adversarial_direction": 0
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > International_Law_Compliance_Priority",
+      "leaf": "International_Law_Compliance_Priority",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → International_Law_Compliance_Priority. Leaf label: International Law Compliance Priority. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Migration_Cooperation_Priority",
+      "leaf": "Migration_Cooperation_Priority",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Migration_Cooperation_Priority. Leaf label: Migration Cooperation Priority. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Democracy_Promotion_Support",
+      "leaf": "Democracy_Promotion_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Democracy_Promotion_Support. Leaf label: Democracy Promotion Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sphere_of_Influence_Acceptance",
+      "leaf": "Sphere_of_Influence_Acceptance",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Sphere_of_Influence_Acceptance. Leaf label: Sphere of Influence Acceptance. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > UN_Institutional_Reform_Support",
+      "leaf": "UN_Institutional_Reform_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → UN_Institutional_Reform_Support. Leaf label: UN Institutional Reform Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Energy_Independence_From_Authoritarian_Suppliers_Support",
+      "leaf": "Energy_Independence_From_Authoritarian_Suppliers_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Energy_Independence_From_Authoritarian_Suppliers_Support. Leaf label: Energy Independence From Authoritarian Suppliers Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Support_For_Contested_State_Sovereignty",
+      "leaf": "Support_For_Contested_State_Sovereignty",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Support_For_Contested_State_Sovereignty. Leaf label: Support For Contested State Sovereignty. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Great_Power_Appeasement_Acceptance",
+      "leaf": "Great_Power_Appeasement_Acceptance",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Great_Power_Appeasement_Acceptance. Leaf label: Great Power Appeasement Acceptance. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Overseas_Development_Aid_Support",
+      "leaf": "Overseas_Development_Aid_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Foreign_Policy_and_Geopolitics → Overseas_Development_Aid_Support. Leaf label: Overseas Development Aid Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support",
+      "leaf": "Defense_Spending_Increase_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Defense_Spending_Increase_Support. Leaf label: Defense Spending Increase Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support",
+      "leaf": "Alliance_Commitment_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Alliance_Commitment_Support. Leaf label: Alliance Commitment Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support",
+      "leaf": "Strategic_Autonomy_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Strategic_Autonomy_Support. Leaf label: Strategic Autonomy Support. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support",
+      "leaf": "Conscription_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Conscription_Support. Leaf label: Conscription Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Arms_Exports_Permissiveness_Support",
+      "leaf": "Arms_Exports_Permissiveness_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Arms_Exports_Permissiveness_Support. Leaf label: Arms Exports Permissiveness Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Intelligence_Oversight_Strengthening_Support",
+      "leaf": "Intelligence_Oversight_Strengthening_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Intelligence_Oversight_Strengthening_Support. Leaf label: Intelligence Oversight Strengthening Support. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support",
+      "leaf": "Domestic_Security_Powers_Expansion_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Domestic_Security_Powers_Expansion_Support. Leaf label: Domestic Security Powers Expansion Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Border_Security_Militarization_Support",
+      "leaf": "Border_Security_Militarization_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Border_Security_Militarization_Support. Leaf label: Border Security Militarization Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support",
+      "leaf": "Nuclear_Deterrence_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Nuclear_Deterrence_Support. Leaf label: Nuclear Deterrence Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Cyber_Defense_Investment_Support",
+      "leaf": "Cyber_Defense_Investment_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Cyber_Defense_Investment_Support. Leaf label: Cyber Defense Investment Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support",
+      "leaf": "Civil_Defense_Preparedness_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Civil_Defense_Preparedness_Support. Leaf label: Civil Defense Preparedness Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Forward_Deployment_Host_Nation_Support",
+      "leaf": "Forward_Deployment_Host_Nation_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Forward_Deployment_Host_Nation_Support. Leaf label: Forward Deployment Host Nation Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support",
+      "leaf": "Critical_Infrastructure_Hardening_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Critical_Infrastructure_Hardening_Support. Leaf label: Critical Infrastructure Hardening Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Counter_Hybrid_Warfare_Capability_Support",
+      "leaf": "Counter_Hybrid_Warfare_Capability_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Counter_Hybrid_Warfare_Capability_Support. Leaf label: Counter Hybrid Warfare Capability Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Industrial_Reshoring_Support",
+      "leaf": "Defense_Industrial_Reshoring_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Defense_Industrial_Reshoring_Support. Leaf label: Defense Industrial Reshoring Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Defense_and_National_Security > Allied_Cyber_Incident_Mutual_Assistance_Support",
+      "leaf": "Allied_Cyber_Incident_Mutual_Assistance_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Defense_and_National_Security → Allied_Cyber_Incident_Mutual_Assistance_Support. Leaf label: Allied Cyber Incident Mutual Assistance Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Platform_Accountability_Regulation_Support",
+      "leaf": "Platform_Accountability_Regulation_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Platform_Accountability_Regulation_Support. Leaf label: Platform Accountability Regulation Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Counter_Disinformation_Agency_Support",
+      "leaf": "Counter_Disinformation_Agency_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Counter_Disinformation_Agency_Support. Leaf label: Counter Disinformation Agency Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support",
+      "leaf": "Foreign_Information_Manipulation_Transparency_Mandate_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Foreign_Information_Manipulation_Transparency_Mandate_Support. Leaf label: Foreign Information Manipulation Transparency Mandate Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Independent_Fact_Checking_Ecosystem_Support",
+      "leaf": "Independent_Fact_Checking_Ecosystem_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Independent_Fact_Checking_Ecosystem_Support. Leaf label: Independent Fact Checking Ecosystem Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Algorithmic_Transparency_Requirement_Support",
+      "leaf": "Algorithmic_Transparency_Requirement_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Algorithmic_Transparency_Requirement_Support. Leaf label: Algorithmic Transparency Requirement Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Encrypted_Messaging_Restriction_Acceptance",
+      "leaf": "Encrypted_Messaging_Restriction_Acceptance",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Encrypted_Messaging_Restriction_Acceptance. Leaf label: Encrypted Messaging Restriction Acceptance. adversarial_direction: 0.",
+      "metadata": {
+        "adversarial_direction": 0
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Freedom_From_Content_Moderation_Preference",
+      "leaf": "Freedom_From_Content_Moderation_Preference",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Freedom_From_Content_Moderation_Preference. Leaf label: Freedom From Content Moderation Preference. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism",
+      "leaf": "Trust_In_Mainstream_Journalism",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Trust_In_Mainstream_Journalism. Leaf label: Trust In Mainstream Journalism. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Public_Service_Broadcasting_Funding_Support",
+      "leaf": "Public_Service_Broadcasting_Funding_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Public_Service_Broadcasting_Funding_Support. Leaf label: Public Service Broadcasting Funding Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Government_Distrust_Of_Elections",
+      "leaf": "Government_Distrust_Of_Elections",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Government_Distrust_Of_Elections. Leaf label: Government Distrust Of Elections. adversarial_direction: 1.",
+      "metadata": {
+        "adversarial_direction": 1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Synthetic_Media_Labelling_Mandate_Support",
+      "leaf": "Synthetic_Media_Labelling_Mandate_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Synthetic_Media_Labelling_Mandate_Support. Leaf label: Synthetic Media Labelling Mandate Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "OPINION",
+      "path": "Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Civic_Media_Literacy_Education_Support",
+      "leaf": "Civic_Media_Literacy_Education_Support",
+      "text": "OPINION taxonomy: Issue_Position_Taxonomy → Information_Integrity_and_Platforms → Civic_Media_Literacy_Education_Support. Leaf label: Civic Media Literacy Education Support. adversarial_direction: -1.",
+      "metadata": {
+        "adversarial_direction": -1
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "leaf": "Misleading_Narrative_Framing",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Social_Media_Misinformation → Misleading_Narrative_Framing. Leaf label: Misleading Narrative Framing. description: Constructs a misleading narrative around a real event or policy to alter interpretation through selective emphasis, omission, and reframing. mechanism: cognitive_reframing primary_system: system_2_heuristic_override platform_hint: x_twitter_or_facebook_short_post",
+      "metadata": {
+        "mechanism": "cognitive_reframing",
+        "primary_system": "system_2_heuristic_override",
+        "platform_hint": "x_twitter_or_facebook_short_post",
+        "description": "Constructs a misleading narrative around a real event or policy to alter interpretation through selective emphasis, omission, and reframing."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Social_Media_Misinformation > Fabricated_Statistic_Claim",
+      "leaf": "Fabricated_Statistic_Claim",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Social_Media_Misinformation → Fabricated_Statistic_Claim. Leaf label: Fabricated Statistic Claim. description: Presents fabricated or heavily distorted statistics from a plausible-sounding source to lend false empirical weight to a position. mechanism: false_evidence primary_system: system_2_numeric_anchoring platform_hint: x_twitter_graphic_card_or_thread",
+      "metadata": {
+        "mechanism": "false_evidence",
+        "primary_system": "system_2_numeric_anchoring",
+        "platform_hint": "x_twitter_graphic_card_or_thread",
+        "description": "Presents fabricated or heavily distorted statistics from a plausible-sounding source to lend false empirical weight to a position."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Social_Media_Misinformation > Out_of_Context_Visual_Reframing",
+      "leaf": "Out_of_Context_Visual_Reframing",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Social_Media_Misinformation → Out_of_Context_Visual_Reframing. Leaf label: Out of Context Visual Reframing. description: Repurposes authentic images or video in a misleading context to evoke an emotional response or support a false narrative. mechanism: visual_decontextualization primary_system: system_1_image_salience platform_hint: facebook_or_telegram_image_post",
+      "metadata": {
+        "mechanism": "visual_decontextualization",
+        "primary_system": "system_1_image_salience",
+        "platform_hint": "facebook_or_telegram_image_post",
+        "description": "Repurposes authentic images or video in a misleading context to evoke an emotional response or support a false narrative."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Social_Media_Misinformation > Selective_Historical_Analogy",
+      "leaf": "Selective_Historical_Analogy",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Social_Media_Misinformation → Selective_Historical_Analogy. Leaf label: Selective Historical Analogy. description: Anchors a current policy debate to a selectively chosen historical episode (WWII appeasement, Cold War brinkmanship, post-9/11 overreach) to force a pre-loaded conclusion without engaging present-case specifics. mechanism: analogical_transfer_bias primary_system: system_2_pattern_completion platform_hint: substack_or_opinion_column_repost",
+      "metadata": {
+        "mechanism": "analogical_transfer_bias",
+        "primary_system": "system_2_pattern_completion",
+        "platform_hint": "substack_or_opinion_column_repost",
+        "description": "Anchors a current policy debate to a selectively chosen historical episode (WWII appeasement, Cold War brinkmanship, post-9/11 overreach) to force a pre-loaded conclusion without engaging present-case specifics."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Social_Media_Misinformation > Strawman_Quote_Fabrication",
+      "leaf": "Strawman_Quote_Fabrication",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Social_Media_Misinformation → Strawman_Quote_Fabrication. Leaf label: Strawman Quote Fabrication. description: Attributes a deliberately extreme or incoherent quote to a named political figure or institution to seed contempt and foreclose deliberation. mechanism: source_distortion primary_system: system_1_source_trust_heuristic platform_hint: x_twitter_quote_card",
+      "metadata": {
+        "mechanism": "source_distortion",
+        "primary_system": "system_1_source_trust_heuristic",
+        "platform_hint": "x_twitter_quote_card",
+        "description": "Attributes a deliberately extreme or incoherent quote to a named political figure or institution to seed contempt and foreclose deliberation."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Coordinated_Amplification > Bot_Like_Repetition_Burst",
+      "leaf": "Bot_Like_Repetition_Burst",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Coordinated_Amplification → Bot_Like_Repetition_Burst. Leaf label: Bot Like Repetition Burst. description: Floods a topic with repetitive, slightly varied messages to exploit the illusory truth effect and simulate widespread agreement. mechanism: repetition_illusory_truth primary_system: system_1_familiarity_heuristic platform_hint: x_twitter_reply_swarm",
+      "metadata": {
+        "mechanism": "repetition_illusory_truth",
+        "primary_system": "system_1_familiarity_heuristic",
+        "platform_hint": "x_twitter_reply_swarm",
+        "description": "Floods a topic with repetitive, slightly varied messages to exploit the illusory truth effect and simulate widespread agreement."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Coordinated_Amplification > Hashtag_Flooding_Campaign",
+      "leaf": "Hashtag_Flooding_Campaign",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Coordinated_Amplification → Hashtag_Flooding_Campaign. Leaf label: Hashtag Flooding Campaign. description: Coordinates rapid, high-volume hashtag use to hijack trending algorithms and amplify narrative visibility. mechanism: trending_algorithm_manipulation primary_system: system_1_trend_salience platform_hint: x_twitter_trending_hijack",
+      "metadata": {
+        "mechanism": "trending_algorithm_manipulation",
+        "primary_system": "system_1_trend_salience",
+        "platform_hint": "x_twitter_trending_hijack",
+        "description": "Coordinates rapid, high-volume hashtag use to hijack trending algorithms and amplify narrative visibility."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "leaf": "Astroturf_Comment_Wave",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Coordinated_Amplification → Astroturf_Comment_Wave. Leaf label: Astroturf Comment Wave. description: Deploys coordinated, human-like comments under news articles that simulate organic grassroots opinion, exploiting conformity bias. mechanism: false_consensus primary_system: system_1_conformity_bias platform_hint: news_comment_section_wave",
+      "metadata": {
+        "mechanism": "false_consensus",
+        "primary_system": "system_1_conformity_bias",
+        "platform_hint": "news_comment_section_wave",
+        "description": "Deploys coordinated, human-like comments under news articles that simulate organic grassroots opinion, exploiting conformity bias."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Coordinated_Amplification > Review_Bombing_Cascade",
+      "leaf": "Review_Bombing_Cascade",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Coordinated_Amplification → Review_Bombing_Cascade. Leaf label: Review Bombing Cascade. description: Coordinated one-star or one-dimensional reviews against an institution, publication, or app to manufacture a reputational cliff and signal supposed public rejection. mechanism: reputation_shock_amplification primary_system: system_1_aggregate_rating_heuristic platform_hint: appstore_or_review_platform_flood",
+      "metadata": {
+        "mechanism": "reputation_shock_amplification",
+        "primary_system": "system_1_aggregate_rating_heuristic",
+        "platform_hint": "appstore_or_review_platform_flood",
+        "description": "Coordinated one-star or one-dimensional reviews against an institution, publication, or app to manufacture a reputational cliff and signal supposed public rejection."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Coordinated_Amplification > Cross_Platform_Narrative_Laundering",
+      "leaf": "Cross_Platform_Narrative_Laundering",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Coordinated_Amplification → Cross_Platform_Narrative_Laundering. Leaf label: Cross Platform Narrative Laundering. description: Seeds a fabricated claim on low-credibility fringe platforms (imageboards, Telegram), launders it through intermediary aggregators, then surfaces it in mainstream feeds with the fringe origin stripped — exploiting the consumer's inability to trace provenance. mechanism: origin_obfuscation_via_platform_hopping primary_system: system_2_source_provenance_failure platform_hint: fringe_forum_to_mainstream_repost_chain",
+      "metadata": {
+        "mechanism": "origin_obfuscation_via_platform_hopping",
+        "primary_system": "system_2_source_provenance_failure",
+        "platform_hint": "fringe_forum_to_mainstream_repost_chain",
+        "description": "Seeds a fabricated claim on low-credibility fringe platforms (imageboards, Telegram), launders it through intermediary aggregators, then surfaces it in mainstream feeds with the fringe origin stripped — exploiting the consumer's inability to trace provenance."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "leaf": "Fear_Appeal_Scapegoating_Post",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Manipulative_Persuasion → Fear_Appeal_Scapegoating_Post. Leaf label: Fear Appeal Scapegoating Post. description: Combines vivid threat imagery with outgroup blame attribution, leveraging fear-driven heuristic processing to bypass analytical evaluation. mechanism: fear_arousal_scapegoating primary_system: system_1_threat_response platform_hint: facebook_or_x_viral_fear_post",
+      "metadata": {
+        "mechanism": "fear_arousal_scapegoating",
+        "primary_system": "system_1_threat_response",
+        "platform_hint": "facebook_or_x_viral_fear_post",
+        "description": "Combines vivid threat imagery with outgroup blame attribution, leveraging fear-driven heuristic processing to bypass analytical evaluation."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Manipulative_Persuasion > Ingroup_Outgroup_Identity_Priming",
+      "leaf": "Ingroup_Outgroup_Identity_Priming",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Manipulative_Persuasion → Ingroup_Outgroup_Identity_Priming. Leaf label: Ingroup Outgroup Identity Priming. description: Frames an issue in us-versus-them terms to activate social identity threat, increasing polarization and resistance to compromise. mechanism: identity_threat_activation primary_system: system_1_social_identity_defence platform_hint: identity_coded_meme_reshare",
+      "metadata": {
+        "mechanism": "identity_threat_activation",
+        "primary_system": "system_1_social_identity_defence",
+        "platform_hint": "identity_coded_meme_reshare",
+        "description": "Frames an issue in us-versus-them terms to activate social identity threat, increasing polarization and resistance to compromise."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue",
+      "leaf": "Pseudo_Expert_Authority_Cue",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Manipulative_Persuasion → Pseudo_Expert_Authority_Cue. Leaf label: Pseudo Expert Authority Cue. description: Attributes a misleading claim to a fabricated or misrepresented expert source, exploiting the authority heuristic for perceived credibility. mechanism: authority_heuristic_exploitation primary_system: system_1_expertise_cue platform_hint: linkedin_or_substack_authority_post",
+      "metadata": {
+        "mechanism": "authority_heuristic_exploitation",
+        "primary_system": "system_1_expertise_cue",
+        "platform_hint": "linkedin_or_substack_authority_post",
+        "description": "Attributes a misleading claim to a fabricated or misrepresented expert source, exploiting the authority heuristic for perceived credibility."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Manipulative_Persuasion > False_Flag_Accusation",
+      "leaf": "False_Flag_Accusation",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Manipulative_Persuasion → False_Flag_Accusation. Leaf label: False Flag Accusation. description: Publicly reframes a documented adversary action as a self-inflicted 'false flag', inverting attribution and seeding distrust of the reporting apparatus and affected institutions. mechanism: attribution_reversal primary_system: system_2_blame_inversion platform_hint: viral_accusation_thread",
+      "metadata": {
+        "mechanism": "attribution_reversal",
+        "primary_system": "system_2_blame_inversion",
+        "platform_hint": "viral_accusation_thread",
+        "description": "Publicly reframes a documented adversary action as a self-inflicted 'false flag', inverting attribution and seeding distrust of the reporting apparatus and affected institutions."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Manipulative_Persuasion > Urgency_Scarcity_Priming",
+      "leaf": "Urgency_Scarcity_Priming",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Manipulative_Persuasion → Urgency_Scarcity_Priming. Leaf label: Urgency Scarcity Priming. description: Embeds manufactured urgency markers ('last chance', 'within 48 hours', 'before it disappears') to compress deliberation time and push low-effort endorsement of a framing. mechanism: time_pressure_compliance primary_system: system_1_urgency_compliance_shortcut platform_hint: breaking_news_alert_style_post",
+      "metadata": {
+        "mechanism": "time_pressure_compliance",
+        "primary_system": "system_1_urgency_compliance_shortcut",
+        "platform_hint": "breaking_news_alert_style_post",
+        "description": "Embeds manufactured urgency markers ('last chance', 'within 48 hours', 'before it disappears') to compress deliberation time and push low-effort endorsement of a framing."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Synthetic_Media_Generation > Deepfake_Audio_Speech_Impersonation",
+      "leaf": "Deepfake_Audio_Speech_Impersonation",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Synthetic_Media_Generation → Deepfake_Audio_Speech_Impersonation. Leaf label: Deepfake Audio Speech Impersonation. description: AI-generated audio impersonating a named official or alliance spokesperson uttering a compromising or alliance-eroding statement, designed to propagate before technical verification is possible. mechanism: authenticity_heuristic_subversion primary_system: system_1_voice_authenticity_cue platform_hint: voice_note_on_messaging_app",
+      "metadata": {
+        "mechanism": "authenticity_heuristic_subversion",
+        "primary_system": "system_1_voice_authenticity_cue",
+        "platform_hint": "voice_note_on_messaging_app",
+        "description": "AI-generated audio impersonating a named official or alliance spokesperson uttering a compromising or alliance-eroding statement, designed to propagate before technical verification is possible."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Synthetic_Media_Generation > AI_Generated_Image_Event_Fabrication",
+      "leaf": "AI_Generated_Image_Event_Fabrication",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Synthetic_Media_Generation → AI_Generated_Image_Event_Fabrication. Leaf label: AI Generated Image Event Fabrication. description: Photorealistic AI-generated image depicting a fabricated event (border incident, protest, military positioning) posted with urgent framing, exploiting the 'photo = proof' heuristic. mechanism: photorealistic_evidence_fabrication primary_system: system_1_visual_evidence_bias platform_hint: x_twitter_breaking_photo_post",
+      "metadata": {
+        "mechanism": "photorealistic_evidence_fabrication",
+        "primary_system": "system_1_visual_evidence_bias",
+        "platform_hint": "x_twitter_breaking_photo_post",
+        "description": "Photorealistic AI-generated image depicting a fabricated event (border incident, protest, military positioning) posted with urgent framing, exploiting the 'photo = proof' heuristic."
+      }
+    },
+    {
+      "ontology": "ATTACK",
+      "path": "ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion",
+      "leaf": "LLM_Chatbot_Personalized_Persuasion",
+      "text": "ATTACK taxonomy: ATTACK_VECTORS → Synthetic_Media_Generation → LLM_Chatbot_Personalized_Persuasion. Leaf label: LLM Chatbot Personalized Persuasion. description: A conversational agent engages the target with profile-adaptive argumentation across multiple turns, probing objections and tailoring counter-arguments in real time to nudge opinion toward a pre-defined policy stance. mechanism: adaptive_conversational_influence primary_system: system_2_tailored_argumentation_exploit platform_hint: direct_message_chat_thread",
+      "metadata": {
+        "mechanism": "adaptive_conversational_influence",
+        "primary_system": "system_2_tailored_argumentation_exploit",
+        "platform_hint": "direct_message_chat_thread",
+        "description": "A conversational agent engages the target with profile-adaptive argumentation across multiple turns, probing objections and tailoring counter-arguments in real time to nudge opinion toward a pre-defined policy stance."
+      }
+    }
+  ]
+}

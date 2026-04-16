@@ -1,0 +1,272 @@
+Moderation Report - run_10
+=========================
+
+Profiles analyzed: 25
+Attacked opinion scenarios analyzed: 1000
+Repeated opinion indicators: 10
+Primary effectivity outcome: mean_adversarial_effectivity
+Mean adversarial effectivity: 0.101 (positive=49.6%)
+Mean absolute delta: 34.227
+Mean signed delta: -0.101
+Mean attack realism score: 0.000
+Mean post-exposure plausibility score: 0.000
+
+Profile-Level Path SEM
+----------------------
+Converged: True
+Fit indices: CFI=1.000, RMSEA=0.000
+Warnings: none
+Formula: adversarial_delta_indicator__alliance_commitment_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__asylum_process_expansion_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__family_reunification_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__humanitarian_intervention_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__multiculturalism_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__nuclear_deterrence_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__sanctions_use_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__trust_in_mainstream_journalism ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__asylum_process_expansion_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__critical_infrastructure_hardening_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__family_reunification_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__humanitarian_intervention_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__multiculturalism_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__critical_infrastructure_hardening_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__family_reunification_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__humanitarian_intervention_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__multiculturalism_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__family_reunification_support
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__humanitarian_intervention_support
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__multiculturalism_support
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support
+adversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__humanitarian_intervention_support
+adversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__multiculturalism_support
+adversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__humanitarian_intervention_support
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__multiculturalism_support
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__multiculturalism_support
+adversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__multiculturalism_support ~~ adversarial_delta_indicator__nuclear_deterrence_support
+adversarial_delta_indicator__multiculturalism_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__multiculturalism_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__nuclear_deterrence_support ~~ adversarial_delta_indicator__sanctions_use_support
+adversarial_delta_indicator__nuclear_deterrence_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+adversarial_delta_indicator__sanctions_use_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism
+
+Regularized Susceptibility Model
+--------------------------------
+The empirical susceptibility index is conditional on the modeled attack-leaf set and opinion-leaf set. It is derived from task-specific cross-validated ridge models fit separately to each (attack leaf, opinion leaf) target, then aggregated back to the profile level using reliability weights.
+Attack target set: ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave, ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post, ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing, ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion
+Opinion target set: Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support, Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support, Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support, Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support, Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support, Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support, Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support, Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support, Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support, Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=1000.0000, cv_mse=1517.7575, weight=0.0243
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support: alpha=1000.0000, cv_mse=1494.6890, weight=0.0247
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support: alpha=1000.0000, cv_mse=2028.9430, weight=0.0182
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support: alpha=562.3413, cv_mse=2302.8159, weight=0.0160
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support: alpha=1000.0000, cv_mse=1615.4061, weight=0.0228
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support: alpha=1000.0000, cv_mse=1564.3775, weight=0.0236
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support: alpha=1000.0000, cv_mse=1366.8581, weight=0.0270
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support: alpha=17.7828, cv_mse=1574.0244, weight=0.0234
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support: alpha=1000.0000, cv_mse=1940.8882, weight=0.0190
+ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism: alpha=100.0000, cv_mse=1042.3391, weight=0.0354
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=31.6228, cv_mse=769.5007, weight=0.0479
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support: alpha=177.8279, cv_mse=1872.8573, weight=0.0197
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support: alpha=17.7828, cv_mse=1851.1962, weight=0.0199
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support: alpha=56.2341, cv_mse=1700.6966, weight=0.0217
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support: alpha=316.2278, cv_mse=1433.6973, weight=0.0257
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support: alpha=1000.0000, cv_mse=2035.0689, weight=0.0181
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support: alpha=562.3413, cv_mse=1829.0266, weight=0.0202
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support: alpha=1000.0000, cv_mse=2192.1949, weight=0.0168
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support: alpha=1000.0000, cv_mse=1360.2957, weight=0.0271
+ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism: alpha=177.8279, cv_mse=1411.6930, weight=0.0261
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=0.0010, cv_mse=1444.5750, weight=0.0255
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support: alpha=1000.0000, cv_mse=1364.1914, weight=0.0270
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support: alpha=1000.0000, cv_mse=1951.9652, weight=0.0189
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support: alpha=1000.0000, cv_mse=1490.1477, weight=0.0248
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support: alpha=100.0000, cv_mse=1188.3471, weight=0.0310
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support: alpha=1000.0000, cv_mse=1782.4867, weight=0.0207
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support: alpha=56.2341, cv_mse=1514.1612, weight=0.0244
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support: alpha=5.6234, cv_mse=1164.4827, weight=0.0317
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support: alpha=1000.0000, cv_mse=1710.8210, weight=0.0216
+ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism: alpha=177.8279, cv_mse=1045.0590, weight=0.0353
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support: alpha=1000.0000, cv_mse=1232.7590, weight=0.0299
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support: alpha=1000.0000, cv_mse=1183.4343, weight=0.0312
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support: alpha=1000.0000, cv_mse=2136.3044, weight=0.0173
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support: alpha=316.2278, cv_mse=1693.0902, weight=0.0218
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support: alpha=177.8279, cv_mse=1520.2354, weight=0.0243
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support: alpha=100.0000, cv_mse=1574.4206, weight=0.0234
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support: alpha=10.0000, cv_mse=962.2689, weight=0.0383
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support: alpha=177.8279, cv_mse=1459.5018, weight=0.0253
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support: alpha=1000.0000, cv_mse=1967.9691, weight=0.0187
+ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion | Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism: alpha=3.1623, cv_mse=1192.8995, weight=0.0309
+
+Primary Multivariate Profile Model
+----------------------------------
+Outcome: mean_adversarial_effectivity
+Formula: mean_adversarial_effectivity ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cont_big_five_extraversion_mean_pct_z + profile_cont_big_five_agreeableness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z
+
+Hierarchical Variance Decomposition (Conditional Susceptibility)
+----------------------------------------------------------------
+Full model CV-R²: 0.0034
+  marginal_social_context: marginal_R²=0.0986, relative_importance=23.5%
+  marginal_social_context_social: marginal_R²=0.0745, relative_importance=17.8%
+  marginal_political_psychology: marginal_R²=0.0602, relative_importance=14.4%
+  marginal_big_five: marginal_R²=0.0568, relative_importance=13.5%
+  marginal_political_psychology_institutional: marginal_R²=0.0317, relative_importance=7.6%
+  marginal_political_psychology_political: marginal_R²=0.0196, relative_importance=4.7%
+  marginal_social_context_online: marginal_R²=0.0158, relative_importance=3.8%
+  marginal_big_five_openness: marginal_R²=0.0152, relative_importance=3.6%
+  marginal_demographics: marginal_R²=0.0146, relative_importance=3.5%
+  marginal_big_five_conscientiousness: marginal_R²=0.0104, relative_importance=2.5%
+  marginal_political_psychology_ideological: marginal_R²=0.0096, relative_importance=2.3%
+  marginal_big_five_extraversion: marginal_R²=-0.0057, relative_importance=1.4%
+  marginal_socioeconomic_status_economic_standing: marginal_R²=-0.0044, relative_importance=1.1%
+  marginal_big_five_agreeableness: marginal_R²=0.0011, relative_importance=0.3%
+  marginal_big_five_neuroticism: marginal_R²=-0.0011, relative_importance=0.3%
+Intercept: est=-3.3701, p=0.349416, boot95=[-9.6886, 1.8507]
+profile_cont_big_five_neuroticism_mean_pct_z: est=1.6042, p=0.190008, boot95=[0.0877, 4.6281]
+profile_cont_big_five_openness_to_experience_mean_pct_z: est=-2.1419, p=0.121758, boot95=[-4.6944, 0.7703]
+profile_cont_big_five_conscientiousness_mean_pct_z: est=1.2637, p=0.427158, boot95=[-2.0232, 4.3506]
+profile_cont_big_five_extraversion_mean_pct_z: est=0.6497, p=0.673163, boot95=[-2.0000, 3.7051]
+profile_cont_big_five_agreeableness_mean_pct_z: est=0.5427, p=0.719237, boot95=[-1.7931, 4.7431]
+profile_cat__profile_cat_sex_Female: est=3.0428, p=0.493832, boot95=[-3.7451, 12.7613]
+profile_cat__profile_cat_sex_Other: est=5.0368, p=0.238933, boot95=[-2.4669, 14.5034]
+mean_baseline_abs_score_z: est=-0.8926, p=0.513612, boot95=[-5.3136, 1.5443]
+
+Moderator Highlights
+-------------------
+Big Five Openness To Experience Mean %: mean univariate b=-1.8336, p=0.027555; ridge mean b=nan, weight_pct=nan
+Big Five Neuroticism Mean %: mean univariate b=1.0758, p=0.162093; ridge mean b=nan, weight_pct=nan
+Sex Other: mean univariate b=1.7478, p=0.425185; ridge mean b=0.0334, weight_pct=1.02
+Big Five Conscientiousness Mean %: mean univariate b=0.4940, p=0.689025; ridge mean b=nan, weight_pct=nan
+Sex Female: mean univariate b=0.4544, p=0.843624; ridge mean b=-0.1079, weight_pct=0.96
+Big Five Extraversion Mean %: mean univariate b=-0.2478, p=0.829159; ridge mean b=nan, weight_pct=nan
+
+Empirical Profile Susceptibility Index
+--------------------------------------
+The post hoc susceptibility index is the percentile-ranked profile-only linear predictor under the configured attack/opinion target set. Primary outcome: mean_adversarial_effectivity.
+profile_0027: susceptibility_index_pct=100.00, mean_abs_delta=41.55, mean_adversarial_eff=5.45
+profile_0064: susceptibility_index_pct=96.00, mean_abs_delta=34.02, mean_adversarial_eff=1.93
+profile_0005: susceptibility_index_pct=92.00, mean_abs_delta=37.67, mean_adversarial_eff=0.03
+profile_0038: susceptibility_index_pct=88.00, mean_abs_delta=33.75, mean_adversarial_eff=2.75
+profile_0024: susceptibility_index_pct=84.00, mean_abs_delta=29.32, mean_adversarial_eff=1.02
+
+Moderator Weight Decomposition
+------------------------------
+News Diet Primary Type Online Legacy Outlet Dominant [Demographics: News Diet]: est=0.3989, normalized_weight_pct=1.92
+Social Context Social Capital Social Isolation % [Social Context: Social Capital]: est=-0.0175, normalized_weight_pct=1.88
+Political Psychology Institutional Trust Scientific Consensus Trust % [Political Psychology: Institutional Trust]: est=-0.3132, normalized_weight_pct=1.79
+Political Psychology Institutional Trust Conspiracy Belief Propensity % [Political Psychology: Institutional Trust]: est=0.0310, normalized_weight_pct=1.71
+Political Psychology Institutional Trust Mainstream Media Trust % [Political Psychology: Institutional Trust]: est=-0.3508, normalized_weight_pct=1.70
+Chronological Age [Demographics: Age]: est=0.2831, normalized_weight_pct=1.59
+
+Ridge Regression — Full Feature Set (Primary Effect Estimator)
+----------------------------------------------------------------
+Ridge retains ALL ~100 profile features with continuous shrinkage.
+Unlike LASSO/EN, it does NOT zero correlated features — gives proper
+direction and relative magnitude for Big Five facets, political engagement,
+digital literacy, dual process, etc.
+CV-R² (5-fold): -0.1749 ± 0.2025
+Best alpha: 1124.2100
+Top 15 features by |ridge coefficient| (on std-scaled features):
+  Education Level Primary Or Less: ridge=0.0429  [Demographics: Education]
+  Big Five Openness To Experience Ideas %: ridge=-0.0426  [Big Five: Openness]
+  Employment Type Other Inactive: ridge=0.0396  [Socioeconomic Status: Employment]
+  News Diet Primary Type Broadcast Television Dominant: ridge=-0.0365  [Demographics: News Diet]
+  Platform Primary Type No Social Media: ridge=-0.0357  [Social Context: Online Behavior]
+  Big Five Openness To Experience Aesthetics %: ridge=-0.0355  [Big Five: Openness]
+  News Diet Primary Type Legacy Print Dominant: ridge=-0.0348  [Demographics: News Diet]
+  News Diet Primary Type Online Legacy Outlet Dominant: ridge=0.0344  [Demographics: News Diet]
+  Big Five Openness To Experience Mean %: ridge=-0.0340  [Big Five: Openness]
+  Education Level Secondary Completed: ridge=-0.0331  [Demographics: Education]
+  Socioeconomic Status Economic Standing Subjective Class Position %: ridge=0.0327  [Socioeconomic Status: Economic]
+  Big Five Openness To Experience Actions %: ridge=-0.0324  [Big Five: Openness]
+  Chronological Age: ridge=-0.0314  [Demographics: Age]
+  Employment Type Unemployed Seeking: ridge=-0.0301  [Socioeconomic Status: Employment]
+  Employment Type Employed Full Time: ridge=-0.0296  [Socioeconomic Status: Employment]
+
+Elastic Net / LASSO (Feature Selector — Secondary)
+--------------------------------------------------
+LASSO zeroes correlated features; selected set = hardest survivors.
+Features: 91 → selected 0
+alpha=22.28607, l1_ratio=0.10
+CV-R²: -0.3688 ± 0.1482
+Selected features:
+  (none — LASSO collapses to null model, consistent with ICC≈0)
+
+Random Forest Moderation Model (Non-linear, Full Feature Set)
+--------------------------------------------------------------
+OOB R²: -0.1942  (unbiased held-out estimate)
+Trees: 500, Features: 91
+Top features by permutation importance:
+  Big Five Openness To Experience Ideas %: perm_imp=0.0365 ± 0.0128  [Big Five: Openness]
+  Big Five Extraversion Gregariousness %: perm_imp=0.0279 ± 0.0089  [Big Five: Extraversion]
+  Big Five Conscientiousness Achievement Striving %: perm_imp=0.0240 ± 0.0098  [Big Five: Conscientiousness]
+  Political Psychology Ideological Positioning Mean %: perm_imp=0.0220 ± 0.0061  [Political Psychology: Ideology]
+  Big Five Conscientiousness Order %: perm_imp=0.0199 ± 0.0084  [Big Five: Conscientiousness]
+  Big Five Neuroticism Stress Vulnerability %: perm_imp=0.0165 ± 0.0070  [Big Five: Neuroticism]
+  Big Five Neuroticism Anger Hostility %: perm_imp=0.0160 ± 0.0051  [Big Five: Neuroticism]
+  Big Five Openness To Experience Aesthetics %: perm_imp=0.0147 ± 0.0052  [Big Five: Openness]
+  Big Five Openness To Experience Mean %: perm_imp=0.0146 ± 0.0052  [Big Five: Openness]
+  Big Five Agreeableness Trust %: perm_imp=0.0141 ± 0.0056  [Big Five: Agreeableness]
+
+OLS Supplement (Conventional Benchmark — Big Five + Age + Sex Only)
+---------------------------------------------------------------------
+NOTE: The following OLS uses only the hardcoded Big Five domain means, age, and sex.
+It serves as a conventional benchmark. The Elastic Net and Random Forest above use
+the full feature set and are the primary moderation estimators.
+
+                                 OLS Regression Results                                 
+========================================================================================
+Dep. Variable:     mean_adversarial_effectivity   R-squared:                       0.364
+Model:                                      OLS   Adj. R-squared:                  0.046
+Method:                           Least Squares   F-statistic:                    0.8933
+Date:                          Thu, 16 Apr 2026   Prob (F-statistic):              0.544
+Time:                                  21:31:02   Log-Likelihood:                -70.503
+No. Observations:                            25   AIC:                             159.0
+Df Residuals:                                16   BIC:                             170.0
+Df Model:                                     8                                         
+Covariance Type:                            HC3                                         
+===========================================================================================================================
+                                                              coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------
+Intercept                                                  -3.3701      3.602     -0.936      0.349     -10.429       3.689
+profile_cont_big_five_neuroticism_mean_pct_z                1.6042      1.224      1.311      0.190      -0.795       4.003
+profile_cont_big_five_openness_to_experience_mean_pct_z    -2.1419      1.384     -1.547      0.122      -4.855       0.571
+profile_cont_big_five_conscientiousness_mean_pct_z          1.2637      1.591      0.794      0.427      -1.855       4.383
+profile_cont_big_five_extraversion_mean_pct_z               0.6497      1.540      0.422      0.673      -2.369       3.668
+profile_cont_big_five_agreeableness_mean_pct_z              0.5427      1.510      0.359      0.719      -2.416       3.501
+profile_cat__profile_cat_sex_Female                         3.0428      4.447      0.684      0.494      -5.673      11.759
+profile_cat__profile_cat_sex_Other                          5.0368      4.277      1.178      0.239      -3.346      13.420
+mean_baseline_abs_score_z                                  -0.8926      1.366     -0.653      0.514      -3.571       1.786
+==============================================================================
+Omnibus:                        2.136   Durbin-Watson:                   1.336
+Prob(Omnibus):                  0.344   Jarque-Bera (JB):                1.502
+Skew:                          -0.598   Prob(JB):                        0.472
+Kurtosis:                       2.890   Cond. No.                         5.48
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+Caveat
+------
+This attacked-only pilot estimates heterogeneity in attacked opinion movement. It does not estimate a no-attack counterfactual effect, and the post hoc susceptibility index is descriptive because it is derived from the fitted profile moderation model rather than observed independently.

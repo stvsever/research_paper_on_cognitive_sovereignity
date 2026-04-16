@@ -1,0 +1,10 @@
+{
+  "r2_train": 0.0,
+  "cv_r2": -0.36879181320054,
+  "cv_r2_std": 0.1482169769802726,
+  "alpha": 22.286070414786813,
+  "l1_ratio": 0.1,
+  "n_features_total": 91,
+  "n_features_selected": 0,
+  "note": "LASSO feature selector. CV-R² via nested 5-fold CV. Estimates on standardised features. l1_ratio=1.0 (LASSO) zeroes correlated features — use ridge_full for interpretable direction estimates across all features."
+}

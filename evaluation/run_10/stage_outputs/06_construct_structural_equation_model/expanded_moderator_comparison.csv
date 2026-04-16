@@ -1,0 +1,92 @@
+moderator_column,moderator_label,ontology_group,ridge_estimate,multivariate_estimate,multivariate_p_value,multivariate_q_value,multivariate_conf_low,multivariate_conf_high,univariate_estimate,univariate_conf_low,univariate_conf_high,elastic_net_estimate,rf_permutation_importance,normalized_weight_pct,ridge_mean_estimate,role
+profile_cat__profile_cat_education_level_Primary_Or_Less,Education Level Primary Or Less,Demographics: Education,0.04288969465584537,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_ideas_pct,Big Five Openness To Experience Ideas %,Big Five: Openness,-0.042550006475885443,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_employment_type_Other_Inactive,Employment Type Other Inactive,Socioeconomic Status: Employment,0.03961955041345177,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_news_diet_primary_type_Broadcast_Television_Dominant,News Diet Primary Type Broadcast Television Dominant,Demographics: News Diet,-0.036472979743838424,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_platform_primary_type_No_Social_Media,Platform Primary Type No Social Media,Social Context: Online Behavior,-0.035724633654220704,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_aesthetics_pct,Big Five Openness To Experience Aesthetics %,Big Five: Openness,-0.03545542741742052,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_news_diet_primary_type_Legacy_Print_Dominant,News Diet Primary Type Legacy Print Dominant,Demographics: News Diet,-0.034786250398414494,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_news_diet_primary_type_Online_Legacy_Outlet_Dominant,News Diet Primary Type Online Legacy Outlet Dominant,Demographics: News Diet,0.03443086594216094,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_mean_pct,Big Five Openness To Experience Mean %,Big Five: Openness,-0.033958091935690514,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_education_level_Secondary_Completed,Education Level Secondary Completed,Demographics: Education,-0.03312810316253646,,,,,,,,,0.0,,,,expanded
+profile_cont_socioeconomic_status_economic_standing_subjective_class_position_pct,Socioeconomic Status Economic Standing Subjective Class Position %,Socioeconomic Status: Economic,0.03265314399232688,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_actions_pct,Big Five Openness To Experience Actions %,Big Five: Openness,-0.0324171262357852,,,,,,,,,0.0,,,,expanded
+profile_cont_chronological_age,Chronological Age,Demographics: Age,-0.03142560673752149,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_employment_type_Unemployed_Seeking,Employment Type Unemployed Seeking,Socioeconomic Status: Employment,-0.03011730202065971,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_employment_type_Employed_Full_Time,Employment Type Employed Full Time,Socioeconomic Status: Employment,-0.02964729299005474,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_values_pct,Big Five Openness To Experience Values %,Big Five: Openness,-0.028316208953102003,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_feelings_pct,Big Five Openness To Experience Feelings %,Big Five: Openness,-0.027102131266207172,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_education_level_Bachelor_Equivalent,Education Level Bachelor Equivalent,Demographics: Education,-0.026940342827205865,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_openness_to_experience_fantasy_pct,Big Five Openness To Experience Fantasy %,Big Five: Openness,-0.026569045457089137,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_online_behavior_information_echo_chamber_pct,Social Context Online Behavior Information Echo Chamber %,Social Context: Online Behavior,0.025578957396739366,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_online_behavior_mean_pct,Social Context Online Behavior Mean %,Social Context: Online Behavior,0.025103991285320395,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_sex_Male,Sex Male,Demographics: Sex,-0.025010437178712472,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_political_engagement_mean_pct,Political Psychology Political Engagement Mean %,Political Psychology: Engagement,-0.024841205233137847,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_political_engagement_political_interest_pct,Political Psychology Political Engagement Political Interest %,Political Psychology: Engagement,-0.024625211005647747,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_online_behavior_social_media_hours_daily_pct,Social Context Online Behavior Social Media Hours Daily %,Social Context: Online Behavior,0.024209941488399805,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_political_engagement_civic_participation_pct,Political Psychology Political Engagement Civic Participation %,Political Psychology: Engagement,-0.023976730974240953,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_political_engagement_voting_likelihood_pct,Political Psychology Political Engagement Voting Likelihood %,Political Psychology: Engagement,-0.02392284970986274,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_news_diet_primary_type_Social_Media_Feed_Dominant,News Diet Primary Type Social Media Feed Dominant,Demographics: News Diet,0.023711390722732744,,,,,,,,,0.0,,,,expanded
+profile_cont_socioeconomic_status_economic_standing_financial_security_pct,Socioeconomic Status Economic Standing Financial Security %,Socioeconomic Status: Economic,0.02327304547957639,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_neuroticism_anxiety_pct,Big Five Neuroticism Anxiety %,Big Five: Neuroticism,0.023132105068047564,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_online_behavior_online_political_discussion_pct,Social Context Online Behavior Online Political Discussion %,Social Context: Online Behavior,0.02242515016355217,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_neuroticism_stress_vulnerability_pct,Big Five Neuroticism Stress Vulnerability %,Big Five: Neuroticism,0.021704644787517147,,,,,,,,,0.0,,,,expanded
+profile_cont_socioeconomic_status_economic_standing_mean_pct,Socioeconomic Status Economic Standing Mean %,Socioeconomic Status: Economic,0.020588788225056623,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_employment_type_Student,Employment Type Student,Socioeconomic Status: Employment,0.020134813021081187,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_institutional_trust_scientific_consensus_trust_pct,Political Psychology Institutional Trust Scientific Consensus Trust %,Political Psychology: Institutional Trust,-0.019392491375575707,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_sex_Other,Sex Other,Demographics: Sex,0.018707510037025147,5.036837911817317,0.2389330955805643,0.5575105563546501,-3.345921252193449,13.419597075828083,1.7478071479868706,-2.5478886517603154,6.043502947734057,0.0,0.0006211964044895191,1.0227980898956153,0.033382393151479645,core
+profile_cont_big_five_neuroticism_mean_pct,Big Five Neuroticism Mean %,Big Five: Neuroticism,0.018545259181230674,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_neuroticism_self_consciousness_pct,Big Five Neuroticism Self Consciousness %,Big Five: Neuroticism,0.018195099081684978,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_neuroticism_anger_hostility_pct,Big Five Neuroticism Anger Hostility %,Big Five: Neuroticism,0.01809733752395978,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_neuroticism_impulsiveness_pct,Big Five Neuroticism Impulsiveness %,Big Five: Neuroticism,0.01676761719962924,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_institutional_trust_mainstream_media_trust_pct,Political Psychology Institutional Trust Mainstream Media Trust %,Political Psychology: Institutional Trust,-0.0165460424069569,,,,,,,,,0.0,,,,expanded
+profile_cont_socioeconomic_status_economic_standing_upward_mobility_belief_pct,Socioeconomic Status Economic Standing Upward Mobility Belief %,Socioeconomic Status: Economic,0.016526430851721004,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_order_pct,Big Five Conscientiousness Order %,Big Five: Conscientiousness,0.015797298491637947,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_ideological_positioning_political_orientation_lr_pct,Political Psychology Ideological Positioning Political Orientation Lr %,Political Psychology: Ideology,0.015336484463657075,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_platform_primary_type_Facebook_Dominant,Platform Primary Type Facebook Dominant,Social Context: Online Behavior,0.015163781838581315,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_achievement_striving_pct,Big Five Conscientiousness Achievement Striving %,Big Five: Conscientiousness,0.014956158070721615,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_platform_primary_type_Instagram_TikTok_Dominant,Platform Primary Type Instagram Tiktok Dominant,Social Context: Online Behavior,0.0147391498919729,,,,,,,,,0.0,,,,expanded
+profile_cont_socioeconomic_status_economic_standing_economic_anxiety_pct,Socioeconomic Status Economic Standing Economic Anxiety %,Socioeconomic Status: Economic,0.013516236246981008,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_competence_pct,Big Five Conscientiousness Competence %,Big Five: Conscientiousness,0.013058420257115384,,,,,,,,,0.0,,,,expanded
+profile_cont_socioeconomic_status_economic_standing_household_income_quintile_pct,Socioeconomic Status Economic Standing Household Income Quintile %,Socioeconomic Status: Economic,0.012793188391687381,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_news_diet_primary_type_Broadcast_Radio_Dominant,News Diet Primary Type Broadcast Radio Dominant,Demographics: News Diet,0.012740786500437475,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_ideological_positioning_mean_pct,Political Psychology Ideological Positioning Mean %,Political Psychology: Ideology,0.012473005982904694,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_mean_pct,Big Five Conscientiousness Mean %,Big Five: Conscientiousness,0.012035993946596841,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_extraversion_gregariousness_pct,Big Five Extraversion Gregariousness %,Big Five: Extraversion,0.011562738917481028,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_institutional_trust_satisfaction_with_democracy_pct,Political Psychology Institutional Trust Satisfaction With Democracy %,Political Psychology: Institutional Trust,-0.011494992253419333,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_social_capital_interpersonal_trust_pct,Social Context Social Capital Interpersonal Trust %,Social Context: Social Capital,-0.011170792591231615,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_institutional_trust_mean_pct,Political Psychology Institutional Trust Mean %,Political Psychology: Institutional Trust,-0.010990467848026927,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_ideological_positioning_partisan_identity_strength_pct,Political Psychology Ideological Positioning Partisan Identity Strength %,Political Psychology: Ideology,0.010852858230406347,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_education_level_Post_Secondary_Non_Tertiary,Education Level Post Secondary Non Tertiary,Demographics: Education,0.010656666093335732,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_ideological_positioning_ideological_extremity_pct,Political Psychology Ideological Positioning Ideological Extremity %,Political Psychology: Ideology,0.010650507414957428,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_platform_primary_type_Twitter_X_Dominant,Platform Primary Type Twitter X Dominant,Social Context: Online Behavior,0.010498011692658954,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_self_discipline_pct,Big Five Conscientiousness Self Discipline %,Big Five: Conscientiousness,0.010355861843887443,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_modesty_pct,Big Five Agreeableness Modesty %,Big Five: Agreeableness,-0.009525317138324281,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_extraversion_positive_emotions_pct,Big Five Extraversion Positive Emotions %,Big Five: Extraversion,-0.00856548217992866,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_deliberation_pct,Big Five Conscientiousness Deliberation %,Big Five: Conscientiousness,0.008197677788577237,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_tender_mindedness_pct,Big Five Agreeableness Tender Mindedness %,Big Five: Agreeableness,-0.007997271445727955,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_neuroticism_depression_pct,Big Five Neuroticism Depression %,Big Five: Neuroticism,0.00787347334849838,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_employment_type_Retired,Employment Type Retired,Socioeconomic Status: Employment,0.007843926048889305,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_extraversion_assertiveness_pct,Big Five Extraversion Assertiveness %,Big Five: Extraversion,-0.007546945155206657,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_conscientiousness_dutifulness_pct,Big Five Conscientiousness Dutifulness %,Big Five: Conscientiousness,0.00708115872170631,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_compliance_pct,Big Five Agreeableness Compliance %,Big Five: Agreeableness,-0.006706283678084734,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_mean_pct,Big Five Agreeableness Mean %,Big Five: Agreeableness,-0.0064871843326083445,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_employment_type_Employed_Part_Time,Employment Type Employed Part Time,Socioeconomic Status: Employment,0.006047605446739379,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_extraversion_excitement_seeking_pct,Big Five Extraversion Excitement Seeking %,Big Five: Extraversion,-0.005992727351808138,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_platform_primary_type_YouTube_Dominant,Platform Primary Type Youtube Dominant,Social Context: Online Behavior,0.00574794361019996,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_straightforwardness_pct,Big Five Agreeableness Straightforwardness %,Big Five: Agreeableness,-0.005746460973020046,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_trust_pct,Big Five Agreeableness Trust %,Big Five: Agreeableness,-0.005499222213945028,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_education_level_Master_Equivalent,Education Level Master Equivalent,Demographics: Education,0.005280193467736898,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_social_capital_social_isolation_pct,Social Context Social Capital Social Isolation %,Social Context: Social Capital,-0.004477279243476098,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_institutional_trust_government_trust_pct,Political Psychology Institutional Trust Government Trust %,Political Psychology: Institutional Trust,-0.004340327583456455,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_social_capital_mean_pct,Social Context Social Capital Mean %,Social Context: Social Capital,-0.003491464409205327,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_social_capital_social_network_diversity_pct,Social Context Social Capital Social Network Diversity %,Social Context: Social Capital,0.002849837142963286,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_extraversion_mean_pct,Big Five Extraversion Mean %,Big Five: Extraversion,-0.0020685785719266247,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_extraversion_activity_level_pct,Big Five Extraversion Activity Level %,Big Five: Extraversion,-0.002011402284790145,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_education_level_Doctoral_Equivalent,Education Level Doctoral Equivalent,Demographics: Education,-0.0016695663066975215,,,,,,,,,0.0,,,,expanded
+profile_cont_big_five_agreeableness_altruism_pct,Big Five Agreeableness Altruism %,Big Five: Agreeableness,-0.0016264343052202405,,,,,,,,,0.0,,,,expanded
+profile_cont_political_psychology_institutional_trust_conspiracy_belief_propensity_pct,Political Psychology Institutional Trust Conspiracy Belief Propensity %,Political Psychology: Institutional Trust,-0.001534319058297106,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_news_diet_primary_type_Messaging_App_And_Forwarded_Content_Dominant,News Diet Primary Type Messaging App And Forwarded Content Dominant,Demographics: News Diet,0.0015313586966840653,,,,,,,,,0.0,,,,expanded
+profile_cat__profile_cat_sex_Female,Sex Female,Demographics: Sex,0.001465272793529418,3.042776585223643,0.4938315659308551,0.6913641923031971,-5.6732325772100625,11.758785747657349,0.4544282940698167,-4.06073897710176,4.969595565241393,0.0,0.0006725646936618213,0.9605127569697589,-0.10792431417189881,core
+profile_cont_big_five_extraversion_warmth_pct,Big Five Extraversion Warmth %,Big Five: Extraversion,0.0007633917770476498,,,,,,,,,0.0,,,,expanded
+profile_cont_social_context_social_capital_community_belonging_pct,Social Context Social Capital Community Belonging %,Social Context: Social Capital,-0.0006633108608352984,,,,,,,,,0.0,,,,expanded

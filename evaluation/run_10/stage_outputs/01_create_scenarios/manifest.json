@@ -1,0 +1,35 @@
+{
+  "stage_id": "01",
+  "stage_name": "create_scenarios",
+  "created_at_utc": "2026-04-16T19:28:13.670412+00:00",
+  "input_path": null,
+  "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/01_create_scenarios/scenarios.jsonl",
+  "output_files": [
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/01_create_scenarios/scenarios.jsonl",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/01_create_scenarios/scenarios.json",
+    "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/01_create_scenarios/ontology_leaf_catalog.json"
+  ],
+  "record_count": 1000,
+  "metadata": {
+    "n_attack": 1000,
+    "n_control": 0,
+    "attack_ratio": 1.0,
+    "selected_attack_leaves": [
+      "ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing",
+      "ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave",
+      "ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post",
+      "ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion"
+    ],
+    "selected_attack_leaf_count": 4,
+    "profile_generation_mode": "deterministic",
+    "use_test_ontology": true,
+    "ontology_root": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/ontology/separate/test",
+    "focus_opinion_domain": "",
+    "selected_opinion_leaf_count": 10,
+    "selected_profile_count": 25,
+    "scenarios_per_profile": 40,
+    "profile_candidate_multiplier": 3,
+    "scenario_design": "profile_panel_factorial",
+    "sampling_strategy": "diverse_profile_panel_crossed_with_attacks_and_opinions"
+  }
+}

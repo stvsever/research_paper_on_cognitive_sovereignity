@@ -1,0 +1,1060 @@
+{
+  "model_name": "profile_panel_path_sem",
+  "model_formula": "adversarial_delta_indicator__alliance_commitment_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__asylum_process_expansion_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__family_reunification_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__humanitarian_intervention_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__multiculturalism_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__nuclear_deterrence_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__sanctions_use_support ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__trust_in_mainstream_journalism ~ profile_cont_big_five_neuroticism_mean_pct_z + profile_cont_big_five_openness_to_experience_mean_pct_z + profile_cont_big_five_conscientiousness_mean_pct_z + profile_cat__profile_cat_sex_Female + profile_cat__profile_cat_sex_Other + mean_baseline_abs_score_z\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__asylum_process_expansion_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__critical_infrastructure_hardening_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__family_reunification_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__humanitarian_intervention_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__multiculturalism_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__alliance_commitment_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__critical_infrastructure_hardening_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__family_reunification_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__humanitarian_intervention_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__multiculturalism_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__asylum_process_expansion_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__family_reunification_support\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__humanitarian_intervention_support\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__multiculturalism_support\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__critical_infrastructure_hardening_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support\nadversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__humanitarian_intervention_support\nadversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__multiculturalism_support\nadversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__family_reunification_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__humanitarian_intervention_support\nadversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__multiculturalism_support\nadversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__multiculturalism_support\nadversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__humanitarian_intervention_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__multiculturalism_support ~~ adversarial_delta_indicator__nuclear_deterrence_support\nadversarial_delta_indicator__multiculturalism_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__multiculturalism_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__nuclear_deterrence_support ~~ adversarial_delta_indicator__sanctions_use_support\nadversarial_delta_indicator__nuclear_deterrence_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism\nadversarial_delta_indicator__sanctions_use_support ~~ adversarial_delta_indicator__trust_in_mainstream_journalism",
+  "converged": true,
+  "n_obs": 25,
+  "fit_indices": {
+    "DoF": 21.0,
+    "DoF Baseline": 126.0,
+    "chi2": 0.09535360968673245,
+    "chi2 p-value": 1.0,
+    "chi2 Baseline": 195.34789146579539,
+    "CFI": 1.0,
+    "GFI": 0.9995118779682174,
+    "AGFI": 0.9970712678093043,
+    "NFI": 0.9995118779682174,
+    "TLI": 1.0,
+    "RMSEA": 0.0,
+    "AIC": 229.99237171122508,
+    "BIC": 370.16309157106815,
+    "LogLik": 0.003814144387469298
+  },
+  "coefficients": [
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": -0.1835121797510194,
+      "std_error": 3.7989747057616774,
+      "z_value": -0.04830571245253336,
+      "p_value": 0.9614726019917561
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -1.4168717074187127,
+      "std_error": 3.8248924766897923,
+      "z_value": -0.3704343889542634,
+      "p_value": 0.7110588546680738
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -8.823303688318914,
+      "std_error": 3.7358984067303327,
+      "z_value": -2.361762212918078,
+      "p_value": 0.018188304289970203
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -10.369969535789789,
+      "std_error": 11.321315377093555,
+      "z_value": -0.9159686123372606,
+      "p_value": 0.3596833578152068
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -7.707704303160128,
+      "std_error": 10.034451865658465,
+      "z_value": -0.7681240994874787,
+      "p_value": 0.4424134605875216
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -3.2371692266201038,
+      "std_error": 3.6972204922587473,
+      "z_value": -0.8755683447598606,
+      "p_value": 0.38126474053677084
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 1.4616029828648582,
+      "std_error": 3.9107611745562436,
+      "z_value": 0.3737387474269209,
+      "p_value": 0.7085986946529688
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -2.5531609356322016,
+      "std_error": 3.93744158706939,
+      "z_value": -0.6484314444222277,
+      "p_value": 0.5167059380737316
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -5.053186071296613,
+      "std_error": 3.845828828228082,
+      "z_value": -1.313939412541013,
+      "p_value": 0.18886659410272744
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -6.870085854790826,
+      "std_error": 11.654449963695383,
+      "z_value": -0.5894817753039523,
+      "p_value": 0.5555381341276595
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 0.9784989651569563,
+      "std_error": 10.329719938554472,
+      "z_value": 0.09472657254769595,
+      "p_value": 0.9245320110372577
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 0.9824047635479677,
+      "std_error": 3.806012799445656,
+      "z_value": 0.25811914339615366,
+      "p_value": 0.7963149577669293
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": -0.2431113411753075,
+      "std_error": 4.248915791231523,
+      "z_value": -0.0572172650907694,
+      "p_value": 0.9543721251367243
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -7.651532032552052,
+      "std_error": 4.2779031982819,
+      "z_value": -1.7886173851767584,
+      "p_value": 0.07367645605927708
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 1.6128480200980917,
+      "std_error": 4.178368892722241,
+      "z_value": 0.38599943219635696,
+      "p_value": 0.6994970893227319
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -6.132887455811628,
+      "std_error": 12.662183722963304,
+      "z_value": -0.4843467438155191,
+      "p_value": 0.6281398072681372
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": -5.564447262376341,
+      "std_error": 11.222907308039185,
+      "z_value": -0.49581156732800635,
+      "p_value": 0.6200273629423627
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 0.2496666581615896,
+      "std_error": 4.135110062564455,
+      "z_value": 0.06037727034687304,
+      "p_value": 0.9518551612600759
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": -7.3236189518033745,
+      "std_error": 4.051399928295303,
+      "z_value": -1.8076761320581618,
+      "p_value": 0.07065692145558411
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 0.5450141151276598,
+      "std_error": 4.079039821532938,
+      "z_value": 0.13361333523895463,
+      "p_value": 0.8937083387511353
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 6.729599112117285,
+      "std_error": 3.9841324855863167,
+      "z_value": 1.6891002336046181,
+      "p_value": 0.09120022310418552
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 2.3479914528325154,
+      "std_error": 12.073567175217333,
+      "z_value": 0.19447371425173318,
+      "p_value": 0.8458049757940207
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 0.8877373570404713,
+      "std_error": 10.70119722233329,
+      "z_value": 0.08295682610051233,
+      "p_value": 0.933885869013203
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -2.608310064384005,
+      "std_error": 3.9428845931801932,
+      "z_value": -0.6615233093291152,
+      "p_value": 0.5082767713109533
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 2.4816898256168423,
+      "std_error": 3.6230637068232454,
+      "z_value": 0.6849699664243936,
+      "p_value": 0.49336287321734806
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 1.7062884274053727,
+      "std_error": 3.6477813589489636,
+      "z_value": 0.4677606082993248,
+      "p_value": 0.6399557933564473
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": -3.8407064383277505,
+      "std_error": 3.562908147104835,
+      "z_value": -1.07796953492825,
+      "p_value": 0.2810473519744574
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -1.7952724101850266,
+      "std_error": 10.797083432547781,
+      "z_value": -0.16627382953928244,
+      "p_value": 0.8679414603455431
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 6.667748081683376,
+      "std_error": 9.56980795823509,
+      "z_value": 0.696748368492065,
+      "p_value": 0.48596028311854367
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -2.0118757194941654,
+      "std_error": 3.526021208119662,
+      "z_value": -0.5705795855284935,
+      "p_value": 0.5682846599524198
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 6.011152711224664,
+      "std_error": 2.7261245767649487,
+      "z_value": 2.205017614549297,
+      "p_value": 0.027452858506000766
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -3.515331732411539,
+      "std_error": 2.7447230349739327,
+      "z_value": -1.2807600940484853,
+      "p_value": 0.2002779447631291
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 4.0926036062544,
+      "std_error": 2.6808613512057144,
+      "z_value": 1.5266002489879715,
+      "p_value": 0.12686044508526506
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 17.41792095690553,
+      "std_error": 8.124117289855342,
+      "z_value": 2.1439770421154924,
+      "p_value": 0.03203472634530247
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 20.622915701961674,
+      "std_error": 7.200670697767064,
+      "z_value": 2.864027056306574,
+      "p_value": 0.004182922808124712
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -5.952578471270202,
+      "std_error": 2.6531062800653062,
+      "z_value": -2.243626090667365,
+      "p_value": 0.024856469111751434
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 1.1610033676897193,
+      "std_error": 3.9439647881441324,
+      "z_value": 0.2943746787951789,
+      "p_value": 0.7684716135502152
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -3.4340558205631435,
+      "std_error": 3.9708717258956927,
+      "z_value": -0.8648115722719986,
+      "p_value": 0.3871422184880169
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 0.8742308188821429,
+      "std_error": 3.878481145421069,
+      "z_value": 0.22540545798811826,
+      "p_value": 0.8216638660321318
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": -7.6159190382719215,
+      "std_error": 11.753399972632796,
+      "z_value": -0.6479758245277588,
+      "p_value": 0.5170005867042979
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 10.4010453749509,
+      "std_error": 10.417422565741902,
+      "z_value": 0.9984279037651926,
+      "p_value": 0.31807190841996436
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 3.686384680487304,
+      "std_error": 3.838327065815464,
+      "z_value": 0.9604144246376671,
+      "p_value": 0.33684668119496397
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 3.446590420463936,
+      "std_error": 3.87992537972716,
+      "z_value": 0.8883135841920278,
+      "p_value": 0.37437209461255083
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 0.8016730264940711,
+      "std_error": 3.906395420987886,
+      "z_value": 0.20522065487449584,
+      "p_value": 0.8373997326120932
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 2.1716615212152197,
+      "std_error": 3.8155050157011017,
+      "z_value": 0.5691675183961477,
+      "p_value": 0.56924246151537
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 1.9134087933314878,
+      "std_error": 11.562556285742291,
+      "z_value": 0.16548319818263144,
+      "p_value": 0.8685636734173547
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 7.172257444386845,
+      "std_error": 10.248271568160652,
+      "z_value": 0.6998504476275713,
+      "p_value": 0.4840207059677297
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -0.4808039501896994,
+      "std_error": 3.7760029306343976,
+      "z_value": -0.12733145578062177,
+      "p_value": 0.8986780648147841
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 3.182774377327389,
+      "std_error": 3.34923198297128,
+      "z_value": 0.9502997682778701,
+      "p_value": 0.34195995661402123
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": 0.34821942780185666,
+      "std_error": 3.3720814710681926,
+      "z_value": 0.10326542546181307,
+      "p_value": 0.9177523153652463
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 4.8263678248291,
+      "std_error": 3.2936229899019636,
+      "z_value": 1.4653674205047051,
+      "p_value": 0.1428207011404572
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 19.824708092165494,
+      "std_error": 9.981038171367278,
+      "z_value": 1.9862370779259098,
+      "p_value": 0.04700700562251936
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 7.717386731665218,
+      "std_error": 8.846520370108879,
+      "z_value": 0.8723640944455727,
+      "p_value": 0.383009781834204
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": 2.63952083123567,
+      "std_error": 3.259523971557245,
+      "z_value": 0.8097872125707434,
+      "p_value": 0.4180624832599851
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~",
+      "rhs": "Big Five Neuroticism Mean %",
+      "estimate": 4.820811496317574,
+      "std_error": 3.0993640718109208,
+      "z_value": 1.555419558535205,
+      "p_value": 0.11984617898749161
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~",
+      "rhs": "Big Five Openness To Experience Mean %",
+      "estimate": -3.770319401936616,
+      "std_error": 3.1205088843610556,
+      "z_value": -1.2082386372399017,
+      "p_value": 0.2269554839374932
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~",
+      "rhs": "Big Five Conscientiousness Mean %",
+      "estimate": 7.0257882803425975,
+      "std_error": 3.0479037620847103,
+      "z_value": 2.3051214305844034,
+      "p_value": 0.02115977357563592
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~",
+      "rhs": "Sex Female",
+      "estimate": 19.80183281048728,
+      "std_error": 9.236407410711838,
+      "z_value": 2.14388906096976,
+      "p_value": 0.03204177690301768
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~",
+      "rhs": "Sex Other",
+      "estimate": 6.111721359941736,
+      "std_error": 8.186529788042453,
+      "z_value": 0.7465582509536575,
+      "p_value": 0.4553302572701532
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~",
+      "rhs": "Mean Baseline Abs Score",
+      "estimate": -2.692995243874329,
+      "std_error": 3.0163486853151755,
+      "z_value": -0.8927997140993822,
+      "p_value": 0.37196443949097135
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Asylum Process Expansion Support",
+      "estimate": -45.9945335870104,
+      "std_error": 69.30662019339651,
+      "z_value": -0.6636383863282381,
+      "p_value": 0.5069217826704908
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Critical Infrastructure Hardening Support",
+      "estimate": 14.37985988205668,
+      "std_error": 74.68858951209396,
+      "z_value": 0.19253088023208723,
+      "p_value": 0.8473263814305627
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Family Reunification Support",
+      "estimate": -99.3416085899037,
+      "std_error": 73.88527972190809,
+      "z_value": -1.344538573364108,
+      "p_value": 0.17877429167699233
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support",
+      "estimate": -31.965103277353897,
+      "std_error": 63.96026252117618,
+      "z_value": -0.4997650418769041,
+      "p_value": 0.6172405283855389
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Humanitarian Intervention Support",
+      "estimate": -97.76350512408723,
+      "std_error": 51.72313536222441,
+      "z_value": -1.8901310688038095,
+      "p_value": 0.058740432824165856
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": -119.9912159529216,
+      "std_error": 73.31556168591119,
+      "z_value": -1.6366404784153525,
+      "p_value": 0.10170561254090815
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": -18.061688400027897,
+      "std_error": 68.24746247986077,
+      "z_value": -0.2646499627053164,
+      "p_value": 0.7912791272906834
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": 97.14958350276919,
+      "std_error": 61.95559256823261,
+      "z_value": 1.5680518816081912,
+      "p_value": 0.11686902490612883
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": -122.93486604169549,
+      "std_error": 59.73564716440387,
+      "z_value": -2.057981655465342,
+      "p_value": 0.03959189439226374
+    },
+    {
+      "lhs": "adversarial_delta_indicator__alliance_commitment_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Alliance Commitment Support",
+      "estimate": 333.6493872061054,
+      "std_error": 94.37029769286795,
+      "z_value": 3.535533905932751,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Critical Infrastructure Hardening Support",
+      "estimate": 58.99467319276916,
+      "std_error": 77.73003272505147,
+      "z_value": 0.7589688454325727,
+      "p_value": 0.4478711936381772
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Family Reunification Support",
+      "estimate": -17.474594776055383,
+      "std_error": 73.34112933833559,
+      "z_value": -0.23826459905521433,
+      "p_value": 0.8116758766126446
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support",
+      "estimate": 169.03997942817972,
+      "std_error": 73.72164145920551,
+      "z_value": 2.292949208431789,
+      "p_value": 0.021850929304344735
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Humanitarian Intervention Support",
+      "estimate": 88.02826351802653,
+      "std_error": 52.34369628473345,
+      "z_value": 1.6817357153988217,
+      "p_value": 0.09262009913212332
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": -17.263726475618927,
+      "std_error": 71.39869167367803,
+      "z_value": -0.24179331680923732,
+      "p_value": 0.808940317700158
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": -75.07280454984594,
+      "std_error": 71.74586030561288,
+      "z_value": -1.0463712363341993,
+      "p_value": 0.2953896674640415
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": -135.89275335959854,
+      "std_error": 66.38015818829228,
+      "z_value": -2.0471893570082575,
+      "p_value": 0.04063949601678396
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": 84.70200738344191,
+      "std_error": 58.547379037399196,
+      "z_value": 1.4467258616194258,
+      "p_value": 0.1479737182591987
+    },
+    {
+      "lhs": "adversarial_delta_indicator__asylum_process_expansion_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Asylum Process Expansion Support",
+      "estimate": 353.57383369936286,
+      "std_error": 100.0057821835774,
+      "z_value": 3.5355339059327116,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Family Reunification Support",
+      "estimate": -121.5744711965706,
+      "std_error": 83.2234329820001,
+      "z_value": -1.460820190184461,
+      "p_value": 0.1440647934747279
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support",
+      "estimate": -40.68446313016434,
+      "std_error": 71.64090716906654,
+      "z_value": -0.5678943042157722,
+      "p_value": 0.5701067397398321
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Humanitarian Intervention Support",
+      "estimate": -24.301158063929964,
+      "std_error": 53.776476453975974,
+      "z_value": -0.45189197333758746,
+      "p_value": 0.6513468071615653
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": -10.678771102038834,
+      "std_error": 77.51104716555926,
+      "z_value": -0.13777095643191917,
+      "p_value": 0.8904214388434477
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": 26.30824598670797,
+      "std_error": 76.4049113788404,
+      "z_value": 0.3443266344000164,
+      "p_value": 0.7306006561868086
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": -9.45352768085666,
+      "std_error": 65.82488409455638,
+      "z_value": -0.14361632095358765,
+      "p_value": 0.8858034520110969
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": 28.823857942182848,
+      "std_error": 61.1612023166859,
+      "z_value": 0.4712768364646536,
+      "p_value": 0.6374430548380303
+    },
+    {
+      "lhs": "adversarial_delta_indicator__critical_infrastructure_hardening_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Critical Infrastructure Hardening Support",
+      "estimate": 417.3628367145877,
+      "std_error": 118.04803682245549,
+      "z_value": 3.5355339059327076,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support",
+      "estimate": 44.00953337247753,
+      "std_error": 68.43693793581593,
+      "z_value": 0.6430669562357033,
+      "p_value": 0.5201806546203045
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Humanitarian Intervention Support",
+      "estimate": -4.022092164738111,
+      "std_error": 51.073099217326494,
+      "z_value": -0.07875167605598411,
+      "p_value": 0.9372301415281521
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": -124.0709734601447,
+      "std_error": 77.93566596676175,
+      "z_value": -1.591966552426168,
+      "p_value": 0.111392220164521
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": 34.41775046077249,
+      "std_error": 73.00542631944123,
+      "z_value": 0.47144099001866424,
+      "p_value": 0.6373258502142232
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": 45.32446841297117,
+      "std_error": 63.39053114800554,
+      "z_value": 0.715003764633963,
+      "p_value": 0.4746067170578234
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": 83.37123548626589,
+      "std_error": 60.405388617722906,
+      "z_value": 1.380195333464065,
+      "p_value": 0.1675265104314143
+    },
+    {
+      "lhs": "adversarial_delta_indicator__family_reunification_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Family Reunification Support",
+      "estimate": 379.46153551355496,
+      "std_error": 107.32792998443807,
+      "z_value": 3.535533905932698,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Humanitarian Intervention Support",
+      "estimate": 68.76485325791162,
+      "std_error": 47.693642445215545,
+      "z_value": 1.4418033459469697,
+      "p_value": 0.14935785871327956
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": -31.308527759788557,
+      "std_error": 66.36488061793807,
+      "z_value": -0.4717634909950484,
+      "p_value": 0.6370956129245926
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": -166.3625817639996,
+      "std_error": 73.01742923412924,
+      "z_value": -2.2783954941847973,
+      "p_value": 0.022703024620415402
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": -17.152131560720125,
+      "std_error": 56.21069826188249,
+      "z_value": -0.30513998386586483,
+      "p_value": 0.7602595396914016
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": 18.129246202271727,
+      "std_error": 52.04661965662247,
+      "z_value": 0.3483270637339959,
+      "p_value": 0.7275945710711462
+    },
+    {
+      "lhs": "adversarial_delta_indicator__foreign_information_manipulation_transparency_mandate_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Foreign Information Manipulation Transparency Mandate Support",
+      "estimate": 303.4656007156509,
+      "std_error": 85.83303364915425,
+      "z_value": 3.5355339059327027,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": 44.87873086188575,
+      "std_error": 50.516373887348685,
+      "z_value": 0.8883996892168914,
+      "p_value": 0.37432579249660525
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": -4.332226452903507,
+      "std_error": 48.913049833721914,
+      "z_value": -0.08856995152889996,
+      "p_value": 0.929423689411705
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": -14.17565872289824,
+      "std_error": 42.31122631079235,
+      "z_value": -0.33503303872055606,
+      "p_value": 0.7376001637218796
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": 13.305991025052265,
+      "std_error": 39.15715281001311,
+      "z_value": 0.3398099726405381,
+      "p_value": 0.7339996372753352
+    },
+    {
+      "lhs": "adversarial_delta_indicator__humanitarian_intervention_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Humanitarian Intervention Support",
+      "estimate": 171.8101922450621,
+      "std_error": 48.595260805379134,
+      "z_value": 3.5355339059326636,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": -157.74261959121733,
+      "std_error": 77.46789556705473,
+      "z_value": -2.036232150577478,
+      "p_value": 0.04172704927769355
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": -21.41772650225743,
+      "std_error": 61.2253542547594,
+      "z_value": -0.34981792695127045,
+      "p_value": 0.7264753443098426
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": -44.61238226553423,
+      "std_error": 57.21877742140282,
+      "z_value": -0.7796808019327949,
+      "p_value": 0.4355787817526322
+    },
+    {
+      "lhs": "adversarial_delta_indicator__multiculturalism_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Multiculturalism Support",
+      "estimate": 359.6032311998197,
+      "std_error": 101.71115332719384,
+      "z_value": 3.5355339059327275,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": 50.425896364685244,
+      "std_error": 60.92415631843915,
+      "z_value": 0.827683129514633,
+      "p_value": 0.40784997579616666
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": -34.89875831869845,
+      "std_error": 56.03749440971375,
+      "z_value": -0.6227751380805553,
+      "p_value": 0.5334322982971154
+    },
+    {
+      "lhs": "adversarial_delta_indicator__nuclear_deterrence_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Nuclear Deterrence Support",
+      "estimate": 348.02005709637035,
+      "std_error": 98.43493694470881,
+      "z_value": 3.5355339059327147,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": -79.22360781970639,
+      "std_error": 50.54378724710415,
+      "z_value": -1.5674252392759478,
+      "p_value": 0.11701532830049022
+    },
+    {
+      "lhs": "adversarial_delta_indicator__sanctions_use_support",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Sanctions Use Support",
+      "estimate": 259.3271500115544,
+      "std_error": 73.34879452758042,
+      "z_value": 3.535533905932692,
+      "p_value": 0.00040695201744500586
+    },
+    {
+      "lhs": "adversarial_delta_indicator__trust_in_mainstream_journalism",
+      "op": "~~",
+      "rhs": "Adversarial Delta Indicator Trust In Mainstream Journalism",
+      "estimate": 222.07655732720846,
+      "std_error": 62.81273585145289,
+      "z_value": 3.53553390593268,
+      "p_value": 0.00040695201744500586
+    }
+  ],
+  "warnings": []
+}

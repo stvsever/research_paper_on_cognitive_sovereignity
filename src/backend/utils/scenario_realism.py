@@ -53,7 +53,17 @@ def compute_shift_sensitivity_proxy(profile: ProfileConfiguration) -> float:
     age = values.get("age_years", 42.0)
     age_factor = 1.0 - bounded(age / 80.0, 0.0, 1.0)
 
-    score = 0.45 * neuro + 0.25 * (1.0 - consc) + 0.2 * age_factor + 0.1 * (1.0 - open_)
+    # Optional extended-ontology moderators (graceful defaults if absent)
+    # Dual-Process: low analytical thinking → higher susceptibility
+    analytical = values.get("dual_process_inventory_analytical_thinking_mean_pct", 50.0) / 100.0
+    # Digital literacy: lower = more susceptible to platform-native misinformation
+    digital_lit = values.get("digital_literacy_inventory_critical_evaluation_mean_pct", 50.0) / 100.0
+    # Civic engagement: higher engagement can mean more entrenched opinions (lower drift)
+    civic_eng = values.get("political_engagement_inventory_news_engagement_mean_pct", 50.0) / 100.0
+
+    base_score = 0.40 * neuro + 0.22 * (1.0 - consc) + 0.18 * age_factor + 0.10 * (1.0 - open_)
+    ext_score = 0.06 * (1.0 - analytical) + 0.04 * (1.0 - digital_lit)
+    score = base_score + ext_score
     return round(bounded(score, 0.0, 1.0), 4)
 
 
@@ -112,8 +122,13 @@ def build_attack_context(
         issue_frame = "national security, civil liberties, deterrence, alliance burden-sharing, and public preparedness"
     elif domain == "Foreign_Policy_and_Geopolitics":
         issue_frame = "alliances, strategic autonomy, diplomacy, sanctions, and international order"
-    else:
+    elif domain == "Immigration_and_Citizenship":
         issue_frame = "migration, citizenship, border governance, and social cohesion"
+    elif domain == "Information_Integrity_and_Platforms":
+        issue_frame = "platform regulation, content moderation, algorithmic amplification, AI-generated content, and epistemic trust"
+    else:
+        # Generic fallback for any future opinion domains
+        issue_frame = f"{domain.replace('_', ' ').lower()}, related policy debates, and societal impacts"
 
     # ── Direction-aware persuasion goal ──────────────────────────────────────
     # Determine whether the baseline is aligned with (reinforcement) or opposed
