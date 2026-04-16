@@ -88,6 +88,15 @@ CONTROL_COLUMNS = [
     "mean_exposure_quality_score_z",
 ]
 
+# Inventories present in run_9 ontology that are excluded from all analyses.
+# They are not mappable to standard survey instruments and pollute the feature space.
+# run_10+ uses Political_Psychology / Socioeconomic_Status / Social_Context instead.
+_INVENTORY_EXCLUSION_PREFIXES: Tuple[str, ...] = (
+    "profile_cont_dual_process_inventory_",
+    "profile_cont_digital_literacy_inventory_",
+    "profile_cont_political_engagement_inventory_",
+)
+
 
 def _pretty_moderator_label(column_name: str) -> str:
     label = column_name
@@ -465,7 +474,9 @@ def _moderator_group(term: str) -> str:
 
 
 def _dynamic_profile_terms(df: pd.DataFrame) -> List[str]:
-    """Return all profile feature columns with variance, excluding synthetic proxies."""
+    """Return all profile feature columns with variance, excluding synthetic proxies
+    and the three run_9 inventories (Dual_Process, Digital_Literacy, Political_Engagement)
+    that are not mappable to standard survey instruments."""
     _exclude = {
         "profile_cont_heuristic_shift_sensitivity_proxy",
         "profile_cont_resilience_index",
@@ -473,6 +484,8 @@ def _dynamic_profile_terms(df: pd.DataFrame) -> List[str]:
     terms: List[str] = []
     for col in sorted(df.columns):
         if col in _exclude:
+            continue
+        if any(col.startswith(p) for p in _INVENTORY_EXCLUSION_PREFIXES):
             continue
         if not (col.startswith("profile_cont_") or col.startswith("profile_cat__")):
             continue
@@ -701,6 +714,153 @@ def _fit_ridge_full_features(
         "cv_r2_std": cv_r2_std,
         "alpha": float(ridge_cv.alpha_),
         "coeff_df": coeff_df,
+    }
+
+
+def _fit_network_analysis(
+    df: pd.DataFrame,
+    feature_terms: Sequence[str],
+    corr_threshold: float = 0.15,
+    seed: int = 0,
+) -> Dict[str, Any]:
+    """Build a Spearman correlation network of profile features and compute
+    a comprehensive suite of local and global network metrics.
+
+    Local metrics (per node):
+      - degree_centrality
+      - eigenvector_centrality
+      - betweenness_centrality
+      - closeness_centrality
+      - clustering_coefficient
+      - pagerank
+      - community (Louvain via greedy_modularity_communities)
+
+    Global metrics:
+      - n_nodes, n_edges, density
+      - avg_clustering, transitivity
+      - n_communities, modularity_score
+      - avg_degree, max_degree
+    """
+    import networkx as nx
+    from scipy import stats as scipy_stats
+
+    x = df[list(feature_terms)].astype(float).fillna(0.0)
+    col_std = x.std(axis=0)
+    valid = col_std[col_std > 1e-8].index.tolist()
+    x = x[valid]
+
+    # Spearman correlation matrix
+    n_feats = len(valid)
+    corr_mat = np.ones((n_feats, n_feats))
+    for i in range(n_feats):
+        for j in range(i + 1, n_feats):
+            rho, _ = scipy_stats.spearmanr(x.iloc[:, i].values, x.iloc[:, j].values)
+            corr_mat[i, j] = corr_mat[j, i] = float(rho) if not np.isnan(rho) else 0.0
+    corr_df = pd.DataFrame(corr_mat, index=valid, columns=valid)
+
+    # Build graph: undirected, edge weight = |rho|, only keep |rho| >= threshold
+    G = nx.Graph()
+    G.add_nodes_from(valid)
+    edge_rows: List[Dict[str, Any]] = []
+    for i in range(n_feats):
+        for j in range(i + 1, n_feats):
+            rho = corr_mat[i, j]
+            if abs(rho) >= corr_threshold:
+                G.add_edge(valid[i], valid[j], weight=abs(rho), rho=rho)
+                edge_rows.append({
+                    "source": valid[i],
+                    "target": valid[j],
+                    "rho": float(rho),
+                    "abs_rho": float(abs(rho)),
+                    "source_label": _pretty_moderator_label(valid[i]),
+                    "target_label": _pretty_moderator_label(valid[j]),
+                })
+    edge_df = pd.DataFrame(edge_rows)
+
+    # Local centrality metrics
+    deg_cent = nx.degree_centrality(G)
+    try:
+        eig_cent = nx.eigenvector_centrality_numpy(G, weight="weight")
+    except Exception:
+        eig_cent = {n: 0.0 for n in G.nodes()}
+    try:
+        bet_cent = nx.betweenness_centrality(G, weight="weight", normalized=True, seed=seed)
+    except Exception:
+        bet_cent = {n: 0.0 for n in G.nodes()}
+    try:
+        clo_cent = nx.closeness_centrality(G, distance="weight")
+    except Exception:
+        clo_cent = {n: 0.0 for n in G.nodes()}
+    clust = nx.clustering(G, weight="weight")
+    try:
+        pr = nx.pagerank(G, weight="weight")
+    except Exception:
+        pr = {n: 0.0 for n in G.nodes()}
+
+    # Community detection (greedy modularity communities = Louvain-like)
+    communities = list(nx.community.greedy_modularity_communities(G, weight="weight"))
+    node_community: Dict[str, int] = {}
+    for comm_idx, comm in enumerate(communities):
+        for node in comm:
+            node_community[node] = comm_idx
+
+    # Compute modularity
+    try:
+        modularity_score = float(nx.community.modularity(G, communities, weight="weight"))
+    except Exception:
+        modularity_score = float("nan")
+
+    centrality_rows: List[Dict[str, Any]] = []
+    for node in valid:
+        centrality_rows.append({
+            "term": node,
+            "label": _pretty_moderator_label(node),
+            "ontology_group": _moderator_group(node),
+            "degree_centrality": float(deg_cent.get(node, 0.0)),
+            "eigenvector_centrality": float(eig_cent.get(node, 0.0)),
+            "betweenness_centrality": float(bet_cent.get(node, 0.0)),
+            "closeness_centrality": float(clo_cent.get(node, 0.0)),
+            "clustering_coefficient": float(clust.get(node, 0.0)),
+            "pagerank": float(pr.get(node, 0.0)),
+            "community": int(node_community.get(node, -1)),
+            "degree": int(G.degree(node)),
+        })
+    centrality_df = (
+        pd.DataFrame(centrality_rows)
+        .sort_values("eigenvector_centrality", ascending=False)
+        .reset_index(drop=True)
+    )
+
+    # Global metrics
+    global_metrics: Dict[str, Any] = {
+        "n_nodes": G.number_of_nodes(),
+        "n_edges": G.number_of_edges(),
+        "density": float(nx.density(G)),
+        "avg_clustering": float(nx.average_clustering(G, weight="weight")),
+        "transitivity": float(nx.transitivity(G)),
+        "n_communities": len(communities),
+        "modularity_score": modularity_score,
+        "avg_degree": float(sum(d for _, d in G.degree()) / max(1, G.number_of_nodes())),
+        "max_degree": int(max((d for _, d in G.degree()), default=0)),
+        "corr_threshold": corr_threshold,
+        "n_features_total": len(valid),
+        "note": "Spearman correlation network of profile features. Edge = |rho| >= threshold.",
+    }
+
+    # Compute spring layout for visualization
+    pos = nx.spring_layout(G, weight="weight", seed=seed, k=1.5 / max(1, n_feats ** 0.5))
+    layout_rows: List[Dict[str, Any]] = []
+    for node, (x_pos, y_pos) in pos.items():
+        layout_rows.append({"term": node, "x": float(x_pos), "y": float(y_pos)})
+    layout_df = pd.DataFrame(layout_rows)
+
+    return {
+        "centrality_df": centrality_df,
+        "edge_df": edge_df,
+        "corr_df": corr_df,
+        "layout_df": layout_df,
+        "global_metrics": global_metrics,
+        "n_communities": len(communities),
     }
 
 
@@ -1318,6 +1478,13 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     # conditional susceptibility index — richer than SEM/OLS which use means only.
     # feature_columns=None triggers _default_feature_columns which picks all profile_cont_/profile_cat__ columns.
     conditional_outcome = "adversarial_effectivity" if "adversarial_effectivity" in long_df.columns and long_df["adversarial_effectivity"].notna().any() else "abs_delta_score"
+    # Exclude synthetic proxies and the three run_9 non-survey-mappable inventories.
+    # _INVENTORY_EXCLUSION_PREFIXES are prefix patterns; conditional_susceptibility
+    # uses an exact list, so expand them against the actual long_df columns.
+    _inv_excl_exact = [
+        col for col in long_df.columns
+        if any(col.startswith(p) for p in _INVENTORY_EXCLUSION_PREFIXES)
+    ]
     conditional_fit = fit_conditional_susceptibility_index(
         long_df=long_df,
         outcome_metric=conditional_outcome,
@@ -1325,6 +1492,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         excluded_feature_columns=[
             "profile_cont_heuristic_shift_sensitivity_proxy",
             "profile_cont_resilience_index",
+            *_inv_excl_exact,
         ],
         seed=config.seed,
         compute_hierarchy=True,
@@ -1438,6 +1606,22 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     )
     LOGGER.info("Random Forest OOB R²=%.3f", rf_result["oob_r2"])
 
+    LOGGER.info("Building profile correlation network on %d features ...", len(all_feature_terms))
+    network_result = _fit_network_analysis(
+        df=profile_df,
+        feature_terms=all_feature_terms,
+        corr_threshold=0.15,
+        seed=config.seed,
+    )
+    LOGGER.info(
+        "Network: %d nodes, %d edges, density=%.3f, %d communities, modularity=%.3f",
+        network_result["global_metrics"]["n_nodes"],
+        network_result["global_metrics"]["n_edges"],
+        network_result["global_metrics"]["density"],
+        network_result["global_metrics"]["n_communities"],
+        network_result["global_metrics"]["modularity_score"],
+    )
+
     # Merge ridge and RF estimates into exploratory_table (Big Five features only)
     ridge_lookup = ridge_full_result["coeff_df"].set_index("term")["ridge_estimate"].to_dict()
     rf_lookup = rf_result["importance_df"].set_index("term")["permutation_importance_mean"].to_dict()
@@ -1486,6 +1670,10 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     ridge_full_coeff_csv = out / "ridge_full_coefficients.csv"
     ridge_full_summary_json = out / "ridge_full_summary.json"
     expanded_moderator_csv = out / "expanded_moderator_comparison.csv"
+    network_centrality_csv = out / "profile_network_centrality.csv"
+    network_edges_csv = out / "profile_network_edges.csv"
+    network_layout_csv = out / "profile_network_layout.csv"
+    network_global_json = out / "profile_network_global_metrics.json"
 
     write_text(spec_txt, sem_result.model_formula)
     write_text(profile_formula_txt, multivariate_formula)
@@ -1528,6 +1716,11 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     rf_result["importance_df"].to_csv(rf_importance_csv, index=False)
     ridge_full_result["coeff_df"].to_csv(ridge_full_coeff_csv, index=False)
     expanded_moderator_table.to_csv(expanded_moderator_csv, index=False)
+    network_result["centrality_df"].to_csv(network_centrality_csv, index=False)
+    if not network_result["edge_df"].empty:
+        network_result["edge_df"].to_csv(network_edges_csv, index=False)
+    network_result["layout_df"].to_csv(network_layout_csv, index=False)
+    write_json(network_global_json, network_result["global_metrics"])
     write_json(enet_summary_json, {
         "r2_train": enet_result["r2_train"],
         "cv_r2": enet_result["cv_r2"],
@@ -1628,7 +1821,12 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         abs_path(ridge_full_coeff_csv),
         abs_path(ridge_full_summary_json),
         abs_path(expanded_moderator_csv),
+        abs_path(network_centrality_csv),
+        abs_path(network_layout_csv),
+        abs_path(network_global_json),
     ]
+    if network_edges_csv.exists():
+        output_files.append(abs_path(network_edges_csv))
     if latent_scores_csv.exists():
         output_files.append(abs_path(latent_scores_csv))
 

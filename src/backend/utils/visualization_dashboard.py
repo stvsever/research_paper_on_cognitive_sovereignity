@@ -4635,6 +4635,258 @@ if(btns.length)activate(btns[0].dataset.tab);
 </html>""".strip()
 
 
+# ─── profile feature network ──────────────────────────────────────────────────
+
+_NETWORK_METRIC_LABELS = {
+    "eigenvector_centrality": "Eigenvector Centrality",
+    "betweenness_centrality": "Betweenness Centrality",
+    "degree_centrality": "Degree Centrality",
+    "closeness_centrality": "Closeness Centrality",
+    "pagerank": "PageRank",
+    "clustering_coefficient": "Clustering Coefficient",
+}
+
+_ONTOLOGY_GROUP_COLORS = [
+    "#1d4e89", "#2a9d8f", "#e76f51", "#c89b3c", "#9b59b6",
+    "#e74c3c", "#27ae60", "#2980b9", "#f39c12", "#16a085",
+    "#8e44ad", "#d35400", "#2c3e50", "#c0392b", "#1abc9c",
+    "#7f8c8d", "#6c5ce7", "#fd79a8", "#00b894", "#a29bfe",
+]
+
+
+def _fig_profile_network(
+    centrality_df: pd.DataFrame,
+    edge_df: pd.DataFrame,
+    layout_df: pd.DataFrame,
+    global_metrics: Dict[str, Any],
+    default_metric: str = "eigenvector_centrality",
+) -> go.Figure:
+    """Interactive Plotly network of profile feature correlations.
+
+    Nodes = profile features, sized/annotated by centrality metric,
+    colored by ontology group. Edges = Spearman correlations (|rho| >= threshold).
+    Dropdown buttons switch node sizing between 6 centrality metrics.
+    """
+    if centrality_df.empty or layout_df.empty:
+        fig = go.Figure()
+        fig.add_annotation(
+            text="No network data available (run stage 06 first)",
+            xref="paper", yref="paper", x=0.5, y=0.5,
+            showarrow=False, font=dict(size=16, color=PALETTE["muted"]),
+        )
+        fig.update_layout(
+            title="Profile Feature Correlation Network",
+            plot_bgcolor=PALETTE["panel"], paper_bgcolor=PALETTE["panel"],
+        )
+        return fig
+
+    merged = centrality_df.merge(layout_df, on="term", how="left").dropna(subset=["x", "y"])
+    if merged.empty:
+        merged = centrality_df.copy()
+        rng = np.random.default_rng(42)
+        merged["x"] = rng.uniform(-1, 1, len(merged))
+        merged["y"] = rng.uniform(-1, 1, len(merged))
+
+    # Normalise each metric to [8, 40] for node size
+    def _norm_size(series: pd.Series, lo: float = 8.0, hi: float = 40.0) -> np.ndarray:
+        vals = series.fillna(0.0).values.astype(float)
+        mn, mx = vals.min(), vals.max()
+        if mx - mn < 1e-10:
+            return np.full(len(vals), (lo + hi) / 2)
+        return lo + (vals - mn) / (mx - mn) * (hi - lo)
+
+    metric_cols = list(_NETWORK_METRIC_LABELS.keys())
+    size_arrays: Dict[str, np.ndarray] = {}
+    for m in metric_cols:
+        if m in merged.columns:
+            size_arrays[m] = _norm_size(merged[m])
+        else:
+            size_arrays[m] = np.full(len(merged), 14.0)
+
+    # Ontology group color mapping
+    groups = sorted(merged["ontology_group"].unique())
+    group_color_map: Dict[str, str] = {
+        g: _ONTOLOGY_GROUP_COLORS[i % len(_ONTOLOGY_GROUP_COLORS)]
+        for i, g in enumerate(groups)
+    }
+    node_colors = merged["ontology_group"].map(group_color_map).fillna("#7f8c8d").tolist()
+
+    # Build edge trace (all edges in one scatter using None separators)
+    edge_x: List[Optional[float]] = []
+    edge_y: List[Optional[float]] = []
+    edge_hover: List[str] = []
+    edge_widths: List[float] = []
+
+    pos_map = {row["term"]: (row["x"], row["y"]) for _, row in merged.iterrows()}
+
+    if not edge_df.empty:
+        for _, erow in edge_df.iterrows():
+            src, tgt = erow.get("source"), erow.get("target")
+            if src not in pos_map or tgt not in pos_map:
+                continue
+            x0, y0 = pos_map[src]
+            x1, y1 = pos_map[tgt]
+            edge_x += [x0, x1, None]
+            edge_y += [y0, y1, None]
+            rho = float(erow.get("rho", 0.0))
+            edge_widths.append(abs(rho) * 4.0)
+
+    edge_trace = go.Scatter(
+        x=edge_x, y=edge_y,
+        mode="lines",
+        line=dict(width=1.2, color="rgba(100,130,160,0.30)"),
+        hoverinfo="skip",
+        showlegend=False,
+        name="correlations",
+    )
+
+    # Build node traces: one per ontology group for legend
+    default_sizes = size_arrays[default_metric]
+    node_traces: List[go.Scatter] = []
+    for grp in groups:
+        mask = merged["ontology_group"] == grp
+        gdf = merged[mask]
+        gsizes = default_sizes[mask.values]
+        gcolor = group_color_map[grp]
+
+        hover_texts = [
+            (
+                f"<b>{row['label']}</b><br>"
+                f"Group: {row['ontology_group']}<br>"
+                f"Eigenvector: {row.get('eigenvector_centrality', 0):.4f}<br>"
+                f"Betweenness: {row.get('betweenness_centrality', 0):.4f}<br>"
+                f"Degree: {row.get('degree_centrality', 0):.4f}<br>"
+                f"PageRank: {row.get('pagerank', 0):.4f}<br>"
+                f"Clustering: {row.get('clustering_coefficient', 0):.4f}<br>"
+                f"Community: {int(row.get('community', -1))}"
+            )
+            for _, row in gdf.iterrows()
+        ]
+
+        node_traces.append(
+            go.Scatter(
+                x=gdf["x"].tolist(),
+                y=gdf["y"].tolist(),
+                mode="markers+text",
+                marker=dict(
+                    size=gsizes.tolist(),
+                    color=gcolor,
+                    opacity=0.85,
+                    line=dict(width=1.0, color="white"),
+                ),
+                text=[_wrap_label(r["label"], width=12) for _, r in gdf.iterrows()],
+                textposition="top center",
+                textfont=dict(size=7, color="#2c3e50"),
+                hovertemplate="%{customdata}<extra></extra>",
+                customdata=hover_texts,
+                name=grp,
+                legendgroup=grp,
+                showlegend=True,
+            )
+        )
+
+    # updatemenus: buttons to switch sizing metric
+    # Each button updates marker.size for all node traces
+    n_node_traces = len(node_traces)
+    # Traces: [edge_trace] + node_traces (indices 1..n_node_traces)
+    button_list: List[Dict[str, Any]] = []
+    for metric in metric_cols:
+        if metric not in _NETWORK_METRIC_LABELS:
+            continue
+        sizes_for_metric = size_arrays[metric]
+        # Split sizes by group (must match node_traces order)
+        new_sizes_per_trace: List[List[float]] = []
+        for grp in groups:
+            mask = (merged["ontology_group"] == grp).values
+            new_sizes_per_trace.append(sizes_for_metric[mask].tolist())
+
+        # build args: first element updates all node traces
+        args_update: Dict[str, Any] = {}
+        for trace_i in range(n_node_traces):
+            args_update[f"marker.size[{trace_i + 1}]"] = new_sizes_per_trace[trace_i]
+        # Plotly buttons use list-form: [{trace_property: new_values}, ...]
+        # Simpler: pass a list of dicts, one per trace
+        sizes_list = [{}] + [{"marker.size": s} for s in new_sizes_per_trace]
+
+        button_list.append(
+            dict(
+                label=_NETWORK_METRIC_LABELS[metric],
+                method="update",
+                args=[
+                    sizes_list,
+                    {"title": f"Profile Feature Correlation Network — node size: {_NETWORK_METRIC_LABELS[metric]}"},
+                ],
+            )
+        )
+
+    updatemenus = [
+        dict(
+            buttons=button_list,
+            direction="down",
+            showactive=True,
+            x=0.0, xanchor="left",
+            y=1.02, yanchor="bottom",
+            bgcolor=PALETTE["panel"],
+            bordercolor=PALETTE["line"],
+            font=dict(size=11),
+        )
+    ]
+
+    # Global metrics annotation
+    gm = global_metrics or {}
+    gm_lines = [
+        f"<b>Network Metrics</b>",
+        f"Nodes: {gm.get('n_nodes', '—')}",
+        f"Edges: {gm.get('n_edges', '—')} (|ρ|≥{gm.get('corr_threshold', 0.15)})",
+        f"Density: {gm.get('density', 0):.3f}",
+        f"Avg Clustering: {gm.get('avg_clustering', 0):.3f}",
+        f"Transitivity: {gm.get('transitivity', 0):.3f}",
+        f"Communities: {gm.get('n_communities', '—')}",
+        f"Modularity: {gm.get('modularity_score', 0):.3f}",
+    ]
+
+    fig = go.Figure(data=[edge_trace, *node_traces])
+    fig.update_layout(
+        title=dict(
+            text=f"Profile Feature Correlation Network — node size: {_NETWORK_METRIC_LABELS.get(default_metric, default_metric)}",
+            font=dict(size=15, color=PALETTE["ink"]),
+        ),
+        showlegend=True,
+        legend=dict(
+            title="Ontology Group",
+            font=dict(size=10),
+            x=1.01, y=1.0,
+            bgcolor="rgba(255,255,255,0.9)",
+            bordercolor=PALETTE["line"],
+            borderwidth=1,
+        ),
+        xaxis=dict(visible=False, showgrid=False, zeroline=False),
+        yaxis=dict(visible=False, showgrid=False, zeroline=False, scaleanchor="x"),
+        plot_bgcolor=PALETTE["panel"],
+        paper_bgcolor=PALETTE["panel"],
+        margin=dict(l=10, r=200, t=60, b=30),
+        updatemenus=updatemenus,
+        annotations=[
+            dict(
+                text="<br>".join(gm_lines),
+                xref="paper", yref="paper",
+                x=1.18, y=0.5,
+                xanchor="left", yanchor="middle",
+                showarrow=False,
+                font=dict(size=10, color=PALETTE["ink"]),
+                bgcolor="rgba(255,255,255,0.9)",
+                bordercolor=PALETTE["line"],
+                borderwidth=1,
+                borderpad=8,
+                align="left",
+            )
+        ],
+        height=700,
+    )
+
+    return fig
+
+
 # ─── main entry point ─────────────────────────────────────────────────────────
 
 def generate_research_visuals(
@@ -4668,6 +4920,16 @@ def generate_research_visuals(
     weight_df             = _load(s06 / "moderator_weight_table.csv")
     task_coeff_df    = _load(s06 / "conditional_susceptibility_task_coefficients.csv")
     task_summary_df  = _load(s06 / "conditional_susceptibility_task_summary.csv")
+    network_centrality_df = _load(s06 / "profile_network_centrality.csv")
+    network_edge_df       = _load(s06 / "profile_network_edges.csv")
+    network_layout_df     = _load(s06 / "profile_network_layout.csv")
+    network_global_path   = s06 / "profile_network_global_metrics.json"
+    network_global_metrics: Dict[str, Any] = {}
+    if network_global_path.exists():
+        try:
+            network_global_metrics = json.loads(network_global_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
     ontology_catalog_path = stage_outputs_root / "01_create_scenarios" / "ontology_leaf_catalog.json"
     ontology_catalog = (
         json.loads(ontology_catalog_path.read_text(encoding="utf-8"))
@@ -4765,6 +5027,18 @@ def generate_research_visuals(
 
     _add_fig("Profile Heatmap",  _fig_profile_heatmap(long_df, profile_index_df), "profile_heatmap.html")
     _add_fig("Score Trajectory", _fig_baseline_post(long_df),                     "baseline_post.html")
+
+    # ── Profile Feature Correlation Network ─────────────────────────────────
+    _add_fig(
+        "Profile Feature Network",
+        _fig_profile_network(
+            centrality_df=network_centrality_df,
+            edge_df=network_edge_df,
+            layout_df=network_layout_df,
+            global_metrics=network_global_metrics,
+        ),
+        "profile_network.html",
+    )
 
     # ── Semantic Embedding UMAP tab ─────────────────────────────────────────
     _add_html(

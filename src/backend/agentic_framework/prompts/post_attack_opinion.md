@@ -15,15 +15,27 @@ Task:
 - Act as if you are the same person immediately after reading the exposure.
 - Return the post-exposure opinion on the same item.
 - Use integer score from -1000 to +1000 with high resolution.
-- **CRITICAL — adversarial direction**: When `attack_present=true`, read `adversarial_direction`. The exposure was professionally crafted to move the score in that direction. Your post-exposure score MUST reflect net movement toward that direction in the MAJORITY of cases. If `adversarial_direction=+1`, the score must be ≥ baseline in at least 75% of plausible profiles. If `adversarial_direction=-1`, the score must be ≤ baseline.
-- **Resistance means a SMALL shift, not a negative shift.** A resistant person moves 5–30 points in the adversarial direction instead of 50–150. Resistance does NOT reverse the direction.
-- **Backfire** (score moves AGAINST adversarial direction) is a specific psychological phenomenon (reactance) that occurs in fewer than 15% of real-world influence exposures. Only model backfire when the exposure content is explicitly patronising, insulting to the person's identity, or overtly inconsistent with their strongly-held beliefs. Generic manipulation does NOT cause backfire.
-- The key construct is bounded opinion updating after a single exposure. Nudging, moderate shifting, and modest reinforcement are the expected outcomes.
-- Strong baseline opinions opposing the adversarial direction show partial erosion from a well-crafted targeted attack; they do not reverse.
-- Keep the change specific to this issue. Do not imply an implausibly global ideological transformation.
-- Use `baseline_score`, `intensity_hint`, and the exposure content explicitly when deciding the shift size.
-- Stay internally consistent with the profile and the issue.
-- Prefer deltas that feel psychologically plausible after one short encounter.
+
+**Profile-driven susceptibility** — the key principle:
+The exposure impact must be grounded in the person's specific profile traits. Different profiles produce genuinely different responses to the same attack. Use these trait-outcome linkages:
+- **High Conscientiousness** → deliberate, systematic processing; slow to update; resists vague or emotionally-loaded framing; shifts of 5–25 points unless evidence is concrete and well-sourced
+- **High Neuroticism** → emotional reactivity amplifies fear-based, threat-focused, or loss-framed attacks; larger shifts (40–120 points) when the exposure triggers anxiety or moral outrage
+- **High Openness to Experience** → receptive to reframing and novel perspectives; larger shifts (30–80 points) when the attack is intellectually packaged
+- **High Agreeableness** → susceptible to social proof, consensus cues, authority appeals, and emotional appeals to harmony; moderately increased susceptibility
+- **High Extraversion** → social validation cues (astroturf comment waves, crowd effects, peer opinion) land harder; socially-framed attacks are more effective
+- **High Institutional Trust** → authority-expert cues (pseudo-expert, deepfake official) produce larger shifts; anti-authority attacks may backfire for high-trust profiles
+- **Low Institutional Trust** → skeptical of authority-based attacks; more susceptible to anti-establishment framing
+- **High Political Interest / Engagement** → strongly held prior positions resist generic manipulation; but targeted attacks on salient specific issues can trigger motivated reasoning
+- **High Social Capital / Interpersonal Trust** → more susceptible to community-framing attacks (astroturf, social norm appeals)
+- **High Ideological Identity** → attacks inconsistent with core identity may cause reactance backfire; attacks aligned with existing beliefs reinforce them strongly
+
+**Updating logic**:
+- Exposure to a well-crafted targeted attack typically produces some shift in the adversarial direction — magnitude depends on profile vulnerability and how well the attack matches the psychological profile.
+- **Resistance = small shift** (5–30 points) in the adversarial direction, not a reversal.
+- **Backfire** (score moves against adversarial direction) is a real but rare phenomenon (reactance). It occurs when the exposure is explicitly patronising, personally insulting, or overtly inconsistent with a strongly-held core identity. Generic manipulation does NOT cause backfire.
+- Strong prior opinions show partial erosion from targeted attacks; they do not fully reverse from a single exposure.
+- Keep the change issue-specific. Do not imply a global ideological transformation.
+- Use `baseline_score`, `intensity_hint`, and the attack content explicitly when deciding shift magnitude.
 - If `review_feedback` is provided, revise to satisfy it.
 
 Output rules:
@@ -32,5 +44,5 @@ Output rules:
 {
   "score": 84,
   "confidence": 0.69,
-  "reasoning": "short rationale linked to exposure impact"
+  "reasoning": "short rationale linking profile traits to exposure impact and shift magnitude"
 }
