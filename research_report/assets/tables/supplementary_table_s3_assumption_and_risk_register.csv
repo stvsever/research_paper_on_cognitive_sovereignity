@@ -2,7 +2,7 @@ Type,Item,Status,Mitigation
 Assumption,Pilot sample size is sufficient for stable moderation estimates.,ok,Treat estimates as exploratory and scale scenario count in later runs.
 Assumption,Attack-only design is intentional and aligned with the moderation question.,ok,"Interpret results as moderation among attacked individuals, not as a no-attack counterfactual contrast."
 Assumption,Opinion measurement has enough numeric resolution.,risk,"Prompt enforces high-resolution scores in [-1000,1000]."
-Assumption,Attack text realism is adequate.,ok,Self-supervised realism reviewer + rewrite loop in Stage 03.
+Assumption,Attack text realism is adequate.,risk,Self-supervised realism reviewer + rewrite loop in Stage 03.
 Assumption,SEM converges with acceptable fit.,ok,"Use robust OLS supplement, reduce heterogeneity, and increase scenario count before substantive interpretation."
 Assumption,LLM outputs are reproducible and auditable.,ok,Persist all prompts/outputs in provenance/raw_llm.
 Critique,Synthetic LLM agents may not represent human cognition or causal response behavior.,addressed,Added transparent assumption register and explicit exploratory caveat in reports.

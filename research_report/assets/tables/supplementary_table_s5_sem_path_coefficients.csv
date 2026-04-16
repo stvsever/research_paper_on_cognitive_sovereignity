@@ -1,29 +1,49 @@
 Outcome leaf,Moderator,SEM b,SE,p
-Adversarial Delta Indicator Alliance Commitment Support,Big Five Neuroticism Mean %,-0.41669489082667327,2.2913941102007205,0.8556987757150465
-Adversarial Delta Indicator Alliance Commitment Support,Big Five Openness To Experience Mean %,2.954241815573275,2.200739268919239,0.17947083762510707
-Adversarial Delta Indicator Alliance Commitment Support,Big Five Conscientiousness Mean %,-6.758167350991067,2.4484653820140396,0.005777225433408972
-Adversarial Delta Indicator Alliance Commitment Support,Sex Female,4.4569016873664555,5.3004400610450375,0.4004291538742586
-Adversarial Delta Indicator Alliance Commitment Support,Sex Other,-1.0421682524245992,5.543210633716501,0.8508703364192556
-Adversarial Delta Indicator Alliance Commitment Support,Mean Baseline Abs Score,-1.1156048333763988,2.8314624654834404,0.6935787910775777
-Adversarial Delta Indicator Alliance Commitment Support,Mean Exposure Quality Score,-2.3177841224634164,2.2521246029141557,0.3034070892220828
-Adversarial Delta Indicator Civil Defense Preparedness Support,Big Five Neuroticism Mean %,1.523896831052293,1.712907740812122,0.37365119687789194
-Adversarial Delta Indicator Civil Defense Preparedness Support,Big Five Openness To Experience Mean %,-0.5887923789105335,1.6451396608114535,0.7204195635235011
-Adversarial Delta Indicator Civil Defense Preparedness Support,Big Five Conscientiousness Mean %,-4.540709831315011,1.8303247299500884,0.013107981722871642
-Adversarial Delta Indicator Civil Defense Preparedness Support,Sex Female,-6.6162480098707395,3.9622886215236948,0.09495801784418645
-Adversarial Delta Indicator Civil Defense Preparedness Support,Sex Other,-6.348196543201445,4.143769228163604,0.12552588369453366
-Adversarial Delta Indicator Civil Defense Preparedness Support,Mean Baseline Abs Score,-1.2021205260305012,2.1166302005204636,0.5700752062264189
-Adversarial Delta Indicator Civil Defense Preparedness Support,Mean Exposure Quality Score,-1.285048524443189,1.6835522306842108,0.44528694339429586
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Big Five Neuroticism Mean %,0.26790831697408074,1.1697843288708705,0.818850507803426
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Big Five Openness To Experience Mean %,-0.5677491162861986,1.1235039390438828,0.613321530590706
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Big Five Conscientiousness Mean %,0.2560378333922838,1.249971107507105,0.8377010397115121
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Sex Female,2.5951420933846636,2.705938577710104,0.3375313790092238
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Sex Other,4.256874971343349,2.8298758830203656,0.13251389970470817
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Mean Baseline Abs Score,-6.527686541145426,1.445495737797138,6.3054108134785736e-06
-Adversarial Delta Indicator Domestic Security Powers Expansion Support,Mean Exposure Quality Score,0.3821941851755076,1.1497367717868212,0.7395730004548597
-Adversarial Delta Indicator Strategic Autonomy Support,Big Five Neuroticism Mean %,0.5185920223120358,1.883882699747414,0.78310243667731
-Adversarial Delta Indicator Strategic Autonomy Support,Big Five Openness To Experience Mean %,1.8000032283013272,1.8093503063986454,0.31981700008878367
-Adversarial Delta Indicator Strategic Autonomy Support,Big Five Conscientiousness Mean %,1.1614799043626898,2.013019739193899,0.5639503569741489
-Adversarial Delta Indicator Strategic Autonomy Support,Sex Female,5.1622220958935285,4.3577869418439645,0.23617675494774648
-Adversarial Delta Indicator Strategic Autonomy Support,Sex Other,8.11906584276438,4.557382148896094,0.07482759798113614
-Adversarial Delta Indicator Strategic Autonomy Support,Mean Baseline Abs Score,0.20371142390004107,2.3279029696210367,0.930267286006419
-Adversarial Delta Indicator Strategic Autonomy Support,Mean Exposure Quality Score,4.79970308735059,1.8515970509908652,0.009536533025045868
+Adversarial Delta Indicator Alliance Commitment Support,Big Five Neuroticism Mean %,-1.4295270051296454,1.6898597909994275,0.397583901220842
+Adversarial Delta Indicator Alliance Commitment Support,Big Five Openness To Experience Mean %,-2.414159307698318,1.685080253965473,0.15195295060710912
+Adversarial Delta Indicator Alliance Commitment Support,Big Five Conscientiousness Mean %,-1.3349346925179195,1.7016585452115944,0.4327524473203668
+Adversarial Delta Indicator Alliance Commitment Support,Sex Female,-0.27050477139349965,4.321530012163812,0.9500892689577343
+Adversarial Delta Indicator Alliance Commitment Support,Sex Other,1.8080315384984276,4.085945917367862,0.6581273470686861
+Adversarial Delta Indicator Alliance Commitment Support,Mean Baseline Abs Score,-2.6093310530665965,1.712577272630143,0.1276016108049871
+Adversarial Delta Indicator Birthright Citizenship Support,Big Five Neuroticism Mean %,-1.2914277230455014,1.8449360111004542,0.4839366080299523
+Adversarial Delta Indicator Birthright Citizenship Support,Big Five Openness To Experience Mean %,0.034876265486738264,1.8397178622118324,0.9848750900019176
+Adversarial Delta Indicator Birthright Citizenship Support,Big Five Conscientiousness Mean %,0.3980783997634471,1.8578175215358708,0.830334899763947
+Adversarial Delta Indicator Birthright Citizenship Support,Sex Female,-1.8356314909521438,4.718111162214819,0.697231266516517
+Adversarial Delta Indicator Birthright Citizenship Support,Sex Other,-0.1770751602911035,4.4609078235434545,0.9683363908599021
+Adversarial Delta Indicator Birthright Citizenship Support,Mean Baseline Abs Score,-0.6969041223133371,1.8697382462712382,0.7093507652825861
+Adversarial Delta Indicator Counter Disinformation Agency Support,Big Five Neuroticism Mean %,-0.2805392491858019,1.63244468978892,0.863553708032968
+Adversarial Delta Indicator Counter Disinformation Agency Support,Big Five Openness To Experience Mean %,1.7820005105222612,1.627827543507149,0.27364332380303913
+Adversarial Delta Indicator Counter Disinformation Agency Support,Big Five Conscientiousness Mean %,-2.403636864875703,1.6438425665609249,0.14368470112160958
+Adversarial Delta Indicator Counter Disinformation Agency Support,Sex Female,-5.83947312841712,4.17470062172907,0.16188001515028239
+Adversarial Delta Indicator Counter Disinformation Agency Support,Sex Other,-2.3572642636865484,3.9471207913805837,0.5503664637700338
+Adversarial Delta Indicator Counter Disinformation Agency Support,Mean Baseline Abs Score,3.267736854680771,1.6543903165509524,0.04824647750061217
+Adversarial Delta Indicator Defense Industrial Reshoring Support,Big Five Neuroticism Mean %,-3.134642287307235,1.8784333718120416,0.09516623912028033
+Adversarial Delta Indicator Defense Industrial Reshoring Support,Big Five Openness To Experience Mean %,1.0833920066967269,1.87312048022529,0.5630016178207125
+Adversarial Delta Indicator Defense Industrial Reshoring Support,Big Five Conscientiousness Mean %,2.015552366223851,1.8915487638558006,0.2866241037563899
+Adversarial Delta Indicator Defense Industrial Reshoring Support,Sex Female,0.14784846263090767,4.803774984985458,0.9754469381591668
+Adversarial Delta Indicator Defense Industrial Reshoring Support,Sex Other,1.8979588316793368,4.541901764562171,0.6760366392946526
+Adversarial Delta Indicator Defense Industrial Reshoring Support,Mean Baseline Abs Score,-3.2102274581800447,1.9036859258085037,0.09173379582499264
+Adversarial Delta Indicator Diplomacy First Preference,Big Five Neuroticism Mean %,0.25316507669110283,1.8235042661105476,0.8895810290079582
+Adversarial Delta Indicator Diplomacy First Preference,Big Five Openness To Experience Mean %,-0.786498596886173,1.8183467339780774,0.6653526229618789
+Adversarial Delta Indicator Diplomacy First Preference,Big Five Conscientiousness Mean %,0.8867051350926092,1.836236138160093,0.6291718833876645
+Adversarial Delta Indicator Diplomacy First Preference,Sex Female,-3.13956656672799,4.663303106729846,0.5007885633465363
+Adversarial Delta Indicator Diplomacy First Preference,Sex Other,-5.215589227055052,4.409087577029519,0.2368416319920783
+Adversarial Delta Indicator Diplomacy First Preference,Mean Baseline Abs Score,-1.0172942412281079,1.8480183855005343,0.5819912742680242
+Adversarial Delta Indicator Integration Funding Support,Big Five Neuroticism Mean %,-2.048579251302425,1.7484045956151366,0.24132359052260544
+Adversarial Delta Indicator Integration Funding Support,Big Five Openness To Experience Mean %,-2.3419473252887406,1.7434594726176031,0.17918260950511122
+Adversarial Delta Indicator Integration Funding Support,Big Five Conscientiousness Mean %,-3.3042826900872573,1.760612114959026,0.06054816820933917
+Adversarial Delta Indicator Integration Funding Support,Sex Female,0.07284814954133999,4.471248427591296,0.9870009811925686
+Adversarial Delta Indicator Integration Funding Support,Sex Other,-3.1592103954716046,4.22750257590057,0.45488281789753104
+Adversarial Delta Indicator Integration Funding Support,Mean Baseline Abs Score,0.9411430458952104,1.771909119183009,0.5953173732578856
+Adversarial Delta Indicator Overseas Development Aid Support,Big Five Neuroticism Mean %,1.8318522361173384,1.8915994711195347,0.3328374323545251
+Adversarial Delta Indicator Overseas Development Aid Support,Big Five Openness To Experience Mean %,-0.08559144116223906,1.8862493410236658,0.963807191715069
+Adversarial Delta Indicator Overseas Development Aid Support,Big Five Conscientiousness Mean %,-2.7539589012509715,1.9048067900618972,0.14823489037312676
+Adversarial Delta Indicator Overseas Development Aid Support,Sex Female,6.153396739325908,4.837445052528048,0.20336088062049806
+Adversarial Delta Indicator Overseas Development Aid Support,Sex Other,0.6262815813068268,4.573736340424405,0.8910861490724216
+Adversarial Delta Indicator Overseas Development Aid Support,Mean Baseline Abs Score,0.11250623591076454,1.917029022415275,0.9532007684485326
+Adversarial Delta Indicator Trust In Mainstream Journalism,Big Five Neuroticism Mean %,-2.210469134077292,1.6510917885436878,0.1806382664403694
+Adversarial Delta Indicator Trust In Mainstream Journalism,Big Five Openness To Experience Mean %,2.6026874864062464,1.646421901496352,0.11392047601201982
+Adversarial Delta Indicator Trust In Mainstream Journalism,Big Five Conscientiousness Mean %,-2.9855205859052605,1.662619861049178,0.07254663485679402
+Adversarial Delta Indicator Trust In Mainstream Journalism,Sex Female,2.6362286775743105,4.222387416419207,0.5324006938921544
+Adversarial Delta Indicator Trust In Mainstream Journalism,Sex Other,0.3705923563060295,3.9922079858529336,0.9260394752538974
+Adversarial Delta Indicator Trust In Mainstream Journalism,Mean Baseline Abs Score,0.7483075444576986,1.673288095939512,0.6547250058250487

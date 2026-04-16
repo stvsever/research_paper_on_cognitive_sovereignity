@@ -3,7 +3,13 @@ ATTACK,Factorial attack leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misl
 ATTACK,Factorial attack leaf,ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post
 ATTACK,Factorial attack leaf,ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave
 ATTACK,Factorial attack leaf,ATTACK_VECTORS > Manipulative_Persuasion > Pseudo_Expert_Authority_Cue
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Synthetic_Media_Generation > Deepfake_Audio_Speech_Impersonation
 OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support
-OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Civil_Defense_Preparedness_Support
-OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Domestic_Security_Powers_Expansion_Support
-OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Industrial_Reshoring_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Diplomacy_First_Preference
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Overseas_Development_Aid_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Immigration_and_Citizenship > Birthright_Citizenship_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Immigration_and_Citizenship > Integration_Funding_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Counter_Disinformation_Agency_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism

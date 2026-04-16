@@ -1,10 +1,10 @@
 Parameter,Value
-Run ID,run_8
+Run ID,run_9
 Paper title,PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions
-Profiles,100
-Attacked rows,1600
-Attack leaves,"4 (Misleading_Narrative_Framing,Fear_Appeal_Scapegoating_Post,Astroturf_Comment_Wave,Pseudo_Expert_Authority_Cue)"
-Opinion domain,Defense_and_National_Security
-Repeated opinion leaves,4
-Design,Full factorial (100 x 4 x 4)
+Profiles,80
+Attacked rows,3840
+Attack leaves,"6 (Misleading_Narrative_Framing,Fear_Appeal_Scapegoating_Post,Astroturf_Comment_Wave,Pseudo_Expert_Authority_Cue,LLM_Chatbot_Personalized_Persuasion,Deepfake_Audio_Speech_Impersonation)"
+Opinion domain,Multiple
+Repeated opinion leaves,8
+Design,Full factorial (80 x 6 x 8)
 Model,mistralai/mistral-small-3.2-24b-instruct
