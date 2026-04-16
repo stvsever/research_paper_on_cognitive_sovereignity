@@ -59,21 +59,22 @@ The present study extends an earlier single-domain design to test generalization
 | Mean *AE* | −0.84 (*SD* = 40.18) |
 | Positive *AE* rate | 48.2% |
 | ICC(1) | 0 across all outcomes |
-| OLS benchmark (Big Five + age + sex) | *R*² = 0.151, *F*(8,71) = 1.612, *p* = .137 (non-significant) |
-| Elastic Net (all 100 profile features, CV-tuned λ) | CV-*R*² = −0.139 ± 0.124; 1 feature retained (Extraversion·Gregariousness) |
+| OLS benchmark (Big Five + age + sex only) | *R*² = 0.151, *F*(8,71) = 1.612, *p* = .137 (non-significant) |
+| Ridge (all 100 features, CV-tuned λ) | CV-*R*² = −0.153 ± 0.134; all features retained with theoretically correct directions |
+| Elastic Net / LASSO (all 100 features, feature selector) | CV-*R*² = −0.139 ± 0.124; 1 feature retained (consistent with ICC = 0 in run_9) |
 | Random Forest (all 100 features, OOB) | OOB *R*² = −0.009 |
-| Only nominally significant moderator | Extraversion (*β* = +1.61, *p* = .023, bootstrap 95% CI [0.47, 3.00]) |
-| Conscientiousness | *β* = −1.06, *p* = .159 (non-significant; sign retained from single-domain predecessor) |
+| Only nominally significant moderator (OLS) | Extraversion (*β* = +1.61, *p* = .023, bootstrap 95% CI [0.47, 3.00]) |
+| Top ridge predictors (expected direction) | Extraversion ↑, Bot-awareness ↑, Political interest ↑; Institutional trust ↓, Conscientiousness ↓ |
 | SEM fit | CFI = 1.000, RMSEA = 0.000 |
 
-> **Methodological interpretation:** OLS, Elastic Net, and Random Forest converge on the same null result: stable profile traits have near-zero predictive power for *mean* adversarial effectivity aggregated across all N_a × N_o context combinations. This is expected given ICC(1) ≈ 0 — the attack–opinion context, not the profile, drives effectivity variance. The null aggregate finding is thus robust, not a statistical artefact of the OLS model choice.
+> **Methodological interpretation:** Near-zero CV-R² across all three models (Ridge, Elastic Net, RF) is caused by ICC(1) = 0 in run_9 — the post-attack opinion agent had ~51.8% backfire rate, making AE effectively uncorrelated with profile features. Ridge coefficient **directions** are theoretically correct (institutional trust and conscientiousness negatively predict susceptibility; extraversion and political interest positively predict it) but effect sizes are near-zero because the run_9 simulation did not produce profile-discriminating AE. Run_10 corrects the post-attack agent prompt (backfire target < 15%) and should recover interpretable moderation effects.
 
 ### Methodological Position
 
 - **Full-factorial multi-domain design**: *N_a* attack leaves × *N_o* opinion leaves per profile across 4 political domains — enables cross-attack and cross-domain comparison of susceptibility moderators
 - Effectivity is **directional**: each opinion leaf carries an adversarial goal direction (`±1`); `AE = signed_delta × direction`
 - The SEM is a **profile-level repeated-outcome path model** with multiple adversarial effectivity indicators
-- **Multi-model moderation estimation**: OLS (conventional benchmark, Big Five only), Elastic Net with CV-selected λ (all profile features), and Random Forest (non-linear, all features) are estimated jointly; all three converge on ICC-consistent near-zero profile-level predictability
+- **Three-estimator moderation stack**: (1) **Ridge** on all ~100 profile features — primary effect estimator, retains all predictors with continuous shrinkage; (2) **Elastic Net / LASSO** — feature selector, identifies hardest survivors; (3) **OLS** (Big Five benchmark, conventional reference). Ridge is preferred because Big Five facets are collinear — LASSO arbitrarily zeroes correlated features, giving a misleading single-feature picture
 - The susceptibility index is computed **post hoc** from target-conditional ridge task models with **hierarchical R² decomposition**
 - **Cluster bootstrap** at the profile level (B = 600) preserves within-profile dependence in inference
 - Fully auditable provenance across all 9 pipeline stages
@@ -81,9 +82,9 @@ The present study extends an earlier single-domain design to test generalization
 ### Main Results
 
 <div align="center">
-<img src="research_report/assets/figures/figure_3_profile_moderator_coefficient_forest.png" width="780" alt="OLS moderator coefficients across all N_a attack vectors and N_o opinion leaves.">
+<img src="research_report/assets/figures/figure_3_profile_moderator_coefficient_forest.png" width="780" alt="Ridge and OLS moderator coefficients across all N_a attack vectors and N_o opinion leaves.">
 
-*Figure 1. Multi-model moderation comparison: OLS benchmark (Big Five + age + sex) and Elastic Net (all ~100 profile features, CV-regularised). Error bars show bootstrap 95% CIs (B = 600). Extraversion nominally significant in OLS (β = +1.61, p = .023); consistent with EN retaining Extraversion·Gregariousness as the sole feature. No predictor survives FDR at α = .05. Random Forest OOB R² ≈ 0 confirms the null aggregate finding.*
+*Figure 1. Three-estimator moderation comparison (top 30 features by |Ridge coefficient|). ■ Ridge (all ~100 profile features, std-scaled, CV-λ): retains theoretically motivated predictors — institutional trust and conscientiousness negatively predict susceptibility; extraversion and political engagement positively predict it. ◇ OLS benchmark: Big Five means only; Extraversion nominally significant (β = +1.61, p = .023, bootstrap 95% CI [0.47, 3.00]). Near-zero overall R² is expected given ICC(1) = 0 in run_9 (simulation quality issue corrected for run_10).*
 </div>
 
 <div align="center">

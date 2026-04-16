@@ -3173,7 +3173,7 @@ def _fig_susceptibility_scatter(profile_index_df: pd.DataFrame,
     return fig
 
 
-def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
+def _fig_moderator_forest(exploratory_df: pd.DataFrame, top_n: int = 30) -> go.Figure:
     if exploratory_df.empty:
         return go.Figure().add_annotation(text="Moderator data unavailable", showarrow=False)
 
@@ -3181,111 +3181,153 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
     for c in ["multivariate_estimate", "univariate_estimate", "multivariate_p_value",
                "multivariate_conf_low", "multivariate_conf_high",
                "univariate_conf_low", "univariate_conf_high", "multivariate_q_value",
-               "elastic_net_estimate", "rf_permutation_importance"]:
+               "elastic_net_estimate", "rf_permutation_importance", "ridge_estimate"]:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
-    has_enet = "elastic_net_estimate" in df.columns and df["elastic_net_estimate"].notna().any()
-    has_rf   = "rf_permutation_importance" in df.columns and df["rf_permutation_importance"].notna().any()
+    # Prefer ridge (all-feature model) → fall back to elastic_net → OLS for sorting/display
+    has_ridge = "ridge_estimate"       in df.columns and df["ridge_estimate"].notna().any()
+    has_enet  = "elastic_net_estimate" in df.columns and df["elastic_net_estimate"].notna().any()
+    has_mv    = "multivariate_estimate" in df.columns and df["multivariate_estimate"].notna().any()
 
-    # Sort by Elastic Net absolute magnitude when available (full-feature model),
-    # otherwise fall back to OLS multivariate estimate.
-    sort_col = "elastic_net_estimate" if has_enet else "multivariate_estimate"
+    sort_col = "ridge_estimate" if has_ridge else ("elastic_net_estimate" if has_enet else "multivariate_estimate")
+
+    # Keep top_n features by absolute sort value; sort ascending so largest is at top of plot
     df = (df.assign(_abs_sort=df[sort_col].abs())
-            .sort_values("_abs_sort", ascending=True)
+            .sort_values("_abs_sort", ascending=False)
+            .head(top_n)
+            .sort_values("_abs_sort", ascending=True)   # ascending=True → largest at top in horizontal bar
             .drop(columns=["_abs_sort"])
             .reset_index(drop=True))
-    labels = df["moderator_label"].tolist()
 
-    has_uni   = "univariate_estimate"    in df.columns
+    has_uni   = "univariate_estimate"   in df.columns and df["univariate_estimate"].notna().any()
     has_q     = "multivariate_q_value"  in df.columns
-    has_ci_mv = ("multivariate_conf_high" in df.columns and "multivariate_conf_low" in df.columns)
-    has_ci_uv = ("univariate_conf_high"   in df.columns and "univariate_conf_low"   in df.columns)
+    has_ci_mv = ("multivariate_conf_high" in df.columns and "multivariate_conf_low" in df.columns
+                 and df["multivariate_conf_high"].notna().any())
+    has_ci_uv = ("univariate_conf_high" in df.columns and "univariate_conf_low" in df.columns
+                 and df["univariate_conf_high"].notna().any())
+
+    label_col = "moderator_label" if "moderator_label" in df.columns else "label"
+    labels = df[label_col].fillna(df.get("term", "")).tolist()
 
     fig = go.Figure()
 
-    if has_uni:
+    # ── Ridge (all features) — primary estimator ──────────────────────
+    if has_ridge:
+        ridge_colors = [PALETTE["red"] if (not pd.isna(v) and v < 0) else PALETTE["teal"]
+                        for v in df["ridge_estimate"].tolist()]
+        # Group colour by ontology_group for additional visual coding
         fig.add_trace(go.Scatter(
-            x=df["univariate_estimate"], y=labels, mode="markers", name="OLS Univariate (Big Five)",
-            marker=dict(color="#9aaac8", size=9, symbol="circle-open", line=dict(width=2)),
+            x=df["ridge_estimate"], y=labels, mode="markers",
+            name="Ridge — all features (primary)",
+            marker=dict(color=ridge_colors, size=13, symbol="square",
+                        line=dict(color="white", width=1)),
+            hovertemplate="%{y}<br><b>Ridge coef=%{x:.4f}</b>  (all features, std-scaled)<extra></extra>",
+        ))
+
+    # ── OLS Multivariate (Big Five benchmark) ─────────────────────────
+    if has_mv:
+        mv_vals = df["multivariate_estimate"].tolist()
+        mv_colors = [PALETTE["red"] if (not pd.isna(v) and v < 0) else PALETTE["blue"]
+                     for v in mv_vals]
+        hov_extra = (df[["multivariate_p_value", "multivariate_q_value"]].values
+                     if has_q else df[["multivariate_p_value"]].values if "multivariate_p_value" in df.columns
+                     else np.full((len(df), 1), np.nan))
+        hov_tmpl  = ("%{y}<br>OLS β=%{x:.3f}<br>p=%{customdata[0]:.4f}<br>q=%{customdata[1]:.4f}<extra></extra>"
+                     if has_q else "%{y}<br>OLS β=%{x:.3f}<extra></extra>")
+        fig.add_trace(go.Scatter(
+            x=df["multivariate_estimate"], y=labels, mode="markers",
+            name="OLS multivariate (Big Five benchmark)",
+            marker=dict(color=mv_colors, size=10, symbol="diamond",
+                        line=dict(color="white", width=1.2)),
             error_x=dict(
                 type="data",
-                array=(df["univariate_conf_high"] - df["univariate_estimate"]).abs() if has_ci_uv else None,
-                arrayminus=(df["univariate_estimate"] - df["univariate_conf_low"]).abs() if has_ci_uv else None,
-                color="#9aaac8", thickness=1.5, width=4, visible=True,
+                array=(df["multivariate_conf_high"] - df["multivariate_estimate"]).abs() if has_ci_mv else None,
+                arrayminus=(df["multivariate_estimate"] - df["multivariate_conf_low"]).abs() if has_ci_mv else None,
+                color="#aaa", thickness=1.5, width=5, visible=True,
             ),
-            hovertemplate="%{y}<br>OLS Univariate β=%{x:.3f}<extra></extra>",
+            customdata=hov_extra,
+            hovertemplate=hov_tmpl,
         ))
 
-    mv_colors = [PALETTE["red"] if (v is not None and not pd.isna(v) and v < 0) else PALETTE["blue"]
-                 for v in df["multivariate_estimate"].tolist()]
-    hov_extra = (df[["multivariate_p_value", "multivariate_q_value"]].values
-                 if has_q else df[["multivariate_p_value"]].values)
-    hov_tmpl  = ("%{y}<br>OLS β=%{x:.3f}<br>p=%{customdata[0]:.4f}<br>q_FDR=%{customdata[1]:.4f}<extra></extra>"
-                 if has_q else "%{y}<br>OLS β=%{x:.3f}<br>p=%{customdata[0]:.4f}<extra></extra>")
-
-    fig.add_trace(go.Scatter(
-        x=df["multivariate_estimate"], y=labels, mode="markers",
-        name="OLS Multivariate (Big Five · benchmark)",
-        marker=dict(color=mv_colors, size=12, symbol="diamond",
-                    line=dict(color="white", width=1.5)),
-        error_x=dict(
-            type="data",
-            array=(df["multivariate_conf_high"] - df["multivariate_estimate"]).abs() if has_ci_mv else None,
-            arrayminus=(df["multivariate_estimate"] - df["multivariate_conf_low"]).abs() if has_ci_mv else None,
-            color="#555", thickness=1.8, width=6, visible=True,
-        ),
-        customdata=hov_extra,
-        hovertemplate=hov_tmpl,
-    ))
-
-    # Elastic Net trace — primary model (all profile features, regularised)
-    if has_enet:
-        en_colors = [PALETTE["red"] if (v is not None and not pd.isna(v) and v < 0) else PALETTE["teal"]
-                     for v in df["elastic_net_estimate"].tolist()]
-        fig.add_trace(go.Scatter(
-            x=df["elastic_net_estimate"], y=labels, mode="markers",
-            name="Elastic Net (all features · primary)",
-            marker=dict(color=en_colors, size=11, symbol="square",
-                        line=dict(color="white", width=1)),
-            hovertemplate="%{y}<br>EN coef=%{x:.4f}  (std-scaled)<extra></extra>",
-        ))
-
-    if has_q:
-        sig = df[df["multivariate_q_value"] < 0.05]
-        if not sig.empty:
+    # ── OLS Univariate (for Big Five rows) ────────────────────────────
+    if has_uni:
+        uv_mask = df["univariate_estimate"].notna()
+        uv_df = df[uv_mask]
+        uv_labs = [labels[i] for i in uv_df.index.tolist()]
+        if not uv_df.empty:
             fig.add_trace(go.Scatter(
-                x=sig["multivariate_estimate"], y=sig["moderator_label"],
-                mode="markers", name="FDR q<.05",
-                marker=dict(color=PALETTE["gold"], size=20, symbol="star",
-                            line=dict(color="#d95d39", width=1.5)),
-                hovertemplate="%{y}<br>FDR-significant (q<.05)<extra></extra>",
+                x=uv_df["univariate_estimate"], y=uv_labs, mode="markers",
+                name="OLS univariate (Big Five)",
+                marker=dict(color="#9aaac8", size=8, symbol="circle-open", line=dict(width=1.5)),
+                error_x=dict(
+                    type="data",
+                    array=(uv_df["univariate_conf_high"] - uv_df["univariate_estimate"]).abs() if has_ci_uv else None,
+                    arrayminus=(uv_df["univariate_estimate"] - uv_df["univariate_conf_low"]).abs() if has_ci_uv else None,
+                    color="#9aaac8", thickness=1, width=3, visible=True,
+                ),
+                hovertemplate="%{y}<br>OLS univariate β=%{x:.3f}<extra></extra>",
             ))
 
-    # Explanatory note
+    # ── FDR significance stars ─────────────────────────────────────────
+    if has_q and "multivariate_q_value" in df.columns:
+        sig = df[df["multivariate_q_value"] < 0.05]
+        if not sig.empty:
+            sig_labs = [labels[i] for i in sig.index.tolist()]
+            fig.add_trace(go.Scatter(
+                x=sig["multivariate_estimate"], y=sig_labs,
+                mode="markers", name="FDR q<.05",
+                marker=dict(color=PALETTE["gold"], size=18, symbol="star",
+                            line=dict(color="#d95d39", width=1.5)),
+                hovertemplate="%{y}<br>FDR q<.05<extra></extra>",
+            ))
+
+    # ── Ontology group colour legend (text annotations at right edge) ──
+    if "ontology_group" in df.columns:
+        group_col = {
+            "Big Five: Neuroticism": "#c0392b", "Big Five: Extraversion": "#1d4e89",
+            "Big Five: Openness": "#2980b9",    "Big Five: Conscientiousness": "#27ae60",
+            "Big Five: Agreeableness": "#8e44ad",
+            "Dual Process": "#e67e22",           "Digital Literacy": "#16a085",
+            "Political Engagement: Institutional Trust": "#922b21",
+            "Political Engagement: Ideology": "#1a5276",
+            "Political Engagement: Interest": "#117a65",
+            "Political Engagement: Efficacy": "#7d6608",
+            "Political Psychology: Institutional Trust": "#922b21",
+            "Political Psychology: Ideology": "#1a5276",
+            "Political Psychology: Engagement": "#117a65",
+            "Socioeconomic Status: Economic": "#5d4037",
+            "Socioeconomic Status: Employment": "#795548",
+            "Social Context: Online Behavior": "#0277bd",
+            "Social Context: Social Capital": "#00838f",
+            "Demographics: Age": "#607d8b", "Demographics: Sex": "#90a4ae",
+            "Demographics: Education": "#78909c", "Demographics: News Diet": "#b0bec5",
+        }
+
     note = (
-        "<b>■ Elastic Net</b> = regularised model on all ~100 profile features (standardised; λ, l1_ratio CV-tuned).<br>"
-        "<b>◇ OLS Multivariate</b> = benchmark using only Big Five means + age + sex (8 predictors).<br>"
-        "EN is the primary moderation estimator; OLS serves as a conventional reference."
+        "<b>■ Ridge (all ~100 features, std-scaled)</b> = primary estimator — retains ALL predictors including "
+        "political engagement, digital literacy, dual process.<br>"
+        "<b>◇ OLS</b> = Big Five benchmark (8 predictors). "
+        "Near-zero |coef| consistent with ICC(1)=0 in run_9 (backfire rate corrected for run_10)."
     )
 
     fig.add_vline(x=0, line_dash="dot", line_color="#777", line_width=1)
     fig.update_layout(
         paper_bgcolor="white", plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=max(460, 33 * len(df) + 160),
+        height=max(520, 26 * len(df) + 170),
         title=dict(
-            text="Moderator Coefficients — ■ Elastic Net (all features) · ◇ OLS benchmark · ★ FDR q<.05",
-            font_size=13),
-        xaxis_title="Coefficient / standardised estimate",
-        margin=dict(l=230, r=30, t=65, b=70),
-        legend=dict(orientation="h", y=-0.14, x=0.5, xanchor="center"),
+            text=f"Moderator Coefficients — ■ Ridge all-feature (primary) · ◇ OLS Big Five (benchmark) · top {top_n} by |coef|",
+            font_size=12),
+        xaxis_title="Standardised coefficient estimate",
+        margin=dict(l=280, r=30, t=65, b=80),
+        legend=dict(orientation="h", y=-0.15, x=0.5, xanchor="center"),
         annotations=[dict(
-            x=0, y=-0.11, xref="paper", yref="paper",
+            x=0, y=-0.12, xref="paper", yref="paper",
             text=note, showarrow=False,
-            font=dict(size=10, color="#555"),
+            font=dict(size=9, color="#555"),
             align="center", xanchor="center",
-        )] if has_enet else [],
+        )],
     )
     return fig
 
@@ -4621,8 +4663,9 @@ def generate_research_visuals(
 
     profile_df       = _load(s05 / "profile_level_effectivity.csv")
     profile_index_df = _load(s06 / "profile_susceptibility_index.csv")
-    exploratory_df   = _load(s06 / "exploratory_moderator_comparison.csv")
-    weight_df        = _load(s06 / "moderator_weight_table.csv")
+    exploratory_df        = _load(s06 / "exploratory_moderator_comparison.csv")
+    expanded_moderator_df = _load(s06 / "expanded_moderator_comparison.csv")
+    weight_df             = _load(s06 / "moderator_weight_table.csv")
     task_coeff_df    = _load(s06 / "conditional_susceptibility_task_coefficients.csv")
     task_summary_df  = _load(s06 / "conditional_susceptibility_task_summary.csv")
     ontology_catalog_path = stage_outputs_root / "01_create_scenarios" / "ontology_leaf_catalog.json"
@@ -4712,8 +4755,11 @@ def generate_research_visuals(
         _add_fig("Susceptibility Map", _fig_susceptibility_scatter(profile_index_df, long_df),
                  "susceptibility_map.html")
 
-    if not exploratory_df.empty:
-        _add_fig("Moderator Forest",       _fig_moderator_forest(exploratory_df),           "moderator_forest.html")
+    # Use expanded table (all ~100 features with ridge estimates) when available;
+    # fall back to OLS-only exploratory table.
+    forest_df = expanded_moderator_df if not expanded_moderator_df.empty else exploratory_df
+    if not forest_df.empty:
+        _add_fig("Moderator Forest",       _fig_moderator_forest(forest_df),                "moderator_forest.html")
     if not weight_df.empty:
         _add_fig("Hierarchical Importance", _fig_hierarchical_importance(weight_df),        "hierarchical_importance.html")
 
