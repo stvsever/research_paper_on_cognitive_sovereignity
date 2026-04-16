@@ -59,16 +59,21 @@ The present study extends an earlier single-domain design to test generalization
 | Mean *AE* | −0.84 (*SD* = 40.18) |
 | Positive *AE* rate | 48.2% |
 | ICC(1) | 0 across all outcomes |
-| OLS overall fit | *R*² = 0.151, *F*(8,71) = 1.612, *p* = .137 (non-significant) |
+| OLS benchmark (Big Five + age + sex) | *R*² = 0.151, *F*(8,71) = 1.612, *p* = .137 (non-significant) |
+| Elastic Net (all 100 profile features, CV-tuned λ) | CV-*R*² = −0.139 ± 0.124; 1 feature retained (Extraversion·Gregariousness) |
+| Random Forest (all 100 features, OOB) | OOB *R*² = −0.009 |
 | Only nominally significant moderator | Extraversion (*β* = +1.61, *p* = .023, bootstrap 95% CI [0.47, 3.00]) |
 | Conscientiousness | *β* = −1.06, *p* = .159 (non-significant; sign retained from single-domain predecessor) |
 | SEM fit | CFI = 1.000, RMSEA = 0.000 |
+
+> **Methodological interpretation:** OLS, Elastic Net, and Random Forest converge on the same null result: stable profile traits have near-zero predictive power for *mean* adversarial effectivity aggregated across all N_a × N_o context combinations. This is expected given ICC(1) ≈ 0 — the attack–opinion context, not the profile, drives effectivity variance. The null aggregate finding is thus robust, not a statistical artefact of the OLS model choice.
 
 ### Methodological Position
 
 - **Full-factorial multi-domain design**: *N_a* attack leaves × *N_o* opinion leaves per profile across 4 political domains — enables cross-attack and cross-domain comparison of susceptibility moderators
 - Effectivity is **directional**: each opinion leaf carries an adversarial goal direction (`±1`); `AE = signed_delta × direction`
 - The SEM is a **profile-level repeated-outcome path model** with multiple adversarial effectivity indicators
+- **Multi-model moderation estimation**: OLS (conventional benchmark, Big Five only), Elastic Net with CV-selected λ (all profile features), and Random Forest (non-linear, all features) are estimated jointly; all three converge on ICC-consistent near-zero profile-level predictability
 - The susceptibility index is computed **post hoc** from target-conditional ridge task models with **hierarchical R² decomposition**
 - **Cluster bootstrap** at the profile level (B = 600) preserves within-profile dependence in inference
 - Fully auditable provenance across all 9 pipeline stages
@@ -78,7 +83,7 @@ The present study extends an earlier single-domain design to test generalization
 <div align="center">
 <img src="research_report/assets/figures/figure_3_profile_moderator_coefficient_forest.png" width="780" alt="OLS moderator coefficients across all N_a attack vectors and N_o opinion leaves.">
 
-*Figure 1. OLS moderation model: profile-level predictors of adversarial effectivity aggregated across all N_a × N_o attack–opinion task combinations. Error bars show bootstrap 95% CIs (B = 600, profile-level block resampling). Markers indicate FDR-adjusted significance. Extraversion nominally significant (β = +1.61, p = .023); no predictor survives FDR at α = .05.*
+*Figure 1. Multi-model moderation comparison: OLS benchmark (Big Five + age + sex) and Elastic Net (all ~100 profile features, CV-regularised). Error bars show bootstrap 95% CIs (B = 600). Extraversion nominally significant in OLS (β = +1.61, p = .023); consistent with EN retaining Extraversion·Gregariousness as the sole feature. No predictor survives FDR at α = .05. Random Forest OOB R² ≈ 0 confirms the null aggregate finding.*
 </div>
 
 <div align="center">

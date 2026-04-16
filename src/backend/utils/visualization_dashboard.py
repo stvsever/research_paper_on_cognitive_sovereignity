@@ -3180,14 +3180,20 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
     df = exploratory_df.copy()
     for c in ["multivariate_estimate", "univariate_estimate", "multivariate_p_value",
                "multivariate_conf_low", "multivariate_conf_high",
-               "univariate_conf_low", "univariate_conf_high", "multivariate_q_value"]:
+               "univariate_conf_low", "univariate_conf_high", "multivariate_q_value",
+               "elastic_net_estimate", "rf_permutation_importance"]:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
-    # Sort by absolute magnitude descending (largest effect at top)
-    df = (df.assign(_abs_est=df["multivariate_estimate"].abs())
-            .sort_values("_abs_est", ascending=True)   # ascending=True → largest at top in horizontal bar
-            .drop(columns=["_abs_est"])
+    has_enet = "elastic_net_estimate" in df.columns and df["elastic_net_estimate"].notna().any()
+    has_rf   = "rf_permutation_importance" in df.columns and df["rf_permutation_importance"].notna().any()
+
+    # Sort by Elastic Net absolute magnitude when available (full-feature model),
+    # otherwise fall back to OLS multivariate estimate.
+    sort_col = "elastic_net_estimate" if has_enet else "multivariate_estimate"
+    df = (df.assign(_abs_sort=df[sort_col].abs())
+            .sort_values("_abs_sort", ascending=True)
+            .drop(columns=["_abs_sort"])
             .reset_index(drop=True))
     labels = df["moderator_label"].tolist()
 
@@ -3200,7 +3206,7 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
 
     if has_uni:
         fig.add_trace(go.Scatter(
-            x=df["univariate_estimate"], y=labels, mode="markers", name="Univariate",
+            x=df["univariate_estimate"], y=labels, mode="markers", name="OLS Univariate (Big Five)",
             marker=dict(color="#9aaac8", size=9, symbol="circle-open", line=dict(width=2)),
             error_x=dict(
                 type="data",
@@ -3208,18 +3214,19 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
                 arrayminus=(df["univariate_estimate"] - df["univariate_conf_low"]).abs() if has_ci_uv else None,
                 color="#9aaac8", thickness=1.5, width=4, visible=True,
             ),
-            hovertemplate="%{y}<br>Univariate β=%{x:.3f}<extra></extra>",
+            hovertemplate="%{y}<br>OLS Univariate β=%{x:.3f}<extra></extra>",
         ))
 
-    mv_colors = [PALETTE["red"] if v < 0 else PALETTE["blue"]
+    mv_colors = [PALETTE["red"] if (v is not None and not pd.isna(v) and v < 0) else PALETTE["blue"]
                  for v in df["multivariate_estimate"].tolist()]
     hov_extra = (df[["multivariate_p_value", "multivariate_q_value"]].values
                  if has_q else df[["multivariate_p_value"]].values)
-    hov_tmpl  = ("%{y}<br>β=%{x:.3f}<br>p=%{customdata[0]:.4f}<br>q_FDR=%{customdata[1]:.4f}<extra></extra>"
-                 if has_q else "%{y}<br>β=%{x:.3f}<br>p=%{customdata[0]:.4f}<extra></extra>")
+    hov_tmpl  = ("%{y}<br>OLS β=%{x:.3f}<br>p=%{customdata[0]:.4f}<br>q_FDR=%{customdata[1]:.4f}<extra></extra>"
+                 if has_q else "%{y}<br>OLS β=%{x:.3f}<br>p=%{customdata[0]:.4f}<extra></extra>")
 
     fig.add_trace(go.Scatter(
-        x=df["multivariate_estimate"], y=labels, mode="markers", name="Multivariate",
+        x=df["multivariate_estimate"], y=labels, mode="markers",
+        name="OLS Multivariate (Big Five · benchmark)",
         marker=dict(color=mv_colors, size=12, symbol="diamond",
                     line=dict(color="white", width=1.5)),
         error_x=dict(
@@ -3232,6 +3239,18 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
         hovertemplate=hov_tmpl,
     ))
 
+    # Elastic Net trace — primary model (all profile features, regularised)
+    if has_enet:
+        en_colors = [PALETTE["red"] if (v is not None and not pd.isna(v) and v < 0) else PALETTE["teal"]
+                     for v in df["elastic_net_estimate"].tolist()]
+        fig.add_trace(go.Scatter(
+            x=df["elastic_net_estimate"], y=labels, mode="markers",
+            name="Elastic Net (all features · primary)",
+            marker=dict(color=en_colors, size=11, symbol="square",
+                        line=dict(color="white", width=1)),
+            hovertemplate="%{y}<br>EN coef=%{x:.4f}  (std-scaled)<extra></extra>",
+        ))
+
     if has_q:
         sig = df[df["multivariate_q_value"] < 0.05]
         if not sig.empty:
@@ -3243,17 +3262,30 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
                 hovertemplate="%{y}<br>FDR-significant (q<.05)<extra></extra>",
             ))
 
+    # Explanatory note
+    note = (
+        "<b>■ Elastic Net</b> = regularised model on all ~100 profile features (standardised; λ, l1_ratio CV-tuned).<br>"
+        "<b>◇ OLS Multivariate</b> = benchmark using only Big Five means + age + sex (8 predictors).<br>"
+        "EN is the primary moderation estimator; OLS serves as a conventional reference."
+    )
+
     fig.add_vline(x=0, line_dash="dot", line_color="#777", line_width=1)
     fig.update_layout(
         paper_bgcolor="white", plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=max(460, 33 * len(df) + 130),
+        height=max(460, 33 * len(df) + 160),
         title=dict(
-            text="Moderator Coefficients (◇ multivariate · ○ univariate · ★ FDR q<.05)",
+            text="Moderator Coefficients — ■ Elastic Net (all features) · ◇ OLS benchmark · ★ FDR q<.05",
             font_size=13),
-        xaxis_title="Coefficient estimate (95% CI)",
-        margin=dict(l=230, r=30, t=65, b=50),
-        legend=dict(orientation="h", y=-0.13, x=0.5, xanchor="center"),
+        xaxis_title="Coefficient / standardised estimate",
+        margin=dict(l=230, r=30, t=65, b=70),
+        legend=dict(orientation="h", y=-0.14, x=0.5, xanchor="center"),
+        annotations=[dict(
+            x=0, y=-0.11, xref="paper", yref="paper",
+            text=note, showarrow=False,
+            font=dict(size=10, color="#555"),
+            align="center", xanchor="center",
+        )] if has_enet else [],
     )
     return fig
 

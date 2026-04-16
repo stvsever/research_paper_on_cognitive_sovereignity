@@ -379,21 +379,257 @@ def _fit_ridge_path_models(
 
 
 def _moderator_group(term: str) -> str:
-    if "age_years" in term:
+    t = term.lower()
+    # Demographics
+    if "chronological_age" in t or "age_years" in t:
         return "Demographics: Age"
-    if "sex_" in term:
+    if "sex_" in t or "profile_cat_sex" in t:
         return "Demographics: Sex"
-    if "neuroticism" in term:
-        return "Personality: Neuroticism"
-    if "openness" in term:
-        return "Personality: Openness"
-    if "conscientiousness" in term:
-        return "Personality: Conscientiousness"
-    if "extraversion" in term:
-        return "Personality: Extraversion"
-    if "agreeableness" in term:
-        return "Personality: Agreeableness"
+    if "education_level" in t or ("education" in t and "level" in t):
+        return "Demographics: Education"
+    if "news_diet" in t:
+        return "Demographics: News Diet"
+    # Big Five
+    if "neuroticism" in t:
+        return "Big Five: Neuroticism"
+    if "openness_to_experience" in t or ("openness" in t and "experience" in t):
+        return "Big Five: Openness"
+    if "conscientiousness" in t:
+        return "Big Five: Conscientiousness"
+    if "extraversion" in t:
+        return "Big Five: Extraversion"
+    if "agreeableness" in t:
+        return "Big Five: Agreeableness"
+    # Dual Process Inventory (run_9 ontology)
+    if "dual_process" in t:
+        return "Dual Process"
+    # Digital Literacy Inventory (run_9 ontology)
+    if "digital_literacy" in t:
+        return "Digital Literacy"
+    # Political Engagement Inventory (run_9 ontology)
+    if "political_engagement_inventory_institutional_trust" in t:
+        return "Political Engagement: Institutional Trust"
+    if "political_engagement_inventory_ideological_identity" in t:
+        return "Political Engagement: Ideology"
+    if "political_engagement_inventory_political_interest" in t:
+        return "Political Engagement: Interest"
+    if "political_engagement_inventory_collective_efficacy" in t:
+        return "Political Engagement: Efficacy"
+    if "political_engagement_inventory" in t:
+        return "Political Engagement"
+    # Political Psychology (run_10+ ontology)
+    if "political_psychology_institutional_trust" in t or "institutional_trust" in t:
+        return "Political Psychology: Institutional Trust"
+    if "political_psychology_ideological_positioning" in t or "ideological_positioning" in t:
+        return "Political Psychology: Ideology"
+    if "political_psychology_political_engagement" in t:
+        return "Political Psychology: Engagement"
+    if "political_psychology" in t:
+        return "Political Psychology"
+    # Socioeconomic Status (run_10+ ontology)
+    if "socioeconomic_status_employment_type" in t or "employed_" in t or "unemployed" in t or "retired" in t or "employment_type" in t:
+        return "Socioeconomic Status: Employment"
+    if (
+        "socioeconomic_status_economic_standing" in t
+        or "household_income" in t
+        or "economic_anxiety" in t
+        or "financial_security" in t
+        or "upward_mobility" in t
+        or "subjective_class" in t
+        or "economic_standing" in t
+    ):
+        return "Socioeconomic Status: Economic"
+    if "socioeconomic" in t:
+        return "Socioeconomic Status"
+    # Social Context (run_10+ ontology)
+    if (
+        "social_context_online_behavior" in t
+        or "social_media_hours" in t
+        or "echo_chamber" in t
+        or "online_political_discussion" in t
+        or "platform_primary_type" in t
+        or ("platform" in t and "dominant" in t)
+    ):
+        return "Social Context: Online Behavior"
+    if (
+        "social_context_social_capital" in t
+        or "interpersonal_trust" in t
+        or "social_network_diversity" in t
+        or "community_belonging" in t
+        or "social_isolation" in t
+    ):
+        return "Social Context: Social Capital"
+    if "social_context" in t:
+        return "Social Context"
     return "Other"
+
+
+def _dynamic_profile_terms(df: pd.DataFrame) -> List[str]:
+    """Return all profile feature columns with variance, excluding synthetic proxies."""
+    _exclude = {
+        "profile_cont_heuristic_shift_sensitivity_proxy",
+        "profile_cont_resilience_index",
+    }
+    terms: List[str] = []
+    for col in sorted(df.columns):
+        if col in _exclude:
+            continue
+        if not (col.startswith("profile_cont_") or col.startswith("profile_cat__")):
+            continue
+        if col.endswith("_z"):  # skip pre-standardised duplicates
+            continue
+        if df[col].nunique(dropna=True) > 1:
+            terms.append(col)
+    return terms
+
+
+def _fit_elastic_net(
+    df: pd.DataFrame,
+    outcome: str,
+    feature_terms: Sequence[str],
+    seed: int,
+) -> Dict[str, Any]:
+    """Cross-validated Elastic Net on all profile features.
+
+    Addresses the fundamental weakness of the aggregate OLS: using only 8 hardcoded
+    Big Five predictors when 100+ profile features are available. ElasticNetCV handles
+    high-dimensional small-n by regularisation, selecting informative features and
+    shrinking noise to zero. CV-R² is reported as an honest fit estimate.
+    """
+    from sklearn.linear_model import ElasticNetCV  # type: ignore
+    from sklearn.model_selection import KFold, cross_val_score  # type: ignore
+    from sklearn.preprocessing import StandardScaler  # type: ignore
+
+    x_raw = df[list(feature_terms)].astype(float).fillna(0.0).to_numpy()
+    y = df[outcome].astype(float).to_numpy()
+
+    col_std = np.std(x_raw, axis=0)
+    valid_mask = col_std > 1e-8
+    terms_used = [t for t, v in zip(feature_terms, valid_mask) if v]
+    x = x_raw[:, valid_mask]
+
+    scaler = StandardScaler()
+    x_scaled = scaler.fit_transform(x)
+
+    cv_inner = KFold(n_splits=5, shuffle=True, random_state=seed)
+    enet = ElasticNetCV(
+        l1_ratio=[0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+        cv=cv_inner,
+        random_state=seed,
+        max_iter=20000,
+        alphas=50,
+        n_jobs=-1,
+    )
+    enet.fit(x_scaled, y)
+
+    y_hat = enet.predict(x_scaled)
+    ss_res = float(np.sum((y - y_hat) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    r2_train = 1.0 - ss_res / ss_tot if ss_tot > 0 else 0.0
+
+    cv_outer = KFold(n_splits=5, shuffle=True, random_state=seed + 1)
+    cv_r2_scores = cross_val_score(
+        ElasticNetCV(
+            l1_ratio=float(enet.l1_ratio_),
+            cv=5,
+            random_state=seed,
+            max_iter=20000,
+            alphas=50,
+        ),
+        x_scaled,
+        y,
+        cv=cv_outer,
+        scoring="r2",
+        n_jobs=-1,
+    )
+    cv_r2 = float(np.mean(cv_r2_scores))
+    cv_r2_std = float(np.std(cv_r2_scores))
+
+    coeff_df = pd.DataFrame(
+        {
+            "term": terms_used,
+            "label": [_pretty_moderator_label(t) for t in terms_used],
+            "ontology_group": [_moderator_group(t) for t in terms_used],
+            "elastic_net_estimate": enet.coef_,
+        }
+    )
+    selected_df = (
+        coeff_df[coeff_df["elastic_net_estimate"].abs() > 1e-8]
+        .copy()
+        .sort_values("elastic_net_estimate", key=lambda s: s.abs(), ascending=False)
+        .reset_index(drop=True)
+    )
+
+    return {
+        "r2_train": r2_train,
+        "cv_r2": cv_r2,
+        "cv_r2_std": cv_r2_std,
+        "alpha": float(enet.alpha_),
+        "l1_ratio": float(enet.l1_ratio_),
+        "n_features_total": len(terms_used),
+        "n_features_selected": int((np.abs(enet.coef_) > 1e-8).sum()),
+        "coeff_df": coeff_df,
+        "selected_df": selected_df,
+    }
+
+
+def _fit_random_forest(
+    df: pd.DataFrame,
+    outcome: str,
+    feature_terms: Sequence[str],
+    seed: int,
+    n_estimators: int = 500,
+) -> Dict[str, Any]:
+    """Random Forest regression for non-linear moderation detection.
+
+    OOB R² provides an honest fit estimate without a separate test set.
+    Permutation importance (n_repeats=50) is preferred over MDI because it
+    accounts for correlated features and is invariant to feature scale.
+    """
+    from sklearn.ensemble import RandomForestRegressor  # type: ignore
+    from sklearn.inspection import permutation_importance as sk_perm_importance  # type: ignore
+
+    x_raw = df[list(feature_terms)].astype(float).fillna(0.0).to_numpy()
+    y = df[outcome].astype(float).to_numpy()
+
+    col_std = np.std(x_raw, axis=0)
+    valid_mask = col_std > 1e-8
+    terms_used = [t for t, v in zip(feature_terms, valid_mask) if v]
+    x = x_raw[:, valid_mask]
+
+    rf = RandomForestRegressor(
+        n_estimators=n_estimators,
+        max_features="sqrt",
+        min_samples_leaf=3,
+        oob_score=True,
+        random_state=seed,
+        n_jobs=-1,
+    )
+    rf.fit(x, y)
+
+    perm = sk_perm_importance(rf, x, y, n_repeats=50, random_state=seed, n_jobs=-1)
+
+    importance_df = (
+        pd.DataFrame(
+            {
+                "term": terms_used,
+                "label": [_pretty_moderator_label(t) for t in terms_used],
+                "ontology_group": [_moderator_group(t) for t in terms_used],
+                "permutation_importance_mean": perm.importances_mean,
+                "permutation_importance_std": perm.importances_std,
+                "mdi_importance": rf.feature_importances_,
+            }
+        )
+        .sort_values("permutation_importance_mean", ascending=False)
+        .reset_index(drop=True)
+    )
+
+    return {
+        "oob_r2": float(rf.oob_score_),
+        "n_estimators": n_estimators,
+        "n_features": len(terms_used),
+        "importance_df": importance_df,
+    }
 
 
 def _build_moderator_weight_table(
@@ -689,6 +925,8 @@ def _render_report(
     run_id: str,
     primary_outcome: str = "mean_abs_delta_score",
     hierarchical_decomposition: Any = None,
+    enet_result: Dict[str, Any] | None = None,
+    rf_result: Dict[str, Any] | None = None,
 ) -> str:
     fit_cfi = sem_result.fit_indices.get("CFI")
     fit_rmsea = sem_result.fit_indices.get("RMSEA")
@@ -815,11 +1053,55 @@ def _render_report(
                 f"{row['moderator_label']} [{row['ontology_group']}]: est={row['estimate']:.4f}, normalized_weight_pct={row['normalized_weight_pct']:.2f}"
             )
 
+    # Elastic Net results
+    if enet_result is not None:
+        lines.extend(
+            [
+                "",
+                "Elastic Net Moderation Model (Full Feature Set)",
+                "-----------------------------------------------",
+                f"Features used: {enet_result.get('n_features_total', 'n/a')} (all available profile_cont_ / profile_cat__ columns)",
+                f"Features selected (|coef|>0): {enet_result.get('n_features_selected', 'n/a')}",
+                f"Best alpha: {enet_result.get('alpha', float('nan')):.5f}",
+                f"Best l1_ratio: {enet_result.get('l1_ratio', float('nan')):.2f}  (1.0=LASSO, 0.0=Ridge)",
+                f"Train R²: {enet_result.get('r2_train', float('nan')):.4f}",
+                f"CV-R² (nested 5-fold): {enet_result.get('cv_r2', float('nan')):.4f} ± {enet_result.get('cv_r2_std', float('nan')):.4f}",
+                "Top selected features:",
+            ]
+        )
+        sel = enet_result.get("selected_df", pd.DataFrame())
+        for row in sel.head(10).to_dict(orient="records"):
+            lines.append(
+                f"  {row.get('label', row.get('term'))}: coef={row['elastic_net_estimate']:.4f}  [{row.get('ontology_group', '')}]"
+            )
+
+    # Random Forest results
+    if rf_result is not None:
+        lines.extend(
+            [
+                "",
+                "Random Forest Moderation Model (Non-linear, Full Feature Set)",
+                "--------------------------------------------------------------",
+                f"OOB R²: {rf_result.get('oob_r2', float('nan')):.4f}  (unbiased held-out estimate)",
+                f"Trees: {rf_result.get('n_estimators', 'n/a')}, Features: {rf_result.get('n_features', 'n/a')}",
+                "Top features by permutation importance:",
+            ]
+        )
+        imp = rf_result.get("importance_df", pd.DataFrame())
+        for row in imp.head(10).to_dict(orient="records"):
+            lines.append(
+                f"  {row.get('label', row.get('term'))}: perm_imp={row['permutation_importance_mean']:.4f} ± {row['permutation_importance_std']:.4f}  [{row.get('ontology_group', '')}]"
+            )
+
     lines.extend(
         [
             "",
-            "OLS Supplement",
-            "--------------",
+            "OLS Supplement (Conventional Benchmark — Big Five + Age + Sex Only)",
+            "---------------------------------------------------------------------",
+            "NOTE: The following OLS uses only the hardcoded Big Five domain means, age, and sex.",
+            "It serves as a conventional benchmark. The Elastic Net and Random Forest above use",
+            "the full feature set and are the primary moderation estimators.",
+            "",
             ols_summary,
             "",
             "Caveat",
@@ -947,6 +1229,46 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         how="left",
     ).drop(columns=["term"], errors="ignore")
 
+    # ------------------------------------------------------------------
+    # Elastic Net + Random Forest on the full feature set
+    # The aggregate OLS uses only 8 hardcoded Big Five / demographics
+    # predictors.  The EN and RF models use every available profile
+    # feature (~100 columns), which includes theoretically motivated
+    # predictors (e.g. institutional trust, ideological identity, digital
+    # literacy) that the OLS silently omits.
+    # ------------------------------------------------------------------
+    all_feature_terms = _dynamic_profile_terms(profile_df)
+    LOGGER.info("Fitting Elastic Net on %d profile features ...", len(all_feature_terms))
+    enet_result = _fit_elastic_net(
+        df=profile_df,
+        outcome=primary_outcome,
+        feature_terms=all_feature_terms,
+        seed=config.seed,
+    )
+    LOGGER.info(
+        "Elastic Net: CV-R²=%.3f (±%.3f), α=%.4f, l1_ratio=%.2f, %d/%d features selected",
+        enet_result["cv_r2"], enet_result["cv_r2_std"],
+        enet_result["alpha"], enet_result["l1_ratio"],
+        enet_result["n_features_selected"], enet_result["n_features_total"],
+    )
+
+    LOGGER.info("Fitting Random Forest on %d profile features ...", len(all_feature_terms))
+    rf_result = _fit_random_forest(
+        df=profile_df,
+        outcome=primary_outcome,
+        feature_terms=all_feature_terms,
+        seed=config.seed,
+    )
+    LOGGER.info("Random Forest OOB R²=%.3f", rf_result["oob_r2"])
+
+    # Merge EN and RF estimates into exploratory_table so the dashboard
+    # forest plot can show the full-feature-set model alongside OLS.
+    enet_lookup = enet_result["coeff_df"].set_index("term")["elastic_net_estimate"].to_dict()
+    rf_lookup = rf_result["importance_df"].set_index("term")["permutation_importance_mean"].to_dict()
+    if not exploratory_table.empty:
+        exploratory_table["elastic_net_estimate"] = exploratory_table["moderator_column"].map(enet_lookup).astype(float)
+        exploratory_table["rf_permutation_importance"] = exploratory_table["moderator_column"].map(rf_lookup).astype(float)
+
     out = Path(output_dir)
     spec_txt = out / "sem_model_spec.txt"
     profile_formula_txt = out / "profile_multivariate_model_spec.txt"
@@ -970,6 +1292,11 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     assumptions_json = out / "assumption_register.json"
     critiques_json = out / "peer_review_critiques.json"
     methodology_txt = out / "methodology_audit.txt"
+    enet_coeff_csv = out / "elastic_net_coefficients.csv"
+    enet_selected_csv = out / "elastic_net_selected.csv"
+    enet_summary_json = out / "elastic_net_summary.json"
+    rf_importance_csv = out / "rf_feature_importance.csv"
+    rf_summary_json = out / "rf_summary.json"
 
     write_text(spec_txt, sem_result.model_formula)
     write_text(profile_formula_txt, multivariate_formula)
@@ -1007,6 +1334,29 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         profile_df[["profile_id", "latent_attack_effectivity_factor_score"]].to_csv(latent_scores_csv, index=False)
     profile_summary_df.to_csv(profile_summary_copy_csv, index=False)
     profile_df.to_csv(profile_wide_copy_csv, index=False)
+    enet_result["coeff_df"].to_csv(enet_coeff_csv, index=False)
+    enet_result["selected_df"].to_csv(enet_selected_csv, index=False)
+    rf_result["importance_df"].to_csv(rf_importance_csv, index=False)
+    write_json(enet_summary_json, {
+        "r2_train": enet_result["r2_train"],
+        "cv_r2": enet_result["cv_r2"],
+        "cv_r2_std": enet_result["cv_r2_std"],
+        "alpha": enet_result["alpha"],
+        "l1_ratio": enet_result["l1_ratio"],
+        "n_features_total": enet_result["n_features_total"],
+        "n_features_selected": enet_result["n_features_selected"],
+        "note": (
+            "CV-R² from nested 5-fold cross-validation (outer CV evaluates a fixed l1_ratio "
+            "chosen by inner CV). Estimates on standardised features (StandardScaler). "
+            "Addresses OLS limitation of using only hardcoded Big Five / demographic predictors."
+        ),
+    })
+    write_json(rf_summary_json, {
+        "oob_r2": rf_result["oob_r2"],
+        "n_estimators": rf_result["n_estimators"],
+        "n_features": rf_result["n_features"],
+        "note": "OOB R² is an unbiased estimate of held-out accuracy (each tree scored on samples it never saw during training).",
+    })
 
     # ICC computation for hierarchical nesting diagnostics
     icc_results: Dict[str, object] = {}
@@ -1034,6 +1384,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
             run_id=config.run_id,
             primary_outcome=primary_outcome,
             hierarchical_decomposition=conditional_fit.hierarchical_decomposition,
+            enet_result=enet_result,
+            rf_result=rf_result,
         ),
     )
 
@@ -1065,6 +1417,11 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         abs_path(assumptions_json),
         abs_path(critiques_json),
         abs_path(methodology_txt),
+        abs_path(enet_coeff_csv),
+        abs_path(enet_selected_csv),
+        abs_path(enet_summary_json),
+        abs_path(rf_importance_csv),
+        abs_path(rf_summary_json),
     ]
     if latent_scores_csv.exists():
         output_files.append(abs_path(latent_scores_csv))
@@ -1089,6 +1446,10 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
             "conditional_susceptibility_attack_leaves": conditional_fit.artifact.attack_leaves,
             "conditional_susceptibility_opinion_leaves": conditional_fit.artifact.opinion_leaves,
             "conditional_susceptibility_tasks": [task.task_key for task in conditional_fit.artifact.task_models],
+            "elastic_net_cv_r2": enet_result["cv_r2"],
+            "elastic_net_n_selected": enet_result["n_features_selected"],
+            "elastic_net_n_total": enet_result["n_features_total"],
+            "rf_oob_r2": rf_result["oob_r2"],
         },
     )
 
