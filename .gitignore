@@ -60,3 +60,6 @@ research_report/report/*.toc
 evaluation/**/visuals/**/*.html
 evaluation/**/stage_outputs/07_generate_research_visuals/**/*.html
 evaluation/**/stage_checks/**/*.html
+
+# Reproduction scripts — run locally, not tracked
+scripts/

@@ -17,25 +17,25 @@
 
 </div>
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Abstract](#-abstract)
-- [Key Findings](#-key-findings)
-- [Full Paper](#-full-paper)
-- [Repository Structure](#-repository-structure)
-- [Setup & Installation](#-setup--installation)
-- [Usage](#-usage)
-- [Pipeline Overview](#-pipeline-overview)
-- [Conditional Susceptibility Index](#-conditional-susceptibility-index)
+- [Abstract](#abstract)
+- [Key Findings](#key-findings)
+- [Full Paper](#full-paper)
+- [Repository Structure](#repository-structure)
+- [Setup & Installation](#setup--installation)
+- [Usage](#usage)
+- [Pipeline Overview](#pipeline-overview)
+- [Conditional Susceptibility Index](#conditional-susceptibility-index)
 - [🧩 Custom Ontology Support](#-custom-ontology-support)
-- [Citation](#-citation)
-- [License](#-license)
+- [Citation](#citation)
+- [License](#license)
 
-> **Custom ontology guide:** See [`src/backend/user_ontology/notebook/tool_usage.ipynb`](src/backend/user_ontology/notebook/tool_usage.ipynb) for a professional guide to using custom PROFILE × ATTACK × OPINION ontologies, including step-by-step format specification, validation walkthrough, and output interpretation.
+> **Custom ontology guide:** See [`src/backend/user_ontology/tool_usage.ipynb`](src/backend/user_ontology/tool_usage.ipynb) for a professional guide to using custom PROFILE × ATTACK × OPINION ontologies, including step-by-step format specification, validation walkthrough, and output interpretation.
 
 ---
 
-## 📝 Abstract
+## Abstract
 
 This repository contains the backend research pipeline, evaluation outputs, manuscript assets, and reproducible report for a study on how **inter-individual differences moderate the effectivity of cyber-manipulation** in political opinion spaces. The workflow represents `PROFILE`, `ATTACK`, and `OPINION` as explicit hierarchical ontologies, generates attacked-only profile-panel scenarios, elicits baseline and post-exposure opinions with structured LLM agents, audits exposure realism and response coherence, and estimates moderation through a **repeated-outcome path SEM** plus a **post hoc ridge-regularized susceptibility index**.
 
@@ -54,7 +54,7 @@ The present study extends an earlier single-domain design to test generalization
 | Metric | Value |
 |--------|-------|
 | *N* (attacked scenarios) | *N_p* × *N_a* × *N_o* = **3,840** |
-| Profile feature dimensions | 85 (Big Five + Dual Process + Digital Literacy + Political Engagement + demographics) |
+| Profile feature dimensions | 80 (Big Five + Socioeconomic Status + Political Psychology + Social Context + demographics) |
 | Mean \|Δ\| | 34.75 (*SD* = 20.19) |
 | Mean *AE* | −0.84 (*SD* = 40.18) |
 | Positive *AE* rate | 48.2% |
@@ -82,9 +82,9 @@ The present study extends an earlier single-domain design to test generalization
 </div>
 
 <div align="center">
-<img src="research_report/assets/figures/supplementary_figure_s2_profile_effectivity_heatmap.png" width="780" alt="Profile × opinion adversarial effectivity heatmap across all attacked scenarios.">
+<img src="research_report/assets/figures/figure_5_3d_factorial_effectivity.png" width="780" alt="3D factorial adversarial effectivity surface across profile × attack × opinion combinations.">
 
-*Figure 2. Profile × opinion adversarial effectivity heatmap. Rows = profiles (N_p), columns = opinion leaves (N_o × N_a collapsed), color = mean adversarial effectivity. Low between-profile variance (ICC ≈ 0) is visible as low contrast across rows.*
+*Figure 2. 3D factorial adversarial effectivity surface. Axes = attack mechanism (N_a) × opinion domain (N_o); height = mean AE per profile group. Negligible between-profile variance (ICC ≈ 0) is visible as a flat surface across the profile dimension.*
 </div>
 
 ---
@@ -96,12 +96,12 @@ All *N_p* + *N_a* + *N_o* leaves are embedded via TF-IDF of leaf names + UMAP pr
 <div align="center">
 <img src="research_report/assets/figures/figure_umap_ontology_embedding.png" width="900" alt="UMAP semantic embedding of PROFILE, ATTACK, and OPINION ontology leaves.">
 
-*Figure 3. Lexical-semantic UMAP embedding of all ontology leaves. Panel A — PROFILE (N_p-dimensional feature space); Panel B — ATTACK (N_a leaves across four mechanism families); Panel C — OPINION (N_o leaves × 4 political domains). Colour = primary node; convex hulls = cluster boundaries.*
+*Figure 3. Lexical-semantic UMAP embedding of all ontology leaves. Panel A — PROFILE (80 leaves: Big Five facets, Socioeconomic Status, Political Psychology, Social Context, demographics); Panel B — ATTACK (N_a leaves across four mechanism families); Panel C — OPINION (N_o leaves × 4 political domains). Colour = primary node; convex hulls = cluster boundaries.*
 </div>
 
 ---
 
-## 📖 Full Paper
+## Full Paper
 
 - **PDF (typeset):** [research_report/report/main.pdf](research_report/report/main.pdf)
 - **LaTeX source:** [research_report/report/main.tex](research_report/report/main.tex)
@@ -110,7 +110,7 @@ All *N_p* + *N_a* + *N_o* leaves are embedded via TF-IDF of leaf names + UMAP pr
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 Paper_CaseStudiesAnalysisExperimentalData/
@@ -139,35 +139,31 @@ Paper_CaseStudiesAnalysisExperimentalData/
 │       ├── references.bib
 │       └── main.pdf
 │
-├── docs/
-│   └── NEXT_STEPS.md                    # Future directions: ML, XAI, simulation realism
-│
 └── src/
-    ├── backend/
-    │   ├── agentic_framework/           # OpenRouter client, agents, prompts, repair logic
-    │   ├── ontology/
-    │   │   └── separate/
-    │   │       └── test/                # PROFILE (85 dims) / ATTACK (18) / OPINION (62) ontologies
-    │   ├── pipeline/
-    │   │   ├── full/                    # Full orchestration entrypoint
-    │   │   └── separate/               # Independently runnable stages 01–09
-    │   ├── user_ontology/              # Plug in custom JSON ontology triplets
-    │   │   ├── validator.py            # Structural + semantic validation
-    │   │   ├── cli.py                  # CLI: --profile-json --attack-json --opinion-json
-    │   │   └── notebook/tool_usage.ipynb   # Comprehensive guide (12 sections)
-    │   └── utils/
-    │       ├── conditional_susceptibility.py   # Ridge CSI + bootstrap CIs + group XAI
-    │       ├── semantic_embedding.py           # TF-IDF/UMAP ontology embedding
-    │       └── visualization_dashboard.py      # Interactive Plotly dashboard
-    └── scripts/
-        └── run_9.sh                    # Reproduce current study end-to-end
+    └── backend/
+        ├── agentic_framework/           # OpenRouter client, agents, prompts, repair logic
+        ├── ontology/
+        │   └── separate/
+        │       └── test/                # PROFILE (80 dims) / ATTACK (18) / OPINION (62) ontologies
+        ├── pipeline/
+        │   ├── full/                    # Full orchestration entrypoint
+        │   └── separate/               # Independently runnable stages 01–09
+        ├── user_ontology/              # Plug in custom JSON ontology triplets
+        │   ├── validator.py            # Structural + semantic validation
+        │   ├── cli.py                  # CLI: --profile-json --attack-json --opinion-json
+        │   └── tool_usage.ipynb        # 12-section guide: format, validation, cost, output
+        └── utils/
+            ├── conditional_susceptibility.py   # Ridge CSI + bootstrap CIs + group XAI
+            ├── semantic_embedding.py           # TF-IDF/UMAP ontology embedding
+            ├── visualization_dashboard.py      # Interactive Plotly dashboard
+            └── NEXT_STEPS.md                   # Future directions: ML, XAI, simulation realism
 ```
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
-### 🔧 Option A — Local
+### Option A — Local
 
 ```bash
 git clone https://github.com/stvsever/research_paper_on_cognitive_sovereignity.git
@@ -177,7 +173,7 @@ pip install --upgrade pip && pip install -r requirements.txt
 cp .env.example .env   # add OPENROUTER_API_KEY
 ```
 
-### 🐳 Option B — Docker
+### Option B — Docker
 
 ```bash
 git clone https://github.com/stvsever/research_paper_on_cognitive_sovereignity.git
@@ -213,7 +209,7 @@ python -m src.backend.user_ontology.cli \
   --openrouter-model mistralai/mistral-small-3.2-24b-instruct
 ```
 
-See [`src/backend/user_ontology/notebook/tool_usage.ipynb`](src/backend/user_ontology/notebook/tool_usage.ipynb) — a 12-section professional guide covering format specification, validation, design guidelines, cost estimation, and output interpretation.
+See [`src/backend/user_ontology/tool_usage.ipynb`](src/backend/user_ontology/tool_usage.ipynb) — a 12-section professional guide covering format specification, validation, design guidelines, cost estimation, and output interpretation.
 
 ### Semantic Embedding
 
@@ -232,7 +228,7 @@ Results load automatically into the interactive dashboard (Ontologies → Semant
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Reproduce current study
 
@@ -268,7 +264,7 @@ Stages under `src/backend/pipeline/separate/` are independently runnable:
 
 ---
 
-## 🔄 Pipeline Overview
+## Pipeline Overview
 
 ```mermaid
 flowchart TD
@@ -292,7 +288,7 @@ flowchart TD
 
 ---
 
-## 🧮 Conditional Susceptibility Index
+## Conditional Susceptibility Index
 
 The profile-level susceptibility index is **directional** and **conditional** on the configured (attack, opinion) target set *T*.
 
@@ -328,7 +324,7 @@ python src/backend/pipeline/separate/compute_conditional_susceptibility/score_pr
 
 ---
 
-## 📖 Citation
+## Citation
 
 ### APA 7
 
@@ -352,7 +348,7 @@ A machine-readable citation is also available in [`CITATION.cff`](CITATION.cff).
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 

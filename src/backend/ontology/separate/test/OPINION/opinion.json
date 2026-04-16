@@ -1,11 +1,14 @@
 {
   "_metadata": {
-    "adversarial_operator_goal": "Maximize aggregate erosion of defense infrastructure, multilateral alliance cohesion, and institutional security capacity through targeted cyber-manipulation of public opinion.",
-    "adversarial_operator_description": "A state-level or sophisticated non-state adversarial operator whose strategic objective is to weaken the nations' collective willingness and institutional capacity for coordinated defense, deterrence, and security governance. The operator profits from any opinion movement that reduces societal support for its security architecture or amplifies internal societal fragmentation. This framing is used for research purposes to model directionally aligned susceptibility in cyber-manipulation simulation studies.",
+    "adversarial_operator_goal": "Maximize aggregate erosion of defense infrastructure, multilateral alliance cohesion, institutional security capacity, and the epistemic trust required to coordinate a collective response, through targeted cyber-manipulation of public opinion.",
+    "adversarial_operator_description": "A state-level or sophisticated non-state adversarial operator whose strategic objective is to weaken the target population's collective willingness and institutional capacity for coordinated defense, deterrence, and security governance. The operator profits from any opinion movement that reduces societal support for the security architecture, amplifies internal societal fragmentation, or degrades the epistemic/informational integrity on which deliberative governance depends. This framing is used for research purposes to model directionally aligned susceptibility in cyber-manipulation simulation studies.",
     "direction_convention": {
       "+1": "Adversary seeks to INCREASE this opinion score; a higher score on this leaf serves the adversary's strategic goal.",
       "-1": "Adversary seeks to DECREASE this opinion score; a lower score serves the adversary's strategic goal.",
       "0": "Directionally ambiguous with respect to this adversary's stated goal: the leaf is included for ontological completeness and opinion diversity but is not assigned a clear exploitation direction. It is excluded from adversarially-aligned effectivity scoring and treated as a non-target leaf."
+    },
+    "domain_notes": {
+      "Information_Integrity_and_Platforms": "Opinions about information ecosystem governance, platform accountability, media trust, and the epistemic infrastructure of democratic deliberation — directly downstream of the adversary's second-order goal of eroding epistemic trust. Several leaves in this domain are deliberately direction-assigned so that successful manipulation is scoreable."
     }
   },
   "Issue_Position_Taxonomy": {
@@ -21,7 +24,12 @@
       "Assimilationism_Support": {"adversarial_direction": 1},
       "Language_Integration_Requirements_Support": {"adversarial_direction": 0},
       "Deportation_Enforcement_Support": {"adversarial_direction": 1},
-      "Detention_of_Irregular_Migrants_Acceptance": {"adversarial_direction": 1}
+      "Detention_of_Irregular_Migrants_Acceptance": {"adversarial_direction": 1},
+      "Integration_Funding_Support": {"adversarial_direction": -1},
+      "Cross_Border_Labor_Mobility_Support": {"adversarial_direction": -1},
+      "Humanitarian_Corridor_Support": {"adversarial_direction": -1},
+      "Migration_Securitization_Framing_Acceptance": {"adversarial_direction": 1},
+      "EU_Common_Asylum_System_Support": {"adversarial_direction": -1}
     },
     "Foreign_Policy_and_Geopolitics": {
       "Multilateralism_Support": {"adversarial_direction": -1},
@@ -35,7 +43,12 @@
       "International_Law_Compliance_Priority": {"adversarial_direction": -1},
       "Migration_Cooperation_Priority": {"adversarial_direction": -1},
       "Democracy_Promotion_Support": {"adversarial_direction": -1},
-      "Sphere_of_Influence_Acceptance": {"adversarial_direction": 1}
+      "Sphere_of_Influence_Acceptance": {"adversarial_direction": 1},
+      "UN_Institutional_Reform_Support": {"adversarial_direction": -1},
+      "Energy_Independence_From_Authoritarian_Suppliers_Support": {"adversarial_direction": -1},
+      "Support_For_Contested_State_Sovereignty": {"adversarial_direction": -1},
+      "Great_Power_Appeasement_Acceptance": {"adversarial_direction": 1},
+      "Overseas_Development_Aid_Support": {"adversarial_direction": -1}
     },
     "Defense_and_National_Security": {
       "Defense_Spending_Increase_Support": {"adversarial_direction": -1},
@@ -48,7 +61,26 @@
       "Border_Security_Militarization_Support": {"adversarial_direction": -1},
       "Nuclear_Deterrence_Support": {"adversarial_direction": -1},
       "Cyber_Defense_Investment_Support": {"adversarial_direction": -1},
-      "Civil_Defense_Preparedness_Support": {"adversarial_direction": -1}
+      "Civil_Defense_Preparedness_Support": {"adversarial_direction": -1},
+      "Forward_Deployment_Host_Nation_Support": {"adversarial_direction": -1},
+      "Critical_Infrastructure_Hardening_Support": {"adversarial_direction": -1},
+      "Counter_Hybrid_Warfare_Capability_Support": {"adversarial_direction": -1},
+      "Defense_Industrial_Reshoring_Support": {"adversarial_direction": -1},
+      "Allied_Cyber_Incident_Mutual_Assistance_Support": {"adversarial_direction": -1}
+    },
+    "Information_Integrity_and_Platforms": {
+      "Platform_Accountability_Regulation_Support": {"adversarial_direction": -1},
+      "Counter_Disinformation_Agency_Support": {"adversarial_direction": -1},
+      "Foreign_Information_Manipulation_Transparency_Mandate_Support": {"adversarial_direction": -1},
+      "Independent_Fact_Checking_Ecosystem_Support": {"adversarial_direction": -1},
+      "Algorithmic_Transparency_Requirement_Support": {"adversarial_direction": -1},
+      "Encrypted_Messaging_Restriction_Acceptance": {"adversarial_direction": 0},
+      "Freedom_From_Content_Moderation_Preference": {"adversarial_direction": 1},
+      "Trust_In_Mainstream_Journalism": {"adversarial_direction": -1},
+      "Public_Service_Broadcasting_Funding_Support": {"adversarial_direction": -1},
+      "Government_Distrust_Of_Elections": {"adversarial_direction": 1},
+      "Synthetic_Media_Labelling_Mandate_Support": {"adversarial_direction": -1},
+      "Civic_Media_Literacy_Education_Support": {"adversarial_direction": -1}
     }
   }
 }

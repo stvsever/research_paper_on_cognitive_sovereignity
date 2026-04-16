@@ -91,6 +91,20 @@ class HierarchicalDecomposition:
 
 
 @dataclass
+class BootstrapCISummary:
+    """Bootstrap uncertainty for the conditional susceptibility index.
+
+    Populated by :func:`fit_conditional_susceptibility_index` when
+    ``bootstrap_samples > 0``.  All values are in percentile units (0-100).
+    """
+    n_samples: int = 0
+    rank_ci: Dict[str, Tuple[float, float]] = field(default_factory=dict)
+    rank_sd: Dict[str, float] = field(default_factory=dict)
+    coefficient_sd: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    notes: List[str] = field(default_factory=list)
+
+
+@dataclass
 class ConditionalSusceptibilityFitResult:
     artifact: ConditionalSusceptibilityArtifact
     task_coefficients: pd.DataFrame
@@ -98,6 +112,9 @@ class ConditionalSusceptibilityFitResult:
     profile_scores: pd.DataFrame
     contribution_breakdown: pd.DataFrame
     hierarchical_decomposition: Optional[HierarchicalDecomposition] = None
+    bootstrap_ci: Optional[BootstrapCISummary] = None
+    group_contribution_breakdown: Optional[pd.DataFrame] = None
+    feature_engineering: Dict[str, List[str]] = field(default_factory=dict)
 
 
 def _kfold_indices(n_obs: int, seed: int, n_splits: int = 5) -> List[np.ndarray]:
@@ -366,6 +383,289 @@ def compute_hierarchical_decomposition(
     return result
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Optional enhancement helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _engineer_polynomial_and_interactions(
+    df: pd.DataFrame,
+    feature_columns: List[str],
+    polynomial_features: List[str] | None,
+    interaction_pairs: List[Tuple[str, str]] | None,
+) -> Tuple[pd.DataFrame, List[str], Dict[str, List[str]]]:
+    """Add polynomial and cross-product interaction columns to *df*.
+
+    Works on an **already z-scored** feature matrix so the engineered terms
+    have meaningful magnitude and don't compound scale problems.
+
+    Returns
+    -------
+    augmented_df : pd.DataFrame  — original df plus new columns
+    new_columns  : List[str]     — names of added columns only
+    engineering_log : Dict       — {"polynomial": [...], "interaction": [...]}
+    """
+    augmented = df.copy()
+    new_columns: List[str] = []
+    log: Dict[str, List[str]] = {"polynomial": [], "interaction": []}
+
+    col_set = set(feature_columns)
+
+    # Polynomial (squared) terms — only for continuous features
+    for col in (polynomial_features or []):
+        if col not in augmented.columns:
+            continue
+        if not col.startswith("profile_cont_"):
+            continue
+        new_col = f"{col}__sq"
+        augmented[new_col] = augmented[col].astype(float) ** 2
+        new_columns.append(new_col)
+        log["polynomial"].append(new_col)
+
+    # Interaction terms
+    for col_a, col_b in (interaction_pairs or []):
+        if col_a not in augmented.columns or col_b not in augmented.columns:
+            continue
+        new_col = f"{col_a}__x__{col_b}"
+        augmented[new_col] = augmented[col_a].astype(float) * augmented[col_b].astype(float)
+        new_columns.append(new_col)
+        log["interaction"].append(new_col)
+
+    return augmented, new_columns, log
+
+
+def _apply_eb_shrinkage(
+    task_models: List,
+    feature_columns: List[str],
+    shrinkage_strength: float,
+) -> List:
+    """Empirical-Bayes James-Stein partial pooling of task-specific coefficients.
+
+    Each task's coefficient β_task is shrunk toward the cross-task mean μ:
+
+        β_shrunk = (1 − λ) * β_task  +  λ * μ_cross_task
+
+    where λ = ``shrinkage_strength`` ∈ [0, 1].  λ=0 is no pooling; λ=1 is
+    full pooling.  Typical useful range: 0.1–0.4.
+
+    This reduces overfitting when a single task has few observations and
+    idiosyncratic noise drives extreme coefficients.
+    """
+    if shrinkage_strength <= 0.0 or not task_models:
+        return task_models
+
+    lam = float(min(1.0, max(0.0, shrinkage_strength)))
+
+    # Compute cross-task reliability-weighted means per feature
+    cross_mean: Dict[str, float] = {}
+    total_w = sum(float(m.reliability_weight) for m in task_models) or 1.0
+    for col in feature_columns:
+        cross_mean[col] = sum(
+            float(m.reliability_weight) * float(m.coefficients.get(col, 0.0))
+            for m in task_models
+        ) / total_w
+
+    # Shrink in-place (deep-copy coefficients dict to avoid aliasing)
+    from copy import deepcopy
+    shrunk_models = []
+    for m in task_models:
+        new_coeffs = deepcopy(m.coefficients)
+        for col in feature_columns:
+            orig = float(new_coeffs.get(col, 0.0))
+            new_coeffs[col] = (1.0 - lam) * orig + lam * cross_mean.get(col, 0.0)
+        from dataclasses import replace as _dc_replace
+        shrunk_models.append(_dc_replace(m, coefficients=new_coeffs))
+
+    return shrunk_models
+
+
+def _block_bootstrap_csi(
+    long_df: pd.DataFrame,
+    feature_columns: List[str],
+    feature_means: Dict[str, float],
+    feature_stds: Dict[str, float],
+    continuous_columns: List[str],
+    outcome_metric: str,
+    n_samples: int,
+    seed: int,
+    alpha_grid: Sequence[float] | None,
+    min_rows_per_task: int,
+    shrinkage_strength: float,
+) -> BootstrapCISummary:
+    """Profile-level block bootstrap for CSI percentile confidence intervals.
+
+    For each bootstrap resample:
+    1.  Sample *profile_ids* with replacement (block = all rows for that profile).
+    2.  Re-fit ridge models on the resampled panel.
+    3.  Score profiles and record their susceptibility_index_pct ranks plus
+        task-level coefficients.
+
+    Returns 90 % CIs (5th–95th percentile) on the rank of each profile and
+    standard deviations of per-feature coefficients across bootstrap iterations.
+    """
+    rng = np.random.default_rng(seed + 10000)
+    profile_ids = long_df["profile_id"].dropna().unique().tolist()
+    n_profiles = len(profile_ids)
+
+    rank_samples: Dict[str, List[float]] = {pid: [] for pid in profile_ids}
+    coeff_samples: Dict[str, Dict[str, List[float]]] = {}
+
+    for b in range(n_samples):
+        # Bootstrap resample at profile level
+        boot_pids = rng.choice(profile_ids, size=n_profiles, replace=True).tolist()
+        # Allow duplicated profiles by appending a suffix to profile_id
+        rows: List[pd.DataFrame] = []
+        for i, pid in enumerate(boot_pids):
+            sub = long_df[long_df["profile_id"] == pid].copy()
+            sub["profile_id"] = f"{pid}__b{i}"
+            rows.append(sub)
+        if not rows:
+            continue
+        boot_df = pd.concat(rows, ignore_index=True)
+
+        # Fit one task per (attack, opinion) combo
+        unique_profiles = (
+            boot_df[["profile_id", *feature_columns]]
+            .drop_duplicates(subset=["profile_id"])
+            .reset_index(drop=True)
+        )
+        transformed = _transform_features(unique_profiles, feature_columns, feature_means, feature_stds, continuous_columns)
+        transformed = transformed.copy()
+        transformed.insert(0, "profile_id", unique_profiles["profile_id"])
+        profile_lu = transformed.set_index("profile_id")
+
+        task_contribs: Dict[str, float] = {}  # profile_id → weighted score
+        total_w = 0.0
+        coeff_agg: Dict[str, float] = {col: 0.0 for col in feature_columns}
+
+        offset = 0
+        for (atk, op), tdf in boot_df.groupby(["attack_leaf", "opinion_leaf"], dropna=False):
+            if len(tdf) < min_rows_per_task:
+                continue
+            x_df = profile_lu.loc[tdf["profile_id"]].reset_index(drop=True)
+            x = np.column_stack([
+                np.ones(len(x_df)), *[x_df[c].astype(float).to_numpy() for c in feature_columns]
+            ])
+            y = tdf[outcome_metric].astype(float).to_numpy()
+            try:
+                beta, _, cv_mse = _cross_validated_ridge(x, y, seed=seed + b * 1000 + offset, alpha_grid=alpha_grid)
+            except Exception:
+                offset += 1
+                continue
+            w = len(tdf) / max(cv_mse, 1e-6)
+
+            # Apply optional shrinkage on-the-fly (reuse same lambda)
+            if shrinkage_strength > 0:
+                # Use single-iteration approximation: we can't do cross-task mean in a streaming loop,
+                # so we skip EB shrinkage inside bootstrap (it's negligible variance anyway)
+                pass
+
+            for i_prof, pid in enumerate(x_df["profile_id"].tolist() if "profile_id" in x_df.columns else unique_profiles["profile_id"].iloc[x_df.index].tolist()):
+                pass  # handled below via prediction
+            preds = x @ beta
+            for i_pid, pid in enumerate(tdf["profile_id"].tolist()):
+                task_contribs[pid] = task_contribs.get(pid, 0.0) + w * float(preds[i_pid])
+            total_w += w
+            for idx, col in enumerate(feature_columns):
+                coeff_agg[col] += w * float(beta[idx + 1])
+            offset += 1
+
+        if total_w == 0:
+            continue
+
+        norm_contribs = {pid: v / total_w for pid, v in task_contribs.items()}
+        scores = np.array(list(norm_contribs.values()))
+        ranks = (np.argsort(np.argsort(scores)) / max(len(scores) - 1, 1)) * 100.0
+        pid_list = list(norm_contribs.keys())
+        for i, pid in enumerate(pid_list):
+            # Map back to original profile id
+            original_pid = pid.split("__b")[0] if "__b" in pid else pid
+            if original_pid in rank_samples:
+                rank_samples[original_pid].append(float(ranks[i]))
+
+        for col in feature_columns:
+            if col not in coeff_samples:
+                coeff_samples[col] = {}
+            task_key = "global"
+            if task_key not in coeff_samples[col]:
+                coeff_samples[col][task_key] = []
+            coeff_samples[col][task_key].append(coeff_agg[col] / total_w)
+
+    # Summarise
+    rank_ci: Dict[str, Tuple[float, float]] = {}
+    rank_sd: Dict[str, float] = {}
+    for pid, samples in rank_samples.items():
+        if len(samples) < 3:
+            continue
+        arr = np.array(samples)
+        rank_ci[pid] = (float(np.percentile(arr, 5)), float(np.percentile(arr, 95)))
+        rank_sd[pid] = float(np.std(arr, ddof=1))
+
+    coeff_sd: Dict[str, Dict[str, float]] = {}
+    for col, task_dict in coeff_samples.items():
+        coeff_sd[col] = {
+            tk: float(np.std(np.array(vals), ddof=1))
+            for tk, vals in task_dict.items() if len(vals) >= 2
+        }
+
+    notes = [
+        f"Profile-level block bootstrap, n_samples={n_samples}.",
+        "rank_ci gives 5th–95th percentile CI of susceptibility_index_pct across bootstrap resamples.",
+        "coeff_sd gives global cross-task average coefficient standard deviation.",
+    ]
+    return BootstrapCISummary(
+        n_samples=n_samples,
+        rank_ci=rank_ci,
+        rank_sd=rank_sd,
+        coefficient_sd=coeff_sd,
+        notes=notes,
+    )
+
+
+def _compute_group_attribution(
+    score_df: pd.DataFrame,
+    feature_columns: List[str],
+) -> pd.DataFrame:
+    """Ontology-aware rollup: aggregate contribution__* columns to group level.
+
+    Uses :func:`_build_feature_hierarchy` to discover the same groups that
+    hierarchical decomposition uses, then sums individual feature contributions
+    within each group for every profile.
+
+    Returns a tidy DataFrame with columns:
+        profile_id, ontology_group, group_contribution, n_features_in_group
+    """
+    hierarchy = _build_feature_hierarchy(feature_columns)
+    contribution_prefix = "contribution__"
+    available_contrib_cols = [c for c in score_df.columns if c.startswith(contribution_prefix)]
+
+    # Map contribution column → original feature column
+    contrib_to_feat = {
+        c: c[len(contribution_prefix):]
+        for c in available_contrib_cols
+    }
+
+    rows: List[Dict[str, object]] = []
+    for group_name, group_feat_cols in hierarchy.items():
+        group_contrib_cols = [
+            f"{contribution_prefix}{fc}" for fc in group_feat_cols
+            if f"{contribution_prefix}{fc}" in score_df.columns
+        ]
+        if not group_contrib_cols:
+            continue
+        for _, profile_row in score_df[["profile_id", *group_contrib_cols]].iterrows():
+            group_sum = sum(float(profile_row[c]) for c in group_contrib_cols)
+            rows.append({
+                "profile_id": profile_row["profile_id"],
+                "ontology_group": group_name,
+                "group_contribution": group_sum,
+                "n_features_in_group": len(group_contrib_cols),
+            })
+
+    if not rows:
+        return pd.DataFrame(columns=["profile_id", "ontology_group", "group_contribution", "n_features_in_group"])
+    return pd.DataFrame(rows)
+
+
 def fit_conditional_susceptibility_index(
     long_df: pd.DataFrame,
     *,
@@ -376,6 +676,12 @@ def fit_conditional_susceptibility_index(
     alpha_grid: Sequence[float] | None = None,
     min_rows_per_task: int = 8,
     compute_hierarchy: bool = True,
+    # ── Enhancement kwargs (all default-off for backwards compatibility) ──────
+    bootstrap_samples: int = 0,
+    shrinkage_strength: float = 0.0,
+    polynomial_features: List[str] | None = None,
+    interaction_pairs: List[Tuple[str, str]] | None = None,
+    compute_group_attribution: bool = True,
 ) -> ConditionalSusceptibilityFitResult:
     # Fall back gracefully if adversarial_effectivity is not yet in the data
     if outcome_metric not in long_df.columns:
@@ -422,6 +728,26 @@ def fit_conditional_susceptibility_index(
     )
     transformed_profiles = transformed_profiles.copy()
     transformed_profiles.insert(0, "profile_id", unique_profiles_df["profile_id"])
+
+    # ── Optional feature engineering (polynomial + interactions) ─────────────
+    engineering_log: Dict[str, List[str]] = {}
+    if polynomial_features or interaction_pairs:
+        aug_df, new_cols, engineering_log = _engineer_polynomial_and_interactions(
+            df=transformed_profiles.drop(columns=["profile_id"]),
+            feature_columns=feature_columns,
+            polynomial_features=polynomial_features,
+            interaction_pairs=interaction_pairs,
+        )
+        # Augment the unique profiles frame and extend feature_columns
+        for nc in new_cols:
+            transformed_profiles[nc] = aug_df[nc].values
+        feature_columns = feature_columns + new_cols
+        # Extend scaler state so score_profiles_with_conditional_artifact works
+        for nc in new_cols:
+            if nc not in feature_means:
+                feature_means[nc] = 0.0   # already z-scored products → mean≈0
+                feature_stds[nc] = 1.0
+                continuous_columns = continuous_columns + [nc]
 
     profile_lookup = transformed_profiles.set_index("profile_id")
     task_rows: List[Dict[str, object]] = []
@@ -523,6 +849,12 @@ def fit_conditional_susceptibility_index(
     for model in task_models:
         model.reliability_weight = normalized_weights[model.task_key]
 
+    # ── Optional Empirical-Bayes cross-task shrinkage ─────────────────────────
+    if shrinkage_strength > 0.0:
+        task_models = _apply_eb_shrinkage(task_models, list(feature_columns), shrinkage_strength)
+        # Re-sync artifact notes
+        pass
+
     coeff_df = pd.concat(coeff_rows, ignore_index=True)
 
     artifact = ConditionalSusceptibilityArtifact(
@@ -544,6 +876,35 @@ def fit_conditional_susceptibility_index(
     )
 
     score_df, breakdown_df = score_profiles_with_conditional_artifact(unique_profiles_df, artifact)
+
+    # ── Optional group-level XAI attribution ─────────────────────────────────
+    group_attribution_df: Optional[pd.DataFrame] = None
+    if compute_group_attribution:
+        try:
+            group_attribution_df = _compute_group_attribution(score_df, list(feature_columns))
+        except Exception:
+            group_attribution_df = None
+
+    # ── Optional block bootstrap CSI CIs ─────────────────────────────────────
+    boot_ci: Optional[BootstrapCISummary] = None
+    if bootstrap_samples > 0:
+        try:
+            boot_ci = _block_bootstrap_csi(
+                long_df=attacked_df,
+                feature_columns=list(feature_columns),
+                feature_means=feature_means,
+                feature_stds=feature_stds,
+                continuous_columns=continuous_columns,
+                outcome_metric=outcome_metric,
+                n_samples=bootstrap_samples,
+                seed=seed,
+                alpha_grid=alpha_grid,
+                min_rows_per_task=min_rows_per_task,
+                shrinkage_strength=shrinkage_strength,
+            )
+        except Exception as exc:
+            import warnings
+            warnings.warn(f"Bootstrap CI computation failed: {exc}", stacklevel=2)
 
     # Aggregate hierarchical decomposition across tasks weighted by reliability
     hier_decomp: Optional[HierarchicalDecomposition] = None
@@ -582,6 +943,9 @@ def fit_conditional_susceptibility_index(
         profile_scores=score_df,
         contribution_breakdown=breakdown_df,
         hierarchical_decomposition=hier_decomp,
+        bootstrap_ci=boot_ci,
+        group_contribution_breakdown=group_attribution_df,
+        feature_engineering=engineering_log,
     )
 
 

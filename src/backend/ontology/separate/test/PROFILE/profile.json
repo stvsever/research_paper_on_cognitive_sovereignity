@@ -1,4 +1,13 @@
 {
+  "_metadata": {
+    "taxonomy_description": "Hierarchical taxonomy of inter-individual differences with documented relevance to susceptibility to cyber-manipulation of political opinion. Variables are selected for direct mappability to standard social-science survey instruments (ESS, Eurobarometer, ANES, GSS, British Social Attitudes). The tree mixes (a) continuous trait inventories with facet substructure, (b) absolute numeric scalars, and (c) categorical single-select dimensions. Structure is discovered generically by the pipeline: no inventory names are hardcoded.",
+    "inventory_rationales": {
+      "Big_Five": "Canonical personality structure (NEO-PI-R facet resolution). Repeatedly implicated as a moderator of persuasibility and misinformation endorsement.",
+      "Socioeconomic_Status": "Income, employment, and subjective class position. Economic precarity is consistently associated with susceptibility to populist and conspiratorial messaging; directly mappable to ESS/ANES income quintile and employment-type questions.",
+      "Political_Psychology": "Ideological positioning (left-right scale, extremity, partisan strength), institutional trust, and conspiracy belief propensity. These are the primary psychological mediators of susceptibility to politically-targeted disinformation; standard measures in ESS (left-right scale, political trust battery) and Eurobarometer.",
+      "Social_Context": "Online platform behavior, social network characteristics, and interpersonal trust. Platform use and echo-chamber exposure are proximal moderators of information operations; mappable to Pew Research Internet surveys, ESS social trust items, and IAB media-use panels."
+    }
+  },
   "PERSON_RESEARCH_FACTORS": {
     "Age": {
       "Chronological_Age": {}
@@ -7,6 +16,22 @@
       "Male": {},
       "Female": {},
       "Other": {}
+    },
+    "Education_Level": {
+      "Primary_Or_Less": {},
+      "Secondary_Completed": {},
+      "Post_Secondary_Non_Tertiary": {},
+      "Bachelor_Equivalent": {},
+      "Master_Equivalent": {},
+      "Doctoral_Equivalent": {}
+    },
+    "News_Diet_Primary_Type": {
+      "Legacy_Print_Dominant": {},
+      "Broadcast_Television_Dominant": {},
+      "Broadcast_Radio_Dominant": {},
+      "Online_Legacy_Outlet_Dominant": {},
+      "Social_Media_Feed_Dominant": {},
+      "Messaging_App_And_Forwarded_Content_Dominant": {}
     },
     "Personality": {
       "Big_Five": {
@@ -50,6 +75,62 @@
           "Self_Discipline": {},
           "Deliberation": {}
         }
+      }
+    },
+    "Socioeconomic_Status": {
+      "Economic_Standing": {
+        "Household_Income_Quintile": {},
+        "Subjective_Class_Position": {},
+        "Economic_Anxiety": {},
+        "Financial_Security": {},
+        "Upward_Mobility_Belief": {}
+      },
+      "Employment_Type": {
+        "Employed_Full_Time": {},
+        "Employed_Part_Time": {},
+        "Unemployed_Seeking": {},
+        "Student": {},
+        "Retired": {},
+        "Other_Inactive": {}
+      }
+    },
+    "Political_Psychology": {
+      "Ideological_Positioning": {
+        "Political_Orientation_LR": {},
+        "Ideological_Extremity": {},
+        "Partisan_Identity_Strength": {}
+      },
+      "Institutional_Trust": {
+        "Government_Trust": {},
+        "Mainstream_Media_Trust": {},
+        "Scientific_Consensus_Trust": {},
+        "Conspiracy_Belief_Propensity": {},
+        "Satisfaction_With_Democracy": {}
+      },
+      "Political_Engagement": {
+        "Political_Interest": {},
+        "Voting_Likelihood": {},
+        "Civic_Participation": {}
+      }
+    },
+    "Social_Context": {
+      "Online_Behavior": {
+        "Social_Media_Hours_Daily": {},
+        "Information_Echo_Chamber": {},
+        "Online_Political_Discussion": {},
+        "Platform_Primary_Type": {
+          "Facebook_Dominant": {},
+          "Twitter_X_Dominant": {},
+          "Instagram_TikTok_Dominant": {},
+          "YouTube_Dominant": {},
+          "No_Social_Media": {}
+        }
+      },
+      "Social_Capital": {
+        "Interpersonal_Trust": {},
+        "Social_Network_Diversity": {},
+        "Community_Belonging": {},
+        "Social_Isolation": {}
       }
     }
   }

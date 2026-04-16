@@ -1212,6 +1212,34 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
       renderInspector();
     }}
 
+    const ZOOM_MIN = 0.55;
+    const ZOOM_MAX = 2.4;
+    const ZOOM_STEP = 0.15;
+    const ZOOM_WHEEL_SENSITIVITY = 0.0018;
+    function setZoom(nextZoom, anchorClientX = null, anchorClientY = null) {{
+      const wrap = root.querySelector('#ontx-canvas-wrap');
+      if (!wrap) return;
+      const clamped = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, nextZoom));
+      if (Math.abs(clamped - state.zoom) < 1e-4) return;
+      const prevZoom = state.zoom;
+
+      const rect = wrap.getBoundingClientRect();
+      let viewportX = wrap.clientWidth / 2;
+      let viewportY = wrap.clientHeight / 2;
+      if (anchorClientX !== null && anchorClientY !== null) {{
+        viewportX = Math.max(0, Math.min(wrap.clientWidth, anchorClientX - rect.left));
+        viewportY = Math.max(0, Math.min(wrap.clientHeight, anchorClientY - rect.top));
+      }}
+
+      const worldX = (wrap.scrollLeft + viewportX) / prevZoom;
+      const worldY = (wrap.scrollTop + viewportY) / prevZoom;
+
+      state.zoom = clamped;
+      renderGraph();
+      wrap.scrollLeft = worldX * state.zoom - viewportX;
+      wrap.scrollTop = worldY * state.zoom - viewportY;
+    }}
+
     root.querySelectorAll('#ontx-source .ontx-btn').forEach(btn => btn.addEventListener('click', () => setSource(btn.dataset.source)));
     root.querySelectorAll('#ontx-layout .ontx-btn').forEach(btn => btn.addEventListener('click', () => setLayout(btn.dataset.layout)));
     root.querySelector('#ontx-depth').addEventListener('input', ev => {{
@@ -1247,16 +1275,13 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
     root.querySelector('#ontx-collapse-all').addEventListener('click', collapseAll);
     root.querySelector('#ontx-reset-depth').addEventListener('click', resetToDepth);
     root.querySelector('#ontx-zoom-in').addEventListener('click', () => {{
-      state.zoom = Math.min(2.4, state.zoom + 0.15);
-      renderGraph();
+      setZoom(state.zoom + ZOOM_STEP);
     }});
     root.querySelector('#ontx-zoom-out').addEventListener('click', () => {{
-      state.zoom = Math.max(0.55, state.zoom - 0.15);
-      renderGraph();
+      setZoom(state.zoom - ZOOM_STEP);
     }});
     root.querySelector('#ontx-zoom-reset').addEventListener('click', () => {{
-      state.zoom = 1;
-      renderGraph();
+      setZoom(1);
     }});
 
     /* ── Drag / pan on canvas-wrap ─────────────────────────────────────── */
@@ -1290,6 +1315,12 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
         e.preventDefault();
       }}, {{passive: false}});
       wrap.addEventListener('touchend', () => {{ drag = null; }});
+      wrap.addEventListener('wheel', e => {{
+        if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+        e.preventDefault();
+        const factor = Math.exp(-e.deltaY * ZOOM_WHEEL_SENSITIVITY);
+        setZoom(state.zoom * factor, e.clientX, e.clientY);
+      }}, {{passive: false}});
     }})();
 
     initDatasets();
@@ -4122,6 +4153,205 @@ cse_update();
 
 # ─── dashboard HTML ───────────────────────────────────────────────────────────
 
+def _fig_umap_embedding(
+    embedding_dashboard_dict: Dict[str, Any],
+    color_by: str = "ontology",
+) -> go.Figure:
+    """Interactive 2-D UMAP scatter of all ontology leaves.
+
+    Parameters
+    ----------
+    embedding_dashboard_dict : output of EmbeddingArtifact.to_dashboard_dict()
+    color_by : 'ontology' | 'cluster'
+    """
+    points = embedding_dashboard_dict.get("points", [])
+    if not points:
+        fig = go.Figure()
+        fig.add_annotation(text="No embedding data available. Run embed_ontology() first.", showarrow=False)
+        return _apply_style(fig, height=600)
+
+    xs = [p["x"] for p in points]
+    ys = [p["y"] for p in points]
+    ontologies = [p["ontology"] for p in points]
+    clusters = [str(p["cluster"]) for p in points]
+    leaves = [p["leaf"].replace("_", " ") for p in points]
+    paths = [p["path"] for p in points]
+    texts = [p.get("text", "")[:120] + "…" if len(p.get("text","")) > 120 else p.get("text","") for p in points]
+
+    ONT_COLORS = {
+        "PROFILE": PALETTE["blue"],
+        "ATTACK":  PALETTE["orange"],
+        "OPINION": PALETTE["teal"],
+    }
+
+    CLUSTER_PALETTE = [
+        "#e76f51", "#2a9d8f", "#1d4e89", "#c89b3c", "#8338ec",
+        "#f72585", "#3a86ff", "#06d6a0", "#ef476f", "#118ab2",
+        "#073b4c", "#ffd166",
+    ]
+
+    hover = [
+        f"<b>{leaf}</b><br><span style='color:#aaa'>{ont}</span>"
+        f"<br><i style='font-size:11px'>{path}</i>"
+        f"<br><br>{txt}"
+        for leaf, ont, path, txt in zip(leaves, ontologies, paths, texts)
+    ]
+
+    fig = go.Figure()
+
+    if color_by == "ontology":
+        for ont in ["PROFILE", "ATTACK", "OPINION"]:
+            mask = [i for i, o in enumerate(ontologies) if o == ont]
+            if not mask:
+                continue
+            fig.add_trace(go.Scatter(
+                x=[xs[i] for i in mask],
+                y=[ys[i] for i in mask],
+                mode="markers+text",
+                name=ont,
+                marker=dict(
+                    size=9,
+                    color=ONT_COLORS.get(ont, "#888"),
+                    line=dict(width=0.5, color="#fff"),
+                    opacity=0.87,
+                ),
+                text=[leaves[i] if len(leaves[i]) < 18 else "" for i in mask],
+                textposition="top center",
+                textfont=dict(size=9, color="#14213d"),
+                hovertemplate="%{customdata}<extra></extra>",
+                customdata=[hover[i] for i in mask],
+            ))
+    else:
+        unique_clusters = sorted(set(clusters), key=lambda c: int(c) if c.lstrip("-").isdigit() else 0)
+        for ci, clust in enumerate(unique_clusters):
+            mask = [i for i, c in enumerate(clusters) if c == clust]
+            col = CLUSTER_PALETTE[ci % len(CLUSTER_PALETTE)]
+            fig.add_trace(go.Scatter(
+                x=[xs[i] for i in mask],
+                y=[ys[i] for i in mask],
+                mode="markers",
+                name=f"Cluster {clust}",
+                marker=dict(size=9, color=col, opacity=0.85, line=dict(width=0.5, color="#fff")),
+                hovertemplate="%{customdata}<extra></extra>",
+                customdata=[hover[i] for i in mask],
+            ))
+
+    model = embedding_dashboard_dict.get("model", "unknown")
+    cluster_algo = embedding_dashboard_dict.get("cluster_algo", "")
+    cluster_n = embedding_dashboard_dict.get("cluster_n", "")
+    dim = embedding_dashboard_dict.get("dim", "")
+
+    fig.update_layout(
+        title=dict(
+            text=(f"Semantic Embedding Space — 2D UMAP projection<br>"
+                  f"<span style='font-size:12px;color:#4a5d7a'>"
+                  f"Model: {model} ({dim}d) · Clustering: {cluster_algo} k={cluster_n}</span>"),
+            font=dict(size=16),
+        ),
+        xaxis=dict(title="UMAP 1", showgrid=True, gridcolor=PALETTE["line"], zeroline=False),
+        yaxis=dict(title="UMAP 2", showgrid=True, gridcolor=PALETTE["line"], zeroline=False),
+        legend=dict(
+            orientation="v", yanchor="top", y=1.0, xanchor="left", x=1.01,
+            font=dict(size=12),
+        ),
+        margin=dict(l=50, r=160, t=90, b=50),
+        height=640,
+        plot_bgcolor="#f8fafc",
+        paper_bgcolor="#ffffff",
+    )
+    return fig
+
+
+def _html_umap_embedding_tab(
+    embedding_data_path: Optional[Path] = None,
+    ontology_root: Optional[Path] = None,
+) -> str:
+    """Return HTML for the UMAP embedding tab.
+
+    Tries to load pre-computed embedding_dashboard.json; if not found, shows
+    a computation instructions panel. If embedding data is available, renders
+    two Plotly panels side-by-side (colored by ontology and by cluster).
+    """
+    # Try to load embedding data
+    emb_dict: Optional[Dict[str, Any]] = None
+    if embedding_data_path and Path(embedding_data_path).exists():
+        try:
+            emb_dict = json.loads(Path(embedding_data_path).read_text(encoding="utf-8"))
+        except Exception:
+            emb_dict = None
+    elif ontology_root:
+        # Check standard output location
+        candidate = Path(ontology_root).parent / "embeddings" / "embedding_dashboard.json"
+        if candidate.exists():
+            try:
+                emb_dict = json.loads(candidate.read_text(encoding="utf-8"))
+            except Exception:
+                emb_dict = None
+
+    if emb_dict is None:
+        return """
+<div style="padding:32px;background:#f5f7fa;border-radius:14px;border:1px solid #dbe3ef;max-width:700px;margin:24px auto;">
+  <h3 style="color:#1d4e89;margin:0 0 12px">Semantic Embedding — Not Yet Computed</h3>
+  <p style="color:#4a5d7a;line-height:1.7">
+    UMAP embeddings are computed separately (API calls to text-embedding-3-large via OpenRouter).
+    To generate them, run:
+  </p>
+  <pre style="background:#1a2a40;color:#a4c3e8;padding:14px;border-radius:8px;font-size:13px;overflow-x:auto">
+from src.backend.utils.semantic_embedding import embed_ontology
+artifact = embed_ontology(
+    ontology_root="src/backend/ontology/separate/test",
+    out_dir="evaluation/run_9/embeddings",
+    n_clusters=8,
+)
+artifact.write("evaluation/run_9/embeddings")
+  </pre>
+  <p style="color:#4a5d7a;line-height:1.7;margin-top:12px">
+    After running, regenerate the dashboard to see the embedding visualization here.
+  </p>
+</div>"""
+
+    n_pts = len(emb_dict.get("points", []))
+    ont_counts: Dict[str, int] = {}
+    for p in emb_dict.get("points", []):
+        ont_counts[p["ontology"]] = ont_counts.get(p["ontology"], 0) + 1
+
+    fig_by_ont  = _fig_umap_embedding(emb_dict, color_by="ontology")
+    fig_by_clus = _fig_umap_embedding(emb_dict, color_by="cluster")
+
+    html_ont  = fig_by_ont.to_html(include_plotlyjs=False, full_html=False)
+    html_clus = fig_by_clus.to_html(include_plotlyjs=False, full_html=False)
+
+    summary_items = "".join(
+        f"<span class='badge'>{k}: {v}</span>"
+        for k, v in {**ont_counts, "total": n_pts}.items()
+    )
+    model_info = emb_dict.get("model", "unknown")
+    dim_info = emb_dict.get("dim", "?")
+    cluster_info = f"{emb_dict.get('cluster_algo','')}, k={emb_dict.get('cluster_n','?')}"
+
+    return f"""
+<div style="margin-bottom:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+  {summary_items}
+  <span style="color:#4a5d7a;font-size:12px">Model: {model_info} ({dim_info}d) &middot; {cluster_info}</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+  <div>
+    <h4 style="margin:0 0 8px;color:#1d4e89">Colored by Ontology</h4>
+    {html_ont}
+  </div>
+  <div>
+    <h4 style="margin:0 0 8px;color:#1d4e89">Colored by Semantic Cluster</h4>
+    {html_clus}
+  </div>
+</div>
+<p style="color:#4a5d7a;font-size:12px;margin-top:12px;line-height:1.6">
+  Each point is one ontology leaf. Distance in 2D reflects semantic similarity in the embedding space.
+  Clusters reveal latent thematic groupings that cut across ontology boundaries — for example,
+  <em>fear-based</em> attack leaves cluster near <em>threat-salience</em> opinion targets.
+  Use this view to assess construct coverage and identify overlapping or redundant leaves.
+</p>"""
+
+
 def _render_dashboard_html(
     run_id: str,
     summary_cards: Dict[str, Any],
@@ -4136,7 +4366,7 @@ def _render_dashboard_html(
     )
 
     CATEGORIES = [
-        ("🗂 Ontologies",        ["Ontology Explorer"]),
+        ("🗂 Ontologies",        ["Ontology Explorer", "Semantic Embedding Space"]),
         ("📡 Factorial Space",   ["Factorial 3D Surface", "Factorial Heat + Contour"]),
         ("🧠 SEM Analysis",      ["SEM Network", "SEM Heatmap"]),
         ("🔬 Estimation",        ["Conditional Susceptibility Estimator", "Perturbation Explorer"]),
@@ -4313,6 +4543,16 @@ def generate_research_visuals(
     )
     ontology_payload = _load_dashboard_ontology_payload(ontology_catalog)
 
+    # Try to find embedding_dashboard.json (generated by semantic_embedding.py)
+    embedding_data_path: Optional[Path] = None
+    for candidate in [
+        output_root / "embeddings" / "embedding_dashboard.json",
+        output_root.parent / "embeddings" / "embedding_dashboard.json",
+    ]:
+        if candidate.exists():
+            embedding_data_path = candidate
+            break
+
     sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
     fit          = sem_result.get("fit_indices", {})
     icc_data     = {}
@@ -4393,6 +4633,13 @@ def generate_research_visuals(
 
     _add_fig("Profile Heatmap",  _fig_profile_heatmap(long_df, profile_index_df), "profile_heatmap.html")
     _add_fig("Score Trajectory", _fig_baseline_post(long_df),                     "baseline_post.html")
+
+    # ── Semantic Embedding UMAP tab ─────────────────────────────────────────
+    _add_html(
+        "Semantic Embedding Space",
+        _html_umap_embedding_tab(embedding_data_path=embedding_data_path),
+        "umap_embedding.html",
+    )
 
     # snapshots
     long_df.to_csv(snap_dir / "sem_long_encoded_snapshot.csv", index=False)
