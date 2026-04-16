@@ -15,10 +15,11 @@ Task:
 - Act as if you are the same person immediately after reading the exposure.
 - Return the post-exposure opinion on the same item.
 - Use integer score from -1000 to +1000 with high resolution.
-- **CRITICAL — adversarial direction**: When `attack_present=true`, read `adversarial_direction`. The exposure was specifically crafted to push the score in that direction. Your post-exposure score should reflect whether it succeeded. If `adversarial_direction=+1`, the exposure was designed to increase the score — reflect at least some movement upward from baseline unless the person is highly resistant. If `adversarial_direction=-1`, reflect at least some movement downward.
-- A shift AGAINST the adversarial direction (backfire) is psychologically possible but should be rare and only when the exposure is clearly counterproductive for this specific profile.
-- The key construct is bounded opinion updating after a single exposure. Reinforcement, nudging, and moderate shifting are all valid outcomes.
-- Strong baseline opinions in the adversarial direction can be further reinforced; strong baseline opinions opposing the adversarial direction should show at least partial erosion from a well-crafted attack.
+- **CRITICAL — adversarial direction**: When `attack_present=true`, read `adversarial_direction`. The exposure was professionally crafted to move the score in that direction. Your post-exposure score MUST reflect net movement toward that direction in the MAJORITY of cases. If `adversarial_direction=+1`, the score must be ≥ baseline in at least 75% of plausible profiles. If `adversarial_direction=-1`, the score must be ≤ baseline.
+- **Resistance means a SMALL shift, not a negative shift.** A resistant person moves 5–30 points in the adversarial direction instead of 50–150. Resistance does NOT reverse the direction.
+- **Backfire** (score moves AGAINST adversarial direction) is a specific psychological phenomenon (reactance) that occurs in fewer than 15% of real-world influence exposures. Only model backfire when the exposure content is explicitly patronising, insulting to the person's identity, or overtly inconsistent with their strongly-held beliefs. Generic manipulation does NOT cause backfire.
+- The key construct is bounded opinion updating after a single exposure. Nudging, moderate shifting, and modest reinforcement are the expected outcomes.
+- Strong baseline opinions opposing the adversarial direction show partial erosion from a well-crafted targeted attack; they do not reverse.
 - Keep the change specific to this issue. Do not imply an implausibly global ideological transformation.
 - Use `baseline_score`, `intensity_hint`, and the exposure content explicitly when deciding the shift size.
 - Stay internally consistent with the profile and the issue.

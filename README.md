@@ -27,7 +27,7 @@
 - [Usage](#usage)
 - [Pipeline Overview](#pipeline-overview)
 - [Conditional Susceptibility Index](#conditional-susceptibility-index)
-- [🧩 Custom Ontology Support](#-custom-ontology-support)
+- [Custom Ontology Support](#-custom-ontology-support)
 - [Citation](#citation)
 - [License](#license)
 
@@ -82,9 +82,9 @@ The present study extends an earlier single-domain design to test generalization
 </div>
 
 <div align="center">
-<img src="research_report/assets/figures/figure_5_3d_factorial_effectivity.png" width="780" alt="3D factorial adversarial effectivity surface across profile × attack × opinion combinations.">
+<img src="research_report/assets/figures/supplementary_figure_s2_profile_effectivity_heatmap.png" width="780" alt="Profile × attack–opinion adversarial effectivity matrix.">
 
-*Figure 2. 3D factorial adversarial effectivity surface. Axes = attack mechanism (N_a) × opinion domain (N_o); height = mean AE per profile group. Negligible between-profile variance (ICC ≈ 0) is visible as a flat surface across the profile dimension.*
+*Figure 2. Profile × attack–opinion adversarial effectivity matrix (N_p = 80 rows, N_a × N_o = 48 columns). Colour encodes mean AE per cell; red = manipulation succeeded, blue = backfire. The low cross-row contrast (ICC ≈ 0) indicates that attack–opinion context, not stable profile traits, drives effectivity variance.*
 </div>
 
 ---

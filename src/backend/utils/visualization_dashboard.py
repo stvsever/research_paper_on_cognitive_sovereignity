@@ -1355,11 +1355,14 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
     atk_l    = [_wrap_label(attack_labels[a], 18) for a in attacks]
     op_l     = [_wrap_label(opinion_labels[o], 18) for o in opinions]
 
+    # Use make_subplots to properly allocate non-overlapping scene domains.
+    # Do NOT manually override domain in update_layout — it conflicts with the
+    # auto-computed subplot annotations (titles) and causes visual overlap.
     fig = make_subplots(
         rows=1, cols=2,
         specs=[[{"type": "scene"}, {"type": "scene"}]],
         subplot_titles=["Mean Adversarial Effectivity (AE)", "Inter-individual Variability (SD of AE)"],
-        horizontal_spacing=0.12,
+        horizontal_spacing=0.06,
     )
 
     def _surf(mat, cscale, zlabel):
@@ -1383,13 +1386,14 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
         zaxis=dict(gridcolor="#ccd8ee"),
         camera=cam, bgcolor="white",
     )
+    # Apply shared scene style without domain override (let make_subplots own the layout).
     fig.update_layout(
-        scene  = dict(**scene_common, domain=dict(x=[0.00, 0.46], y=[0.0, 1.0])),
-        scene2 = dict(**scene_common, domain=dict(x=[0.54, 1.00], y=[0.0, 1.0])),
+        scene  = scene_common,
+        scene2 = scene_common,
         paper_bgcolor="white", font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=600, showlegend=False,
-        title=dict(text="3D Factorial Surface — Mean AE & Inter-individual Variability", font_size=14),
-        margin=dict(l=10, r=10, t=60, b=10),
+        height=620, showlegend=False,
+        title=dict(text="3D Factorial Surface — Mean AE (left) & Inter-individual Variability (right)", font_size=14),
+        margin=dict(l=10, r=10, t=65, b=10),
     )
     return fig
 
@@ -3180,7 +3184,11 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame) -> go.Figure:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
 
-    df = df.sort_values("multivariate_estimate", ascending=True).reset_index(drop=True)
+    # Sort by absolute magnitude descending (largest effect at top)
+    df = (df.assign(_abs_est=df["multivariate_estimate"].abs())
+            .sort_values("_abs_est", ascending=True)   # ascending=True → largest at top in horizontal bar
+            .drop(columns=["_abs_est"])
+            .reset_index(drop=True))
     labels = df["moderator_label"].tolist()
 
     has_uni   = "univariate_estimate"    in df.columns
@@ -4190,16 +4198,30 @@ def _fig_umap_embedding(
         "#073b4c", "#ffd166",
     ]
 
+    # Extract primary path segment (first component) for group-level labelling.
+    # path format: "PROFILE > Big_Five > Neuroticism > Anxiety"
+    primary_groups = []
+    for p in points:
+        parts = p["path"].split(" > ")
+        primary_groups.append(parts[1] if len(parts) > 1 else parts[0])
+
     hover = [
-        f"<b>{leaf}</b><br><span style='color:#aaa'>{ont}</span>"
-        f"<br><i style='font-size:11px'>{path}</i>"
-        f"<br><br>{txt}"
-        for leaf, ont, path, txt in zip(leaves, ontologies, paths, texts)
+        f"<b>{leaf}</b><br>"
+        f"<span style='color:#aaa;font-size:11px'>{ont} · {grp.replace('_',' ')}</span>"
+        f"<br><i style='font-size:10px'>{path}</i>"
+        f"<br><span style='font-size:11px'>{txt}</span>"
+        for leaf, ont, path, txt, grp in zip(leaves, ontologies, paths, texts, primary_groups)
     ]
+
+    def _centroid(mask_idx):
+        cx = sum(xs[i] for i in mask_idx) / len(mask_idx)
+        cy = sum(ys[i] for i in mask_idx) / len(mask_idx)
+        return cx, cy
 
     fig = go.Figure()
 
     if color_by == "ontology":
+        # Per-ontology scatter (muted, no individual labels to avoid clutter)
         for ont in ["PROFILE", "ATTACK", "OPINION"]:
             mask = [i for i, o in enumerate(ontologies) if o == ont]
             if not mask:
@@ -4207,33 +4229,68 @@ def _fig_umap_embedding(
             fig.add_trace(go.Scatter(
                 x=[xs[i] for i in mask],
                 y=[ys[i] for i in mask],
-                mode="markers+text",
+                mode="markers",
                 name=ont,
                 marker=dict(
-                    size=9,
+                    size=8,
                     color=ONT_COLORS.get(ont, "#888"),
                     line=dict(width=0.5, color="#fff"),
-                    opacity=0.87,
+                    opacity=0.78,
                 ),
-                text=[leaves[i] if len(leaves[i]) < 18 else "" for i in mask],
-                textposition="top center",
-                textfont=dict(size=9, color="#14213d"),
                 hovertemplate="%{customdata}<extra></extra>",
                 customdata=[hover[i] for i in mask],
+            ))
+        # Add group centroid labels (primary path segment) for interpretability
+        unique_groups = sorted(set(primary_groups))
+        for grp in unique_groups:
+            g_idx = [i for i, g in enumerate(primary_groups) if g == grp]
+            if not g_idx:
+                continue
+            ont = ontologies[g_idx[0]]
+            cx, cy = _centroid(g_idx)
+            fig.add_trace(go.Scatter(
+                x=[cx], y=[cy],
+                mode="text",
+                text=[f"<b>{grp.replace('_', ' ')}</b>"],
+                textfont=dict(size=10, color=ONT_COLORS.get(ont, "#444"),
+                              family="IBM Plex Sans, sans-serif"),
+                textposition="middle center",
+                showlegend=False,
+                hoverinfo="skip",
             ))
     else:
         unique_clusters = sorted(set(clusters), key=lambda c: int(c) if c.lstrip("-").isdigit() else 0)
         for ci, clust in enumerate(unique_clusters):
             mask = [i for i, c in enumerate(clusters) if c == clust]
             col = CLUSTER_PALETTE[ci % len(CLUSTER_PALETTE)]
+            # Derive a meaningful cluster label from the most-common primary group in the cluster
+            grp_counts: dict = {}
+            for i in mask:
+                g = f"{ontologies[i]}:{primary_groups[i]}"
+                grp_counts[g] = grp_counts.get(g, 0) + 1
+            top_grp = max(grp_counts, key=grp_counts.__getitem__) if grp_counts else clust
+            # Format: "PROFILE: Big Five" style
+            grp_label = top_grp.replace("_", " ").replace(":", ": ") if ":" in top_grp else f"Cluster {clust}"
             fig.add_trace(go.Scatter(
                 x=[xs[i] for i in mask],
                 y=[ys[i] for i in mask],
                 mode="markers",
-                name=f"Cluster {clust}",
+                name=grp_label,
                 marker=dict(size=9, color=col, opacity=0.85, line=dict(width=0.5, color="#fff")),
                 hovertemplate="%{customdata}<extra></extra>",
                 customdata=[hover[i] for i in mask],
+            ))
+            # Annotate cluster centroid with abbreviated label
+            cx, cy = _centroid(mask)
+            short = grp_label.split(": ")[-1][:22]
+            fig.add_trace(go.Scatter(
+                x=[cx], y=[cy],
+                mode="text",
+                text=[f"<b>{short}</b>"],
+                textfont=dict(size=9, color=col, family="IBM Plex Sans, sans-serif"),
+                textposition="middle center",
+                showlegend=False,
+                hoverinfo="skip",
             ))
 
     model = embedding_dashboard_dict.get("model", "unknown")
@@ -4369,7 +4426,7 @@ def _render_dashboard_html(
         ("🗂 Ontologies",        ["Ontology Explorer", "Semantic Embedding Space"]),
         ("📡 Factorial Space",   ["Factorial 3D Surface", "Factorial Heat + Contour"]),
         ("🧠 SEM Analysis",      ["SEM Network", "SEM Heatmap"]),
-        ("🔬 Estimation",        ["Conditional Susceptibility Estimator", "Perturbation Explorer"]),
+        ("🔬 Estimation",        ["Conditional Susceptibility Estimator"]),
         ("👤 Profiles",          ["Susceptibility Map", "Profile Heatmap"]),
         ("📊 Moderators",        ["Moderator Forest", "Hierarchical Importance"]),
         ("📈 Raw Data",          ["Distribution by Opinion Leaf", "Distribution by Attack Vector", "Score Trajectory"]),
@@ -4615,9 +4672,6 @@ def generate_research_visuals(
         _add_html("Conditional Susceptibility Estimator",
                   _html_cs_estimator(task_coeff_df, task_summary_df, long_df),
                   "conditional_susceptibility_estimator.html")
-        _add_html("Perturbation Explorer",
-                  _html_perturbation_explorer(task_coeff_df, long_df),
-                  "perturbation_explorer.html")
 
     _add_fig("Distribution by Opinion Leaf",   _fig_violin(long_df),               "violin.html")
     _add_fig("Distribution by Attack Vector",  _fig_raw_attack_comparison(long_df), "attack_comparison.html")
