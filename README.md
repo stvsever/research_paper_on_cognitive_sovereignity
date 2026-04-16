@@ -1,364 +1,119 @@
-<div align="center">
+# Ontology-Constrained Multi-Agent Simulation for Adversarial Opinion Susceptibility Auditing
 
-# Inter-individual Differences in Susceptibility to Cyber-manipulation
+Ontology-driven multi-agent simulation pipeline for attacked-only political-opinion experiments, interactive dashboards, publication assets, and automated manuscript generation.
 
-### Multi-agent Simulation Approach with High-dimensional State Space of Political Opinions
+## Study design
 
-[![Paper PDF](https://img.shields.io/badge/PDF-Paper-1d4e89.svg)](research_report/report/main.pdf)
-[![License: MIT](https://img.shields.io/badge/License-MIT-2a9d8f.svg)](LICENSE)
-[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-e9c46a.svg)](https://www.python.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](docker/)
+- **25 profiles × 4 attack vectors × 10 opinion leaves = 1,000 scenarios**
+- Profile ontology: Big Five personality traits, SES, Political Psychology, Social Context, and demographics
+- Attack coverage: one leaf per cognitive-warfare mechanism family (Social Media Misinformation, Coordinated Amplification, Manipulative Persuasion, Synthetic Media Generation)
+- Analytical focus: conditional susceptibility estimation, hierarchical feature importance, profile feature network diagnostics, and structural equation modelling
 
-**Stijn Van Severen<sup>1,*</sup> · Thomas De Schryver<sup>1</sup> · Mira Ostyn<sup>1</sup>**
+> **Data note.** The checked-in opinion data was generated with deterministic fallbacks because API credits were exhausted during the original run. The network analysis, SEM, and hierarchical importance results are valid; substantive persuasion claims require regenerating stages 02–05 with live API calls.
 
-<sup>1</sup> Ghent University · <sup>*</sup> Corresponding author
-
----
-
-</div>
-
-## Table of Contents
-
-- [Abstract](#abstract)
-- [Key Findings](#key-findings)
-- [Full Paper](#full-paper)
-- [Repository Structure](#repository-structure)
-- [Setup & Installation](#setup--installation)
-- [Usage](#usage)
-- [Pipeline Overview](#pipeline-overview)
-- [Conditional Susceptibility Index](#conditional-susceptibility-index)
-- [Custom Ontology Support](#-custom-ontology-support)
-- [Citation](#citation)
-- [License](#license)
-
----
-
-## Abstract
-
-This repository contains the backend research pipeline, evaluation outputs, manuscript assets, and reproducible report for a study on how **inter-individual differences moderate the effectivity of cyber-manipulation** in political opinion spaces. The workflow represents `PROFILE`, `ATTACK`, and `OPINION` as explicit hierarchical ontologies, generates attacked-only profile-panel scenarios, elicits baseline and post-exposure opinions with structured LLM agents, audits exposure realism and response coherence, and estimates moderation through a **repeated-outcome path SEM** plus a **post hoc ridge-regularized susceptibility index**.
-
-The present study extends an earlier single-domain design to test generalization across *N_o* opinion domains and *N_a* attack mechanisms including AI-based vectors (LLM Chatbot Personalized Persuasion, Deepfake Audio Speech Impersonation).
-
-> **Interpretive constraint:** Among attacked pseudoprofiles, which profile differences are associated with larger post-minus-baseline opinion shifts — in the direction of a hypothetical adversary's goal — across repeated political opinion leaves and multiple attack mechanisms? The design is attacked-only: it does **not** estimate a no-attack counterfactual effect.
-
----
-
-## Key Findings
-
-> **Main result (run_10):** *N_p* = **25 pseudoprofiles** × *N_a* = **4 attack vectors** × *N_o* = **10 opinion leaves** across 4 political domains = **1,000 scenarios**. Attack vectors: one per mechanism family (Misleading Narrative, Astroturf, Fear Appeal, LLM Chatbot). Profile ontology: Big Five + SES + Political Psychology + Social Context + demographics (91 features; old Dual_Process/Digital_Literacy/Political_Engagement inventories excluded). Post-attack opinion agent: **profile-driven susceptibility** — no explicit directional % constraints; trait-outcome linkages govern shifting behaviour.
-
-> ⚠️ **Data quality note (run_10):** The OpenRouter API returned HTTP 403 for all LLM calls during this run (API key out of credits). All opinion scoring used deterministic fallbacks producing random ±70 deltas. As a result, AE ≈ 50/50 random and moderation analysis is noise (CV-R² < 0). The **profile feature network analysis is unaffected** (purely deterministic profile data). Recharge the API key and re-run stage 02–04 to obtain real opinion data.
-
-### Headline Results
-
-| Metric | run_10 value |
-|--------|-------------|
-| *N* (scenarios) | 25 × 4 × 10 = **1,000** |
-| Profile feature dimensions | **91** (Big Five + SES + Political Psychology + Social Context + demographics) |
-| Attack vectors | 4 (one per mechanism family) |
-| Opinion domains | 4 (10 leaves sampled) |
-| ICC(1) \|Δ\| | 0.011 (attack–opinion context dominates) |
-| Ridge CV-*R*² (91 features) | −0.175 ± 0.203 (noise — API fallback data) |
-| **Profile network: nodes** | **91** features |
-| **Profile network: edges** | **1,807** (Spearman \|ρ\| ≥ 0.15) |
-| **Profile network: communities** | **5** (greedy modularity, Q = 0.313) |
-| **Top centrality node** | Platform Primary Type Instagram/TikTok (eigenvector = 0.145) |
-| **Top Big Five node** | Openness Mean (eigenvector = 0.140) |
-
-### Methodological Position
-
-- **Full-factorial multi-domain design**: *N_a* attack leaves × *N_o* opinion leaves per profile across 4 political domains — enables cross-attack and cross-domain comparison of susceptibility moderators
-- Effectivity is **directional**: each opinion leaf carries an adversarial goal direction (`±1`); `AE = signed_delta × direction`
-- **Profile-driven opinion prompt** (run_10+): no hard % constraints — Conscientiousness → deliberate resistance; Neuroticism → emotional reactivity; Extraversion → social susceptibility; Institutional Trust → authority-cue sensitivity
-- **Old inventories excluded**: Dual_Process, Digital_Literacy, Political_Engagement_Inventory omitted (not survey-mappable); run_10 uses SES + Political Psychology + Social Context instead
-- The SEM is a **profile-level repeated-outcome path model** with multiple adversarial effectivity indicators
-- **Three-estimator moderation stack**: (1) **Ridge** on all ~91 profile features — primary effect estimator; (2) **Elastic Net / LASSO** — feature selector; (3) **OLS** (Big Five benchmark)
-- **Profile feature network analysis** (new): Spearman correlation network → eigenvector/betweenness/degree/closeness/PageRank + community detection; centrality = hub-and-spoke influence structure of the profile feature space
-- The susceptibility index is computed **post hoc** from target-conditional ridge task models with **hierarchical R² decomposition**
-- **Cluster bootstrap** at the profile level (B = 200 in run_10 test) preserves within-profile dependence
-- Fully auditable provenance across all 9 pipeline stages
-
-### Main Results
-
-<div align="center">
-<img src="research_report/assets/figures/figure_3_profile_moderator_coefficient_forest.png" width="780" alt="Ridge and OLS moderator coefficients across all N_a attack vectors and N_o opinion leaves.">
-
-*Figure 1. Three-estimator moderation comparison from run_9 (top 30 features by |Ridge coefficient|, 51 features after excluding non-survey-mappable inventories). ■ Ridge: Conscientiousness facets (−) predict resistance; Extraversion facets (+) and low Education predict susceptibility — theoretically expected directions. ◇ OLS benchmark: Big Five means only. Run_10 architecture with naturalized profile-driven prompt will recover stronger, cleaner moderation signal when run with a working API key.*
-</div>
-
-<div align="center">
-<img src="research_report/assets/figures/figure_2_factorial_attack_opinion_matrix.png" width="780" alt="Attack × opinion adversarial effectivity matrix.">
-
-*Figure 2. Mean adversarial effectivity (AE) across the full attack-type × opinion-topic factorial (N_p = 80 profiles per cell). Colour encodes cell-mean AE; warm = manipulation succeeded on average, cool = average resistance. The high cell-to-cell variance confirms that attack–opinion context is the primary driver of effectivity; the between-profile variance within each cell (ICC ≈ 0) is the focus of the moderation analysis.*
-</div>
-
----
-
-### Ontology Embedding Space
-
-All ontology leaves are embedded via sentence-transformer semantic encoding + UMAP 2D projection. Nodes are coloured by ontology (PROFILE / ATTACK / OPINION); filled convex hulls delineate primary sub-tree groups; labelled centroids annotate each cluster.
-
-<div align="center">
-<img src="research_report/assets/figures/figure_umap_ontology_embedding.png" width="900" alt="UMAP semantic embedding of PROFILE, ATTACK, and OPINION ontology leaves.">
-
-*Figure 3. Semantic UMAP embedding of all ontology leaves (sentence-transformer all-MiniLM-L6-v2, k-means k=8). PROFILE leaves (blue) — Big Five facets, Socioeconomic Status, Political Psychology, Social Context, demographics. ATTACK leaves (orange) — four mechanism families. OPINION leaves (teal) — four political domains. Convex hulls = primary sub-tree boundaries; labelled centroids = dominant semantic group.*
-</div>
-
----
-
-## Full Paper
-
-- **PDF (typeset):** [research_report/report/main.pdf](research_report/report/main.pdf)
-- **LaTeX source:** [research_report/report/main.tex](research_report/report/main.tex)
-- **Paper assets:** [research_report/assets](research_report/assets)
-- **Interactive dashboard:** generated locally at `evaluation/<run_id>/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html` (excluded from git — run the pipeline to produce)
-
----
-
-## Repository Structure
-
-```text
-Paper_CaseStudiesAnalysisExperimentalData/
-├── README.md
-├── LICENSE
-├── CITATION.cff
-├── requirements.txt
-├── .env.example
-├── .gitignore
-│
-├── docker/
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   └── entrypoint.sh
-│
-├── evaluation/
-│   ├── run_1/ … run_8/                  # Earlier design iterations
-│   └── run_9/                           # Current study: N_p × N_a × N_o = 3,840 scenarios
-│
-├── research_report/
-│   ├── assets/
-│   │   ├── figures/                     # PNG/PDF manuscript figures
-│   │   └── tables/                      # CSV/TeX manuscript tables
-│   └── report/
-│       ├── main.tex
-│       ├── references.bib
-│       └── main.pdf
-│
-└── src/
-    └── backend/
-        ├── agentic_framework/           # OpenRouter client, agents, prompts, repair logic
-        ├── ontology/
-        │   └── separate/
-        │       └── test/                # PROFILE (80 dims) / ATTACK (18) / OPINION (62) ontologies
-        ├── pipeline/
-        │   ├── full/                    # Full orchestration entrypoint
-        │   └── separate/               # Independently runnable stages 01–09
-        ├── user_ontology/              # Plug in custom JSON ontology triplets
-        │   ├── validator.py            # Structural + semantic validation
-        │   ├── cli.py                  # CLI: --profile-json --attack-json --opinion-json
-        │   └── tool_usage.ipynb        # 12-section guide: format, validation, cost, output
-        └── utils/
-            ├── conditional_susceptibility.py   # Ridge CSI + bootstrap CIs + group XAI
-            ├── semantic_embedding.py           # TF-IDF/UMAP ontology embedding
-            ├── visualization_dashboard.py      # Interactive Plotly dashboard
-            └── NEXT_STEPS.md                   # Future directions: ML, XAI, simulation realism
-```
-
----
-
-## Setup & Installation
-
-### Option A — Local
+## Setup
 
 ```bash
-git clone https://github.com/stvsever/research_paper_on_cognitive_sovereignity.git
-cd research_paper_on_cognitive_sovereignity
-python3.12 -m venv .venv && source .venv/bin/activate
-pip install --upgrade pip && pip install -r requirements.txt
-cp .env.example .env   # add OPENROUTER_API_KEY
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -r requirements.txt
+cp .env.example .env   # then set OPENROUTER_API_KEY
 ```
 
-### Option B — Docker
+## Run the pipeline
+
+Full pipeline:
 
 ```bash
-git clone https://github.com/stvsever/research_paper_on_cognitive_sovereignity.git
-cd research_paper_on_cognitive_sovereignity
-cp .env.example .env   # add OPENROUTER_API_KEY
-cd docker
-OPENROUTER_MODEL=mistralai/mistral-small-3.2-24b-instruct docker compose up --build
+./scripts/run_10.sh
 ```
 
-By default, the Docker entrypoint runs the current study configuration (N_p × N_a × N_o factorial design).
-
----
-
-## 🧩 Custom Ontology Support
-
-Cybersecurity analysts can run the full pipeline with **their own PROFILE × ATTACK × OPINION taxonomies** (3 JSON files):
+Rebuild analytics / visuals / paper only (after code or data changes):
 
 ```bash
-# Validate your ontologies
-python -m src.backend.user_ontology.cli \
-  --profile-json path/to/profile.json \
-  --attack-json  path/to/attack.json  \
-  --opinion-json path/to/opinion.json \
-  --validate-only
-
-# Run with custom ontologies
-python -m src.backend.user_ontology.cli \
-  --profile-json path/to/profile.json \
-  --attack-json  path/to/attack.json  \
-  --opinion-json path/to/opinion.json \
-  --run-id my_analysis \
-  --n-profiles 40 \
-  --openrouter-model mistralai/mistral-small-3.2-24b-instruct
-```
-
-### Semantic Embedding
-
-All ontology leaves can be embedded and projected to 2D via UMAP:
-
-```python
-from src.backend.utils.semantic_embedding import embed_ontology
-artifact = embed_ontology(
-    ontology_root="src/backend/ontology/separate/test",
-    out_dir="evaluation/run_9/embeddings",
-    n_clusters=8,
-)
-```
-
-Results load automatically into the interactive dashboard (Ontologies → Semantic Embedding Space tab).
-
----
-
-## Usage
-
-### Reproduce current study
-
-```bash
-bash scripts/run_9.sh
-```
-
-### Run the full pipeline manually
-
-```bash
-python src/backend/pipeline/full/run_full_pipeline.py \
-  --output-root evaluation/run_9 \
-  --run-id run_9 \
-  --n-profiles 80 \
-  --seed 99 \
+./.venv/bin/python src/backend/pipeline/full/run_full_pipeline.py \
+  --output-root evaluation/run_10 \
+  --run-id run_10 \
+  --n-profiles 25 \
+  --seed 100 \
   --attack-ratio 1.0 \
-  --attack-leaves "Misleading_Narrative_Framing,Fear_Appeal_Scapegoating_Post,Astroturf_Comment_Wave,Pseudo_Expert_Authority_Cue,LLM_Chatbot_Personalized_Persuasion,Deepfake_Audio_Speech_Impersonation" \
-  --max-opinion-leaves 8 \
+  --attack-leaves Misleading_Narrative_Framing,Astroturf_Comment_Wave,Fear_Appeal_Scapegoating_Post,LLM_Chatbot_Personalized_Persuasion \
+  --max-opinion-leaves 10 \
+  --profile-candidate-multiplier 3 \
+  --primary-moderator posthoc_profile_susceptibility_index \
+  --bootstrap-samples 200 \
   --use-test-ontology \
+  --ontology-root src/backend/ontology/separate/test \
   --openrouter-model mistralai/mistral-small-3.2-24b-instruct \
   --temperature 0.15 \
-  --bootstrap-samples 600 \
-  --generate-visuals --export-static-figures --build-report
+  --max-repair-iter 3 \
+  --profile-generation-mode deterministic \
+  --self-supervise-attack-realism \
+  --realism-threshold 0.70 \
+  --self-supervise-opinion-coherence \
+  --coherence-threshold 0.70 \
+  --generate-visuals \
+  --export-static-figures \
+  --build-report \
+  --resume-from-stage 06 \
+  --stop-after-stage 09
 ```
 
-The `--attack-leaves` parameter selects a subset of *N_a* leaves from the ATTACK ontology. The pipeline creates a full factorial design: every profile is crossed with every attack and every opinion leaf → N_p × N_a × N_o scenarios.
-
-### Run individual stages
-
-Stages under `src/backend/pipeline/separate/` are independently runnable:
-
-`01_create_scenarios` → `02_assess_baseline_opinions` → `03_run_opinion_attacks` → `04_assess_post_attack_opinions` → `05_compute_effectivity_deltas` → `06_construct_structural_equation_model` → `07_generate_research_visuals` → `08_generate_publication_assets` → `09_build_research_report`
-
----
-
-## Pipeline Overview
-
-```mermaid
-flowchart TD
-    P["PROFILE ontology\nN_p-dimensional feature space\ngeneric inventory discovery"] --> S
-    O["OPINION ontology\nN_o repeated sampled leaves\n+ adversarial direction per leaf"] --> S
-    A["ATTACK ontology\nN_a-leaf factorial\n4 mechanism families incl. AI vectors"] --> S
-
-    S["Scenario design\nprofile × attack × opinion factorial\nN_p × N_a × N_o scenarios"] --> B["Baseline opinion agent\nscore in [-1000, 1000]"]
-    B --> E["Attack exposure agent\nplatform-native manipulative message"]
-    E --> R["Realism reviewer\nthreshold + repair loop"]
-    R --> P2["Post-exposure opinion agent\nsame leaf, same scale"]
-    P2 --> C["Coherence reviewer\nplausibility + boundedness checks"]
-    C --> D["Adversarial effectivity\nAE = delta × direction\nICC, cluster bootstrap, FDR"]
-    D --> W["Profile-panel wide table\nrepeated adversarial outcomes"]
-    W --> SEM["Repeated-outcome path SEM\nmoderator → effectivity indicators"]
-    W --> RIDGE["Target-conditional ridge models\npost hoc susceptibility index\nhierarchical R² decomposition"]
-    SEM --> OUT["Figures, tables, PDF report\n27+ visualizations"]
-    RIDGE --> OUT
-    RIDGE --> CLI["Susceptibility CLI\nscore new profiles vs fitted artifact"]
-```
-
----
-
-## Conditional Susceptibility Index
-
-The profile-level susceptibility index is **directional** and **conditional** on the configured (attack, opinion) target set *T*.
-
-### Adversarial Effectivity
-
-```
-AE_ik = (post_score_ik − baseline_score_ik) × direction_k
-
-direction_k ∈ {+1, −1, 0}  (from OPINION ontology; 0 = excluded)
-```
-
-### Conditional Index
-
-For each task *t ∈ T*, a ridge model is fit:
-
-```
-Ê_it = β̂_0t + Σ_j β̂_jt · X_ij
-
-S_i(T) = Σ_t  w_t · Ê_it          (reliability-weighted aggregate)
-CSI_i(T) = percentile_rank(S_i(T))
-w_t ∝ n_t / CV-MSE_t
-```
-
-Higher CSI = model expects opinion movement more strongly aligned with the adversary's goal for that profile under the configured *T*.
-
-### Score a new profile
+Regenerate opinion data after recharging API credits:
 
 ```bash
-python src/backend/pipeline/separate/compute_conditional_susceptibility/score_profile.py \
-  --artifact-path evaluation/run_9/stage_outputs/06_construct_structural_equation_model/conditional_susceptibility_artifact.json \
-  --age 34 --sex Male --neuroticism-pct 75 --conscientiousness-pct 20 --extraversion-pct 85
+# same flags but resume from stage 02
+  --resume-from-stage 02 --stop-after-stage 09
 ```
 
----
+## Outputs
 
-## Citation
+| Path | Contents |
+|---|---|
+| `evaluation/run_10/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html` | Interactive multi-tab dashboard |
+| `evaluation/run_10/paper/publication_assets/` | Static figures and supplementary tables |
+| `research_report/assets/` | Figures and tables linked into the manuscript |
+| `research_report/report/main.pdf` | Compiled manuscript |
 
-### APA 7
+## Dashboard tabs
 
-> Van Severen, S., De Schryver, T., & Ostyn, M. (2026). *Inter-individual differences in susceptibility to cyber-manipulation: A multi-agent simulation approach with high-dimensional state space of political opinions*. Ghent University. https://github.com/stvsever/research_paper_on_cognitive_sovereignity
+- **Ontology Explorer** — ontology leaf inventory with optional UMAP embedding
+- **Factorial surfaces** — 2D and 3D attack × opinion effectivity heatmaps
+- **Baseline / Post** — individual-level opinion shift scatter
+- **Attack comparison** — per-attack Δ distributions
+- **SEM network** — structural equation model path diagram
+- **Conditional Susceptibility Estimator** — profile configurator with bootstrap rank uncertainty
+- **Hierarchical importance** — Random Forest importance decomposed by ontology-aligned feature groups
+- **Profile Network Explorer** — interactive correlation graph with:
+  - Global metrics panel (density, modularity, diameter, clustering, etc.)
+  - Local node metrics (degree, strength, eigenvector centrality, PageRank, betweenness, closeness, participation coefficient, bridge ratio, within-module Z, k-core)
+  - Community convex hulls, hub/bridge presets
+  - Force-directed layout with draggable nodes
+  - Wheel zoom and background pan
+  - Lasso multi-select
+  - Shortest-path analysis (BFS)
+  - Ontology family / feature-type / community / sign filters
+  - SVG export and mini-map
+- **Robustness diagnostics** — bootstrap rank stability, SEM sensitivity, audit trails
 
-### BibTeX
+## Repo layout
 
-```bibtex
-@article{vanseveren2026cybersusceptibility,
-  title     = {Inter-individual Differences in Susceptibility to Cyber-manipulation:
-               A Multi-agent Simulation Approach with High-dimensional State Space
-               of Political Opinions},
-  author    = {Van Severen, Stijn and De Schryver, Thomas and Ostyn, Mira},
-  year      = {2026},
-  institution = {Ghent University},
-  url       = {https://github.com/stvsever/research_paper_on_cognitive_sovereignity}
-}
+```text
+├── evaluation/
+│   └── run_10/                      # pipeline outputs
+├── research_report/
+│   ├── assets/                      # manuscript figures and tables
+│   └── report/                      # LaTeX source and compiled PDF
+├── scripts/
+│   └── run_10.sh                    # canonical run script
+└── src/backend/
+    ├── ontology/separate/test/      # PROFILE / ATTACK / OPINION ontologies
+    ├── pipeline/full/               # orchestrator
+    ├── pipeline/separate/           # per-stage scripts (01–09)
+    └── utils/                       # dashboard, publication assets, SEM, etc.
 ```
-
-A machine-readable citation is also available in [`CITATION.cff`](CITATION.cff).
-
----
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-
-Built at **Ghent University** for the course *Case Studies in the Analysis of Experimental Data*
-
-</div>
+MIT. See [LICENSE](LICENSE).

@@ -1,0 +1,56 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Reproducibility manifest for run\_10.}
+\label{tab:repro}
+\small
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{p{0.24\linewidth}p{0.70\linewidth}}
+\toprule
+Field & Value \\
+\midrule
+run\_id & run\_10 \\
+paper\_title & PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions \\
+output\_root & /Users/stijnvanseveren/PythonProjects/Paper\_CaseStudiesAnalysisExperimentalData/evaluation/run\_10 \\
+report\_root & /Users/stijnvanseveren/PythonProjects/Paper\_CaseStudiesAnalysisExperimentalData/research\_report/report \\
+report\_assets\_root & /Users/stijnvanseveren/PythonProjects/Paper\_CaseStudiesAnalysisExperimentalData/research\_report/assets \\
+n\_scenarios & 10 \\
+n\_profiles & 25 \\
+seed & 100 \\
+attack\_ratio & 1.000 \\
+attack\_leaf & ATTACK\_VECTORS > Social\_Media\_Misinformation > Misleading\_Narrative\_Framing \\
+attack\_leaves & Misleading\_Narrative\_Framing,Astroturf\_Comment\_Wave,Fear\_Appeal\_Scapegoating\_Post,LLM\_Chatbot\_Personalized\_Persuasion \\
+focus\_opinion\_domain &  \\
+max\_opinion\_leaves & 10 \\
+profile\_candidate\_multiplier & 3 \\
+primary\_moderator & posthoc\_profile\_susceptibility\_index \\
+bootstrap\_samples & 200 \\
+use\_test\_ontology & True \\
+ontology\_root & /Users/stijnvanseveren/PythonProjects/Paper\_CaseStudiesAnalysisExperimentalData/src/backend/ontology/separate/test \\
+openrouter\_model & mistralai/mistral-small-3.2-24b-instruct \\
+temperature & 0.150 \\
+max\_repair\_iter & 3 \\
+profile\_generation\_mode & deterministic \\
+self\_supervise\_attack\_realism & True \\
+realism\_threshold & 0.700 \\
+self\_supervise\_opinion\_coherence & True \\
+coherence\_threshold & 0.700 \\
+generate\_visuals & True \\
+export\_static\_figures & True \\
+build\_report & True \\
+resume\_from\_stage & 08 \\
+stop\_after\_stage & 09 \\
+save\_raw\_llm & True \\
+timeout\_sec & 90 \\
+max\_concurrency & 20 \\
+run\_stage\_checks & False \\
+stage\_check\_scenarios & 3 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Note. The manifest captures the full pipeline configuration used to generate the study outputs and manuscript assets.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

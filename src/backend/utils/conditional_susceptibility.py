@@ -466,16 +466,59 @@ def _apply_eb_shrinkage(
 
     # Shrink in-place (deep-copy coefficients dict to avoid aliasing)
     from copy import deepcopy
+    from dataclasses import is_dataclass, replace as dc_replace
+
     shrunk_models = []
     for m in task_models:
         new_coeffs = deepcopy(m.coefficients)
         for col in feature_columns:
             orig = float(new_coeffs.get(col, 0.0))
             new_coeffs[col] = (1.0 - lam) * orig + lam * cross_mean.get(col, 0.0)
-        from dataclasses import replace as _dc_replace
-        shrunk_models.append(_dc_replace(m, coefficients=new_coeffs))
+        if is_dataclass(m):
+            shrunk_models.append(dc_replace(m, coefficients=new_coeffs))
+        elif hasattr(m, "model_copy"):
+            shrunk_models.append(m.model_copy(update={"coefficients": new_coeffs}))
+        else:
+            setattr(m, "coefficients", new_coeffs)
+            shrunk_models.append(m)
 
     return shrunk_models
+
+
+def _task_models_to_coeff_df(
+    task_models: Sequence[ConditionalSusceptibilityTaskModel],
+    feature_columns: Sequence[str],
+) -> pd.DataFrame:
+    rows: List[Dict[str, object]] = []
+    for model in task_models:
+        rows.append(
+            {
+                "task_key": model.task_key,
+                "attack_leaf": model.attack_leaf,
+                "opinion_leaf": model.opinion_leaf,
+                "outcome_metric": model.outcome_metric,
+                "term": "Intercept",
+                "estimate": float(model.intercept),
+                "n_obs": int(model.n_obs),
+                "alpha": float(model.alpha),
+                "cv_mse": float(model.cv_mse),
+            }
+        )
+        for column in feature_columns:
+            rows.append(
+                {
+                    "task_key": model.task_key,
+                    "attack_leaf": model.attack_leaf,
+                    "opinion_leaf": model.opinion_leaf,
+                    "outcome_metric": model.outcome_metric,
+                    "term": column,
+                    "estimate": float(model.coefficients.get(column, 0.0)),
+                    "n_obs": int(model.n_obs),
+                    "alpha": float(model.alpha),
+                    "cv_mse": float(model.cv_mse),
+                }
+            )
+    return pd.DataFrame(rows)
 
 
 def _block_bootstrap_csi(
@@ -490,6 +533,8 @@ def _block_bootstrap_csi(
     alpha_grid: Sequence[float] | None,
     min_rows_per_task: int,
     shrinkage_strength: float,
+    task_alpha_lookup: Optional[Dict[Tuple[str, str], float]] = None,
+    task_weight_lookup: Optional[Dict[Tuple[str, str], float]] = None,
 ) -> BootstrapCISummary:
     """Profile-level block bootstrap for CSI percentile confidence intervals.
 
@@ -505,6 +550,26 @@ def _block_bootstrap_csi(
     rng = np.random.default_rng(seed + 10000)
     profile_ids = long_df["profile_id"].dropna().unique().tolist()
     n_profiles = len(profile_ids)
+
+    original_profiles = (
+        long_df[["profile_id", *feature_columns]]
+        .drop_duplicates(subset=["profile_id"])
+        .reset_index(drop=True)
+    )
+    original_transformed = _transform_features(
+        original_profiles,
+        feature_columns,
+        feature_means,
+        feature_stds,
+        continuous_columns,
+    )
+    original_x = np.column_stack(
+        [
+            np.ones(len(original_transformed), dtype=float),
+            *[original_transformed[c].astype(float).to_numpy() for c in feature_columns],
+        ]
+    )
+    original_pid_order = original_profiles["profile_id"].tolist()
 
     rank_samples: Dict[str, List[float]] = {pid: [] for pid in profile_ids}
     coeff_samples: Dict[str, Dict[str, List[float]]] = {}
@@ -533,7 +598,7 @@ def _block_bootstrap_csi(
         transformed.insert(0, "profile_id", unique_profiles["profile_id"])
         profile_lu = transformed.set_index("profile_id")
 
-        task_contribs: Dict[str, float] = {}  # profile_id → weighted score
+        task_contribs: Dict[str, float] = {pid: 0.0 for pid in original_pid_order}
         total_w = 0.0
         coeff_agg: Dict[str, float] = {col: 0.0 for col in feature_columns}
 
@@ -546,12 +611,19 @@ def _block_bootstrap_csi(
                 np.ones(len(x_df)), *[x_df[c].astype(float).to_numpy() for c in feature_columns]
             ])
             y = tdf[outcome_metric].astype(float).to_numpy()
+            task_key = (str(atk), str(op))
+            fixed_alpha = task_alpha_lookup.get(task_key) if task_alpha_lookup else None
+            fixed_weight = task_weight_lookup.get(task_key) if task_weight_lookup else None
             try:
-                beta, _, cv_mse = _cross_validated_ridge(x, y, seed=seed + b * 1000 + offset, alpha_grid=alpha_grid)
+                if fixed_alpha is not None:
+                    beta = _ridge_fit_matrix(x, y, float(fixed_alpha))
+                    cv_mse = float(np.mean((y - (x @ beta)) ** 2))
+                else:
+                    beta, _, cv_mse = _cross_validated_ridge(x, y, seed=seed + b * 1000 + offset, alpha_grid=alpha_grid)
             except Exception:
                 offset += 1
                 continue
-            w = len(tdf) / max(cv_mse, 1e-6)
+            w = float(fixed_weight) if fixed_weight is not None else len(tdf) / max(cv_mse, 1e-6)
 
             # Apply optional shrinkage on-the-fly (reuse same lambda)
             if shrinkage_strength > 0:
@@ -559,11 +631,9 @@ def _block_bootstrap_csi(
                 # so we skip EB shrinkage inside bootstrap (it's negligible variance anyway)
                 pass
 
-            for i_prof, pid in enumerate(x_df["profile_id"].tolist() if "profile_id" in x_df.columns else unique_profiles["profile_id"].iloc[x_df.index].tolist()):
-                pass  # handled below via prediction
-            preds = x @ beta
-            for i_pid, pid in enumerate(tdf["profile_id"].tolist()):
-                task_contribs[pid] = task_contribs.get(pid, 0.0) + w * float(preds[i_pid])
+            preds = original_x @ beta
+            for idx, pid in enumerate(original_pid_order):
+                task_contribs[pid] = task_contribs.get(pid, 0.0) + w * float(preds[idx])
             total_w += w
             for idx, col in enumerate(feature_columns):
                 coeff_agg[col] += w * float(beta[idx + 1])
@@ -572,15 +642,10 @@ def _block_bootstrap_csi(
         if total_w == 0:
             continue
 
-        norm_contribs = {pid: v / total_w for pid, v in task_contribs.items()}
-        scores = np.array(list(norm_contribs.values()))
-        ranks = (np.argsort(np.argsort(scores)) / max(len(scores) - 1, 1)) * 100.0
-        pid_list = list(norm_contribs.keys())
-        for i, pid in enumerate(pid_list):
-            # Map back to original profile id
-            original_pid = pid.split("__b")[0] if "__b" in pid else pid
-            if original_pid in rank_samples:
-                rank_samples[original_pid].append(float(ranks[i]))
+        norm_scores = np.array([task_contribs[pid] / total_w for pid in original_pid_order], dtype=float)
+        ranks = pd.Series(norm_scores).rank(method="average", pct=True).to_numpy() * 100.0
+        for idx, pid in enumerate(original_pid_order):
+            rank_samples[pid].append(float(ranks[idx]))
 
         for col in feature_columns:
             if col not in coeff_samples:
@@ -611,6 +676,7 @@ def _block_bootstrap_csi(
         f"Profile-level block bootstrap, n_samples={n_samples}.",
         "rank_ci gives 5th–95th percentile CI of susceptibility_index_pct across bootstrap resamples.",
         "coeff_sd gives global cross-task average coefficient standard deviation.",
+        "Bootstrap refits condition on the original task-level ridge alphas and normalized reliability weights for computational stability.",
     ]
     return BootstrapCISummary(
         n_samples=n_samples,
@@ -852,10 +918,7 @@ def fit_conditional_susceptibility_index(
     # ── Optional Empirical-Bayes cross-task shrinkage ─────────────────────────
     if shrinkage_strength > 0.0:
         task_models = _apply_eb_shrinkage(task_models, list(feature_columns), shrinkage_strength)
-        # Re-sync artifact notes
-        pass
-
-    coeff_df = pd.concat(coeff_rows, ignore_index=True)
+    coeff_df = _task_models_to_coeff_df(task_models, feature_columns)
 
     artifact = ConditionalSusceptibilityArtifact(
         outcome_metric=outcome_metric,
@@ -872,6 +935,11 @@ def fit_conditional_susceptibility_index(
             "This artifact is valid only for the attack leaves and opinion leaves recorded in the target set metadata.",
             f"Primary effectivity metric: {outcome_metric}. Positive = opinion moved in adversary's intended direction.",
             "The conditional susceptibility index is computed from fitted task-specific ridge models and is model-based rather than directly observed.",
+            (
+                f"Cross-task empirical-Bayes shrinkage applied with λ={shrinkage_strength:.2f}."
+                if shrinkage_strength > 0.0
+                else "No cross-task empirical-Bayes shrinkage applied."
+            ),
         ],
     )
 
@@ -901,6 +969,14 @@ def fit_conditional_susceptibility_index(
                 alpha_grid=alpha_grid,
                 min_rows_per_task=min_rows_per_task,
                 shrinkage_strength=shrinkage_strength,
+                task_alpha_lookup={
+                    (str(model.attack_leaf), str(model.opinion_leaf)): float(model.alpha)
+                    for model in task_models
+                },
+                task_weight_lookup={
+                    (str(model.attack_leaf), str(model.opinion_leaf)): float(model.reliability_weight)
+                    for model in task_models
+                },
             )
         except Exception as exc:
             import warnings

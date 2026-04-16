@@ -41,6 +41,7 @@ import pandas as pd
 import statsmodels.formula.api as smf
 from semopy import Model, calc_stats
 from semopy.inspector import inspect as sem_inspect
+from statsmodels.stats.multitest import multipletests
 
 PROJECT_ROOT = Path(__file__).resolve().parents[5]
 if str(PROJECT_ROOT) not in sys.path:
@@ -159,6 +160,26 @@ def _safe_optional_float(value: Any) -> float | None:
 
 def _available(columns: Sequence[str], df: pd.DataFrame) -> List[str]:
     return [column for column in columns if column in df.columns and df[column].nunique(dropna=True) > 1]
+
+
+def _apply_bh_qvalues(df: pd.DataFrame, p_column: str, q_column: str, *, exclude_terms: Sequence[str] | None = None) -> pd.DataFrame:
+    work = df.copy()
+    if p_column not in work.columns:
+        return work
+    exclude = set(exclude_terms or [])
+    valid_mask = work[p_column].notna()
+    if "term" in work.columns and exclude:
+        valid_mask &= ~work["term"].astype(str).isin(exclude)
+    if valid_mask.sum() == 0:
+        work[q_column] = np.nan
+        return work
+    rejected, q_values, _, _ = multipletests(work.loc[valid_mask, p_column].astype(float), method="fdr_bh")
+    work[q_column] = np.nan
+    work.loc[valid_mask, q_column] = q_values
+    if q_column.replace("_value", "_significant") != q_column:
+        work[q_column.replace("_value", "_significant")] = False
+        work.loc[valid_mask, q_column.replace("_value", "_significant")] = rejected
+    return work
 
 
 def _ensure_standardized_columns(df: pd.DataFrame, continuous_columns: Sequence[str]) -> pd.DataFrame:
@@ -473,6 +494,21 @@ def _moderator_group(term: str) -> str:
     return "Other"
 
 
+def _moderator_feature_type(term: str) -> str:
+    t = term.lower()
+    if t.startswith("profile_cat__"):
+        return "Categorical dummy"
+    if "chronological_age" in t or "age_years" in t:
+        return "Continuous demographic"
+    if "_mean_pct" in t:
+        if "big_five" in t:
+            return "Trait aggregate"
+        return "Scale aggregate"
+    if "big_five" in t:
+        return "Facet"
+    return "Continuous subscale"
+
+
 def _dynamic_profile_terms(df: pd.DataFrame) -> List[str]:
     """Return all profile feature columns with variance, excluding synthetic proxies
     and the three run_9 inventories (Dual_Process, Digital_Literacy, Political_Engagement)
@@ -761,17 +797,30 @@ def _fit_network_analysis(
     # Build graph: undirected, edge weight = |rho|, only keep |rho| >= threshold
     G = nx.Graph()
     G.add_nodes_from(valid)
+    node_group = {node: _moderator_group(node) for node in valid}
+    node_family = {node: node_group[node].split(":", 1)[0] for node in valid}
+    node_feature_type = {node: _moderator_feature_type(node) for node in valid}
+    nx.set_node_attributes(G, node_group, "ontology_group")
+    nx.set_node_attributes(G, node_family, "ontology_family")
+    nx.set_node_attributes(G, node_feature_type, "feature_type")
     edge_rows: List[Dict[str, Any]] = []
     for i in range(n_feats):
         for j in range(i + 1, n_feats):
             rho = corr_mat[i, j]
             if abs(rho) >= corr_threshold:
-                G.add_edge(valid[i], valid[j], weight=abs(rho), rho=rho)
+                strength = float(abs(rho))
+                G.add_edge(
+                    valid[i],
+                    valid[j],
+                    weight=strength,
+                    distance=float(1.0 / max(strength, 1e-6)),
+                    rho=float(rho),
+                )
                 edge_rows.append({
                     "source": valid[i],
                     "target": valid[j],
                     "rho": float(rho),
-                    "abs_rho": float(abs(rho)),
+                    "abs_rho": strength,
                     "source_label": _pretty_moderator_label(valid[i]),
                     "target_label": _pretty_moderator_label(valid[j]),
                 })
@@ -784,11 +833,11 @@ def _fit_network_analysis(
     except Exception:
         eig_cent = {n: 0.0 for n in G.nodes()}
     try:
-        bet_cent = nx.betweenness_centrality(G, weight="weight", normalized=True, seed=seed)
+        bet_cent = nx.betweenness_centrality(G, weight="distance", normalized=True, seed=seed)
     except Exception:
         bet_cent = {n: 0.0 for n in G.nodes()}
     try:
-        clo_cent = nx.closeness_centrality(G, distance="weight")
+        clo_cent = nx.closeness_centrality(G, distance="distance")
     except Exception:
         clo_cent = {n: 0.0 for n in G.nodes()}
     clust = nx.clustering(G, weight="weight")
@@ -803,6 +852,7 @@ def _fit_network_analysis(
     for comm_idx, comm in enumerate(communities):
         for node in comm:
             node_community[node] = comm_idx
+    community_sizes = {idx: len(comm) for idx, comm in enumerate(communities)}
 
     # Compute modularity
     try:
@@ -810,12 +860,97 @@ def _fit_network_analysis(
     except Exception:
         modularity_score = float("nan")
 
+    node_strength = {node: float(sum(data.get("weight", 0.0) for _, _, data in G.edges(node, data=True))) for node in G.nodes()}
+    try:
+        core_number = nx.core_number(G)
+    except Exception:
+        core_number = {node: 0 for node in G.nodes()}
+
+    positive_degree: Dict[str, int] = {}
+    negative_degree: Dict[str, int] = {}
+    positive_strength: Dict[str, float] = {}
+    negative_strength: Dict[str, float] = {}
+    within_community_strength: Dict[str, float] = {}
+    between_community_strength: Dict[str, float] = {}
+    participation_coefficient: Dict[str, float] = {}
+    bridge_ratio: Dict[str, float] = {}
+    signed_balance: Dict[str, float] = {}
+    same_family_strength_share: Dict[str, float] = {}
+    within_module_zscore: Dict[str, float] = {}
+
+    within_community_raw: Dict[str, float] = {}
+    community_strength_lists: Dict[int, List[float]] = {}
+
+    for node in G.nodes():
+        comm_strengths: Dict[int, float] = {}
+        total_strength = 0.0
+        pos_degree = 0
+        neg_degree = 0
+        pos_strength = 0.0
+        neg_strength = 0.0
+        same_family_strength = 0.0
+        node_comm = node_community.get(node, -1)
+        node_node_family = node_family.get(node, "Other")
+        for neighbor, edge_data in G[node].items():
+            weight = float(edge_data.get("weight", 0.0))
+            rho = float(edge_data.get("rho", 0.0))
+            total_strength += weight
+            if rho >= 0:
+                pos_degree += 1
+                pos_strength += weight
+            else:
+                neg_degree += 1
+                neg_strength += weight
+            neighbor_comm = node_community.get(neighbor, -1)
+            comm_strengths[neighbor_comm] = comm_strengths.get(neighbor_comm, 0.0) + weight
+            if node_family.get(neighbor, "Other") == node_node_family:
+                same_family_strength += weight
+
+        within_strength = comm_strengths.get(node_comm, 0.0)
+        between_strength = max(0.0, total_strength - within_strength)
+        positive_degree[node] = pos_degree
+        negative_degree[node] = neg_degree
+        positive_strength[node] = pos_strength
+        negative_strength[node] = neg_strength
+        within_community_strength[node] = within_strength
+        between_community_strength[node] = between_strength
+        participation_coefficient[node] = (
+            1.0 - sum((value / total_strength) ** 2 for value in comm_strengths.values())
+            if total_strength > 1e-12
+            else 0.0
+        )
+        bridge_ratio[node] = between_strength / total_strength if total_strength > 1e-12 else 0.0
+        signed_balance[node] = (pos_strength - neg_strength) / total_strength if total_strength > 1e-12 else 0.0
+        same_family_strength_share[node] = same_family_strength / total_strength if total_strength > 1e-12 else 0.0
+        within_community_raw[node] = within_strength
+        community_strength_lists.setdefault(node_comm, []).append(within_strength)
+
+    community_within_mean = {
+        comm: float(np.mean(values)) if values else 0.0
+        for comm, values in community_strength_lists.items()
+    }
+    community_within_std = {
+        comm: float(np.std(values, ddof=0)) if len(values) > 1 else 0.0
+        for comm, values in community_strength_lists.items()
+    }
+    for node in G.nodes():
+        comm = node_community.get(node, -1)
+        std = community_within_std.get(comm, 0.0)
+        mean = community_within_mean.get(comm, 0.0)
+        within_module_zscore[node] = (
+            (within_community_raw.get(node, 0.0) - mean) / std
+            if std > 1e-12
+            else 0.0
+        )
+
     centrality_rows: List[Dict[str, Any]] = []
     for node in valid:
         centrality_rows.append({
             "term": node,
             "label": _pretty_moderator_label(node),
-            "ontology_group": _moderator_group(node),
+            "ontology_group": node_group.get(node, "Other"),
+            "ontology_family": node_family.get(node, "Other"),
+            "feature_type": node_feature_type.get(node, "Other"),
             "degree_centrality": float(deg_cent.get(node, 0.0)),
             "eigenvector_centrality": float(eig_cent.get(node, 0.0)),
             "betweenness_centrality": float(bet_cent.get(node, 0.0)),
@@ -823,7 +958,21 @@ def _fit_network_analysis(
             "clustering_coefficient": float(clust.get(node, 0.0)),
             "pagerank": float(pr.get(node, 0.0)),
             "community": int(node_community.get(node, -1)),
+            "community_size": int(community_sizes.get(node_community.get(node, -1), 0)),
             "degree": int(G.degree(node)),
+            "strength": float(node_strength.get(node, 0.0)),
+            "positive_degree": int(positive_degree.get(node, 0)),
+            "negative_degree": int(negative_degree.get(node, 0)),
+            "positive_strength": float(positive_strength.get(node, 0.0)),
+            "negative_strength": float(negative_strength.get(node, 0.0)),
+            "within_community_strength": float(within_community_strength.get(node, 0.0)),
+            "between_community_strength": float(between_community_strength.get(node, 0.0)),
+            "participation_coefficient": float(participation_coefficient.get(node, 0.0)),
+            "bridge_ratio": float(bridge_ratio.get(node, 0.0)),
+            "within_module_zscore": float(within_module_zscore.get(node, 0.0)),
+            "same_family_strength_share": float(same_family_strength_share.get(node, 0.0)),
+            "signed_balance": float(signed_balance.get(node, 0.0)),
+            "k_core": int(core_number.get(node, 0)),
         })
     centrality_df = (
         pd.DataFrame(centrality_rows)
@@ -832,6 +981,34 @@ def _fit_network_analysis(
     )
 
     # Global metrics
+    abs_rho_values = edge_df["abs_rho"].astype(float) if not edge_df.empty else pd.Series(dtype=float)
+    pos_edges = int((edge_df["rho"] > 0).sum()) if not edge_df.empty else 0
+    neg_edges = int((edge_df["rho"] < 0).sum()) if not edge_df.empty else 0
+    within_community_edges = 0
+    between_community_edges = 0
+    within_family_edges = 0
+    between_family_edges = 0
+    for source, target in G.edges():
+        if node_community.get(source, -1) == node_community.get(target, -1):
+            within_community_edges += 1
+        else:
+            between_community_edges += 1
+        if node_family.get(source, "Other") == node_family.get(target, "Other"):
+            within_family_edges += 1
+        else:
+            between_family_edges += 1
+    try:
+        ontology_group_assortativity = float(nx.attribute_assortativity_coefficient(G, "ontology_group"))
+    except Exception:
+        ontology_group_assortativity = float("nan")
+    try:
+        ontology_family_assortativity = float(nx.attribute_assortativity_coefficient(G, "ontology_family"))
+    except Exception:
+        ontology_family_assortativity = float("nan")
+    try:
+        feature_type_assortativity = float(nx.attribute_assortativity_coefficient(G, "feature_type"))
+    except Exception:
+        feature_type_assortativity = float("nan")
     global_metrics: Dict[str, Any] = {
         "n_nodes": G.number_of_nodes(),
         "n_edges": G.number_of_edges(),
@@ -842,9 +1019,26 @@ def _fit_network_analysis(
         "modularity_score": modularity_score,
         "avg_degree": float(sum(d for _, d in G.degree()) / max(1, G.number_of_nodes())),
         "max_degree": int(max((d for _, d in G.degree()), default=0)),
+        "avg_strength": float(np.mean(list(node_strength.values()))) if node_strength else 0.0,
+        "max_strength": float(max(node_strength.values())) if node_strength else 0.0,
+        "mean_abs_rho": float(abs_rho_values.mean()) if not abs_rho_values.empty else 0.0,
+        "positive_edge_count": pos_edges,
+        "negative_edge_count": neg_edges,
+        "positive_edge_share": float(pos_edges / max(1, G.number_of_edges())),
+        "negative_edge_share": float(neg_edges / max(1, G.number_of_edges())),
+        "largest_community_size": int(max(community_sizes.values(), default=0)),
+        "within_community_edge_share": float(within_community_edges / max(1, G.number_of_edges())),
+        "between_community_edge_share": float(between_community_edges / max(1, G.number_of_edges())),
+        "within_family_edge_share": float(within_family_edges / max(1, G.number_of_edges())),
+        "between_family_edge_share": float(between_family_edges / max(1, G.number_of_edges())),
+        "mean_participation_coefficient": float(np.mean(list(participation_coefficient.values()))) if participation_coefficient else 0.0,
+        "mean_bridge_ratio": float(np.mean(list(bridge_ratio.values()))) if bridge_ratio else 0.0,
+        "ontology_group_assortativity": ontology_group_assortativity,
+        "ontology_family_assortativity": ontology_family_assortativity,
+        "feature_type_assortativity": feature_type_assortativity,
         "corr_threshold": corr_threshold,
         "n_features_total": len(valid),
-        "note": "Spearman correlation network of profile features. Edge = |rho| >= threshold.",
+        "note": "Spearman correlation network of profile features. Strength-based metrics use |rho|; path-based metrics use distance = 1 / |rho|. Participation and within-module z-score separate bridge-like nodes from community-local hubs.",
     }
 
     # Compute spring layout for visualization
@@ -1054,33 +1248,15 @@ def _fit_exploratory_models(
     if comparison.empty:
         return comparison
 
-    # Benjamini-Hochberg FDR correction for multiple comparisons
-    for p_col, q_col in [
-        ("univariate_p_value", "univariate_q_value"),
-        ("multivariate_p_value", "multivariate_q_value"),
-    ]:
-        if p_col in comparison.columns:
-            pvals = comparison[p_col].values
-            valid = ~np.isnan(pvals)
-            q = np.full_like(pvals, np.nan)
-            if valid.sum() > 0:
-                ranked = np.argsort(np.argsort(pvals[valid])) + 1
-                m = valid.sum()
-                q[valid] = np.minimum(1.0, pvals[valid] * m / ranked)
-                # Enforce monotonicity (step-up)
-                sorted_idx = np.argsort(pvals[valid])[::-1]
-                q_sorted = q[valid][sorted_idx]
-                for i in range(1, len(q_sorted)):
-                    q_sorted[i] = min(q_sorted[i], q_sorted[i - 1])
-                q[valid] = q_sorted[np.argsort(sorted_idx)]
-            comparison[q_col] = q
+    comparison = _apply_bh_qvalues(comparison, "univariate_p_value", "univariate_q_value")
+    comparison = _apply_bh_qvalues(comparison, "multivariate_p_value", "multivariate_q_value")
 
-    # Cohen's d effect size (standardised mean difference proxy from z-scored predictors)
+    # Report Wald z instead of mislabelled effect-size surrogates.
     for prefix in ("univariate", "multivariate"):
         est_col = f"{prefix}_estimate"
         se_col = f"{prefix}_std_error"
         if est_col in comparison.columns and se_col in comparison.columns:
-            comparison[f"{prefix}_cohens_d"] = (
+            comparison[f"{prefix}_wald_z"] = (
                 comparison[est_col] / comparison[se_col].replace(0, np.nan)
             ).round(4)
 
@@ -1173,6 +1349,82 @@ def _compute_profile_susceptibility_outputs(
     result = result.sort_values("susceptibility_index_pct", ascending=False).reset_index(drop=True)
     breakdown_df = pd.DataFrame(breakdown_rows)
     return result, breakdown_df
+
+
+def _build_quality_diagnostics(long_df: pd.DataFrame) -> Dict[str, Any]:
+    diagnostics: Dict[str, Any] = {
+        "n_rows": int(len(long_df)),
+        "n_profiles": int(long_df["profile_id"].nunique()) if "profile_id" in long_df.columns else None,
+        "n_attack_opinion_tasks": (
+            int(long_df[["attack_leaf", "opinion_leaf"]].drop_duplicates().shape[0])
+            if {"attack_leaf", "opinion_leaf"}.issubset(long_df.columns)
+            else None
+        ),
+    }
+    bool_columns = [
+        "baseline_fallback_used",
+        "post_fallback_used",
+        "attack_rewrite_required",
+        "baseline_rewrite_required",
+        "post_rewrite_required",
+        "attack_heuristic_pass",
+        "baseline_heuristic_pass",
+        "post_heuristic_pass",
+    ]
+    for column in bool_columns:
+        if column in long_df.columns:
+            diagnostics[f"{column}_rate"] = float(long_df[column].fillna(False).astype(bool).mean())
+
+    score_columns = [
+        "attack_realism_score",
+        "attack_coherence_score",
+        "baseline_plausibility_score",
+        "baseline_consistency_score",
+        "post_plausibility_score",
+        "post_consistency_score",
+    ]
+    for column in score_columns:
+        if column in long_df.columns and long_df[column].notna().any():
+            diagnostics[f"mean_{column}"] = float(long_df[column].dropna().mean())
+
+    diagnostics["note"] = (
+        "Run-quality diagnostics are computed directly from the attacked long table. "
+        "High fallback rates or zero-valued review scores indicate execution problems rather than substantive moderator evidence."
+    )
+    return diagnostics
+
+
+def _bootstrap_rank_table(conditional_fit) -> pd.DataFrame:
+    if conditional_fit.bootstrap_ci is None:
+        return pd.DataFrame(columns=["profile_id", "rank_ci_low", "rank_ci_high", "rank_sd", "n_bootstrap_samples"])
+    rows: List[Dict[str, Any]] = []
+    for profile_id, (low, high) in conditional_fit.bootstrap_ci.rank_ci.items():
+        rows.append(
+            {
+                "profile_id": profile_id,
+                "rank_ci_low": low,
+                "rank_ci_high": high,
+                "rank_sd": conditional_fit.bootstrap_ci.rank_sd.get(profile_id, np.nan),
+                "n_bootstrap_samples": conditional_fit.bootstrap_ci.n_samples,
+            }
+        )
+    return pd.DataFrame(rows).sort_values("rank_ci_high", ascending=False).reset_index(drop=True)
+
+
+def _bootstrap_feature_sd_table(conditional_fit) -> pd.DataFrame:
+    if conditional_fit.bootstrap_ci is None:
+        return pd.DataFrame(columns=["term", "component_key", "coefficient_sd"])
+    rows: List[Dict[str, Any]] = []
+    for term, component_dict in conditional_fit.bootstrap_ci.coefficient_sd.items():
+        for component_key, sd_value in component_dict.items():
+            rows.append(
+                {
+                    "term": term,
+                    "component_key": component_key,
+                    "coefficient_sd": sd_value,
+                }
+            )
+    return pd.DataFrame(rows).sort_values("coefficient_sd", ascending=False).reset_index(drop=True)
 
 
 def _safe_ols_summary(ols_model) -> str:
@@ -1459,6 +1711,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
             "conf_high": conf_int[1].values,
         }
     )
+    ols_table = _apply_bh_qvalues(ols_table, "p_value", "q_value", exclude_terms=["Intercept"])
 
     bootstrap_table = _bootstrap_ols(
         df=profile_df,
@@ -1496,6 +1749,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         ],
         seed=config.seed,
         compute_hierarchy=True,
+        bootstrap_samples=config.bootstrap_samples,
+        shrinkage_strength=0.20,
     )
     weight_table = build_conditional_weight_table(conditional_fit.artifact)
     weight_table["moderator_label"] = weight_table["term"].map(_pretty_moderator_label)
@@ -1520,6 +1775,16 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     profile_index_df["observed_effectivity_pct"] = (
         profile_index_df[obs_col].rank(method="average", pct=True) * 100.0
     )
+    if conditional_fit.bootstrap_ci is not None:
+        profile_index_df["rank_ci_low"] = profile_index_df["profile_id"].map(
+            lambda pid: conditional_fit.bootstrap_ci.rank_ci.get(pid, (np.nan, np.nan))[0]
+        )
+        profile_index_df["rank_ci_high"] = profile_index_df["profile_id"].map(
+            lambda pid: conditional_fit.bootstrap_ci.rank_ci.get(pid, (np.nan, np.nan))[1]
+        )
+        profile_index_df["rank_sd"] = profile_index_df["profile_id"].map(
+            conditional_fit.bootstrap_ci.rank_sd
+        )
     contribution_breakdown_df = conditional_fit.contribution_breakdown
     ridge_summary_lookup = (
         conditional_fit.task_coefficients.loc[conditional_fit.task_coefficients["term"] != "Intercept"]
@@ -1626,7 +1891,7 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     ridge_lookup = ridge_full_result["coeff_df"].set_index("term")["ridge_estimate"].to_dict()
     rf_lookup = rf_result["importance_df"].set_index("term")["permutation_importance_mean"].to_dict()
     if not exploratory_table.empty:
-        exploratory_table["elastic_net_estimate"] = exploratory_table["moderator_column"].map(ridge_lookup).astype(float)
+        exploratory_table["ridge_estimate"] = exploratory_table["moderator_column"].map(ridge_lookup).astype(float)
         exploratory_table["rf_permutation_importance"] = exploratory_table["moderator_column"].map(rf_lookup).astype(float)
 
     # Build expanded moderator table: ALL ~100 features with ridge estimates
@@ -1670,6 +1935,10 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     ridge_full_coeff_csv = out / "ridge_full_coefficients.csv"
     ridge_full_summary_json = out / "ridge_full_summary.json"
     expanded_moderator_csv = out / "expanded_moderator_comparison.csv"
+    bootstrap_rank_csv = out / "conditional_susceptibility_bootstrap_ranks.csv"
+    bootstrap_feature_sd_csv = out / "conditional_susceptibility_bootstrap_feature_sd.csv"
+    group_contribution_csv = out / "conditional_susceptibility_group_contributions.csv"
+    quality_diagnostics_json = out / "analysis_quality_diagnostics.json"
     network_centrality_csv = out / "profile_network_centrality.csv"
     network_edges_csv = out / "profile_network_edges.csv"
     network_layout_csv = out / "profile_network_layout.csv"
@@ -1678,7 +1947,10 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     write_text(spec_txt, sem_result.model_formula)
     write_text(profile_formula_txt, multivariate_formula)
     write_json(sem_json, sem_result.model_dump())
-    pd.DataFrame([coeff.model_dump() for coeff in sem_result.coefficients]).to_csv(sem_coeff_csv, index=False)
+    sem_coeff_df = pd.DataFrame([coeff.model_dump() for coeff in sem_result.coefficients])
+    if not sem_coeff_df.empty and "p_value" in sem_coeff_df.columns:
+        sem_coeff_df = _apply_bh_qvalues(sem_coeff_df, "p_value", "q_value")
+    sem_coeff_df.to_csv(sem_coeff_csv, index=False)
     write_json(sem_fit_json, sem_result.fit_indices)
     ols_summary_text = _safe_ols_summary(ols_model)
     write_text(ols_txt, ols_summary_text)
@@ -1691,6 +1963,12 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     conditional_fit.task_coefficients.to_csv(ridge_coeff_csv, index=False)
     conditional_fit.task_summary.to_csv(ridge_summary_csv, index=False)
     write_json(conditional_artifact_json, conditional_fit.artifact.model_dump())
+    bootstrap_rank_df = _bootstrap_rank_table(conditional_fit)
+    bootstrap_feature_sd_df = _bootstrap_feature_sd_table(conditional_fit)
+    bootstrap_rank_df.to_csv(bootstrap_rank_csv, index=False)
+    bootstrap_feature_sd_df.to_csv(bootstrap_feature_sd_csv, index=False)
+    if conditional_fit.group_contribution_breakdown is not None:
+        conditional_fit.group_contribution_breakdown.to_csv(group_contribution_csv, index=False)
     if conditional_fit.hierarchical_decomposition is not None:
         hier = conditional_fit.hierarchical_decomposition
         write_json(
@@ -1716,6 +1994,8 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
     rf_result["importance_df"].to_csv(rf_importance_csv, index=False)
     ridge_full_result["coeff_df"].to_csv(ridge_full_coeff_csv, index=False)
     expanded_moderator_table.to_csv(expanded_moderator_csv, index=False)
+    quality_diagnostics = _build_quality_diagnostics(long_df)
+    write_json(quality_diagnostics_json, quality_diagnostics)
     network_result["centrality_df"].to_csv(network_centrality_csv, index=False)
     if not network_result["edge_df"].empty:
         network_result["edge_df"].to_csv(network_edges_csv, index=False)
@@ -1730,9 +2010,9 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         "n_features_total": enet_result["n_features_total"],
         "n_features_selected": enet_result["n_features_selected"],
         "note": (
-            "LASSO feature selector. CV-R² via nested 5-fold CV. Estimates on standardised features. "
-            "l1_ratio=1.0 (LASSO) zeroes correlated features — use ridge_full for interpretable "
-            "direction estimates across all features."
+            "Elastic Net selector. CV-R² via nested 5-fold CV on standardised features. "
+            "Higher l1_ratio values behave more like LASSO; use ridge_full for interpretable "
+            "direction estimates across all retained predictors."
         ),
     })
     write_json(rf_summary_json, {
@@ -1821,12 +2101,17 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
         abs_path(ridge_full_coeff_csv),
         abs_path(ridge_full_summary_json),
         abs_path(expanded_moderator_csv),
+        abs_path(bootstrap_rank_csv),
+        abs_path(bootstrap_feature_sd_csv),
+        abs_path(quality_diagnostics_json),
         abs_path(network_centrality_csv),
         abs_path(network_layout_csv),
         abs_path(network_global_json),
     ]
     if network_edges_csv.exists():
         output_files.append(abs_path(network_edges_csv))
+    if group_contribution_csv.exists():
+        output_files.append(abs_path(group_contribution_csv))
     if latent_scores_csv.exists():
         output_files.append(abs_path(latent_scores_csv))
 
@@ -1850,11 +2135,15 @@ def run_stage(input_path: str, output_dir: str, config: Stage06Config) -> StageA
             "conditional_susceptibility_attack_leaves": conditional_fit.artifact.attack_leaves,
             "conditional_susceptibility_opinion_leaves": conditional_fit.artifact.opinion_leaves,
             "conditional_susceptibility_tasks": [task.task_key for task in conditional_fit.artifact.task_models],
+            "conditional_shrinkage_strength": 0.20,
+            "conditional_bootstrap_samples": config.bootstrap_samples,
             "ridge_full_cv_r2": ridge_full_result["cv_r2"],
             "elastic_net_cv_r2": enet_result["cv_r2"],
             "elastic_net_n_selected": enet_result["n_features_selected"],
             "elastic_net_n_total": enet_result["n_features_total"],
             "rf_oob_r2": rf_result["oob_r2"],
+            "baseline_fallback_rate": quality_diagnostics.get("baseline_fallback_used_rate"),
+            "post_fallback_rate": quality_diagnostics.get("post_fallback_used_rate"),
         },
     )
 

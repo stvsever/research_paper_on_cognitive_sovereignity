@@ -123,6 +123,26 @@ def _moderator_hierarchy(label: str, ontology_group: str | None = None) -> List[
     return deduped
 
 
+def _network_ontology_family(ontology_group: str) -> str:
+    text = str(ontology_group or "").strip()
+    return text.split(":", 1)[0].strip() if ":" in text else (text or "Other")
+
+
+def _network_feature_type(term: str) -> str:
+    raw = str(term or "").lower()
+    if raw.startswith("profile_cat__"):
+        return "Categorical dummy"
+    if "chronological_age" in raw or "age_years" in raw:
+        return "Continuous demographic"
+    if "_mean_pct" in raw:
+        if "big_five" in raw:
+            return "Trait aggregate"
+        return "Scale aggregate"
+    if "big_five" in raw:
+        return "Facet"
+    return "Continuous subscale"
+
+
 def _infer_sem_moderator_groups(label: str) -> Tuple[str, str]:
     txt = re.sub(r"\s+", " ", str(label)).strip()
     if txt.startswith("Big Five "):
@@ -536,7 +556,7 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
     <div>
       <div class="ontx-card">
         <div class="ontx-title">Ontology Source</div>
-        <div class="ontx-sub">Production is the default explorer surface. This run used the test ontology, so the source toggle lets you compare the research-scale production hierarchy against the exact pilot ontology used in run 8.</div>
+        <div class="ontx-sub">Production is the default explorer surface. This run uses the test ontology, so the source toggle lets you compare the research-scale production hierarchy against the exact run-specific hierarchy used for the current test panel.</div>
         <div class="ontx-segment" id="ontx-source">
           <button class="ontx-btn active" data-source="production">Production</button>
           <button class="ontx-btn" data-source="test">Test</button>
@@ -978,7 +998,7 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
               <strong>${{env === 'production' ? 'Production ontology' : 'Test ontology'}}</strong>
               <div style="display:flex;gap:6px;flex-wrap:wrap">
                 ${{active ? badgeHtml('Visible source', 'rgba(29,78,137,0.08)', '{PALETTE['blue']}') : ''}}
-                ${{isRun ? badgeHtml('Run 8 source', 'rgba(231,111,81,0.12)', '{PALETTE['orange']}') : ''}}
+                ${{isRun ? badgeHtml('Run source', 'rgba(231,111,81,0.12)', '{PALETTE['orange']}') : ''}}
               </div>
             </div>
             <div class="ontx-compare-grid">
@@ -994,8 +1014,8 @@ def _html_ontology_explorer(ontology_payload: Dict[str, Any]) -> str:
     function renderStatus(ds, visible) {{
       const dense = visible.visibleNodes.length > 260;
       const runNote = DATA.current_run_source === state.source
-        ? 'Current source matches the ontology used in run 8.'
-        : 'Current source is a comparison surface; switch to Test to inspect the exact run 8 ontology.';
+        ? 'Current source matches the ontology used in this run.'
+        : 'Current source is a comparison surface; switch to Test to inspect the exact test ontology used in this run.';
       const relevantCount = ds.summary.sample_exact_count + ds.summary.sample_aligned_count;
       root.querySelector('#ontx-status').innerHTML =
         `<strong>Visible structure:</strong> ${{visible.visibleNodes.length}} of ${{ds.summary.node_count}} nodes, depth ≤ ${{state.maxDepth}}, ${{state.layout}} layout<br>` +
@@ -3305,10 +3325,9 @@ def _fig_moderator_forest(exploratory_df: pd.DataFrame, top_n: int = 30) -> go.F
         }
 
     note = (
-        "<b>■ Ridge (all ~100 features, std-scaled)</b> = primary estimator — retains ALL predictors including "
-        "political engagement, digital literacy, dual process.<br>"
+        "<b>■ Ridge (all modeled profile features, std-scaled)</b> = primary estimator — retains all survey-mappable predictors in the current run.<br>"
         "<b>◇ OLS</b> = Big Five benchmark (8 predictors). "
-        "Near-zero |coef| consistent with ICC(1)=0 in run_9 (backfire rate corrected for run_10)."
+        "Near-zero |coef| should be read alongside the execution-integrity diagnostics and the between-profile variance partitioning."
     )
 
     fig.add_vline(x=0, line_dash="dot", line_color="#777", line_width=1)
@@ -3724,6 +3743,63 @@ def _html_cs_estimator(
     radar_means  = [round(feat_means.get(
         f"profile_cont_big_five_{g[0]}_mean_pct", 50.0), 1) for g in BIG5_GROUPS]
 
+    big5_group_blocks: List[str] = []
+    for group_key, group_label, facets in BIG5_GROUPS:
+        facet_blocks = "".join(
+            f"""
+        <div style="margin-bottom:5px">
+          <div style="display:flex;justify-content:space-between;font-size:0.76rem;color:{PALETTE['muted']}">
+            <span>{facet.replace("_", " ").title()}</span>
+            <span id="cse-fv-{group_key}-{facet}">50</span>
+          </div>
+          <input type="range" id="cse-sf-{group_key}-{facet}" min="0" max="100" value="50" step="1"
+            style="width:100%;accent-color:{PALETTE['sky']}"
+            oninput="cse_facet_change('{group_key}','{facet}',this.value)">
+        </div>"""
+            for facet in facets
+        )
+        big5_group_blocks.append(
+            f"""
+    <div class="cse-group" id="cse-g-{group_key}" style="margin-bottom:8px">
+      <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"
+           onclick="cse_toggle('{group_key}')">
+        <span style="font-weight:600;font-size:0.83rem;color:{PALETTE['ink']}">{group_label}</span>
+        <span style="display:flex;gap:6px;align-items:center">
+          <span id="cse-mv-{group_key}"
+            style="font-size:0.75rem;font-weight:700;color:{PALETTE['blue']};min-width:32px;text-align:right">50</span>
+          <span id="cse-arr-{group_key}" style="font-size:0.7rem;color:{PALETTE['muted']}">▶</span>
+        </span>
+      </div>
+      <input type="range" id="cse-sl-{group_key}-mean" min="0" max="100" value="50" step="1"
+        style="width:100%;margin-top:3px;accent-color:{PALETTE['blue']}"
+        oninput="cse_mean_change('{group_key}',this.value)">
+      <div id="cse-facets-{group_key}" style="display:none;margin-top:6px;padding:6px 8px;background:rgba(255,255,255,0.7);border-radius:7px">
+        {facet_blocks}
+      </div>
+    </div>"""
+        )
+    big5_groups_html = "".join(big5_group_blocks)
+
+    attack_checks_html = "".join(
+        f"""<label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,0.55)">
+        <input type="checkbox" checked id="cse-atk-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']};margin-top:2px">
+        <span style="display:flex;flex-direction:column;gap:1px">
+          <span title="{atk}" style="font-weight:600;color:{PALETTE['ink']}">{attack_labels[atk]}</span>
+          <span style="font-size:0.71rem;color:{PALETTE['muted']}">{attack_context[atk] or "Attack family"}</span>
+        </span></label>"""
+        for i, atk in enumerate(all_attacks)
+    )
+
+    opinion_checks_html = "".join(
+        f"""<label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,0.55)">
+        <input type="checkbox" checked id="cse-op-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']};margin-top:2px">
+        <span style="display:flex;flex-direction:column;gap:1px">
+          <span title="{op}" style="font-weight:600;color:{PALETTE['ink']}">{opinion_labels[op]}</span>
+          <span style="font-size:0.71rem;color:{PALETTE['muted']}">{opinion_context[op] or "Opinion family"}</span>
+        </span></label>"""
+        for i, op in enumerate(all_opinions)
+    )
+
     return f"""
 <div id="cse-root" style="display:grid;grid-template-columns:minmax(295px,330px) minmax(0,1fr);grid-template-rows:auto;gap:16px;align-items:start">
 
@@ -3739,35 +3815,7 @@ def _html_cs_estimator(
     </div>
 
     <!-- Big Five groups -->
-    {''.join(f"""
-    <div class="cse-group" id="cse-g-{g[0]}" style="margin-bottom:8px">
-      <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"
-           onclick="cse_toggle('{g[0]}')">
-        <span style="font-weight:600;font-size:0.83rem;color:{PALETTE['ink']}">{g[1]}</span>
-        <span style="display:flex;gap:6px;align-items:center">
-          <span id="cse-mv-{g[0]}"
-            style="font-size:0.75rem;font-weight:700;color:{PALETTE['blue']};min-width:32px;text-align:right">50</span>
-          <span id="cse-arr-{g[0]}" style="font-size:0.7rem;color:{PALETTE['muted']}">▶</span>
-        </span>
-      </div>
-      <!-- mean slider (visible by default) -->
-      <input type="range" id="cse-sl-{g[0]}-mean" min="0" max="100" value="50" step="1"
-        style="width:100%;margin-top:3px;accent-color:{PALETTE['blue']}"
-        oninput="cse_mean_change('{g[0]}',this.value)">
-      <!-- facet sliders (hidden by default) -->
-      <div id="cse-facets-{g[0]}" style="display:none;margin-top:6px;padding:6px 8px;background:rgba(255,255,255,0.7);border-radius:7px">
-        {''.join(f"""
-        <div style="margin-bottom:5px">
-          <div style="display:flex;justify-content:space-between;font-size:0.76rem;color:{PALETTE['muted']}">
-            <span>{facet.replace("_"," ").title()}</span>
-            <span id="cse-fv-{g[0]}-{facet}">50</span>
-          </div>
-          <input type="range" id="cse-sf-{g[0]}-{facet}" min="0" max="100" value="50" step="1"
-            style="width:100%;accent-color:{PALETTE['sky']}"
-            oninput="cse_facet_change('{g[0]}','{facet}',this.value)">
-        </div>""" for facet in g[2])}
-      </div>
-    </div>""" for g in BIG5_GROUPS)}
+    {big5_groups_html}
 
     <!-- Age -->
     <div style="margin-bottom:8px">
@@ -3814,12 +3862,7 @@ def _html_cs_estimator(
       </div>
     </div>
     <div id="cse-atk-checks" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;max-height:160px;overflow:auto;padding-right:3px">
-      {''.join(f"""<label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,0.55)">
-        <input type="checkbox" checked id="cse-atk-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']};margin-top:2px">
-        <span style="display:flex;flex-direction:column;gap:1px">
-          <span title="{atk}" style="font-weight:600;color:{PALETTE['ink']}">{attack_labels[atk]}</span>
-          <span style="font-size:0.71rem;color:{PALETTE['muted']}">{attack_context[atk] or "Attack family"}</span>
-        </span></label>""" for i, atk in enumerate(all_attacks))}
+      {attack_checks_html}
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
@@ -3830,12 +3873,7 @@ def _html_cs_estimator(
       </div>
     </div>
     <div id="cse-op-checks" style="display:flex;flex-direction:column;gap:5px;max-height:170px;overflow:auto;padding-right:3px">
-      {''.join(f"""<label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,0.55)">
-        <input type="checkbox" checked id="cse-op-{i}" onchange="cse_update()" style="accent-color:{PALETTE['blue']};margin-top:2px">
-        <span style="display:flex;flex-direction:column;gap:1px">
-          <span title="{op}" style="font-weight:600;color:{PALETTE['ink']}">{opinion_labels[op]}</span>
-          <span style="font-size:0.71rem;color:{PALETTE['muted']}">{opinion_context[op] or "Opinion family"}</span>
-        </span></label>""" for i, op in enumerate(all_opinions))}
+      {opinion_checks_html}
     </div>
 
     <div style="font-size:0.72rem;line-height:1.45;color:{PALETTE['muted']};margin-top:8px">
@@ -3986,7 +4024,7 @@ function computeScore(pf, selectedPairs) {{
   }});
   const raw = wtot > 0 ? wsum / wtot : 0;
 
-  // distribution: re-score all 100 original profiles on selected tasks
+  // distribution: re-score all observed profiles on selected tasks
   const dist = Object.values(PROFILES).map(pfOrig => {{
     let ws=0, wt=0;
     selectedPairs.forEach(([a,o]) => {{
@@ -4513,10 +4551,10 @@ def _html_umap_embedding_tab(
 from src.backend.utils.semantic_embedding import embed_ontology
 artifact = embed_ontology(
     ontology_root="src/backend/ontology/separate/test",
-    out_dir="evaluation/run_9/embeddings",
+    out_dir="evaluation/run_10/embeddings",
     n_clusters=8,
 )
-artifact.write("evaluation/run_9/embeddings")
+artifact.write("evaluation/run_10/embeddings")
   </pre>
   <p style="color:#4a5d7a;line-height:1.7;margin-top:12px">
     After running, regenerate the dashboard to see the embedding visualization here.
@@ -4572,6 +4610,7 @@ def _render_dashboard_html(
     notes: List[str],
 ) -> str:
     plotly_js = get_plotlyjs()
+    design_badge = f"{summary_cards.get('Attack Vectors', '—')}×{summary_cards.get('Opinion Leaves', '—')} attack × opinion factorial"
 
     cards_html = "".join(
         f"<div class='card'><div class='label'>{k}</div><div class='value'>{v}</div></div>"
@@ -4582,10 +4621,11 @@ def _render_dashboard_html(
         ("🗂 Ontologies",        ["Ontology Explorer", "Semantic Embedding Space"]),
         ("📡 Factorial Space",   ["Factorial 3D Surface", "Factorial Heat + Contour"]),
         ("🧠 SEM Analysis",      ["SEM Network", "SEM Heatmap"]),
-        ("🔬 Estimation",        ["Conditional Susceptibility Estimator"]),
-        ("👤 Profiles",          ["Susceptibility Map", "Profile Heatmap"]),
+        ("🔬 Estimation",        ["Conditional Susceptibility Estimator", "Task Reliability Surface", "Bootstrap Rank Stability"]),
+        ("👤 Profiles",          ["Susceptibility Map", "Profile Heatmap", "Profile Feature Network", "Profile Network Explorer"]),
         ("📊 Moderators",        ["Moderator Forest", "Hierarchical Importance"]),
         ("📈 Raw Data",          ["Distribution by Opinion Leaf", "Distribution by Attack Vector", "Score Trajectory"]),
+        ("🧪 Diagnostics",       ["Audit & Robustness"]),
     ]
 
     tab_index = {title: idx for idx, (title, _) in enumerate(figure_divs)}
@@ -4693,9 +4733,9 @@ body{{margin:0;min-height:100vh;color:var(--ink);
   <div class="badge">{run_id.upper()}</div>
   <h1>Cognitive Warfare Susceptibility Dashboard</h1>
   <p class="sub">
-    Ontology-driven multi-agent simulation · Full 4×4 factorial design ·
-    Profile-panel repeated-outcome SEM · Conditional susceptibility estimation ·
-    Hierarchical feature importance decomposition
+    Ontology-driven multi-agent simulation · {design_badge} ·
+    Profile-panel repeated-outcome SEM · conditional susceptibility estimation ·
+    hierarchical feature importance decomposition · network-aware feature diagnostics
   </p>
 </div>
 <div class="cards">{cards_html}</div>
@@ -4726,6 +4766,15 @@ _NETWORK_METRIC_LABELS = {
     "closeness_centrality": "Closeness Centrality",
     "pagerank": "PageRank",
     "clustering_coefficient": "Clustering Coefficient",
+    "strength": "Weighted Degree",
+    "participation_coefficient": "Participation Coefficient",
+    "bridge_ratio": "Bridge Ratio",
+    "within_module_zscore": "Within-Module Z",
+    "positive_strength": "Positive-Correlation Strength",
+    "negative_strength": "Negative-Correlation Strength",
+    "same_family_strength_share": "Within-Family Strength Share",
+    "k_core": "K-Core Index",
+    "community_size": "Community Size",
 }
 
 _ONTOLOGY_GROUP_COLORS = [
@@ -4838,6 +4887,9 @@ def _fig_profile_network(
                 f"Eigenvector: {row.get('eigenvector_centrality', 0):.4f}<br>"
                 f"Betweenness: {row.get('betweenness_centrality', 0):.4f}<br>"
                 f"Degree: {row.get('degree_centrality', 0):.4f}<br>"
+                f"Strength: {row.get('strength', 0):.4f}<br>"
+                f"Participation: {row.get('participation_coefficient', 0):.4f}<br>"
+                f"Bridge Ratio: {row.get('bridge_ratio', 0):.4f}<br>"
                 f"PageRank: {row.get('pagerank', 0):.4f}<br>"
                 f"Clustering: {row.get('clustering_coefficient', 0):.4f}<br>"
                 f"Community: {int(row.get('community', -1))}"
@@ -4969,6 +5021,1564 @@ def _fig_profile_network(
     return fig
 
 
+def _fig_task_reliability(task_summary_df: pd.DataFrame) -> go.Figure:
+    if task_summary_df.empty:
+        return go.Figure().add_annotation(text="Task-level reliability data unavailable", showarrow=False)
+
+    work = task_summary_df.copy()
+    work["attack_label"] = work["attack_leaf"].apply(lambda x: _unique_display_map(work["attack_leaf"].astype(str).tolist()).get(str(x), _leaf(x)))
+    work["opinion_label"] = work["opinion_leaf"].apply(lambda x: _unique_display_map(work["opinion_leaf"].astype(str).tolist()).get(str(x), _leaf(x)))
+    reliability = work.pivot_table(index="attack_label", columns="opinion_label", values="reliability_weight", aggfunc="mean")
+    cv_mse = work.pivot_table(index="attack_label", columns="opinion_label", values="cv_mse", aggfunc="mean")
+
+    fig = make_subplots(
+        rows=1,
+        cols=2,
+        column_widths=[0.48, 0.52],
+        horizontal_spacing=0.12,
+        subplot_titles=["Reliability weight", "Cross-validated MSE"],
+    )
+    fig.add_trace(
+        go.Heatmap(
+            z=reliability.values,
+            x=[_wrap_label(c, 18) for c in reliability.columns],
+            y=[_wrap_label(i, 18) for i in reliability.index],
+            colorscale="Blues",
+            colorbar=dict(title="Weight", x=0.44),
+            hovertemplate="Attack: %{y}<br>Opinion: %{x}<br>Weight: %{z:.4f}<extra></extra>",
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Heatmap(
+            z=cv_mse.values,
+            x=[_wrap_label(c, 18) for c in cv_mse.columns],
+            y=[_wrap_label(i, 18) for i in cv_mse.index],
+            colorscale="YlOrRd",
+            colorbar=dict(title="CV-MSE", x=1.02),
+            hovertemplate="Attack: %{y}<br>Opinion: %{x}<br>CV-MSE: %{z:.2f}<extra></extra>",
+        ),
+        row=1,
+        col=2,
+    )
+    fig.update_layout(
+        title="Task Reliability Surface",
+        paper_bgcolor=PALETTE["panel"],
+        plot_bgcolor=PALETTE["panel"],
+        font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
+        margin=dict(l=20, r=30, t=70, b=30),
+        height=620,
+    )
+    return fig
+
+
+def _fig_bootstrap_rank_stability(profile_index_df: pd.DataFrame) -> go.Figure:
+    required = {"profile_id", "susceptibility_index_pct", "rank_ci_low", "rank_ci_high"}
+    if profile_index_df.empty or not required.issubset(profile_index_df.columns):
+        return go.Figure().add_annotation(text="Bootstrap rank intervals unavailable", showarrow=False)
+
+    work = profile_index_df.copy()
+    work = work.sort_values("susceptibility_index_pct", ascending=False).reset_index(drop=True)
+    work["rank_sd"] = pd.to_numeric(work.get("rank_sd"), errors="coerce")
+    fig = go.Figure()
+    fig.add_trace(
+        go.Scatter(
+            x=work["susceptibility_index_pct"],
+            y=work["profile_id"],
+            mode="markers",
+            marker=dict(
+                size=np.clip(work["rank_sd"].fillna(3.0).to_numpy() * 2.0 + 9.0, 9.0, 21.0),
+                color=work["susceptibility_index_pct"],
+                colorscale="Tealgrn",
+                line=dict(color="white", width=1),
+            ),
+            error_x=dict(
+                type="data",
+                symmetric=False,
+                array=(work["rank_ci_high"] - work["susceptibility_index_pct"]).clip(lower=0),
+                arrayminus=(work["susceptibility_index_pct"] - work["rank_ci_low"]).clip(lower=0),
+                color="#4a5d7a",
+                thickness=1.1,
+                width=0,
+            ),
+            customdata=np.stack(
+                [
+                    work["rank_ci_low"].to_numpy(),
+                    work["rank_ci_high"].to_numpy(),
+                    work["rank_sd"].fillna(np.nan).to_numpy(),
+                ],
+                axis=1,
+            ),
+            hovertemplate=(
+                "<b>%{y}</b><br>"
+                "Rank: %{x:.1f}<br>"
+                "90% CI: [%{customdata[0]:.1f}, %{customdata[1]:.1f}]<br>"
+                "SD: %{customdata[2]:.2f}<extra></extra>"
+            ),
+        )
+    )
+    fig.update_layout(
+        title="Bootstrap Rank Stability",
+        xaxis_title="Conditional susceptibility percentile",
+        yaxis_title="Profile",
+        paper_bgcolor=PALETTE["panel"],
+        plot_bgcolor="#f4f7ff",
+        font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
+        margin=dict(l=140, r=30, t=60, b=40),
+        height=max(520, 18 * len(work) + 150),
+    )
+    return fig
+
+
+def _html_quality_robustness(
+    quality_diagnostics: Dict[str, Any],
+    icc_data: Dict[str, Any],
+    ridge_summary: Dict[str, Any],
+    rf_summary: Dict[str, Any],
+    enet_summary: Dict[str, Any],
+) -> str:
+    def _pct(value: Any) -> str:
+        try:
+            return f"{float(value) * 100:.1f}%"
+        except Exception:
+            return "n/a"
+
+    def _num(value: Any, digits: int = 3) -> str:
+        try:
+            return f"{float(value):.{digits}f}"
+        except Exception:
+            return "n/a"
+
+    abs_icc = icc_data.get("abs_delta_score", {}).get("icc1") if isinstance(icc_data, dict) else None
+    cards = [
+        ("Baseline fallback", _pct(quality_diagnostics.get("baseline_fallback_used_rate"))),
+        ("Post fallback", _pct(quality_diagnostics.get("post_fallback_used_rate"))),
+        ("Attack heuristic pass", _pct(quality_diagnostics.get("attack_heuristic_pass_rate"))),
+        ("Post heuristic pass", _pct(quality_diagnostics.get("post_heuristic_pass_rate"))),
+        ("ICC(1) |Δ|", _num(abs_icc)),
+        ("Ridge CV-R²", _num(ridge_summary.get("cv_r2"))),
+        ("RF OOB R²", _num(rf_summary.get("oob_r2"))),
+        ("EN selected", str(enet_summary.get("n_features_selected", "n/a"))),
+    ]
+    card_html = "".join(
+        f"<div class='diag-card'><div class='diag-k'>{k}</div><div class='diag-v'>{v}</div></div>"
+        for k, v in cards
+    )
+    return f"""
+<div id="diag-root">
+  <style>
+    #diag-root {{display:grid;gap:14px}}
+    #diag-root .diag-grid {{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}}
+    #diag-root .diag-card {{background:#f5f8ff;border:1px solid #dbe3ef;border-radius:12px;padding:12px 13px}}
+    #diag-root .diag-k {{font-size:0.72rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:{PALETTE['muted']};margin-bottom:4px}}
+    #diag-root .diag-v {{font-size:1.14rem;font-weight:800;color:{PALETTE['ink']}}}
+    #diag-root .diag-panel {{background:#fbfcfe;border:1px solid #dbe3ef;border-radius:14px;padding:14px 16px;line-height:1.65;color:{PALETTE['ink']}}}
+    #diag-root .diag-panel h3 {{margin:0 0 8px;color:{PALETTE['blue']};font-size:0.95rem}}
+    #diag-root .diag-panel p {{margin:0}}
+  </style>
+  <div class="diag-grid">{card_html}</div>
+  <div class="diag-panel">
+    <h3>Execution Integrity</h3>
+    <p>High fallback rates or zero-valued review scores indicate that the opinion-generation stages did not execute under normal API-backed conditions. Treat downstream coefficients as pipeline diagnostics unless stages 02–04 are re-run with funded access.</p>
+  </div>
+  <div class="diag-panel">
+    <h3>How To Read Weak Signal</h3>
+    <p>Near-zero ICC, negative out-of-sample R², and sparse elastic-net selection all point to the same conclusion: the current run does not support strong profile-level predictive claims. That is informative. It shows the analysis stack is surfacing model weakness instead of fabricating certainty.</p>
+  </div>
+</div>"""
+
+
+def _html_profile_network_explorer(
+    centrality_df: pd.DataFrame,
+    edge_df: pd.DataFrame,
+    layout_df: pd.DataFrame,
+    global_metrics: Dict[str, Any],
+) -> str:
+    if centrality_df.empty or layout_df.empty:
+        return "<p>Profile network explorer unavailable.</p>"
+
+    merged = centrality_df.merge(layout_df, on="term", how="left").dropna(subset=["x", "y"]).copy()
+    if merged.empty:
+        return "<p>Profile network explorer unavailable.</p>"
+
+    merged["ontology_group"] = merged["ontology_group"].fillna("Other")
+    if "ontology_family" not in merged.columns:
+        merged["ontology_family"] = merged["ontology_group"].apply(_network_ontology_family)
+    else:
+        merged["ontology_family"] = merged["ontology_family"].fillna(merged["ontology_group"].apply(_network_ontology_family))
+    if "feature_type" not in merged.columns:
+        merged["feature_type"] = merged["term"].apply(_network_feature_type)
+    else:
+        merged["feature_type"] = merged["feature_type"].fillna(merged["term"].apply(_network_feature_type))
+
+    metric_labels = dict(_NETWORK_METRIC_LABELS)
+    groups = sorted(merged["ontology_group"].dropna().astype(str).unique().tolist())
+    families = sorted(merged["ontology_family"].dropna().astype(str).unique().tolist())
+    feature_types = sorted(merged["feature_type"].dropna().astype(str).unique().tolist())
+    communities = sorted(int(v) for v in merged["community"].dropna().unique().tolist())
+    group_color_map = {g: _ONTOLOGY_GROUP_COLORS[i % len(_ONTOLOGY_GROUP_COLORS)] for i, g in enumerate(groups)}
+
+    payload = {
+        "nodes": merged.to_dict(orient="records"),
+        "edges": edge_df.to_dict(orient="records"),
+        "global_metrics": global_metrics or {},
+        "metric_labels": metric_labels,
+        "group_colors": group_color_map,
+        "groups": groups,
+        "families": families,
+        "feature_types": feature_types,
+        "communities": communities,
+    }
+    payload_json = json.dumps(payload)
+    html = """
+<div id="netx-root">
+  <style>
+    #netx-root { display:grid; gap:16px; }
+    #netx-root * { box-sizing:border-box; }
+    #netx-root .netx-shell {
+      display:grid;
+      grid-template-columns: minmax(270px,300px) minmax(0,1fr) minmax(270px,300px);
+      gap:14px;
+      align-items:start;
+    }
+    #netx-root .netx-panel {
+      background:linear-gradient(180deg,#ffffff 0%,#fbfcff 100%);
+      border:1px solid #dbe3ef; border-radius:18px;
+      box-shadow:0 10px 28px rgba(15,34,64,0.08);
+      padding:14px 15px;
+    }
+    #netx-root .netx-title {
+      margin:0 0 5px; color:__BLUE__;
+      font-size:0.93rem; font-weight:800; letter-spacing:0.01em;
+    }
+    #netx-root .netx-sub { color:__MUTED__; font-size:0.72rem; line-height:1.55; margin:0 0 9px; }
+    #netx-root .netx-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+    #netx-root .netx-field label {
+      display:block; margin-bottom:3px; font-size:0.64rem; font-weight:800;
+      letter-spacing:0.05em; text-transform:uppercase; color:__MUTED__;
+    }
+    #netx-root select,
+    #netx-root input[type="search"],
+    #netx-root input[type="range"] {
+      width:100%; border:1px solid #cfd9ea; border-radius:10px;
+      background:#fff; padding:7px 9px; font:inherit; color:__INK__;
+    }
+    #netx-root input[type="range"] { padding:0; }
+    #netx-root .netx-readout { color:__MUTED__; font-size:0.68rem; line-height:1.5; margin-top:4px; }
+    #netx-root .netx-presets { display:flex; flex-wrap:wrap; gap:6px; margin-top:11px; }
+    #netx-root .netx-preset, #netx-root .netx-toolbtn, #netx-root .netx-simtoggle {
+      border:none; border-radius:999px; padding:6px 11px; cursor:pointer;
+      font-size:0.70rem; font-weight:800; letter-spacing:0.01em;
+      transition:transform 0.12s, box-shadow 0.12s, background 0.12s;
+    }
+    #netx-root .netx-preset {
+      background:#edf4ff; color:__BLUE__;
+      box-shadow:inset 0 0 0 1px rgba(29,78,137,0.10);
+    }
+    #netx-root .netx-toolbtn {
+      background:#f4f7ff; color:__INK__;
+      box-shadow:inset 0 0 0 1px rgba(15,34,64,0.08);
+    }
+    #netx-root .netx-simtoggle {
+      background:#fff7ee; color:#c45c1a;
+      box-shadow:inset 0 0 0 1px rgba(196,92,26,0.15);
+    }
+    #netx-root .netx-simtoggle.running {
+      background:#fff0e0; color:#c45c1a;
+      animation: netx-pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes netx-pulse { 0%,100%{opacity:1} 50%{opacity:0.65} }
+    #netx-root .netx-preset:hover, #netx-root .netx-toolbtn:hover, #netx-root .netx-simtoggle:hover {
+      transform:translateY(-1px); box-shadow:0 6px 16px rgba(15,34,64,0.10);
+    }
+    #netx-root .netx-global {
+      display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:11px;
+    }
+    #netx-root .netx-metric {
+      background:#f5f8ff; border:1px solid #dbe3ef; border-radius:13px; padding:9px 10px;
+    }
+    #netx-root .netx-metric .k {
+      color:__MUTED__; font-size:0.63rem; font-weight:800;
+      letter-spacing:0.04em; text-transform:uppercase;
+    }
+    #netx-root .netx-metric .v { color:__INK__; font-size:0.97rem; font-weight:800; margin-top:2px; }
+    #netx-root .netx-stagebar {
+      display:flex; justify-content:space-between; gap:10px;
+      align-items:flex-start; margin-bottom:8px;
+    }
+    #netx-root .netx-actions { display:flex; gap:5px; flex-wrap:wrap; justify-content:flex-end; }
+    #netx-root .netx-summary { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:9px; }
+    #netx-root .netx-pill {
+      padding:4px 9px; border-radius:999px;
+      background:#eff5ff; color:__BLUE__;
+      font-size:0.67rem; font-weight:800; letter-spacing:0.02em;
+    }
+    #netx-root .netx-pill.warn { background:#fff3e0; color:#c45c1a; }
+    #netx-root .netx-canvas-wrap {
+      position:relative; min-height:780px;
+      border:1px solid #dbe3ef; border-radius:18px; overflow:hidden;
+      background:
+        radial-gradient(circle at 16% 18%,rgba(42,157,143,0.08),transparent 24%),
+        radial-gradient(circle at 82% 14%,rgba(29,78,137,0.09),transparent 26%),
+        linear-gradient(180deg,#fcfdff 0%,#f5f8ff 100%);
+    }
+    #netx-root .netx-canvas-wrap::before {
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background-image:
+        linear-gradient(rgba(15,34,64,0.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(15,34,64,0.035) 1px,transparent 1px);
+      background-size:32px 32px;
+    }
+    #netx-root svg {
+      width:100%; height:780px; display:block; position:relative; z-index:1;
+      cursor:grab; user-select:none; touch-action:none;
+    }
+    #netx-root svg.is-panning { cursor:grabbing; }
+    #netx-root svg.lasso-mode { cursor:crosshair; }
+    #netx-root .netx-node { cursor:pointer; }
+    #netx-root .netx-label {
+      font-size:10.5px; font-weight:700; fill:#23364f; pointer-events:none;
+      paint-order:stroke; stroke:#ffffff; stroke-width:3px; stroke-linejoin:round;
+    }
+    #netx-root .netx-label.selected-label { font-size:11.5px; fill:__INK__; }
+    #netx-root .netx-foot {
+      margin-top:9px; color:__MUTED__; font-size:0.70rem; line-height:1.55;
+    }
+    #netx-root .netx-foot kbd {
+      font:inherit; font-size:0.63rem; background:#edf4ff; color:__BLUE__;
+      border-radius:4px; padding:1px 5px; font-weight:700;
+    }
+    /* Mini-map */
+    #netx-minimap {
+      position:absolute; bottom:12px; right:12px;
+      width:160px; height:108px; border-radius:10px;
+      border:1.5px solid #cfd9ea;
+      box-shadow:0 4px 12px rgba(15,34,64,0.12);
+      background:rgba(245,248,255,0.94);
+      z-index:5; pointer-events:none; display:block;
+    }
+    /* Tooltip */
+    #netx-tooltip {
+      display:none; position:absolute; z-index:20;
+      background:#ffffff; border:1.5px solid #dbe3ef; border-radius:12px;
+      padding:10px 12px; box-shadow:0 8px 24px rgba(15,34,64,0.14);
+      max-width:220px; pointer-events:none; font-size:0.75rem;
+    }
+    #netx-tooltip strong { display:block; font-size:0.82rem; color:__INK__; margin-bottom:3px; }
+    #netx-tooltip .tt-group { color:__BLUE__; font-size:0.68rem; font-weight:700; margin-bottom:1px; }
+    #netx-tooltip .tt-type { color:__MUTED__; font-size:0.65rem; margin-bottom:5px; }
+    #netx-tooltip .tt-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:4px; }
+    #netx-tooltip .tt-kv .tt-k { color:__MUTED__; font-size:0.60rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+    #netx-tooltip .tt-kv .tt-v { color:__INK__; font-size:0.78rem; font-weight:800; }
+    /* Path highlight */
+    .netx-path-node { filter:drop-shadow(0 0 5px rgba(200,155,60,0.9)); }
+    /* List items */
+    #netx-root .netx-list { display:grid; gap:7px; }
+    #netx-root .netx-item {
+      padding:9px 10px; border-radius:12px;
+      background:#f8fbff; border:1px solid #dbe3ef;
+    }
+    #netx-root .netx-item strong { display:block; color:__INK__; font-size:0.77rem; line-height:1.4; }
+    #netx-root .netx-item span { display:block; color:__MUTED__; font-size:0.68rem; line-height:1.45; margin-top:2px; }
+    #netx-root .netx-item.path-item { border-color:#c89b3c; background:#fffbf0; }
+    #netx-root .netx-local-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    /* Sim controls row */
+    #netx-root .netx-sim-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+    /* Section separators in right panel */
+    #netx-root .netx-section { margin-top:12px; padding-top:12px; border-top:1px solid #eaf0f8; }
+    @media (max-width:1360px) {
+      #netx-root .netx-shell { grid-template-columns:1fr; }
+      #netx-root .netx-global { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    }
+    @media (max-width:760px) {
+      #netx-root .netx-grid, #netx-root .netx-global, #netx-root .netx-local-grid { grid-template-columns:1fr; }
+      #netx-root .netx-stagebar { flex-direction:column; }
+      #netx-root .netx-actions { justify-content:flex-start; }
+    }
+  </style>
+
+  <div class="netx-shell">
+
+    <!-- ═══ LEFT PANEL: Controls ════════════════════════════════════════════ -->
+    <aside class="netx-panel">
+      <div class="netx-title">Network Controls</div>
+      <p class="netx-sub">
+        Correlation overlay on the mixed-type hierarchical profile panel.
+        <b>Circles</b> = continuous features; <b>diamonds</b> = categorical/dummy.
+        Colors encode ontology group; community hulls (toggleable) mark detected clusters.
+      </p>
+      <div class="netx-grid">
+        <div class="netx-field">
+          <label>Node Metric</label>
+          <select id="netx-metric"></select>
+        </div>
+        <div class="netx-field">
+          <label>Ontology Family</label>
+          <select id="netx-family"></select>
+        </div>
+        <div class="netx-field">
+          <label>Ontology Group</label>
+          <select id="netx-group"></select>
+        </div>
+        <div class="netx-field">
+          <label>Feature Type</label>
+          <select id="netx-feature-type"></select>
+        </div>
+        <div class="netx-field">
+          <label>Community</label>
+          <select id="netx-community"></select>
+        </div>
+        <div class="netx-field">
+          <label>Edge Sign</label>
+          <select id="netx-sign">
+            <option value="all">All edges</option>
+            <option value="positive">Positive only</option>
+            <option value="negative">Negative only</option>
+          </select>
+        </div>
+        <div class="netx-field">
+          <label>Focus Mode</label>
+          <select id="netx-focus">
+            <option value="all">Whole subgraph</option>
+            <option value="ego1">Ego (1-hop)</option>
+            <option value="ego2">Ego (2-hop)</option>
+            <option value="community">Community</option>
+          </select>
+        </div>
+        <div class="netx-field">
+          <label>Label Density</label>
+          <select id="netx-labels">
+            <option value="hubs">Hubs + selection</option>
+            <option value="all">All labels</option>
+            <option value="none">No labels</option>
+          </select>
+        </div>
+        <div class="netx-field" style="grid-column:1/-1">
+          <label>Search Node</label>
+          <input id="netx-search" type="search" placeholder="Feature label or term…"/>
+        </div>
+      </div>
+
+      <div class="netx-field" style="margin-top:11px">
+        <label>Min |ρ| Threshold</label>
+        <input id="netx-threshold" type="range" min="0.15" max="0.80" step="0.01" value="__THRESHOLD__"/>
+        <div class="netx-readout" id="netx-threshold-readout"></div>
+      </div>
+
+      <!-- Force simulation & view options -->
+      <div class="netx-sim-row">
+        <button class="netx-simtoggle" id="netx-force-btn" title="Physics-based force relaxation (Fruchterman-Reingold). Nodes repel; edges attract proportional to |ρ|.">⚡ Relax Layout</button>
+        <button class="netx-toolbtn" id="netx-reset-sim-btn" title="Reset node positions to original layout">↺ Reset Positions</button>
+      </div>
+      <div class="netx-sim-row" style="margin-top:6px">
+        <button class="netx-toolbtn" id="netx-hull-btn" title="Toggle community convex hulls">⬡ Hulls</button>
+        <button class="netx-toolbtn" id="netx-path-btn" title="Path analysis: click to set source, then click target to trace shortest path">🔗 Path Mode</button>
+        <button class="netx-toolbtn" id="netx-export-btn" title="Download current view as SVG">↓ SVG</button>
+      </div>
+
+      <div class="netx-presets" style="margin-top:10px">
+        <button class="netx-preset" data-preset="all">Overview</button>
+        <button class="netx-preset" data-preset="bridges">Bridge Lens</button>
+        <button class="netx-preset" data-preset="hubs">Hub Lens</button>
+        <button class="netx-preset" data-preset="bigfive">Big Five</button>
+        <button class="netx-preset" data-preset="social">Social Context</button>
+        <button class="netx-preset" data-preset="politics">Political Psych</button>
+        <button class="netx-preset" data-preset="dummies">Dummy Features</button>
+        <button class="netx-preset" data-preset="kcore">K-Core Shell</button>
+      </div>
+
+      <div class="netx-global" id="netx-global"></div>
+    </aside>
+
+    <!-- ═══ CENTER PANEL: Canvas ════════════════════════════════════════════ -->
+    <section class="netx-panel" style="position:relative">
+      <div class="netx-stagebar">
+        <div>
+          <div class="netx-title">Profile Network Explorer</div>
+          <p class="netx-sub">
+            <b>Shift+drag</b> for lasso multi-select · <b>Drag node</b> to pin position · <b>Dbl-click node</b> to unpin ·
+            Path mode: set source then click target · <kbd>R</kbd> reset view · <kbd>H</kbd> hulls · <kbd>Esc</kbd> deselect
+          </p>
+        </div>
+        <div class="netx-actions">
+          <button class="netx-toolbtn" id="netx-zoom-in">＋</button>
+          <button class="netx-toolbtn" id="netx-zoom-out">－</button>
+          <button class="netx-toolbtn" id="netx-fit-btn">Fit</button>
+          <button class="netx-toolbtn" id="netx-center-selected">Center</button>
+          <button class="netx-toolbtn" id="netx-reset-view">Reset</button>
+        </div>
+      </div>
+      <div class="netx-summary" id="netx-subgraph-summary"></div>
+      <div class="netx-canvas-wrap" id="netx-canvas-wrap">
+        <svg id="netx-svg" viewBox="0 0 1000 780" aria-label="Interactive profile feature network">
+          <g id="netx-viewport">
+            <g id="netx-hulls"></g>
+            <g id="netx-edges"></g>
+            <g id="netx-path-edges"></g>
+            <g id="netx-nodes"></g>
+            <g id="netx-labels"></g>
+          </g>
+          <rect id="netx-lasso-rect" x="0" y="0" width="0" height="0"
+            fill="rgba(29,78,137,0.06)" stroke="#1d4e89" stroke-width="1.2"
+            stroke-dasharray="5 3" rx="3" visibility="hidden"/>
+        </svg>
+        <canvas id="netx-minimap" width="160" height="108"></canvas>
+        <div id="netx-tooltip"></div>
+      </div>
+      <div class="netx-foot">
+        Drag background to pan · Scroll to zoom (centered on cursor) · Drag nodes to reposition (they stay pinned) ·
+        Dbl-click to unpin · <kbd>Shift</kbd>+drag for lasso multi-select
+      </div>
+    </section>
+
+    <!-- ═══ RIGHT PANEL: Inspection ════════════════════════════════════════ -->
+    <aside class="netx-panel" style="display:grid;gap:12px">
+
+      <!-- Selected node -->
+      <div>
+        <div class="netx-title">Selected Node</div>
+        <div class="netx-list" id="netx-selected"></div>
+      </div>
+
+      <!-- Local metrics grid -->
+      <div class="netx-section">
+        <div class="netx-title">Local Metrics</div>
+        <div class="netx-local-grid" id="netx-local-cards"></div>
+      </div>
+
+      <!-- Multi-selection analysis -->
+      <div class="netx-section" id="netx-multisel-section" style="display:none">
+        <div class="netx-title">Selection Analysis</div>
+        <div id="netx-multisel-stats"></div>
+      </div>
+
+      <!-- Path analysis -->
+      <div class="netx-section">
+        <div class="netx-title">Path Analysis</div>
+        <div id="netx-path-info" class="netx-readout"></div>
+        <div class="netx-list" id="netx-path-list" style="margin-top:6px"></div>
+      </div>
+
+      <!-- Top nodes in view -->
+      <div class="netx-section">
+        <div class="netx-title">Top Nodes In View</div>
+        <div class="netx-list" id="netx-ranking"></div>
+      </div>
+
+    </aside>
+  </div><!-- end shell -->
+
+  <script>
+  (function() {
+    /* ── DATA ─────────────────────────────────────────────────────────────── */
+    const DATA = __PAYLOAD__;
+    const WORLD_W = 1000;
+    const WORLD_H = 780;
+    const PADDING = 80;
+
+    /* ── DOM REFS ────────────────────────────────────────────────────────── */
+    const svg         = document.getElementById('netx-svg');
+    const viewport    = document.getElementById('netx-viewport');
+    const hullsLayer  = document.getElementById('netx-hulls');
+    const edgesLayer  = document.getElementById('netx-edges');
+    const pathEdgesLayer = document.getElementById('netx-path-edges');
+    const nodesLayer  = document.getElementById('netx-nodes');
+    const labelsLayer = document.getElementById('netx-labels');
+    const lassoRect   = document.getElementById('netx-lasso-rect');
+    const minimap     = document.getElementById('netx-minimap');
+    const tooltip     = document.getElementById('netx-tooltip');
+    const canvasWrap  = document.getElementById('netx-canvas-wrap');
+
+    const metricSel      = document.getElementById('netx-metric');
+    const familySel      = document.getElementById('netx-family');
+    const groupSel       = document.getElementById('netx-group');
+    const featureTypeSel = document.getElementById('netx-feature-type');
+    const communitySel   = document.getElementById('netx-community');
+    const signSel        = document.getElementById('netx-sign');
+    const focusSel       = document.getElementById('netx-focus');
+    const labelsSel      = document.getElementById('netx-labels');
+    const searchInput    = document.getElementById('netx-search');
+    const thresholdInput = document.getElementById('netx-threshold');
+    const thresholdReadout = document.getElementById('netx-threshold-readout');
+    const globalRoot     = document.getElementById('netx-global');
+    const summaryRoot    = document.getElementById('netx-subgraph-summary');
+    const selectedRoot   = document.getElementById('netx-selected');
+    const localCardsRoot = document.getElementById('netx-local-cards');
+    const multiSelSection = document.getElementById('netx-multisel-section');
+    const multiSelStats  = document.getElementById('netx-multisel-stats');
+    const pathInfoEl     = document.getElementById('netx-path-info');
+    const pathListEl     = document.getElementById('netx-path-list');
+    const rankingRoot    = document.getElementById('netx-ranking');
+    const forceBtn       = document.getElementById('netx-force-btn');
+    const hullBtn        = document.getElementById('netx-hull-btn');
+    const pathBtn        = document.getElementById('netx-path-btn');
+
+    /* ── HELPERS ─────────────────────────────────────────────────────────── */
+    const num = (v, fallback=0) => { const p=Number(v); return Number.isFinite(p)?p:fallback; };
+    const clamp = (v,lo,hi) => Math.min(hi, Math.max(lo, v));
+    const safeText = v => String(v??'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const fmt4 = v => num(v).toFixed(4);
+    const fmt3 = v => num(v).toFixed(3);
+    const fmt2 = v => num(v).toFixed(2);
+
+    /* ── DATA INIT ───────────────────────────────────────────────────────── */
+    DATA.nodes = (DATA.nodes||[]).map(n => ({
+      ...n,
+      x: num(n.x), y: num(n.y),
+      label: String(n.label||n.term||'Unknown'),
+      ontology_group: String(n.ontology_group||'Other'),
+      ontology_family: String(n.ontology_family||(String(n.ontology_group||'').split(':')[0]||'Other')),
+      feature_type: String(n.feature_type||(String(n.term||'').startsWith('profile_cat__')?'Categorical dummy':'Continuous subscale')),
+      community: Number.isFinite(Number(n.community)) ? Number(n.community) : -1,
+    }));
+    DATA.edges = (DATA.edges||[]).map(e => ({
+      ...e, rho: num(e.rho), abs_rho: num(e.abs_rho, Math.abs(num(e.rho))),
+    }));
+
+    const nodeMap  = new Map(DATA.nodes.map(n => [n.term, n]));
+    const adjacency = new Map(DATA.nodes.map(n => [n.term, []]));
+    DATA.edges.forEach(e => {
+      if (!adjacency.has(e.source)||!adjacency.has(e.target)) return;
+      adjacency.get(e.source).push(e);
+      adjacency.get(e.target).push({...e, source:e.target, target:e.source});
+    });
+
+    /* Store original positions for reset */
+    DATA.nodes.forEach(n => { n._ox = n.x; n._oy = n.y; });
+
+    /* ── COORDINATE NORMALISATION ────────────────────────────────────────── */
+    function normaliseCoords() {
+      const xs = DATA.nodes.map(n => n.x), ys = DATA.nodes.map(n => n.y);
+      const minX=Math.min(...xs), maxX=Math.max(...xs);
+      const minY=Math.min(...ys), maxY=Math.max(...ys);
+      const spanX=Math.max(1e-6, maxX-minX), spanY=Math.max(1e-6, maxY-minY);
+      DATA.nodes.forEach(n => {
+        n.sx = PADDING + ((n.x-minX)/spanX)*(WORLD_W-2*PADDING);
+        n.sy = PADDING + ((n.y-minY)/spanY)*(WORLD_H-2*PADDING);
+      });
+    }
+    function resetOriginalPositions() {
+      DATA.nodes.forEach(n => { n.x=n._ox; n.y=n._oy; });
+      normaliseCoords();
+    }
+
+    /* ── K-CORE COMPUTATION ──────────────────────────────────────────────── */
+    function computeCoreNumbers() {
+      const active=new Map(DATA.nodes.map(n=>[n.term,true]));
+      const degree=new Map(DATA.nodes.map(n=>[n.term,(adjacency.get(n.term)||[]).length]));
+      const core=new Map(DATA.nodes.map(n=>[n.term,0]));
+      let remaining=DATA.nodes.length, k=0;
+      while(remaining>0){
+        let progressed=false, changed=true;
+        while(changed){
+          changed=false;
+          DATA.nodes.forEach(n=>{
+            if(!active.get(n.term)) return;
+            if(num(degree.get(n.term))<=k){
+              active.set(n.term,false); remaining--; core.set(n.term,k);
+              progressed=true; changed=true;
+              (adjacency.get(n.term)||[]).forEach(e=>{
+                if(active.get(e.target)) degree.set(e.target, num(degree.get(e.target))-1);
+              });
+            }
+          });
+        }
+        if(!progressed) k++;
+      }
+      return core;
+    }
+
+    /* ── NETWORK METRIC DERIVATION ───────────────────────────────────────── */
+    function deriveNetworkMetrics() {
+      const commCounts=new Map();
+      DATA.nodes.forEach(n => commCounts.set(n.community,(commCounts.get(n.community)||0)+1));
+      const coreNums = computeCoreNumbers();
+      const withinByComm = new Map();
+
+      DATA.nodes.forEach(n => {
+        const incident = adjacency.get(n.term)||[];
+        let totalStr=0,posStr=0,negStr=0,posDeg=0,negDeg=0,sameFamStr=0;
+        const commStr=new Map();
+        incident.forEach(e=>{
+          const w=num(e.abs_rho, Math.abs(num(e.rho)));
+          const rho=num(e.rho);
+          const nb=nodeMap.get(e.target);
+          totalStr+=w;
+          if(rho>=0){posDeg++;posStr+=w;}else{negDeg++;negStr+=w;}
+          const nbComm=nb?nb.community:-1;
+          commStr.set(nbComm,(commStr.get(nbComm)||0)+w);
+          if(nb&&nb.ontology_family===n.ontology_family) sameFamStr+=w;
+        });
+        const withinStr=commStr.get(n.community)||0;
+        withinByComm.set(n.community,[...( withinByComm.get(n.community)||[]),withinStr]);
+        n.degree = Number.isFinite(Number(n.degree))?Number(n.degree):incident.length;
+        n.community_size = Number.isFinite(Number(n.community_size))?Number(n.community_size):(commCounts.get(n.community)||0);
+        n.strength = Number.isFinite(Number(n.strength))?Number(n.strength):totalStr;
+        n.positive_degree = Number.isFinite(Number(n.positive_degree))?Number(n.positive_degree):posDeg;
+        n.negative_degree = Number.isFinite(Number(n.negative_degree))?Number(n.negative_degree):negDeg;
+        n.positive_strength = Number.isFinite(Number(n.positive_strength))?Number(n.positive_strength):posStr;
+        n.negative_strength = Number.isFinite(Number(n.negative_strength))?Number(n.negative_strength):negStr;
+        n.within_community_strength = Number.isFinite(Number(n.within_community_strength))?Number(n.within_community_strength):withinStr;
+        const betw = Math.max(0,totalStr-withinStr);
+        n.between_community_strength = Number.isFinite(Number(n.between_community_strength))?Number(n.between_community_strength):betw;
+        n.participation_coefficient = Number.isFinite(Number(n.participation_coefficient))?Number(n.participation_coefficient):
+          (totalStr>1e-12 ? 1-[...commStr.values()].reduce((a,v)=>a+(v/totalStr)**2,0) : 0);
+        n.bridge_ratio = Number.isFinite(Number(n.bridge_ratio))?Number(n.bridge_ratio):(totalStr>1e-12?betw/totalStr:0);
+        n.same_family_strength_share = Number.isFinite(Number(n.same_family_strength_share))?Number(n.same_family_strength_share):(totalStr>1e-12?sameFamStr/totalStr:0);
+        n.signed_balance = Number.isFinite(Number(n.signed_balance))?Number(n.signed_balance):(totalStr>1e-12?(posStr-negStr)/totalStr:0);
+        n.k_core = Number.isFinite(Number(n.k_core))?Number(n.k_core):num(coreNums.get(n.term));
+      });
+
+      DATA.nodes.forEach(n=>{
+        const vals=withinByComm.get(n.community)||[];
+        const mean=vals.length?vals.reduce((a,v)=>a+v,0)/vals.length:0;
+        const sd=Math.sqrt(vals.length?vals.reduce((a,v)=>a+(v-mean)**2,0)/vals.length:0);
+        n.within_module_zscore = Number.isFinite(Number(n.within_module_zscore))?Number(n.within_module_zscore):(sd>1e-12?(num(n.within_community_strength)-mean)/sd:0);
+      });
+    }
+
+    /* ── CONTROLS POPULATION ─────────────────────────────────────────────── */
+    function optMarkup(vals, fmt) {
+      return vals.map(v=>`<option value="${safeText(v)}">${safeText(fmt(v))}</option>`).join('');
+    }
+    function populateControls() {
+      metricSel.innerHTML = optMarkup(Object.keys(DATA.metric_labels||{}), k=>DATA.metric_labels[k]||k);
+      familySel.innerHTML = `<option value="all">All families</option>${optMarkup(DATA.families||[],v=>v)}`;
+      groupSel.innerHTML  = `<option value="all">All groups</option>${optMarkup(DATA.groups||[],v=>v)}`;
+      featureTypeSel.innerHTML = `<option value="all">All types</option>${optMarkup(DATA.feature_types||[],v=>v)}`;
+      communitySel.innerHTML = `<option value="all">All communities</option>${optMarkup((DATA.communities||[]).map(String),v=>'Community '+v)}`;
+    }
+
+    /* ── FORCE SIMULATION ────────────────────────────────────────────────── */
+    const SIM = {
+      running: false, alpha: 1.0, alphaDecay: 0.014,
+      velocities: new Map(), pinned: new Set(), raf: null,
+    };
+
+    function simInit() {
+      SIM.velocities = new Map(DATA.nodes.map(n=>[n.term,{vx:0,vy:0}]));
+      SIM.alpha = 1.0;
+    }
+
+    function simStep() {
+      const REPULSION = 2800;
+      const ATTRACTION = 0.04;
+      const DAMPING = 0.82;
+      const thr = state.threshold;
+      const activeEdges = DATA.edges.filter(e=>Math.abs(e.rho)>=thr);
+      const nodes = DATA.nodes;
+
+      for (let i=0; i<nodes.length; i++) {
+        const ni = nodes[i];
+        let fx=0, fy=0;
+        for (let j=0; j<nodes.length; j++) {
+          if (i===j) continue;
+          const nj=nodes[j];
+          const dx=ni.sx-nj.sx, dy=ni.sy-nj.sy;
+          const dist2=dx*dx+dy*dy+1;
+          const dist=Math.sqrt(dist2);
+          const force=REPULSION/dist2*SIM.alpha;
+          fx+=force*dx/dist; fy+=force*dy/dist;
+        }
+        const vel=SIM.velocities.get(ni.term);
+        if(vel){vel.vx+=fx; vel.vy+=fy;}
+      }
+
+      activeEdges.forEach(e=>{
+        const src=nodeMap.get(e.source), tgt=nodeMap.get(e.target);
+        if(!src||!tgt) return;
+        const dx=tgt.sx-src.sx, dy=tgt.sy-src.sy;
+        const dist=Math.sqrt(dx*dx+dy*dy)+0.1;
+        const force=ATTRACTION*Math.abs(e.rho)*dist*SIM.alpha;
+        const sv=SIM.velocities.get(src.term), tv=SIM.velocities.get(tgt.term);
+        if(sv){sv.vx+=force*dx/dist; sv.vy+=force*dy/dist;}
+        if(tv){tv.vx-=force*dx/dist; tv.vy-=force*dy/dist;}
+      });
+
+      nodes.forEach(n=>{
+        if(SIM.pinned.has(n.term)) return;
+        const vel=SIM.velocities.get(n.term);
+        if(!vel) return;
+        vel.vx*=DAMPING; vel.vy*=DAMPING;
+        n.sx=clamp(n.sx+vel.vx,30,WORLD_W-30);
+        n.sy=clamp(n.sy+vel.vy,30,WORLD_H-30);
+      });
+
+      SIM.alpha=Math.max(0,SIM.alpha-SIM.alphaDecay);
+      if(SIM.alpha<=0) stopSim();
+    }
+
+    function startSim() {
+      if(!SIM.velocities.size) simInit();
+      SIM.running=true;
+      forceBtn.textContent='⚡ Stop Relax';
+      forceBtn.classList.add('running');
+      function tick(){
+        if(!SIM.running) return;
+        for(let i=0;i<4;i++) simStep();
+        render();
+        SIM.raf=requestAnimationFrame(tick);
+      }
+      SIM.raf=requestAnimationFrame(tick);
+    }
+
+    function stopSim() {
+      SIM.running=false;
+      if(SIM.raf) cancelAnimationFrame(SIM.raf);
+      forceBtn.textContent='⚡ Relax Layout';
+      forceBtn.classList.remove('running');
+    }
+
+    /* ── CONVEX HULL ─────────────────────────────────────────────────────── */
+    function convexHull(pts) {
+      if(pts.length<2) return pts;
+      if(pts.length===2) return pts;
+      const P=[...pts].sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+      const cross=(O,A,B)=>(A[0]-O[0])*(B[1]-O[1])-(A[1]-O[1])*(B[0]-O[0]);
+      const lower=[], upper=[];
+      for(const p of P){while(lower.length>=2&&cross(lower[lower.length-2],lower[lower.length-1],p)<=0)lower.pop();lower.push(p);}
+      for(const p of [...P].reverse()){while(upper.length>=2&&cross(upper[upper.length-2],upper[upper.length-1],p)<=0)upper.pop();upper.push(p);}
+      return lower.slice(0,-1).concat(upper.slice(0,-1));
+    }
+
+    /* ── PATH ANALYSIS (BFS) ─────────────────────────────────────────────── */
+    const PATH = { mode: false, source: null, target: null, terms: [], edgeKeys: new Set() };
+
+    function bfsPath(srcTerm, tgtTerm, nodeSet, thr) {
+      const adj=new Map();
+      DATA.edges.filter(e=>Math.abs(e.rho)>=thr&&nodeSet.has(e.source)&&nodeSet.has(e.target))
+        .forEach(e=>{
+          if(!adj.has(e.source)) adj.set(e.source,[]);
+          if(!adj.has(e.target)) adj.set(e.target,[]);
+          adj.get(e.source).push(e.target);
+          adj.get(e.target).push(e.source);
+        });
+      const dist=new Map([[srcTerm,0]]);
+      const prev=new Map([[srcTerm,null]]);
+      const queue=[srcTerm];
+      while(queue.length){
+        const cur=queue.shift();
+        if(cur===tgtTerm) break;
+        for(const nb of (adj.get(cur)||[])){
+          if(!dist.has(nb)){dist.set(nb,dist.get(cur)+1);prev.set(nb,cur);queue.push(nb);}
+        }
+      }
+      if(!dist.has(tgtTerm)) return [];
+      const path=[];
+      let cur=tgtTerm;
+      while(cur!==null){path.unshift(cur);cur=prev.get(cur);}
+      return path;
+    }
+
+    function computePathEdgeKeys(pathTerms) {
+      const keys=new Set();
+      for(let i=0;i<pathTerms.length-1;i++){
+        keys.add(pathTerms[i]+'||'+pathTerms[i+1]);
+        keys.add(pathTerms[i+1]+'||'+pathTerms[i]);
+      }
+      return keys;
+    }
+
+    /* ── LASSO SELECTION ─────────────────────────────────────────────────── */
+    const LASSO = { active:false, svgX0:0, svgY0:0, svgX1:0, svgY1:0 };
+
+    function lassoStart(evt) {
+      if(!evt.shiftKey) return;
+      evt.preventDefault(); evt.stopPropagation();
+      LASSO.active=true;
+      const p=svgPoint(evt);
+      LASSO.svgX0=LASSO.svgX1=p.x; LASSO.svgY0=LASSO.svgY1=p.y;
+      updateLassoRect();
+    }
+    function lassoMove(evt) {
+      if(!LASSO.active) return;
+      const p=svgPoint(evt);
+      LASSO.svgX1=p.x; LASSO.svgY1=p.y;
+      updateLassoRect();
+    }
+    function lassoEnd() {
+      if(!LASSO.active) return;
+      LASSO.active=false;
+      lassoRect.setAttribute('visibility','hidden');
+      /* Convert SVG-space rect → world space; nodes in world space (sx,sy) */
+      const wx0=(Math.min(LASSO.svgX0,LASSO.svgX1)-state.panX)/state.scale;
+      const wy0=(Math.min(LASSO.svgY0,LASSO.svgY1)-state.panY)/state.scale;
+      const wx1=(Math.max(LASSO.svgX0,LASSO.svgX1)-state.panX)/state.scale;
+      const wy1=(Math.max(LASSO.svgY0,LASSO.svgY1)-state.panY)/state.scale;
+      if(Math.abs(wx1-wx0)<5&&Math.abs(wy1-wy0)<5) return; /* too small, ignore */
+      const enclosed=visibleNodes().filter(n=>n.sx>=wx0&&n.sx<=wx1&&n.sy>=wy0&&n.sy<=wy1);
+      if(enclosed.length>0){
+        state.selectedTerms=new Set(enclosed.map(n=>n.term));
+        state.selectedTerm=enclosed[0].term;
+      }
+      render();
+    }
+    function updateLassoRect() {
+      const x=Math.min(LASSO.svgX0,LASSO.svgX1);
+      const y=Math.min(LASSO.svgY0,LASSO.svgY1);
+      const w=Math.abs(LASSO.svgX1-LASSO.svgX0);
+      const h=Math.abs(LASSO.svgY1-LASSO.svgY0);
+      lassoRect.setAttribute('x',x); lassoRect.setAttribute('y',y);
+      lassoRect.setAttribute('width',w); lassoRect.setAttribute('height',h);
+      lassoRect.setAttribute('visibility',LASSO.active?'visible':'hidden');
+    }
+
+    /* ── TOOLTIP ─────────────────────────────────────────────────────────── */
+    function showTooltip(node, evt) {
+      const metric=state.metric;
+      const mLabel=DATA.metric_labels[metric]||metric;
+      tooltip.innerHTML=`
+        <strong>${safeText(node.label)}</strong>
+        <div class="tt-group">${safeText(node.ontology_group)}</div>
+        <div class="tt-type">${safeText(node.feature_type)} · community ${node.community} · k-core ${num(node.k_core).toFixed(0)}</div>
+        <div class="tt-grid">
+          <div class="tt-kv"><div class="tt-k">${safeText(mLabel)}</div><div class="tt-v">${fmt4(node[metric])}</div></div>
+          <div class="tt-kv"><div class="tt-k">Degree</div><div class="tt-v">${num(node.degree).toFixed(0)}</div></div>
+          <div class="tt-kv"><div class="tt-k">Participation</div><div class="tt-v">${fmt3(node.participation_coefficient)}</div></div>
+          <div class="tt-kv"><div class="tt-k">Bridge Ratio</div><div class="tt-v">${fmt3(node.bridge_ratio)}</div></div>
+          <div class="tt-kv"><div class="tt-k">Within-mod Z</div><div class="tt-v">${fmt3(node.within_module_zscore)}</div></div>
+          <div class="tt-kv"><div class="tt-k">Signed Bal.</div><div class="tt-v">${fmt3(node.signed_balance)}</div></div>
+        </div>`;
+      const rect=canvasWrap.getBoundingClientRect();
+      let tx=evt.clientX-rect.left+14, ty=evt.clientY-rect.top+12;
+      if(tx+230>rect.width) tx=evt.clientX-rect.left-230;
+      if(ty+180>rect.height) ty=evt.clientY-rect.top-180;
+      tooltip.style.cssText=`display:block;position:absolute;left:${tx}px;top:${ty}px`;
+    }
+    function hideTooltip(){ tooltip.style.display='none'; }
+
+    /* ── MINI-MAP ────────────────────────────────────────────────────────── */
+    function renderMinimap(nodes, edges) {
+      const ctx=minimap.getContext('2d');
+      const W=minimap.width, H=minimap.height;
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle='rgba(245,248,255,0.94)'; ctx.fillRect(0,0,W,H);
+      ctx.strokeStyle='rgba(200,210,230,0.7)'; ctx.lineWidth=0.5;
+      ctx.strokeRect(0,0,W,H);
+      const sx=W/WORLD_W, sy=H/WORLD_H;
+      /* edges */
+      ctx.lineWidth=0.3; ctx.strokeStyle='rgba(29,78,137,0.12)';
+      edges.forEach(e=>{
+        const src=nodeMap.get(e.source), tgt=nodeMap.get(e.target);
+        if(!src||!tgt) return;
+        ctx.beginPath(); ctx.moveTo(src.sx*sx,src.sy*sy); ctx.lineTo(tgt.sx*sx,tgt.sy*sy); ctx.stroke();
+      });
+      /* nodes */
+      nodes.forEach(n=>{
+        const color=DATA.group_colors[n.ontology_group]||'#7f8c8d';
+        ctx.fillStyle=color; ctx.beginPath(); ctx.arc(n.sx*sx,n.sy*sy,2,0,Math.PI*2); ctx.fill();
+      });
+      /* viewport rect */
+      const vx=(-state.panX/state.scale)*sx;
+      const vy=(-state.panY/state.scale)*sy;
+      const vw=(WORLD_W/state.scale)*sx;
+      const vh=(WORLD_H/state.scale)*sy;
+      ctx.strokeStyle='rgba(231,111,81,0.85)'; ctx.lineWidth=1.2;
+      ctx.strokeRect(vx,vy,vw,vh);
+    }
+
+    /* ── EXPORT SVG ──────────────────────────────────────────────────────── */
+    function exportSVG() {
+      const serializer=new XMLSerializer();
+      const svgStr=serializer.serializeToString(svg);
+      const blob=new Blob([svgStr],{type:'image/svg+xml;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.href=url; a.download='profile_network.svg';
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
+    }
+
+    /* ── STATE ───────────────────────────────────────────────────────────── */
+    const defaultThreshold=num(DATA.global_metrics&&DATA.global_metrics.corr_threshold,num(thresholdInput.value,0.15));
+    const defaultMetric=Object.keys(DATA.metric_labels||{}).includes('strength')?'strength':
+      (Object.keys(DATA.metric_labels||{})[0]||'eigenvector_centrality');
+
+    const state = {
+      metric: defaultMetric,
+      family: 'all', group: 'all', featureType: 'all', community: 'all',
+      sign: 'all', focus: 'all', labels: 'hubs',
+      threshold: defaultThreshold,
+      search: '',
+      selectedTerm: null,
+      selectedTerms: new Set(),
+      scale: 1, panX: 0, panY: 0,
+      draggingTerm: null, panning: false,
+      showHulls: true, pathMode: false,
+    };
+
+    metricSel.value=state.metric;
+    thresholdInput.value=state.threshold.toFixed(2);
+
+    /* ── SVG COORDINATE UTILITIES ────────────────────────────────────────── */
+    function svgPoint(evt) {
+      const rect=svg.getBoundingClientRect();
+      return {
+        x: ((evt.clientX-rect.left)/rect.width)*WORLD_W,
+        y: ((evt.clientY-rect.top)/rect.height)*WORLD_H,
+      };
+    }
+    function worldPoint(evt) {
+      const p=svgPoint(evt);
+      return { x:(p.x-state.panX)/state.scale, y:(p.y-state.panY)/state.scale };
+    }
+    function applyTransform() {
+      viewport.setAttribute('transform',`matrix(${state.scale} 0 0 ${state.scale} ${state.panX} ${state.panY})`);
+    }
+
+    /* ── VISIBLE NODE / EDGE COMPUTATION ─────────────────────────────────── */
+    function visibleNodesBase() {
+      const q=state.search.trim().toLowerCase();
+      return DATA.nodes.filter(n=>{
+        if(state.family!=='all'&&n.ontology_family!==state.family) return false;
+        if(state.group!=='all'&&n.ontology_group!==state.group) return false;
+        if(state.featureType!=='all'&&n.feature_type!==state.featureType) return false;
+        if(state.community!=='all'&&String(n.community)!==state.community) return false;
+        if(q&&!n.label.toLowerCase().includes(q)&&!String(n.term||'').toLowerCase().includes(q)) return false;
+        return true;
+      });
+    }
+    function egoTerms(depth) {
+      if(!state.selectedTerm||!nodeMap.has(state.selectedTerm)) return null;
+      if(state.focus==='community'){
+        const sel=nodeMap.get(state.selectedTerm);
+        return new Set(DATA.nodes.filter(n=>n.community===sel.community).map(n=>n.term));
+      }
+      const visited=new Set([state.selectedTerm]);
+      let frontier=[state.selectedTerm];
+      for(let s=0;s<depth;s++){
+        const next=[];
+        frontier.forEach(t=>{
+          (adjacency.get(t)||[]).forEach(e=>{
+            if(!visited.has(e.target)){visited.add(e.target);next.push(e.target);}
+          });
+        });
+        frontier=next;
+      }
+      return visited;
+    }
+    function visibleNodes() {
+      const base=visibleNodesBase();
+      if(state.focus==='all') return base;
+      const scope=egoTerms(state.focus==='ego2'?2:1);
+      if(!scope) return base;
+      return base.filter(n=>scope.has(n.term));
+    }
+    function visibleEdges(nodeSet) {
+      return DATA.edges.filter(e=>{
+        if(!nodeSet.has(e.source)||!nodeSet.has(e.target)) return false;
+        if(num(e.abs_rho)<state.threshold) return false;
+        if(state.sign==='positive'&&num(e.rho)<=0) return false;
+        if(state.sign==='negative'&&num(e.rho)>=0) return false;
+        return true;
+      });
+    }
+
+    /* ── SIZE SCALE ──────────────────────────────────────────────────────── */
+    function sizeScale(nodes, metric) {
+      const vals=nodes.map(n=>metric==='within_module_zscore'?Math.max(0,num(n[metric])):num(n[metric]));
+      const lo=Math.min(...vals), hi=Math.max(...vals);
+      if(!Number.isFinite(lo)||!Number.isFinite(hi)||Math.abs(hi-lo)<1e-10)
+        return new Map(nodes.map(n=>[n.term,13]));
+      return new Map(nodes.map((n,i)=>[n.term, 8+(vals[i]-lo)/(hi-lo)*21]));
+    }
+
+    /* ── CENTER ON SELECTED ──────────────────────────────────────────────── */
+    function centerOnSelected() {
+      if(!state.selectedTerm||!nodeMap.has(state.selectedTerm)) return;
+      const n=nodeMap.get(state.selectedTerm);
+      state.panX=WORLD_W/2-n.sx*state.scale;
+      state.panY=WORLD_H/2-n.sy*state.scale;
+      applyTransform();
+    }
+
+    function fitToView(nodes) {
+      if(!nodes||!nodes.length) return;
+      const xs=nodes.map(n=>n.sx), ys=nodes.map(n=>n.sy);
+      const minX=Math.min(...xs)-40, maxX=Math.max(...xs)+40;
+      const minY=Math.min(...ys)-40, maxY=Math.max(...ys)+40;
+      const scaleX=WORLD_W/(maxX-minX), scaleY=WORLD_H/(maxY-minY);
+      state.scale=clamp(Math.min(scaleX,scaleY)*0.92,0.3,3.0);
+      state.panX=WORLD_W/2-((minX+maxX)/2)*state.scale;
+      state.panY=WORLD_H/2-((minY+maxY)/2)*state.scale;
+      applyTransform();
+    }
+
+    /* ── RENDER HULLS ────────────────────────────────────────────────────── */
+    function renderHulls(nodes) {
+      if(!state.showHulls){ hullsLayer.innerHTML=''; return; }
+      const byComm=new Map();
+      nodes.forEach(n=>{
+        if(!byComm.has(n.community)) byComm.set(n.community,[]);
+        byComm.get(n.community).push([n.sx,n.sy]);
+      });
+      const commArr=[...byComm.keys()].sort((a,b)=>a-b);
+      const commColors={};
+      commArr.forEach((c,i)=>{ commColors[c]=_ONTOLOGY_GROUP_COLORS[i%_ONTOLOGY_GROUP_COLORS.length]; });
+      /* Expand hulls by 18px for visual breathing room */
+      const EXPAND=18;
+      let svgStr='';
+      byComm.forEach((pts,comm)=>{
+        if(pts.length<1) return;
+        const hull=convexHull(pts);
+        const cx=hull.reduce((s,p)=>s+p[0],0)/hull.length;
+        const cy=hull.reduce((s,p)=>s+p[1],0)/hull.length;
+        const expanded=hull.map(p=>{
+          const dx=p[0]-cx, dy=p[1]-cy;
+          const d=Math.sqrt(dx*dx+dy*dy)||1;
+          return [cx+(dx+EXPAND*dx/d), cy+(dy+EXPAND*dy/d)];
+        });
+        const color=commColors[comm]||'#888';
+        const d=expanded.map((p,i)=>`${i===0?'M':'L'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ')+'Z';
+        svgStr+=`<path d="${d}" fill="${color}" fill-opacity="0.06" stroke="${color}" stroke-width="1.2" stroke-opacity="0.40" stroke-dasharray="5 4"/>`;
+        const textX=cx.toFixed(1), textY=(cy-EXPAND-4).toFixed(1);
+        svgStr+=`<text x="${textX}" y="${textY}" text-anchor="middle" font-size="11" fill="${color}" fill-opacity="0.60" font-weight="800">C${comm}</text>`;
+      });
+      hullsLayer.innerHTML=svgStr;
+    }
+    /* expose color map for JS access */
+    const _ONTOLOGY_GROUP_COLORS=["#1d4e89","#2a9d8f","#e76f51","#c89b3c","#9b59b6","#e74c3c","#27ae60","#2980b9","#f39c12","#16a085","#8e44ad","#d35400","#2c3e50","#c0392b","#1abc9c","#7f8c8d","#6c5ce7","#fd79a8","#00b894","#a29bfe"];
+
+    /* ── RENDER PATH HIGHLIGHT ───────────────────────────────────────────── */
+    function renderPathEdges() {
+      if(!PATH.terms.length){ pathEdgesLayer.innerHTML=''; return; }
+      let svgStr='';
+      for(let i=0;i<PATH.terms.length-1;i++){
+        const src=nodeMap.get(PATH.terms[i]);
+        const tgt=nodeMap.get(PATH.terms[i+1]);
+        if(!src||!tgt) continue;
+        svgStr+=`<line x1="${src.sx.toFixed(1)}" y1="${src.sy.toFixed(1)}" x2="${tgt.sx.toFixed(1)}" y2="${tgt.sy.toFixed(1)}" stroke="__GOLD__" stroke-width="3.5" stroke-linecap="round" opacity="0.90"/>`;
+      }
+      pathEdgesLayer.innerHTML=svgStr;
+    }
+
+    /* ── RENDER GLOBAL METRICS ───────────────────────────────────────────── */
+    function renderGlobal(nodes, edges) {
+      const nE=edges.length, nN=nodes.length;
+      const density=nN>1?(2*nE)/(nN*(nN-1)):0;
+      const pos=edges.filter(e=>num(e.rho)>0).length;
+      const neg=edges.filter(e=>num(e.rho)<0).length;
+      const crossComm=edges.filter(e=>nodeMap.get(e.source)?.community!==nodeMap.get(e.target)?.community).length;
+      const crossFam=edges.filter(e=>nodeMap.get(e.source)?.ontology_family!==nodeMap.get(e.target)?.ontology_family).length;
+      const meanPart=nN?nodes.reduce((a,n)=>a+num(n.participation_coefficient),0)/nN:0;
+      const meanBridge=nN?nodes.reduce((a,n)=>a+num(n.bridge_ratio),0)/nN:0;
+      const meanAbs=nE?edges.reduce((a,e)=>a+num(e.abs_rho),0)/nE:0;
+      const cards=[
+        ['Visible nodes',nN],['Visible edges',nE],
+        ['Subgraph density',density.toFixed(3)],['Mean |ρ|',meanAbs.toFixed(3)],
+        ['Positive share',nE?`${(pos/nE*100).toFixed(1)}%`:'0%'],
+        ['Negative share',nE?`${(neg/nE*100).toFixed(1)}%`:'0%'],
+        ['Cross-community',nE?`${(crossComm/nE*100).toFixed(1)}%`:'0%'],
+        ['Cross-family',nE?`${(crossFam/nE*100).toFixed(1)}%`:'0%'],
+        ['Mean participation',meanPart.toFixed(3)],['Mean bridge ratio',meanBridge.toFixed(3)],
+        ['Modularity',num(DATA.global_metrics&&DATA.global_metrics.modularity_score).toFixed(3)],
+        ['Family assortativity',num(DATA.global_metrics&&DATA.global_metrics.ontology_family_assortativity).toFixed(3)],
+      ];
+      globalRoot.innerHTML=cards.map(([k,v])=>`<div class="netx-metric"><div class="k">${safeText(k)}</div><div class="v">${safeText(v)}</div></div>`).join('');
+    }
+
+    /* ── RENDER SUMMARY PILLS ────────────────────────────────────────────── */
+    function renderSummary(nodes, edges) {
+      const comms=new Set(nodes.map(n=>n.community));
+      const fams=new Set(nodes.map(n=>n.ontology_family));
+      const types=new Set(nodes.map(n=>n.feature_type));
+      const nDummy=nodes.filter(n=>n.feature_type==='Categorical dummy').length;
+      const nCont=nodes.length-nDummy;
+      const pathBadge=PATH.mode?`<span class="netx-pill warn">Path mode${PATH.source?' · source set':''}</span>`:'';
+      const lassoBadge=state.selectedTerms.size>1?`<span class="netx-pill warn">${state.selectedTerms.size} selected</span>`:'';
+      summaryRoot.innerHTML=[
+        `${nodes.length} nodes`,`${edges.length} edges`,
+        `${comms.size} communities`,`${fams.size} families`,
+        `${nCont} continuous / ${nDummy} dummy`,
+        `${safeText(DATA.metric_labels[state.metric]||state.metric)} sizing`,
+        pathBadge, lassoBadge,
+      ].filter(Boolean).map(t=>`<span class="netx-pill">${t}</span>`).join('');
+    }
+
+    /* ── RENDER RANKING ──────────────────────────────────────────────────── */
+    function renderRanking(nodes) {
+      const metric=state.metric;
+      const sorted=[...nodes].sort((a,b)=>num(b[metric])-num(a[metric])).slice(0,8);
+      rankingRoot.innerHTML=sorted.length
+        ? sorted.map((n,i)=>`<div class="netx-item"><strong>${i+1}. ${safeText(n.label)}</strong><span>${safeText(n.ontology_group)} · ${safeText(n.feature_type)} · ${safeText(DATA.metric_labels[metric]||metric)}=${num(n[metric]).toFixed(4)}</span></div>`).join('')
+        : '<div class="netx-item"><span>No nodes pass current filters.</span></div>';
+    }
+
+    /* ── RENDER SELECTED NODE PANEL ──────────────────────────────────────── */
+    function renderSelected(edges) {
+      const node=state.selectedTerm?nodeMap.get(state.selectedTerm):null;
+      if(!node){
+        selectedRoot.innerHTML='<div class="netx-item"><span>Click a node to inspect its topology, bridge metrics, and strongest correlations. Shift+drag for multi-select.</span></div>';
+        localCardsRoot.innerHTML='';
+        return;
+      }
+      const nbrs=(adjacency.get(node.term)||[])
+        .filter(e=>num(e.abs_rho)>=state.threshold)
+        .filter(e=>state.sign==='all'||(state.sign==='positive'?num(e.rho)>0:num(e.rho)<0))
+        .map(e=>{
+          const nb=nodeMap.get(e.target);
+          return {label:nb?nb.label:e.target, group:nb?nb.ontology_group:'Other', ftype:nb?nb.feature_type:'', rho:num(e.rho), abs_rho:num(e.abs_rho)};
+        })
+        .sort((a,b)=>b.abs_rho-a.abs_rho).slice(0,8);
+      const pinned=SIM.pinned.has(node.term)?'📌 pinned':'';
+      selectedRoot.innerHTML=`<div class="netx-item"><strong>${safeText(node.label)}</strong>
+        <span>${safeText(node.ontology_group)} · ${safeText(node.feature_type)} ${pinned}</span>
+        <span>Community ${node.community} · Degree ${num(node.degree).toFixed(0)} · k-core ${num(node.k_core).toFixed(0)}</span>
+      </div>`+nbrs.map(nb=>`<div class="netx-item"><strong>${safeText(nb.label)}</strong><span>${safeText(nb.group)} · ρ=${nb.rho.toFixed(3)} · |ρ|=${nb.abs_rho.toFixed(3)}</span></div>`).join('');
+
+      const cards=[
+        ['Participation',fmt3(node.participation_coefficient)],
+        ['Bridge Ratio',fmt3(node.bridge_ratio)],
+        ['Within-mod Z',fmt3(node.within_module_zscore)],
+        ['Pos. Strength',fmt2(node.positive_strength)],
+        ['Neg. Strength',fmt2(node.negative_strength)],
+        ['Signed Balance',fmt3(node.signed_balance)],
+        ['Within-comm.',fmt2(node.within_community_strength)],
+        ['Family share',`${(num(node.same_family_strength_share)*100).toFixed(1)}%`],
+        ['Eigenvector',fmt4(node.eigenvector_centrality)],
+        ['PageRank',fmt4(node.pagerank)],
+        ['Closeness',fmt4(node.closeness_centrality)],
+        ['Betweenness',fmt4(node.betweenness_centrality)],
+      ];
+      localCardsRoot.innerHTML=cards.map(([k,v])=>`<div class="netx-metric"><div class="k">${safeText(k)}</div><div class="v">${safeText(v)}</div></div>`).join('');
+    }
+
+    /* ── RENDER MULTI-SELECT ANALYSIS ────────────────────────────────────── */
+    function renderMultiSelect(nodes) {
+      if(state.selectedTerms.size<2){ multiSelSection.style.display='none'; return; }
+      multiSelSection.style.display='';
+      const sel=nodes.filter(n=>state.selectedTerms.has(n.term));
+      if(!sel.length){ multiSelSection.style.display='none'; return; }
+      const metric=state.metric;
+      const mean=sel.reduce((a,n)=>a+num(n[metric]),0)/sel.length;
+      const fams=new Set(sel.map(n=>n.ontology_family));
+      const comms=new Set(sel.map(n=>n.community));
+      const types=new Set(sel.map(n=>n.feature_type));
+      const meanPart=sel.reduce((a,n)=>a+num(n.participation_coefficient),0)/sel.length;
+      const meanBridge=sel.reduce((a,n)=>a+num(n.bridge_ratio),0)/sel.length;
+      multiSelStats.innerHTML=`<div class="netx-list">
+        <div class="netx-item"><strong>${sel.length} nodes selected</strong>
+          <span>${comms.size} communities · ${fams.size} families · ${types.size} feature types</span>
+          <span>Mean ${safeText(DATA.metric_labels[metric]||metric)} = ${mean.toFixed(4)}</span>
+          <span>Mean participation = ${meanPart.toFixed(3)} · Mean bridge ratio = ${meanBridge.toFixed(3)}</span>
+        </div>
+        ${sel.slice(0,5).map(n=>`<div class="netx-item"><strong>${safeText(n.label)}</strong><span>${safeText(n.ontology_group)} · ${safeText(DATA.metric_labels[metric]||metric)}=${num(n[metric]).toFixed(3)}</span></div>`).join('')}
+        ${sel.length>5?`<div class="netx-item"><span>…and ${sel.length-5} more</span></div>`:''}
+      </div>`;
+    }
+
+    /* ── RENDER PATH INFO ────────────────────────────────────────────────── */
+    function renderPathInfo() {
+      if(!PATH.mode){ pathInfoEl.textContent='Path analysis inactive. Click "Path Mode" to enable.'; pathListEl.innerHTML=''; return; }
+      if(!PATH.source){ pathInfoEl.textContent='Path mode: click a node to set source.'; pathListEl.innerHTML=''; return; }
+      const srcNode=nodeMap.get(PATH.source);
+      if(!PATH.terms.length){
+        pathInfoEl.textContent=`Source: ${srcNode?srcNode.label:PATH.source}. Now click target node to trace shortest path.`;
+        pathListEl.innerHTML='';
+        return;
+      }
+      pathInfoEl.textContent=`Shortest path: ${PATH.terms.length} nodes (${PATH.terms.length-1} hops)`;
+      pathListEl.innerHTML=PATH.terms.map((t,i)=>{
+        const n=nodeMap.get(t);
+        return `<div class="netx-item path-item"><strong>${i===0?'⬤':i===PATH.terms.length-1?'⬤':'○'} ${safeText(n?n.label:t)}</strong><span>${n?safeText(n.ontology_group)+' · '+safeText(n.feature_type):''}</span></div>`;
+      }).join('');
+    }
+
+    /* ── RENDER SCENE ────────────────────────────────────────────────────── */
+    function renderScene(nodes, edges) {
+      const metric=state.metric;
+      const sizeMap=sizeScale(nodes,metric);
+      const ordered=[...nodes].sort((a,b)=>num(b[metric])-num(a[metric]));
+      const hubTerms=new Set(ordered.slice(0,12).map(n=>n.term));
+      const neighborTerms=new Set((adjacency.get(state.selectedTerm)||[]).map(e=>e.target));
+      const pathTermSet=new Set(PATH.terms);
+      const labelTerms=new Set();
+      if(state.labels==='all') nodes.forEach(n=>labelTerms.add(n.term));
+      else if(state.labels==='hubs'){
+        hubTerms.forEach(t=>labelTerms.add(t));
+        if(state.selectedTerm) labelTerms.add(state.selectedTerm);
+        neighborTerms.forEach(t=>labelTerms.add(t));
+        PATH.terms.forEach(t=>labelTerms.add(t));
+      }
+      const q=state.search.trim().toLowerCase();
+
+      /* Render hulls */
+      renderHulls(nodes);
+      renderPathEdges();
+
+      /* Render edges */
+      edgesLayer.innerHTML=edges.map(e=>{
+        const src=nodeMap.get(e.source), tgt=nodeMap.get(e.target);
+        if(!src||!tgt) return '';
+        const onPath=PATH.edgeKeys.has(e.source+'||'+e.target);
+        const selected=state.selectedTerm&&(e.source===state.selectedTerm||e.target===state.selectedTerm);
+        const inMultiSel=state.selectedTerms.size>1&&(state.selectedTerms.has(e.source)&&state.selectedTerms.has(e.target));
+        const rho=num(e.rho);
+        let stroke, opacity;
+        if(rho>=0){
+          opacity=selected||inMultiSel?0.72:0.22;
+          stroke=`rgba(29,78,137,${opacity})`;
+        } else {
+          opacity=selected||inMultiSel?0.70:0.20;
+          stroke=`rgba(231,111,81,${opacity})`;
+        }
+        const width=(selected||inMultiSel?1.4:0.35)+num(e.abs_rho)*3.2;
+        return `<line x1="${src.sx.toFixed(1)}" y1="${src.sy.toFixed(1)}" x2="${tgt.sx.toFixed(1)}" y2="${tgt.sy.toFixed(1)}" stroke="${stroke}" stroke-width="${width.toFixed(2)}" stroke-linecap="round"><title>${safeText(src.label)} ↔ ${safeText(tgt.label)} | ρ=${rho.toFixed(3)}</title></line>`;
+      }).join('');
+
+      /* Render nodes — circle for continuous, diamond for categorical/dummy */
+      nodesLayer.innerHTML=nodes.map(n=>{
+        const r=sizeMap.get(n.term)||12;
+        const color=DATA.group_colors[n.ontology_group]||'#7f8c8d';
+        const selected=state.selectedTerm===n.term;
+        const inMultiSel=state.selectedTerms.has(n.term);
+        const onPath=pathTermSet.has(n.term);
+        const isSource=PATH.source===n.term;
+        const neighbor=!selected&&state.selectedTerm&&neighborTerms.has(n.term);
+        const stroke=selected?'__INK__':(isSource?'#c89b3c':(onPath?'__GOLD__':(inMultiSel?'#2a9d8f':(neighbor?'__GOLD__':'#ffffff'))));
+        const strokeW=selected||isSource?3.2:(onPath||inMultiSel||neighbor?2.2:1.0);
+        const dimmed=q&&!n.label.toLowerCase().includes(q)&&!String(n.term||'').toLowerCase().includes(q);
+        const opac=dimmed?0.35:0.92;
+        const isCat=n.feature_type==='Categorical dummy';
+        let shape;
+        if(isCat){
+          /* Diamond */
+          const d=r*1.12;
+          shape=`<polygon points="${n.sx.toFixed(1)},${(n.sy-d).toFixed(1)} ${(n.sx+d).toFixed(1)},${n.sy.toFixed(1)} ${n.sx.toFixed(1)},${(n.sy+d).toFixed(1)} ${(n.sx-d).toFixed(1)},${n.sy.toFixed(1)}" fill="${color}" fill-opacity="${opac}" stroke="${stroke}" stroke-width="${strokeW}"/>`;
+        } else {
+          /* Circle */
+          shape=`<circle cx="${n.sx.toFixed(1)}" cy="${n.sy.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}" fill-opacity="${opac}" stroke="${stroke}" stroke-width="${strokeW}"/>`;
+        }
+        return `<g class="netx-node${onPath?' netx-path-node':''}" data-term="${safeText(n.term)}" role="button" aria-label="${safeText(n.label)}">${shape}<title>${safeText(n.label)} | ${safeText(n.ontology_group)} | ${safeText(DATA.metric_labels[metric]||metric)}=${num(n[metric]).toFixed(4)}</title></g>`;
+      }).join('');
+
+      /* Render labels */
+      labelsLayer.innerHTML=state.labels==='none'?'':
+        nodes.filter(n=>labelTerms.has(n.term)).map(n=>{
+          const r=sizeMap.get(n.term)||12;
+          const sel=state.selectedTerm===n.term;
+          return `<text class="netx-label${sel?' selected-label':''}" x="${(n.sx+r+4).toFixed(1)}" y="${(n.sy+4).toFixed(1)}">${safeText(n.label)}</text>`;
+        }).join('');
+
+      /* Wire up node events */
+      nodesLayer.querySelectorAll('.netx-node').forEach(el=>{
+        const term=el.getAttribute('data-term');
+        el.addEventListener('mouseenter',evt=>{
+          const n=nodeMap.get(term);
+          if(n) showTooltip(n,evt);
+        });
+        el.addEventListener('mouseleave',hideTooltip);
+        el.addEventListener('click',evt=>{
+          evt.stopPropagation();
+          if(PATH.mode){
+            if(!PATH.source){ PATH.source=term; }
+            else if(PATH.source===term){ PATH.source=null; PATH.terms=[]; PATH.edgeKeys=new Set(); }
+            else {
+              const allNodes=visibleNodes();
+              const nodeSet=new Set(allNodes.map(n=>n.term));
+              PATH.terms=bfsPath(PATH.source,term,nodeSet,state.threshold);
+              PATH.edgeKeys=computePathEdgeKeys(PATH.terms);
+              PATH.target=term;
+            }
+          } else {
+            state.selectedTerm=term;
+            state.selectedTerms=new Set([term]);
+          }
+          render();
+        });
+        el.addEventListener('dblclick',evt=>{
+          evt.stopPropagation();
+          if(SIM.pinned.has(term)){ SIM.pinned.delete(term); } else { SIM.pinned.add(term); }
+          render();
+        });
+        el.addEventListener('mousedown',evt=>{ evt.stopPropagation(); state.draggingTerm=term; });
+      });
+    }
+
+    /* ── MAIN RENDER ─────────────────────────────────────────────────────── */
+    function render() {
+      const nodes=visibleNodes();
+      const nodeSet=new Set(nodes.map(n=>n.term));
+      if(state.selectedTerm&&!nodeSet.has(state.selectedTerm)&&state.focus==='all') state.selectedTerm=null;
+      const edges=visibleEdges(nodeSet);
+      renderScene(nodes,edges);
+      renderGlobal(nodes,edges);
+      renderSummary(nodes,edges);
+      renderRanking(nodes);
+      renderSelected(edges);
+      renderMultiSelect(nodes);
+      renderPathInfo();
+      thresholdReadout.textContent=`|ρ| ≥ ${state.threshold.toFixed(2)} · ${edges.length} edges survive`;
+      applyTransform();
+      renderMinimap(nodes,edges);
+    }
+
+    /* ── PRESET SYSTEM ───────────────────────────────────────────────────── */
+    function setPreset(p) {
+      state.family='all'; state.group='all'; state.featureType='all';
+      state.community='all'; state.sign='all'; state.focus='all';
+      state.labels='hubs'; state.threshold=defaultThreshold;
+      state.metric=defaultMetric;
+      const hasMet=(m)=>Object.keys(DATA.metric_labels).includes(m);
+      if(p==='bridges'){
+        state.metric=hasMet('participation_coefficient')?'participation_coefficient':'betweenness_centrality';
+        state.threshold=0.24; state.labels='hubs';
+      } else if(p==='hubs'){
+        state.metric=hasMet('strength')?'strength':'eigenvector_centrality';
+        state.threshold=0.18;
+      } else if(p==='bigfive'){
+        state.family='Big Five';
+        state.metric=hasMet('within_module_zscore')?'within_module_zscore':'eigenvector_centrality';
+        state.labels='all'; state.threshold=0.16;
+      } else if(p==='social'){
+        state.family='Social Context';
+        state.metric=hasMet('bridge_ratio')?'bridge_ratio':'strength';
+        state.labels='all'; state.threshold=0.18;
+      } else if(p==='politics'){
+        state.family='Political Psychology';
+        state.metric=hasMet('eigenvector_centrality')?'eigenvector_centrality':defaultMetric;
+        state.labels='all'; state.threshold=0.18;
+      } else if(p==='dummies'){
+        state.featureType='Categorical dummy';
+        state.metric=hasMet('bridge_ratio')?'bridge_ratio':defaultMetric;
+        state.threshold=0.20;
+      } else if(p==='kcore'){
+        state.metric=hasMet('k_core')?'k_core':'eigenvector_centrality';
+        state.threshold=0.30; state.labels='hubs';
+      }
+      metricSel.value=state.metric; familySel.value=state.family; groupSel.value=state.group;
+      featureTypeSel.value=state.featureType; communitySel.value=state.community;
+      signSel.value=state.sign; focusSel.value=state.focus; labelsSel.value=state.labels;
+      thresholdInput.value=state.threshold.toFixed(2);
+      state.selectedTerms=new Set(); state.selectedTerm=null;
+      render();
+    }
+
+    /* ── EVENTS ──────────────────────────────────────────────────────────── */
+    /* Background click → deselect */
+    svg.addEventListener('click',()=>{
+      if(PATH.mode) return;
+      state.selectedTerm=null; state.selectedTerms=new Set(); render();
+    });
+
+    /* Panning / dragging */
+    svg.addEventListener('mousedown',evt=>{
+      if(evt.shiftKey){ lassoStart(evt); return; }
+      state.panning=true; svg.classList.add('is-panning');
+    });
+    window.addEventListener('mouseup',()=>{
+      if(LASSO.active) lassoEnd();
+      state.draggingTerm=null; state.panning=false; svg.classList.remove('is-panning');
+    });
+    window.addEventListener('mousemove',evt=>{
+      if(LASSO.active){ lassoMove(evt); return; }
+      if(state.draggingTerm&&nodeMap.has(state.draggingTerm)){
+        evt.preventDefault();
+        const p=worldPoint(evt);
+        const n=nodeMap.get(state.draggingTerm);
+        n.sx=clamp(p.x,24,WORLD_W-24); n.sy=clamp(p.y,24,WORLD_H-24);
+        SIM.pinned.add(state.draggingTerm);
+        render(); return;
+      }
+      if(!state.panning) return;
+      const mX=(evt.movementX/svg.getBoundingClientRect().width)*WORLD_W;
+      const mY=(evt.movementY/svg.getBoundingClientRect().height)*WORLD_H;
+      state.panX+=mX; state.panY+=mY; applyTransform();
+      renderMinimap(visibleNodes(),visibleEdges(new Set(visibleNodes().map(n=>n.term))));
+    });
+
+    /* Wheel zoom centered on cursor */
+    svg.addEventListener('wheel',evt=>{
+      evt.preventDefault();
+      const mouse=svgPoint(evt);
+      const world=worldPoint(evt);
+      const factor=evt.deltaY<0?1.12:0.89;
+      const nextScale=clamp(state.scale*factor,0.25,6.0);
+      state.panX=mouse.x-world.x*nextScale;
+      state.panY=mouse.y-world.y*nextScale;
+      state.scale=nextScale; applyTransform();
+      renderMinimap(visibleNodes(),visibleEdges(new Set(visibleNodes().map(n=>n.term))));
+    },{passive:false});
+
+    /* Control changes */
+    metricSel.addEventListener('change',e=>{state.metric=e.target.value;render();});
+    familySel.addEventListener('change',e=>{state.family=e.target.value;render();});
+    groupSel.addEventListener('change',e=>{state.group=e.target.value;render();});
+    featureTypeSel.addEventListener('change',e=>{state.featureType=e.target.value;render();});
+    communitySel.addEventListener('change',e=>{state.community=e.target.value;render();});
+    signSel.addEventListener('change',e=>{state.sign=e.target.value;render();});
+    focusSel.addEventListener('change',e=>{state.focus=e.target.value;render();});
+    labelsSel.addEventListener('change',e=>{state.labels=e.target.value;render();});
+    thresholdInput.addEventListener('input',e=>{state.threshold=num(e.target.value,defaultThreshold);render();});
+    searchInput.addEventListener('input',e=>{
+      state.search=e.target.value;
+      const q=state.search.trim().toLowerCase();
+      if(q){const m=DATA.nodes.find(n=>n.label.toLowerCase().includes(q)||String(n.term||'').toLowerCase().includes(q));if(m)state.selectedTerm=m.term;}
+      render();
+    });
+
+    /* Preset buttons */
+    document.querySelectorAll('#netx-root .netx-preset').forEach(b=>b.addEventListener('click',()=>setPreset(b.dataset.preset)));
+
+    /* Toolbar buttons */
+    document.getElementById('netx-zoom-in').addEventListener('click',()=>{state.scale=clamp(state.scale*1.18,0.25,6.0);applyTransform();renderMinimap(visibleNodes(),visibleEdges(new Set(visibleNodes().map(n=>n.term))));});
+    document.getElementById('netx-zoom-out').addEventListener('click',()=>{state.scale=clamp(state.scale*0.85,0.25,6.0);applyTransform();renderMinimap(visibleNodes(),visibleEdges(new Set(visibleNodes().map(n=>n.term))));});
+    document.getElementById('netx-reset-view').addEventListener('click',()=>{state.scale=1;state.panX=0;state.panY=0;applyTransform();renderMinimap(visibleNodes(),visibleEdges(new Set(visibleNodes().map(n=>n.term))));});
+    document.getElementById('netx-center-selected').addEventListener('click',()=>centerOnSelected());
+    document.getElementById('netx-fit-btn').addEventListener('click',()=>fitToView(visibleNodes()));
+
+    forceBtn.addEventListener('click',()=>{ if(SIM.running) stopSim(); else startSim(); });
+    document.getElementById('netx-reset-sim-btn').addEventListener('click',()=>{ stopSim(); SIM.pinned.clear(); resetOriginalPositions(); render(); });
+    hullBtn.addEventListener('click',()=>{ state.showHulls=!state.showHulls; hullBtn.style.background=state.showHulls?'#edf4ff':'#f4f7ff'; render(); });
+    pathBtn.addEventListener('click',()=>{
+      PATH.mode=!PATH.mode;
+      if(!PATH.mode){ PATH.source=null; PATH.target=null; PATH.terms=[]; PATH.edgeKeys=new Set(); }
+      pathBtn.style.background=PATH.mode?'#fff7ee':'#f4f7ff';
+      pathBtn.style.color=PATH.mode?'#c45c1a':'__INK__';
+      svg.classList.toggle('lasso-mode',false);
+      render();
+    });
+    document.getElementById('netx-export-btn').addEventListener('click',exportSVG);
+
+    /* Keyboard shortcuts */
+    document.addEventListener('keydown',evt=>{
+      if(evt.target.tagName==='INPUT'||evt.target.tagName==='SELECT') return;
+      if(evt.key==='Escape'){state.selectedTerm=null;state.selectedTerms=new Set();PATH.mode=false;PATH.source=null;PATH.terms=[];PATH.edgeKeys=new Set();pathBtn.style.background='#f4f7ff';pathBtn.style.color='__INK__';render();}
+      if(evt.key==='r'||evt.key==='R'){state.scale=1;state.panX=0;state.panY=0;applyTransform();}
+      if(evt.key==='h'||evt.key==='H'){state.showHulls=!state.showHulls;hullBtn.style.background=state.showHulls?'#edf4ff':'#f4f7ff';render();}
+      if(evt.key==='f'||evt.key==='F'){fitToView(visibleNodes());}
+      if(evt.key==='p'||evt.key==='P'){if(SIM.running)stopSim();else startSim();}
+    });
+
+    /* ── INIT ────────────────────────────────────────────────────────────── */
+    normaliseCoords();
+    deriveNetworkMetrics();
+    populateControls();
+    metricSel.value=state.metric;
+    thresholdInput.value=state.threshold.toFixed(2);
+    hullBtn.style.background='#edf4ff'; /* hulls on by default */
+    render();
+
+  })();
+  </script>
+</div>
+"""
+    replacements = {
+        "__PAYLOAD__": payload_json,
+        "__THRESHOLD__": f"{float(global_metrics.get('corr_threshold', 0.15) or 0.15):.2f}",
+        "__BLUE__": PALETTE["blue"],
+        "__MUTED__": PALETTE["muted"],
+        "__INK__": PALETTE["ink"],
+        "__GOLD__": PALETTE["gold"],
+    }
+    for key, value in replacements.items():
+        html = html.replace(key, value)
+    return html
+
+
+
+
 # ─── main entry point ─────────────────────────────────────────────────────────
 
 def generate_research_visuals(
@@ -5002,6 +6612,7 @@ def generate_research_visuals(
     weight_df             = _load(s06 / "moderator_weight_table.csv")
     task_coeff_df    = _load(s06 / "conditional_susceptibility_task_coefficients.csv")
     task_summary_df  = _load(s06 / "conditional_susceptibility_task_summary.csv")
+    bootstrap_rank_df = _load(s06 / "conditional_susceptibility_bootstrap_ranks.csv")
     network_centrality_df = _load(s06 / "profile_network_centrality.csv")
     network_edge_df       = _load(s06 / "profile_network_edges.csv")
     network_layout_df     = _load(s06 / "profile_network_layout.csv")
@@ -5018,6 +6629,37 @@ def generate_research_visuals(
         if ontology_catalog_path.exists() else {}
     )
     ontology_payload = _load_dashboard_ontology_payload(ontology_catalog)
+    quality_diagnostics_path = s06 / "analysis_quality_diagnostics.json"
+    quality_diagnostics: Dict[str, Any] = {}
+    if quality_diagnostics_path.exists():
+        try:
+            quality_diagnostics = json.loads(quality_diagnostics_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    ridge_summary_path = s06 / "ridge_full_summary.json"
+    ridge_summary: Dict[str, Any] = {}
+    if ridge_summary_path.exists():
+        try:
+            ridge_summary = json.loads(ridge_summary_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    rf_summary_path = s06 / "rf_summary.json"
+    rf_summary: Dict[str, Any] = {}
+    if rf_summary_path.exists():
+        try:
+            rf_summary = json.loads(rf_summary_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    enet_summary_path = s06 / "elastic_net_summary.json"
+    enet_summary: Dict[str, Any] = {}
+    if enet_summary_path.exists():
+        try:
+            enet_summary = json.loads(enet_summary_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
 
     # Try to find embedding_dashboard.json (generated by semantic_embedding.py)
     embedding_data_path: Optional[Path] = None
@@ -5039,16 +6681,19 @@ def generate_research_visuals(
         except Exception:
             pass
 
-    icc_str = "n/a"
-    for key in ("icc1_abs_delta", "icc_abs_delta", "icc1", "ICC1"):
-        if key in icc_data:
-            try:
-                icc_str = f"{float(icc_data[key]):.3f}"
-            except Exception:
-                pass
-            break
+    abs_icc = icc_data.get("abs_delta_score", {}).get("icc1") if isinstance(icc_data, dict) else None
+    icc_str = f"{float(abs_icc):.3f}" if abs_icc is not None else "n/a"
+    if not bootstrap_rank_df.empty and "profile_id" in bootstrap_rank_df.columns:
+        profile_index_df = profile_index_df.merge(
+            bootstrap_rank_df,
+            on="profile_id",
+            how="left",
+            suffixes=("", "_boot"),
+        )
 
     n_profiles = int(long_df["profile_id"].nunique()) if "profile_id" in long_df.columns else "n/a"
+    n_attacks = int(long_df["attack_leaf"].nunique()) if "attack_leaf" in long_df.columns else "n/a"
+    n_opinions = int(long_df["opinion_leaf"].nunique()) if "opinion_leaf" in long_df.columns else "n/a"
     pct_pos    = (
         f"{(long_df['adversarial_effectivity'] > 0).mean() * 100:.1f}%"
         if "adversarial_effectivity" in long_df.columns else "n/a"
@@ -5056,15 +6701,26 @@ def generate_research_visuals(
     summary_cards: Dict[str, Any] = {
         "Profiles":        n_profiles,
         "Scenarios":       len(long_df),
-        "Attack Vectors":  int(long_df["attack_leaf"].nunique()) if "attack_leaf" in long_df.columns else "n/a",
-        "Opinion Leaves":  int(long_df["opinion_leaf"].nunique()) if "opinion_leaf" in long_df.columns else "n/a",
+        "Attack Vectors":  n_attacks,
+        "Opinion Leaves":  n_opinions,
         "Mean |Δ|":        f"{long_df['abs_delta_score'].mean():.1f}" if "abs_delta_score" in long_df.columns else "n/a",
         "Mean AE":         f"{long_df['adversarial_effectivity'].mean():.1f}" if "adversarial_effectivity" in long_df.columns else "n/a",
         "% AE > 0":        pct_pos,
-        "Mean Realism":    f"{long_df['attack_realism_score'].dropna().mean():.2f}" if "attack_realism_score" in long_df.columns else "n/a",
+        "Baseline Fallback": (
+            f"{float(quality_diagnostics.get('baseline_fallback_used_rate', 0.0)) * 100:.1f}%"
+            if quality_diagnostics.get("baseline_fallback_used_rate") is not None
+            else "n/a"
+        ),
+        "Post Fallback": (
+            f"{float(quality_diagnostics.get('post_fallback_used_rate', 0.0)) * 100:.1f}%"
+            if quality_diagnostics.get("post_fallback_used_rate") is not None
+            else "n/a"
+        ),
         "ICC(1) |Δ|":      icc_str,
-        "CFI":             f"{fit['CFI']:.3f}" if fit.get("CFI") is not None else "n/a",
-        "RMSEA":           f"{fit['RMSEA']:.3f}" if fit.get("RMSEA") is not None else "n/a",
+        "Ridge CV-R²":     f"{float(ridge_summary.get('cv_r2')):.3f}" if ridge_summary.get("cv_r2") is not None else "n/a",
+        "RF OOB R²":       f"{float(rf_summary.get('oob_r2')):.3f}" if rf_summary.get("oob_r2") is not None else "n/a",
+        "CFI":             f"{float(fit['CFI']):.3f}" if fit.get("CFI") is not None else "n/a",
+        "RMSEA":           f"{float(fit['RMSEA']):.3f}" if fit.get("RMSEA") is not None else "n/a",
     }
 
     figure_divs: List[Tuple[str, str]] = []
@@ -5091,6 +6747,8 @@ def generate_research_visuals(
         _add_html("Conditional Susceptibility Estimator",
                   _html_cs_estimator(task_coeff_df, task_summary_df, long_df),
                   "conditional_susceptibility_estimator.html")
+    if not task_summary_df.empty:
+        _add_fig("Task Reliability Surface", _fig_task_reliability(task_summary_df), "task_reliability.html")
 
     _add_fig("Distribution by Opinion Leaf",   _fig_violin(long_df),               "violin.html")
     _add_fig("Distribution by Attack Vector",  _fig_raw_attack_comparison(long_df), "attack_comparison.html")
@@ -5098,6 +6756,7 @@ def generate_research_visuals(
     if not profile_index_df.empty:
         _add_fig("Susceptibility Map", _fig_susceptibility_scatter(profile_index_df, long_df),
                  "susceptibility_map.html")
+        _add_fig("Bootstrap Rank Stability", _fig_bootstrap_rank_stability(profile_index_df), "bootstrap_rank_stability.html")
 
     # Use expanded table (all ~100 features with ridge estimates) when available;
     # fall back to OLS-only exploratory table.
@@ -5121,12 +6780,33 @@ def generate_research_visuals(
         ),
         "profile_network.html",
     )
+    _add_html(
+        "Profile Network Explorer",
+        _html_profile_network_explorer(
+            centrality_df=network_centrality_df,
+            edge_df=network_edge_df,
+            layout_df=network_layout_df,
+            global_metrics=network_global_metrics,
+        ),
+        "profile_network_explorer.html",
+    )
 
     # ── Semantic Embedding UMAP tab ─────────────────────────────────────────
     _add_html(
         "Semantic Embedding Space",
         _html_umap_embedding_tab(embedding_data_path=embedding_data_path),
         "umap_embedding.html",
+    )
+    _add_html(
+        "Audit & Robustness",
+        _html_quality_robustness(
+            quality_diagnostics=quality_diagnostics,
+            icc_data=icc_data,
+            ridge_summary=ridge_summary,
+            rf_summary=rf_summary,
+            enet_summary=enet_summary,
+        ),
+        "audit_robustness.html",
     )
 
     # snapshots
@@ -5139,15 +6819,21 @@ def generate_research_visuals(
         exploratory_df.to_csv(snap_dir / "moderator_coefficients_snapshot.csv", index=False)
 
     notes = [
-        "All profiles are attacked; the dashboard visualizes heterogeneity of manipulation outcomes, not a treatment vs control contrast.",
-        "Ontology Explorer: the dashboard defaults to the production ATTACK / OPINION / PROFILE ontologies, with a source switch to the test ontologies used in run 8.",
+        "All profiles are attacked; the dashboard visualizes heterogeneity of manipulation outcomes, not a treatment-vs-control contrast.",
+        f"This study uses a {n_profiles} × {n_attacks} × {n_opinions} ontology-driven factorial design ({n_profiles * n_attacks * n_opinions if isinstance(n_profiles, int) and isinstance(n_attacks, int) and isinstance(n_opinions, int) else '—'} scenarios total).",
+        (
+            f"Baseline/post fallback substitution: baseline={float(quality_diagnostics.get('baseline_fallback_used_rate', 0.0)) * 100:.1f}%, "
+            f"post={float(quality_diagnostics.get('post_fallback_used_rate', 0.0)) * 100:.1f}%. High fallback rates indicate that moderator results should be treated as pipeline diagnostics until stages 02–04 are re-run with funded API access."
+            if quality_diagnostics
+            else "Execution diagnostics were not available."
+        ),
         "Adversarial effectivity (AE = Δ × d_k): <b>positive = manipulation succeeded</b>, negative = backfire or resistance.",
-        "The 3D surface shows mean AE and inter-individual SD across the full 4×4 attack–opinion factorial.",
+        "The task reliability and bootstrap tabs show where the conditional susceptibility index is stable and where it is rank-fragile.",
         "SEM Network: start with the Baseline preset, then use layer toggles, p-value thresholding, and hierarchy filters to reveal leaf-level moderation paths and attack context.",
-        "Conditional Susceptibility Estimator: configure any profile, choose any conditional attack × opinion scope, and inspect the predicted AE grid plus score rank.",
-        "The Conditional Susceptibility Score is re-computed on the fly for the selected task subset versus the 100 original profiles.",
-        "ICC(1) ≈ 0.052 for |Δ|: attack–opinion context explains ~95% of variance; stable profile traits explain ~5%.",
-        "SEM fit (CFI=1.000, RMSEA=0.000) is expected in a near-saturated 4-indicator model at n=100.",
+        f"Conditional Susceptibility Estimator: configure any profile, choose any attack × opinion scope, and inspect the predicted AE grid plus rank against the {n_profiles} observed profiles.",
+        f"Profile Network Explorer: <b>circles</b> = continuous features; <b>diamonds</b> = categorical/dummy. Shift+drag for lasso multi-select. Hulls outline detected communities. Force relax spreads dense clusters. Path mode traces shortest network paths between nodes.",
+        f"ICC(1) for |Δ| is {icc_str}; between-profile variance is weak relative to attack–opinion context. Interpretable structure is recoverable from the deterministic profile feature network.",
+        f"SEM fit (CFI={float(fit['CFI']):.3f}, RMSEA={float(fit['RMSEA']):.3f}) should be read as a small-panel diagnostic, not as confirmation of substantive model adequacy." if fit.get("CFI") is not None and fit.get("RMSEA") is not None else "SEM fit indices were unavailable.",
     ]
 
     dashboard_path = output_root / "interactive_sem_dashboard.html"

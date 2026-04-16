@@ -15206,3 +15206,97 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 2026-04-16 21:31:15 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
 2026-04-16 21:31:15 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
 2026-04-16 21:31:15 | INFO | __main__ | Full pipeline completed successfully.
+2026-04-16 22:24:19 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-04-16 22:25:14 | ERROR | __main__ | Stage 06 failed with code 1
+2026-04-16 22:25:14 | ERROR | __main__ | STDOUT:
+
+2026-04-16 22:25:14 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/06_construct_structural_equation_model/run_stage.py", line 2184, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/06_construct_structural_equation_model/run_stage.py", line 2179, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/06_construct_structural_equation_model/run_stage.py", line 1741, in run_stage
+    conditional_fit = fit_conditional_susceptibility_index(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/conditional_susceptibility.py", line 903, in fit_conditional_susceptibility_index
+    task_models = _apply_eb_shrinkage(task_models, list(feature_columns), shrinkage_strength)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/conditional_susceptibility.py", line 476, in _apply_eb_shrinkage
+    shrunk_models.append(_dc_replace(m, coefficients=new_coeffs))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/dataclasses.py", line 1550, in replace
+    raise TypeError("replace() should be called on dataclass instances")
+TypeError: replace() should be called on dataclass instances
+
+2026-04-16 22:25:46 | INFO | __main__ | Running stage 06 (construct_structural_equation_model)
+2026-04-16 23:38:50 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-04-16 23:38:53 | WARNING | __main__ | Stage 07 stderr:
+2026-04-16 23:38:52 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-04-16 23:38:53 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-04-16 23:38:53 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-04-16 23:38:56 | ERROR | __main__ | Stage 08 failed with code 1
+2026-04-16 23:38:56 | ERROR | __main__ | STDOUT:
+
+2026-04-16 23:38:56 | ERROR | __main__ | STDERR:
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 115, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 110, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 37, in run_stage
+    result = generate_publication_assets(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py", line 614, in generate_publication_assets
+    figure_files.extend(_draw_network_summary(network_centrality_df, network_global_metrics, figures_dir / "figure_3_profile_network_bridge_summary"))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py", line 473, in _draw_network_summary
+    work["feature_type"] = work["term"].map(_moderator_group)
+                                            ^^^^^^^^^^^^^^^^
+NameError: name '_moderator_group' is not defined
+
+2026-04-16 23:59:35 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-04-16 23:59:59 | ERROR | __main__ | Stage 08 failed with code 1
+2026-04-16 23:59:59 | ERROR | __main__ | STDOUT:
+
+2026-04-16 23:59:59 | ERROR | __main__ | STDERR:
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:390: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(data=work, x="attack_leaf_label", y=outcome, order=order, inner="box", palette="Set2", ax=ax)
+Traceback (most recent call last):
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 115, in <module>
+    main()
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 110, in main
+    manifest = run_stage(args.input_path, args.output_dir, config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/pipeline/separate/08_generate_publication_assets/run_stage.py", line 37, in run_stage
+    result = generate_publication_assets(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py", line 790, in generate_publication_assets
+    network_summary_table = network_table.sort_values(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/core/frame.py", line 7172, in sort_values
+    keys = [self._get_label_or_level_values(x, axis=axis) for x in by]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'participation_coefficient'
+
+2026-04-17 00:00:23 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-04-17 00:00:31 | WARNING | __main__ | Stage 08 stderr:
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:390: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(data=work, x="attack_leaf_label", y=outcome, order=order, inner="box", palette="Set2", ax=ax)
+2026-04-17 00:00:31 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-04-17 00:00:31 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-04-17 00:00:31 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-04-17 00:00:37 | WARNING | __main__ | Stage 09 stderr:
+2026-04-17 00:00:37 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-04-17 00:00:37 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-04-17 00:00:38 | INFO | __main__ | Full pipeline completed successfully.

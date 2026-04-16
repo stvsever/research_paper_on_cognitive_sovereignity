@@ -1,0 +1,15 @@
+Ontology,Role,Leaf
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Coordinated_Amplification > Astroturf_Comment_Wave
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Manipulative_Persuasion > Fear_Appeal_Scapegoating_Post
+ATTACK,Factorial attack leaf,ATTACK_VECTORS > Synthetic_Media_Generation > LLM_Chatbot_Personalized_Persuasion
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Critical_Infrastructure_Hardening_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Defense_and_National_Security > Nuclear_Deterrence_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Humanitarian_Intervention_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Foreign_Policy_and_Geopolitics > Sanctions_Use_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Immigration_and_Citizenship > Asylum_Process_Expansion_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Immigration_and_Citizenship > Family_Reunification_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Immigration_and_Citizenship > Multiculturalism_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Foreign_Information_Manipulation_Transparency_Mandate_Support
+OPINION,Repeated indicator leaf,Issue_Position_Taxonomy > Information_Integrity_and_Platforms > Trust_In_Mainstream_Journalism

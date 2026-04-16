@@ -109,32 +109,33 @@ def _write_table_bundle(df: pd.DataFrame, base_path: Path, caption: str, note: s
     column_format = None
     if len(df.columns) == 2:
         column_format = r"p{0.24\linewidth}p{0.70\linewidth}"
-    elif base_path.stem == "table_3_multivariate_profile_moderator_model":
+    elif "moderator" in base_path.stem and len(df.columns) >= 6:
         column_format = r"p{0.34\linewidth}" + "r" * (len(df.columns) - 1)
-    elif base_path.stem == "supplementary_table_s1_ontology_leaves_used":
+    elif "ontology_leaves_used" in base_path.stem:
         column_format = r"p{0.14\linewidth}p{0.22\linewidth}p{0.54\linewidth}"
         resize_wide = False
 
     table_latex = df.to_latex(index=False, escape=True, na_rep="", float_format=lambda x: f"{x:.3f}", column_format=column_format)
-    body_lines = ["{", r"\footnotesize", r"\setlength{\tabcolsep}{4pt}", r"\renewcommand{\arraystretch}{1.08}"]
+    body_lines = [r"\small", r"\setlength{\tabcolsep}{4.5pt}", r"\renewcommand{\arraystretch}{1.10}"]
     if resize_wide:
-        body_lines.extend([r"\resizebox{\linewidth}{!}{%", table_latex.rstrip(), "}"])
+        body_lines.extend([r"\begin{adjustbox}{max width=\linewidth}", table_latex.rstrip(), r"\end{adjustbox}"])
     else:
         body_lines.append(table_latex.rstrip())
-    body_lines.append("}")
 
-    tex_content = "\n".join(
-        [
-            r"\begin{table}[htbp]",
-            r"\raggedright",
-            f"\\caption{{{_latex_escape_text(caption)}}}",
-            f"\\label{{{label}}}",
-            *body_lines,
-            r"\par\smallskip",
-            f"{{\\normalsize Note. {_latex_escape_text(note)}}}",
-            r"\end{table}",
-        ]
-    )
+    tex_content = "\n".join([
+        r"\begin{table}[htbp]",
+        r"\centering",
+        r"\begin{threeparttable}",
+        f"\\caption{{{_latex_escape_text(caption)}}}",
+        f"\\label{{{label}}}",
+        *body_lines,
+        r"\begin{tablenotes}[flushleft]",
+        r"\footnotesize",
+        f"\\item Note. {_latex_escape_text(note)}",
+        r"\end{tablenotes}",
+        r"\end{threeparttable}",
+        r"\end{table}",
+    ])
     write_text(tex_path, tex_content)
     return [abs_path(csv_path), abs_path(tex_path)]
 
@@ -163,12 +164,15 @@ def _draw_study_design(base_path: Path, config: Dict[str, Any]) -> List[str]:
     fig, ax = plt.subplots(figsize=(14.4, 6.5))
     ax.set_axis_off()
     n_profiles = int(config.get("n_profiles") or config.get("n_scenarios") or 0)
+    attack_leaves_str = config.get("attack_leaves", config.get("attack_leaf", "")) or ""
+    n_attacks = len([leaf for leaf in str(attack_leaves_str).split(",") if leaf.strip()]) or 1
+    n_opinions = int(config.get("max_opinion_leaves") or 0)
 
     boxes = [
         (0.03, 0.66, 0.18, 0.18, f"PROFILE ontology\\nleaf sampling -> {n_profiles}\\ndiverse pseudoprofiles"),
-        (0.03, 0.38, 0.18, 0.18, "ATTACK ontology\nfixed leaf:\nmisleading narrative framing"),
-        (0.03, 0.10, 0.18, 0.18, "OPINION ontology\nrepeated leaves within\nfocused policy domain"),
-        (0.29, 0.46, 0.18, 0.24, "Profile-panel manifest\n50 profiles x repeated\nattacked opinion leaves"),
+        (0.03, 0.38, 0.18, 0.18, f"ATTACK ontology\n{n_attacks} selected leaves\nacross mechanism families"),
+        (0.03, 0.10, 0.18, 0.18, f"OPINION ontology\n{n_opinions} sampled leaves\nacross policy domains"),
+        (0.29, 0.46, 0.18, 0.24, f"Profile-panel manifest\n{n_profiles} profiles x {n_attacks} attacks\nx {n_opinions} opinion leaves"),
         (0.54, 0.63, 0.18, 0.18, "Baseline opinion\nassessment"),
         (0.54, 0.35, 0.18, 0.18, "Attack exposure\ngeneration + realism\naudit"),
         (0.54, 0.07, 0.18, 0.18, "Post-exposure opinion\nassessment + coherence\naudit"),
@@ -203,11 +207,10 @@ def _draw_study_design(base_path: Path, config: Dict[str, Any]) -> List[str]:
     for start, end in arrows:
         ax.add_patch(FancyArrowPatch(start, end, arrowstyle="-|>", mutation_scale=18, linewidth=1.3, color=PALETTE["blue"]))
 
-    n_attacks = config.get("selected_attack_leaf_count") or len(config.get("attack_leaves", "").split(",")) if config.get("attack_leaves") else 1
     design_label = f"Full factorial attacked-only profile-panel design ({n_attacks} attacks)" if n_attacks > 1 else "Attacked-only profile-panel design"
     ax.text(0.5, 0.95, design_label, ha="center", va="center", fontsize=16, fontweight="bold", color=PALETTE["navy"])
     design_note = (
-        f"Hierarchical ontologies are preserved upstream. Each profile is crossed with {n_attacks} attack leaves and multiple opinion leaves in a full factorial design."
+        f"Hierarchical ontologies are preserved upstream. Each profile is crossed with {n_attacks} attack leaves and {n_opinions} opinion leaves in a full factorial design."
         if n_attacks > 1
         else "Hierarchical ontologies are preserved upstream. Estimation uses repeated leaf nodes so the fixed attack leaf connects to multiple attacked opinion-shift indicators per profile."
     )
@@ -397,6 +400,139 @@ def _draw_attack_comparison(long_df: pd.DataFrame, base_path: Path) -> List[str]
     return _save_figure(fig, base_path)
 
 
+def _leaf_display(value: str) -> str:
+    raw = str(value).rsplit(">", 1)[-1].strip() if ">" in str(value) else str(value)
+    return pretty_label(raw)
+
+
+def _draw_task_reliability_surface(task_summary_df: pd.DataFrame, base_path: Path) -> List[str]:
+    if task_summary_df.empty:
+        return []
+    work = task_summary_df.copy()
+    work["attack_label"] = work["attack_leaf"].map(_leaf_display)
+    work["opinion_label"] = work["opinion_leaf"].map(_leaf_display)
+    reliability = work.pivot_table(index="attack_label", columns="opinion_label", values="reliability_weight", aggfunc="mean")
+    cv_mse = work.pivot_table(index="attack_label", columns="opinion_label", values="cv_mse", aggfunc="mean")
+    if reliability.empty or cv_mse.empty:
+        return []
+
+    fig, axes = plt.subplots(1, 2, figsize=(14.8, 6.4), gridspec_kw={"width_ratios": [1.0, 1.0]})
+    sns.heatmap(
+        reliability,
+        cmap="Blues",
+        linewidths=0.5,
+        linecolor="white",
+        cbar_kws={"label": "Reliability weight"},
+        ax=axes[0],
+    )
+    axes[0].set_title("Task reliability weights")
+    axes[0].set_xlabel("Opinion leaf")
+    axes[0].set_ylabel("Attack vector")
+    axes[0].tick_params(axis="x", rotation=28)
+    axes[0].tick_params(axis="y", rotation=0)
+
+    sns.heatmap(
+        cv_mse,
+        cmap="YlOrRd",
+        linewidths=0.5,
+        linecolor="white",
+        cbar_kws={"label": "Cross-validated MSE"},
+        ax=axes[1],
+    )
+    axes[1].set_title("Task-specific predictive error")
+    axes[1].set_xlabel("Opinion leaf")
+    axes[1].set_ylabel("")
+    axes[1].tick_params(axis="x", rotation=28)
+    axes[1].tick_params(axis="y", rotation=0)
+
+    fig.suptitle("Conditional susceptibility task reliability across the 4 x 10 attack-opinion surface", fontsize=14, fontweight="bold", color=PALETTE["navy"], y=0.98)
+    fig.text(
+        0.01,
+        0.01,
+        "Note. Reliability weights are proportional to n / CV-MSE for each task-specific ridge model. Narrow weight dispersion indicates that no single attack-opinion cell dominates conditional susceptibility ranking.",
+        ha="left",
+        va="bottom",
+        fontsize=9.3,
+        color=PALETTE["ink"],
+    )
+    return _save_figure(fig, base_path)
+
+
+def _draw_network_summary(
+    centrality_df: pd.DataFrame,
+    global_metrics: Dict[str, Any],
+    base_path: Path,
+) -> List[str]:
+    if centrality_df.empty:
+        return []
+
+    work = centrality_df.copy()
+    if "ontology_family" not in work.columns and "ontology_group" in work.columns:
+        work["ontology_family"] = work["ontology_group"].astype(str).str.split(":").str[0]
+    if "feature_type" not in work.columns:
+        if "is_categorical" in work.columns:
+            work["feature_type"] = work["is_categorical"].apply(lambda x: "categorical" if x else "continuous")
+        else:
+            work["feature_type"] = "continuous"
+    hub_metric = "strength" if "strength" in work.columns else "eigenvector_centrality"
+    bridge_metric = "participation_coefficient" if "participation_coefficient" in work.columns else "betweenness_centrality"
+    hubs = work.sort_values(hub_metric, ascending=False).head(10).iloc[::-1]
+    bridges = work.sort_values(bridge_metric, ascending=False).head(10).iloc[::-1]
+    if hubs.empty or bridges.empty:
+        return []
+
+    families = pd.concat([hubs["ontology_family"], bridges["ontology_family"]], axis=0).dropna().unique().tolist()
+    palette = sns.color_palette("blend:#1d4e89,#2a9d8f,#e76f51", n_colors=max(3, len(families)))
+    family_colors = {family: palette[idx] for idx, family in enumerate(families)}
+
+    fig, axes = plt.subplots(1, 2, figsize=(15.2, 6.6), gridspec_kw={"width_ratios": [1.0, 1.0]})
+    axes[0].barh(
+        [_wrap(label, 28) for label in hubs["label"]],
+        hubs[hub_metric],
+        color=[family_colors.get(family, PALETTE["blue"]) for family in hubs["ontology_family"]],
+        alpha=0.92,
+    )
+    axes[0].set_title(f"Top hub variables by {_pretty(hub_metric)}")
+    axes[0].set_xlabel(_pretty(hub_metric))
+    axes[0].set_ylabel("")
+
+    axes[1].barh(
+        [_wrap(label, 28) for label in bridges["label"]],
+        bridges[bridge_metric],
+        color=[family_colors.get(family, PALETTE["teal"]) for family in bridges["ontology_family"]],
+        alpha=0.92,
+    )
+    axes[1].set_title(f"Top bridge variables by {_pretty(bridge_metric)}")
+    axes[1].set_xlabel(_pretty(bridge_metric))
+    axes[1].set_ylabel("")
+
+    legend_handles = [
+        plt.Line2D([0], [0], color=family_colors[family], lw=8, label=family)
+        for family in families
+    ]
+    fig.legend(handles=legend_handles, loc="upper center", ncol=min(4, len(legend_handles)), frameon=False, bbox_to_anchor=(0.5, 1.02))
+
+    gm_lines = [
+        f"Nodes = {int(global_metrics.get('n_nodes', len(work)))}",
+        f"Edges = {int(global_metrics.get('n_edges', 0))}",
+        f"Density = {float(global_metrics.get('density', 0.0)):.3f}",
+        f"Communities = {int(global_metrics.get('n_communities', 0))}",
+        f"Modularity = {float(global_metrics.get('modularity_score', 0.0)):.3f}",
+        f"Cross-family share = {float(global_metrics.get('between_family_edge_share', 0.0)) * 100:.1f}%",
+    ]
+    fig.text(
+        0.50,
+        0.04,
+        " | ".join(gm_lines),
+        ha="center",
+        va="center",
+        fontsize=9.4,
+        color=PALETTE["ink"],
+    )
+    fig.suptitle("Profile feature network: local hubs versus cross-community bridges", fontsize=14, fontweight="bold", color=PALETTE["navy"], y=0.98)
+    return _save_figure(fig, base_path)
+
+
 def _ontology_table(ontology_catalog: Dict[str, Any]) -> pd.DataFrame:
     rows: List[Dict[str, str]] = []
     selected_attacks = ontology_catalog.get("selected_attack_leaves", [])
@@ -406,7 +542,7 @@ def _ontology_table(ontology_catalog: Dict[str, Any]) -> pd.DataFrame:
     else:
         selected_attack = ontology_catalog.get("selected_attack_leaf")
         if selected_attack:
-            rows.append({"Ontology": "ATTACK", "Role": "Fixed pilot leaf", "Leaf": selected_attack})
+            rows.append({"Ontology": "ATTACK", "Role": "Single attack leaf", "Leaf": selected_attack})
     for leaf in ontology_catalog.get("selected_opinion_leaves", []):
         rows.append({"Ontology": "OPINION", "Role": "Repeated indicator leaf", "Leaf": leaf})
     return pd.DataFrame(rows)
@@ -453,6 +589,22 @@ def generate_publication_assets(
     profile_index_df = pd.read_csv(stage06_dir / "profile_susceptibility_index.csv")
     weight_table_path = stage06_dir / "moderator_weight_table.csv"
     weight_df = pd.read_csv(weight_table_path) if weight_table_path.exists() else pd.DataFrame()
+    task_summary_path = stage06_dir / "conditional_susceptibility_task_summary.csv"
+    task_summary_df = pd.read_csv(task_summary_path) if task_summary_path.exists() else pd.DataFrame()
+    network_centrality_path = stage06_dir / "profile_network_centrality.csv"
+    network_centrality_df = pd.read_csv(network_centrality_path) if network_centrality_path.exists() else pd.DataFrame()
+    network_global_path = stage06_dir / "profile_network_global_metrics.json"
+    network_global_metrics = json.loads(network_global_path.read_text(encoding="utf-8")) if network_global_path.exists() else {}
+    quality_diagnostics_path = stage06_dir / "analysis_quality_diagnostics.json"
+    quality_diagnostics = json.loads(quality_diagnostics_path.read_text(encoding="utf-8")) if quality_diagnostics_path.exists() else {}
+    icc_path = stage06_dir / "intraclass_correlation.json"
+    icc_payload = json.loads(icc_path.read_text(encoding="utf-8")) if icc_path.exists() else {}
+    ridge_summary_path = stage06_dir / "ridge_full_summary.json"
+    ridge_summary = json.loads(ridge_summary_path.read_text(encoding="utf-8")) if ridge_summary_path.exists() else {}
+    rf_summary_path = stage06_dir / "rf_summary.json"
+    rf_summary = json.loads(rf_summary_path.read_text(encoding="utf-8")) if rf_summary_path.exists() else {}
+    enet_summary_path = stage06_dir / "elastic_net_summary.json"
+    enet_summary = json.loads(enet_summary_path.read_text(encoding="utf-8")) if enet_summary_path.exists() else {}
 
     figure_files: List[str] = []
     table_files: List[str] = []
@@ -461,14 +613,15 @@ def generate_publication_assets(
     indicator_columns = [column for column in profile_wide_df.columns if column.startswith("abs_delta_indicator__") and not column.endswith("_z")]
 
     figure_files.extend(_draw_study_design(figures_dir / "figure_1_study_design", config))
-    figure_files.extend(_draw_abs_delta_distribution(long_df, figures_dir / "figure_2_absolute_delta_distribution"))
-    if not weight_df.empty:
-        figure_files.extend(_draw_moderator_forest(weight_df, figures_dir / "figure_3_profile_moderator_coefficient_forest"))
-    figure_files.extend(_draw_sem_diagram(sem_result, exploratory_df, config, indicator_columns, figures_dir / "figure_4_annotated_sem_path_diagram"))
+    figure_files.extend(_draw_task_reliability_surface(task_summary_df, figures_dir / "figure_2_task_reliability_surface"))
+    figure_files.extend(_draw_network_summary(network_centrality_df, network_global_metrics, figures_dir / "figure_3_profile_network_bridge_summary"))
     figure_files.extend(_draw_baseline_post_scatter(long_df, figures_dir / "supplementary_figure_s1_baseline_post_scatter"))
     figure_files.extend(_draw_profile_heatmap(long_df, profile_index_df, figures_dir / "supplementary_figure_s2_profile_effectivity_heatmap"))
     figure_files.extend(_draw_susceptibility_distribution(profile_index_df, figures_dir / "supplementary_figure_s3_susceptibility_distribution"))
     figure_files.extend(_draw_attack_comparison(long_df, figures_dir / "supplementary_figure_s4_attack_comparison_panel"))
+    if not weight_df.empty:
+        figure_files.extend(_draw_moderator_forest(weight_df, figures_dir / "supplementary_figure_s5_moderator_weight_forest"))
+    figure_files.extend(_draw_sem_diagram(sem_result, exploratory_df, config, indicator_columns, figures_dir / "supplementary_figure_s6_sem_path_diagram"))
 
     sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
     if not sem_coeff_df.empty:
@@ -493,13 +646,13 @@ def generate_publication_assets(
     design_note = (
         f"Full factorial design: each profile is crossed with {n_attack_leaves} attack leaves and {long_df['opinion_leaf_label'].nunique()} opinion leaves. All rows are attacked; there is no no-attack control condition."
         if n_attack_leaves > 1
-        else "The pilot uses one fixed ATTACK leaf applied across repeated OPINION leaves for each pseudoprofile. All rows are attacked."
+        else "One fixed ATTACK leaf is applied across repeated OPINION leaves for each profile. All rows are attacked."
     )
     table_files.extend(
         _write_table_bundle(
             config_table,
-            tables_dir / "table_1_pilot_design_and_configuration",
-            "Pilot run design and configuration for the attacked-only profile-panel study.",
+            tables_dir / "supplementary_table_s1_run_configuration",
+            "Study design and configuration for the attacked-only profile-panel study.",
             design_note,
             "tab:design",
         )
@@ -529,7 +682,7 @@ def generate_publication_assets(
     table_files.extend(
         _write_table_bundle(
             descriptive_table,
-            tables_dir / "table_2_attacked_effectivity_descriptive_statistics",
+            tables_dir / "supplementary_table_s2_condition_descriptive_statistics",
             "Attacked effectivity descriptive statistics by repeated opinion leaf.",
             desc_note,
             "tab:descriptives",
@@ -576,7 +729,7 @@ def generate_publication_assets(
     table_files.extend(
         _write_table_bundle(
             model_table,
-            tables_dir / "table_3_multivariate_profile_moderator_model",
+            tables_dir / "supplementary_table_s3_moderator_model_summary",
             "Profile moderators of attacked effectivity: controlled contrasts, SEM paths, and descriptive susceptibility weights.",
             "Controlled coefficients summarize moderator associations with mean attacked effectivity. SEM columns summarize the repeated-outcome path model across the attacked opinion leaves. Weight percentages come from the target-conditional regularized aggregation used to compute the post hoc susceptibility index.",
             "tab:multivariate",
@@ -586,12 +739,12 @@ def generate_publication_assets(
     ontology_note = (
         f"Only ontology leaves are sampled for estimation. The ATTACK ontology contributes {n_attack_leaves} factorial leaves; the OPINION ontology contributes repeated indicator leaves."
         if n_attack_leaves > 1
-        else "Only ontology leaves are sampled for estimation. The ATTACK ontology contributes one fixed pilot leaf; the OPINION ontology contributes repeated indicator leaves."
+        else "Only ontology leaves are sampled for estimation. The ATTACK ontology contributes one fixed leaf; the OPINION ontology contributes repeated indicator leaves."
     )
     table_files.extend(
         _write_table_bundle(
             _ontology_table(ontology_catalog),
-            tables_dir / "supplementary_table_s1_ontology_leaves_used",
+            tables_dir / "supplementary_table_s4_ontology_leaves_used",
             f"Ontology leaves used in {run_id}.",
             ontology_note,
             "tab:ontologies",
@@ -623,12 +776,78 @@ def generate_publication_assets(
     table_files.extend(
         _write_table_bundle(
             moderator_table,
-            tables_dir / "supplementary_table_s2_moderator_comparison",
+            tables_dir / "supplementary_table_s5_moderator_comparison",
             "Core and exploratory profile moderator comparison.",
             "Core terms are entered into the latent SEM or primary multivariate profile model. Normalized weight percentages summarize each moderator's share of the total fitted importance after accounting for the moderator's observed variability.",
             "tab:moderators",
         )
     )
+
+    if not network_centrality_df.empty:
+        network_table = network_centrality_df.copy()
+        if "ontology_family" not in network_table.columns and "ontology_group" in network_table.columns:
+            network_table["ontology_family"] = network_table["ontology_group"].astype(str).str.split(":").str[0]
+        _sort_cols = [c for c in ["participation_coefficient", "strength", "betweenness_centrality"] if c in network_table.columns]
+        if _sort_cols:
+            network_table = network_table.sort_values(_sort_cols, ascending=[False] * len(_sort_cols))
+        _rename_map = {
+            "label": "Feature",
+            "ontology_group": "Ontology group",
+            "ontology_family": "Ontology family",
+            "feature_type": "Feature type",
+            "community": "Community",
+            "strength": "Strength",
+            "participation_coefficient": "Participation coefficient",
+            "bridge_ratio": "Bridge ratio",
+            "within_module_zscore": "Within-module Z",
+            "k_core": "K-core",
+        }
+        _keep_cols_ordered = [
+            "Feature", "Ontology family", "Ontology group", "Feature type",
+            "Community", "Strength", "Participation coefficient",
+            "Bridge ratio", "Within-module Z", "K-core",
+        ]
+        network_table = network_table.rename(columns=_rename_map)
+        _available_cols = [c for c in _keep_cols_ordered if c in network_table.columns]
+        network_summary_table = network_table[_available_cols].head(20)
+        table_files.extend(
+            _write_table_bundle(
+                network_summary_table,
+                tables_dir / "supplementary_table_s6_network_topology_summary",
+                "Top network hubs and bridge variables in the profile feature correlation graph.",
+                "Rows are ordered primarily by participation coefficient, then by weighted degree. Bridge-oriented metrics distinguish cross-community connectors from within-community hubs in the mixed continuous-plus-dummy feature panel.",
+                "tab:networksummary",
+            )
+        )
+
+    quality_rows = []
+    if quality_diagnostics:
+        quality_rows.extend(
+            [
+                {"Diagnostic": "Baseline fallback rate", "Value": float(quality_diagnostics.get("baseline_fallback_used_rate", 0.0)) * 100, "Scale": "%"},
+                {"Diagnostic": "Post fallback rate", "Value": float(quality_diagnostics.get("post_fallback_used_rate", 0.0)) * 100, "Scale": "%"},
+                {"Diagnostic": "Attack heuristic pass rate", "Value": float(quality_diagnostics.get("attack_heuristic_pass_rate", 0.0)) * 100, "Scale": "%"},
+                {"Diagnostic": "Post heuristic pass rate", "Value": float(quality_diagnostics.get("post_heuristic_pass_rate", 0.0)) * 100, "Scale": "%"},
+            ]
+        )
+    if icc_payload:
+        quality_rows.append({"Diagnostic": "ICC(1) |Delta|", "Value": float(icc_payload.get("abs_delta_score", {}).get("icc1", 0.0)), "Scale": "ratio"})
+    if ridge_summary:
+        quality_rows.append({"Diagnostic": "Ridge CV-R^2", "Value": float(ridge_summary.get("cv_r2", 0.0)), "Scale": "R^2"})
+    if rf_summary:
+        quality_rows.append({"Diagnostic": "Random forest OOB R^2", "Value": float(rf_summary.get("oob_r2", 0.0)), "Scale": "R^2"})
+    if enet_summary:
+        quality_rows.append({"Diagnostic": "Elastic-net selected features", "Value": int(enet_summary.get("n_features_selected", 0)), "Scale": "count"})
+    if quality_rows:
+        table_files.extend(
+            _write_table_bundle(
+                pd.DataFrame(quality_rows),
+                tables_dir / "supplementary_table_s7_run_quality_diagnostics",
+                "Run_10 execution-quality diagnostics and model robustness indicators.",
+                "These diagnostics are intended to prevent overinterpretation. High fallback rates or near-zero predictive fit imply that downstream susceptibility coefficients are methodological diagnostics rather than substantive evidence about human-like persuasion dynamics.",
+                "tab:qualitydiag",
+            )
+        )
 
     if not sem_path_df.empty:
         sem_table = sem_path_df.rename(
@@ -644,7 +863,7 @@ def generate_publication_assets(
         table_files.extend(
             _write_table_bundle(
                 sem_table,
-                tables_dir / "supplementary_table_s5_sem_path_coefficients",
+                tables_dir / "supplementary_table_s10_sem_path_coefficients",
                 "Leaf-specific path-SEM coefficients.",
                 "Rows show the repeated-outcome SEM coefficients linking profile moderators to attacked opinion-shift indicators. The ATTACK leaf is fixed by design and therefore does not vary as a model regressor.",
                 "tab:sempaths",
@@ -659,9 +878,9 @@ def generate_publication_assets(
     table_files.extend(
         _write_table_bundle(
             pd.DataFrame(risk_rows),
-            tables_dir / "supplementary_table_s3_assumption_and_risk_register",
+            tables_dir / "supplementary_table_s8_assumption_and_risk_register",
             "Assumption register and peer-review risk register.",
-            "The pilot is methodological and exploratory. Risks are surfaced explicitly so later scale-up runs can target the current design bottlenecks.",
+            "This study is methodological and exploratory. Risks are surfaced explicitly to support transparency and future replication.",
             "tab:risks",
         )
     )
@@ -672,9 +891,9 @@ def generate_publication_assets(
     table_files.extend(
         _write_table_bundle(
             reproducibility_rows,
-            tables_dir / "supplementary_table_s4_reproducibility_manifest",
+            tables_dir / "supplementary_table_s9_reproducibility_manifest",
             f"Reproducibility manifest for {run_id}.",
-            "The manifest captures the full pipeline configuration used to generate the pilot outputs and manuscript assets.",
+            "The manifest captures the full pipeline configuration used to generate the study outputs and manuscript assets.",
             "tab:repro",
         )
     )

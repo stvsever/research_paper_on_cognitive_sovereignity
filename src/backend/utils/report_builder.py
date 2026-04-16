@@ -41,6 +41,17 @@ def _latex_escape(value: Any) -> str:
 
 def _render_bib() -> str:
     return r"""
+@article{benjamini1995controlling,
+  title = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},
+  author = {Benjamini, Yoav and Hochberg, Yosef},
+  journal = {Journal of the Royal Statistical Society: Series B (Methodological)},
+  volume = {57},
+  number = {1},
+  pages = {289--300},
+  year = {1995},
+  doi = {10.1111/j.2517-6161.1995.tb02031.x}
+}
+
 @article{bennett2018disinformation,
   title = {The Disinformation Order: Disruptive Communication and the Decline of Democratic Institutions},
   author = {Bennett, W. Lance and Livingston, Steven},
@@ -61,6 +72,17 @@ def _render_bib() -> str:
   pages = {7314--7316},
   year = {2002},
   doi = {10.1073/pnas.082081499}
+}
+
+@article{cameron2008bootstrap,
+  title = {Bootstrap-Based Improvements for Inference with Clustered Errors},
+  author = {Cameron, A. Colin and Gelbach, Jonah B. and Miller, Douglas L.},
+  journal = {The Review of Economics and Statistics},
+  volume = {90},
+  number = {3},
+  pages = {414--427},
+  year = {2008},
+  doi = {10.1162/rest.90.3.414}
 }
 
 @article{hung2022cognitive,
@@ -159,6 +181,17 @@ def _render_bib() -> str:
   pages = {1--36},
   year = {2012},
   doi = {10.18637/jss.v048.i02}
+}
+
+@article{shrout1979intraclass,
+  title = {Intraclass Correlations: Uses in Assessing Rater Reliability},
+  author = {Shrout, Patrick E. and Fleiss, Joseph L.},
+  journal = {Psychological Bulletin},
+  volume = {86},
+  number = {2},
+  pages = {420--428},
+  year = {1979},
+  doi = {10.1037/0033-2909.86.2.420}
 }
 
 @article{vosoughi2018false,

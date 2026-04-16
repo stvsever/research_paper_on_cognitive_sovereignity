@@ -1,0 +1,5 @@
+Diagnostic,Value,Scale
+ICC(1) |Delta|,0.0107,ratio
+Ridge CV-R^2,-0.17487504965868084,R^2
+Random forest OOB R^2,-0.19421254100972907,R^2
+Elastic-net selected features,0.0,count

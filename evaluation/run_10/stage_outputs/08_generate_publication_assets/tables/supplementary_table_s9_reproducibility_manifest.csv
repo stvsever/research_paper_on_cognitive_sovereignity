@@ -1,0 +1,37 @@
+Field,Value
+run_id,run_10
+paper_title,PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions
+output_root,/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10
+report_root,/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report
+report_assets_root,/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/assets
+n_scenarios,10
+n_profiles,25
+seed,100
+attack_ratio,1.0
+attack_leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
+attack_leaves,"Misleading_Narrative_Framing,Astroturf_Comment_Wave,Fear_Appeal_Scapegoating_Post,LLM_Chatbot_Personalized_Persuasion"
+focus_opinion_domain,
+max_opinion_leaves,10
+profile_candidate_multiplier,3
+primary_moderator,posthoc_profile_susceptibility_index
+bootstrap_samples,200
+use_test_ontology,True
+ontology_root,/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/ontology/separate/test
+openrouter_model,mistralai/mistral-small-3.2-24b-instruct
+temperature,0.15
+max_repair_iter,3
+profile_generation_mode,deterministic
+self_supervise_attack_realism,True
+realism_threshold,0.7
+self_supervise_opinion_coherence,True
+coherence_threshold,0.7
+generate_visuals,True
+export_static_figures,True
+build_report,True
+resume_from_stage,08
+stop_after_stage,09
+save_raw_llm,True
+timeout_sec,90
+max_concurrency,20
+run_stage_checks,False
+stage_check_scenarios,3
