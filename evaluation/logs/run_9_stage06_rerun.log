@@ -1,6 +1,0 @@
-2026-04-16 20:44:32 | INFO | __main__ | Fitting Elastic Net on 100 profile features ...
-2026-04-16 20:44:37 | INFO | __main__ | Elastic Net: CV-R²=-0.139 (±0.124), α=1.6466, l1_ratio=1.00, 1/100 features selected
-2026-04-16 20:44:37 | INFO | __main__ | Fitting Random Forest on 100 profile features ...
-2026-04-16 20:45:23 | INFO | __main__ | Random Forest OOB R²=-0.009
-2026-04-16 20:45:23 | INFO | __main__ | ICC results: {'abs_delta_score': 0.0, 'delta_score': 0.0, 'adversarial_effectivity': 0.0}
-2026-04-16 20:45:23 | INFO | __main__ | Stage 06 completed: 80 profiles

@@ -1400,20 +1400,29 @@ def _fig_factorial_3d(long_df: pd.DataFrame) -> go.Figure:
     fig.add_trace(_surf(isd_mat,  "YlOrRd",  "SD AE"),   row=1, col=2)
 
     cam = dict(eye=dict(x=1.55, y=-1.55, z=1.05))
-    scene_common = dict(
+    # Use update_scenes() instead of update_layout(scene=...) so the domain
+    # computed by make_subplots is preserved — prevents left/right surface overlap.
+    fig.update_scenes(
         xaxis=dict(title="Opinion leaf", tickfont=dict(size=8), gridcolor="#ccd8ee"),
         yaxis=dict(title="Attack vector", tickfont=dict(size=8), gridcolor="#ccd8ee"),
-        zaxis=dict(gridcolor="#ccd8ee"),
-        camera=cam, bgcolor="white",
+        zaxis=dict(gridcolor="#ccd8ee", title="AE"),
+        camera=cam,
+        bgcolor="rgba(248,250,255,1)",
+        aspectmode="cube",
     )
-    # Apply shared scene style without domain override (let make_subplots own the layout).
     fig.update_layout(
-        scene  = scene_common,
-        scene2 = scene_common,
-        paper_bgcolor="white", font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=620, showlegend=False,
-        title=dict(text="3D Factorial Surface — Mean AE (left) & Inter-individual Variability (right)", font_size=14),
-        margin=dict(l=10, r=10, t=65, b=10),
+        paper_bgcolor="white",
+        font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
+        height=660,
+        showlegend=False,
+        title=dict(
+            text="3D Factorial Surface — Mean AE (left) · Inter-individual Variability SD (right)",
+            font_size=13,
+            x=0.5,
+            xanchor="center",
+        ),
+        margin=dict(l=0, r=0, t=60, b=0),
+        coloraxis_colorbar=dict(thickness=14),
     )
     return fig
 
@@ -1493,21 +1502,29 @@ def _fig_factorial_2d(long_df: pd.DataFrame) -> go.Figure:
     fig.add_trace(go.Heatmap(**mean_kwargs), row=1, col=1)
     fig.add_trace(go.Heatmap(**isd_kwargs), row=1, col=2)
 
-    fig.update_xaxes(tickangle=-28, tickfont_size=9, automargin=True)
-    # Left subplot: show Y-axis (attack vector) labels
+    fig.update_xaxes(tickangle=-30, tickfont_size=9, automargin=True)
     fig.update_yaxes(tickfont_size=9, automargin=True, row=1, col=1)
-    # Right subplot: suppress Y-axis labels (redundant — same attacks as left)
     fig.update_yaxes(showticklabels=False, row=1, col=2)
     fig.update_annotations(font=dict(size=12.5))
+    # Generous left margin keeps y-axis attack labels from overlapping the left heatmap.
+    # The colorbar for the left panel is pinned just left of centre (x=0.44); the right
+    # colorbar sits at x=1.01.  horizontal_spacing=0.20 gives each panel room to breathe.
+    n_attacks  = len(attacks)
+    n_opinions = len(opinions)
+    row_h = max(28, min(52, 380 // max(n_attacks, 1)))
+    col_w = max(22, min(55, 480 // max(n_opinions, 1)))
+    dynamic_height = max(420, row_h * n_attacks + 160)
     fig.update_layout(
         paper_bgcolor="white",
         plot_bgcolor="#f4f7ff",
         font_family="IBM Plex Sans, Avenir Next, Segoe UI, sans-serif",
-        height=470,
-        margin=dict(l=160, r=80, t=68, b=130),
+        height=dynamic_height,
+        margin=dict(l=170, r=90, t=70, b=140),
         title=dict(
-            text="Factorial Heatmap — Mean AE & Inter-individual Moderation Strength",
-            font_size=14,
+            text="Factorial Heatmap — Mean AE (left) · Inter-individual SD of AE (right)",
+            font_size=13,
+            x=0.5,
+            xanchor="center",
         ),
     )
     return fig
@@ -2399,6 +2416,26 @@ def _html_sem_network(
       </div>
 
       <div class="semn-card">
+        <div class="semn-title">Effect Size Filter</div>
+        <div class="semn-slider-wrap">
+          <div class="semn-slider-meta"><span>Min |β| shown</span><span id="semn-b-display">0.00</span></div>
+          <input type="range" id="semn-b-slider" min="0" max="100" value="0" step="1">
+          <div class="semn-quick">
+            <button class="semn-btn active" data-b="0.00">All</button>
+            <button class="semn-btn" data-b="0.25">0.25</button>
+            <button class="semn-btn" data-b="0.50">0.50</button>
+            <button class="semn-btn" data-b="1.00">1.00</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="semn-card">
+        <div class="semn-title">Search Moderators</div>
+        <input id="semn-search" type="text" class="semn-select" placeholder="Type to filter by moderator or outcome name…" style="margin-bottom:6px">
+        <div id="semn-search-results" class="semn-map" style="max-height:90px;overflow:auto"></div>
+      </div>
+
+      <div class="semn-card">
         <div class="semn-title">Layer Controls</div>
         <div class="semn-sub">Presets set a good default; these switches let you explicitly choose which moderation layers stay visible.</div>
         <div class="semn-grid one">
@@ -2458,11 +2495,14 @@ def _html_sem_network(
     <div class="semn-stage">
       <div class="semn-banner">
         <div class="semn-status" id="semn-status"></div>
-        <div class="semn-legend">
-          <div class="semn-legend-item"><span class="semn-swatch pos"></span><span>positive moderation of attack effectivity</span></div>
-          <div class="semn-legend-item"><span class="semn-swatch neg"></span><span>negative moderation / resistance</span></div>
-          <div class="semn-legend-item"><span class="semn-swatch sig"></span><span>stronger opacity = lower p-value</span></div>
-          <div class="semn-legend-item"><span style="font-weight:800;color:{PALETTE['ink']}">|β|</span><span>thicker ribbons = stronger moderation</span></div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="semn-btn" id="semn-export-btn" style="font-size:0.76rem;padding:5px 10px" title="Download current 3D view as PNG">⬇ Export PNG</button>
+          <div class="semn-legend">
+            <div class="semn-legend-item"><span class="semn-swatch pos"></span><span>positive β (susceptibility↑)</span></div>
+            <div class="semn-legend-item"><span class="semn-swatch neg"></span><span>negative β (resistance↑)</span></div>
+            <div class="semn-legend-item"><span class="semn-swatch sig"></span><span>opacity ∝ significance</span></div>
+            <div class="semn-legend-item"><span style="font-weight:800;color:{PALETTE['ink']}">|β|</span><span>width ∝ effect size</span></div>
+          </div>
         </div>
       </div>
       <div id="semn-plot"></div>
@@ -2476,8 +2516,12 @@ def _html_sem_network(
           <div id="semn-focus" class="semn-list"></div>
         </div>
         <div class="semn-panel">
-          <h4>Visible Node Map</h4>
-          <div id="semn-map" class="semn-map"></div>
+          <h4>Code Legend</h4>
+          <div id="semn-map" class="semn-map" style="max-height:120px;overflow:auto"></div>
+          <details style="margin-top:8px">
+            <summary style="font-size:0.75rem;font-weight:700;color:{PALETTE['navy']};cursor:pointer">Full code list ▸</summary>
+            <div id="semn-legend-full" style="margin-top:6px;display:flex;flex-direction:column;gap:4px;max-height:200px;overflow:auto;font-size:0.72rem;line-height:1.4;color:{PALETTE['ink']}"></div>
+          </details>
         </div>
       </div>
     </div>
@@ -2503,6 +2547,14 @@ def _html_sem_network(
       const clamped = Math.max(0.01, Math.min(1, p));
       return Math.round((Math.log10(clamped) + 2) * 50);
     }}
+    function sliderToBeta(val) {{
+      // 0..100 → 0..maxAbsBeta
+      return parseFloat(val) / 100 * DATA.max_abs_beta;
+    }}
+    function betaToSlider(b) {{
+      return Math.round(b / Math.max(DATA.max_abs_beta, 0.01) * 100);
+    }}
+    function fmtBeta(b) {{ return b.toFixed(2); }}
     function fmtP(p) {{
       if (p >= 0.995) return 'All';
       if (p < 0.02) return p.toFixed(3);
@@ -2580,10 +2632,13 @@ def _html_sem_network(
       if (btn) btn.classList.add('active');
     }}
     function state() {{
+      const bSlider = root.querySelector('#semn-b-slider');
       return {{
         mode: activeButtonValue('semn-view-mode', 'view') || 'overview',
         sign: activeButtonValue('semn-sign-mode', 'sign') || 'all',
         pMax: sliderToP(root.querySelector('#semn-p-slider').value),
+        betaMin: bSlider ? sliderToBeta(bSlider.value) : 0,
+        searchTerm: (root.querySelector('#semn-search') || {{}}).value || '',
         showGroupEdges: root.querySelector('#semn-show-group-edges').checked,
         showLeafEdges: root.querySelector('#semn-show-leaf-edges').checked,
         showGroupNodes: root.querySelector('#semn-show-group-nodes').checked,
@@ -2598,11 +2653,20 @@ def _html_sem_network(
     }}
     function edgePass(edge, st) {{
       if (edge.p > st.pMax) return false;
+      if (edge.abs_est < st.betaMin) return false;
       if (st.sign === 'positive' && edge.estimate <= 0) return false;
       if (st.sign === 'negative' && edge.estimate >= 0) return false;
       if (!st.profileGroups.includes(edge.source_group)) return false;
       if (!st.opinionGroups.includes(edge.target_group)) return false;
       if (!st.includeControls && edge.source_role === 'control') return false;
+      if (st.searchTerm) {{
+        const q = st.searchTerm.toLowerCase();
+        const srcMatch = (edge.source || '').toLowerCase().includes(q) ||
+                         (edge.source_code || '').toLowerCase().includes(q);
+        const tgtMatch = (edge.target || '').toLowerCase().includes(q) ||
+                         (edge.target_code || '').toLowerCase().includes(q);
+        if (!srcMatch && !tgtMatch) return false;
+      }}
       return true;
     }}
     function nodePass(node, st) {{
@@ -2856,13 +2920,69 @@ def _html_sem_network(
       btn.classList.add('active');
       render();
     }}));
-    root.querySelector('#semn-p-slider').addEventListener('input', render);
+    root.querySelector('#semn-p-slider').addEventListener('input', () => {{
+      const p = sliderToP(root.querySelector('#semn-p-slider').value);
+      root.querySelector('#semn-p-display').textContent = fmtP(p);
+      syncQuickPButtons(p);
+      render();
+    }});
     root.querySelectorAll('.semn-btn[data-p]').forEach(btn => btn.addEventListener('click', () => {{
       root.querySelectorAll('.semn-btn[data-p]').forEach(el => el.classList.remove('active'));
       btn.classList.add('active');
       root.querySelector('#semn-p-slider').value = pToSlider(parseFloat(btn.dataset.p));
+      root.querySelector('#semn-p-display').textContent = btn.dataset.p === '1.00' ? 'All' : btn.dataset.p;
       render();
     }}));
+
+    const bSlider = root.querySelector('#semn-b-slider');
+    const bDisplay = root.querySelector('#semn-b-display');
+    if (bSlider) {{
+      bSlider.addEventListener('input', () => {{
+        bDisplay.textContent = fmtBeta(sliderToBeta(bSlider.value));
+        root.querySelectorAll('.semn-btn[data-b]').forEach(el => el.classList.remove('active'));
+        render();
+      }});
+      root.querySelectorAll('.semn-btn[data-b]').forEach(btn => btn.addEventListener('click', () => {{
+        root.querySelectorAll('.semn-btn[data-b]').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+        bSlider.value = betaToSlider(parseFloat(btn.dataset.b));
+        bDisplay.textContent = fmtBeta(parseFloat(btn.dataset.b));
+        render();
+      }}));
+    }}
+
+    const searchEl = root.querySelector('#semn-search');
+    if (searchEl) searchEl.addEventListener('input', () => {{
+      const q = searchEl.value.toLowerCase().trim();
+      const resultsEl = root.querySelector('#semn-search-results');
+      if (q.length < 2) {{ resultsEl.innerHTML = ''; render(); return; }}
+      const matches = [
+        ...DATA.profile_leaf_nodes.map(n => ({{code:n.code,label:n.label,type:'Moderator'}})),
+        ...DATA.opinion_leaf_nodes.map(n => ({{code:n.code,label:n.label,type:'Opinion'}})),
+      ].filter(n => n.label.toLowerCase().includes(q) || (n.code||'').toLowerCase().includes(q)).slice(0,8);
+      resultsEl.innerHTML = matches.map(m => `<span title="${{m.label}}" style="cursor:default"><b>${{m.code}}</b> ${{m.type}}: ${{m.label.substring(0,30)}}</span>`).join('');
+      render();
+    }});
+
+    const exportBtn = root.querySelector('#semn-export-btn');
+    if (exportBtn) exportBtn.addEventListener('click', () => {{
+      Plotly.toImage(plotEl, {{format:'png', width:1600, height:1000}}).then(url => {{
+        const a = document.createElement('a');
+        a.href = url; a.download = 'sem_network.png'; a.click();
+      }});
+    }});
+
+    // Build full code legend
+    const legendFull = root.querySelector('#semn-legend-full');
+    if (legendFull) {{
+      const mods = DATA.profile_leaf_nodes.map(n => `<div><b>${{n.code}}</b> = ${{n.label}}</div>`);
+      const ops = DATA.opinion_leaf_nodes.map(n => `<div><b>${{n.code}}</b> = ${{n.label}}</div>`);
+      const atks = DATA.attack_leaf_nodes.map(n => `<div><b>${{n.code}}</b> = ${{n.label}}</div>`);
+      legendFull.innerHTML = '<b style="font-size:0.72rem;color:#14213d">Moderators (M)</b>' + mods.join('') +
+        '<b style="font-size:0.72rem;color:#1f7a8c;margin-top:8px;display:block">Outcomes (O)</b>' + ops.join('') +
+        '<b style="font-size:0.72rem;color:#e76f51;margin-top:8px;display:block">Attacks (A)</b>' + atks.join('');
+    }}
+
     root.querySelectorAll('#semn-show-group-edges,#semn-show-leaf-edges,#semn-show-group-nodes,#semn-show-leaf-nodes,#semn-include-controls,#semn-show-attack,#semn-label-density,.semn-profile-group,.semn-opinion-group')
       .forEach(el => el.addEventListener('change', render));
 

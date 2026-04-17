@@ -1,7 +1,7 @@
 {
   "stage_id": "09",
   "stage_name": "build_research_report",
-  "created_at_utc": "2026-04-16T22:00:37.781395+00:00",
+  "created_at_utc": "2026-04-17T15:59:41.424821+00:00",
   "input_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/05_compute_effectivity_deltas/sem_long_encoded.csv",
   "primary_output_path": "/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf",
   "output_files": [

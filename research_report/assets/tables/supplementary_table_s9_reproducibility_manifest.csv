@@ -28,7 +28,7 @@ coherence_threshold,0.7
 generate_visuals,True
 export_static_figures,True
 build_report,True
-resume_from_stage,08
+resume_from_stage,07
 stop_after_stage,09
 save_raw_llm,True
 timeout_sec,90

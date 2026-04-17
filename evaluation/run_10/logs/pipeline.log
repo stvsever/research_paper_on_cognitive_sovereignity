@@ -15300,3 +15300,21 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 2026-04-17 00:00:37 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
 2026-04-17 00:00:37 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
 2026-04-17 00:00:38 | INFO | __main__ | Full pipeline completed successfully.
+2026-04-17 17:59:28 | INFO | __main__ | Running stage 07 (generate_research_visuals)
+2026-04-17 17:59:30 | WARNING | __main__ | Stage 07 stderr:
+2026-04-17 17:59:30 | INFO | __main__ | Stage 07 completed: dashboard=/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-04-17 17:59:30 | INFO | __main__ | Stage 07 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/07_generate_research_visuals/interactive_sem_dashboard.html
+2026-04-17 17:59:30 | INFO | __main__ | Running stage 08 (generate_publication_assets)
+2026-04-17 17:59:39 | WARNING | __main__ | Stage 08 stderr:
+/Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/src/backend/utils/publication_assets.py:390: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.violinplot(data=work, x="attack_leaf_label", y=outcome, order=order, inner="box", palette="Set2", ax=ax)
+2026-04-17 17:59:39 | INFO | __main__ | Stage 08 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-04-17 17:59:39 | INFO | __main__ | Stage 08 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/evaluation/run_10/stage_outputs/08_generate_publication_assets/publication_assets_manifest.json
+2026-04-17 17:59:39 | INFO | __main__ | Running stage 09 (build_research_report)
+2026-04-17 17:59:41 | WARNING | __main__ | Stage 09 stderr:
+2026-04-17 17:59:41 | INFO | __main__ | Stage 09 completed: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-04-17 17:59:41 | INFO | __main__ | Stage 09 complete. Primary output: /Users/stijnvanseveren/PythonProjects/Paper_CaseStudiesAnalysisExperimentalData/research_report/report/main.pdf
+2026-04-17 17:59:41 | INFO | __main__ | Full pipeline completed successfully.

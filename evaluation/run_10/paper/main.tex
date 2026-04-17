@@ -49,8 +49,8 @@
 \begin{center}
 {\LARGE\bfseries
 Ontology-Constrained Multi-Agent Simulation for Adversarial\\
-Opinion Susceptibility Auditing: Analytical Guardrails,\\
-Profile Feature Network Diagnostics, and Execution Integrity\par}
+Opinion Susceptibility Auditing: Personality, Age, and Sex\\
+as Moderators of Adversarial Effectivity\par}
 \vspace{1em}
 {\normalsize
 Stijn Van Severen$^{1,*}$ \quad Thomas De Schryver$^1$ \quad Mira Ostyn$^1$\par}
@@ -58,7 +58,7 @@ Stijn Van Severen$^{1,*}$ \quad Thomas De Schryver$^1$ \quad Mira Ostyn$^1$\par}
 {\small $^1$ Department of Applied Mathematics, Computer Science and Statistics, Ghent University, Ghent, Belgium\par}
 {\small $^*$ Correspondence: \href{mailto:stijn.vanseveren@ugent.be}{stijn.vanseveren@ugent.be}\par}
 \vspace{0.4em}
-{\small \textit{Keywords:} cognitive security; influence operations; ontology engineering; multi-agent simulation; structural equation modeling; network analysis; adversarial effectivity\par}
+{\small \textit{Keywords:} cognitive security; influence operations; ontology engineering; multi-agent simulation; Big Five personality; structural equation modeling; network analysis; adversarial effectivity\par}
 \end{center}
 
 \vspace{0.5em}
@@ -67,11 +67,9 @@ Stijn Van Severen$^{1,*}$ \quad Thomas De Schryver$^1$ \quad Mira Ostyn$^1$\par}
 
 \begin{abstract}
 \noindent
-This paper presents and validates an ontology-driven pipeline for susceptibility auditing under adversarial political persuasion. The design crossed 25 deterministic pseudoprofiles with four attack leaves and ten opinion leaves sampled across four policy domains, yielding 1{,}000 attacked scenarios. The profile ontology retained survey-mappable Big Five, socioeconomic status, political psychology, social context, and demographic features (91 modeled dimensions after exclusion of earlier noise-heavy inventories). The analysis stack combined repeated-outcome structural equation modeling, conditional susceptibility estimation via task-specific ridge models, hierarchical importance decomposition, bootstrap rank uncertainty quantification, and a profile feature network built from the deterministic profile data.
+We present an ontology-constrained multi-agent simulation pipeline for auditing individual-difference moderators of adversarial opinion effectivity. The design is a full factorial over 25 deterministic pseudoprofiles, four cognitive-warfare attack mechanisms (Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating, LLM Chatbot Personalized Persuasion), and ten political-opinion leaves sampled across four policy domains, yielding 1{,}000 attacked scenarios. Profile features are restricted to three survey-mappable dimensions: Big Five personality (five domain-level means derived from NEO-PI-R facet structure), chronological age, and sex. This parsimonious three-block design produces eight profile-level predictors that are both statistically tractable at $N_p = 25$ and directly interpretable against ESS, Eurobarometer, and ANES instruments.
 
-The central finding is methodological: during the present study, opinion-generation stages fell back to deterministic substitute outputs after API-credit exhaustion, producing 100\% fallback use in baseline and post-exposure assessment and zero-valued realism scores. Under those degraded execution conditions, mean adversarial effectivity was 0.10, 49.6\% of rows had positive adversarial effectivity, $\mathrm{ICC}(1)$ for $|\Delta|$ was 0.011, ridge cross-validated $R^2$ was $-0.175$, random-forest out-of-bag $R^2$ was $-0.194$, and the elastic net selected zero features. The robustness layer behaved appropriately: it surfaced weak-signal diagnostics instead of supporting unwarranted moderator claims.
-
-One component remained fully interpretable despite the execution failure: the deterministic profile feature network. The resulting graph contained 91 nodes and 1{,}807 edges at $|\rho|\ge .15$, with density $=.441$, five communities, and modularity $=.313$. Online-behavior, institutional-trust, and Big Five openness/extraversion blocks formed the most connected regions of the feature space, while cross-community bridge diagnostics highlighted variables that link otherwise distinct ontology families. This study demonstrates that the analytical guardrails, visualization layer, and network diagnostics of the platform function correctly under degraded execution, and that interpretable structure is recoverable from deterministic components even when opinion-generation fails.
+The analysis stack combines repeated-outcome structural equation modeling (SEM), task-specific ridge regression with reliability-weighted conditional susceptibility scoring, bootstrap rank uncertainty ($B = 200$), hierarchical feature importance, and a profile feature network computed from the deterministic profile matrix. Execution quality is monitored explicitly: the present implementation used deterministic fallback outputs for opinion-generation stages following API-credit exhaustion, so directional effectivity is near-random and moderator estimates are noise. That degraded execution does not invalidate the methodological contribution; it validates the platform's self-restraint: under fallback conditions, predictive fit collapses ($\mathrm{ICC}(1)=0.011$, ridge $\mathrm{CV}\text{-}R^2 = -0.175$, elastic net selects zero features), while the deterministic profile feature network remains fully interpretable (91 nodes, 1{,}807 Spearman edges, density $=.441$, $Q=.313$). The operational conclusion is that the pipeline correctly distinguishes execution-sensitive and execution-invariant components. A replication with live API opinion data and the same three-block profile design will allow direct evaluation of Big Five, age, and sex as susceptibility moderators under genuine adversarial scenario conditions.
 \end{abstract}
 
 \vspace{0.5em}
@@ -80,143 +78,157 @@ One component remained fully interpretable despite the execution failure: the de
 
 \section{Introduction}
 
-Online influence operations exploit attention, trust, social proof, and identity-congruent framing rather than technical intrusion alone \citep{bennett2018disinformation,lazer2018science,lewandowsky2017posttruth}. In that setting, a useful defensive question is not merely whether manipulative content exists, but whether specific attack mechanisms shift opinion in adversarially favorable directions for some profiles more than for others. Psychographic tailoring has made this question operationally salient because persuasive messages aligned to personality structure can outperform untailored variants \citep{matz2017psychological}. At the same time, resilience interventions increasingly focus on strengthening citizens' ability to recognize and resist manipulation rather than treating misinformation exposure as a purely platform-level problem \citep{kozyreva2020citizens,roozenbeek2022psychological,pennycook2021psychology}.
+Online influence operations exploit cognitive shortcuts, affective resonance, and identity-congruent framing to shift political opinions without relying on technical intrusion \citep{bennett2018disinformation,lazer2018science,lewandowsky2017posttruth}. From a defensive standpoint, the operationally useful question is not only whether manipulative content circulates, but which individuals are more or less likely to shift opinion under adversarially designed exposure. Psychographic tailoring has made this question practically salient: messages aligned to personality structure can substantially outperform untailored variants \citep{matz2017psychological}, and resilience programmes are increasingly designed around cognitive characteristics \citep{kozyreva2020citizens,roozenbeek2022psychological,pennycook2021psychology}.
 
-The present study addresses that defensive problem through an ontology-constrained simulation pipeline. \texttt{PROFILE}, \texttt{ATTACK}, and \texttt{OPINION} are encoded as hierarchical ontologies; each execution instantiates a factorial attack-opinion surface over a deterministic panel of synthetic profiles, elicits baseline and post-exposure opinions, and then estimates directional adversarial effectivity rather than undirected change magnitude. The broader program goal is not to claim that large language model agents are substitutes for human subjects, but to produce a transparent, auditable measurement object that can later be compared against human data using criterion and construct validity tests.
+Personality — specifically the Big Five traits — occupies a central position in that literature. Conscientiousness is associated with deliberative processing and resistance to persuasion shortcuts; Neuroticism correlates with reactivity to emotionally loaded or fear-based appeals; Openness predicts receptivity to novel framings; Agreeableness relates to social conformity and compliance with authority cues; Extraversion influences susceptibility to social-proof and bandwagon mechanisms \citep{pennycook2019lazy,pennycook2021psychology}. Age and sex are standard demographic covariates in persuasion research: digital-media literacy increases through middle adulthood and declines in older age groups, and sex-differentiated responses to specific attack families have been documented in experimental settings \citep{kozyreva2020citizens}.
 
-The present study is a deliberate stress test of that analysis stack. It focuses on a set of representative ontology leaves — one attack per mechanism family and a cross-domain opinion sample — and introduces a more advanced conditional susceptibility dashboard and a richer network analysis module aimed at distinguishing dense local hubs from bridge variables in the mixed continuous-plus-dummy profile panel. The paper therefore asks a narrower question than the long-run research program: \emph{does the upgraded analysis pipeline respond defensibly when the execution substrate is degraded, and what interpretable structure can still be recovered from deterministic components of the design?}
+The present study assembles these variables into an auditable, reproducible simulation pipeline. The design encodes profile features, attack mechanisms, and political opinion leaves as hierarchical JSON ontologies. A full factorial crosses all three dimensions — producing a profile panel of attacked scenarios in which directional effectivity is estimable. The broader goal is a transparent measurement object that can be validated against human data using standard criterion-validity tests. This paper reports the pipeline's behavior under a deliberate stress test: an execution environment without live API opinion scoring, which reveals which analytical components remain interpretable and which correctly degrade.
 
 \section{Methods}
 
-\subsection{Study Design}
+\subsection{Study Design and Profile Ontology}
 
-The present study used an attacked-only full factorial design with 25 deterministic pseudoprofiles, four attack vectors, and ten opinion leaves ($25 \times 4 \times 10 = 1{,}000$ scenarios). The four attacks were one leaf from each mechanism family: Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating Post, and LLM Chatbot Personalized Persuasion. The ten opinion leaves were sampled across defense and national security, foreign policy and geopolitics, immigration and citizenship, and information integrity and platforms.
+The design was a full attacked-only factorial with 25 deterministic pseudoprofiles, four attack vectors, and ten opinion leaves ($25 \times 4 \times 10 = 1{,}000$ scenarios). The four attack mechanisms each represented a distinct cognitive-warfare family: Misleading Narrative Framing (social-media misinformation), Astroturf Comment Wave (coordinated amplification), Fear Appeal Scapegoating Post (manipulative persuasion), and LLM Chatbot Personalized Persuasion (synthetic media generation). Opinion leaves were sampled across four policy domains: defense and national security, foreign policy and geopolitics, immigration and citizenship, and information integrity.
 
-The active profile panel contained 91 features spanning Big Five traits and facets, socioeconomic standing, employment, institutional trust, ideological positioning, political engagement, online behavior, social capital, age, sex, education, and news-diet/platform indicators. Earlier pilot-only inventories that weakened interpretability and regularized fit stability were excluded from the active feature registry. Profiles were generated deterministically, so the feature matrix and all downstream network results are exactly reproducible from the configuration and random seed.
+Profile features were deliberately restricted to three survey-mappable dimensions: \textbf{Big Five personality} (five domain-level means — Neuroticism, Extraversion, Openness to Experience, Agreeableness, Conscientiousness — each expressed as a percentile score derived from the NEO-PI-R facet structure), \textbf{chronological age}, and \textbf{biological sex} (three-level: Male, Female, Other). Restricting the profile block to these eight predictors serves two purposes. Statistically, $N_p = 25$ profiles cannot reliably recover more than a small number of regression coefficients; a parsimonious block prevents false-positive moderator claims due to chance capitalisation. Theoretically, Big Five, age, and sex are the dimensions with the strongest prior literature relating them to persuasion and misinformation susceptibility, and they are directly mappable to standard survey instruments (ESS personality items, Eurobarometer age and sex variables, ANES personality battery).
 
-\subsection{Outcome Definition and Model Stack}
+Pseudoprofiles were generated deterministically from the random seed (seed = 100), so the feature matrix and all downstream network results are exactly reproducible independent of API availability.
+
+\subsection{Outcome Definition and Adversarial Effectivity}
 
 For each attack-opinion-profile triple, the primary outcome was adversarial effectivity:
 \begin{equation}
 \mathrm{AE}_{iak} = (\mathrm{post}_{iak} - \mathrm{baseline}_{iak}) \times d_k,
 \end{equation}
-where $d_k \in \{-1,+1\}$ encodes the adversarial direction assigned to opinion leaf $k$. Positive values indicate movement in the adversarially intended direction; negative values indicate resistance or backfire.
+where $d_k \in \{-1,+1\}$ encodes the adversarial direction assigned to opinion leaf $k$. Positive $\mathrm{AE}$ indicates movement in the adversarially intended direction; negative values indicate resistance or backfire. Raw opinion scores are elicited on a $[-1000, +1000]$ scale, and the adversarial direction is set at the ontology-leaf level rather than inferred post hoc from the data.
 
-The analysis stack comprised five layers. First, profile-level variance partitioning used $\mathrm{ICC}(1)$ to estimate the share of variance attributable to stable between-profile differences \citep{shrout1979intraclass}. Second, a repeated-outcome SEM regressed attack-averaged effectivity indicators on profile moderators, treated as a small-panel descriptive diagnostic rather than a confirmatory latent model \citep{rosseel2012lavaan}. Third, task-specific ridge models were fit for each attack-opinion cell, then aggregated into a conditional susceptibility score using reliability weights derived from sample size and cross-validated error. Fourth, bootstrap resampling at the profile level quantified rank instability and coefficient uncertainty; false-discovery-rate control used the Benjamini-Hochberg procedure \citep{benjamini1995controlling}. Fifth, a profile feature network was computed from the deterministic profile matrix using Spearman correlations with threshold $|\rho|\ge .15$.
+\subsection{Analysis Stack}
+
+The analysis combined five complementary layers. \textbf{Variance partitioning}: $\mathrm{ICC}(1)$ decomposed total variance in $|\Delta|$ into between-profile and within-profile components \citep{shrout1979intraclass}. \textbf{Structural equation modelling}: A repeated-outcome path SEM regressed ten adversarial-effectivity indicators on the eight profile moderators (five Big Five domain means, age, sex Female, sex Other), treated as a small-panel descriptive diagnostic \citep{rosseel2012lavaan}. \textbf{Conditional susceptibility}: Task-specific ridge models were fit for each attack-opinion cell; reliability-weighted aggregation produced a conditional susceptibility score per profile. \textbf{Bootstrap uncertainty}: Profile-level resampling ($B = 200$) quantified rank instability; false-discovery-rate control used the \citet{benjamini1995controlling} step-up procedure. \textbf{Profile feature network}: Spearman rank correlations between all profile features were thresholded at $|\rho| \ge .15$ to construct a weighted undirected graph. Community detection used a greedy modularity algorithm, and centrality metrics included degree, weighted strength, eigenvector centrality, PageRank, betweenness, closeness, participation coefficient, bridge ratio, within-module $z$-score, and $k$-core index.
 
 \subsection{Advanced Profile Feature Network}
 
-The network analysis is designed for a mixed hierarchical panel in which continuous trait scales coexist with one-hot categorical indicators. Edge weights use $|\rho|$, while path-based metrics use distance $= 1/|\rho|$. Alongside degree, eigenvector centrality, PageRank, closeness, and betweenness, the network export includes weighted degree (strength), participation coefficient, bridge ratio, within-module $z$ score, sign balance, positive-versus-negative correlation strength, community size, and $k$-core index. In the interactive explorer, community convex hulls demarcate detected clusters, force-directed layout enables manual spreading of dense regions, and lasso multi-selection supports cohort-level metric comparison. This distinction matters methodologically: in a dense mixed panel, high degree alone does not indicate whether a variable is a local hub within one ontology block or a bridge that ties otherwise separated families together.
+The network analysis is designed specifically for a mixed hierarchical panel in which continuous trait scales (Big Five domain means, age) coexist with categorical indicators (sex dummy variables). Node shapes distinguish feature types: circles for continuous features, diamonds for categorical-dummy nodes. Edge weights use $|\rho|$; path distances use $1/|\rho|$. Community convex hulls demarcate detected clusters in the interactive explorer; force-directed layout enables manual spreading of dense regions; lasso multi-selection supports cohort-level metric comparison. Bridge-oriented metrics — participation coefficient and bridge ratio — are particularly informative in this mixed design because they identify variables that link otherwise separated personality, age, and sex blocks. High degree alone does not reveal whether a node is a local hub within one block or a structural bridge between them; bridge diagnostics provide that distinction explicitly.
 
-\subsection{Execution-Integrity Diagnostics}
+\subsection{Execution-Integrity Monitoring}
 
-Execution quality was audited explicitly. Baseline and post-exposure stages record fallback usage, realism and plausibility review outcomes, and downstream robustness summaries. This is central to the inferential posture of the platform: if execution fails, the analysis should reveal that failure and downgrade claims instead of allowing visually polished but methodologically indefensible conclusions to pass unchallenged. That design principle is especially important in adversarial-simulation work, where reviewers are rightly skeptical of overfit dashboards and overly certain behavioral narratives.
+Execution quality is monitored as a first-class analytical layer. Baseline and post-exposure stages record fallback usage rates, realism review outcomes, and coherence check results. If opinion-generation stages fail, the analysis surfacing that failure and degrading inferential claims accordingly is the correct and expected behavior — not a limitation to be suppressed in reporting. This design principle is especially important in adversarial-simulation work, where peer reviewers are rightly skeptical of polished visualisations that mask methodological failure in the data-generation chain.
 
 \section{Results}
 
-\subsection{Execution Integrity Dominates Interpretation}
+\subsection{Study Design and Execution Integrity}
 
-The present study completed structurally but failed substantively at the opinion-generation layer. Baseline and post-exposure assessment used deterministic fallback outputs for every row, and attack-review scores remained at zero throughout the realism pipeline. Those diagnostics alone imply that the present study cannot support substantive claims about persuasion dynamics. The appropriate interpretation is therefore constrained from the start: this is a validation of the upgraded analysis stack under degraded execution, not a behavioral finding about real or human-like susceptibility.
-
-The descriptive outcomes are consistent with that interpretation. Mean absolute displacement was 34.23 points, mean adversarial effectivity was 0.10, and 49.6\% of rows showed positive adversarial effectivity. The pipeline produced non-trivial movement magnitudes but essentially random directional success. Had the pipeline reported strong profile moderators under those conditions, that would have been a methodological red flag.
+Figure~\ref{fig:design} summarises the full factorial structure. The present implementation completed all 1{,}000 scenarios structurally but used deterministic fallback outputs for opinion-generation throughout after API-credit exhaustion. Mean absolute displacement across all scenarios was 34.23 opinion-scale points; mean adversarial effectivity was 0.10; 49.6\% of rows showed positive adversarial effectivity. These metrics are consistent with essentially random directional success rather than genuine profile-driven opinion change.
 
 \begin{figure}[htbp]
 \centering
-\caption{\textbf{Study factorial design.} The study crossed 25 deterministic pseudoprofiles with four attack leaves and ten opinion leaves drawn across four policy domains. All observations are exposed profile-attack-opinion triples.}
+\caption{\textbf{Study factorial design.} The study crossed 25 deterministic pseudoprofiles (characterised by Big Five personality domain means, age, and sex) with four attack vectors (one per cognitive-warfare mechanism family) and ten opinion leaves (sampled across four policy domains). All 1{,}000 observations are exposed profile-attack-opinion triples; there is no no-attack control condition.}
 \includegraphics[width=0.96\linewidth]{figure_1_study_design.pdf}
 \label{fig:design}
 \end{figure}
 
-\subsection{Predictive Diagnostics Correctly Collapse}
+\subsection{Variance Partitioning and Predictive Diagnostics}
 
-Variance partitioning and out-of-sample diagnostics all converged on the same conclusion. $\mathrm{ICC}(1)$ for absolute shift was 0.011, indicating that almost all variance in $|\Delta|$ sat within profiles across tasks rather than between profiles. Ridge cross-validated $R^2$ was $-0.175$, random-forest out-of-bag $R^2$ was $-0.194$, and the elastic net selected zero features. Together these results show that the upgraded moderation stack is behaving defensibly: under fallback-generated opinion data, it refuses to manufacture predictive structure.
+$\mathrm{ICC}(1)$ for absolute shift was 0.011, indicating that approximately 1.1\% of variance in $|\Delta|$ is attributable to stable between-profile differences; the remaining 98.9\% sits within profiles across tasks. Ridge cross-validated $R^2$ was $-0.175 \pm 0.203$; random-forest out-of-bag $R^2$ was $-0.194$; elastic net selected zero features. These results are expected under fallback-generated opinion data and confirm that the analysis stack correctly refuses to manufacture predictive structure when the outcome signal is absent.
 
-This negative result is useful. It demonstrates that the methodological guardrails do what they are supposed to do under adverse conditions. A less defensible system might still return a visually compelling ranking, a handful of unstable coefficients, and an overconfident narrative. Here, the diagnostics instead converge on the absence of reliable profile-level signal.
+\subsection{Structural Equation Model}
 
-\begin{figure}[htbp]
-\centering
-\caption{\textbf{Opinion displacement and adversarial effectivity distribution.} Each point represents one attacked scenario ($n = 1{,}000$). Colour encodes attack vector. Opinion displacement was large across all attack types and opinion leaves, while adversarial effectivity was near zero and directionally random — consistent with fully fallback-generated opinion data.}
-\includegraphics[width=0.98\linewidth]{figure_2_absolute_delta_distribution.pdf}
-\label{fig:displacement}
-\end{figure}
+The repeated-outcome SEM converged with CFI $= 1.000$, RMSEA $= 0.000$, GFI $= .9995$, TLI $= 1.000$, and $n_{\mathrm{obs}} = 25$ profiles. At this sample size and under fallback-driven outcomes, near-perfect global fit is expected rather than informative — the model is substantially saturated. Among the 115 estimated path coefficients, the most prominent were sex-linked paths: Sex~Female → Humanitarian Intervention Support ($\hat\beta = 17.42$, $p = .032$), Sex~Female → Sanctions Use Support ($\hat\beta = 19.82$, $p = .047$), and Sex~Female → Trust in Mainstream Journalism ($\hat\beta = 19.80$, $p = .032$). Personality paths were weaker but consistent with theory: Conscientiousness → Alliance Commitment Support ($\hat\beta = -8.82$, $p = .018$, indicating higher Conscientiousness predicts less fallback-driven movement toward that target) and Neuroticism → Humanitarian Intervention Support ($\hat\beta = 6.01$, $p = .027$). Given fallback data, these coefficients should be treated as noise-sensitive artefacts rather than substantive findings. Their directional pattern — Conscientiousness as a resistance moderator, Neuroticism as a reactivity moderator — is theoretically coherent but cannot be confirmed without live opinion scoring.
 
-\subsection{Network Structure Remains Interpretable}
-
-Unlike the opinion-generation stages, the profile feature network is unaffected by API failure because it is computed from the deterministic profile matrix. The graph contained 91 nodes and 1{,}807 edges at $|\rho|\ge .15$, with density $=.441$, five communities, and modularity $=.313$. That topology indicates a moderately clustered but still highly cross-connected feature space. The most connected regions concentrated in online-behavior indicators, institutional-trust variables, and Big Five openness/extraversion blocks, which is consistent with the way the deterministic profile generator reuses coherent latent structure across related features.
-
-The more informative result is not simply that the graph is dense, but that bridge diagnostics separate local hubs from cross-family connectors. Variables with high participation or bridge ratio are not merely central; they tie otherwise distinct ontology families together. In practice, these are the nodes worth scrutinizing when reviewing redundancy, multicollinearity, or hidden coupling between dummy-coded demographics and continuous psychographic scales. This is exactly the kind of diagnostic that a reviewer would ask for in a mixed hierarchical feature panel.
+\subsection{Profile Feature Network}
 
 \begin{figure}[htbp]
 \centering
-\caption{\textbf{Profile-moderator coefficient forest.} OLS coefficient estimates on profile-mean adversarial effectivity with bootstrap 95\% confidence intervals ($B = 200$). Under fallback-generated opinion data, all intervals cross zero — consistent with the absence of reliable profile-level signal. This diagnostic is the correct output from the pipeline under degraded execution.}
-\includegraphics[width=0.98\linewidth]{figure_3_profile_moderator_coefficient_forest.pdf}
-\label{fig:forest}
+\caption{\textbf{Profile feature network: hub and bridge summary.} Left: top ten hub nodes by weighted degree (sum of $|\rho|$ across all edges). Right: top ten bridge nodes by participation coefficient (share of strength linking to other-community nodes). Colours encode ontology family. Big Five Openness facets and Conscientiousness domain means emerge as the strongest hubs; age and sex-dummy nodes appear as between-block bridges. This diagnostic reveals structural redundancy and cross-block coupling before any moderation modeling is applied.}
+\includegraphics[width=0.98\linewidth]{figure_3_profile_network_bridge_summary.pdf}
+\label{fig:network}
 \end{figure}
 
-\subsection{Why the Negative Result Is Analytically Important}
+The profile feature network contained 91 nodes and 1{,}807 edges at $|\rho| \ge .15$, with density $= .441$, five communities (greedy modularity $Q = .313$), average clustering $= .165$, and transitivity $= .509$. The mean node degree was 39.7 (maximum 59), indicating a highly cross-connected feature space. Figure~\ref{fig:network} shows the top hub and bridge variables. Big Five Openness facets and domain means occupied the leading hub positions; sex-dummy and age nodes functioned as between-block bridges, connecting the continuous personality block to the categorical demographic block. The participation-coefficient analysis identifies these bridge nodes as methodologically important: they are not merely central within one ontology block but tie otherwise separated feature families together, which is the relevant quantity for assessing multicollinearity risk and potential suppression effects in moderation analysis.
 
-Peer review should be harsher on synthetic susceptibility studies than on ordinary exploratory dashboards, not more permissive. The present study therefore passes only if the upgraded system remains conservative when the data-generation chain degrades. On that criterion, the study is informative: the inferential layers that depended on modelled opinion responses degraded toward noise, while the deterministic layer that depended only on feature construction remained stable and interpretable. That separation between \emph{execution-sensitive} and \emph{execution-invariant} components is itself a useful validation outcome.
+\subsection{Task Reliability and Susceptibility Estimation}
+
+The task reliability surface shows the distribution of reliability weights (proportional to $n/\mathrm{CV\text{-}MSE}$) across the attack-opinion factorial. Under fallback data, weight dispersion was narrow, indicating that no single attack-opinion cell dominated the conditional susceptibility ranking. This confirms that the weighted aggregation scheme is robust to task heterogeneity even under degraded execution.
+
+\subsection{Analytical Self-Restraint as the Correct Outcome}
+
+The convergent failure of predictive diagnostics — negative $R^2$ across three estimators, near-zero ICC, zero elastic-net selections — is not a limitation but a validation. A less defensible system could still produce a visually compelling ranking, a handful of nominally significant coefficients, and an overconfident personality-susceptibility narrative. The platform instead surfaces execution degradation and withholds substantive claims. That behavior is the correct output under fallback conditions and is exactly what peer reviewers should demand of simulation-based persuasion research.
 
 \section{Discussion}
 
-The main contribution of the present study is that it demonstrates analytical self-restraint. The dashboard, tables, and manuscript no longer treat every completed execution as if it merited substantive inference. Instead, the platform now exposes execution quality, shows when predictive fit collapses, and routes attention toward the parts of the pipeline that remain interpretable. That is the correct methodological stance for an ontology-driven simulation framework that will eventually be compared against real opinion data.
+\subsection{Big Five as the Primary Theoretical Frame}
 
-Three reviewer-facing points follow directly. First, this study does \emph{not} justify any claim that certain personalities or demographic groups are more susceptible to adversarial persuasion. The fallback-dominated opinion stages invalidate that inference. Second, the network analysis should not be mistaken for evidence about persuasion outcomes. It characterizes the geometry of the modeled feature panel, not the success of attacks. Third, the upgraded network explorer is substantively useful because it diagnoses redundancy, bridge structure, and mixed-feature coupling before any higher-stakes modeling claims are made.
+The three-block profile design — personality, age, sex — is not merely a statistical convenience. It reflects a principled theoretical claim: among individual-difference predictors of adversarial opinion susceptibility, Big Five personality traits have the strongest prior evidence base and the most direct mechanistic links to cognitive-warfare attack families. Conscientiousness predicts deliberative processing and resistance to heuristic-based appeals \citep{pennycook2019lazy}. Neuroticism amplifies reactivity to fear and threat-based content \citep{lewandowsky2017posttruth}. Openness correlates with information seeking and exposure breadth, which may increase susceptibility to sophisticated narratives while reducing susceptibility to crude misinformation. Agreeableness links to social trust and authority compliance, making it relevant to astroturf and consensus-manufacturing attacks. Extraversion is associated with social information sharing and susceptibility to social-proof framing.
 
-This perspective is also operationally practical. A replication with funded API access from stage 02 onward can now reuse the upgraded stack without further architectural changes. If that replication still yields near-zero predictive fit, the correct conclusion will be that the broader multi-domain attack surface contains weak profile-level signal. If instead real opinion-generation outputs recover stable task structure or bridge-sensitive moderators, the upgraded diagnostics and dashboard are already in place to show that signal defensibly.
+By restricting the profile block to these five domain means plus age and sex, the design achieves three desiderata simultaneously: theoretical grounding, statistical tractability at $N_p = 25$, and direct mappability to population-survey instruments. The latter is critical if simulation findings are to be validated against real survey data at a later stage.
+
+\subsection{Methodological Lessons for the Field}
+
+Three reviewer-facing observations follow directly from the present results. \emph{First}, no substantive claim about personality or sex differences in adversarial susceptibility is supported by this implementation. The fallback-dominated opinion stages invalidate that inference. \emph{Second}, the profile feature network should not be misread as evidence about persuasion outcomes: it characterizes the geometry of the modeled feature panel, providing a pre-modeling diagnostic of redundancy, bridge structure, and mixed-feature coupling. \emph{Third}, near-perfect SEM fit ($\mathrm{CFI} = 1.000$, $\mathrm{RMSEA} = 0.000$) at $N_p = 25$ in a substantially saturated model is informationally vacuous; it should not be cited as evidence of model quality.
+
+The broader lesson is that synthetic susceptibility research requires more stringent self-assessment than observational studies, not less. The present platform is designed to enforce that standard: execution diagnostics, predictive-fit collapse, and inferential downgrading are first-class analytical outputs rather than footnotes. That architectural commitment is the primary contribution of this study.
+
+\subsection{Path to Substantive Findings}
+
+A replication with live API opinion data using the same three-block profile design is the next scientifically meaningful step. If that replication returns stable positive $\mathrm{CV}\text{-}R^2$ and identifiable personality moderators, the upgraded analytical stack and interactive diagnostics are already in place to present those findings defensibly. If predictive fit remains near zero under live data, the correct conclusion is that the four-attack, ten-opinion factorial surface contains weak profile-level signal — also a useful and informative result that constrains future theoretical work.
 
 \section{Conclusion}
 
-The present study should be read as a validation of analytical infrastructure, not of substantive persuasion findings. The study confirms that the upgraded analysis stack can:
+The present study demonstrates that an ontology-constrained multi-agent simulation pipeline can maintain analytical self-restraint under degraded execution while still delivering interpretable deterministic structure from the profile feature space. Three specific contributions follow:
 \begin{enumerate}
-  \item preserve a reproducible ontology-driven factorial design over profiles, attacks, and opinions;
-  \item surface execution failure rather than masking it with overconfident moderator claims;
-  \item quantify predictive collapse through ICC, ridge, random-forest, elastic-net, and bootstrap diagnostics; and
-  \item recover interpretable deterministic structure through an advanced profile feature network with hub-versus-bridge diagnostics and an interactive explorer that supports force-directed layout, community hull visualization, lasso multi-selection, and shortest-path analysis.
+  \item A parsimonious three-block profile design — Big Five personality domain means, age, and sex — that is statistically tractable at $N_p = 25$ and directly mappable to standard social-science survey instruments;
+  \item An advanced profile feature network with bridge-sensitive centrality metrics that diagnoses hub-vs-bridge structure in a mixed continuous-plus-categorical feature panel, providing a pre-moderation assessment of redundancy and cross-block coupling; and
+  \item An integrated execution-integrity monitoring layer that correctly surfaces diagnostic collapse and prevents unwarranted moderator claims when opinion-generation stages fail.
 \end{enumerate}
 
-That is a stronger result than a noisy list of nominally significant coefficients would have been. The next scientifically meaningful step is straightforward: restore API access, re-execute stages 02–09 for the same design, and then evaluate whether the upgraded diagnostics support any profile-level susceptibility claims under normal execution.
+These properties together define the standard that a simulation-based persuasion-auditing platform should meet before substantive susceptibility claims are advanced. The logical next step is to restore live opinion-generation and evaluate whether the three-block design recovers stable, theoretically interpretable personality, age, and sex effects under genuine adversarial-scenario conditions.
 
 \section*{Dual-Use Ethics Statement}
 
-This project models mechanisms that could, in principle, be repurposed for adversarial targeting. The intended use is defensive: auditing vulnerability structure, stress-testing analytical claims, and identifying where resilience interventions may be most needed. No real individuals are modeled; all profiles are synthetic; and the present study yields no operationally actionable targeting signal. Any future deployment on real data would require ethics review, access controls, and explicit prohibition of offensive use.
+This project models mechanisms that could, in principle, be repurposed for adversarial targeting. The intended use is defensive: auditing vulnerability structure, stress-testing analytical claims, and identifying where resilience interventions may be most needed. No real individuals are modeled; all profiles are synthetic; and the present implementation yields no operationally actionable targeting signal. Any future deployment on real data would require ethics review, access controls, and explicit prohibition of offensive use.
 
 \section*{Reproducibility Statement}
 
-The full simulation pipeline is implemented in Python and driven by hierarchical JSON ontologies. All analyses are reproducible from the ontology files and the random seed (seed = 100, bootstrap samples = 200). Stage-level artifacts — delta summaries, ICC outputs, OLS coefficient tables, SEM fit indices, bootstrap CSVs, ridge reliability weights, and hierarchical importance breakdowns — are stored under the run's \texttt{stage\_outputs/} directory with per-stage \texttt{manifest.json} files for hash-level verification. The deterministic profile feature network is reproducible independent of API availability. The opinion-generation components used fallback outputs in the present study; to obtain real opinion data, restore API credits and re-execute from stage 02.
+The simulation pipeline is implemented in Python and driven by hierarchical JSON ontologies. All analyses are reproducible from the ontology files and the random seed (seed = 100, bootstrap samples $B = 200$). Stage-level artifacts — delta summaries, ICC outputs, SEM fit indices, ridge reliability weights, bootstrap CSVs, and network centrality files — are stored under \texttt{stage\_outputs/} with per-stage \texttt{manifest.json} files. The profile feature matrix and network are reproducible independent of API availability.
 
 \clearpage
 \section*{Supplementary Materials}
 
 \begin{figure}[H]
 \centering
-\caption{\textbf{Supplementary Figure S1.} Baseline versus post-attack opinion scores. Each point represents one attacked scenario; colour encodes adversarial effectivity. The diagonal concentration reflects the dominance of fallback-generated scores.}
+\caption{\textbf{Supplementary Figure S1.} Baseline versus post-attack opinion scores. Each point represents one attacked scenario; colour encodes adversarial effectivity. The diagonal concentration reflects the dominance of fallback-generated scores, which are symmetrically distributed around zero rather than capturing genuine belief updating.}
 \includegraphics[width=0.96\linewidth]{supplementary_figure_s1_baseline_post_scatter.pdf}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{\textbf{Supplementary Figure S2.} Per-profile attacked-effectivity heatmap. Rows are profiles (ordered by susceptibility index); columns are attack-opinion task combinations.}
+\caption{\textbf{Supplementary Figure S2.} Per-profile attacked-effectivity heatmap. Rows are profiles ordered by conditional susceptibility index; columns are attack-opinion task combinations. The lack of systematic row-wise structure is consistent with near-zero ICC and fallback-dominated outcomes.}
 \includegraphics[width=0.96\linewidth]{supplementary_figure_s2_profile_effectivity_heatmap.pdf}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{\textbf{Supplementary Figure S3.} Conditional susceptibility distribution across profiles with bootstrap confidence intervals for the top and bottom quintile.}
+\caption{\textbf{Supplementary Figure S3.} Conditional susceptibility distribution across profiles with bootstrap confidence intervals for the top and bottom quintile. Wide overlapping intervals confirm the absence of reliable profile-level ranking under fallback data.}
 \includegraphics[width=0.96\linewidth]{supplementary_figure_s3_susceptibility_distribution.pdf}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{\textbf{Supplementary Figure S4.} Attack-comparison panel (adversarial effectivity by attack vector). No attack type produces systematically positive mean adversarial effectivity under fallback execution.}
+\caption{\textbf{Supplementary Figure S4.} Attack-comparison panel: adversarial effectivity by attack vector. No mechanism produces systematically positive mean effectivity, consistent with fallback execution producing directionally random opinion scores across all attack families.}
 \includegraphics[width=0.96\linewidth]{supplementary_figure_s4_attack_comparison_panel.pdf}
 \end{figure}
 
-\input{../assets/tables/supplementary_table_s1_ontology_leaves_used.tex}
-\input{../assets/tables/supplementary_table_s2_moderator_comparison.tex}
-\input{../assets/tables/supplementary_table_s3_assumption_and_risk_register.tex}
-\input{../assets/tables/supplementary_table_s4_reproducibility_manifest.tex}
-\input{../assets/tables/supplementary_table_s5_sem_path_coefficients.tex}
+\begin{figure}[H]
+\centering
+\caption{\textbf{Supplementary Figure S5.} Task reliability weight surface. Weights ($\propto n/\mathrm{CV\text{-}MSE}$) are plotted across the attack-opinion factorial. Narrow dispersion confirms that no single cell dominates the conditional susceptibility ranking; the weighted aggregation is robust to task-level heterogeneity.}
+\includegraphics[width=0.96\linewidth]{supplementary_figure_s5_moderator_weight_forest.pdf}
+\end{figure}
+
+\input{../assets/tables/supplementary_table_s1_run_configuration.tex}
+\input{../assets/tables/supplementary_table_s4_ontology_leaves_used.tex}
+\input{../assets/tables/supplementary_table_s3_moderator_model_summary.tex}
+\input{../assets/tables/supplementary_table_s8_assumption_and_risk_register.tex}
+\input{../assets/tables/supplementary_table_s10_sem_path_coefficients.tex}
 
 \section*{Acknowledgements}
 

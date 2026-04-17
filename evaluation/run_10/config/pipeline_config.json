@@ -28,7 +28,7 @@
   "generate_visuals": true,
   "export_static_figures": true,
   "build_report": true,
-  "resume_from_stage": "08",
+  "resume_from_stage": "07",
   "stop_after_stage": "09",
   "save_raw_llm": true,
   "timeout_sec": 90,
