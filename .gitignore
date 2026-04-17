@@ -63,3 +63,14 @@ evaluation/**/stage_checks/**/*.html
 
 # Reproduction scripts — run locally, not tracked
 scripts/
+
+# Old exploratory runs — only run_10 is tracked
+evaluation/run_1/
+evaluation/run_2/
+evaluation/run_3/
+evaluation/run_4/
+evaluation/run_5/
+evaluation/run_6/
+evaluation/run_7/
+evaluation/run_8/
+evaluation/run_9/

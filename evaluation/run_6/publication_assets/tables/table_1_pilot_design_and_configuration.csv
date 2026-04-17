@@ -1,9 +1,0 @@
-Parameter,Value
-Run ID,run_6
-Paper title,PILOT: Inter-individual Differences in Susceptibility to Cyber-manipulation: A Multi-agent Simulation Approach with High-dimension State Space of Political Opinions
-Profiles,50
-Attacked rows,200
-Attack leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing
-Opinion domain,Defense_and_National_Security
-Repeated opinion leaves,4
-Model,mistralai/mistral-small-3.2-24b-instruct

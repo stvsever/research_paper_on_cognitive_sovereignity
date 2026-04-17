@@ -1,2 +1,0 @@
-baseline_score ~ primary_moderator_z + opinion_domain_fe_immigration_and_citizenship
-post_score ~ baseline_score + attack_present + primary_moderator_z + attack_x_primary_moderator + opinion_domain_fe_immigration_and_citizenship

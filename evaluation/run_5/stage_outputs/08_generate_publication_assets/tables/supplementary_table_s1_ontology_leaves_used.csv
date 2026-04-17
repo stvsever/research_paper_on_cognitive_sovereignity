@@ -1,6 +1,0 @@
-ontology,leaf_label,leaf_path,n_scenarios
-OPINION,Alliance_Commitment_Support,Issue_Position_Taxonomy > Defense_and_National_Security > Alliance_Commitment_Support,5
-OPINION,Conscription_Support,Issue_Position_Taxonomy > Defense_and_National_Security > Conscription_Support,5
-OPINION,Defense_Spending_Increase_Support,Issue_Position_Taxonomy > Defense_and_National_Security > Defense_Spending_Increase_Support,5
-OPINION,Strategic_Autonomy_Support,Issue_Position_Taxonomy > Defense_and_National_Security > Strategic_Autonomy_Support,5
-ATTACK,Fixed attack leaf,ATTACK_VECTORS > Social_Media_Misinformation > Misleading_Narrative_Framing,20

@@ -1,5 +1,0 @@
-outcome,opinion_leaf,attack_leaf,feature,feature_col,test,r,r_squared,p_value,sig,effect_label,partial_r_controlling_baseline,partial_p,n,is_normal
-adversarial_effectivity,Alliance_Commitment_Support,Misleading_Narrative_Framing,Age,profile_cont_age_years,Spearman,-0.153,0.0234,0.1286,ns,small,-0.1407,0.1628,100,False
-adversarial_effectivity,Civil_Defense_Preparedness_Support,Misleading_Narrative_Framing,Age,profile_cont_age_years,Spearman,0.0733,0.0054,0.4685,ns,negligible,0.0688,0.4967,100,False
-adversarial_effectivity,Domestic_Security_Powers_Expansion_Support,Misleading_Narrative_Framing,Age,profile_cont_age_years,Spearman,-0.1337,0.0179,0.1847,ns,small,-0.0486,0.6309,100,False
-adversarial_effectivity,Strategic_Autonomy_Support,Misleading_Narrative_Framing,Age,profile_cont_age_years,Spearman,0.1664,0.0277,0.098,.,small,0.1058,0.295,100,False

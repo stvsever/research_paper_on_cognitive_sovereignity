@@ -1,3 +1,0 @@
-Condition,n,baseline_mean,post_mean,delta_mean,delta_sd,susceptibility_mean,realism_mean
-Attack,2,633.0,604.5,-28.5,30.405591591021544,0.4041,0.0
-Control,1,815.0,805.0,-10.0,,0.6766,0.0

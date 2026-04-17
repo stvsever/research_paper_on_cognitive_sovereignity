@@ -1,5 +1,0 @@
-opinion_leaf_label,n_rows,mean_baseline,mean_post,mean_signed_delta,mean_abs_delta,sd_abs_delta,mean_adv_eff,sd_adv_eff
-Civil_Defense_Preparedness_Support,400,351.8425,388.48,36.6375,45.4425,18.055793910819872,-36.6375,32.38404072610458
-Strategic_Autonomy_Support,400,416.065,446.045,29.98,45.035,17.664053187193478,29.98,37.96537369762084
-Alliance_Commitment_Support,400,447.6875,459.685,11.9975,41.5625,14.240824897104803,-11.9975,42.26467193472582
-Domestic_Security_Powers_Expansion_Support,400,192.7025,232.0125,39.31,40.595,20.435165157150063,-39.31,22.809513366137384

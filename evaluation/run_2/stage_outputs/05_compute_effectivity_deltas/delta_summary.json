@@ -1,8 +1,0 @@
-{
-  "n_records": 10,
-  "delta_mean": -12.6,
-  "delta_std": 34.89183285526858,
-  "moderator_column": "profile_cont_susceptibility_index",
-  "attack_present_count": 5,
-  "control_count": 5
-}

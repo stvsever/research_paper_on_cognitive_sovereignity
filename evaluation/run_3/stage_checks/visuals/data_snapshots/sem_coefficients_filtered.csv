@@ -1,6 +1,0 @@
-lhs,op,rhs,estimate,std_error,z_value,p_value,label,sig
-post_score,~,Susceptibility Index (z),-0.8690000106876038,480.53450775704374,-0.001808402927697681,0.9985571040107348,post_score ~ Susceptibility Index (z),
-post_score,~,attack_present x Susceptibility Index (z),0.4988620513894201,505.3176154565753,0.0009872247397088594,0.9992123087500926,post_score ~ attack_present x Susceptibility Index (z),
-post_score,~,attack_present,1.0310188728460474,647.3375936610531,0.0015927066231625174,0.9987292045127645,post_score ~ attack_present,
-post_score,~,baseline_score,1.1429476555206428,0.6629842447856057,1.7239439164780193,0.08471796819752098,post_score ~ baseline_score,
-baseline_score,~,Susceptibility Index (z),112.0694548900184,52.17367291646264,2.148007771456979,0.031713138095627924,baseline_score ~ Susceptibility Index (z),*

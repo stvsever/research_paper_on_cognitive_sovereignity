@@ -1,9 +1,0 @@
-outcome,opinion_leaf,attack_leaf,test,statistic,p_value,sig,effect_size_name,effect_size,effect_size_label,n_total
-adversarial_effectivity,Alliance_Commitment_Support,Misleading_Narrative_Framing,Kruskal-Wallis,11.5194,0.0032,**,epsilon_squared,0.1063,medium,100
-adversarial_effectivity,Civil_Defense_Preparedness_Support,Misleading_Narrative_Framing,Kruskal-Wallis,3.4499,0.1782,ns,epsilon_squared,0.0247,small,100
-adversarial_effectivity,Domestic_Security_Powers_Expansion_Support,Misleading_Narrative_Framing,Kruskal-Wallis,2.8539,0.24,ns,epsilon_squared,0.0187,small,100
-adversarial_effectivity,Strategic_Autonomy_Support,Misleading_Narrative_Framing,Kruskal-Wallis,4.1863,0.1233,ns,epsilon_squared,0.0322,small,100
-abs_delta_score,Alliance_Commitment_Support,Misleading_Narrative_Framing,Kruskal-Wallis,9.4593,0.0088,**,epsilon_squared,0.0854,small,100
-abs_delta_score,Civil_Defense_Preparedness_Support,Misleading_Narrative_Framing,Kruskal-Wallis,1.2956,0.5232,ns,epsilon_squared,0.003,negligible,100
-abs_delta_score,Domestic_Security_Powers_Expansion_Support,Misleading_Narrative_Framing,Kruskal-Wallis,2.8539,0.24,ns,epsilon_squared,0.0187,small,100
-abs_delta_score,Strategic_Autonomy_Support,Misleading_Narrative_Framing,Kruskal-Wallis,1.1202,0.5712,ns,epsilon_squared,0.0012,negligible,100

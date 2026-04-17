@@ -1,8 +1,0 @@
-{
-  "n_records": 10,
-  "delta_mean": -18.5,
-  "delta_std": 41.48312910087666,
-  "moderator_column": "profile_cont_big_five_neuroticism_mean_pct",
-  "attack_present_count": 5,
-  "control_count": 5
-}

@@ -1,3 +1,0 @@
-2026-03-22 21:20:56 | WARNING | __main__ | Post-attack assessment failed for scenario_0001, fallback used: [Errno 8] nodename nor servname provided, or not known
-2026-03-22 21:20:56 | WARNING | __main__ | Post-attack assessment failed for scenario_0002, fallback used: [Errno 8] nodename nor servname provided, or not known
-2026-03-22 21:20:56 | INFO | __main__ | Stage 04 completed: 2 records
