@@ -17,7 +17,7 @@
 
 </div>
 
-## Table of Contents
+## 📋 Table of Contents
 
 - [Abstract](#abstract)
 - [Key Findings](#key-findings)
@@ -33,7 +33,7 @@
 
 ---
 
-## Abstract
+## 🧬 Abstract
 
 This repository contains the backend research pipeline, evaluation outputs, manuscript assets, and reproducible report for a study on how **inter-individual differences moderate the effectivity of cyber-manipulation** in political opinion spaces. The workflow represents `PROFILE`, `ATTACK`, and `OPINION` as explicit hierarchical ontologies, generates attacked-only profile-panel scenarios, elicits baseline and post-exposure opinions with structured LLM agents, audits exposure realism and response coherence, and estimates moderation through a **repeated-outcome path SEM** plus a **post hoc ridge-regularised susceptibility index**.
 
@@ -43,7 +43,7 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ---
 
-## Key Findings
+## 🔬 Key Findings
 
 > **Main result:** *N_p* = **25 pseudoprofiles** × *N_a* = **4 attack vectors** × *N_o* = **10 opinion leaves** across 4 political domains = **1,000 scenarios**. Attack vectors: one per cognitive-warfare mechanism family (Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating, LLM Chatbot Personalized Persuasion). Primary profile dimensions: **Big Five personality (30 facets) + Age + Sex** — survey-mappable to ESS/Eurobarometer/ANES/GSS. Post-attack opinion agent: **profile-driven susceptibility** — no explicit directional % constraints; trait-outcome linkages govern shifting behaviour (Conscientiousness → deliberate resistance; Neuroticism → emotional reactivity).
 
@@ -91,7 +91,7 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ---
 
-## Full Paper
+## 📄 Full Paper
 
 - **PDF (typeset):** [research_report/report/main.pdf](research_report/report/main.pdf)
 - **LaTeX source:** [research_report/report/main.tex](research_report/report/main.tex)
@@ -100,7 +100,7 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ---
 
-## Repository Structure
+## 🗂️ Repository Structure
 
 ```text
 Paper_CaseStudiesAnalysisExperimentalData/
@@ -142,7 +142,7 @@ Paper_CaseStudiesAnalysisExperimentalData/
 
 ---
 
-## Setup & Installation
+## ⚙️ Setup & Installation
 
 ### Option A — Local
 
@@ -166,7 +166,7 @@ OPENROUTER_MODEL=mistralai/mistral-small-3.2-24b-instruct docker compose up --bu
 
 ---
 
-## Usage
+## 🚀 Usage
 
 ### Reproduce the full study
 
@@ -216,7 +216,7 @@ Stages under `src/backend/pipeline/separate/` are independently runnable:
 
 ---
 
-## Pipeline Overview
+## 🔄 Pipeline Overview
 
 ```mermaid
 flowchart TD
@@ -240,7 +240,7 @@ flowchart TD
 
 ---
 
-## Conditional Susceptibility Index
+## 🎯 Conditional Susceptibility Index
 
 The profile-level susceptibility index is **directional** and **conditional** on the configured (attack, opinion) target set *T*.
 
@@ -315,16 +315,17 @@ Results load automatically into the interactive dashboard (Ontologies → Semant
 
 ---
 
-## Dashboard Tabs
 
-The interactive dashboard (`interactive_sem_dashboard.html`) provides 16 tabs:
+### 🖥️ Interactive Dashboard
+
+The interactive dashboard (`interactive_sem_dashboard.html`) provides 16 analysis tabs:
 
 | Tab | Description |
 |-----|-------------|
 | 🗂 **Ontology Explorer** | Ontology leaf inventory with optional UMAP semantic embedding |
 | 📡 **Factorial 3D Surface** | Dual 3D surface: mean AE and SD(AE) across attack × opinion |
 | 📡 **Factorial Heat + Contour** | Side-by-side annotated heatmaps with contour lines |
-| 🧠 **SEM Network** | Hierarchical 3D path diagram with layer toggles and p-value threshold |
+| 🧠 **SEM Network** | Hierarchical 3D path diagram with layer toggles, p-value and β threshold sliders, search, export |
 | 🧠 **SEM Heatmap** | Coefficient matrix: moderator × opinion indicator |
 | 🔬 **Conditional Susceptibility Estimator** | Profile configurator + bootstrap rank uncertainty |
 | 👤 **Susceptibility Map** | Profile-level AE sorted by susceptibility index |
@@ -338,7 +339,7 @@ The interactive dashboard (`interactive_sem_dashboard.html`) provides 16 tabs:
 | 🔎 **Audit & Robustness** | Bootstrap rank stability, SEM sensitivity, methodology audit |
 | 📋 **Task Reliability** | Reliability weight surface across attack × opinion cells |
 
-### Profile Feature Network — interaction guide
+#### 🌐 Profile Feature Network — interaction guide
 
 The network tab renders the full **91-node, 1,807-edge** Spearman correlation graph of profile features with community structure (Q = 0.313):
 
@@ -358,7 +359,7 @@ The network tab renders the full **91-node, 1,807-edge** Spearman correlation gr
 
 ---
 
-## Citation
+## 📚 Citation
 
 ### APA 7
 
@@ -382,7 +383,7 @@ A machine-readable citation is also available in [`CITATION.cff`](CITATION.cff).
 
 ---
 
-## License
+## ⚖️ License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 

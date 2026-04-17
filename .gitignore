@@ -42,6 +42,7 @@ research_report/report/*.idx
 research_report/report/*.ilg
 research_report/report/*.ind
 research_report/report/*.lof
+research_report/report/*.log
 research_report/report/*.lot
 research_report/report/*.out
 research_report/report/*.run.xml

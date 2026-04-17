@@ -4,29 +4,27 @@
 \caption{Attacked effectivity descriptive statistics by repeated opinion leaf.}
 \label{tab:descriptives}
 \small
-\setlength{\tabcolsep}{4.5pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.10}
-\begin{adjustbox}{max width=\linewidth}
-\begin{tabular}{lrrrrrrrr}
+\begin{tabularx}{\linewidth}{Xrrrrrrrr}
 \toprule
-opinion\_leaf\_label & n\_rows & mean\_baseline & mean\_post & mean\_signed\_delta & mean\_abs\_delta & sd\_abs\_delta & mean\_adv\_eff & sd\_adv\_eff \\
+Opinion leaf & $n$ & $\bar{x}_{\text{base}}$ & $\bar{x}_{\text{post}}$ & $\bar\Delta$ & $|\bar\Delta|$ & $\text{SD}_{|\Delta|}$ & $\overline{\text{AE}}$ & $\text{SD}_{\text{AE}}$ \\
 \midrule
-Nuclear\_Deterrence\_Support & 100 & -45.370 & -39.740 & 5.630 & 38.150 & 20.853 & -5.630 & 43.111 \\
-Asylum\_Process\_Expansion\_Support & 100 & -23.400 & -27.480 & -4.080 & 35.640 & 19.559 & 4.080 & 40.449 \\
-Foreign\_Information\_Manipulation\_Transparency\_Mandate\_Support & 100 & -86.200 & -84.070 & 2.130 & 34.710 & 20.843 & -2.130 & 40.431 \\
-Family\_Reunification\_Support & 100 & 30.180 & 35.120 & 4.940 & 34.220 & 20.357 & -4.940 & 39.510 \\
-Humanitarian\_Intervention\_Support & 100 & 49.070 & 48.170 & -0.900 & 34.140 & 21.935 & 0.900 & 40.570 \\
-Multiculturalism\_Support & 100 & -35.020 & -39.710 & -4.690 & 33.710 & 22.147 & 4.690 & 40.061 \\
-Critical\_Infrastructure\_Hardening\_Support & 100 & 31.920 & 31.600 & -0.320 & 33.700 & 18.196 & 0.320 & 38.297 \\
-Sanctions\_Use\_Support & 100 & 56.880 & 57.490 & 0.610 & 33.650 & 20.124 & -0.610 & 39.204 \\
-Alliance\_Commitment\_Support & 100 & -53.240 & -51.290 & 1.950 & 32.210 & 20.171 & -1.950 & 37.955 \\
-Trust\_In\_Mainstream\_Journalism & 100 & 15.170 & 8.890 & -6.280 & 32.140 & 19.375 & 6.280 & 36.999 \\
+Nuclear Deterrence Support          & 100 & $-45.4$ & $-39.7$ & $ 5.6$ & $38.2$ & $20.9$ & $-5.6$ & $43.1$ \\
+Asylum Process Expansion            & 100 & $-23.4$ & $-27.5$ & $-4.1$ & $35.6$ & $19.6$ & $ 4.1$ & $40.4$ \\
+Foreign Info Manipulation Mandate   & 100 & $-86.2$ & $-84.1$ & $ 2.1$ & $34.7$ & $20.8$ & $-2.1$ & $40.4$ \\
+Family Reunification Support        & 100 & $ 30.2$ & $ 35.1$ & $ 4.9$ & $34.2$ & $20.4$ & $-4.9$ & $39.5$ \\
+Humanitarian Intervention Support   & 100 & $ 49.1$ & $ 48.2$ & $-0.9$ & $34.1$ & $21.9$ & $ 0.9$ & $40.6$ \\
+Multiculturalism Support            & 100 & $-35.0$ & $-39.7$ & $-4.7$ & $33.7$ & $22.1$ & $ 4.7$ & $40.1$ \\
+Critical Infrastructure Hardening   & 100 & $ 31.9$ & $ 31.6$ & $-0.3$ & $33.7$ & $18.2$ & $ 0.3$ & $38.3$ \\
+Sanctions Use Support               & 100 & $ 56.9$ & $ 57.5$ & $ 0.6$ & $33.7$ & $20.1$ & $-0.6$ & $39.2$ \\
+Alliance Commitment Support         & 100 & $-53.2$ & $-51.3$ & $ 2.0$ & $32.2$ & $20.2$ & $-2.0$ & $38.0$ \\
+Trust in Mainstream Journalism      & 100 & $ 15.2$ & $  8.9$ & $-6.3$ & $32.1$ & $19.4$ & $ 6.3$ & $37.0$ \\
 \bottomrule
-\end{tabular}
-\end{adjustbox}
+\end{tabularx}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item Note. Descriptive statistics aggregated across 4 attack vectors per opinion leaf. Adversarial effectivity weights shift by the per-leaf adversarial goal direction.
+\item \textit{Note.} Statistics aggregated across 4 attack vectors per opinion leaf ($n=25$ profiles per attack-leaf cell). $\bar\Delta$ = mean signed displacement; $|\bar\Delta|$ = mean absolute displacement; AE = adversarial effectivity (sign reflects per-leaf adversarial goal direction).
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
