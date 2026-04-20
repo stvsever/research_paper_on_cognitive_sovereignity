@@ -315,50 +315,6 @@ Results load automatically into the interactive dashboard (Ontologies → Semant
 
 ---
 
-
-### 🖥️ Interactive Dashboard
-
-The interactive dashboard (`interactive_sem_dashboard.html`) provides 16 analysis tabs:
-
-| Tab | Description |
-|-----|-------------|
-| 🗂 **Ontology Explorer** | Ontology leaf inventory with optional UMAP semantic embedding |
-| 📡 **Factorial 3D Surface** | Dual 3D surface: mean AE and SD(AE) across attack × opinion |
-| 📡 **Factorial Heat + Contour** | Side-by-side annotated heatmaps with contour lines |
-| 🧠 **SEM Network** | Hierarchical 3D path diagram with layer toggles, p-value and β threshold sliders, search, export |
-| 🧠 **SEM Heatmap** | Coefficient matrix: moderator × opinion indicator |
-| 🔬 **Conditional Susceptibility Estimator** | Profile configurator + bootstrap rank uncertainty |
-| 👤 **Susceptibility Map** | Profile-level AE sorted by susceptibility index |
-| 👤 **Profile Heatmap** | Profile × opinion leaf adversarial effectivity grid |
-| 📊 **Moderator Forest** | Ridge / EN / OLS comparison forest plot |
-| 📊 **Hierarchical Importance** | Random Forest importance by ontology-aligned feature group |
-| 📈 **Distribution by Opinion Leaf** | Per-leaf Δ and AE violin/box plots |
-| 📈 **Distribution by Attack Vector** | Per-attack Δ and AE distributions |
-| 📈 **Score Trajectory** | Baseline → post-exposure opinion shift per profile |
-| 🌐 **Profile Feature Network** | Interactive Spearman correlation graph (see below) |
-| 🔎 **Audit & Robustness** | Bootstrap rank stability, SEM sensitivity, methodology audit |
-| 📋 **Task Reliability** | Reliability weight surface across attack × opinion cells |
-
-#### 🌐 Profile Feature Network — interaction guide
-
-The network tab renders the full **91-node, 1,807-edge** Spearman correlation graph of profile features with community structure (Q = 0.313):
-
-- **Circles** = continuous trait features · **Diamonds** = categorical / dummy features
-- **Force-directed layout** — drag nodes to pin/reposition; press `P` to toggle physics
-- **Wheel zoom** + **background drag** for pan/zoom
-- **Shift + drag** = lasso multi-select → local metrics aggregate in side panel
-- **Shortest-path mode** (toolbar button) — click source, then target → BFS path highlighted
-- **Community convex hulls** — press `H` to toggle coloured community boundaries
-- **Filters**: ontology family · community · feature type (continuous/categorical) · edge sign (positive/negative correlation)
-- **Hub / bridge presets** — one-click highlight of top-10 hub or bridge nodes
-- **Global metrics panel** — density, modularity, avg clustering, transitivity, diameter
-- **Local node tooltip** — degree, strength, eigenvector centrality, PageRank, betweenness, closeness, participation coefficient, bridge ratio, within-module Z, k-core index
-- **Mini-map** — overview of full graph with current viewport box
-- **SVG export** — download current view
-- Keyboard: `R` = reset layout · `H` = hulls · `F` = fit to view · `P` = physics · `Esc` = deselect
-
----
-
 ## 📚 Citation
 
 ### APA 7
