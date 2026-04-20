@@ -78,15 +78,15 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 ### Main Results
 
 <div align="center">
-<img src="research_report/assets/figures/figure_3_profile_network_bridge_summary.png" width="780" alt="Profile feature network hub and bridge summary.">
+<img src="research_report/assets/figures/figure_readme_1_ae_factorial.png" width="920" alt="Adversarial effectivity across the 4-attack × 10-opinion factorial.">
 
-*Figure 1. Profile feature network — top hub variables by weighted degree (left) and top bridge variables by participation coefficient (right). Colours encode ontology family. Big Five Openness facets and Age emerge as the leading hub nodes; participation coefficient identifies features that span community boundaries in the hierarchical mixed continuous-plus-categorical feature graph.*
+*Figure 1. Adversarial effectivity across the 4 × 10 attack–opinion factorial (run_10 · 25 profiles · 1,000 scenarios). **Left:** Mean AE per cell — red = attack succeeded on average; blue = net resistance. **Right:** Inter-individual SD of AE. The **top dendrogram clusters opinion leaves** and the **right dendrogram clusters attack vectors** using the mean-AE matrix, with that shared ordering applied to both panels. Astroturf Wave produces the strongest positive mean AE on Alliance Commitment (+17.1); Fear Appeal Scapegoating generates net resistance on several Defence topics. The near-uniform spread (~34–46 units) across all cells shows that profile differences consistently modulate susceptibility regardless of which specific attack or opinion is targeted.*
 </div>
 
 <div align="center">
-<img src="research_report/assets/figures/figure_2_task_reliability_surface.pdf" width="780" alt="Task reliability surface.">
+<img src="research_report/assets/figures/figure_readme_2_moderation_heatmap.png" width="920" alt="OLS moderation heatmap: all 5 Big Five traits and Sex predicting adversarial opinion shifts.">
 
-*Figure 2. Task reliability surface — reliability weights (proportional to n / CV-MSE) across the attack × opinion factorial. Narrow weight dispersion confirms that no single cell dominates the conditional susceptibility ranking; the estimator is robust to task heterogeneity.*
+*Figure 2. OLS moderation heatmap — regression of per-leaf mean adversarial effectivity on all five Big Five personality traits (z-scored) and Sex (Female / Other dummy) across 25 pseudoprofiles (run_10). The **top dendrogram clusters opinion leaves** and the **right dendrogram clusters profile moderators** from the coefficient matrix itself. Blue = moderator reduces susceptibility; red = increases susceptibility. **Conscientiousness is the dominant protective moderator** (Alliance Commitment β = −9.4†, Media Trust β = +8.4\*). **Sex: Female** drives the largest positive effects on Humanitarian Intervention (+17.1), Sanctions Use (+19.4), and Media Trust (+22.4\*). Neuroticism shows topic-specific reactivity (Humanitarian Intervention +6.9†, Family Reunification −6.9). Significance: †p < .10, \*p < .05, \*\*p < .01, \*\*\*p < .001.*
 </div>
 
 ---

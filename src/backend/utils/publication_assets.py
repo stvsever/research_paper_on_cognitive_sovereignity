@@ -20,6 +20,7 @@ import pandas as pd
 import seaborn as sns
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
+from src.backend.utils.generate_main_readme_figures import generate_main_readme_figures
 from src.backend.utils.io import abs_path, ensure_dir, write_json, write_text
 from src.backend.utils.scenario_realism import pretty_label
 
@@ -622,6 +623,15 @@ def generate_publication_assets(
     if not weight_df.empty:
         figure_files.extend(_draw_moderator_forest(weight_df, figures_dir / "supplementary_figure_s5_moderator_weight_forest"))
     figure_files.extend(_draw_sem_diagram(sem_result, exploratory_df, config, indicator_columns, figures_dir / "supplementary_figure_s6_sem_path_diagram"))
+    figure_files.extend(
+        generate_main_readme_figures(
+            stage05_dir=stage05_dir,
+            stage06_dir=stage06_dir,
+            output_dirs=[figures_dir],
+            config=config,
+            ontology_catalog=ontology_catalog,
+        )
+    )
 
     sem_coeff_df = pd.DataFrame(sem_result.get("coefficients", []))
     if not sem_coeff_df.empty:
