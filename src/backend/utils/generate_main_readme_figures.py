@@ -1,20 +1,21 @@
 """
-Generate the two main README / paper matrix figures with top and right dendrograms.
+Generate the two root README / paper matrix figures with ontology-aware dendrograms.
 
-The implementation is deliberately data-driven:
-- attack / opinion labels are resolved from the actual run artefacts
-- configured ontology order is respected when available
-- canonical run_10 Big Five + Sex moderators are used when present
-- figure 2 degrades gracefully if those moderators are absent in a custom run
-
-These figures are used by the root README and the manually curated paper
-(`research_report/report/main.tex`) and can also be generated from stage 08.
+Key properties:
+- no in-figure titles
+- top / right dendrograms follow ontology or feature hierarchy, not incidental value clustering
+- attack / opinion ordering respects the active ontology selection for test, deployment, or custom runs
+- profile dummy variables remain grouped under their parent categorical dimension
+- command-line overrides are available for custom control outside the stage-08 pipeline
 """
 
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 import textwrap
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Sequence
 
@@ -28,15 +29,26 @@ import pandas as pd
 import seaborn as sns
 from matplotlib.colors import TwoSlopeNorm
 from scipy import stats
-from scipy.cluster.hierarchy import dendrogram, linkage, optimal_leaf_ordering
-from scipy.spatial.distance import pdist
-
+from scipy.cluster.hierarchy import dendrogram
 
 ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.backend.pipeline.separate.compute_conditional_susceptibility.feature_registry import (
+    FeatureRegistry,
+)
+from src.backend.utils.ontology_utils import (
+    flatten_leaf_paths,
+    leaf_to_key,
+    load_ontology_triplet,
+)
 DEFAULT_STAGE05 = ROOT / "evaluation" / "run_10" / "stage_outputs" / "05_compute_effectivity_deltas"
 DEFAULT_STAGE06 = ROOT / "evaluation" / "run_10" / "stage_outputs" / "06_construct_structural_equation_model"
 DEFAULT_CONFIG = ROOT / "evaluation" / "run_10" / "config" / "pipeline_config.json"
-DEFAULT_ONTOLOGY_CATALOG = ROOT / "evaluation" / "run_10" / "stage_outputs" / "01_create_scenarios" / "ontology_leaf_catalog.json"
+DEFAULT_ONTOLOGY_CATALOG = (
+    ROOT / "evaluation" / "run_10" / "stage_outputs" / "01_create_scenarios" / "ontology_leaf_catalog.json"
+)
 
 DEFAULT_OUTPUT_DIRS = [
     ROOT / "research_report" / "assets" / "figures",
@@ -48,16 +60,26 @@ DEFAULT_OUTPUT_DIRS = [
 WHITE = "#ffffff"
 NAVY = "#14213d"
 INK = "#222222"
+DENDROGRAM_COLOR = "#8d8d8d"
 
-CANONICAL_PREDICTORS: list[tuple[str, str]] = [
-    ("profile_cont_big_five_conscientiousness_mean_pct", "Conscientiousness"),
-    ("profile_cont_big_five_neuroticism_mean_pct", "Neuroticism"),
-    ("profile_cont_big_five_openness_to_experience_mean_pct", "Openness to Exp."),
-    ("profile_cont_big_five_agreeableness_mean_pct", "Agreeableness"),
-    ("profile_cont_big_five_extraversion_mean_pct", "Extraversion"),
-    ("profile_cat__profile_cat_sex_Female", "Sex: Female"),
-    ("profile_cat__profile_cat_sex_Other", "Sex: Other"),
+CANONICAL_CORE_PREDICTORS: list[tuple[tuple[str, ...], str]] = [
+    (("profile_cont_chronological_age", "profile_cont_age_years"), "Age"),
+    (("profile_cont_big_five_conscientiousness_mean_pct",), "Conscientiousness"),
+    (("profile_cont_big_five_neuroticism_mean_pct",), "Neuroticism"),
+    (("profile_cont_big_five_openness_to_experience_mean_pct",), "Openness"),
+    (("profile_cont_big_five_agreeableness_mean_pct",), "Agreeableness"),
+    (("profile_cont_big_five_extraversion_mean_pct",), "Extraversion"),
+    (("profile_cat__profile_cat_sex_Female",), "Sex: Female"),
+    (("profile_cat__profile_cat_sex_Other",), "Sex: Other"),
 ]
+
+
+@dataclass(frozen=True)
+class PredictorSpec:
+    column: str
+    label: str
+    hierarchy_path: tuple[str, ...]
+    score: float = 0.0
 
 
 def _setup() -> None:
@@ -69,8 +91,6 @@ def _setup() -> None:
             "font.family": "sans-serif",
             "axes.edgecolor": NAVY,
             "axes.labelcolor": INK,
-            "axes.titleweight": "bold",
-            "axes.titlesize": 13,
             "axes.labelsize": 11,
             "font.size": 10,
             "legend.frameon": False,
@@ -97,8 +117,26 @@ def _save(fig: plt.Figure, stem: str, output_dirs: Path | str | Sequence[Path | 
     return saved
 
 
+def _ordered_unique(values: Iterable[str]) -> list[str]:
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        if pd.isna(value):
+            continue
+        text = str(value).strip()
+        if text and text not in seen:
+            ordered.append(text)
+            seen.add(text)
+    return ordered
+
+
+def _split_path(value: str) -> tuple[str, ...]:
+    return tuple(part.strip() for part in str(value).split(">") if part.strip())
+
+
 def _last_leaf(value: str) -> str:
-    return str(value).split(" > ")[-1].strip()
+    parts = _split_path(value)
+    return parts[-1] if parts else str(value).strip()
 
 
 def _display_text(value: str) -> str:
@@ -134,59 +172,179 @@ def _load_json_if_exists(path: str | Path | None) -> dict | None:
     return json.loads(candidate.read_text(encoding="utf-8"))
 
 
-def _ordered_labels(
-    discovered_values: Iterable[str],
-    preferred_values: Iterable[str] | None = None,
-) -> list[str]:
-    discovered = []
-    seen = set()
-    for value in discovered_values:
-        if pd.isna(value):
+def _load_ontologies(config: dict | None, ontology_catalog: dict | None) -> dict | None:
+    ontology_root = None
+    if config and config.get("ontology_root"):
+        ontology_root = config["ontology_root"]
+    elif ontology_catalog and ontology_catalog.get("ontology_root"):
+        ontology_root = ontology_catalog["ontology_root"]
+    if not ontology_root:
+        return None
+    candidate = Path(str(ontology_root))
+    if not candidate.exists():
+        return None
+    try:
+        return load_ontology_triplet(candidate)
+    except Exception as exc:
+        print(f"  warning: could not load ontology tree from {candidate}: {exc}")
+        return None
+
+
+def _preferred_paths_from_config(kind: str, config: dict | None, ontology_catalog: dict | None) -> list[str]:
+    if kind == "attack":
+        if ontology_catalog and ontology_catalog.get("selected_attack_leaves"):
+            return _ordered_unique(ontology_catalog["selected_attack_leaves"])
+        if config and config.get("attack_leaves"):
+            return _ordered_unique(part.strip() for part in str(config["attack_leaves"]).split(","))
+        if config and config.get("attack_leaf"):
+            return _ordered_unique([config["attack_leaf"]])
+        return []
+    if ontology_catalog and ontology_catalog.get("selected_opinion_leaves"):
+        return _ordered_unique(ontology_catalog["selected_opinion_leaves"])
+    return []
+
+
+def _match_preferred_paths(preferred_paths: Sequence[str], discovered_paths: Sequence[str]) -> list[str]:
+    discovered = _ordered_unique(discovered_paths)
+    discovered_set = set(discovered)
+    by_leaf: dict[str, list[str]] = {}
+    for path in discovered:
+        by_leaf.setdefault(_last_leaf(path), []).append(path)
+
+    resolved: list[str] = []
+    for preferred in preferred_paths:
+        preferred_text = str(preferred).strip()
+        if preferred_text in discovered_set and preferred_text not in resolved:
+            resolved.append(preferred_text)
             continue
-        text = str(value)
-        if text not in seen:
-            discovered.append(text)
-            seen.add(text)
+        leaf = _last_leaf(preferred_text)
+        matches = by_leaf.get(leaf, [])
+        if len(matches) == 1 and matches[0] not in resolved:
+            resolved.append(matches[0])
+    return resolved
 
+
+def _resolve_ontology_order(
+    kind: str,
+    discovered_paths: Sequence[str],
+    config: dict | None,
+    ontology_catalog: dict | None,
+    ontologies: dict | None,
+) -> list[str]:
+    discovered = _ordered_unique(discovered_paths)
+    discovered_set = set(discovered)
     ordered: list[str] = []
-    if preferred_values is not None:
-        for value in preferred_values:
-            last = _last_leaf(str(value))
-            if last in seen and last not in ordered:
-                ordered.append(last)
 
-    for value in discovered:
-        if value not in ordered:
-            ordered.append(value)
+    ontology_tree = None
+    if ontologies:
+        ontology_tree = ontologies["ATTACK" if kind == "attack" else "OPINION"]
+    if ontology_tree is not None:
+        ordered.extend(path for path in flatten_leaf_paths(ontology_tree) if path in discovered_set)
+
+    preferred = _preferred_paths_from_config(kind, config, ontology_catalog)
+    for path in _match_preferred_paths(preferred, discovered):
+        if path not in ordered:
+            ordered.append(path)
+
+    for path in discovered:
+        if path not in ordered:
+            ordered.append(path)
     return ordered
 
 
-def _make_cluster(mat: np.ndarray, axis: int) -> tuple[np.ndarray | None, list[int]]:
-    work = np.nan_to_num(mat.T if axis == 1 else mat, nan=0.0)
-    n = work.shape[0]
-    if n <= 1:
-        return None, list(range(n))
-    dist = pdist(work, metric="euclidean")
-    if len(dist) == 0 or np.allclose(dist, 0):
-        return None, list(range(n))
-    Z = optimal_leaf_ordering(linkage(dist, method="ward"), dist)
-    return Z, list(range(n))
+def _build_path_tree(paths: Sequence[str]) -> dict[str, dict]:
+    tree: dict[str, dict] = {}
+    for path in _ordered_unique(paths):
+        node = tree
+        for part in _split_path(path):
+            node = node.setdefault(part, {})
+    return tree
 
 
-def _draw_dend(ax: plt.Axes, Z: np.ndarray | None, orientation: str, n_leaves: int, color: str = "#8d8d8d") -> list[int]:
+def _hierarchy_linkage(paths: Sequence[str]) -> np.ndarray | None:
+    ordered_paths = _ordered_unique(paths)
+    if len(ordered_paths) <= 1:
+        return None
+
+    tree = _build_path_tree(ordered_paths)
+    leaf_index = {path: idx for idx, path in enumerate(ordered_paths)}
+    counts = {idx: 1 for idx in range(len(ordered_paths))}
+    linkage_rows: list[list[float]] = []
+    next_id = len(ordered_paths)
+
+    def visit(node: dict[str, dict], prefix: tuple[str, ...]) -> tuple[int, float]:
+        nonlocal next_id
+        child_clusters: list[int] = []
+        child_heights: list[float] = []
+
+        for key, child in node.items():
+            current_prefix = prefix + (key,)
+            if child:
+                cluster_id, child_height = visit(child, current_prefix)
+            else:
+                cluster_id = leaf_index[" > ".join(current_prefix)]
+                child_height = 0.0
+            child_clusters.append(cluster_id)
+            child_heights.append(child_height)
+
+        if len(child_clusters) == 1:
+            return child_clusters[0], child_heights[0]
+
+        merge_height = max(child_heights) + 1.0
+        current_id = child_clusters[0]
+        current_count = counts[current_id]
+
+        for child_id in child_clusters[1:]:
+            new_count = current_count + counts[child_id]
+            linkage_rows.append([current_id, child_id, merge_height, new_count])
+            counts[next_id] = new_count
+            current_id = next_id
+            current_count = new_count
+            next_id += 1
+
+        return current_id, merge_height
+
+    visit(tree, ())
+    if len(linkage_rows) != len(ordered_paths) - 1:
+        return None
+    return np.asarray(linkage_rows, dtype=float)
+
+
+def _draw_hierarchy_dendrogram(ax: plt.Axes, paths: Sequence[str], orientation: str) -> list[int]:
+    ordered_paths = _ordered_unique(paths)
+    Z = _hierarchy_linkage(ordered_paths)
     if Z is None:
         ax.set_axis_off()
-        return list(range(n_leaves))
+        return list(range(len(ordered_paths)))
     dend = dendrogram(
         Z,
         ax=ax,
         orientation=orientation,
         color_threshold=0,
-        above_threshold_color=color,
+        above_threshold_color=DENDROGRAM_COLOR,
         no_labels=True,
     )
     ax.set_axis_off()
     return dend["leaves"]
+
+
+def _style_dendrogram_axis(
+    ax: plt.Axes,
+    orientation: str,
+    x_max: float | None = None,
+    y_max: float | None = None,
+) -> None:
+    if x_max is not None:
+        ax.set_xlim(0, x_max)
+    if y_max is not None:
+        if orientation == "right":
+            ax.set_ylim(y_max, 0)
+        else:
+            ax.set_ylim(0, y_max)
+    if orientation == "right":
+        ax.set_xlim(left=0)
+    ax.margins(x=0, y=0)
+    ax.set_axis_off()
 
 
 def _imshow_heat(
@@ -217,8 +375,8 @@ def _imshow_heat(
                 text = annot[row, col]
                 if not text:
                     continue
-                cell_value = data[row, col]
-                brightness = abs(float(cell_value)) / max(vmax_color, 1e-9)
+                cell_value = float(np.nan_to_num(data[row, col], nan=0.0))
+                brightness = abs(cell_value) / max(vmax_color, 1e-9)
                 color = "white" if brightness > 0.55 else INK
                 ax.text(
                     col * 10 + 5,
@@ -226,46 +384,191 @@ def _imshow_heat(
                     text,
                     ha="center",
                     va="center",
-                    fontsize=8.5,
+                    fontsize=8.3,
                     fontweight="bold",
                     color=color,
                 )
     return im
 
 
-def _align_dendrogram_axes(ax_heat: plt.Axes, ax_dend_top: plt.Axes, ax_dend_right: plt.Axes) -> None:
-    fig = ax_heat.figure
-    fig.canvas.draw()
-    heat_pos = ax_heat.get_position()
-    top_pos = ax_dend_top.get_position()
-    right_pos = ax_dend_right.get_position()
-    ax_dend_top.set_position([heat_pos.x0, top_pos.y0, heat_pos.width, top_pos.height])
-    ax_dend_right.set_position([right_pos.x0, heat_pos.y0, right_pos.width, heat_pos.height])
+def _outcome_column_for_path(profile_wide_df: pd.DataFrame, opinion_path: str) -> str | None:
+    candidates = [
+        f"adversarial_delta_indicator__{leaf_to_key(_last_leaf(opinion_path))}",
+        f"adversarial_delta_indicator__{leaf_to_key(opinion_path)}",
+    ]
+    for candidate in candidates:
+        if candidate in profile_wide_df.columns:
+            return candidate
+    return None
 
 
-def _resolve_attack_order(long_df: pd.DataFrame, config: dict | None, ontology_catalog: dict | None) -> list[str]:
-    discovered = long_df["attack_leaf_label"].dropna().tolist()
-    preferred: list[str] = []
+def _load_predictor_score_map(stage06_dir: Path) -> dict[str, float]:
+    score_map: dict[str, float] = {}
 
-    if ontology_catalog and ontology_catalog.get("selected_attack_leaves"):
-        preferred.extend(ontology_catalog["selected_attack_leaves"])
-    elif config and config.get("attack_leaves"):
-        preferred.extend([part.strip() for part in str(config["attack_leaves"]).split(",") if part.strip()])
-    elif config and config.get("attack_leaf"):
-        preferred.append(config["attack_leaf"])
+    weight_path = stage06_dir / "moderator_weight_table.csv"
+    if weight_path.exists():
+        weight_df = pd.read_csv(weight_path)
+        if "term" in weight_df.columns:
+            value_col = "normalized_weight_pct" if "normalized_weight_pct" in weight_df.columns else None
+            if value_col is None and "mean_abs_estimate" in weight_df.columns:
+                value_col = "mean_abs_estimate"
+            if value_col is not None:
+                for row in weight_df.itertuples():
+                    try:
+                        score_map[str(row.term)] = float(abs(getattr(row, value_col)))
+                    except Exception:
+                        continue
 
-    return _ordered_labels(discovered, preferred)
+    ridge_path = stage06_dir / "ridge_full_coefficients.csv"
+    if ridge_path.exists():
+        ridge_df = pd.read_csv(ridge_path)
+        if "term" in ridge_df.columns and "ridge_estimate" in ridge_df.columns:
+            for row in ridge_df.itertuples():
+                score_map.setdefault(str(row.term), float(abs(row.ridge_estimate)))
+
+    return score_map
 
 
-def _resolve_opinion_order(long_df: pd.DataFrame, ontology_catalog: dict | None) -> list[str]:
-    discovered = long_df["opinion_leaf_label"].dropna().tolist()
-    preferred = ontology_catalog.get("selected_opinion_leaves") if ontology_catalog else None
-    return _ordered_labels(discovered, preferred)
+def _prefer_raw_column(column: str, profile_wide_df: pd.DataFrame) -> str:
+    if column.endswith("_z"):
+        raw = column[:-2]
+        if raw in profile_wide_df.columns:
+            return raw
+    return column
 
 
-def _available_predictors(profile_wide_df: pd.DataFrame) -> list[tuple[str, str]]:
-    available = [(column, label) for column, label in CANONICAL_PREDICTORS if column in profile_wide_df.columns]
-    return available
+def _predictor_spec_from_column(
+    column: str,
+    registry: FeatureRegistry,
+    score_map: dict[str, float],
+    label_override: str | None = None,
+) -> PredictorSpec:
+    dimension = registry.col_to_dimension(column)
+    inventory = registry.col_to_inventory(column)
+
+    score = score_map.get(column, 0.0)
+    if score == 0.0 and not column.endswith("_z"):
+        score = score_map.get(f"{column}_z", 0.0)
+
+    if dimension and dimension.is_categorical:
+        level_label = next((leaf.label for leaf in dimension.leaves if leaf.col == column), registry.label(column))
+        label = label_override or f"{dimension.label}: {level_label}"
+        if inventory:
+            hierarchy = (inventory.label, dimension.label, level_label)
+        else:
+            hierarchy = (dimension.label, level_label)
+        return PredictorSpec(column=column, label=label, hierarchy_path=hierarchy, score=score)
+
+    if dimension:
+        label = label_override or dimension.label
+        if inventory:
+            hierarchy = (inventory.label, dimension.label)
+        else:
+            hierarchy = (dimension.label,)
+        return PredictorSpec(column=column, label=label, hierarchy_path=hierarchy, score=score)
+
+    label = label_override or registry.label(column)
+    if inventory:
+        hierarchy = (inventory.label, label)
+    else:
+        hierarchy = (label,)
+    return PredictorSpec(column=column, label=label, hierarchy_path=hierarchy, score=score)
+
+
+def _canonical_predictors(
+    profile_wide_df: pd.DataFrame,
+    registry: FeatureRegistry,
+    score_map: dict[str, float],
+) -> list[PredictorSpec]:
+    specs: list[PredictorSpec] = []
+    used_columns: set[str] = set()
+    for aliases, label in CANONICAL_CORE_PREDICTORS:
+        column = next((candidate for candidate in aliases if candidate in profile_wide_df.columns), None)
+        if column is None:
+            continue
+        column = _prefer_raw_column(column, profile_wide_df)
+        if column in used_columns:
+            continue
+        specs.append(_predictor_spec_from_column(column, registry, score_map, label_override=label))
+        used_columns.add(column)
+    return specs
+
+
+def _reference_level(levels: Sequence[tuple[str, str]], profile_wide_df: pd.DataFrame) -> str | None:
+    if not levels:
+        return None
+    ranked = sorted(
+        ((float(profile_wide_df[col].fillna(0).mean()), col) for _label, col in levels if col in profile_wide_df.columns),
+        reverse=True,
+    )
+    if ranked:
+        return ranked[0][1]
+    return levels[0][1]
+
+
+def _generic_predictors(
+    profile_wide_df: pd.DataFrame,
+    registry: FeatureRegistry,
+    score_map: dict[str, float],
+    max_rows: int = 8,
+) -> list[PredictorSpec]:
+    candidates: list[PredictorSpec] = []
+    seen: set[str] = set()
+
+    for column, _dim_label, _inventory_label in registry.dimension_mean_cols():
+        raw_column = _prefer_raw_column(column, profile_wide_df)
+        if raw_column not in profile_wide_df.columns or raw_column in seen:
+            continue
+        if raw_column.endswith("_z"):
+            continue
+        candidates.append(_predictor_spec_from_column(raw_column, registry, score_map))
+        seen.add(raw_column)
+
+    for _dim_label, _inventory_label, levels in registry.categorical_group_info():
+        reference_col = _reference_level(levels, profile_wide_df)
+        for _level_label, column in levels:
+            if column not in profile_wide_df.columns or column == reference_col or column in seen:
+                continue
+            candidates.append(_predictor_spec_from_column(column, registry, score_map))
+            seen.add(column)
+
+    if not candidates:
+        return []
+
+    ranked = sorted(candidates, key=lambda spec: spec.score, reverse=True)
+    selected_columns = [spec.column for spec in ranked if spec.score > 0][:max_rows]
+    if len(selected_columns) < min(max_rows, 4):
+        selected_columns = [spec.column for spec in ranked[:max_rows]]
+    selected_set = set(selected_columns)
+    return [spec for spec in candidates if spec.column in selected_set][:max_rows]
+
+
+def _available_predictors(profile_wide_df: pd.DataFrame, stage06_dir: Path) -> list[PredictorSpec]:
+    registry = FeatureRegistry(profile_wide_df)
+    score_map = _load_predictor_score_map(stage06_dir)
+
+    canonical = _canonical_predictors(profile_wide_df, registry, score_map)
+    if len(canonical) >= 4:
+        return canonical
+    return _generic_predictors(profile_wide_df, registry, score_map)
+
+
+def _valid_predictors(profile_wide_df: pd.DataFrame, specs: Sequence[PredictorSpec]) -> list[PredictorSpec]:
+    valid: list[PredictorSpec] = []
+    seen: set[str] = set()
+    for spec in specs:
+        if spec.column not in profile_wide_df.columns or spec.column in seen:
+            continue
+        values = profile_wide_df[spec.column]
+        if values.dropna().nunique() <= 1:
+            continue
+        valid.append(spec)
+        seen.add(spec.column)
+    return valid
+
+
+def _ordered_predictor_specs(specs: Sequence[PredictorSpec]) -> list[PredictorSpec]:
+    return sorted(specs, key=lambda spec: (spec.hierarchy_path, spec.label))
 
 
 def _make_figure_1(
@@ -273,23 +576,36 @@ def _make_figure_1(
     output_dirs: Path | str | Sequence[Path | str],
     config: dict | None,
     ontology_catalog: dict | None,
+    ontologies: dict | None,
 ) -> list[str]:
-    attack_order = _resolve_attack_order(long_df, config, ontology_catalog)
-    opinion_order = _resolve_opinion_order(long_df, ontology_catalog)
+    attack_paths = _resolve_ontology_order(
+        "attack",
+        long_df["attack_leaf"].dropna().tolist(),
+        config,
+        ontology_catalog,
+        ontologies,
+    )
+    opinion_paths = _resolve_ontology_order(
+        "opinion",
+        long_df["opinion_leaf"].dropna().tolist(),
+        config,
+        ontology_catalog,
+        ontologies,
+    )
 
     mean_piv = (
-        long_df.groupby(["attack_leaf_label", "opinion_leaf_label"])["adversarial_effectivity"]
+        long_df.groupby(["attack_leaf", "opinion_leaf"])["adversarial_effectivity"]
         .mean()
         .reset_index()
-        .pivot(index="attack_leaf_label", columns="opinion_leaf_label", values="adversarial_effectivity")
-        .reindex(index=attack_order, columns=opinion_order)
+        .pivot(index="attack_leaf", columns="opinion_leaf", values="adversarial_effectivity")
+        .reindex(index=attack_paths, columns=opinion_paths)
     )
     std_piv = (
-        long_df.groupby(["attack_leaf_label", "opinion_leaf_label"])["adversarial_effectivity"]
+        long_df.groupby(["attack_leaf", "opinion_leaf"])["adversarial_effectivity"]
         .std()
         .reset_index()
-        .pivot(index="attack_leaf_label", columns="opinion_leaf_label", values="adversarial_effectivity")
-        .reindex(index=attack_order, columns=opinion_order)
+        .pivot(index="attack_leaf", columns="opinion_leaf", values="adversarial_effectivity")
+        .reindex(index=attack_paths, columns=opinion_paths)
     )
 
     mean_vals = mean_piv.values.astype(float)
@@ -297,40 +613,38 @@ def _make_figure_1(
         return []
 
     n_rows, n_cols = mean_piv.shape
-    Z_col, _ = _make_cluster(mean_vals, axis=1)
-    Z_row, _ = _make_cluster(mean_vals, axis=0)
-
-    fig = plt.figure(figsize=(22, 6.8))
+    fig = plt.figure(figsize=(18.5, 6.8))
     fig.patch.set_facecolor(WHITE)
     gs = gridspec.GridSpec(
         3,
-        5,
+        4,
         figure=fig,
-        height_ratios=[0.18, 1.0, 0.10],
-        width_ratios=[1.0, 0.05, 1.0, 0.04, 0.14],
+        height_ratios=[0.18, 1.0, 0.12],
+        width_ratios=[1.0, 0.14, 1.0, 0.14],
         hspace=0.0,
         wspace=0.0,
     )
 
-    ax_dend_top = fig.add_subplot(gs[0, 0])
+    ax_dend_top_mean = fig.add_subplot(gs[0, 0])
+    ax_dend_top_std = fig.add_subplot(gs[0, 2])
     ax_heat_mean = fig.add_subplot(gs[1, 0])
+    ax_dend_right_mean = fig.add_subplot(gs[1, 1])
     ax_heat_std = fig.add_subplot(gs[1, 2])
-    ax_dend_right = fig.add_subplot(gs[1, 4])
+    ax_dend_right_std = fig.add_subplot(gs[1, 3])
 
-    col_order = _draw_dend(ax_dend_top, Z_col, orientation="top", n_leaves=n_cols)
-    row_order = _draw_dend(ax_dend_right, Z_row, orientation="right", n_leaves=n_rows)
+    col_order = _draw_hierarchy_dendrogram(ax_dend_top_mean, opinion_paths, orientation="top")
+    _draw_hierarchy_dendrogram(ax_dend_top_std, opinion_paths, orientation="top")
+    row_order = _draw_hierarchy_dendrogram(ax_dend_right_mean, attack_paths, orientation="right")
+    _draw_hierarchy_dendrogram(ax_dend_right_std, attack_paths, orientation="right")
 
     mean_ordered = mean_piv.iloc[row_order, col_order].values.astype(float)
     std_ordered = std_piv.iloc[row_order, col_order].values.astype(float)
-    col_labels = [_cluster_label_from_value(opinion_order[idx], width=14) for idx in col_order]
-    row_labels = [_cluster_label_from_value(attack_order[idx], width=12) for idx in row_order]
+    col_labels = [_cluster_label_from_value(opinion_paths[idx], width=18) for idx in col_order]
+    row_labels = [_cluster_label_from_value(attack_paths[idx], width=12) for idx in row_order]
 
     extent = (0, n_cols * 10, n_rows * 10, 0)
     x_ticks = np.arange(n_cols) * 10 + 5
     y_ticks = np.arange(n_rows) * 10 + 5
-    run_id = str((config or {}).get("run_id", "run"))
-    n_profiles = int(long_df["profile_id"].nunique()) if "profile_id" in long_df.columns else 0
-    n_scenarios = int(len(long_df))
 
     vmax_mean = max(float(np.nanmax(np.abs(mean_ordered))) * 1.05, 1.0)
     norm_mean = TwoSlopeNorm(vmin=-vmax_mean, vcenter=0.0, vmax=vmax_mean)
@@ -343,15 +657,14 @@ def _make_figure_1(
     im_mean = _imshow_heat(ax_heat_mean, mean_ordered, "RdBu_r", norm_mean, extent, annot_mean)
 
     ax_heat_mean.set_xticks(x_ticks)
-    ax_heat_mean.set_xticklabels(col_labels, rotation=35, ha="right", fontsize=8.5)
+    ax_heat_mean.set_xticklabels(col_labels, rotation=30, ha="right", fontsize=8.0)
     ax_heat_mean.set_yticks(y_ticks)
     ax_heat_mean.set_yticklabels(row_labels, fontsize=9.5)
     ax_heat_mean.set_xlim(0, n_cols * 10)
     ax_heat_mean.set_ylim(n_rows * 10, 0)
     ax_heat_mean.tick_params(axis="both", which="both", length=0)
-    ax_heat_mean.set_title("Mean Adversarial Effectivity (AE)\nby Attack × Opinion cell", fontsize=12, fontweight="bold", pad=8)
-    ax_heat_mean.set_xlabel("Political opinion leaf", fontsize=10.5, labelpad=6)
-    ax_heat_mean.set_ylabel("Attack vector", fontsize=10.5, labelpad=6)
+    ax_heat_mean.set_xlabel("")
+    ax_heat_mean.set_ylabel("")
 
     vmax_std = max(float(np.nanmax(std_ordered)) * 1.05, 1.0)
     annot_std = np.array(
@@ -363,51 +676,35 @@ def _make_figure_1(
     im_std = _imshow_heat(ax_heat_std, std_ordered, "YlOrRd", vmax_std, extent, annot_std)
 
     ax_heat_std.set_xticks(x_ticks)
-    ax_heat_std.set_xticklabels(col_labels, rotation=35, ha="right", fontsize=8.5)
+    ax_heat_std.set_xticklabels(col_labels, rotation=30, ha="right", fontsize=8.0)
     ax_heat_std.set_yticks(y_ticks)
     ax_heat_std.set_yticklabels([])
     ax_heat_std.set_xlim(0, n_cols * 10)
     ax_heat_std.set_ylim(n_rows * 10, 0)
     ax_heat_std.tick_params(axis="both", which="both", length=0)
-    ax_heat_std.set_title("Inter-individual SD of AE\n(profile variability per cell)", fontsize=12, fontweight="bold", pad=8)
-    ax_heat_std.set_xlabel("Political opinion leaf", fontsize=10.5, labelpad=6)
+    ax_heat_std.set_xlabel("")
+    ax_heat_std.set_ylabel("")
 
-    ax_dend_top.set_xlim(0, n_cols * 10)
-    ax_dend_top.set_ylim(bottom=0)
-    ax_dend_right.set_ylim(n_rows * 10, 0)
-    ax_dend_right.set_xlim(left=0)
-
-    plt.tight_layout(rect=[0, 0.13, 1, 1])
-    _align_dendrogram_axes(ax_heat_mean, ax_dend_top, ax_dend_right)
+    fig.subplots_adjust(left=0.10, right=0.97, top=0.88, bottom=0.19, wspace=0.02, hspace=0.00)
+    _style_dendrogram_axis(ax_dend_top_mean, orientation="top", x_max=n_cols * 10)
+    _style_dendrogram_axis(ax_dend_top_std, orientation="top", x_max=n_cols * 10)
+    _style_dendrogram_axis(ax_dend_right_mean, orientation="right", y_max=n_rows * 10)
+    _style_dendrogram_axis(ax_dend_right_std, orientation="right", y_max=n_rows * 10)
 
     pos_mean = ax_heat_mean.get_position()
     pos_std = ax_heat_std.get_position()
-    cbar_ax1 = fig.add_axes([pos_mean.x0, 0.04, pos_mean.width, 0.03])
-    cbar_ax2 = fig.add_axes([pos_std.x0, 0.04, pos_std.width, 0.03])
+    cbar_height = 0.022
+    cbar_y = 0.08
+    cbar_ax1 = fig.add_axes([pos_mean.x0, cbar_y, pos_mean.width, cbar_height])
+    cbar_ax2 = fig.add_axes([pos_std.x0, cbar_y, pos_std.width, cbar_height])
 
     cb1 = fig.colorbar(im_mean, cax=cbar_ax1, orientation="horizontal")
     cb1.set_label("Mean AE  (positive = attack succeeded)", fontsize=8.5)
     cb1.ax.tick_params(labelsize=8)
+
     cb2 = fig.colorbar(im_std, cax=cbar_ax2, orientation="horizontal")
     cb2.set_label("SD(AE) across profiles  (inter-individual spread)", fontsize=8.5)
     cb2.ax.tick_params(labelsize=8)
-
-    fig.suptitle(
-        f"Adversarial effectivity across the {n_rows}-attack × {n_cols}-opinion factorial"
-        f"  ({run_id}  |  {n_profiles} profiles  |  {n_scenarios:,} scenarios)",
-        fontsize=13,
-        fontweight="bold",
-        y=1.02,
-    )
-    fig.text(
-        0.5,
-        -0.01,
-        "Top and right dendrograms show hierarchical clustering on the mean-AE matrix."
-        "  AE = (post − baseline) × direction_k  |  direction_k in {+1, −1} from OPINION ontology",
-        ha="center",
-        fontsize=8.5,
-        color="#666666",
-    )
 
     return _save(fig, "figure_readme_1_ae_factorial", output_dirs)
 
@@ -415,50 +712,65 @@ def _make_figure_1(
 def _make_figure_2(
     profile_wide_df: pd.DataFrame,
     long_df: pd.DataFrame,
+    stage06_dir: Path,
     output_dirs: Path | str | Sequence[Path | str],
     config: dict | None,
     ontology_catalog: dict | None,
+    ontologies: dict | None,
 ) -> list[str]:
-    predictor_pairs = _available_predictors(profile_wide_df)
-    if not predictor_pairs:
-        print("  skipped figure_readme_2_moderation_heatmap: canonical Big Five/Sex predictors not available")
+    predictor_specs = _ordered_predictor_specs(
+        _valid_predictors(profile_wide_df, _available_predictors(profile_wide_df, stage06_dir))
+    )
+    if not predictor_specs:
+        print("  skipped figure_readme_2_moderation_heatmap: no eligible moderator predictors available")
         return []
 
-    opinion_order = _resolve_opinion_order(long_df, ontology_catalog)
-    label_by_slug = {_last_leaf(label).lower(): _cluster_label_from_value(label, width=12) for label in opinion_order}
+    opinion_paths = _resolve_ontology_order(
+        "opinion",
+        long_df["opinion_leaf"].dropna().tolist(),
+        config,
+        ontology_catalog,
+        ontologies,
+    )
 
-    outcome_cols = []
-    outcome_labels = []
-    for label in opinion_order:
-        slug = _last_leaf(label).lower()
-        column = f"adversarial_delta_indicator__{slug}"
-        if column in profile_wide_df.columns:
-            outcome_cols.append(column)
-            outcome_labels.append(label_by_slug[slug])
+    outcome_cols: list[str] = []
+    outcome_paths: list[str] = []
+    for path in opinion_paths:
+        column = _outcome_column_for_path(profile_wide_df, path)
+        if column is None or column.endswith("_z"):
+            continue
+        outcome_cols.append(column)
+        outcome_paths.append(path)
 
     if not outcome_cols:
         print("  skipped figure_readme_2_moderation_heatmap: adversarial delta indicators not available")
         return []
-    run_id = str((config or {}).get("run_id", "run"))
-    n_profiles = int(profile_wide_df["profile_id"].nunique()) if "profile_id" in profile_wide_df.columns else int(len(profile_wide_df))
 
-    X = profile_wide_df[[column for column, _ in predictor_pairs]].copy()
-    for column, _label in predictor_pairs:
-        if column.startswith("profile_cont_"):
-            mu = X[column].mean()
-            sd = X[column].std(ddof=1)
+    X = profile_wide_df[[spec.column for spec in predictor_specs]].copy()
+    for spec in predictor_specs:
+        if spec.column.startswith("profile_cont_"):
+            mu = X[spec.column].mean()
+            sd = X[spec.column].std(ddof=1)
             if pd.notna(sd) and sd > 0:
-                X[column] = (X[column] - mu) / sd
+                X[spec.column] = (X[spec.column] - mu) / sd
 
-    coef_df = pd.DataFrame(index=[label for _, label in predictor_pairs], columns=outcome_labels, dtype=float)
-    pval_df = pd.DataFrame(index=[label for _, label in predictor_pairs], columns=outcome_labels, dtype=float)
+    coef_df = pd.DataFrame(
+        index=[spec.label for spec in predictor_specs],
+        columns=outcome_paths,
+        dtype=float,
+    )
+    pval_df = pd.DataFrame(
+        index=[spec.label for spec in predictor_specs],
+        columns=outcome_paths,
+        dtype=float,
+    )
 
     Xmat = X.values.astype(float)
     n_obs = len(Xmat)
     X_design = np.column_stack([np.ones(n_obs), Xmat])
     n_params = X_design.shape[1]
 
-    for outcome_col, outcome_label in zip(outcome_cols, outcome_labels):
+    for outcome_col, outcome_path in zip(outcome_cols, outcome_paths):
         y = profile_wide_df[outcome_col].fillna(0).values.astype(float)
         coefs, _, _, _ = np.linalg.lstsq(X_design, y, rcond=None)
         resid = y - X_design @ coefs
@@ -472,17 +784,14 @@ def _make_figure_2(
         with np.errstate(divide="ignore", invalid="ignore"):
             t_vals = np.divide(coefs, se, out=np.zeros_like(coefs), where=se > 0)
         p_vals = 2 * stats.t.sf(np.abs(t_vals), df=df_error)
-        for idx, (_column, predictor_label) in enumerate(predictor_pairs):
-            coef_df.loc[predictor_label, outcome_label] = coefs[idx + 1]
-            pval_df.loc[predictor_label, outcome_label] = p_vals[idx + 1]
+        for idx, spec in enumerate(predictor_specs):
+            coef_df.loc[spec.label, outcome_path] = coefs[idx + 1]
+            pval_df.loc[spec.label, outcome_path] = p_vals[idx + 1]
 
     heat_vals = coef_df.values.astype(float)
     n_rows, n_cols = heat_vals.shape
     if n_rows == 0 or n_cols == 0:
         return []
-
-    Z_col, _ = _make_cluster(heat_vals, axis=1)
-    Z_row, _ = _make_cluster(heat_vals, axis=0)
 
     fig = plt.figure(figsize=(16, 6.8))
     fig.patch.set_facecolor(WHITE)
@@ -500,13 +809,14 @@ def _make_figure_2(
     ax_heat = fig.add_subplot(gs[1, 0])
     ax_dend_right = fig.add_subplot(gs[1, 1])
 
-    col_order = _draw_dend(ax_dend_top, Z_col, orientation="top", n_leaves=n_cols)
-    row_order = _draw_dend(ax_dend_right, Z_row, orientation="right", n_leaves=n_rows)
+    col_order = _draw_hierarchy_dendrogram(ax_dend_top, outcome_paths, orientation="top")
+    row_paths = [" > ".join(spec.hierarchy_path) for spec in predictor_specs]
+    row_order = _draw_hierarchy_dendrogram(ax_dend_right, row_paths, orientation="right")
 
     ordered_coef = coef_df.iloc[row_order, col_order]
     ordered_pval = pval_df.iloc[row_order, col_order]
-    col_labels = [coef_df.columns[idx] for idx in col_order]
-    row_labels = [coef_df.index[idx] for idx in row_order]
+    col_labels = [_cluster_label_from_value(outcome_paths[idx], width=16) for idx in col_order]
+    row_labels = [predictor_specs[idx].label for idx in row_order]
 
     annot = np.array(
         [
@@ -541,45 +851,29 @@ def _make_figure_2(
     x_ticks = np.arange(n_cols) * 10 + 5
     y_ticks = np.arange(n_rows) * 10 + 5
     ax_heat.set_xticks(x_ticks)
-    ax_heat.set_xticklabels(col_labels, fontsize=9)
+    ax_heat.set_xticklabels(col_labels, fontsize=8.6)
     ax_heat.set_yticks(y_ticks)
     ax_heat.set_yticklabels(row_labels, fontsize=10.5)
     ax_heat.set_xlim(0, n_cols * 10)
     ax_heat.set_ylim(n_rows * 10, 0)
     ax_heat.tick_params(axis="both", which="both", length=0)
-    ax_heat.set_xlabel("Political opinion domain  (10 attacked leaves)", fontsize=11, labelpad=10)
-    ax_heat.set_ylabel("Profile moderator", fontsize=11, labelpad=8)
-    ax_heat.set_title(
-        "Profile moderators → adversarial opinion shifts"
-        f"  (OLS per opinion leaf, z-scored Big Five, {run_id}, N = {n_profiles} profiles)",
-        fontsize=12,
-        fontweight="bold",
-        pad=14,
-    )
+    ax_heat.set_xlabel("")
+    ax_heat.set_ylabel("")
 
-    ax_dend_top.set_xlim(0, n_cols * 10)
-    ax_dend_top.set_ylim(bottom=0)
-    ax_dend_right.set_ylim(n_rows * 10, 0)
-    ax_dend_right.set_xlim(left=0)
-
-    plt.tight_layout(rect=[0, 0.14, 1, 1])
-    _align_dendrogram_axes(ax_heat, ax_dend_top, ax_dend_right)
+    fig.subplots_adjust(left=0.17, right=0.95, top=0.88, bottom=0.20, wspace=0.00, hspace=0.00)
+    _style_dendrogram_axis(ax_dend_top, orientation="top", x_max=n_cols * 10)
+    _style_dendrogram_axis(ax_dend_right, orientation="right", y_max=n_rows * 10)
 
     pos = ax_heat.get_position()
-    cbar_ax = fig.add_axes([pos.x0, 0.04, pos.width * 0.85, 0.03])
+    cbar_height = 0.022
+    cbar_y = 0.08
+    cbar_ax = fig.add_axes([pos.x0, cbar_y, pos.width * 0.85, cbar_height])
     cb = fig.colorbar(im, cax=cbar_ax, orientation="horizontal")
-    cb.set_label("OLS coefficient  (z-scored Big Five  |  unstd. Sex dummies)", fontsize=9)
-    cb.ax.tick_params(labelsize=8)
-
-    fig.text(
-        pos.x0,
-        0.005,
-        "Top and right dendrograms show hierarchical clustering of the moderator-coefficient matrix."
-        "  Blue = moderator reduces susceptibility  |  Red = moderator increases susceptibility"
-        "  |  †p < .10   *p < .05   **p < .01   ***p < .001",
-        fontsize=8.5,
-        color="#555555",
+    cb.set_label(
+        "OLS coefficient  (continuous moderators z-scored; non-reference categorical levels unstandardized)",
+        fontsize=8.8,
     )
+    cb.ax.tick_params(labelsize=8)
 
     return _save(fig, "figure_readme_2_moderation_heatmap", output_dirs)
 
@@ -597,20 +891,48 @@ def generate_main_readme_figures(
     stage06_dir = Path(stage06_dir)
     long_df = pd.read_csv(stage05_dir / "sem_long_raw.csv")
     profile_wide_df = pd.read_csv(stage06_dir / "profile_sem_wide.csv")
+    ontologies = _load_ontologies(config, ontology_catalog)
 
     saved: list[str] = []
-    saved.extend(_make_figure_1(long_df, output_dirs, config, ontology_catalog))
-    saved.extend(_make_figure_2(profile_wide_df, long_df, output_dirs, config, ontology_catalog))
+    saved.extend(_make_figure_1(long_df, output_dirs, config, ontology_catalog, ontologies))
+    saved.extend(
+        _make_figure_2(
+            profile_wide_df,
+            long_df,
+            stage06_dir,
+            output_dirs,
+            config,
+            ontology_catalog,
+            ontologies,
+        )
+    )
     return saved
 
 
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate root README / paper matrix figures.")
+    parser.add_argument("--stage05-dir", default=str(DEFAULT_STAGE05))
+    parser.add_argument("--stage06-dir", default=str(DEFAULT_STAGE06))
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    parser.add_argument("--ontology-catalog", default=str(DEFAULT_ONTOLOGY_CATALOG))
+    parser.add_argument(
+        "--output-dir",
+        action="append",
+        dest="output_dirs",
+        help="Repeat to write to multiple output directories. Defaults to all standard publication mirrors.",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    config = _load_json_if_exists(DEFAULT_CONFIG)
-    ontology_catalog = _load_json_if_exists(DEFAULT_ONTOLOGY_CATALOG)
+    args = _parse_args()
+    config = _load_json_if_exists(args.config)
+    ontology_catalog = _load_json_if_exists(args.ontology_catalog)
+    output_dirs = args.output_dirs if args.output_dirs else DEFAULT_OUTPUT_DIRS
     files = generate_main_readme_figures(
-        stage05_dir=DEFAULT_STAGE05,
-        stage06_dir=DEFAULT_STAGE06,
-        output_dirs=DEFAULT_OUTPUT_DIRS,
+        stage05_dir=args.stage05_dir,
+        stage06_dir=args.stage06_dir,
+        output_dirs=output_dirs,
         config=config,
         ontology_catalog=ontology_catalog,
     )
