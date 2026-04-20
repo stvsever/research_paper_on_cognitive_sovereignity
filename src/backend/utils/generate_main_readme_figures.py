@@ -29,7 +29,6 @@ import pandas as pd
 import seaborn as sns
 from matplotlib.colors import TwoSlopeNorm
 from scipy import stats
-from scipy.cluster.hierarchy import dendrogram
 
 ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT) not in sys.path:
@@ -261,71 +260,80 @@ def _build_path_tree(paths: Sequence[str]) -> dict[str, dict]:
     return tree
 
 
-def _hierarchy_linkage(paths: Sequence[str]) -> np.ndarray | None:
+def _draw_hierarchy_dendrogram(ax: plt.Axes, paths: Sequence[str], orientation: str) -> list[int]:
     ordered_paths = _ordered_unique(paths)
-    if len(ordered_paths) <= 1:
-        return None
+    if not ordered_paths:
+        ax.set_axis_off()
+        return []
+
+    if len(ordered_paths) == 1:
+        ax.set_axis_off()
+        return [0]
 
     tree = _build_path_tree(ordered_paths)
-    leaf_index = {path: idx for idx, path in enumerate(ordered_paths)}
-    counts = {idx: 1 for idx in range(len(ordered_paths))}
-    linkage_rows: list[list[float]] = []
-    next_id = len(ordered_paths)
+    leaf_positions = {path: idx * 10 + 5 for idx, path in enumerate(ordered_paths)}
+    max_depth = max(len(_split_path(path)) - 1 for path in ordered_paths)
 
-    def visit(node: dict[str, dict], prefix: tuple[str, ...]) -> tuple[int, float]:
-        nonlocal next_id
-        child_clusters: list[int] = []
-        child_heights: list[float] = []
-
+    def visit(node: dict[str, dict], prefix: tuple[str, ...], depth: int) -> tuple[float, float]:
+        child_points: list[tuple[float, float]] = []
         for key, child in node.items():
             current_prefix = prefix + (key,)
             if child:
-                cluster_id, child_height = visit(child, current_prefix)
+                child_points.append(visit(child, current_prefix, depth + 1))
             else:
-                cluster_id = leaf_index[" > ".join(current_prefix)]
-                child_height = 0.0
-            child_clusters.append(cluster_id)
-            child_heights.append(child_height)
+                child_points.append((leaf_positions[" > ".join(current_prefix)], 0.0))
 
-        if len(child_clusters) == 1:
-            return child_clusters[0], child_heights[0]
+        node_height = float(max(max_depth - depth, 0))
+        child_positions = [point[0] for point in child_points]
+        node_position = float(sum(child_positions) / len(child_positions))
 
-        merge_height = max(child_heights) + 1.0
-        current_id = child_clusters[0]
-        current_count = counts[current_id]
+        if orientation == "top":
+            for child_position, child_height in child_points:
+                ax.plot(
+                    [child_position, child_position],
+                    [child_height, node_height],
+                    color=DENDROGRAM_COLOR,
+                    linewidth=1.4,
+                    solid_capstyle="butt",
+                )
+            if len(child_positions) > 1:
+                ax.plot(
+                    [min(child_positions), max(child_positions)],
+                    [node_height, node_height],
+                    color=DENDROGRAM_COLOR,
+                    linewidth=1.4,
+                    solid_capstyle="butt",
+                )
+        else:
+            for child_position, child_height in child_points:
+                ax.plot(
+                    [child_height, node_height],
+                    [child_position, child_position],
+                    color=DENDROGRAM_COLOR,
+                    linewidth=1.4,
+                    solid_capstyle="butt",
+                )
+            if len(child_positions) > 1:
+                ax.plot(
+                    [node_height, node_height],
+                    [min(child_positions), max(child_positions)],
+                    color=DENDROGRAM_COLOR,
+                    linewidth=1.4,
+                    solid_capstyle="butt",
+                )
+        return node_position, node_height
 
-        for child_id in child_clusters[1:]:
-            new_count = current_count + counts[child_id]
-            linkage_rows.append([current_id, child_id, merge_height, new_count])
-            counts[next_id] = new_count
-            current_id = next_id
-            current_count = new_count
-            next_id += 1
+    visit(tree, (), 0)
 
-        return current_id, merge_height
-
-    visit(tree, ())
-    if len(linkage_rows) != len(ordered_paths) - 1:
-        return None
-    return np.asarray(linkage_rows, dtype=float)
-
-
-def _draw_hierarchy_dendrogram(ax: plt.Axes, paths: Sequence[str], orientation: str) -> list[int]:
-    ordered_paths = _ordered_unique(paths)
-    Z = _hierarchy_linkage(ordered_paths)
-    if Z is None:
-        ax.set_axis_off()
-        return list(range(len(ordered_paths)))
-    dend = dendrogram(
-        Z,
-        ax=ax,
-        orientation=orientation,
-        color_threshold=0,
-        above_threshold_color=DENDROGRAM_COLOR,
-        no_labels=True,
-    )
+    if orientation == "top":
+        ax.set_xlim(0, len(ordered_paths) * 10)
+        ax.set_ylim(0, max_depth + 0.25)
+    else:
+        ax.set_xlim(0, max_depth + 0.25)
+        ax.set_ylim(len(ordered_paths) * 10, 0)
+    ax.margins(x=0, y=0)
     ax.set_axis_off()
-    return dend["leaves"]
+    return list(range(len(ordered_paths)))
 
 
 def _style_dendrogram_axis(
@@ -693,10 +701,18 @@ def _make_figure_1(
 
     pos_mean = ax_heat_mean.get_position()
     pos_std = ax_heat_std.get_position()
+    pos_dend_mean = ax_dend_right_mean.get_position()
+    pos_dend_std = ax_dend_right_std.get_position()
     cbar_height = 0.022
-    cbar_y = 0.08
-    cbar_ax1 = fig.add_axes([pos_mean.x0, cbar_y, pos_mean.width, cbar_height])
-    cbar_ax2 = fig.add_axes([pos_std.x0, cbar_y, pos_std.width, cbar_height])
+    cbar_y = 0.09
+    panel_width_mean = pos_dend_mean.x1 - pos_mean.x0
+    panel_width_std = pos_dend_std.x1 - pos_std.x0
+    cbar_width_mean = panel_width_mean * 0.72
+    cbar_width_std = panel_width_std * 0.72
+    cbar_x_mean = pos_mean.x0 + (panel_width_mean - cbar_width_mean) / 2
+    cbar_x_std = pos_std.x0 + (panel_width_std - cbar_width_std) / 2
+    cbar_ax1 = fig.add_axes([cbar_x_mean, cbar_y, cbar_width_mean, cbar_height])
+    cbar_ax2 = fig.add_axes([cbar_x_std, cbar_y, cbar_width_std, cbar_height])
 
     cb1 = fig.colorbar(im_mean, cax=cbar_ax1, orientation="horizontal")
     cb1.set_label("Mean AE  (positive = attack succeeded)", fontsize=8.5)
@@ -865,9 +881,13 @@ def _make_figure_2(
     _style_dendrogram_axis(ax_dend_right, orientation="right", y_max=n_rows * 10)
 
     pos = ax_heat.get_position()
+    pos_dend = ax_dend_right.get_position()
     cbar_height = 0.022
-    cbar_y = 0.08
-    cbar_ax = fig.add_axes([pos.x0, cbar_y, pos.width * 0.85, cbar_height])
+    cbar_y = 0.09
+    panel_width = pos_dend.x1 - pos.x0
+    cbar_width = panel_width * 0.72
+    cbar_x = pos.x0 + (panel_width - cbar_width) / 2
+    cbar_ax = fig.add_axes([cbar_x, cbar_y, cbar_width, cbar_height])
     cb = fig.colorbar(im, cax=cbar_ax, orientation="horizontal")
     cb.set_label(
         "OLS coefficient  (continuous moderators z-scored; non-reference categorical levels unstandardized)",
