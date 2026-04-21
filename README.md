@@ -227,26 +227,19 @@ Stages under `src/backend/pipeline/separate/` are independently runnable:
 ---
 
 ## 🔄 Pipeline Overview
+The full workflow is shown below, from ontology-constrained scenario construction through agentic measurement, directional effect construction, and inferential analysis.
 
-```mermaid
-flowchart TD
-    P["PROFILE ontology\nBig Five + Age + Sex\nNEO-PI-R 30 facets + demographics"] --> S
-    O["OPINION ontology\nN_o repeated sampled leaves\n+ adversarial direction per leaf"] --> S
-    A["ATTACK ontology\nN_a-leaf factorial\n4 cognitive-warfare mechanism families"] --> S
+<div align="center">
+<img src="src/backend/pipeline/full/pipeline_visualization.png" width="1200" alt="Pipeline overview for ontology-constrained adversarial opinion susceptibility auditing.">
+</div>
 
-    S["Scenario design\nprofile × attack × opinion factorial\nN_p × N_a × N_o = 1,000 scenarios"] --> B["Baseline opinion agent\nscore in [-1000, 1000]"]
-    B --> E["Attack exposure agent\nplatform-native manipulative message"]
-    E --> R["Realism reviewer\nthreshold + repair loop"]
-    R --> P2["Post-exposure opinion agent\nsame leaf, same scale\nprofile-driven susceptibility"]
-    P2 --> C["Coherence reviewer\nplausibility + boundedness checks"]
-    C --> D["Adversarial effectivity\nAE = delta × direction\nICC(1), cluster bootstrap, FDR"]
-    D --> W["Profile-panel wide table\nrepeated adversarial outcomes"]
-    W --> SEM["Repeated-outcome path SEM\nmoderator → effectivity indicators\nCFI/RMSEA fit indices"]
-    W --> RIDGE["Target-conditional ridge models\npost hoc susceptibility index\nhierarchical R² decomposition"]
-    SEM --> OUT["Figures, tables, PDF report\ninteractive dashboard (16 tabs)"]
-    RIDGE --> OUT
-    RIDGE --> CLI["Profile Feature Network\nSpearman correlation graph\ncommunity detection + centrality"]
-```
+### Concise Methodology
+
+1. **Define the state space:** independent `PROFILE`, `ATTACK`, and `OPINION` ontologies specify admissible inputs, manipulative interventions, and target opinion leaves with signed adversarial direction.
+2. **Construct scenarios factorially:** each observation is a unique tuple `(profile, attack, opinion)`, producing a crossed design over admissible ontology leaves.
+3. **Measure attacked opinion change:** for each scenario, the pipeline elicits a baseline opinion, generates and audits an attack artifact, elicits a post-exposure opinion, and checks response coherence.
+4. **Compute directional effectivity:** adversarial effectivity is the signed opinion shift aligned with the target direction, `AE = (post - baseline) × direction`.
+5. **Estimate susceptibility structure:** repeated-outcome moderation models, task-conditional regularized models, uncertainty analysis, and profile-feature dependency graphs identify which profile characteristics systematically increase or reduce susceptibility.
 
 ---
 
