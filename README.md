@@ -77,17 +77,27 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ### Main Results
 
+**Figure 1. Attack × Opinion Adversarial Effectivity Matrix**
+
+*Dendrograms reveal ontology structure; heatmaps show mean effects and profile variability across 1,000 scenarios.*
+
 <div align="center">
 <img src="research_report/assets/figures/figure_readme_1_ae_factorial.png" width="920" alt="Adversarial effectivity across the 4-attack × 10-opinion factorial.">
-
-*Figure 1. Adversarial effectivity across the 4 × 10 attack–opinion factorial (run_10 · 25 profiles · 1,000 scenarios). **Left:** Mean AE per cell — red = attack succeeded on average; blue = net resistance. **Right:** Inter-individual SD of AE. The **top dendrogram follows the active OPINION ontology hierarchy** and each panel has its own **right dendrogram following the active ATTACK ontology hierarchy**, so the matrix layout stays compatible with test, deployment, or custom ontology selections. Astroturf Wave produces the strongest positive mean AE on Alliance Commitment (+17.1); Fear Appeal Scapegoating generates net resistance on several Defence topics. The near-uniform spread (~34–46 units) across all cells shows that profile differences consistently modulate susceptibility regardless of which specific attack or opinion is targeted.*
 </div>
+
+**Note.** Adversarial effectivity across the 4 × 10 attack–opinion factorial (run_10 · 25 profiles · 1,000 scenarios). **Left:** Mean AE per cell — red = attack succeeded on average; blue = net resistance. **Right:** Inter-individual SD of AE. The **top dendrogram follows the active OPINION ontology hierarchy** and each panel has its own **right dendrogram following the active ATTACK ontology hierarchy**, so the matrix layout stays compatible with test, deployment, or custom ontology selections. Astroturf Wave produces the strongest positive mean AE on Alliance Commitment (+17.1); Fear Appeal Scapegoating generates net resistance on several Defence topics. The near-uniform spread (~34–46 units) across all cells shows that profile differences consistently modulate susceptibility regardless of which specific attack or opinion is targeted.
+
+---
+
+**Figure 2. Profile Moderators of Adversarial Opinion Susceptibility**
+
+*Regression coefficients reveal Conscientiousness as protective; Sex Female amplifies susceptibility on specific opinions.*
 
 <div align="center">
 <img src="research_report/assets/figures/figure_readme_2_moderation_heatmap.png" width="920" alt="OLS moderation heatmap: all 5 Big Five traits and Sex predicting adversarial opinion shifts.">
-
-*Figure 2. OLS moderation heatmap — regression of per-leaf mean adversarial effectivity on the core profile panel across 25 pseudoprofiles (run_10): Age, the five Big Five personality domains, and non-reference Sex dummies. Continuous moderators are z-scored; categorical dummies remain unstandardised. The **top dendrogram follows the active OPINION ontology hierarchy** and the **right dendrogram follows the profile-feature hierarchy**, so dummy levels such as **Sex: Female** and **Sex: Other** remain nested under **Sex** rather than clustering arbitrarily by coefficients alone. Blue = moderator reduces susceptibility; red = increases susceptibility. **Conscientiousness is the dominant protective moderator** and **Sex: Female** drives the largest positive effects on Humanitarian Intervention, Sanctions Use, and Media Trust. Significance: †p < .10, \*p < .05, \*\*p < .01, \*\*\*p < .001.*
 </div>
+
+**Note.** OLS moderation heatmap — regression of per-leaf mean adversarial effectivity on the core profile panel across 25 pseudoprofiles (run_10): Age, the five Big Five personality domains, and non-reference Sex dummies. Continuous moderators are z-scored; categorical dummies remain unstandardised. The **top dendrogram follows the active OPINION ontology hierarchy** and the **right dendrogram follows the profile-feature hierarchy**, so dummy levels such as **Sex: Female** and **Sex: Other** remain nested under **Sex** rather than clustering arbitrarily by coefficients alone. Blue = moderator reduces susceptibility; red = increases susceptibility. **Conscientiousness is the dominant protective moderator** and **Sex: Female** drives the largest positive effects on Humanitarian Intervention, Sanctions Use, and Media Trust. Significance: †p < .10, \*p < .05, \*\*p < .01, \*\*\*p < .001.
 
 ---
 
