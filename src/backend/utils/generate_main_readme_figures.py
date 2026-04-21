@@ -272,20 +272,20 @@ def _draw_hierarchy_dendrogram(ax: plt.Axes, paths: Sequence[str], orientation: 
 
     tree = _build_path_tree(ordered_paths)
     leaf_positions = {path: idx * 10 + 5 for idx, path in enumerate(ordered_paths)}
-    max_depth = max(len(_split_path(path)) - 1 for path in ordered_paths)
 
-    def visit(node: dict[str, dict], prefix: tuple[str, ...], depth: int) -> tuple[float, float]:
+    def visit(node: dict[str, dict], prefix: tuple[str, ...]) -> tuple[float, float]:
         child_points: list[tuple[float, float]] = []
         for key, child in node.items():
             current_prefix = prefix + (key,)
             if child:
-                child_points.append(visit(child, current_prefix, depth + 1))
+                child_points.append(visit(child, current_prefix))
             else:
                 child_points.append((leaf_positions[" > ".join(current_prefix)], 0.0))
 
-        node_height = float(max(max_depth - depth, 0))
         child_positions = [point[0] for point in child_points]
+        child_heights = [point[1] for point in child_points]
         node_position = float(sum(child_positions) / len(child_positions))
+        node_height = float(max(child_heights) + 1.0) if child_points else 0.0
 
         if orientation == "top":
             for child_position, child_height in child_points:
@@ -323,13 +323,17 @@ def _draw_hierarchy_dendrogram(ax: plt.Axes, paths: Sequence[str], orientation: 
                 )
         return node_position, node_height
 
-    visit(tree, (), 0)
+    if len(tree) == 1:
+        root_label, root_node = next(iter(tree.items()))
+        _, root_height = visit(root_node, (root_label,))
+    else:
+        _, root_height = visit(tree, ())
 
     if orientation == "top":
         ax.set_xlim(0, len(ordered_paths) * 10)
-        ax.set_ylim(0, max_depth + 0.25)
+        ax.set_ylim(0, root_height + 0.35)
     else:
-        ax.set_xlim(0, max_depth + 0.25)
+        ax.set_xlim(0, root_height + 0.35)
         ax.set_ylim(len(ordered_paths) * 10, 0)
     ax.margins(x=0, y=0)
     ax.set_axis_off()
