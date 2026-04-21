@@ -20,19 +20,20 @@
 ## 📋 Table of Contents
 
 - [Abstract](#abstract)
+- [Pipeline Overview](#pipeline-overview)
 - [Key Findings](#key-findings)
 - [Full Paper](#full-paper)
 - [Repository Structure](#repository-structure)
-- [Setup & Installation](#setup--installation)
+- [Setup & Installation](#setup-installation)
 - [Usage](#usage)
-- [Pipeline Overview](#pipeline-overview)
 - [Conditional Susceptibility Index](#conditional-susceptibility-index)
-- [Custom Ontology Support](#-custom-ontology-support)
+- [Custom Ontology Support](#custom-ontology-support)
 - [Citation](#citation)
 - [License](#license)
 
 ---
 
+<a id="abstract"></a>
 ## 🧬 Abstract
 
 This repository contains the backend research pipeline, evaluation outputs, manuscript assets, and reproducible report for a study on how **inter-individual differences moderate the effectivity of cyber-manipulation** in political opinion spaces. The workflow represents `PROFILE`, `ATTACK`, and `OPINION` as explicit hierarchical ontologies, generates attacked-only profile-panel scenarios, elicits baseline and post-exposure opinions with structured LLM agents, audits exposure realism and response coherence, and estimates moderation through a **repeated-outcome path SEM** plus a **post hoc ridge-regularised susceptibility index**.
@@ -43,6 +44,25 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ---
 
+<a id="pipeline-overview"></a>
+## 🔄 Pipeline Overview
+The full workflow is shown below, from ontology-constrained scenario construction through agentic measurement, directional effect construction, and inferential analysis.
+
+<div align="center">
+<img src="src/backend/pipeline/full/pipeline_visualization.png" width="1200" alt="Pipeline overview for ontology-constrained adversarial opinion susceptibility auditing.">
+</div>
+
+### Concise Methodology
+
+1. **Define the state space:** independent `PROFILE`, `ATTACK`, and `OPINION` ontologies specify admissible inputs, manipulative interventions, and target opinion leaves with signed adversarial direction.
+2. **Construct scenarios factorially:** each observation is a unique tuple `(profile, attack, opinion)`, producing a crossed design over admissible ontology leaves.
+3. **Measure attacked opinion change:** for each scenario, the pipeline elicits a baseline opinion, generates and audits an attack artifact, elicits a post-exposure opinion, and checks response coherence.
+4. **Compute directional effectivity:** adversarial effectivity is the signed opinion shift aligned with the target direction, `AE = (post - baseline) × direction`.
+5. **Estimate susceptibility structure:** repeated-outcome moderation models, task-conditional regularized models, uncertainty analysis, and profile-feature dependency graphs identify which profile characteristics systematically increase or reduce susceptibility.
+
+---
+
+<a id="key-findings"></a>
 ## 🔬 Key Findings
 
 > **Main result:** *N_p* = **25 pseudoprofiles** × *N_a* = **4 attack vectors** × *N_o* = **10 opinion leaves** across 4 political domains = **1,000 scenarios**. Attack vectors: one per cognitive-warfare mechanism family (Misleading Narrative Framing, Astroturf Comment Wave, Fear Appeal Scapegoating, LLM Chatbot Personalized Persuasion). Primary profile dimensions: **Big Five personality (30 facets) + Age + Sex** — survey-mappable to ESS/Eurobarometer/ANES/GSS. Post-attack opinion agent: **profile-driven susceptibility** — no explicit directional % constraints; trait-outcome linkages govern shifting behaviour (Conscientiousness → deliberate resistance; Neuroticism → emotional reactivity).
@@ -101,6 +121,7 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ---
 
+<a id="full-paper"></a>
 ## 📄 Full Paper
 
 - **PDF (typeset):** [research_report/report/main.pdf](research_report/report/main.pdf)
@@ -110,6 +131,7 @@ The present study focuses on three core profile dimensions — **Personality (Bi
 
 ---
 
+<a id="repository-structure"></a>
 ## 🗂️ Repository Structure
 
 ```text
@@ -152,6 +174,7 @@ Paper_CaseStudiesAnalysisExperimentalData/
 
 ---
 
+<a id="setup-installation"></a>
 ## ⚙️ Setup & Installation
 
 ### Option A — Local
@@ -176,6 +199,7 @@ OPENROUTER_MODEL=mistralai/mistral-small-3.2-24b-instruct docker compose up --bu
 
 ---
 
+<a id="usage"></a>
 ## 🚀 Usage
 
 ### Reproduce the full study
@@ -226,23 +250,7 @@ Stages under `src/backend/pipeline/separate/` are independently runnable:
 
 ---
 
-## 🔄 Pipeline Overview
-The full workflow is shown below, from ontology-constrained scenario construction through agentic measurement, directional effect construction, and inferential analysis.
-
-<div align="center">
-<img src="src/backend/pipeline/full/pipeline_visualization.png" width="1200" alt="Pipeline overview for ontology-constrained adversarial opinion susceptibility auditing.">
-</div>
-
-### Concise Methodology
-
-1. **Define the state space:** independent `PROFILE`, `ATTACK`, and `OPINION` ontologies specify admissible inputs, manipulative interventions, and target opinion leaves with signed adversarial direction.
-2. **Construct scenarios factorially:** each observation is a unique tuple `(profile, attack, opinion)`, producing a crossed design over admissible ontology leaves.
-3. **Measure attacked opinion change:** for each scenario, the pipeline elicits a baseline opinion, generates and audits an attack artifact, elicits a post-exposure opinion, and checks response coherence.
-4. **Compute directional effectivity:** adversarial effectivity is the signed opinion shift aligned with the target direction, `AE = (post - baseline) × direction`.
-5. **Estimate susceptibility structure:** repeated-outcome moderation models, task-conditional regularized models, uncertainty analysis, and profile-feature dependency graphs identify which profile characteristics systematically increase or reduce susceptibility.
-
----
-
+<a id="conditional-susceptibility-index"></a>
 ## 🎯 Conditional Susceptibility Index
 
 The profile-level susceptibility index is **directional** and **conditional** on the configured (attack, opinion) target set *T*.
@@ -279,6 +287,7 @@ python src/backend/pipeline/separate/compute_conditional_susceptibility/score_pr
 
 ---
 
+<a id="custom-ontology-support"></a>
 ## 🧩 Custom Ontology Support
 
 Analysts can run the full pipeline with **their own PROFILE × ATTACK × OPINION taxonomies** (3 JSON files):
@@ -318,6 +327,7 @@ Results load automatically into the interactive dashboard (Ontologies → Semant
 
 ---
 
+<a id="citation"></a>
 ## 📚 Citation
 
 ### APA 7
@@ -342,6 +352,7 @@ A machine-readable citation is also available in [`CITATION.cff`](CITATION.cff).
 
 ---
 
+<a id="license"></a>
 ## ⚖️ License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
