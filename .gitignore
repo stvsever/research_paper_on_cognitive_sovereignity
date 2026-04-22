@@ -27,6 +27,7 @@ htmlcov/
 
 # Local notebook / app state
 .ipynb_checkpoints/
+.claude/
 
 # Local build caches
 .cache/
