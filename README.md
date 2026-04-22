@@ -40,7 +40,7 @@ This repository contains the backend research pipeline, evaluation outputs, manu
 
 The present study focuses on three core profile dimensions — **Personality (Big Five + NEO-PI-R facets), Age, and Sex** — as primary moderators of adversarial opinion susceptibility, examined across a full factorial design of attack mechanisms and opinion domains.
 
-> **Interpretive constraint:** Among attacked pseudoprofiles, which profile differences are associated with larger post-minus-baseline opinion shifts — in the direction of a hypothetical adversary's goal — across repeated political opinion leaves and multiple attack mechanisms? The design is attacked-only: it does **not** estimate a no-attack counterfactual effect.
+> **Interpretive constraint:** Among attacked pseudoprofiles, which profile differences are associated with larger post-minus-baseline opinion shifts — in the direction of a hypothetical adversary's goal — across repeated political opinion leaves and multiple attack mechanisms?
 
 ---
 
