@@ -1,8 +1,8 @@
 <div align="center">
 
-# Inter-individual Differences in Susceptibility to Cyber-manipulation
+# Inter-individual Differences in Susceptibility to Cyber-manipulation of Political Opinions
 
-### Ontology-Constrained Multi-Agent Simulation for Adversarial Opinion Susceptibility Auditing
+### An Ontology-Constrained Multi-Agent Simulation Approach
 
 [![Paper PDF](https://img.shields.io/badge/PDF-Paper-1d4e89.svg)](research_report/report/main.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2a9d8f.svg)](LICENSE)
